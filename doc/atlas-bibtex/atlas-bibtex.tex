@@ -2,13 +2,13 @@
 % Examples on how to fill BibTeX entries in the ATLAS Bibliographic Style
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass{../../style/atlasdoc}
+\documentclass{style/atlasdoc}
 
-\usepackage{import}
-\subimport{../../style/}{atlasphysics.sty}
-\usepackage[colorlinks,breaklinks,pdftitle={ATLAS BibTeX guide},pdfauthor={Ian Brock}]{hyperref}  
-\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
-\usepackage{biblatex}
+\usepackage[minimal]{style/atlaspackage}
+\usepackage{style/atlasphysics}
+
+\usepackage[backend=biber,
+	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \addbibresource{atlas-bibtex.bib}
 \addbibresource{atlas-biblatex.bib}
 
@@ -16,13 +16,23 @@
 
 \newcommand*{\BibTeX}{Bib\TeX}
 
-\title{Quick guide to ATLAS BibTeX style}
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Set author and title for the PDF file
+\hypersetup{pdftitle={ATLAS BibTeX guide},pdfauthor={Ian Brock}}
+
+\atlastitle{Quick guide to ATLAS \BibTeX\ style}
+
 \author{Ian C. Brock}
 
 \abstracttext{%
-	This documents illustrates how to use \BibTeX for the bibliography of your ATLAS paper.
+	This document illustrates how to use \BibTeX\ for the bibliography of your ATLAS paper.
 	Two \BibTeX (\texttt{.bst}) style files have been created that can be used with any of the ATLAS supported journals,
 	depending on whether they require the title of the references to be included or not.
+
+	This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
 }
 
 
@@ -48,19 +58,37 @@ To ensure the homogeneity in all ATLAS publications,
 Authors must choose between these two style files, depending on the journal to which they wish to submit their paper.
 
 \textcolor{red}{Important:} Please use these files and base your \texttt{.bib} file on the example provided,
-as it has the references in the style preferred by the ATLAS PubComm.
+as it has the references in the style preferred by the ATLAS Publications Committee.
 This will definitely save time in the reviewing process!
 
 These style files have been successfully tested in the framework provided by each of the journals listed in the following sections and with the standard ATLAS document template.
 
-A new implementation of \BibTeX is provided by the \texttt{biblatex}~\cite{biblatex} package.
+A new implementation of \BibTeX\ is provided by the \texttt{biblatex}~\cite{biblatex} package.
 It is planned to move all ATLAS documents to the use of this package.
 One major advantage of the package is that it defines quite a few more entry types
 that are much more suitable for online documents and things like CONF and PUB notes.
+It is also possible to use UTF-8 encoding in the entries, which means that letters such as
+ä, é, ß can be included directly in the text.
+Adjustment of the style is also much simpler.
+It is possible to take a base style and then just apply changes to it rather than
+having to learn the details of how \texttt{bst} files are constructed.
+
+\emph{Note that such adjustments still have to be made to the style used in the current documentation.}
+
+You compile a document using \BibTeX\ using the commands:\\
+\indent \textbf{PDFLaTeX + BibTeX + PDFLaTeX + PDFLaTeX} 
+
+\noindent For \texttt{biblatex} and \texttt{biber} use:\\
+\indent \textbf{PDFLaTeX + BibTeX + PDFLaTeX + PDFLaTeX} 
+
+You can of course use \LaTeX\ rather than PDF\LaTeX, but PDF\LaTeX\ is preferred,
+as things like clicking on cross-references and links to publications in the bibliography
+works much more reliably with PDF\LaTeX.
 
 
 %-------------------------------------------------------------------------------
-\section{`With Title'}
+\section{Journals that include the title in the reference}
+\label{sec:withtitle}
 %-------------------------------------------------------------------------------
 
 Journals:
@@ -70,26 +98,23 @@ Journals:
 \item \textbf{NJP}
 \end{itemize}
 
-\bigskip
 \noindent BibTeX style file: \\
 \indent \textbf{atlasBibStyleWithTitle.bst}
 
-\bigskip
 \noindent BibTeX example bibliography file: \\
 \indent \textbf{atlasBibStyleExample.bib}
 
-\bigskip
 \noindent Include at the end of your \textbf{.tex} file the following lines: \\
-\indent \texttt{\textbackslash bibliographystyle$\{$atlasBibStyleWithTitle$\}$}  \% - - - - $>$ Name of \emph{.bst} file \\
-\indent \texttt{\textbackslash bibliography$\{$atlasBibStyleExample$\}$}  \% - - $>$ Name of your \emph{.bib} file
+\indent \texttt{\textbackslash bibliographystyle\{atlasBibStyleWithTitle\}} \\
+\indent \texttt{\textbackslash bibliography\{atlas-bibtex\}}
 
-\bigskip
 \noindent To compile: \\
 \indent \textbf{LaTeX + BibTeX + LaTeX + LaTeX} 
 
 
 %-------------------------------------------------------------------------------
-\section{`Without Title'}
+\section{Journals that do not include the title in the reference}
+\label{sec:wotitle}
 %-------------------------------------------------------------------------------
 
 Journals: \\
@@ -99,22 +124,15 @@ Journals: \\
 \indent \textbf{PRD} \\
 \indent \textbf{PRL}
 
-\bigskip
 \noindent BibTeX style file: \\
 \indent \textbf{atlasBibStyleWoTitle.bst}
 
-\bigskip
 \noindent BibTeX example bibliography file: \\
 \indent \textbf{atlasBibStyleExample.bib}
 
-\bigskip
 \noindent Include at the end of your \textbf{.tex} file the following lines: \\
-\indent \texttt{\textbackslash bibliographystyle$\{$atlasBibStyleWoTitle$\}$}  \% - - - - $>$ Name of \emph{.bst} file \\
-\indent \texttt{\textbackslash bibliography$\{$atlasBibStyleExample$\}$}  \% - - $>$ Name of your \emph{.bib} file
-
-\bigskip
-\noindent To compile: \\
-\indent \textbf{LaTeX + BibTeX + LaTeX + LaTeX} 
+\indent \texttt{\textbackslash bibliographystyle\{atlasBibStyleWoTitle\}}
+\indent \texttt{\textbackslash bibliography\{atlas-bibtex\}}
 
 
 %-------------------------------------------------------------------------------
@@ -122,27 +140,28 @@ Journals: \\
 %-------------------------------------------------------------------------------
 
 For ATLAS Notes, the recommended style file is: \\
-\indent \textbf{atlasBibStyleWoTitle.bst}.\\
-
-\noindent Both style files are now provided with the \texttt{atlasnote} package.
+\indent \textbf{atlasBibStyleWoTitle.bst}.
 
 
 %-------------------------------------------------------------------------------
-\section{Useful BibTeX tips}
+\section{\BibTeX tips}
 %-------------------------------------------------------------------------------
 
 \begin{itemize}
-	\item A bibliographic item is created in the \emph{.bib} file as: \\
-		\texttt{@Article\{lhcCollaboration:2012 \\ \emph{\% bibliographic information}} \\ \} \\
-		\\
-		The identifier directly after the document type declaration is how we are going to refer to this item inside the main \emph{.tex} file: \\
-		{\small{\texttt{Example of a paper from a LHC Collaboration is given in} $\backslash$cite\{lhcCollaboration:2012\}.}}
-	\item When referencing ATLAS CONF notes, the url to the CDS page should be included. For this to work, in the preamble of your \emph{.tex} document add: \\
-		\texttt{$\backslash$usepackage\{hyperref\}}
-	\item If the DOI is filled and the \texttt{hyperref} package loaded, the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
-	\item To cite multiple references in the format [A-Z], include the following package in the header of your document: \\
-	         \texttt{$\backslash$usepackage\{cite\}}	
-	\item \textbf{\color{red} New:} When referencing papers from journals like PRD, PLB, etc., one has to be careful not to include the ``D" or ``B" as part of the volume but rather in the journal name. New macros have been added to the \textbf{.bst} style files for these journals. Please use these.
+\item A bibliographic item is created in the \emph{.bib} file as: \\
+	\texttt{@Article\{lhcCollaboration:2012 \\ \emph{\% bibliographic information}} \\ \} \\
+	\\
+	The identifier directly after the document type declaration is how we are going to refer to this item inside the main \emph{.tex} file: \\
+	{\small{\texttt{Example of a paper from a LHC Collaboration is given in} $\backslash$cite\{lhcCollaboration:2012\}.}}
+\item When referencing ATLAS CONF notes, the url to the CDS page should be included. For this to work, in the preamble of your \emph{.tex} document add: \\
+	\texttt{$\backslash$usepackage\{hyperref\}}
+\item If the DOI is filled and the \texttt{hyperref} package loaded, the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
+\item If you use \BibTeX\ and want to cite multiple references in the format [A-Z], include the following package in the 	header of your document: \\
+	\texttt{$\backslash$usepackage\{cite\}}.
+	If you use \texttt{biblatex} the option \texttt{style=numeric-comp} does this for you.
+\item When referencing papers from journals like PRD, PLB, etc.,
+	one has to be careful not to include the ``D'' or ``B'' as part of the volume but rather in the journal name. 
+	Macros have been added to the \textbf{.bst} style files for these journals. Please use these.
 \end{itemize}
 
 

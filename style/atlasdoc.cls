@@ -7,6 +7,7 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
+\def\ATPackageVersion{00-95-00}
 
 % --- Class structure: identification part
 \ProvidesClass{style/atlasdoc}[2014/08/20 v.00-95-00 ATLAS document]
@@ -89,7 +90,9 @@
 
 % Abstract text
 \def\@abstracttext{}
-\newcommand{\abstracttext}[1]{\def\@abstracttext{#1}}
+\newcommand{\abstracttext}[1]{ %
+	\def\@abstracttext{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent #1}
+}
 
 % Shortcut to add submission text
 \newcommand{\submitted}%
