@@ -1,0 +1,64 @@
+\documentclass{article}
+%-----------------------------------------------------------------------
+% Creates a standard ATLAS cover page for use during ATLAS circulation.
+% During the ATLAS editorial process you usually add the atlascover package
+% to append a cover page used to track the editorial details.
+% This file is for the case that you have to make the cover page separately.
+%-----------------------------------------------------------------------
+
+\usepackage{graphicx}
+
+% Add option [CONF] if this is a CONF note draft
+\usepackage{atlascover}
+% \usepackage[CONF]{atlascover}
+
+% The paper title:
+\AtlasCoverPaperTitle{Sample Cover Page}
+
+% Internal ATLAS number, to help ATLAS members to locate the paper
+\AtlasCoverNumber{EXOT-2015-01}
+
+% Paper draft version
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+\AtlasCoverPaperVersion{1.0}
+
+% Submission journal
+\AtlasCoverJournal{Phys.\ Lett.\ B.}
+
+% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
+\AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+%
+% OR
+%
+% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
+\AtlasCoverSupportingNote{A supporting note}       {CDS link here}
+\AtlasCoverSupportingNote{Another supporting note} {CDS link here}
+
+% Comment deadline
+\AtlasCoverCommentsDeadline{April 1, 2015}
+
+% Analysis team members -- Indicate the Contact Editors (usually two)
+% by (*) after their name
+\AtlasCoverAnalysisTeam{Joe Physicist, Jane Engineer, Contact Editor (*), Alphonse Physicien, Peter Analyzer, ATLAS member, I.M. alsoEditor (*), I.M. Author}
+
+% Editorial Board Members --- Indicate the Chair by a (*) after
+% his/her name
+\AtlasCoverEdBoardMember{EdBoard Chair (*), EB Member 1, EB Member 2, EB Member 3}
+
+% Editors egroup
+\AtlasCoverEgroupEditors{atlas-EXOT-2015-01-editors@cern.ch}
+
+% EdBoard egroup
+\AtlasCoverEgroupEdBoard{atlas-EXOT-2015-01-editorial-board@cern.ch}
+
+% Abstract
+\AtlasCoverAbstract{ %
+	This is the abstract for this paper.
+	We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
+	We are going to continue to look very hard for new physics in 2015 
+	when the energy and the luminosity are increased; hopefully we find it.
+}
+
+\begin{document}
+% Blank document, as only the cover page is created.
+\end{document}

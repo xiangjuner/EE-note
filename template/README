@@ -1,0 +1,26 @@
+------------------------------------------------------------------------------
+Setting up a new ATLAS note or paper.
+See ChangeLog or SVN log for history of changes.
+
+Responsible: Ian Brock (Ian.Brock@cern.ch)
+------------------------------------------------------------------------------
+$Id: README 301568 2014-08-15 15:05:46Z brock $
+$HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/README $
+------------------------------------------------------------------------------
+
+You can create a new ATLAS document by using the command:
+make new BASENAME=mydocument
+where mydocument is the name of the main file of the document.
+
+This just executes the following commands:
+cp template/atlas-document.tex mydocument.tex
+touch mydocument.bib
+
+You may also want to copy and input the following files:
+template/atlas-metadata.tex
+template/atlas-contribute.tex
+template/atlas-detector.tex
+
+atlas-metadata.tex contains the document title, abstract and labels associated with the document
+atlas-contribute.tex provides an environment to list the contributors to an analysis
+atlas-detector.tex contains a few example descriptions of the ATLAS detector.

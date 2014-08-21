@@ -1,0 +1,30 @@
+%
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  "Box-squared" operator, as in Klein-Gordon. Command is "\boxsq".  |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+%
+\newbox\boxsqbox
+\newdimen\boxsize\boxsize=1.2ex%
+\def\boxop{%
+\setbox\boxsqbox=\vbox{\hrule depth0.8pt width0.8\boxsize height0pt%
+                       \kern0.8\boxsize
+                       \hrule height0.8pt width0.8\boxsize depth0pt}%
+           \hbox{%
+           \vrule height1.0\boxsize width0.8pt depth0pt%
+           \copy\boxsqbox
+           \vrule height1.0\boxsize width0.8pt depth0pt\kern1.5pt}}%
+\def\boxsq{\ensuremath{\boxop^2}}%
+% +--------------------------------------------------------------------+
+% |                                                                    |
+% |  Theoretical notations                                             |
+% |                                                                    |
+% +--------------------------------------------------------------------+
+%
+\def\spinor#1{\ensuremath{\left(\matrix{#1_1\cr#1_2\cr#1_3\cr#1_4\cr}\right)}} % Math mode (EE)
+\def\pmb#1{\setbox0=\hbox{$#1$}%  This is "poor man's boldface".
+  \kern-.025em\copy0\kern-1.0\wd0%
+  \kern.05em\copy0\kern-1.0\wd0%
+  \kern-.025em\raise.0433em\box0}%
+\def\grad{\pmb{\nabla}}%

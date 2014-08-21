@@ -1,0 +1,348 @@
+%-------------------------------------------------------------------------------
+% Guide to the use of the ATLAS LaTeX package
+%-------------------------------------------------------------------------------
+\documentclass{style/atlasdoc}
+
+\usepackage{style/atlaspackage}
+\usepackage{style/atlasphysics}
+
+% Use biblatex and biber for the bibliography
+\usepackage[backend=biber,
+	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+\addbibresource{../atlas-latex.bib}
+
+% Paths for figures
+\graphicspath{{../../figures/},{figures/}}
+
+% Shorthand for \phantom to use in tables
+\newcommand{\pho}{\phantom{0}}
+\newcommand{\BibTeX}{\textsc{Bib\TeX}}
+\newcommand{\Macro}[1]{\textbackslash #1\xspace}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
+
+\title{Users guide to the ATLAS \LaTeX\ package}
+
+\author{Ian Brock}
+
+\draftversion{00-95-00}
+
+\abstracttext{
+  This note documents the usage of the ATLAS \LaTeX\ templates.
+}
+
+%-------------------------------------------------------------------------------
+% This is where the document really begins
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\tableofcontents
+\clearpage
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------------------------------------------------------
+
+This collection ATLAS \LaTeX\ templates, style files and documentation 
+replace and hopefully improve on the previous packages. They supersede:
+\begin{itemize}
+\item \texttt{atlasnote-00-04-05}
+\item \texttt{atlascover-00-00-11}
+\item \texttt{atlaspreprint-00-00-05}
+\end{itemize}
+
+The design principle is that you have a main document and 
+the style files and \texttt{atlasdoc} class are in a subdirectory \texttt{style}.
+This subdirectory can of course be a link to a centrally maintained \texttt{style} directory.
+
+For each document that you create, you first unpack the latest version of
+\texttt{atlaslatex} and then create your main document in the top-level directory.
+This structure means that it is easier to update the style files if a new version of
+\texttt{atlaslatex} is released. 
+Each document can then be independent of the \texttt{atlaslatex} release.
+
+To create a new document you can issue the commands:
+%
+\begin{verbatim}
+make new BASENAME=mydocument
+\end{verbatim}
+%
+This command copies \texttt{atlas-document.tex} and {atlas-document-metadata.tex}
+to \texttt{mydocument.tex} and \texttt{mydocument-metadata.tex}.
+It also creates empty files \texttt{mydocument-defs.sty} and \texttt{mydocument.bib}.
+
+
+%-------------------------------------------------------------------------------
+\section{Title, author and document numbers}
+\label{sec:metadata}
+%-------------------------------------------------------------------------------
+
+An ATLAS document usually collects a series of labels over time.
+These include the name of the analysis, e.g.\ \texttt{BPHY-2013-04}, 
+and the CERN preprint number.
+In addition the abstract and title are needed on the front page of the document and also on various cover pages.
+The editors of the document, the editorial board members and the contributors to the analysis
+also need to be specified at some point.
+
+While all this information can be collected in the main file of he document, 
+it is probably better to put it all in a separate document.
+By default this file is called \texttt{mydocument-metadata.tex}.
+
+
+%-------------------------------------------------------------------------------
+\section{The \texttt{atlasdoc} class}
+\label{app:atlasdoc}
+%-------------------------------------------------------------------------------
+
+This document has been typeset using the \texttt{atlasdoc.cls} class.
+This class implements the ATLAS template and can be used for papers, preprints,
+notes. The class is available from the web pages of the
+Publication Committee and from SVN.
+It also contains this instruction paper and the related files.
+
+\texttt{atlasnote.cls} derives from the standard \LaTeX{} {article.cls}
+class, thus all the usual commands and options you would have used
+with \texttt{article} will work with it. For instance, this paper has
+been produced using this very simple preamble:
+
+\begin{verbatim}
+  \documentclass{style/atlasdoc}
+  \usepackage{style/atlaspackage}
+  \usepackage{style/atlasphysics}
+  \graphicspath{{../},{figures/}}
+\end{verbatim}
+
+The style file \texttt{atlasphysics.sty} defines a lot of useful
+macros for particles and more. See the separate document
+\texttt{atlas-physics.pdf}~\cite{atlas-physics} for details.
+
+%-------------------------------------------------------------------------------
+\subsection{Dependencies}
+%-------------------------------------------------------------------------------
+
+The \texttt{atlasdoc} class depends on these packages, which presence in
+your system is required:
+\begin{itemize}
+\item \texttt{graphicx}
+\item \texttt{color}
+\end{itemize}
+These should be installed in any modern \LaTeX{}
+installation, while the latter is part of the {\tt ednotes} package
+bundle and is directly provided with this package; \texttt{atlasnote} was
+tested on a CERN \texttt{lxplus} node and worked out of the box. 
+The \texttt{atlasnote} class works both with \LaTeX{} and pdf\LaTeX{}.
+
+The style file \texttt{atlaspackage.sty} includes further packages.
+You can steer how mnay by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
+The minimal set is:
+\begin{itemize}
+\item \texttt{mathptmx}
+\item \texttt{lineno}
+\end{itemize}
+
+The default set adds in adition:
+
+Finally the full set includes further packages that may be useful:
+
+If you wish to use the \texttt{atlascover} package with the 
+\texttt{atlasnote} class, load the latest version of the package in your
+system, and invoke it using the \texttt{coverpage} option of the class:
+\begin{verbatim}
+  \documentclass[11pt,a4paper,coverpage]{style/atlasdoc}
+\end{verbatim}
+instead of the the usual \texttt{usepackage} command: this will ensure
+that the cover page is produced before the note title page.
+
+You can include it with \Macro{usepackage} if you prefer.
+In this case you need the option \texttt{nomaketitle} in the \texttt{atlasdoc} class
+and you include the \Macro{maketitle} command after \verb|\begin{documenmt}|.
+
+%-------------------------------------------------------------------------------
+\subsection{Custom commands}
+%-------------------------------------------------------------------------------
+
+The \texttt{atlasdoc} class implements some custom commands, mainly
+used to typeset the frontpage content:
+
+\begin{itemize}
+
+  \item {\verb|\title{<Title>}|} typesets the paper title. If not
+    given, a dummy \emph{Title goes here} title will be produced.
+
+  \item {\verb|\author{<Author>}|} typesets the paper author. If not
+    explicitly given, \emph{The ATLAS Collaborations} will be used by
+    default. Note that the \verb|\author{}| command is pretty limited
+    in case you want to display multiple author names and multiple
+    affiliations. For this use case the \verb|authblk.sty| package is
+    provided; this is a typical example of its use:
+    \begin{verbatim}
+\usepackage{authblk}
+\renewcommand\Authands{, } % avoid ``. and'' for last author
+\renewcommand\Affilfont{\itshape\small} % affiliation formatting
+
+\author[a]{First Author}
+\author[a]{Second Author}
+\author[b]{Third Author}
+
+\affil[a]{One Institution}
+\affil[b]{Another Institution}
+    \end{verbatim}
+
+  \item {\verb|\abstracttext{<The abstract text>}|} typesets the
+    abstract in the front page.
+
+  \item {\verb|\date{<Date>}|} typesets the paper date. If not
+    explicitly given, the current date (\verb|\today|) will be used.
+
+  \item {\verb|\draftversion{<Draft Version>}|} displays the draft
+    version on the front page, a DRAFT banner on all the other page
+    headings, and add line numbers to all text to easy commenting abd
+    reviewing. Can be omitted.
+
+  \item {\verb|\journal{<Journal Name>}|} displays the phrase \emph{to
+    be submitted to Journal Name} at the bottom of the front page. Can
+    be omitted.
+
+  \item {\verb|\skipbeforetitle{<length>}|} sets the distance between
+    the title page header and the note title. The default value should
+    be fine for most notes, but in case you have a long list of
+    authors or a lengthy abstract you can use this command to buy
+    some extra space. Note that \verb|<length>| can also be negative
+    (use it at your own risk!).
+
+\end{itemize}
+
+\noindent {\tt emptynote.tex} contains a basic skeleton that can be
+used to start typing a new note using the {\tt atlasnote} class. All
+the custom commands described above are used in this example file, in
+order to demonstrate their use.
+
+%-------------------------------------------------------------------------------
+\section{Symbols in \texttt{atlasphysics.sty}}
+\label{sec:atlasphysics}
+%-------------------------------------------------------------------------------
+
+Many useful symbols are defined in \texttt{atlasphysics.sty}.
+While this used to be a very long file, it has now been split into several smaller files,
+which can be included or not using options.
+
+
+%-------------------------------------------------------------------------------
+\section{Miscellaneous \LaTeX{} tips}
+%-------------------------------------------------------------------------------
+\label{sec:latex}
+
+\subsection{Graphics}
+
+Use the {\tt graphicx} package \cite{} to include your plots and
+figure. The use of older packages like {\tt espfig} is deprecated.
+Since the {\tt graphicx} package is required by the {\tt atlasnote}
+class, it is automatically loaded when using it, and there is no need
+to explicitly included it in the document preamble.
+
+Always include your graphics file without mentioning the file
+extension. For instance, if you want to include the \texttt{figure.eps}
+file, you should use a syntax like this:
+\begin{verbatim}
+  \includegraphics[width=\textwidth]{figure}
+\end{verbatim}
+This will allow you to compile your document using either \LaTeX{} or
+pdf\LaTeX{} without changing your source file: you can in fact have
+both \texttt{figure.eps} and \texttt{figure.pdf} in your working directory,
+and the proper one will be picked up according to the processing method
+you choose.
+
+It is a good habit to keep you graphics file in a separate
+sub-directory (e.g.\ in \texttt{figure/}. In this case you can include them
+by mentioning it explicitly every time:
+\begin{verbatim}
+  \includegraphics[width=\textwidth]{figures/figure}
+\end{verbatim}
+or by telling the \texttt{graphicx} package where to look
+for them, by using this command:
+\begin{verbatim}
+  \graphicspath{{figures/}}
+\end{verbatim}
+
+
+\subsection{Definitions}
+
+You can use \verb|\ensuremath| in definitions, so that they will work
+in both text mode and math mode, e.g.
+\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}}| to get
+\UoneS{} in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
+
+
+\section{Remarks on units and symbols}
+
+As discussed in the ATLAS Paper Template~\cite{atlas-paper},
+it is highly recommended to use a units package to format your units properly.
+The package \texttt{siunitx} works very well and is the package of choice.
+Alternatives include \texttt{units} and \texttt{hepunits},
+which is based on \texttt{SIunits}.
+
+The basic command to use in \texttt{siunitx} is \verb|\SI{20}{\GeV}| to get
+\SI{20}{\GeV}. 
+There are also several other useful commands for specifying ranges:
+\verb|\numrange| for a range of numbers and \verb|SIrange| for a range of numbers with a unit. 
+Options exist for specifying how they are formatted.
+The options can be set for an individual command or for the whole document.
+For example, in this document I have specified the options:
+\verb|\sisetup{separate-uncertainty, range-units = repeat, detect-family = true}|.
+and
+\verb|\sisetup{group-digits=integer, group-minimum-digits=4}|.
+
+In addition several extra units are defined:
+\begin{itemize}
+\item \verb|\micron| for \si{\micron};
+\item \verb|\mrad| for \si{\mrad};
+\item \verb|\nb| for \si{\nb};
+\item \verb|\pb| for \si{\pb};
+\item \verb|\fb| for \si{\fb}.
+\end{itemize}
+Use the syntax \verb|\SI{20.3}{\per\fb}| to get \SI{20.3}{\per\fb}.
+
+Some things to note about using \texttt{siunitx}:
+\begin{itemize}
+\item It tries to isolate itself from other packages.
+	If you just want to write \si{\GeV} in your text,
+	then you must write \verb|\si{\GeV}|.
+\item It also contains two new column specifiers for tables ``S'' and ``s'',
+	which are extremely useful for formatting tables properly.
+\end{itemize}
+
+
+%-------------------------------------------------------------------------------
+\section{\texttt{atlasdoc} and \texttt{atlasnote}}
+\label{sec:old}
+%-------------------------------------------------------------------------------
+
+The \texttt{atlasdoc} class replaces and supersedes \texttt{atlasnote}.
+The decision was taken to give the class a new name, as it is supposed to be
+able to be used for (almost) all ATLAS documents.
+In addition, some small changes in the user setup are necessary to use the new
+class, style files and templates.
+
+All style files are collected in the \texttt{style} subdirectory.
+It is assumed that this directory is a  direct subdirectory of you main \LaTeX\ file.
+If you want to keep the style files in a central place you can either put them in
+\verb|${HOME}/texmf/tex/latex| or create a link from your main directoryto the location of
+your \texttt{style} directory.
+
+The main changes the user has to make are:
+\begin{itemize}
+\item Change the class name from \texttt{atlasnote} to \texttt{style/atlasdoc};
+\item Add \verb|\usepackage{style/atlaspackage}| at the beginning of the document;
+\item Change \verb|\usepackage{atlasphysics}| to \verb|\usepackage{style/atlasphysics}|; 
+\item Use the macro \Macro{atlastitle} instead of \Macro{title}.
+\end{itemize}
+
+All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of \BibTeX.
+ 
+\end{document}
