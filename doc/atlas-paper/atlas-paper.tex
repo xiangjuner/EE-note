@@ -29,7 +29,7 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS paper template},pdfauthor={ATLAS Publications Committee}}
 
-\title{A template for ATLAS papers}
+\atlastitle{A template for ATLAS papers}
 
 %\author{The ATLAS Collaboration}
 
@@ -104,16 +104,17 @@ Your first action before embarking on writing a paper should be to
 read the ATLAS Publication Policy~\cite{publication-policy}, available
 from the web pages of the Publication Committee. Chapter 3 of this
 document details the refereeing and approval procedures that you will
-need to follow; chapter 4 gives information on the style.
+need to follow; Chapter 4 gives information on the style.
 
-At some point during writing of an ATLAS paper, you should decide what
-journal it will be submitted to.  Please keep in mind that each
-journal makes specific demands on length and style.  Most journals use
-regular capitalization for titles (i.e.\ capitalize the first word and
-all proper nouns, e.g. ``The search for large extra dimensions''). The
-notable exception is Physical Review Letters, which capitalizes the
-first word and all other important words, e.g.\ ``The Search for Large
-Extra Dimensions''.
+At some point during the writing of an ATLAS paper, 
+you should decide what journal it will be submitted to.
+Please keep in mind that each journal makes specific demands on length and style.
+Most journals use regular capitalisation for titles 
+(i.e.\ capitalise the first word and all proper nouns, 
+e.g.\ ``The search for large extra dimensions''). 
+The notable exception is Physical Review Letters, which capitalizes the
+first word and all other important words,
+e.g.\ ``The Search for Large Extra Dimensions''.
 
 The \LaTeX{} file and Postscript versions of this template can be
 found on the web pages of the ATLAS Publication Committee. Example
@@ -122,8 +123,9 @@ suggestions on improvements to this template are very welcome and
 should be given to the Publication Committee.
 
 The \texttt{atlasphysics.sty} style file contains a set of particles,
-reactions, etc.\ that may be useful. For example, the missing-$E_T$
-symbol (\met{}) is defined there. A separate document~\cite{atlas-physics}
+reactions, etc.\ that may be useful. For example, the missing-$E_{\text{T}}$
+symbol (\met{}) is defined there. 
+A separate document~\cite{atlas-physics}
 contains a list of the commands in \texttt{atlasphysics.sty}.
 
 This paper template has been tested using \LaTeX{}2e.  You should get
@@ -141,11 +143,11 @@ with proper referencing. Use, for example,
 \verb|\cite{Glashow:1961tr,Weinberg:1967tq,sm_salam}| to cite the
 Standard Model~\cite{Glashow:1961tr,Weinberg:1967tq,sm_salam}.
 
-Define important quantities that will be used later.  State how the
-measurement of interest is actually performed, and how parameters are
-extracted from the data.  If quantities are extracted with a fit to
-the data, describe the fit procedure. If the explanation needs to be a
-bit longer, a separate section may be appropriate.
+Define important quantities that will be used later.
+State how the measurement of interest is actually performed, and how parameters are
+extracted from the data.  
+If quantities are extracted with a fit to the data, describe the fit procedure.
+If the explanation needs to be a bit longer, a separate section may be appropriate.
 
 
 %-------------------------------------------------------------------------------
@@ -153,14 +155,18 @@ bit longer, a separate section may be appropriate.
 \label{sec:atlas}
 %-------------------------------------------------------------------------------
 
-The Publication Committee provides a standard text giving a brief
-description of the ATLAS detector, and the appropriate references.
+The Publication Committee provides a standard texts giving examples
+for description of the ATLAS detector, and the appropriate references.
 This text is included in the paper template provided with this package.
 If necessary for your analysis, describe a subdetector in more detail.
 
-Describe the data set: when were the data taken, under what special
-circumstances (if any), and what was the integrated luminosity.
+The section on the experimental setup should also describe the dataset:
+when were the data taken, under what specialcircumstances (if any),
+and what was the integrated luminosity.
 
+Examples of descriptions can be found below.
+
+\input{../../template/atlas-detector}
 
 %-------------------------------------------------------------------------------
 \section{Monte Carlo}
@@ -468,7 +474,7 @@ Figure~\ref{fig:subfigexample}.
 
 
 %-------------------------------------------------------------------------------
-\section{Rules for referencing}
+\section{References}
 \label{sec:refs}
 %-------------------------------------------------------------------------------
 

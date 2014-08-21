@@ -5,12 +5,14 @@
 #------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex
 # Replace mydocument with your main filename or add another target set
+# Replace BIBTEX = bibtex with BIBTEX = biber if you use biblatex and biber instead of bibtex
 # Use "make clean" to cleanup.
 # "make cleanall" also deletes the PDF file $(BASENAME).pdf.
 
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = bibtex
+# BIBTEX = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
@@ -22,9 +24,9 @@ default: run_pdflatex
 .PHONY: new clean
 
 new:
-	# cp template/atlas-document.tex $(BASENAME).tex
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex
-	cp template/atlas-metadata.tex $(BASENAME)-metadata.tex
+	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
+	cp template/atlas-document-contribute.tex $(BASENAME)-contribute.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 	
@@ -38,13 +40,13 @@ run_latex: $(BASENAME).dvi
 # Standard Latex targets
 %.pdf:	%.tex *.bib
 	$(PDFLATEX) $<
-	$(BIBLATEX) $(basename $<)
+	$(BIBTEX)   $(basename $<)
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
 %.dvi:	%.tex 
 	$(LATEX)    $<
-	$(BIBLATEX) $(basename $<)
+	$(BIBTEX)   $(basename $<)
 	$(LATEX)    $<
 	$(LATEX)    $<
 
@@ -56,7 +58,7 @@ run_latex: $(BASENAME).dvi
 	$(DVIPS) $< -o $@
 
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out 
+	-rm *.dvi *.toc *.aux *.log *.out \
 		*.bbl *.blg *.brf *.bcf \
 		*.cb *.ind *.idx *.ilg *.inx \
 		*.synctex.gz *~ ~* spellTmp 

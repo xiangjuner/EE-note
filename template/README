@@ -14,13 +14,17 @@ where mydocument is the name of the main file of the document.
 
 This just executes the following commands:
 cp template/atlas-document.tex mydocument.tex
+touch mydocument-defs.sty
 touch mydocument.bib
+It will also copy the following files:
+template/atlas-document-metadata.tex   to mydocument-metadata.tex
+template/atlas-document-contribute.tex to mydocument-contribute.tex
 
-You may also want to copy and input the following files:
-template/atlas-metadata.tex
-template/atlas-contribute.tex
+You can also copy:
 template/atlas-detector.tex
 
-atlas-metadata.tex contains the document title, abstract and labels associated with the document
-atlas-contribute.tex provides an environment to list the contributors to an analysis
-atlas-detector.tex contains a few example descriptions of the ATLAS detector.
+atlas-document-metadata.tex		contains the document title, abstract and labels 
+								associated with the document
+atlas-document-contribute.tex 	provides an environment to list the contributors 
+								to an analysis
+atlas-detector.tex 				contains a few example descriptions of the ATLAS detector.

@@ -21,6 +21,7 @@
 }
 
 \def\@title{Title goes here}
+\def\@atlastitle{Title goes here}
 \def\@author{The ATLAS Collaboration}
 \def\@date{\today}
 
@@ -33,6 +34,13 @@
 %\begin{tabular}[t]{c}#1\end{tabular}\par}
 %\end{center}\par\vskip1.5em\@thanks\endgroup}
 %\newenvironment{Authlist}{\begin{center}}{\end{center}}
+
+% Document title
+\newcommand{\atlastitle}[1]%
+{
+  \def\@title{#1}
+  \def\@atlastitle{#1}
+}
 
 % Draft version 
 \def\@draftversion{}
@@ -203,7 +211,7 @@
   %\vskip 60\p@
   \vskip \AN@skipbeforetitle
   \begin{center}%
-    {\Large\bf \@title \par}%
+    {\Large\bf \@atlastitle \par}%
     \vskip 3em%
     {\large
      \lineskip .75em%
@@ -257,24 +265,6 @@
   \global\let\and\relax
 }
 
-% Use \icaption instead of \caption in tables and figures to get a
-% caption that is indented. Note that the label should be included
-% inside \icaption for it to work properly.
-\newlength{\capindent}
-\setlength{\capindent}{0.5cm}
-\newlength{\capwidth}
-\setlength{\capwidth}{\textwidth}
-\addtolength{\capwidth}{-2\capindent}
-\newlength{\figwidth}
-\setlength{\figwidth}{\textwidth}
-\addtolength{\figwidth}{-2.0cm}
-\newcommand{\icaption}[2][!*!,!]{\hspace*{\capindent}%
-  \begin{minipage}{\capwidth}
-    \ifthenelse{\equal{#1}{!*!,!}}%
-      {\caption{#2}}%
-      {\caption[#1]{#2}}
-      \vspace*{3mm}
-  \end{minipage}}
 
 \AtBeginDocument{
   % If selected, generate ATLAS Cover Page

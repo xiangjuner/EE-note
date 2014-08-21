@@ -26,7 +26,7 @@
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\title{Users guide to the ATLAS \LaTeX\ package}
+\atlastitle{Users guide to the ATLAS \LaTeX\ package}
 
 \author{Ian Brock}
 
@@ -49,20 +49,32 @@
 \label{sec:intro}
 %-------------------------------------------------------------------------------
 
-This collection ATLAS \LaTeX\ templates, style files and documentation 
-replace and hopefully improve on the previous packages. They supersede:
+This collection of ATLAS \LaTeX\ templates, style files and documentation
+can be used for papers, preprints and notes. 
+The class is available from the web pages of the Publication Committee~\cite{pubcom} and from 
+SVN~\cite{pubcom-svn}.
+
+The collection replaces and hopefully improves on the previous packages. It supersedes:
 \begin{itemize}
 \item \texttt{atlasnote-00-04-05}
 \item \texttt{atlascover-00-00-11}
 \item \texttt{atlaspreprint-00-00-05}
+\item \texttt{atlasbib-00-00-04}
 \end{itemize}
+
+The collection includes the \texttt{atlasdoc} class, useful style files
+and documentation of the package.
+The documentation is provided as both PDF files and \LaTeX\ documents
+that should provide examples of how to use the package and how to write
+good \LaTeX.
 
 The design principle is that you have a main document and 
 the style files and \texttt{atlasdoc} class are in a subdirectory \texttt{style}.
 This subdirectory can of course be a link to a centrally maintained \texttt{style} directory.
 
-For each document that you create, you first unpack the latest version of
-\texttt{atlaslatex} and then create your main document in the top-level directory.
+The usual procedure is that for each document that you create,
+you first unpack the latest version of \texttt{atlaslatex} and
+then create your main document in the top-level directory.
 This structure means that it is easier to update the style files if a new version of
 \texttt{atlaslatex} is released. 
 Each document can then be independent of the \texttt{atlaslatex} release.
@@ -73,9 +85,14 @@ To create a new document you can issue the commands:
 make new BASENAME=mydocument
 \end{verbatim}
 %
-This command copies \texttt{atlas-document.tex} and {atlas-document-metadata.tex}
-to \texttt{mydocument.tex} and \texttt{mydocument-metadata.tex}.
+This command copies \texttt{atlas-document.tex}, 
+{atlas-document-metadata.tex} and {atlas-document-contribute.tex}
+to \texttt{mydocument.tex},  \texttt{mydocument-metadata.tex} and
+\texttt{mydocument-contribute.tex}.
 It also creates empty files \texttt{mydocument-defs.sty} and \texttt{mydocument.bib}.
+
+In the \texttt{Makefile} you should change the \texttt{BASENAME} to the name of your document.
+You can then compile your document with the command: \texttt{make}.
 
 
 %-------------------------------------------------------------------------------
@@ -101,12 +118,8 @@ By default this file is called \texttt{mydocument-metadata.tex}.
 %-------------------------------------------------------------------------------
 
 This document has been typeset using the \texttt{atlasdoc.cls} class.
-This class implements the ATLAS template and can be used for papers, preprints,
-notes. The class is available from the web pages of the
-Publication Committee and from SVN.
-It also contains this instruction paper and the related files.
 
-\texttt{atlasnote.cls} derives from the standard \LaTeX{} {article.cls}
+\texttt{atlasdoc.cls} derives from the standard \LaTeX{} {article.cls}
 class, thus all the usual commands and options you would have used
 with \texttt{article} will work with it. For instance, this paper has
 been produced using this very simple preamble:
@@ -330,7 +343,7 @@ In addition, some small changes in the user setup are necessary to use the new
 class, style files and templates.
 
 All style files are collected in the \texttt{style} subdirectory.
-It is assumed that this directory is a  direct subdirectory of you main \LaTeX\ file.
+It is assumed that this directory is a direct subdirectory of you main \LaTeX\ file.
 If you want to keep the style files in a central place you can either put them in
 \verb|${HOME}/texmf/tex/latex| or create a link from your main directoryto the location of
 your \texttt{style} directory.
@@ -344,5 +357,9 @@ The main changes the user has to make are:
 \end{itemize}
 
 All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of \BibTeX.
- 
+
+The class and style files have been cleaned up and things 
+that were thought to no longer be necessary have been removed.
+These pieces have been collected in \texttt{style/atlasnote-obsolete.sty} in case they are needed.
+
 \end{document}
