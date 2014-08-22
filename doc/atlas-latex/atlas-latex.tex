@@ -309,11 +309,16 @@ which can be included or not using options.
 The package should work under Linux, MacOS and Windows. It has been tested on:
 \begin{description}
 \item[Ubuntu 14.04]
-	The standard TeX Live installation (package \texttt{texlive}). The following extra packages were installed:
-	\texttt{texlive-science}, \texttt{texlive-math-extra}, \texttt{texlive-latex3}, \texttt{texlive-lang-ukenglish};
+	The standard TeX Live installation (package \texttt{texlive}).
+	The following extra packages had to be installed:
+	\texttt{texlive-latex-extra} (footmisc),
+	\texttt{texlive-humanities} (lineno),
+	\texttt{texlive-science} (siunitx),
+	\texttt{texlive-bibtex-extra} and \texttt{biber} (biblatex and biber);
 \item[CentOS 7] Not yet tested; 
 \item[Windows 7]
-	MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net});
+	MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net}).
+	MikTeX has the advantage that it installs missing packages, provided you activated that option;
 \item[MacOSX 10.9]
 	MacTeX (\url{http://www.tug.org/mactex}) and TeXstudio 2.8.2.
 \end{description}
