@@ -8,7 +8,6 @@
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
 
-
 \let\if@Minimum\iffalse
 \let\if@Default\iftrue
 \let\if@Maximum\iffalse
@@ -20,21 +19,28 @@
 \ProcessOptions \relax
 %-------------------------------------------------------------------------------
 
+% Packages normally included by atlasdoc
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{babel}
+
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 %\RequirePackage{mathptmx}
-%\RequirePackage{color}
 \RequirePackage{amsmath}
 \RequirePackage[varg]{txfonts}
 \RequirePackage[bottom]{footmisc}
-\RequirePackage{booktabs}
 \RequirePackage{lineno}
 % If you have an old lineno or do not have it, you can get it from the style/other directory
 % \RequirePackage{style/other/lineno}
 
 \if@Default
+  \RequirePackage{booktabs}
 	\RequirePackage{siunitx}
 	\RequirePackage{subfigure}
+  % subfigure option needed if subfigure is also used
+  \RequirePackage[subfigure]{tocloft}
+  \renewcommand{\cftdot}{}
 	% Declare a few options and standard units for siunitx that are otherwise missing
 	\sisetup{separate-uncertainty, range-units = repeat, detect-family = true}
 	\sisetup{group-digits=integer, group-minimum-digits=4}
@@ -46,10 +52,14 @@
 	\DeclareSIUnit\clight{\ensuremath{c}}
 \fi
 
+
 \if@Maximum
 	\RequirePackage{longtable}
 \fi
 
 % hyperref is usually included as late as possible
+\PassOptionsToPackage{hyphens}{url}
 \usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+
+\endinput

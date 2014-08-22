@@ -17,12 +17,10 @@
 % Defaults for title page
 \newdimen\AN@skipbeforetitle
 \AN@skipbeforetitle=60\p@
-\newcommand\skipbeforetitle[1]{
-  \AN@skipbeforetitle=#1
-}
+\newcommand{\skipbeforetitle}[1]{\AN@skipbeforetitle=#1}
 
-\def\@title{Title goes here}
-\def\@atlastitle{Title goes here}
+\def\@title{title: use \textbackslash atlastitle to set it}
+\def\@atlastitle{atlastitle: use \textbackslash atlastitle to set it}
 \def\@author{The ATLAS Collaboration}
 \def\@date{\today}
 
@@ -37,7 +35,7 @@
 %\newenvironment{Authlist}{\begin{center}}{\end{center}}
 
 % Document title
-\newcommand{\atlastitle}[1]%
+\newcommand{\AtlasTitle}[1]%
 {
   \def\@title{#1}
   \def\@atlastitle{#1}
@@ -46,6 +44,10 @@
 % Draft version 
 \def\@draftversion{}
 \newcommand{\draftversion}[1]%
+{
+  \def\@draftversion{#1}
+}
+\newcommand{\AtlasVersion}[1]%
 {
   \def\@draftversion{#1}
 }
@@ -78,19 +80,27 @@
   \pagestyle{myheadings}
 }
 
+% ATLAS reference code - empty by default
+\def\@refcode{}
+\newcommand{\AtlasRefCode}[1]{\def\@refcode{#1}}
+
 % ATLAS note number
 \def\@atlasnote{}
-\newcommand{\atlasnote}[1]{\def\@atlasnote{#1}}
+\newcommand{\AtlasNote}[1]{\def\@atlasnote{#1}}
 
 % Submission details
 \def\@subprepend{To be submitted to }
 \newcommand{\subprepend}[1]{\def\@subprepend{#1}}
 \def\@journal{}
+\newcommand{\AtlasJournal}[1]{\def\@journal{#1}}
 \newcommand{\journal}[1]{\def\@journal{#1}}
 
 % Abstract text
 \def\@abstracttext{}
-\newcommand{\abstracttext}[1]{ %
+\newcommand{\AtlasAbstract}[1]{%
+	\def\@abstracttext{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent #1}
+}
+\newcommand{\abstracttext}[1]{%
 	\def\@abstracttext{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent #1}
 }
 
@@ -109,9 +119,13 @@
 }
 
 % --- Class structure: declaration of options part
-% Cover page off by default
-\let\if@CoverPage\iffalse
-\DeclareOption{coverpage}{\let\if@CoverPage\iftrue}
+% ATLAS draft cover page off by default
+\let\if@DraftCover\iffalse
+\DeclareOption{coverpage}{\let\if@DraftCover\iftrue}
+% Preprint cover page off by default
+% If preprint cover is made, regular title should be turned off
+\let\if@PreprintCover\iffalse
+\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@MakeTitle\iffalse}
 % Title page on by default
 \let\if@MakeTitle\iftrue
 \DeclareOption{nomaketitle}{\let\if@MakeTitle\iffalse}
@@ -120,6 +134,11 @@
 \let\if@LPaper\iffalse
 \DeclareOption{a4paper}{\let\if@APaper\iftrue \let\if@LPaper\iffalse}
 \DeclareOption{letterpaper}{\let\if@APaper\iffalse \let\if@LPaper\iftrue}
+% Document language
+\let\if@UKenglish\iftrue
+\let\if@USenglish\iffalse
+\DeclareOption{UKenglish}{\let\if@UKenglish\iftrue  \let\if@USenglish\iffalse}
+\DeclareOption{USenglish}{\let\if@UKenglish\iffalse \let\if@USenglish\iftrue}
 % Include tikz package off by default
 \let\if@usetikz\iffalse
 \DeclareOption{usetikz}{\let\if@usetikz\iftrue}
@@ -132,13 +151,20 @@
 \ProcessOptions \relax
 
 % --- Class structure: declaration of options part
-\if@APaper
-  \LoadClass[titlepage,a4paper,11pt]{article}
-	\RequirePackage[a4paper]{geometry}
+\if@APaper%
+	\if@USenglish%
+	  \LoadClass[titlepage,a4paper,11pt,USenglish]{article}
+	\else%
+	  \LoadClass[titlepage,a4paper,11pt,UKenglish]{article}
+	\fi
 \else
-  \LoadClass[titlepage,letterpaper,11pt]{article}
-	\RequirePackage[letterpaper]{geometry}
+	\if@USenglish%
+	  \LoadClass[titlepage,letterpaper,11pt,USenglish]{article}
+	\else%
+	  \LoadClass[titlepage,letterpaper,11pt,UKenglish]{article}
+	\fi
 \fi
+\RequirePackage{geometry}
 
 % Redefine the page size - use fraction of paper, so it works for A4 and letter
 \geometry{
@@ -148,8 +174,10 @@
 }
 
 % --- Class structure: main code part
-% ATLAS Cover Page
-\if@CoverPage \RequirePackage[atlasdoc]{style/atlascover} \fi
+% ATLAS draft cover page
+\if@DraftCover    \RequirePackage[atlasdoc]{style/atlascover} \fi
+% CERN preprint cover page
+\if@PreprintCover \RequirePackage[atlasdoc]{style/atlascover} \fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
 %\setcounter{secnumdepth}{-1}
@@ -157,6 +185,7 @@
 % Required packages
 \RequirePackage{graphicx}
 \RequirePackage{color}
+\RequirePackage{babel}
 
 
 % Environment for analysis contributers
@@ -192,9 +221,9 @@
         {\huge \bf \textsf{ATLAS NOTE}}%
         % ATLAS note number, if any 
 				% (not used anymore, automatically stamped on PDF by CDS)
-        %\ifx\@atlasnote\@empty \vskip 2mm \mbox{}%
-        %\else \vskip 4mm {\Large \@atlasnote} \vskip 2mm%
-        %\fi
+        \ifx\@atlasnote\@empty \vskip 2mm \mbox{}%
+        \else \vskip 4mm {\Large \@atlasnote} \vskip 2mm%
+        \fi
         % Date, if any
         \ifx\@date\@empty\mbox{}%	
         \else \vskip 2mm \@date%
@@ -271,13 +300,16 @@
 
 \AtBeginDocument{
   % If selected, generate ATLAS Cover Page
-  \if@CoverPage 
-  \AC@PrintAtlasCover%
-  \AC@PrintAtlasPage%
+	\if@PreprintCover%
+		\AC@PrintPreprintCover%
+	\fi
+  \if@DraftCover%
+  	\AC@PrintAtlasCover%
+  	\AC@PrintAtlasPage%
   \fi
   % Automatically generate title page
   \if@MakeTitle
-  \maketitle
+  	\maketitle
   \fi
   % Add draft heading and line numbers
   \ifx\@draftversion\@empty%

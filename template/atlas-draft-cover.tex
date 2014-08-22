@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 %-----------------------------------------------------------------------
 % Creates a standard ATLAS cover page for use during ATLAS circulation.
 % During the ATLAS editorial process you usually add the atlascover package
@@ -7,26 +7,49 @@
 %-----------------------------------------------------------------------
 
 \usepackage{graphicx}
+\usepackage[centering,scale=0.75]{geometry}
+% Either use atlaspackage or specify packages explicitly
+% \usepackage[minimal]{style/atlaspackage}
+% hyperref is usually included as late as possible
+\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 % Add option [CONF] if this is a CONF note draft
-\usepackage{atlascover}
-% \usepackage[CONF]{atlascover}
+\usepackage{style/atlascover}
+% \usepackage[atlasdoc]{syle//atlascover}
+% \usepackage[CONF]{style/atlascover}
 
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Take information form the metadata file you have for your document
+% \input{mydocument-metadata}
+
+% or specify all information in this document
 % The paper title:
-\AtlasCoverPaperTitle{Sample Cover Page}
+\AtlasTitle{Sample Cover Page}
 
 % Internal ATLAS number, to help ATLAS members to locate the paper
-\AtlasCoverNumber{EXOT-2015-01}
+\AtlasRefCode{GROUP-2015-YY}
 
 % Paper draft version
 % Should be 1.0 for the first circulation, and 2.0 for the second circulation.
-\AtlasCoverPaperVersion{1.0}
+\AtlasVersion{1.0}
 
 % Submission journal
-\AtlasCoverJournal{Phys.\ Lett.\ B.}
+\AtlasJournal{Phys.\ Lett.\ B.}
+
+% Abstract
+\AtlasAbstract{ %
+	This is the abstract for this paper.
+	We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
+	We are going to continue to look very hard for new physics in 2015 
+	when the energy and the luminosity are increased; hopefully we find it.
+}
 
 % Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
-\AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 %
 % OR
 %
@@ -35,29 +58,20 @@
 \AtlasCoverSupportingNote{Another supporting note} {CDS link here}
 
 % Comment deadline
-\AtlasCoverCommentsDeadline{April 1, 2015}
+\AtlasCoverCommentsDeadline{1 April 2015}
 
-% Analysis team members -- Indicate the Contact Editors (usually two)
-% by (*) after their name
-\AtlasCoverAnalysisTeam{Joe Physicist, Jane Engineer, Contact Editor (*), Alphonse Physicien, Peter Analyzer, ATLAS member, I.M. alsoEditor (*), I.M. Author}
+% Analysis team members -- Indicate the Contact Editors (usually two) by (*) after their name
+\AtlasCoverAnalysisTeam{Peter~Analyser, Contact Editor~(*), Contact~Editor2~(*), Alphonse~Physicien}
 
-% Editorial Board Members --- Indicate the Chair by a (*) after
-% his/her name
-\AtlasCoverEdBoardMember{EdBoard Chair (*), EB Member 1, EB Member 2, EB Member 3}
+% Editorial Board Members --- Indicate the Chair by a (*) after his/her name
+\AtlasCoverEdBoardMember{EdBoard~Chair~(*), EB~Member~1, EB~Member~2, EB~Member~3}
 
 % Editors egroup
-\AtlasCoverEgroupEditors{atlas-EXOT-2015-01-editors@cern.ch}
+\AtlasCoverEgroupEditors{atlas-GROUP-2014-XX-editors@cern.ch}
 
 % EdBoard egroup
-\AtlasCoverEgroupEdBoard{atlas-EXOT-2015-01-editorial-board@cern.ch}
+\AtlasCoverEgroupEdBoard{atlas-GROUP-2014-XX-editorial-board@cern.ch}
 
-% Abstract
-\AtlasCoverAbstract{ %
-	This is the abstract for this paper.
-	We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
-	We are going to continue to look very hard for new physics in 2015 
-	when the energy and the luminosity are increased; hopefully we find it.
-}
 
 \begin{document}
 % Blank document, as only the cover page is created.

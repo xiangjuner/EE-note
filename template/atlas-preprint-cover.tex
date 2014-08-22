@@ -1,21 +1,41 @@
 % ----------------------------------------------------------- 
 %  Standalone cover page for CERN preprints 
 % ----------------------------------------------------------- 
-
-\documentclass[11pt,a4paper]{article}
+\documentclass[UKenglish]{article}
 
 \usepackage{graphicx}
+\usepackage[centering,scale=0.75]{geometry}
+% Either use atlaspackage or specify packages explicitly
+% \usepackage[minimal]{style/atlaspackage}
+% hyperref is usually included as late as possible
+%\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
+%\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
-\usepackage{preprintcover}
+\usepackage[preprint]{style/atlascover}
 
-\PreprintCoverPaperTitle{A standalone cover for CERN preprints}  % paper title
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
 
-\PreprintIdNumber{CERN-PH-EP-2012-XXX}  % CERN preprint number ---> can be found in CDS entry for Draft 2!
+% Take information form the metadata file you have for your document
+% \input{mydocument-metadata}
 
-\PreprintCoverAbstract{This is a test of how a cover for the ATLAS-CERN preprints can be produced as standalone document. The idea is that it should be included before the paper in the journal format. With this, there is no need for CDS to stamp the CERN logo and preprint number and risk an overlapping with the title and/or other information.
+% or specify all information in this document
+% The paper title:
+\AtlasTitle{A standalone cover for CERN preprints}
+
+% CERN preprint number ---> can be found in CDS entry for Draft 2!
+\PreprintIdNumber{CERN-PH-EP-2014-XXX}
+
+% Submission journal
+\AtlasJournal{Physical Review Letters}
+
+% Abstract
+\AtlasAbstract{ %
+	This is a test of how a cover for the ATLAS-CERN preprints can be produced as standalone document.
+	The idea is that it should be included before the paper in the journal format.
+	With this, there is no need for CDS to stamp the CERN logo and preprint number and risk an overlapping with the title and/or other information.
 }
-
-\PreprintJournalName{Physical Review Letters}
 
 \begin{document}
 

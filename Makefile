@@ -40,13 +40,13 @@ run_latex: $(BASENAME).dvi
 # Standard Latex targets
 %.pdf:	%.tex *.bib
 	$(PDFLATEX) $<
-	$(BIBTEX)   $(basename $<)
+	-$(BIBTEX)   $(basename $<)
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
 %.dvi:	%.tex 
 	$(LATEX)    $<
-	$(BIBTEX)   $(basename $<)
+	-$(BIBTEX)   $(basename $<)
 	$(LATEX)    $<
 	$(LATEX)    $<
 

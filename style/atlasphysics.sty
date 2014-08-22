@@ -70,41 +70,6 @@
 \if@Unit     \RequirePackage{style/atlasunit} \fi
 
 %
-\let\sst=\scriptscriptstyle % Needed for some definitions (psi and eta prime, etc.) (EE)
-\chardef\letterchar=11
-\chardef\otherchar=12
-\chardef\eolinechar=5
-% +--------------------------------------------------------------------+
-% |                                                                    |
-% |  B-physics                                                         |
-% |                                                                    |
-% +--------------------------------------------------------------------+
-%
-\def\Epsb  {\ensuremath{\epsilon_{b}}} % Subscript italic not roman (EE)
-\def\Epsc  {\ensuremath{\epsilon_{c}}} % Subscript italic not roman (EE)
-\def\etpt     {\ensuremath{1/p_{\mathrm{T}} - 1/E_{\mathrm{T}}}} 
-    % p not P, and subscripts roman not italic (EE)
-\def\etptsig  {\ensuremath{(1/p_{\mathrm{T}} - 1/E_{\mathrm{T}})/(\sigma(1/p_{\mathrm{T}}))}}  
-    % p not P, and subscripts roman not italic (EE)
 
-\def\mh{\ensuremath{m_h}}
-\def\mW{\ensuremath{m_W}}
-\def\mZ{\ensuremath{m_Z}}
-\def\mH{\ensuremath{m_H}}
-\def\mA{\ensuremath{m_A}}
-\def\MET{\ensuremath{E_{\mathrm{T}}^{\mathrm{miss}}}} % Sub/superscript roman not italic (EE)
-\def\met{\ensuremath{E_{\mathrm{T}}^{\mathrm{miss}}}} % Sub/superscript roman not italic (EE)
-\def\begL{10$^{31}$~cm$^{-2}$~s$^{-1}$}
-\def\lowL{10$^{33}$~cm$^{-2}$~s$^{-1}$}
-\def\highL{10$^{34}$~cm$^{-2}$~s$^{-1}$}
-\newcommand{\EjetRec}{\ensuremath{E_{\mathrm{rec}}}} % Subscript roman not italic (EE)
-\newcommand{\PjetRec}{\ensuremath{p_{\mathrm{rec}}}} % Subscript roman not italic (EE)
-\newcommand{\EjetTru}{\ensuremath{E_{\mathrm{truth}}}} % Subscript roman not italic (EE)
-\newcommand{\PjetTru}{\ensuremath{p_{\mathrm{truth}}}} % Subscript roman not italic (EE)
-\newcommand{\EjetDM}{\ensuremath{E_{\mathrm{DM}}}} % Subscript roman not italic (EE)
-\newcommand{\Rcone}{\ensuremath{R_{\mathrm{cone}}}} % Subscript roman not italic (EE)
-%
-\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
-\def\twomass#1#2{\ensuremath{m_{#1#2}}}% 
-%
-\def\Ecm{\ensuremath{E_{\mathrm{cm}}}} % Subscript roman not italic (EE)
+
+\endinput
