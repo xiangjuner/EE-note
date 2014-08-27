@@ -7,9 +7,9 @@
 % $Id: atlascover.sty 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlascover/trunk/atlascover.sty $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-95-00}
+\def\ATPackageVersion{00-96-00}
 
-\ProvidesPackage{style/atlascover}[2014/08/20 v.00-95-00 ATLAS Draft Cover Page]
+\ProvidesPackage{style/atlascover}[2014/08/27 v.00-96-00 ATLAS Draft Cover Page]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{********************************}
@@ -43,8 +43,10 @@
 %ICB \advance\AC@AtlasCoverWidth by -1.5in
 %ICB \advance\AC@AtlasCoverHeight by -1.5in
 
+% Turn on bold math when using \bfseries
+\def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 % allow for bold math font in title
-\g@addto@macro\bfseries{\boldmath}
+% \g@addto@macro\bfseries{\boldmath}
 
 
 %*********************************************
@@ -55,15 +57,15 @@
 	\relax%
 \else%
   \def\@title{Cover title: use \textbackslash AtlasTitle to set it}
-  \def\@atlastitle{Cover atlastitle: use \textbackslash AtlasTitle to set it}
-  \providecommand{\AtlasTitle}[1]{%}
-    \def\@title{#1}%
-    \def\@atlastitle{#1}%
-  }
+  %\def\@atlastitle{Cover atlastitle: use \textbackslash AtlasTitle to set it}
+%  \providecommand{\AtlasTitle}[1]{%}
+%    \def\@title{#1}%
+%    \def\@atlastitle{#1}%
+%  }
   % Draft version 
   \def\@draftversion{}
   \providecommand{\AtlasVersion}[1]{\def\@draftversion{#1}}
-  \providecommand{\AtlasAbstract}[1]{\def\@abstracttext{#1}}
+  \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 	% ATLAS reference code - empty by default
 	\def\@refcode{}
 	\providecommand{\AtlasRefCode}[1]{\def\@refcode{#1}}
@@ -196,7 +198,7 @@
       %\Huge\sffamily\bfseries\upshape 
       %\fontfamily{phv}\fontseries{b}\fontsize{20}{20}\selectfont 
       \fontfamily{phv}\bfseries\fontsize{20}{20}\selectfont 
-      \@atlastitle\par
+      \@title\par
     }
     \vspace{2mm}
     {%
@@ -285,7 +287,7 @@
   {%
     %\LARGE\sffamily\mdseries\upshape%        
     \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-    \@abstracttext
+    \AtlasAbstractText
   }
 }
 
@@ -427,7 +429,7 @@
 		\vspace*{20mm}
 		{\centering
 			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-			\@atlastitle \par
+			\@title \par
 		}
 		\vspace*{20mm}
 		{\centering
@@ -443,8 +445,8 @@
 		{%\linespread{1.1}	
 			{%
 			  \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-			  %\hspace*{15\p@}\@abstracttext \par
-			  \@abstracttext \par
+			  %\hspace*{15\p@}\AtlasAbstractText \par
+			  \AtlasAbstractText \par
 			}
   	}
   }

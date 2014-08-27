@@ -6,14 +6,14 @@
 \documentclass[UKenglish]{style/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage{style/atlaspackage}
+% Use biblatex and biber for the bibliography
+\usepackage[biblatex]{style/atlaspackage}
 \usepackage{mathrsfs}
 % Useful macros
 \usepackage{style/atlasphysics}
+\usepackage{tikz}
 
-% Use biblatex and biber for the bibliography
-\usepackage[backend=biber,
-	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+% Files with references in BibTeX format
 \addbibresource{atlas-paper.bib}
 \addbibresource{../atlas-latex.bib}
 
@@ -29,7 +29,7 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS paper template},pdfauthor={ATLAS Publications Committee}}
 
-\AtlasTitle{A template for ATLAS papers}
+\title{A template for ATLAS papers}
 
 \author{ATLAS Publication Committee}
 
@@ -447,7 +447,7 @@ the figure is copied and shown out of context. If appropriate, it
 is useful to include information about the luminosity corresponding
 to a figure.
 
-All axes must be labeled, including units (i.e. ``Energy [\gev]'').
+All axes must be labeled, including units (i.e. ``Energy [\si{\GeV}]'').
 The vertical axis units should specify the bin width, unless
 arbitrarily normalized. A legend box explaining all plotting symbols
 must appear somewhere in the figure.
@@ -461,14 +461,14 @@ method of the plot should be specified.
 A figure with subfigures can be made as shown in the example of
 Figure~\ref{fig:subfigexample}.
 
-\begin{figure}
+\begin{figure}[htbp]
   \centering
-  \subfigure[One subfigure example]{
-    \includegraphics[width=0.55\textwidth]{AtlasExample}
+  \subfloat[One subfigure example]{
+    \includegraphics[width=0.45\textwidth]{AtlasExample}
     \label{fig:SubfigureExample1}
   }
-  \subfigure[Another subfigure example]{
-    \includegraphics[width= 0.55\textwidth]{AtlasExample}
+  \subfloat[Another subfigure example]{
+    \includegraphics[width= 0.45\textwidth]{AtlasExample}
     \label{fig:SubfigureExample2}
   }
   \caption{Subfigure example (\ref{fig:SubfigureExample1}) and
@@ -521,12 +521,12 @@ to include them in your paper. Note that only after the third run of
 you do not have to do the \texttt{bibtex} step again.
 
 Two \BibTeX{} style files 
-(\texttt{style/atlasBibStyleWoTitle.bst} and \texttt{style/atlasBibStyleWoTitle.bst})
+(\texttt{bibtex/bst/atlasBibStyleWoTitle.bst} and \texttt{bibtex/bst/atlasBibStyleWoTitle.bst})
 are provided with the ATLAS \LaTeX\ package. 
 You can use one of them in your text source file as follows:
 %
 \begin{verbatim}
-  \bibliographystyle{atlasBibStyleWoTitle}
+  \bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
   \bibliography{atlas-paper}
 \end{verbatim}
 
@@ -566,7 +566,7 @@ which is based on \texttt{SIunits}.
 If you use a units package, it automatically set SI units in roman-type font
 and leaves a small space between
 the value and the units (e.g.\ \SI{12}{\mm}). 
-In addition, it makessure they end up
+In addition, it makes sure they end up
 always together on the same line. \verb|\SI{12}{\mm}|.
 Natural units, where $c=\hbar=1$, should be used for all
 ATLAS publications. Masses are therefore in \si{\GeV}, not \si[per-mode=symbol]{\GeV\per\clight}.

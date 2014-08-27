@@ -4,11 +4,12 @@
 %-------------------------------------------------------------------------------
 \documentclass[UKenglish]{style/atlasdoc}
 
-\usepackage[minimal]{style/atlaspackage}
+% Use biblatex and biber for the bibliography
+\usepackage[minimal,biblatex]{style/atlaspackage}
+\usepackage{authblk}
 \usepackage{style/atlasphysics}
 
-\usepackage[backend=biber,
-	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+% Files with references in BibTeX format
 \addbibresource{atlas-bibtex.bib}
 \addbibresource{atlas-biblatex.bib}
 
@@ -23,9 +24,10 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS BibTeX guide},pdfauthor={Ian Brock}}
 
-\AtlasTitle{Quick guide to ATLAS \BibTeX\ style}
+\title{Quick guide to ATLAS \BibTeX\ style}
 
 \author{Ian C. Brock}
+\affil{University of Bonn}
 
 \AtlasAbstract{%
 	This document illustrates how to use \BibTeX\ for the bibliography of your ATLAS paper.
@@ -39,7 +41,7 @@
 %-------------------------------------------------------------------------------
 \begin{document} 
 
-\maketitle
+%\maketitle
 
 %-------------------------------------------------------------------------------
 \section{Instructions}
@@ -149,10 +151,11 @@ For ATLAS Notes, the recommended style file is: \\
 
 \begin{itemize}
 \item A bibliographic item is created in the \emph{.bib} file as: \\
-	\texttt{@Article\{lhcCollaboration:2012 \\ \emph{\% bibliographic information}} \\ \} \\
-	\\
-	The identifier directly after the document type declaration is how we are going to refer to this item inside the main \emph{.tex} file: \\
-	{\small{\texttt{Example of a paper from a LHC Collaboration is given in} $\backslash$cite\{lhcCollaboration:2012\}.}}
+	\texttt{@Article\{lhcCollaboration:2012 \\ \emph{\% bibliographic information}}
+	
+	The identifier directly after the document type declaration is how we are going to refer to this item inside the main \texttt{.tex} file:
+	\texttt{An LHC Collaboration published a paper\~ \textbackslash cite\{lhcCollaboration:2012\}
+	with very interesting result.}
 \item When referencing ATLAS CONF notes, the url to the CDS page should be included. For this to work, in the preamble of your \emph{.tex} document add: \\
 	\texttt{$\backslash$usepackage\{hyperref\}}
 \item If the DOI is filled and the \texttt{hyperref} package loaded, the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
@@ -203,7 +206,7 @@ in the course of 2014.
 \printbibliography
 %-------------------------------------------------------------------------------
 % Old style bibtex bibliography
-% \bibliographystyle{../../style/atlasBibStyleWithTitle}
+% \bibliographystyle{../../bibtex/bst/atlasBibStyleWithTitle}
 % \bibliography{atlas-bibtex,atlas-biblatex}
 
 \end{document}

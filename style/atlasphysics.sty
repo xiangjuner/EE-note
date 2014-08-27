@@ -10,9 +10,9 @@
 % $Id: atlasphysics.sty 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasphysics.sty $
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{00-95-00}
+\def\AP@PackageVersion{00-96-00}
 
-\ProvidesPackage{style/atlasphysics}[2014/08/20 v.00-95-00 ATLAS physics macros]
+\ProvidesPackage{style/atlasphysics}[2014/08/27 v.00-96-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{**************************************}
@@ -41,6 +41,8 @@
 \DeclareOption{noprocess}{\let\if@Process\iffalse}
 \DeclareOption{unit}{\let\if@Unit\iftrue}
 \DeclareOption{nounit}{\let\if@Unit\iffalse}
+\let\if@texmf\iffalse
+\DeclareOption{texmf}{\let\if@Minimum\iftrue \let\if@Default\iffalse}
 
 % Execute options
 \ProcessOptions \relax
@@ -48,28 +50,49 @@
 % xspace is always needed 
 \RequirePackage{xspace}
 
-% BSM particles including SUSY
-\if@Math     \RequirePackage{style/atlasbsm} \fi
+\if@texmf
+	% BSM particles including SUSY
+  \if@Math     \RequirePackage{atlasbsm} \fi
 
-% Useful math related definitions
-\if@Math     \RequirePackage{style/atlasmath} \fi
+  % Useful math related definitions
+  \if@Math     \RequirePackage{atlasmath} \fi
 
-% Miscellaneous useful definitions
-\if@Misc     \RequirePackage{style/atlasmisc} \fi
+	% Miscellaneous useful definitions
+	\if@Misc     \RequirePackage{atlasmisc} \fi
 
-% Other maybe useful definitions
-\if@Other    \RequirePackage{style/atlasother} \fi
+	% Other maybe useful definitions
+	\if@Other    \RequirePackage{atlasother} \fi
 
-% Particles
-\if@Particle \RequirePackage{style/atlasparticle} \fi
+	% Particles
+	\if@Particle \RequirePackage{atlasparticle} \fi
 
-% Processes
-\if@Process  \RequirePackage{style/atlasprocess} \fi
+	% Processes
+	\if@Process  \RequirePackage{atlasprocess} \fi
 
-% Units
-\if@Unit     \RequirePackage{style/atlasunit} \fi
+	% Units
+	\if@Unit     \RequirePackage{atlasunit} \fi
+\else
+	% BSM particles including SUSY
+  \if@Math     \RequirePackage{style/atlasbsm} \fi
 
-%
+  % Useful math related definitions
+  \if@Math     \RequirePackage{style/atlasmath} \fi
+
+	% Miscellaneous useful definitions
+	\if@Misc     \RequirePackage{style/atlasmisc} \fi
+
+	% Other maybe useful definitions
+	\if@Other    \RequirePackage{style/atlasother} \fi
+
+	% Particles
+	\if@Particle \RequirePackage{style/atlasparticle} \fi
+
+	% Processes
+	\if@Process  \RequirePackage{style/atlasprocess} \fi
+
+	% Units
+	\if@Unit     \RequirePackage{style/atlasunit} \fi
+\fi
 
 
 \endinput

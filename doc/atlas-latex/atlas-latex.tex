@@ -1,14 +1,14 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{style/atlasdoc}
-
-\usepackage{style/atlaspackage}
-\usepackage{style/atlasphysics}
+\documentclass[koma,UKenglish]{style/atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[backend=biber,
-	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+\usepackage[biblatex]{style/atlaspackage}
+\usepackage{authblk}
+\usepackage{style/atlasphysics}
+
+% Files with references in BibTeX format
 \addbibresource{../atlas-latex.bib}
 
 % Paths for figures
@@ -17,7 +17,9 @@
 % Shorthand for \phantom to use in tables
 \newcommand{\pho}{\phantom{0}}
 \newcommand{\BibTeX}{\textsc{Bib\TeX}}
-\newcommand{\Macro}[1]{\textbackslash #1\xspace}
+\newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
+\newcommand{\Option}[1]{\textsf{#1}\xspace}
+\newcommand{\Package}[1]{\texttt{#1}\xspace}
 
 %-------------------------------------------------------------------------------
 % Generic document information
@@ -26,15 +28,20 @@
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\AtlasTitle{Users guide to the ATLAS \LaTeX\ package}
+\title{Users guide to the ATLAS \LaTeX\ package}
 
-\author{Ian Brock}
+\author{Ian C. Brock}
+\affil{University of Bonn}
 
-\AtlasVersion{\ATPackageVersion}
+% \AtlasVersion{\ATPackageVersion}
 
 \AtlasAbstract{%
-  The usage of the ATLAS \LaTeX\ templates is documented here.
-  Guidelines on how to format \BibTeX\ entries are given.
+  The usage of the ATLAS \LaTeX\ templates and style files is documented here.
+  The options that are available are given, as well as the packages that can be loaded
+  using these files.
+  Information on the setups used to test the packages is given and
+  some help with the conversion of the document to the \LaTeX\ format needed for journal submission
+  is being added.
 
 	This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
 }
@@ -60,7 +67,7 @@ SVN~\cite{pubcom-svn}.
 
 The collection replaces and hopefully improves on the previous packages. 
 In particular it supersedes:
-\begin{itemize}
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{atlasnote-00-04-05}
 \item \texttt{atlascover-00-00-11}
 \item \texttt{atlaspreprint-00-00-05}
@@ -136,7 +143,7 @@ is circulated to the collaboration.\\
 See \texttt{template/atlas-document-metadata.tex} for more details.
 
 \begin{itemize}
-  \item {\verb|\AtlasTitle{<Title>}|} typesets the paper title. If not
+  \item {\verb|\title{<Title>}|} typesets the paper title. If not
     given, a dummy title will be produced.
 
   \item {\verb|\author{<Author>}|} typesets the paper author. If not
@@ -174,11 +181,13 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     on the cover page. Can be omitted.
 
   \item {\verb|\AtlasRefCode{<Reference code>}|} displays the ATLAS
-    standard reference code, e.g.\ \texttt{BPHY-2014-03}, on the cover page.
+    standard reference code, e.g.\ \texttt{BPHY-2014-03}, on the front page and
+    the cover page. Not shown on the front page if the note number is given.
 
   \item {\verb|\AtlasNote{<Note number>}|} displays the note number
   	for a CONF, PUB, INT or COM note, e.g.\ \texttt{ATLAS-CONF-2014-23},
-  	on the front page and cover page
+  	on the front page and cover page.
+  	If the note number is given, the reference code is not shown.
 
   \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
   	preprint number on the front page.
@@ -204,13 +213,16 @@ order to demonstrate their use.
 
 This document has been typeset using the \texttt{atlasdoc.cls} class.
 
-\texttt{atlasdoc.cls} derives from the standard \LaTeX{} {article.cls}
-class, thus all the usual commands and options you would have used
-with \texttt{article} will work with it. For instance, this document has
+The \texttt{atlasdoc} class can use either the standard \LaTeX\ \texttt{article} class
+as its basis or the \KOMAScript \texttt{sctartcl} class.
+All the usual commands and options you usually use
+with \texttt{article}  or \texttt{scrartcl} should work with it. 
+You turn on the use of \KOMAScript with the option \texttt{koma}.
+For instance, this document has
 been produced using this very simple preamble:
 %
 \begin{verbatim}
-  \documentclass[UKenglish]{style/atlasdoc}
+  \documentclass[koma,UKenglish]{style/atlasdoc}
   \usepackage{style/atlaspackage}
   \usepackage{style/atlasphysics}
   \graphicspath{{../},{figures/}}
@@ -225,8 +237,10 @@ The style file \texttt{style/atlasphysics.sty} defines a lot of useful
 macros for particles and more. See the separate document
 \texttt{atlas-physics.pdf}~\cite{atlas-physics} for details.
 
-If you use \Macro{biblatex} you need to add the bibliography information to the preamble as well.
-Have a look at the \texttt{template/atlas-document.tex} for example to see how this is done.
+If you want to use \Macro{biblatex} you need to add the option \texttt{biblatex} when you
+include \texttt{atlaspackage}.
+Have a look at the \texttt{style/atlaspackage.sty} to see how \texttt{biblatex} is included.
+In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
 
 
 %-------------------------------------------------------------------------------
@@ -236,10 +250,11 @@ Have a look at the \texttt{template/atlas-document.tex} for example to see how t
 The \texttt{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{graphicx}
 \item \texttt{color}
 \item \texttt{babel}
-\item \texttt{lineno}
+\item \texttt{graphicx}
+\item \texttt{lineno}: Add line numbers to documents
+\item \texttt{txfonts}: The standard ATLAS document font
 \end{itemize}
 These should be installed in any modern \LaTeX{} installation.
 
@@ -251,21 +266,20 @@ The style file \texttt{atlaspackage.sty} includes further packages.
 You can steer how mnay by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
 The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{inputenc}
-\item \texttt{fontenc}
-\item \texttt{amsmath}
-\item \texttt{txfonts}
-\item \texttt{footmisc}
-\item \texttt{lineno}
-\item \texttt{hyperref}
+\item \texttt{amsmath}: Extra useful maths environments
+\item \texttt{inputenc}: Allow ä, ö, ø, ß, etc. to be input directly
+\item \texttt{fontenc}: Output font encoding
+\item \texttt{hyperref}: Add hyperlinks and ability to click on cross-references
 \end{itemize}
 
 The default set adds in addition:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{booktabs}
-\item \texttt{siunitx}
-\item \texttt{subfigure}
-\item \texttt{tocloft}
+\item \texttt{booktabs}:
+\item \texttt{footmisc}: Extra footnote options
+\item \texttt{mhchem}: Chemical elements and molecules
+\item \texttt{siunitx}: Units package with extra functionality for tables
+\item \texttt{subfig}: More than one plot in a figure
+\item \texttt{tocloft}: Extra options for typesetting table of contents etc.
 \end{itemize}
 
 Finally the full set includes further packages that may be useful:
@@ -273,7 +287,25 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{csquotes}
 \item \texttt{longtable}
 \item \texttt{rotating}
+\item \texttt{xfrac}
 \end{itemize}
+
+\texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{style/other}.
+They should be part of a standard \LaTeX\ installation though.
+
+There used to be a problem using the \texttt{tikz} package with \texttt{atlasnote}.
+With \texttt{atlasdoc} this problem seems to have gone away.
+\texttt{tikz} is not included in \texttt{atlaspackage}.
+If you want to use it, just add the usual \verb|\usepackage{tikz| to your preamble.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Cover pages}
+\label{sec:cover}
+%-------------------------------------------------------------------------------
+
+The package also provides cover pages for the circulations of ATLAS drafts and 
+for the CERN preprint version of an ATLAS paper. The style can be found in \texttt{style/atlascover.sty}.
 
 If you wish to use the \texttt{atlascover} package with the 
 \texttt{atlasdoc} class, you should usually use the \texttt{coverpage} option of the class:
@@ -285,10 +317,17 @@ that the cover page is produced before the note title page.
 
 You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
 In this case you need the option \texttt{nomaketitle} in the \texttt{atlasdoc} class
-and you include the \Macro{maketitle} command after \verb|\begin{documenmt}|.
+(if you are using it)
+and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 
-\texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{style/other}.
-They should be part of a standard \LaTeX\ installation though.
+%-------------------------------------------------------------------------------
+\subsection{ATLAS notes}
+\label{sec:note}
+%-------------------------------------------------------------------------------
+
+If you include the macro \Macro{AtlasNote} in your preamble,
+the note number will be printed under ``ATLASNOTE'' at the top of your document.
+This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
 
 
 %-------------------------------------------------------------------------------
@@ -315,7 +354,13 @@ The package should work under Linux, MacOS and Windows. It has been tested on:
 	\texttt{texlive-humanities} (lineno),
 	\texttt{texlive-science} (siunitx),
 	\texttt{texlive-bibtex-extra} and \texttt{biber} (biblatex and biber);
-\item[CentOS 7] Not yet tested; 
+\item[lxplus] It works out of the box, with the \texttt{PATH} recommendation given below;
+\item[CentOS 7] I install the ``Technical Writing'' collection.
+	In addition I needed \texttt{texlive-booktabs} (booktabs), \texttt{texlive-tocloft} (tocloft).
+	However, I still got complaints about \texttt{lineno.sty} and \texttt{siunitx.sty}.
+	I was not able to find these in the standard RPM repositories.
+	You can either get and install them from CTAN (\texttt{lineno.sty} is also available in \texttt{style/other}),
+	or install your own \TeX\ Live distribution.
 \item[Windows 7]
 	MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net}).
 	MikTeX has the advantage that it installs missing packages, provided you activated that option;
@@ -420,6 +465,14 @@ Some things to note about using \texttt{siunitx}:
 	which are extremely useful for formatting tables properly.
 \end{itemize}
 
+%-------------------------------------------------------------------------------
+\subsection{\pT or \ET\ -- that is the question}
+%-------------------------------------------------------------------------------
+
+Bold math should be automatically invoked in titles.
+This short section tests whether that works properly.
+It is of course good if things like \pT and \ET are automatically in bold face in
+a header and normal font in the text (and table of contents).
 
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
@@ -444,7 +497,7 @@ The main changes the user has to make are:
 \item Specify the document language as an option: UKenglish or USenglish;
 \item Add \verb|\usepackage{style/atlaspackage}| at the beginning of the document;
 \item Change \verb|\usepackage{atlasphysics}| to \verb|\usepackage{style/atlasphysics}|; 
-\item Use the macro \Macro{AtlasTitle} instead of \Macro{title}.
+%\item Use the macro \Macro{AtlasTitle} instead of \Macro{title}.
 \end{itemize}
 
 The language specification means that dates etc.\ are also formatted according to 
@@ -462,7 +515,7 @@ This means that if you start from an old preamble the following changes should b
 	\begin{tabular}{ll}
 		Old	& New\\
 		\midrule
-		\Macro{title} & \Macro{AtlasTitle}\\
+		%\Macro{title} & \Macro{AtlasTitle}\\
 		\Macro{draftversion} & \Macro{AtlasVersion}\\
 		\Macro{atlasnote} & \Macro{AtlasNote}\\
 		\Macro{journal} & \Macro{AtlasJournal}\\
@@ -478,6 +531,9 @@ that were thought to no longer be necessary have been removed.
 These pieces have been collected in \texttt{style/atlasnote-obsolete.sty} in case they are needed.
 If something important has got lost, please let me know.
 
+The \texttt{subfigure} package has been replaced with \texttt{subfig}, as \texttt{subfigure} is now deprecated.
+If you use \texttt{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
+
 %-------------------------------------------------------------------------------
 \section{Changes in \texttt{atlascover-01-00-00}}
 \label{sec:oldcover}
@@ -488,15 +544,53 @@ As of \texttt{atlascover-01-00-00} the same macro names are used in both \texttt
 This means that if you start from an old cover page the following changes have to be made:
 \begin{center}
 	\begin{tabular}{ll}
-		Old	& New\\
+		Old                            & New                   \\
 		\midrule
-		\Macro{AtlasCoverPaperTitle} & \Macro{AtlasTitle}\\
-		\Macro{AtlasCoverNumber}  & \Macro{AtlasRefCode}\\
-		\Macro{AtlasCoverPaperVersion} & \Macro{AtlasVersion}\\
-		\Macro{AtlasCoverJournal} & \Macro{AtlasJournal}\\
-		\Macro{AtlasCoverAbstract} & \Macro{AtlasAbstract}
+		\Macro{AtlasCoverPaperTitle}   & \Macro{title}    \\
+		\Macro{AtlasCoverNumber}       & \Macro{AtlasRefCode}  \\
+		\Macro{AtlasCoverPaperVersion} & \Macro{AtlasVersion}  \\
+		\Macro{AtlasCoverJournal}      & \Macro{AtlasJournal}  \\
+		\Macro{AtlasCoverAbstract}     & \Macro{AtlasAbstract}
 	\end{tabular}
 \end{center}
+
 Note that \texttt{atlaspreprint} is integrated into \texttt{atlascover} and not maintained as a separate style file.
+To get the CERN preprint front page, you have to include the option \Option{preprint} when you invoke \Package{atlasdoc}.
+\begin{center}
+	\begin{tabular}{ll}
+		Old                              & New                   \\
+		\midrule
+		\Macro{PreprintCoverPaperTitle} & \Macro{title}    \\
+		\Macro{PreprintJournalName}     & \Macro{AtlasJournal}  \\
+		\Macro{PreprintCoverAbstract}   & \Macro{AtlasAbstract}
+	\end{tabular}
+\end{center}
+The following changes are needed for the macros:
+
+
+%-------------------------------------------------------------------------------
+\section{Journal templates}
+%-------------------------------------------------------------------------------
+\label{sec:journal}
+
+This section collects information on where the \LaTeX\ templates for the different journals can be found:
+\begin{description}
+\item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+	TeX Live distribution. 
+	It can also be found at \url{http://www.elsevier.com/locate/latex}.
+\item[APS] APS journals use REV\TeX. This is also usually installed.
+	It can also be found at \url{http://} 
+\end{description}
+
+%-------------------------------------------------------------------------------
+\section*{History}
+%-------------------------------------------------------------------------------
+
+Quite a lot of people have contributed to the ATLAS \LaTeX\ templates over time.
+Marco Delmastro set them up in the first place and added a number of improvements over time.
+Mike Vetterli implemented several changes to the cover pages, including switching to two pages.
+Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributions to the preprint cover page.
+
+Sven Menke provided the code so that bold math works in titles correctly.
 
 \end{document}

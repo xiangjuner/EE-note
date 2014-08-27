@@ -59,7 +59,7 @@ run_latex: $(BASENAME).dvi
 
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out \
-		*.bbl *.blg *.brf *.bcf \
+		*.bbl *.blg *.brf *.bcf *.run.xml \
 		*.cb *.ind *.idx *.ilg *.inx \
 		*.synctex.gz *~ ~* spellTmp 
 	

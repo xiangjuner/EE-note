@@ -14,35 +14,58 @@
 \DeclareOption{minimal}{\let\if@Minimum\iftrue \let\if@Default\iffalse}
 \DeclareOption{default}{\let\if@Minimum\iftrue \let\if@Default\iftrue}
 \DeclareOption{full}{\let\if@Minimum\iftrue \let\if@Default\iftrue \let\if@Maximum\iftrue}
+\let\if@biblatex\iffalse
+\DeclareOption{biblatex}{\let\if@biblatex\iftrue}
 
 % Execute options
 \ProcessOptions \relax
 %-------------------------------------------------------------------------------
-
 % Packages normally included by atlasdoc
 \RequirePackage{graphicx}
 \RequirePackage{color}
+% Document language control
 \RequirePackage{babel}
 
+% Input encoding - allows ä, ö, ß etc. to be input directly
 \RequirePackage[utf8]{inputenc}
+% Encoding used for prinout
 \RequirePackage[T1]{fontenc}
 %\RequirePackage{mathptmx}
+%\RequirePackage[varg]{txfonts}
+% amsmath and txfonts define the same symbols - use the txfont version
+\RequirePackage{savesym}
+\savesymbol{iint}
+\savesymbol{iiint}
+\savesymbol{iiiint}
+\savesymbol{idotsint}
+% Extra and very useful maths macros from AMS
 \RequirePackage{amsmath}
-\RequirePackage[varg]{txfonts}
+% The AMS \iint etc. is now defined as \AMSiint
+\restoresymbol{AMS}{iint}
+\restoresymbol{AMS}{iiint}
+\restoresymbol{AMS}{iiiint}
+\restoresymbol{AMS}{idotsint}
+% Extra options for footnotes
 \RequirePackage[bottom]{footmisc}
+% Add line numbers
 \RequirePackage{lineno}
 % If you have an old lineno or do not have it, you can get it from the style/other directory
 % \RequirePackage{style/other/lineno}
 
 \if@Default
+	% Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
+  % Typset anything with units using this package - also has very useful table formatting 
 	\RequirePackage{siunitx}
-	\RequirePackage{subfigure}
-  % subfigure option needed if subfigure is also used
+	% Several plots in a single figure
+	\RequirePackage{subfig}
+  % subfigure option needed if subfig(ure) is also used
   \RequirePackage[subfigure]{tocloft}
+  % Remove dots in table of contents
   \renewcommand{\cftdot}{}
 	% Declare a few options and standard units for siunitx that are otherwise missing
-	\sisetup{separate-uncertainty, range-units = repeat, detect-family = true}
+	\sisetup{separate-uncertainty, range-units = repeat,  detect-display-math=true}
+%		detect-family = true, detect-display-math=true}
 	\sisetup{group-digits=integer, group-minimum-digits=4}
 	\DeclareSIUnit\micron{\micro\metre}
 	\DeclareSIUnit\mrad{\milli\radian}
@@ -54,12 +77,30 @@
 
 
 \if@Maximum
+	% Tables that go over more than one page
 	\RequirePackage{longtable}
+	% Easy rotation of tables and figures
+	\RequirePackage{rotating}
+	% Quotes that are also langiage dependent - use \enquote{text} instead of ``text''
+	\RequirePackage[autostyle=true]{csquotes}
+	% Nicer fractions
+	\RequirePackage{xfrac}
 \fi
 
 % hyperref is usually included as late as possible
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+
+% Use biblatex and biber for the bibliography
+% Style is numeric and comp option changes [1,2,3] into [1-3]
+% sorting=none    means the order is as they are cited
+% block=ragged    turns off block form, which avoids large spaces
+% firstinits=true means initial are used for first names
+% Some more tweaks should be made to the appearance, but they are not yet implemented
+\if@biblatex
+  \RequirePackage[backend=biber,
+	  style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+\fi
 
 \endinput

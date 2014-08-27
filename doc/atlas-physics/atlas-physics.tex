@@ -3,13 +3,12 @@
 %-------------------------------------------------------------------------------
 \documentclass[UKenglish]{style/atlasdoc}
 
-\usepackage[default]{style/atlaspackage}
+\usepackage[default,biblatex]{style/atlaspackage}
+\usepackage{authblk}
 % Include all style files
 \usepackage[process,other]{style/atlasphysics}
 %\usepackage{mathrsfs}
 
-\usepackage[backend=biber,
-	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \addbibresource{atlas-physics.bib}
 
 \graphicspath{{../../figures/}}
@@ -21,11 +20,12 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\AtlasTitle{Symbols defined in \texttt{atlasphysics.sty}}
+\title{Symbols defined in \texttt{atlasphysics.sty}}
 
 \author{Ian C. Brock}
+\affil{University of Bonn}
 
-\AtlasVersion{\ATPackageVersion}
+% \AtlasVersion{\ATPackageVersion}
 
 \AtlasAbstract{%
   This note lists the symbols defined in \texttt{atlasphysics.sty}.

@@ -7,11 +7,46 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-95-00}
+\def\ATPackageVersion{00-96-00}
 
 % --- Class structure: identification part
-\ProvidesClass{style/atlasdoc}[2014/08/20 v.00-95-00 ATLAS document]
+\ProvidesClass{style/atlasdoc}[2014/08/27 v.00-96-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
+
+% --- Class structure: declaration of options part
+% ATLAS draft cover page off by default
+\let\if@DraftCover\iffalse
+\DeclareOption{coverpage}{\let\if@DraftCover\iftrue}
+% Preprint cover page off by default
+% If preprint cover is made, regular title should be turned off
+\let\if@PreprintCover\iffalse
+\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@MakeTitle\iffalse}
+% Title page on by default
+\let\if@MakeTitle\iftrue
+\DeclareOption{nomaketitle}{\let\if@MakeTitle\iffalse}
+% Paper size A4 by default
+\let\if@APaper\iftrue
+\let\if@LPaper\iffalse
+\DeclareOption{a4paper}{\let\if@APaper\iftrue \let\if@LPaper\iffalse}
+\DeclareOption{letterpaper}{\let\if@APaper\iffalse \let\if@LPaper\iftrue}
+% Use KOMA-script instead of standard LaTeX
+\let\if@Koma\iffalse
+\DeclareOption{koma}{\let\if@Koma\iftrue}
+% Document language
+%\let\if@UKenglish\iftrue
+%\let\if@USenglish\iffalse
+%\DeclareOption{UKenglish}{\let\if@UKenglish\iftrue  \let\if@USenglish\iffalse}
+%\DeclareOption{USenglish}{\let\if@UKenglish\iffalse \let\if@USenglish\iftrue}
+% Include tikz package off by default - not necessary any more? ICB 2014-08-26
+%\let\if@usetikz\iffalse
+%\DeclareOption{usetikz}{\let\if@usetikz\iftrue}
+
+% This class extends the article class
+% Read all the atlasnote options, pass them to article
+%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+
+% --- Class structure: execution of options part
+\ProcessOptions \relax
 
 % --- Class structure: initial code part
 % Defaults for title page
@@ -19,8 +54,8 @@
 \AN@skipbeforetitle=60\p@
 \newcommand{\skipbeforetitle}[1]{\AN@skipbeforetitle=#1}
 
-\def\@title{title: use \textbackslash atlastitle to set it}
-\def\@atlastitle{atlastitle: use \textbackslash atlastitle to set it}
+\def\@title{title: use \textbackslash title to set it}
+%\def\@atlastitle{atlastitle: use \textbackslash atlastitle to set it}
 \def\@author{The ATLAS Collaboration}
 \def\@date{\today}
 
@@ -35,11 +70,11 @@
 %\newenvironment{Authlist}{\begin{center}}{\end{center}}
 
 % Document title
-\newcommand{\AtlasTitle}[1]%
-{
-  \def\@title{#1}
-  \def\@atlastitle{#1}
-}
+%\newcommand{\AtlasTitle}[1]%
+%{
+%  \def\@title{#1}
+%  \def\@atlastitle{#1}
+%}
 
 % Draft version 
 \def\@draftversion{}
@@ -98,10 +133,10 @@
 % Abstract text
 \def\@abstracttext{}
 \newcommand{\AtlasAbstract}[1]{%
-	\def\@abstracttext{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent #1}
+	\def\AtlasAbstractText{#1}
 }
 \newcommand{\abstracttext}[1]{%
-	\def\@abstracttext{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent #1}
+	\def\AtlasAbstractText{#1}
 }
 
 % Shortcut to add submission text
@@ -118,52 +153,32 @@
   \fi
 }
 
-% --- Class structure: declaration of options part
-% ATLAS draft cover page off by default
-\let\if@DraftCover\iffalse
-\DeclareOption{coverpage}{\let\if@DraftCover\iftrue}
-% Preprint cover page off by default
-% If preprint cover is made, regular title should be turned off
-\let\if@PreprintCover\iffalse
-\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@MakeTitle\iffalse}
-% Title page on by default
-\let\if@MakeTitle\iftrue
-\DeclareOption{nomaketitle}{\let\if@MakeTitle\iffalse}
-% Paper size A4 by default
-\let\if@APaper\iftrue
-\let\if@LPaper\iffalse
-\DeclareOption{a4paper}{\let\if@APaper\iftrue \let\if@LPaper\iffalse}
-\DeclareOption{letterpaper}{\let\if@APaper\iffalse \let\if@LPaper\iftrue}
-% Document language
-\let\if@UKenglish\iftrue
-\let\if@USenglish\iffalse
-\DeclareOption{UKenglish}{\let\if@UKenglish\iftrue  \let\if@USenglish\iffalse}
-\DeclareOption{USenglish}{\let\if@UKenglish\iffalse \let\if@USenglish\iftrue}
-% Include tikz package off by default
-\let\if@usetikz\iffalse
-\DeclareOption{usetikz}{\let\if@usetikz\iftrue}
 
-% This class extends the article class
-% Read all the atlasnote options, pass them to article
-%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-
-% --- Class structure: execution of options part
-\ProcessOptions \relax
-
-% --- Class structure: declaration of options part
-\if@APaper%
-	\if@USenglish%
-	  \LoadClass[titlepage,a4paper,11pt,USenglish]{article}
-	\else%
-	  \LoadClass[titlepage,a4paper,11pt,UKenglish]{article}
+% --- Class structure: invoke main class
+\if@Koma%
+	\if@APaper%
+		\LoadClass[titlepage,a4paper,11pt]{scrartcl}
+	\else
+		\LoadClass[titlepage,letterpaper,11pt]{scrartcl}
 	\fi
 \else
-	\if@USenglish%
-	  \LoadClass[titlepage,letterpaper,11pt,USenglish]{article}
-	\else%
-	  \LoadClass[titlepage,letterpaper,11pt,UKenglish]{article}
-	\fi
+\if@APaper%
+	\LoadClass[titlepage,a4paper,11pt]{article}
+%	\if@USenglish%
+%	  \LoadClass[titlepage,a4paper,11pt]{article}
+%	\else%
+%	  \LoadClass[titlepage,a4paper,11pt]{article}
+%	\fi
+\else
+	\LoadClass[titlepage,letterpaper,11pt]{article}
+%	\if@USenglish%
+%	  \LoadClass[titlepage,letterpaper,11pt,USenglish]{article}
+%	\else%
+%	  \LoadClass[titlepage,letterpaper,11pt,UKenglish]{article}
+%	\fi
 \fi
+\fi
+
 \RequirePackage{geometry}
 
 % Redefine the page size - use fraction of paper, so it works for A4 and letter
@@ -172,6 +187,9 @@
   marginparsep=0.2cm,% 
   marginparwidth=1.8cm%
 }
+
+% Turn on bold math when using \bfseries
+\def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
 % --- Class structure: main code part
 % ATLAS draft cover page
@@ -186,6 +204,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{color}
 \RequirePackage{babel}
+\RequirePackage[varg]{txfonts}
+%\RequirePackage{mathptmx}
 
 
 % Environment for analysis contributers
@@ -220,9 +240,12 @@
       \begin{center}
         {\huge \bf \textsf{ATLAS NOTE}}%
         % ATLAS note number, if any 
-				% (not used anymore, automatically stamped on PDF by CDS)
-        \ifx\@atlasnote\@empty \vskip 2mm \mbox{}%
-        \else \vskip 4mm {\Large \@atlasnote} \vskip 2mm%
+        \ifx\@atlasnote\@empty 
+        	% ATLAS reference code, if any and no note number given
+        	\ifx\@refcode\@empty \vskip 4mm \mbox{}%
+        	\else \vskip 4mm {\Large \@refcode} \vskip 0mm%
+        	\fi
+        \else \vskip 4mm {\Large \@atlasnote} \vskip 0mm%
         \fi
         % Date, if any
         \ifx\@date\@empty\mbox{}%	
@@ -243,7 +266,7 @@
   %\vskip 60\p@
   \vskip \AN@skipbeforetitle
   \begin{center}%
-    {\Large\bf \@atlastitle \par}%
+    {\Large\bf \@title \par}%
     \vskip 3em%
     {\large
      \lineskip .75em%
@@ -253,12 +276,12 @@
   \end{center}\par
   \vfill
   % Abstract
-  \if\@abstracttext\@empty\mbox{}%
+  \if\AtlasAbstractText\@empty\mbox{}%
   \else%
   \begin{center}
     {\bfseries \abstractname}
     \quotation
-    \@abstracttext
+    \setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
     \endquotation
   \end{center}
   \fi
@@ -288,12 +311,12 @@
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@thanks\@empty
-  \global\let\@author\@empty
-  \global\let\@date\@empty
-  \global\let\@title\@empty
-  \global\let\title\relax
-  \global\let\author\relax
-  \global\let\date\relax
+  %\global\let\@author\@empty
+  %\global\let\@date\@empty
+  %\global\let\@title\@empty
+  %\global\let\title\relax
+  %\global\let\author\relax
+  %\global\let\date\relax
   \global\let\and\relax
 }
 
@@ -316,7 +339,8 @@
   \else \linenumbers \draftheading 
   \fi
   % Hack for tikz (must be loaded here in order to avoid conflicts with graphicx user in \maketitle}
-  \if@usetikz \RequirePackage{tikz} \fi
+  % This hack does not appear to be necessary any more (ICB: 2014-08-26)
+  %\if@usetikz \RequirePackage{tikz} \fi
   %\pagenumbering{arabic} % reset page numbering after title page
 }
 

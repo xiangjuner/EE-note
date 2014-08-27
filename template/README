@@ -4,9 +4,6 @@ See ChangeLog or SVN log for history of changes.
 
 Responsible: Ian Brock (Ian.Brock@cern.ch)
 ------------------------------------------------------------------------------
-$Id: README 301568 2014-08-15 15:05:46Z brock $
-$HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/README $
-------------------------------------------------------------------------------
 
 You can create a new ATLAS document by using the command:
 make new BASENAME=mydocument

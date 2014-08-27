@@ -1,6 +1,9 @@
 %-------------------------------------------------------------------------------
 % This file provides a skeleton ATLAS document
 %-------------------------------------------------------------------------------
+% $Id: README 301568 2014-08-15 15:05:46Z brock $
+% $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/README $
+%-------------------------------------------------------------------------------
 \documentclass[UKenglish]{style/atlasdoc}
 % Options:
 %		nomaketitle Do not run \maketitle from the class
@@ -13,16 +16,18 @@
 % Extra packages:
 \usepackage{style/atlaspackage}
 % Options:
-%		minimum		Minimal set of packages
+%   biblatex  Use biblatex and biber for the bibliography
+%		minimal		Minimal set of packages
 %		default		Standard set of packages
 %		full			Full set of packages
-% See doc/atlas-physics.pdf for a list of the defined symbols
-\usepackage{style/atlasphysics}
 
-% Use biblatex and biber for the bibliography
-%\usepackage[backend=biber,
-%	style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
-%\addbibresource{atlas-document.bib}
+% Useful macros
+\usepackage{style/atlasphysics}
+% See doc/atlas-physics.pdf for a list of the defined symbols
+% See the package for a list of options
+
+% Files with references in BibTeX format
+% \addbibresource{atlas-document.bib}
 
 % Paths for figures
 \graphicspath{{figures/}}
@@ -96,7 +101,7 @@ They can be found at:\\
 % If you use biblatex and biber to process the bibliography just say \printbibliogrpahy here
 % \printbibliography
 % If you want to use BibTeX you need to use the syntax below.
-\bibliographystyle{style/atlasBibStyleWoTitle}
+\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
 \bibliography{atlas-document}
 %-------------------------------------------------------------------------------
 
