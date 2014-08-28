@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-% Style file for ATLAS cover page for circulation of ATLAS drafts
+% Style file for ATLAS cover page for circulation of ATLAS drafts and CERN preprint front page
 %
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
@@ -7,9 +7,9 @@
 % $Id: atlascover.sty 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlascover/trunk/atlascover.sty $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-96-00}
+\def\ATPackageVersion{00-97-00}
 
-\ProvidesPackage{style/atlascover}[2014/08/27 v.00-96-00 ATLAS Draft Cover Page]
+\ProvidesPackage{style/atlascover}[2014/08/28 v.00-97-00 ATLAS Cover Pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{********************************}
@@ -19,11 +19,13 @@
 \let\if@AC@ClearPage\iffalse
 \DeclareOption{clearpage}{\let\if@AC@ClearPage\iftrue}
 \let\if@AC@Paper\iftrue
-\let\if@AC@Note\iffalse
+\let\if@AC@CONFNote\iffalse
+\let\if@AC@PUBNote\iffalse
 \let\if@AC@Preprint\iffalse
-\DeclareOption{paper}   {\let\if@AC@Paper\iftrue  \let\if@AC@Note\iffalse \let\if@AC@Preprint\iffalse}
-\DeclareOption{note}    {\let\if@AC@Paper\iffalse \let\if@AC@Note\iftrue  \let\if@AC@Preprint\iffalse}
-\DeclareOption{preprint}{\let\if@AC@Paper\iffalse \let\if@AC@Note\iffalse \let\if@AC@Preprint\iftrue}
+\DeclareOption{PAPER}   {\let\if@AC@Paper\iftrue  \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iffalse}
+\DeclareOption{CONF}    {\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iftrue  \let\if@AC@PUBNote\iffalse}
+\DeclareOption{PUB}     {\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iftrue}
+\DeclareOption{preprint}{\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iffalse \let\if@AC@Preprint\iftrue}
 \let\if@AC@UseFromAtlasDoc\iffalse
 \DeclareOption{atlasdoc}{\let\if@AC@UseFromAtlasDoc\iftrue}
 
@@ -106,9 +108,15 @@
 \newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\AC@EgroupEdBoard{#1}}
 
 \def\AC@EdBoardMembers{}
-\newcommand{\AtlasCoverEdBoardMember}[2]{%
+\newcommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\AC@EdBoardMembers{%
-%    #1 & ({\tt #2}) \\
+    #1 \\
+  }%
+}
+
+\def\AC@ReaderMembers{}
+\newcommand{\AtlasCoverReaderMember}[1]{%
+  \g@addto@macro\AC@ReaderMembers{%
     #1 \\
   }%
 }
@@ -175,17 +183,29 @@
 %********************************************************
 
 \newcommand{\AtlasCoverHeader}{%
-  \begin{minipage}[b]{0.3\textwidth}
+  \begin{minipage}[b]{0.25\textwidth}
     \includegraphics{AT_atlaslogo}
   \end{minipage}
-  \parbox{0.4\linewidth}{%
+  \parbox{0.5\textwidth}{%
     \centering%  
     {
       %\LARGE\sffamily\bfseries\upshape
-      \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
-      ATLAS Draft
+      \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont
+      \if@AC@Paper%
+      	ATLAS Paper Draft
+      \else
+      	\if@AC@CONFNote%
+      		ATLAS Conference Note Draft
+      	\else
+      		\if@AC@PUBNote%
+      			ATLAS PUB Note Draft
+      		\else
+      			ATLAS Draft
+      		\fi
+      	\fi
+      \fi
     }
- }%
+  }
 }
 
 %-------------------------------------------------------------------------------
@@ -320,14 +340,17 @@
       Analysis Team\par
     }
 
-    \vspace*{1.5mm}
-    \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-    [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
-    email:}
-    \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-    \AC@EgroupEditors]\par
+		\if@AC@PUBNote%
+			\relax
+		\else
+      \vspace*{1.5mm}
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
+      email:}
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+      \AC@EgroupEditors]\par
+    \fi
     \vspace*{4mm}
-
     {
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
       \AC@AnalysisTeam \par %Cover
@@ -339,33 +362,46 @@
     }
     \vspace*{3mm}
 		%*******************
-		% Editorial Board
+		% Editorial Board or Readers
 		%*******************
     \rule{\linewidth}{1.5pt}\par
     \vspace*{2mm}
-    {
-      %\LARGE\sffamily\bfseries\upshape 
-      \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
-      Editorial Board\par
-    }
-    \vspace*{1.5mm}
-    [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
-    email:}
-    \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-    \AC@EgroupEdBoard]\par
-    \vspace*{4mm}
-%    \vspace*{2mm}
-    {
-      %\LARGE\sffamily\mdseries\upshape%        
-      \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-%     \begin{tabular}{ll}
-      \AC@EdBoardMembers
-%     \end{tabular}
-    }
-    \vspace*{2mm}
-%    \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-    {\fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-    (*): EdBoard Chair}
+    % PUB notes have readers
+    \if@AC@PUBNote%
+      {%
+        \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
+        Readers\par
+      }
+      \vspace*{1.5mm}
+      {
+        \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
+        \AC@ReaderMembers
+      }
+      \vspace*{2mm}
+    % Everything else has an EdBoard
+    \else
+      {%
+        \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
+        Editorial Board\par
+      }
+      \vspace*{1.5mm}
+      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
+      email:}
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+      \AC@EgroupEdBoard]\par
+      \vspace*{4mm}
+      {
+        %\LARGE\sffamily\mdseries\upshape%        
+        \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
+%       \begin{tabular}{ll}
+        \AC@EdBoardMembers
+%       \end{tabular}
+      }
+      \vspace*{2mm}
+%      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+      {\fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+      (*): EdBoard Chair}
+    \fi
     \vspace*{2mm}
     \rule{\linewidth}{1.5pt}\par
   }

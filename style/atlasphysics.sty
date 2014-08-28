@@ -10,18 +10,15 @@
 % $Id: atlasphysics.sty 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasphysics.sty $
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{00-96-00}
+\def\AP@PackageVersion{00-97-00}
 
-\ProvidesPackage{style/atlasphysics}[2014/08/27 v.00-96-00 ATLAS physics macros]
+\ProvidesPackage{style/atlasphysics}[2014/08/28 v.00-97-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
-\typeout{**************************************}
-\typeout{* ATLAS physics style file v.\AP@PackageVersion}
-\typeout{**************************************}
-%
+\typeout{ATLAS physics style file v.\AP@PackageVersion}
 
 \let\if@BSM\iffalse
-\let\if@Math\iftrue
+\let\if@Math\iffalse
 \let\if@Misc\iftrue
 \let\if@Other\iffalse
 \let\if@Particle\iftrue
@@ -50,9 +47,10 @@
 % xspace is always needed 
 \RequirePackage{xspace}
 
+% Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex
 \if@texmf
 	% BSM particles including SUSY
-  \if@Math     \RequirePackage{atlasbsm} \fi
+  \if@BSM      \RequirePackage{atlasbsm} \fi
 
   % Useful math related definitions
   \if@Math     \RequirePackage{atlasmath} \fi
@@ -73,7 +71,7 @@
 	\if@Unit     \RequirePackage{atlasunit} \fi
 \else
 	% BSM particles including SUSY
-  \if@Math     \RequirePackage{style/atlasbsm} \fi
+  \if@BSM      \RequirePackage{style/atlasbsm} \fi
 
   % Useful math related definitions
   \if@Math     \RequirePackage{style/atlasmath} \fi

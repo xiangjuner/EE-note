@@ -10,8 +10,8 @@
 \newcommand*{\ET}{\ensuremath{E_{\text{T}}}\xspace}
 \newcommand*{\HT}{\ensuremath{H_{\text{T}}}\xspace}
 \newcommand*{\ptsq}{\ensuremath{p^2_{\text{T}}}\xspace}
-\newcommand*{\MET}{\ensuremath{E_{\mathrm{T}}^{\text{miss}}}}
-\newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}}
+\newcommand*{\MET}{\ensuremath{E_{\mathrm{T}}^{\text{miss}}}\xspace}
+\newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
 \newcommand{\EjetRec}{\ensuremath{E_{\text{rec}}}}
 \newcommand{\PjetRec}{\ensuremath{p_{\text{rec}}}}
 \newcommand{\EjetTru}{\ensuremath{E_{\text{truth}}}}
@@ -30,8 +30,8 @@
 \newcommand*{\mH}{\ensuremath{m_{H}}\xspace}
 \newcommand*{\mA}{\ensuremath{m_{A}}\xspace}
 
-\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
-\def\twomass#1#2{\ensuremath{m_{#1#2}}}% 
+%\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
+\newcommand{\twomass}[2]{\ensuremath{m_{#1#2}}\xspace}
 
 
 % +--------------------------------------------------------------------+
@@ -55,8 +55,10 @@
 
 \newcommand*{\ra}{\ensuremath{\rightarrow}\xspace}
 \newcommand*{\la}{\ensuremath{\leftarrow}\xspace}
-\let\rarrow=\ra
-\let\larrow=\la
+\newcommand*{\rarrow}{\ensuremath{\rightarrow}\xspace}
+\newcommand*{\larrow}{\ensuremath{\leftarrow}\xspace}
+%\let\rarrow=\ra
+%\let\larrow=\la
 \newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$<$}}\xspace}%  Or use \lsim
 \newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$>$}}\xspace}%  and \rsim.
 \newcommand*{\gam}{\ensuremath{\gamma}\xspace}

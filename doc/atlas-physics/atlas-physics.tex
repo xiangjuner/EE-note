@@ -4,14 +4,20 @@
 \documentclass[UKenglish]{style/atlasdoc}
 
 \usepackage[default,biblatex]{style/atlaspackage}
+\usepackage{supertabular}
 \usepackage{authblk}
 % Include all style files
-\usepackage[process,other]{style/atlasphysics}
+\usepackage[bsm,math,process,other]{style/atlasphysics}
 %\usepackage{mathrsfs}
 
 \addbibresource{atlas-physics.bib}
 
 \graphicspath{{../../figures/}}
+
+\newcommand{\File}[1]{\texttt{#1}\xspace}
+\newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
+\newcommand{\Option}[1]{\textsf{#1}\xspace}
+\newcommand{\Package}[1]{\texttt{#1}\xspace}
 
 %-------------------------------------------------------------------------------
 % Generic document information
@@ -20,7 +26,7 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\title{Symbols defined in \texttt{atlasphysics.sty}}
+\title{Symbols defined in \File{atlasphysics.sty}}
 
 \author{Ian C. Brock}
 \affil{University of Bonn}
@@ -28,7 +34,7 @@
 % \AtlasVersion{\ATPackageVersion}
 
 \AtlasAbstract{%
-  This note lists the symbols defined in \texttt{atlasphysics.sty}.
+  This note lists the symbols defined in \File{atlasphysics.sty}.
   These provide examples of how to define your own symbols, as well as many symbols
   that are often used in ATLAS documents.
 
@@ -43,11 +49,11 @@
 \tableofcontents
 
 %-------------------------------------------------------------------------------
-\section{The \texttt{atlasphysics.sty} style file}
-\label{app:AtlasPhysicsSty}
+\section{\File{atlasphysics.sty} style file}
+\label{sec:atlasphysics}
 %-------------------------------------------------------------------------------
 
-The \texttt{atlasphysics.sty} style file implements a series of useful
+The \File{atlasphysics.sty} style file implements a series of useful
 shortcuts to typeset a physics paper, such as particle
 symbols. It can included in the preamble of your paper with the usual
 syntax:
@@ -58,256 +64,133 @@ syntax:
 %
 As of version 01-00-00 the file is actually split into smaller files,
 which can be included or not using options.
-The following options are available:
+The following options are available, where the default setting is given in parentheses
 \begin{description}
-\item[BSM -- off] BSM and SUSY particles;
-\item[math -- on] Maths
-\item[misc -- on] Miscellaneous
-\item[other -- off] Definitions that used to be in \texttt{atlasphysics.sty}, 
+\item[bsm|nobs,](off) BSM and SUSY particles;
+\item[math|nomath] (off) A few extra maths definitions;
+\item[misc|nomisc](on) Miscellaneous definitions that are often used;
+\item[other|noother](off) Definitions that used to be in \File{atlasphysics.sty}, 
 	but are probably too specialised to be needed by most people;
-\item[particles -- on] Standard Model particles and some combinations;
-\item[process -- off] Some example processes. 
+\item[particle|noparticle](on) Standard Model particles and some combinations;
+\item[process|noprocess](off) Some example processes. 
 	These are not included by default as the current choice is rather arbitrary
 	and certainly not complete;
-\item[units -- off] Units that used to be defined -- not needed if you use \texttt{siunitx}.
+\item[unit|nounit](on) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
 \end{description}
+
+There is an additional option \Option{texmf}.
+If this option is included, the subfiles are included using the command:
+\verb|\RequirePackage{atlaspartcle}| etc. instead of \verb|\RequirePackage{style/atlaspartcle}|.
+This is useful if you install the ATLAS \LaTeX\ package in a central directory such as \File{\$\{HOME\}/texmf/tex/latex}.
 
 All definitions are done in a consistent way using \verb|\newcommand*|.
 All definitions use \verb|\ensuremath| where appropriate and are terminated with
-\verb|\xspace|, so you can simply write ``\verb|\ttbar production|'' instead of
-``\verb|\ttbar\ production|'' or ``\verb|\ttbar{} production|'' to get ``\ttbar production''.
+\verb|\xspace|, so you can simply write ``{\verb|\ttbar production|'' instead of
+``\verb|\ttbar\ production|'' or ``\verb|\ttbar{} production|'' to get \enquote{\ttbar production}.
 
 See Appendix~\ref{sec:old} for details on changes that were introduced when
-when going from version 00-04-05 of \texttt{atlasnote}
-to version 01-00-00 of \texttt{atlaslatex}.
+when going from version 00-04-05 of \Package{atlasnote}
+to version 01-00-00 of \Package{atlaslatex}.
 Let me know if you spot some other changes that are not documented here!
 
-The style file contains among other things:
+The following sections list the macros defined in the various files.
 
-\medskip
+\twocolumn
+%-------------------------------------------------------------------------------
+\section{\File{atlasparticle.sty}}
 
-\begin{tabular}{llcllcll}
-  \verb+\lapprox+ & \lapprox{} & \hspace{1cm} &
-  \verb+\rapprox+ & \rapprox{}  &\hspace{1cm} &
-  \verb+\rts+  & \rts{} \\
-  \verb+\Ecm+ & \Ecm{} & &
-  \verb+\stat+ & \stat{} & &
-  \verb+\syst+ & \syst{} \\
-\end{tabular}
+Turn on including these definitions with the option \Option{particle} and off with the option \Option{noparticle}.
 
-\medskip
+\input{atlasparticle}
 
-\begin{tabular}{llcllcll}
-  \verb+\Zboson+ & \Zboson{} & \hspace{5mm} &
-  \verb+\Wboson+ & \Wboson{} & \hspace{5mm} &
-  \verb+\Wplus+ & \Wplus{} \\
-  \verb+\Wminus+ & \Wminus{} & &
-  \verb+\Wpm+ & \Wpm{} & &
-  \verb+\Wmp+ & \Wmp{} \\
-  \verb+\Afb+ & \Afb{} & &
-  \verb+\GW+ & \GW{} & &
-  \verb+\GZ+ & \GZ{} \\
-  \verb+\Wln+ & \Wln{} & &
-  \verb+\Zll+ & \Zll{} & &
-  \verb+\Zee+ & \Zee{} \\
-  \verb+\Zmm+ & \Zmm{} & &
-  \verb+\mZ+ & \mZ{} \\
-  \verb+\mW+ & \mW{} & &
-  \verb+\mH+ & \mH{} \\
-  \verb+\Mtau+ & \Mtau{} & &
-  \verb+\swsq+ & \swsq{} & &
-  \verb+\swel+ & \swel{} \\
-  \verb+\swsqb+ &  \swsqb{} & &
-  \verb+\swsqon+ & \swsqon{} & &
-  \verb+\gv+ &  \gv{} \\
-  \verb+\ga+ & \ga{} & &
-  \verb+\gvbar+ & \gvbar{} & &
-  \verb+\gabar+ & \gabar{} \\
-  \verb+\Zprime+ & \Zprime{} & &
-  \verb+\Hboson+ & \Hboson{} & & 
-  \verb+\GH+ & \GH{} \\
-\end{tabular}
+A generic macro \verb|\Ups[1]| is defined so that \verb|\Ups{3}| produces \Ups{3}.
 
-\medskip
 
-\noindent The command \verb+\Zzero+ is identical to \verb+\Zboson+.
+%-------------------------------------------------------------------------------
+\section{\File{atlasmisc.sty}}
 
-\medskip
+Turn on including these definitions with the option \Option{math} and off with the option \Option{nomath}.
 
-\begin{tabular}{llcllcll}
-  \verb+\tbar+ & \tbar{} & \hspace{1cm} &
-  \verb+\ttbar+ & \ttbar{} & \hspace{1cm} &
-  \verb+\bbar+ & \bbar{} \\
-  \verb+\bbbar+ & \bbbar{} & &
-  \verb+\cbar+ & \cbar{} & &
-  \verb+\ccbar+ & \ccbar{} \\
-  \verb+\sbar+ & \sbar{} & &
-  \verb+\ssbar+ &  \ssbar{} & &
-  \verb+\ubar+ & \ubar{} \\
-  \verb+\uubar+ & \uubar{} & &
-  \verb+\dbar+ & \dbar{} & &
-  \verb+\ddbar+ & \ddbar{} \\
-  \verb+\fbar+ & \fbar{} & &
-  \verb+\ffbar+ &  \ffbar{} & &
-  \verb+\qbar+ & \qbar{} \\
-  \verb+\qqbar+ & \qqbar{} & &
-  \verb+\nbar+ & \nbar{} & &
-  \verb+\nnbar+ & \nnbar{} \\
-  % \verb+\e+ & \e{} & &
-  \verb+\ee+ & \ee{} & &
-  \verb+\mumu+ & \mumu{} & &
-  \verb+\tautau+ & \tautau{} \\
-  \verb+\epm+ & \epm{} & &
-  % \verb+\epem+ & \epem{} & &
-  \verb+\leplep+ & \leplep{} & & 
-  \verb+\lnu+ & \lnu{} \\
-  % \verb+\ellell+ & \ellell{} & & & \\
-\end{tabular}
+\input{atlasmisc}
 
-\medskip
+\noindent A generic macro \verb|\twomass| is defined, so that for example
+\verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.
 
-\begin{tabular}{llcllcll}
-  \verb+\BoBo+ & \BoBo & \hspace{1cm} &
-  \verb+\BodBod+ & \BodBod & \hspace{1cm} &
-  \verb+\BosBos+ & \BosBos \\
-  \verb+\Bd+ & \Bd & &
-  \verb+\Bs+ & \Bs & &
-  \verb+\Bu+ & \Bu \\
-  \verb+\Bc+ & \Bc & &
-  \verb+\Lb+ & \Lb & &
-  \verb+\jpsi+ & \jpsi \\
-  \verb+\Jpsi+ & \Jpsi & &
-  \verb+\Jee+ & \Jee & &
-  \verb+\Jmm+ & \Jmm \\
-  \verb+\psip+ & \psip & &
-  \verb+\Kzero+ & \Kzero & &
-  \verb+\Kzerobar+ & \Kzerobar \\
-  \verb+\kaon+ & \kaon & &
-  \verb+\Kplus+ & \Kplus & &
-  \verb+\Kminus+ & \Kminus \\
-  \verb+\Klong+ & \Klong & &
-  \verb+\Kshort+ & \Kshort & &
-  \verb+\Ups[3]+ & \Ups{3} \\
-\end{tabular}
+A macro \verb|\dk| is also defined which makes it easier to write down decay chains.
+For example
+\begin{verbatim}
+\[\eqalign{a \to & b+c\\
+	 & \dk & e+f \\
+	 && \dk g+h}
+\]
+\end{verbatim}
+produces
+\[\eqalign{a \to & b+c\cr
+	 & \dk & e+f \cr
+	 && \dk g+h}
+\]
+Note that \Macro{eqalign} is also redefined in this package so that \Macro{dk} works.
 
-\medskip
 
-\begin{tabular}{llcllcllcll}
-  \verb+\alphas+ & \alphas{} & \hspace{1cm} &
-  \verb+\Lms+ & \Lms{} & \hspace{1cm} &
-  \verb+\Lmsfive+ & \Lmsfive{} & \hspace{1cm} &
-  \verb+\KT+ & \KT{} \\
-\end{tabular}
+%-------------------------------------------------------------------------------
+\section{\File{atlasbsm.sty}}
 
-\medskip
+Turn on including these definitions with the option \Option{bsm} and off with the option \Option{nobsm}.
 
-\begin{tabular}{llcllcll}
-  \verb+\Vud+ & \Vud{} & \hspace{1cm} &
-  \verb+\Vus+ & \Vus{} & \hspace{1cm} &
-  \verb+\Vub+ & \Vub{} \\
-  \verb+\Vcd+ & \Vcd{} &  &
-  \verb+\Vcs+ & \Vcs{} &  &
-  \verb+\Vcb+ & \Vcb{} \\
-  \verb+\Vtd+ & \Vtd{} & &
-  \verb+\Vts+ & \Vts{} & & 
-  \verb+\Vtb+ & \Vtb{} \\
-\end{tabular}
+The macro \Macro{susy} simply puts a tilde ($\tilde{\ }$) over its argument,
+e.g.\ \verb|\susy{q}| produces \susy{q}.
 
-\medskip
-
-\begin{tabular}{llcllcll}
-  \verb+\Azero+ & \Azero{} & \hspace{1cm} &
-  \verb+\hzero+ & \hzero{} & \hspace{1cm} &
-  \verb+\Hzero+ & \Hzero{} \\
-  \verb+\Hplus+ & \Hplus{} & &
-  \verb+\Hminus+ & \Hminus{} & &
-  \verb+\Hpm+ & \Hpm{} \\
-  % \verb+\Hmp+ \Hmp{}
-\end{tabular}
-
-\medskip
-
-\noindent A generic macro \verb+\susy#1+ is defined, so that for
-example \verb+\susy{q}+ produces \susy{q} and similar.
-
-\medskip
-
-\begin{tabular}{llcllcll}
-  \verb+\chinop+ & \chinop{} & \hspace{1cm} &
-  \verb+\chinotwom+ & \chinotwom{} & \hspace{1cm} &
-  \verb+\chinopm+ & \chinopm{} \\
-  \verb+\nino+ & \nino{} & &
-  \verb+\ninothree+ & \ninothree{} & &
-  \verb+\gravino+ & \gravino{} \\
-  \verb+\squark+ & \squark{} & &
-  \verb+\gluino+ & \gluino{} & &
-  \verb+\slepton+ & \slepton{} \\
-  \verb+\stop+ & \stop{} & &
-  \verb+\stopone+ & \stopone{} & &
-  \verb+\stopL+ & \stopL{} \\
-  \verb+\sbottom+ & \sbottom{} & &
-  \verb+\sbottomtwo+ & \sbottomtwo{} & &
-  \verb+\sbottomR+ & \sbottomR{} \\
-  \verb+\sleptonL+ & \sleptonL{} & &
-  \verb+\sel+ & \sel{} & &
-  \verb+\smuR+ & \smuR{} \\
-  \verb+\stauone+ & \stauone{} & &
-  \verb+\snu+ & \snu{} & &
-  \verb+\squarkR+ & \squarkR{} \\
-\end{tabular}
-
-\medskip
-
-\noindent For \susy{q}, \susy{t}, \susy{b}, \slepton, \sel, \smu and
+For \susy{q}, \susy{t}, \susy{b}, \slepton, \sel, \smu and
 \stau, L and R states are defined; for stop, sbottom and stau also the
-light (1) and heavy (2) states. There are four neutralinos and two
-charginos defined, the index number unfortunately needs to be written
-out completely. For the charginos the last letter(s) indicate(s) the
-charge: p for +, m for -, and pm for $\pm$.
+light (1) and heavy (2) states.
+There are four neutralinos and two charginos defined, 
+the index number unfortunately needs to be written out completely. 
+For the charginos the last letter(s) indicate(s) the charge: 
+\enquote{p} for $+$, \enquote{m} for $-$, and \enquote{pm} for $\pm$.
 
-\medskip
+\input{atlasbsm}
 
-\begin{tabular}{llcllcll}
-  \verb+\pt+ & \pt{} & \hspace{1cm} &
-  \verb+\pT+ & \pT{} & \hspace{1cm} &
-  \verb+\et+ & \et{} \\
-  \verb+\eT+ & \eT{} & &
-  \verb+\ET+ & \ET{} & &
-  \verb+\HT+ & \HT{} \\
-  \verb+\ptsq+ & \ptsq{} & &
-  \verb+\met{}+ & \met{} & &
-\end{tabular}
 
-\medskip
+%-------------------------------------------------------------------------------
+\section{\File{atlasunit.sty}}
 
-\noindent Use \verb+\met{}+ rather than just \verb+\met+ to get the spacing
-right. In principle this works for any macro, although in most cases it will
-not be needed as {\tt xspace.sty} will take care of the spacing. Somehow
-{\tt xspace.sty} doesn't do a good job for \met.
+Turn on including these definitions with the option \Option{unit} and off with the option \Option{nounit}.
 
-\vspace{5mm}
+\input{atlasunit}
 
-\begin{tabular}{llcllcll}
-\verb+\ifb+ & \ifb{} & \hspace{1cm} &
-\verb+\ipb+ & \ipb{} & \hspace{1cm} &
-\verb+\inb+ & \inb{} \\
-\verb+\TeV+ & \TeV{} & &
-\verb+\GeV+ & \GeV{} & &
-\verb+\MeV+ & \MeV{} \\
-\verb+\keV+ & \keV{} & &
-\verb+\eV+ & \eV{} & & & \\
-\end{tabular}
+\noindent Lower case versions of the units also exist, e.g.\ \verb|\tev|, \verb|\gev|, \verb|\mev|, \verb|\kev|, and
+\verb|\ev|. 
 
-\medskip
+As mentioned above, it is highly recommended to use a units package instead of
+these definitions. \Package{siunitx} is the preferred package; a good alternative is \Package{hepunits}.
+If either of these packages are used \File{atlasunit.sty} is not needed.
 
-\noindent And \verb+\tev+, \verb+\gev+, \verb+\mev+, \verb+\kev+, and
-\verb+\ev+ have the same results.
 
-\medskip
+%-------------------------------------------------------------------------------
+\section{\File{atlasmath.sty}}
 
-\noindent A generic macro \verb+\mass#1+ is defined, so that for example
-\verb+\mass{\mu}+ produces \mass{\mu} and similar.
-\verb+\twomass{\mu e}+ will produce \twomass{\mu e}.
+Turn on including these definitions with the option \Option{math} and off with the option \Option{nomath}.
+
+\input{atlasmath}
+
+\noindent The macro \Macro{spinor} is also defined.
+\verb|\spinor{u}| produces \spinor{u}.
+
+
+%-------------------------------------------------------------------------------
+\section{\File{atlasother.sty}}
+
+Turn on including these definitions with the option \Option{other} and off with the option \Option{noother}.
+
+\input{atlasother}
+
+
+%-------------------------------------------------------------------------------
+\section{\File{atlasprocess.sty}}
+
+Turn on including these definitions with the option \Option{process} and off with the option \Option{noprocess}.
+
+\input{atlasprocess}
 
 
 %-------------------------------------------------------------------------------
@@ -315,19 +198,26 @@ not be needed as {\tt xspace.sty} will take care of the spacing. Somehow
 \label{sec:old}
 %-------------------------------------------------------------------------------
 
-With the introduction of \texttt{atlaslatex} several macro names have been changed to make them more consistent.
-A few have been removed. The chnages include:
+With the introduction of \Package{atlaslatex} several macro names have been changed to make them more consistent.
+A few have been removed. The changes include:
 \begin{itemize}
 \item Kaons now have a capital ``K'' in the macro name, e.g.\ \verb|\Kplus| for \Kplus;
-\item \verb|\Ztau|, \verb|{\Wtau}|, \verb|{\Htau}| \verb|{\Atau}| have been replaced by
-	\verb|\Ztautau|, \verb|{\Wtautau}|, \verb|{\Htautau}| \verb|{\Atautau}|;
+\item \verb|\Ztau|, \verb|\Wtau|, \verb|\Htau| \verb|\Atau| have been replaced by
+	\verb|\Ztautau|, \verb|\Wtautau|, \verb|\Htautau| \verb|{Atautau|;
 \item \verb|\Ups| replaces \verb|\ups|;
 	the use of \verb|\ups| to produce $\Upsilon$ in text mode has been removed;
+\item \verb|\cm| has been removed, as it was the only length unit defined for text and math mode;
+\item \verb|\mass| has been removed, as \verb|\twomass| can do the same thing and the name is more intuitive.
 \end{itemize}
 
 Quite a few macros are more related to \Zboson physics than they are to LHC physics and have
-been moved to the \texttt{atlasother.sty} file, which is not included by default.
-There are also macros for various decay processes, \texttt{atlasprocess.sty} which are not included by default,
+been moved to the \File{atlasother.sty} file, which is not included by default.
+There are also macros for various decay processes, \File{atlasprocess.sty} which are not included by default,
 but may be useful for how you can define your favourite process.
+
+It used to be the case that you had to use \verb|\met{}| rather than just \verb|\met| to get the spacing right,
+as somehow \Package{xspace} dis not do a good job for \met.
+However, with the latest version of the packages both forms work fine.
+You can compare \MET and \MET\ and see that the spacing is correct in both cases.
 
 \end{document}

@@ -17,6 +17,7 @@
 % Shorthand for \phantom to use in tables
 \newcommand{\pho}{\phantom{0}}
 \newcommand{\BibTeX}{\textsc{Bib\TeX}}
+\newcommand{\File}[1]{\texttt{#1}\xspace}
 \newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
 \newcommand{\Option}[1]{\textsf{#1}\xspace}
 \newcommand{\Package}[1]{\texttt{#1}\xspace}
@@ -242,6 +243,23 @@ include \texttt{atlaspackage}.
 Have a look at the \texttt{style/atlaspackage.sty} to see how \texttt{biblatex} is included.
 In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
 
+s mentioend above, you have to specify the document language as an option to \Package{atlasdoc}.
+Several more options can be set:
+\begin{description}
+\item[a4paper] Set paper size to A4 (default);
+\item[letter] Set paper size to letter;
+\item[coverpage] Include an ATLAS draft cover page;
+\item[preprint] Make the front page for a CERN preprint;
+%\item[paper] The document is an ATLAS paper;
+\item[CONF] The document is a CONF note;
+\item[PUB] The document is an PUB note;
+\item[nomaketitle] Do not create a title page; to make it yourself give the command \Macro{maketitle} after
+	\verb|\begin{document}|
+\item[koma] Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article}. 
+	Note that some tuning of the \KOMAScript\ options still needs to be done.
+\end{description}
+Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
+as they only influence the cover pages.
 
 %-------------------------------------------------------------------------------
 \subsection{Dependencies}
@@ -319,6 +337,14 @@ You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
 In this case you need the option \texttt{nomaketitle} in the \texttt{atlasdoc} class
 (if you are using it)
 and you include the \Macro{maketitle} command after \verb|\begin{document}|.
+
+The following options can be passed on to the \Package{atlascover} package:
+\begin{description}
+\item[paper] The docment is an ATLAS paper draft (default);
+\item[CONF] The document is a CONF note;
+\item[PUB] The document is an PUB note;
+\item[preprint] The fornt page should be in the form of a CERN preprint.
+\end{description}
 
 %-------------------------------------------------------------------------------
 \subsection{ATLAS notes}
@@ -566,6 +592,9 @@ To get the CERN preprint front page, you have to include the option \Option{prep
 	\end{tabular}
 \end{center}
 The following changes are needed for the macros:
+\begin{itemize}
+\item The macro \Macro{AtlasCoverEdBoardMember} only has one argument, as a gnric email list now exists for every EdBoard.
+\end{itemize}
 
 
 %-------------------------------------------------------------------------------

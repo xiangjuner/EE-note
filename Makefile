@@ -21,7 +21,7 @@ BASENAME = mydocument
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
 
-.PHONY: new clean
+.PHONY: new cover clean help
 
 new:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex
@@ -29,6 +29,9 @@ new:
 	cp template/atlas-document-contribute.tex $(BASENAME)-contribute.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
+
+cover:
+	cp template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
 	
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
@@ -53,6 +56,15 @@ run_latex: $(BASENAME).dvi
 %.bbl:	%.tex *.bib
 	$(LATEX) $*
 	$(BIBTEX) $*
+	
+help:
+	@echo "To create a new document give the commands"
+	@echo "make new [BASENAME=mydocument]"
+	@echo "make"
+	@echo ""
+	@echo "If you need a standalone draft cover give the commands:"
+	@echo "make cover [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-draft-cover"
 
 %.ps:	%.dvi
 	$(DVIPS) $< -o $@

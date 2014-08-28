@@ -6,18 +6,21 @@
 % This file is for the case that you have to make the cover page separately.
 %-----------------------------------------------------------------------
 
-\usepackage{graphicx}
 \usepackage[centering,scale=0.75]{geometry}
 % Either use atlaspackage or specify packages explicitly
 % \usepackage[minimal]{style/atlaspackage}
+\usepackage{graphicx}
 % hyperref is usually included as late as possible
 \usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
-% Add option [CONF] if this is a CONF note draft
+% Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft
 \usepackage{style/atlascover}
-% \usepackage[atlasdoc]{syle//atlascover}
+% \usepackage[atlasdoc]{syle/atlascover}
 % \usepackage[CONF]{style/atlascover}
+
+% Paths for figures
+\graphicspath{{figures/}}
 
 %-------------------------------------------------------------------------------
 % Generic document information
@@ -28,7 +31,7 @@
 
 % or specify all information in this document
 % The paper title:
-\AtlasTitle{Sample Cover Page}
+\title{Sample ATLAS Draft Cover Page}
 
 % Internal ATLAS number, to help ATLAS members to locate the paper
 \AtlasRefCode{GROUP-2015-YY}
@@ -48,14 +51,14 @@
 	when the energy and the luminosity are increased; hopefully we find it.
 }
 
-% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
-% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
+\AtlasCoverSupportingNote{Short title note 1}{https://cds.cern.ch/record/XXXXXXX}
+\AtlasCoverSupportingNote{Short title note 2}{https://cds.cern.ch/record/YYYYYYY}
 %
 % OR
 %
-% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
-\AtlasCoverSupportingNote{A supporting note}       {CDS link here}
-\AtlasCoverSupportingNote{Another supporting note} {CDS link here}
+% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
+% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 
 % Comment deadline
 \AtlasCoverCommentsDeadline{1 April 2015}
@@ -64,13 +67,23 @@
 \AtlasCoverAnalysisTeam{Peter~Analyser, Contact Editor~(*), Contact~Editor2~(*), Alphonse~Physicien}
 
 % Editorial Board Members --- Indicate the Chair by a (*) after his/her name
-\AtlasCoverEdBoardMember{EdBoard~Chair~(*), EB~Member~1, EB~Member~2, EB~Member~3}
+% Give either all members at once (then they appear on one line), or separately
+% \AtlasCoverEdBoardMember{EdBoard~Chair~(*), EB~Member~1, EB~Member~2, EB~Member~3}
+\AtlasCoverEdBoardMember{EdBoard~Chair~(*)}
+\AtlasCoverEdBoardMember{EB~Member~1}
+\AtlasCoverEdBoardMember{EB~Member~2}
+\AtlasCoverEdBoardMember{EB~Member~3}
+
+% A PUB note has readers and not an EdBoard -- give their names here (one line or several entries)
+\AtlasCoverReaderMember{Reader~1, Reader~2}
+% \AtlasCoverReaderMember{Reader~1}
+% \AtlasCoverReaderMember{Reader~2}
 
 % Editors egroup
-\AtlasCoverEgroupEditors{atlas-GROUP-2014-XX-editors@cern.ch}
+\AtlasCoverEgroupEditors{atlas-\AtlasRefCode-editors@cern.ch}
 
 % EdBoard egroup
-\AtlasCoverEgroupEdBoard{atlas-GROUP-2014-XX-editorial-board@cern.ch}
+\AtlasCoverEgroupEdBoard{atlas-\AtlasRefCode-editorial-board@cern.ch}
 
 
 \begin{document}

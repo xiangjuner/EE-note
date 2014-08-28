@@ -4,7 +4,7 @@
 %-------------------------------------------------------------------------------
 
 % Title
-\AtlasTitle{Bare bones ATLAS document}
+\title{Bare bones ATLAS document}
 
 % Author --  Default is ``The ATLAS collaboration''
 %\author{The ATLAS Collaboration}
@@ -37,7 +37,7 @@
 % ATLAS note number. Can be an COM, INT, PUB or CONF note
 % \AtlasNote{ATLAS-CONF-2014-XXX}
 % \AtlasNote{ATLAS-PUB-2014-XXX}
-\AtlasNote{ATLAS-COM-PHYS-2014-XXX}
+\AtlasNote{ATL-COM-PHYS-2014-XXX}
 
 % Submission journal
 % \AtlasJournal{Phys.\ Lett.\ B.}
@@ -52,14 +52,14 @@
 % if you use the coverpage option in atlasdoc or use the atlascover package
 %-------------------------------------------------------------------------------
 
+% List of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
+% \AtlasCoverSupportingNote{Short title note 1}{https://cds.cern.ch/record/XXXXXXX}
+% \AtlasCoverSupportingNote{Short title note 2}{https://cds.cern.ch/record/YYYYYYY}
+%
+% OR (the 2nd option is deprecated, especially for CONF and PUB notes)
+%
 % Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
 % \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
-%
-% OR
-%
-% Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
-% \AtlasCoverSupportingNote{A supporting note}       {\url{http://cds.cern.ch/XXXXXX}}
-% \AtlasCoverSupportingNote{Another supporting note} {\url{http://cds.cern.ch/YYYYYY}}
 
 % Comment deadline
 % \AtlasCoverCommentsDeadline{DD Month 2014}
@@ -68,7 +68,17 @@
 % \AtlasCoverAnalysisTeam{Peter Analyser, Contact Editor~(*), Contact Editor2~(*), Alphonse Physicien}
 
 % Editorial Board Members --- Indicate the Chair by a (*) after his/her name
+% Give either all members at once (then they appear on one line), or separately
 % \AtlasCoverEdBoardMember{EdBoard~Chair~(*), EB~Member~1, EB~Member~2, EB~Member~3}
+% \AtlasCoverEdBoardMember{EdBoard~Chair~(*)}
+% \AtlasCoverEdBoardMember{EB~Member~1}
+% \AtlasCoverEdBoardMember{EB~Member~2}
+% \AtlasCoverEdBoardMember{EB~Member~3}
+
+% A PUB note has readers and not an EdBoard -- give their names here (one line or several entries)
+% \AtlasCoverReaderMember{Reader~1, Reader~2}
+% \AtlasCoverReaderMember{Reader~1}
+% \AtlasCoverEdBoardMember{Reader~2}
 
 % Editors egroup
 % \AtlasCoverEgroupEditors{atlas-GROUP-2014-XX-editors@cern.ch}

@@ -8,14 +8,14 @@
 \chardef\otherchar=12
 \chardef\eolinechar=5
 
-\def\etpt     {\ensuremath{1/p_{\text{T}} - 1/E_{\text{T}}}} 
-\def\etptsig  {\ensuremath{(1/p_{\text{T}} - 1/E_{\text{T}})/(\sigma(1/p_{\text{T}}))}}  
-\def\begL{10$^{31}$~cm$^{-2}$~s$^{-1}$}
-\def\lowL{10$^{33}$~cm$^{-2}$~s$^{-1}$}
-\def\highL{10$^{34}$~cm$^{-2}$~s$^{-1}$}
+\newcommand*{\etpt}{\ensuremath{1/p_{\text{T}} - 1/E_{\text{T}}}\xspace}
+\newcommand*{\etptsig}{\ensuremath{(1/p_{\text{T}} - 1/E_{\text{T}})/(\sigma(1/p_{\text{T}}))}\xspace}
+\newcommand*{\begL}{\ensuremath{\SI{E31}{\per\cm\squared\per\second}}\xspace}
+\newcommand*{\lowL}{\ensuremath{\SI{E33}{\per\cm\squared\per\second}}\xspace}
+\newcommand*{\highL}{\ensuremath{\SI{E34}{\per\cm\squared\per\second}}\xspace}
 
-\def\Epsb  {\ensuremath{\epsilon_{b}}} % Subscript italic not roman (EE)
-\def\Epsc  {\ensuremath{\epsilon_{c}}} % Subscript italic not roman (EE)
+\newcommand*{\Epsb}{\ensuremath{\epsilon_{b}}\xspace}
+\newcommand*{\Epsc}{\ensuremath{\epsilon_{c}}\xspace} % Subscript italic not roman (EE)
 
 %
 % +--------------------------------------------------------------------+
@@ -24,15 +24,15 @@
 % |                                                                    |
 % +--------------------------------------------------------------------+
 %
-\def\Mtau{\ensuremath{m_{\tau}}}
-\def\swsq{\ensuremath{\sin^2\!\theta_{W}}}
-\def\swel{\ensuremath{\sin^2\!\theta_{\text{eff}}^{\text{lept}}}}
-\def\swsqb{\ensuremath{\sin^2\!\overline{\theta}_{W}}}
-\def\swsqon{\ensuremath{\swsq\equiv 1-\mW^2/\mZ^2}}
-\def\gv{\ensuremath{g_{\text{V}}}}
-\def\ga{\ensuremath{g_{\text{A}}}}
-\def\gvbar{\ensuremath{\bar{g}_\text{V}}}
-\def\gabar{\ensuremath{\bar{g}_\text{A}}}
+\newcommand*{\Mtau}{\ensuremath{m_{\tau}}\xspace}
+\newcommand*{\swsq}{\ensuremath{\sin^2\!\theta_{W}}\xspace}
+\newcommand*{\swel}{\ensuremath{\sin^2\!\theta_{\text{eff}}^{\text{lept}}}\xspace}
+\newcommand*{\swsqb}{\ensuremath{\sin^2\!\overline{\theta}_{W}}\xspace}
+\newcommand*{\swsqon}{\ensuremath{\swsq\equiv 1-\mW^2/\mZ^2}\xspace}
+\newcommand*{\gv}{\ensuremath{g_{\text{V}}}\xspace}
+\newcommand*{\ga}{\ensuremath{g_{\text{A}}}\xspace}
+\newcommand*{\gvbar}{\ensuremath{\bar{g}_\text{V}}\xspace}
+\newcommand*{\gabar}{\ensuremath{\bar{g}_\text{A}}\xspace}
 %
 % +--------------------------------------------------------------------+
 % |                                                                    |
@@ -40,20 +40,20 @@
 % |                                                                    |
 % +--------------------------------------------------------------------+
 %
-\def\Zzv{\ensuremath{\Zzero^{\textstyle *}}}
-\def\Abb{\ensuremath{A_{\bbbar}}}
-\def\Acc{\ensuremath{A_{\ccbar}}}
-\def\Aqq{\ensuremath{A_{\qqbar}}}
-\def\Afb{\ensuremath{A_{{fb}}}} % Subscript italic not roman (EE)
-\def\GZ{\ensuremath{\Gamma_{Z}}}
-\def\GW{\ensuremath{\Gamma_{W}}}
-\def\GH{\ensuremath{\Gamma_{H}}}
-\def\GamHad{\ensuremath{\Gamma_{\text{had}}}}
-\def\Gbb{\ensuremath{\Gamma_{\bbbar}}}
-\def\Rbb{\ensuremath{R_{\bbbar}}}
-\def\Gcc{\ensuremath{\Gamma_{\ccbar}}}
-\def\Gvis{\ensuremath{\Gamma_{\text{vis}}}}
-\def\Ginv{\ensuremath{\Gamma_{\text{inv}}}}
+\newcommand*{\Zzv}{\ensuremath{\Zzero^{\textstyle *}}\xspace}
+\newcommand*{\Abb}{\ensuremath{A_{\bbbar}}\xspace}
+\newcommand*{\Acc}{\ensuremath{A_{\ccbar}}\xspace}
+\newcommand*{\Aqq}{\ensuremath{A_{\qqbar}}\xspace}
+\newcommand*{\Afb}{\ensuremath{A_{{fb}}}\xspace}
+\newcommand*{\GZ}{\ensuremath{\Gamma_{Z}}\xspace}
+\newcommand*{\GW}{\ensuremath{\Gamma_{W}}\xspace}
+\newcommand*{\GH}{\ensuremath{\Gamma_{H}}\xspace}
+\newcommand*{\GamHad}{\ensuremath{\Gamma_{\text{had}}}\xspace}
+\newcommand*{\Gbb}{\ensuremath{\Gamma_{\bbbar}}\xspace}
+\newcommand*{\Rbb}{\ensuremath{R_{\bbbar}}\xspace}
+\newcommand*{\Gcc}{\ensuremath{\Gamma_{\ccbar}}\xspace}
+\newcommand*{\Gvis}{\ensuremath{\Gamma_{\text{vis}}}\xspace}
+\newcommand*{\Ginv}{\ensuremath{\Gamma_{\text{inv}}}\xspace}
 %
 % +--------------------------------------------------------------------+
 % |                                                                    |

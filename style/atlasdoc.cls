@@ -7,10 +7,10 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-96-00}
+\def\ATPackageVersion{00-97-00}
 
 % --- Class structure: identification part
-\ProvidesClass{style/atlasdoc}[2014/08/27 v.00-96-00 ATLAS document]
+\ProvidesClass{style/atlasdoc}[2014/08/28 v.00-97-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -29,6 +29,11 @@
 \let\if@LPaper\iffalse
 \DeclareOption{a4paper}{\let\if@APaper\iftrue \let\if@LPaper\iffalse}
 \DeclareOption{letterpaper}{\let\if@APaper\iffalse \let\if@LPaper\iftrue}
+% Type of document
+\let\if@CONFNote\iffalse
+\let\if@PUBNote\iffalse
+\DeclareOption{CONF}{\let\if@CONFNote\iftrue \let\if@PUBNote\iffalse}
+\DeclareOption{PUB}{\let\if@CONFNote\iffalse \let\if@PUBNote\iftrue}
 % Use KOMA-script instead of standard LaTeX
 \let\if@Koma\iffalse
 \DeclareOption{koma}{\let\if@Koma\iftrue}
@@ -193,9 +198,21 @@
 
 % --- Class structure: main code part
 % ATLAS draft cover page
-\if@DraftCover    \RequirePackage[atlasdoc]{style/atlascover} \fi
+\if@DraftCover%
+	\if@CONFNote
+    \RequirePackage[CONF,atlasdoc]{style/atlascover}
+  \else
+		\if@PUBNote
+    	\RequirePackage[PUB,atlasdoc]{style/atlascover}
+    \else
+    	\RequirePackage[atlasdoc]{style/atlascover}
+    \fi
+  \fi
+\fi
 % CERN preprint cover page
-\if@PreprintCover \RequirePackage[atlasdoc]{style/atlascover} \fi
+\if@PreprintCover %
+	\RequirePackage[atlasdoc]{style/atlascover}
+\fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
 %\setcounter{secnumdepth}{-1}

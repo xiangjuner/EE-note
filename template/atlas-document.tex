@@ -5,12 +5,18 @@
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/README $
 %-------------------------------------------------------------------------------
 \documentclass[UKenglish]{style/atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish
+% british and american also work!
 % Options:
 %		nomaketitle Do not run \maketitle from the class
 %		coverpage	  Create ATLAS draft cover page for collaboration circulation
-%							  See coveronly.tex for a list of variables that should be defined.
-%		CONF			  This is a CONF note
-%		usetikz		  Load tikz package in the right place
+%							  See atlas-draft-cover.tex for a list of variables that should be defined.
+%		preprint		Create front page for a CERN preprint
+%							  See atlas-preprint-cover.tex for a list of variables that should be defined.
+%		a4paper			Paper size is A4 (default)
+%		letterpaper Paper size if letter
+%		CONF				The document is a CONF note (only useful together with coverpage)
+%		PUB					The document is a PUB note (only useful together with coverpage)
 
 %-------------------------------------------------------------------------------
 % Extra packages:
@@ -24,7 +30,9 @@
 % Useful macros
 \usepackage{style/atlasphysics}
 % See doc/atlas-physics.pdf for a list of the defined symbols
-% See the package for a list of options
+% Default options are 
+%   misc, particle, unit, nobsm, nomath, noprocess, noother
+% See the package for details on the options
 
 % Files with references in BibTeX format
 % \addbibresource{atlas-document.bib}

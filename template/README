@@ -17,11 +17,21 @@ It will also copy the following files:
 template/atlas-document-metadata.tex   to mydocument-metadata.tex
 template/atlas-document-contribute.tex to mydocument-contribute.tex
 
-You can also copy:
-template/atlas-detector.tex
-
+Other useful files in the template directory:
+atlas-detector.tex				some example ATLAS detector descriptions
 atlas-document-metadata.tex		contains the document title, abstract and labels 
 								associated with the document
 atlas-document-contribute.tex 	provides an environment to list the contributors 
 								to an analysis
-atlas-detector.tex 				contains a few example descriptions of the ATLAS detector.
+
+Cover pages
+-----------
+
+atlas-draft-cover.tex is a template for a standalone ATLAS draft cover,
+which is needed when your paper, CONF, PUB note draft is circulated to the collaboration.
+This file is only needed if you cannot use the atlascover package directly in your document.
+
+atlas-preprint-cover.tex creates the first page of a CERN preprint. Again this is only needed if for some reason you cannot use the atlascover package directory in your document.
+
+Note that it is preferable to input the file mydocument-metadata.tex in these files
+rather than copying all the definitions from there (or your main document) into these files.
