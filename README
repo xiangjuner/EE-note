@@ -11,12 +11,13 @@ $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/RE
 The following template main files exist:
 	atlas-document.tex		Generic ATLAS document
 	atlas-draft-cover.tex	Make a cover for an ATLAS draft
-	atlas-cern-cover.tex	Make a cover for an ATLAS CERN preprint
+	atlas-preprint-cover.tex	Make a cover for an ATLAS CERN preprint
 See template/README for how to set up a new paper or note draft.
 
 The ATLAS document class (atlasdoc.cls) and style files can be found in 
 the style directory. The following style files exist:
 	atlascover.sty			Make a cover (CONF note, CERN preprint, ATLAS draft)
+	atlaspackage.sty		Standard packages used in ATLAS documents
 	atlasphysics.sty		Useful definitions. This file simply inputs others.
 							Options can be used to specify which ones should be included.
 

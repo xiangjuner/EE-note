@@ -1,16 +1,24 @@
 2014-08-27 Ian Brock <Ian.Brock@cern.ch>
-	* Release of version 00-96-00.
+	* Tag as version 00-97-00.
+	* atlas-physics document list of definitions created automatically.
+	* CONF and PUB are now options for CONF and PUB notes.
+	* Cover pages change a bit depending on these options.
+	* EdBoard replaced by Readers for a PUB note.
+	* More documentation on options in atlasdoc and atlascover added to atlas-latex
+2014-08-27 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 00-96-00.
 	* Merge biblatex setup into atlaspackage with an option.
 	* Add option texmf to atlasphysics if package in installed centrally
 	* Add note number back into title page
 	* Switch back from \AtlasTitle to \title
 	* Further improve documentation
 2014-08-22 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 00-95-00.
 	* First alpha release of atlaslatex.
 	* atlasphysics.sty split into smaller files.
 	* Options to steer atlasphysics.sty.
 	* Documentation reorganised. Split into paper style,
-	* for which PubCom is responsible and atlaslatex guide.
+	  for which PubCom is responsible and atlaslatex guide.
 	* Templates all in templates directory.
 	* Makefile can make a new document.
 	* Better use of geometry to set page size everywhere.
@@ -18,7 +26,6 @@
 	* In fact, these (and txfonts) should probably move to atlasdoc.cls.
 	* Use tocloft for table of contents.
 	* Titles should invoke boldmath automatically.
-	* Tag as version 00-95-00.
 2014-08-25 Ian Brock <Ian.Brock@cern.ch>
 	* Merge biblatex into atlaspackage and add biblatex option.
 	* Add koma option to atlasdoc.cls.
