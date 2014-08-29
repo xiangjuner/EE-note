@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % This note lists the symbols defined in atlasphysics.sty.
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{style/atlasdoc}
+\documentclass[koma,UKenglish]{style/atlasdoc}
 
 \usepackage[default,biblatex]{style/atlaspackage}
 \usepackage{supertabular}
@@ -107,7 +107,7 @@ Turn on including these definitions with the option \Option{particle} and off wi
 A generic macro \verb|\Ups[1]| is defined so that \verb|\Ups{3}| produces \Ups{3}.
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasmisc.sty}}
 
@@ -134,7 +134,7 @@ produces
 Note that \Macro{eqalign} is also redefined in this package so that \Macro{dk} works.
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasbsm.sty}}
 
@@ -154,7 +154,7 @@ For the charginos the last letter(s) indicate(s) the charge:
 \input{atlasbsm}
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasunit.sty}}
 
@@ -170,7 +170,7 @@ these definitions. \Package{siunitx} is the preferred package; a good alternativ
 If either of these packages are used \File{atlasunit.sty} is not needed.
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasmath.sty}}
 
@@ -182,7 +182,7 @@ Turn on including these definitions with the option \Option{math} and off with t
 \verb|\spinor{u}| produces \spinor{u}.
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasother.sty}}
 
@@ -191,7 +191,7 @@ Turn on including these definitions with the option \Option{other} and off with 
 \input{atlasother}
 
 
-\clearpage
+\newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasprocess.sty}}
 

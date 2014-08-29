@@ -27,6 +27,10 @@
 %		default		Standard set of packages
 %		full			Full set of packages
 
+% Package for creating list of authors and contributors to the analysis
+% The file atlas-document-metadat.tex includes atlascontribute also
+\usepackage{style/atlascontribute}
+
 % Useful macros
 \usepackage{style/atlasphysics}
 % See doc/atlas-physics.pdf for a list of the defined symbols
@@ -59,9 +63,6 @@
 
 %\maketitle
 \tableofcontents
-
-% List of contributors to the analysis
-% \input{atlas-document-contribute}
 
 % Test of tikz.sty loading in atlasnote.cls. Use 'usetikz' option in documentclass declaration
 %\input{tikz-test}
@@ -104,6 +105,18 @@ Place your conclusion here.
 For ATLAS papers and CONF notes, download the latest set of acknowledgements and include here.
 They can be found at:\\
 \url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComTemplates#Acknowledgements_template}
+
+The supporting notes for the analysis should also contain a list of contributors.
+This information should usually be included in \texttt{mydocument-metadata.tex}.
+The list should be printed either here or before the table of contents.
+
+
+%-------------------------------------------------------------------------------
+% Print the list of contributors to the analysis
+% The argument gives the fraction of the text width used for the names
+%-------------------------------------------------------------------------------
+\PrintAtlasContribute{0.30}
+
 
 %-------------------------------------------------------------------------------
 % If you use biblatex and biber to process the bibliography just say \printbibliogrpahy here

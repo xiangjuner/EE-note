@@ -62,34 +62,67 @@
 \tableofcontents
 \clearpage
 
+
 %-------------------------------------------------------------------------------
 \section{Front page}
 \label{sec:front}
 %-------------------------------------------------------------------------------
 
-A couple of remarks about the paper front page:
-\begin{itemize}
+Before we get to the meat of the document, a few remarks about the paper front page.
 
-\item {\bf Title:} it should be concise, clear and descriptive, and
-  should include the word ``ATLAS''.
+%-------------------------------------------------------------------------------
+\subsection{Title} 
+\label{sec:title}
+%-------------------------------------------------------------------------------
 
-\item {\bf Author list:} it will be provided by the Authorship
-  Committee, and will be made available on their website. On the
-  front page, you should name ``The ATLAS Collaboration'' as
-  author.
+The title should be concise, clear and descriptive, and should include the word ``ATLAS''.
 
-\item {\bf Abstract:} it should also be clear, descriptive, and
-  concise. It should ideally be one paragraph long, and certainly no
-  more than half a page. It should stand on its own and, similarly,
-  the main text of the paper should not depend on it. The abstract
-  should state: what was the measurement; where was it done and with
-  what dataset/luminosity; what method was used; what are the
-  primary results and main conclusions.  Citations in an abstract
-  should be avoided. If only Monte Carlo data are used in the
-  publication, this fact should be stated explicitly in the
-  abstract.  
-  
-\end{itemize}
+%-------------------------------------------------------------------------------
+\subsection{Author list}
+\label{sec:author}
+%-------------------------------------------------------------------------------
+
+The author list will be provided by the Authorship Committee and Physics Office. 
+It will be created by the Physics Office at the time of the first draft announcement by PubCom, 
+and added to the CDS record for the paper as a separate document from the paper itself.
+Requests for exceptional authorship or for removal of names should be made to the Spokesperson and Authorship Committee while the first draft is circulating.
+The author list will be archived when the second draft announcement is made by Publocation Committee, 
+and again added to the CDS record as a separate document from the paper. 
+The front page of the paper should name ``The ATLAS Collaboration'' as the author.
+
+ 
+%-------------------------------------------------------------------------------
+\subsection{Abstract}
+\label{sec:abstract}
+%-------------------------------------------------------------------------------
+
+The abstract should also be clear, descriptive and concise. 
+It should consist of a single paragraph, occupying no more than half a page. 
+It should stand on its own and the main text of the paper should not depend on it. 
+The abstract should state what was measured; where the measurement was made and with what dataset / luminosity;
+what method was used; 
+what are the primary results and main conclusions. 
+Citations, footnotes, references etc.\ should be avoided in the abstract. 
+If only Monte Carlo data are used in the publication, this fact should be stated explicitly in the abstract.  
+
+
+\subsubsection*{Example of a Search Analysis Abstract}
+
+A search for the Standard Model Higgs boson in the two photon decay channel is reported, 
+using \SI{1.08}{\per\fb} of proton-proton collision data at a centre-of-mass energy of \SI{7}{\TeV} recorded by the ATLAS detector.
+No significant excess is observed in the investigated mass range of \SIrange{110}{150}{\GeV}. 
+Upper limits on the cross-section times branching ratio of between 2.0 and 5.8 times the Standard Model prediction are derived for this mass range.
+
+\noindent(From \enquote{Search for the Standard Model Higgs boson in the two photon decay channel with the ATLAS detector at the LHC})
+
+\subsubsection*{Example of a Standard Model Measurement Analysis Abstract}
+
+This Letter presents a measurement of the $WW$ production cross section in $\sqrt{s} = \SI{7}{\TeV}$ $pp$ collisions by the ATLAS experiment, using \SI{34}{\per\pb} of integrated luminosity produced by the Large Hadron Collider at CERN. Selecting events with two isolated leptons, each either an electron or a muon, 8 candidate events are observed with an expected background of $1.7 \pm 0.6$ events.
+The measured cross section is 
+\SI[parse-numbers=false]{41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.})}{\pb}, 
+which is consistent with the standard model prediction of \SI{44 \pm 3}{\pb} calculated at next-to-leading order in QCD. 
+
+\noindent(From \enquote{Measurement of the WW cross section in $\sqrt{s} = \SI{7}{\TeV}$ $pp$ collisions with ATLAS})
 
 
 %-------------------------------------------------------------------------------
@@ -97,11 +130,11 @@ A couple of remarks about the paper front page:
 \label{sec:intro}
 %-------------------------------------------------------------------------------
 
-The introduction should be fairly brief, not more than one page.
-State the measurement being made, motivate its importance
-experimentally and theoretically. Include a summary of what is known
-to date about this measurement. Give a brief outline for the rest of
-the paper.
+This should be fairly brief. 
+State the measurement being made, motivate its importance experimentally and theoretically.
+It is considered bad form to point out being the first to publish something as a motivation.
+Include a summary of what has already been published on this subject, as well as the most appropriate theory references. For a longer paper, give a brief outline of the paper, especially if the structure is unusual.
+Even for a long paper, the introduction should generally not exceed one page.
 
 Your first action before embarking on writing a paper should be to
 read the ATLAS Publication Policy~\cite{publication-policy}, available
@@ -131,15 +164,17 @@ symbol (\met{}) is defined there.
 A separate document~\cite{atlas-physics}
 contains a list of the commands in \texttt{atlasphysics.sty}.
 
-This paper template has been tested using \LaTeX{}2e.  You should get
-this version automatically. If you have problems check which \LaTeX{}
-version you are running.
+This paper template has been tested using \LaTeXe.
+You should get this version automatically. 
+If you have problems check which \LaTeX{} version you are running.
 
 
 %-------------------------------------------------------------------------------
 \section{Theory}
 \label{sec:theory}
 %-------------------------------------------------------------------------------
+
+Sometimes combined with the introduction in shorter papers. This should be a brief overview of the theory relevant for this paper, with proper referencing. This is a good place to define important quantities which will be used later. State how the measurement of interest is actually performed, and how the parameters are extracted from the data. If quantities are extracted with a fit to the data, describe the fit procedure; if a limit is set, state what kind of limit-setting technique is used. If these explanations need to be a bit longer, separate sections may be appropriate.
 
 Give here a brief explanation of the theory relevant for this paper,
 with proper referencing. Use, for example,
@@ -164,7 +199,7 @@ This text is included in the paper template provided with this package.
 If necessary for your analysis, describe a subdetector in more detail.
 
 The section on the experimental setup should also describe the dataset:
-when were the data taken, under what specialcircumstances (if any),
+when were the data taken, under what special circumstances (if any),
 and what was the integrated luminosity.
 
 Examples of descriptions can be found below.
@@ -177,11 +212,12 @@ Examples of descriptions can be found below.
 \label{sec:MC}
 %-------------------------------------------------------------------------------
 
-Any Monte Carlo programs used must be clearly stated with full version
-number. A brief description of the program is useful but not necessary
-unless a less well known program is used.  Any corrections or special
-parameter settings must be clearly explained.  The statistics should
-be given if the amount used results in a non-negligible uncertainty.
+All Monte Carlo generators and calculators used must be clearly named with the full version number and reference.
+A brief description may be useful if it is a less well known generator.
+It is usually necessary to say to what order it calculates (LO, NLO, NNLO...) 
+and to specify any corrections, tunings or special parameter settings.
+The PDF sets used should be listed, also with the full version numbers and references.
+Statistics should be given if the number of simulated events gives rise to a non-negligible uncertainty.
 
 
 %-------------------------------------------------------------------------------
@@ -189,8 +225,7 @@ be given if the amount used results in a non-negligible uncertainty.
 \label{sec:selection}
 %-------------------------------------------------------------------------------
 
-List the trigger and offline selection criteria, give the obtained
-statistics.
+List the trigger and offline selection criteria, and number of events passing.
 
 
 %-------------------------------------------------------------------------------
@@ -198,8 +233,7 @@ statistics.
 \label{sec:control}
 %-------------------------------------------------------------------------------
 
-Discuss here the characteristics of the data, in terms of
-primary quantities and backgrounds.
+Discuss here the characteristics of the data, in terms of primary quantities and backgrounds.
 
 
 %-------------------------------------------------------------------------------
@@ -207,11 +241,9 @@ primary quantities and backgrounds.
 \label{sec:syst}
 %-------------------------------------------------------------------------------
 
-Give a detailed list of systematic uncertainties, the method
-by which they were obtained, and a justification of the resulting
-values.
-%
-Use ``systematic uncertainty'' instead of ``systematic errors''.
+Give a detailed list of systematic uncertainties, the method by which they were obtained,
+and a justification of the resulting values.
+Use ``systematic uncertainty'' instead of ``systematic error'.
 The latter sounds as if you have made a mistake systematically.
 
 
@@ -220,7 +252,7 @@ The latter sounds as if you have made a mistake systematically.
 \label{sec:result}
 %-------------------------------------------------------------------------------
 
-State the results without interpretations.
+State the results without interpretations here.
 
 
 %-------------------------------------------------------------------------------
@@ -229,9 +261,9 @@ State the results without interpretations.
 %-------------------------------------------------------------------------------
 
 Put the results into the context of the theory or a model.
-%
-If the results lead to exclusion plots, make sure that it is clear 
-which region on the plot is excluded.
+If the results lead to exclusion plots, make sure that it is clear which region on the plot is excluded.
+Please also make sure that statistical interpretations and limit setting are done 
+following the current ATLAS Statistics Tools and Guidelines
 
 
 %-------------------------------------------------------------------------------
@@ -239,24 +271,21 @@ which region on the plot is excluded.
 \label{sec:summary}
 %-------------------------------------------------------------------------------
 
-Reiterate the main points of the paper and the primary results and
-conclusions.
 
-Note that many readers look mostly at the title, abstract and
-conclusion. The conclusion should be interesting enough to
-make them want to read the whole paper.
-It is not good style to just repeat the abstract.
+Please make sure that there is a conclusion!
+The concluding statements should reflect what is in the abstract.
+Reiterate the main points of the paper and the primary results and conclusions.
 
-If your paper is short and only has one result quoted at the end of
-the paper, then you should consider whether conclusions are
-necessary. 
+Note that many readers look mostly at the title, abstract and conclusion.
+The conclusion should be interesting enough to make them want to read the whole paper.
+It is not good style just to repeat the abstract.
+If your paper is short and only has one result quoted at the end of the paper,
+then you should consider whether conclusions are necessary.
 
 Try not to end your conclusions with a sentence such as
-``All the results in this paper are in good agreement with the
-Standard Model, the current world average and recent
-measurements by other experiments''. This might lead a referee
-(internal or external) to wonder why it is worth publishing this
-paper!
+``All the results in this paper are in good agreement with the Standard Model,
+the current world average and recent measurements by other experiments.'' 
+This might lead a referee (internal or external) to wonder why it is worth publishing this paper!
 
 Note that all figures and tables should be output before the start of the
 ``Summary and conclusion''. 

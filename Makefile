@@ -26,7 +26,6 @@ default: run_pdflatex
 new:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	cp template/atlas-document-contribute.tex $(BASENAME)-contribute.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 

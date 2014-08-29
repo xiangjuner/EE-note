@@ -7,10 +7,10 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-97-00}
+\def\ATPackageVersion{00-98-00}
 
 % --- Class structure: identification part
-\ProvidesClass{style/atlasdoc}[2014/08/28 v.00-97-00 ATLAS document]
+\ProvidesClass{style/atlasdoc}[2014/08/29 v.00-98-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -136,7 +136,7 @@
 \newcommand{\journal}[1]{\def\@journal{#1}}
 
 % Abstract text
-\def\@abstracttext{}
+\def\AtlasAbstractText{}
 \newcommand{\AtlasAbstract}[1]{%
 	\def\AtlasAbstractText{#1}
 }
@@ -223,6 +223,10 @@
 \RequirePackage{babel}
 \RequirePackage[varg]{txfonts}
 %\RequirePackage{mathptmx}
+% Add ability to include line numbers
+\RequirePackage{lineno}
+% If you have an old lineno or do not have it, you can get it from the style/other directory
+% \RequirePackage{style/other/lineno}
 
 
 % Environment for analysis contributers

@@ -87,6 +87,8 @@ good \LaTeX.
 The design principle is that you have a main document and 
 the style files and \texttt{atlasdoc} class are in a subdirectory \texttt{style}.
 This subdirectory can of course be a link to a centrally maintained \texttt{style} directory.
+See Section~\ref{sec:texmf} for the changes that have to be made if you want to install
+the package in a central place.
 
 The usual procedure is that for each document that you create,
 you first unpack the latest version of \texttt{atlaslatex} and
@@ -103,8 +105,7 @@ make new BASENAME=mydocument
 %
 This command copies \texttt{atlas-document.tex}, 
 {atlas-document-metadata.tex} and {atlas-document-contribute.tex}
-to \texttt{mydocument.tex},  \texttt{mydocument-metadata.tex} and
-\texttt{mydocument-contribute.tex}.
+to \texttt{mydocument.tex} and  \texttt{mydocument-metadata.tex}.
 It also creates empty files \texttt{mydocument-defs.sty} and \texttt{mydocument.bib}.
 
 In the \texttt{Makefile} you should change the \texttt{BASENAME} to the name of your document.
@@ -134,13 +135,58 @@ While all this information can be collected in the main file of he document,
 it is probably better to put it all in a separate document.
 By default this file is called \texttt{mydocument-metadata.tex}.
 
+
+%-------------------------------------------------------------------------------
+\subsection{Authors and Contributors}
+\label{sec:contribute}
+%-------------------------------------------------------------------------------
+
+The supporting documentation for an ATLAS note should contain a list of the contributors to the analysis.
+A style file \Package{atlascontribute.sty} has been written to help with the creation of such a list.
+The macros in the style file can also build the author list at the same time.
+Two basic macros are used to add names to the author list and list of contributions:
+\Macro{AtlasContributor} and \Macro{AtlasAuthorContributor}. 
+The first macro adds a person to the list of contributors, while the second one also adds the person
+to the author list.
+Typical commands are:
+\begin{verbatim}
+\AtlasAuthorContributor{Joe Student}{a}{fake background estimate.}
+\AtlasAuthorContributor{Jane Student}{b}{top background estimate.}
+\AtlasAuthorContributor{John Postdoc}{a}{editor of internal note.}
+\AtlasContributor{Jo Helper}{useful contributions in a few places.}
+\affil[a]{University of Nowhere}
+\affil[b]{University of Somewhere}
+\end{verbatim}
+If a person should be added to the author list, you also need to add an appropriate affiliation using the macro \Macro{affil}.
+The optional argument is a letter or number that should also be given as the second argument to
+\Macro{AtlasAuthorContributor}.
+
+You can keep the list of authors and contributors separate
+by using \Macro{author} for the authors and \Macro{AtlasContribute} for the contributors.
+You print the list of contributors by giving the command \Macro{PrintAtlasContribute}.
+The list should either be printed before the table of contents or after the conclusions
+(i.e.\ where the Acknowledgements appear in a paper).
+
+Note that \Package{authblk} assumes that you will also have affiliations for each author.
+You can avoid them by using the syntax \verb|\author{[ ]{Author Name}}|.
+Note that a space is needed in the optional argument.
+This means that a space appears between the author name and the comma after it, which is not so nice.
+Alternatively you can make the author list using the syntax:
+\verb|\author{Joe Student \and Jane Student \and John Postdoc}| and avoid the use of the
+\Package{authblk} package by giving the option \Option{noauthblk} to \Package{atlascontribute}.
+
+If the list of contributors is very long, it may spread over more than one page.
+The \Package{tabular} environment does not like this. Add the option \Option{supertabular} to use 
+\Package{supertabular} instead.
+
+
 %-------------------------------------------------------------------------------
 \subsection{Metadata commands}
 %-------------------------------------------------------------------------------
 
 The standard list of metadata commands are given below.
 More are available for the draft cover page when a paper, CONF note or PUB note draft
-is circulated to the collaboration.\\ 
+is circulated to the collaboration.
 See \texttt{template/atlas-document-metadata.tex} for more details.
 
 \begin{itemize}
@@ -165,6 +211,7 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
 \affil[a]{One Institution}
 \affil[b]{Another Institution}
     \end{verbatim}
+    See also Section~\ref{sec:contribute} if you want to combine the creation of a list of authors and contributors.
 
   \item {\verb|\AtlasAbstract{<The abstract text>}|} typesets the
     abstract on the front page and cover page.
@@ -200,8 +247,8 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     some extra space. Note that \verb|<length>| can also be negative
     (use it at your own risk!).
 \end{itemize}
-
-\noindent \texttt{atlas-document.tex} contains a basic skeleton that can be
+%
+\texttt{template/atlas-document.tex} contains a basic skeleton that can be
 used to start typing a new note using the \texttt{atlasdoc} class. Many of
 the custom commands described above are used in this example file, in
 order to demonstrate their use.
@@ -243,7 +290,7 @@ include \texttt{atlaspackage}.
 Have a look at the \texttt{style/atlaspackage.sty} to see how \texttt{biblatex} is included.
 In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
 
-s mentioend above, you have to specify the document language as an option to \Package{atlasdoc}.
+As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
 \begin{description}
 \item[a4paper] Set paper size to A4 (default);
@@ -268,9 +315,9 @@ as they only influence the cover pages.
 The \texttt{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{color}
-\item \texttt{babel}
-\item \texttt{graphicx}
+\item \texttt{color}: Add colours to \LaTeX
+\item \texttt{babel}: Become language aware
+\item \texttt{graphicx}: Include graphics in the document
 \item \texttt{lineno}: Add line numbers to documents
 \item \texttt{txfonts}: The standard ATLAS document font
 \end{itemize}
@@ -281,13 +328,14 @@ Have a look at \texttt{templates/atlas-draft-cover.tex} to see how to include it
 You can also simply use \texttt{atlaspackage.sty}
 
 The style file \texttt{atlaspackage.sty} includes further packages.
-You can steer how mnay by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
+You can steer how many by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
 The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{amsmath}: Extra useful maths environments
 \item \texttt{inputenc}: Allow ä, ö, ø, ß, etc. to be input directly
 \item \texttt{fontenc}: Output font encoding
 \item \texttt{hyperref}: Add hyperlinks and ability to click on cross-references
+\item \Package{savesym}: Needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols
 \end{itemize}
 
 The default set adds in addition:
@@ -340,10 +388,10 @@ and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 
 The following options can be passed on to the \Package{atlascover} package:
 \begin{description}
-\item[paper] The docment is an ATLAS paper draft (default);
+\item[PAPER] The document is an ATLAS paper draft (default);
 \item[CONF] The document is a CONF note;
 \item[PUB] The document is an PUB note;
-\item[preprint] The fornt page should be in the form of a CERN preprint.
+\item[preprint] The front page should be in the form of a CERN preprint.
 \end{description}
 
 %-------------------------------------------------------------------------------
@@ -371,40 +419,146 @@ which can be included or not using options.
 \label{sec:version}
 %-------------------------------------------------------------------------------
 
-The package should work under Linux, MacOS and Windows. It has been tested on:
-\begin{description}
-\item[Ubuntu 14.04]
-	The standard TeX Live installation (package \texttt{texlive}).
-	The following extra packages had to be installed:
-	\texttt{texlive-latex-extra} (footmisc),
-	\texttt{texlive-humanities} (lineno),
-	\texttt{texlive-science} (siunitx),
-	\texttt{texlive-bibtex-extra} and \texttt{biber} (biblatex and biber);
-\item[lxplus] It works out of the box, with the \texttt{PATH} recommendation given below;
-\item[CentOS 7] I install the ``Technical Writing'' collection.
-	In addition I needed \texttt{texlive-booktabs} (booktabs), \texttt{texlive-tocloft} (tocloft).
-	However, I still got complaints about \texttt{lineno.sty} and \texttt{siunitx.sty}.
-	I was not able to find these in the standard RPM repositories.
-	You can either get and install them from CTAN (\texttt{lineno.sty} is also available in \texttt{style/other}),
-	or install your own \TeX\ Live distribution.
-\item[Windows 7]
-	MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net}).
-	MikTeX has the advantage that it installs missing packages, provided you activated that option;
-\item[MacOSX 10.9]
-	MacTeX (\url{http://www.tug.org/mactex}) and TeXstudio 2.8.2.
-\end{description}
+The \texttt{atlasdoc} class works both with \LaTeX{} and PDF\LaTeX{}.
+I recommend to use PDF\LaTeX\ and this is now the default.
 
-If you want to use the package on lxplus, you should make sure that you use a recent version of TeX Live.
+I would expect everything to work with TeXLive 2012 or later.
+Before that some option names for \texttt{siunitx} were different, and \texttt{biblatex} and \texttt{biber}
+were not really stable.
+
+The package should work under Linux, MacOSX and Windows.
+The following sections give some details on the installations that I use for testing things.
+
+%-------------------------------------------------------------------------------
+\subsection{Ubuntu 14.04}
+
+I test things using Xubuntu 14.04.
+I start with the standard TeX Live installation (package \texttt{texlive}).
+The following extra packages had to be installed:
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \texttt{texlive-latex-extra} (footmisc),
+\item \texttt{texlive-humanities} (lineno),
+\item \texttt{texlive-science} (siunitx),
+\item \texttt{texlive-bibtex-extra} and \texttt{biber} (biblatex and biber).
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+\subsection{lxplus} 
+
+It works out of the box, if you modify your \texttt{PATH} to use a recent version of TeX Live.
 Set your \texttt{PATH} as follows:
 \begin{verbatim}
 		export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
 \end{verbatim}
 
-The \texttt{atlasdoc} class works both with \LaTeX{} and PDF\LaTeX{}.
+%-------------------------------------------------------------------------------
+\subsection{CentOS 7} 
 
-I would expect everything to work with TeXLive 2012 or later.
-Before that some option names for \texttt{siunitx} were different, and \texttt{biblatex} and \texttt{biber}
-were not really stable.
+CentOS is an RPM-based distribution that is supposed to form the basis of future
+release of Scientific Linux.
+
+I started with a fairly basic setup that included tools for development.
+I then installeed the \enquote{Technical Writing} collection.
+In addition I needed \Package{texlive-booktabs} (booktabs), \Package{texlive-tocloft} (tocloft).
+However, I still got complaints about \File{lineno.sty} and \File{siunitx.sty}.
+I was not able to find these in the standard RPM repositories.
+You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{style/other}),
+or install your own \TeX\ Live distribution.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Windows 7}
+
+MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net}).
+MikTeX has the advantage that it installs missing packages, provided you activated that option.
+However, I had to install \Package{babel-english} before I could compile any of the documents.
+
+If you want to compile the documentation under Windows you have to do some gymnastics,
+because I use links to find the style files.
+Windows~7 support symbolic links, but you have to create them.
+Hence the first step if to remove any \texttt{style} directory links.
+These can be found in the directories: 
+\File{doc/atlas-bibtex}, \File{doc/atlas-latex}, \File{doc/atlas-paper}, \File{doc/atlas-physics}.
+To create the link you use the \Package{mklink} command.
+You run this in a \Package{cmd} window, which you start as an Administrator.
+Here is what I did in the directory \File{doc/atlas-bibtex}:
+\begin{verbatim}
+mklink /D \
+  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas-bibtex\style" \
+  "C:\Users\brock\Documents\atlas\latex\atlaslatex\style"
+\end{verbatim}
+This information I found under
+\url{http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/}
+
+
+%-------------------------------------------------------------------------------
+\subsection{MacOSX 10.9}
+
+I do all my development with MacOSX.
+Hence I would not expect any problems here, provided again you have a fairly recent
+installation of Mac\TeX.
+I use	MacTeX (which I download from \url{http://www.tug.org/mactex}) and TeXstudio 2.8.2.
+
+
+%-------------------------------------------------------------------------------
+\section{Installation of \Package{atlaslatex} in \File{texmf} tree}
+%-------------------------------------------------------------------------------
+\label{sec:texmf}
+
+As mentioned in the introduction, the \texttt{atlasdoc} class and the style files can all be found in the 
+\File{style} subdirectory. The template documents are set up to pick up the style files from there.
+
+If you want to install the package in a central area do the following:
+\begin{itemize}
+\item Unpack the tarball;
+\item Copy the style directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
+\item Copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
+	to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bst}, respectively.
+\end{itemize}
+You can also checkout the two directory trees from SVN:
+\begin{verbatim}
+cd ~/texmf/tex/latex
+svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/style atlaslatex
+cd ~/texmf
+svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
+\end{verbatim}
+The advantage of using SVN is that you can keep the package up to date, by just giving the command
+\verb|svn update|in the two directories.
+If you already have a \File{bibtex} directory, 
+first move it out of the way, then checkout from SVN
+and then move the contents of the old directory back into the \File{bibtex} tree.
+
+In the template files, you have to change
+\begin{center}
+	\begin{tabular}{ll}
+		From & To \\
+		\midrule
+		\verb|\documentclass{style/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
+		\verb|\usepackage{style/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
+		\verb|\usepackage{style/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
+		\verb|\usepackage{style/atlasconribute}| & \verb|\usepackage{atlascontribute}|
+	\end{tabular}
+\end{center}
+
+If you are using \BibTeX\ you also have to change\\
+\verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
+\verb|\bibliographystyle{atlasBibStyleWoTitle}|
+
+%-------------------------------------------------------------------------------
+\section{Journal templates}
+%-------------------------------------------------------------------------------
+\label{sec:journal}
+
+This section collects information on where the \LaTeX\ templates for the different journals can be found:
+\begin{description}
+\item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+	TeX Live distribution. 
+	It can also be found at \url{http://www.elsevier.com/locate/latex}.
+\item[APS] APS journals use REV\TeX. This is also usually installed.
+	It can also be found at \url{http://} 
+\end{description}
+
+As you can ee this is \enquote{Work in Progress!} More information will be added once more journal templates are tested.
 
 
 %-------------------------------------------------------------------------------
@@ -412,29 +566,30 @@ were not really stable.
 %-------------------------------------------------------------------------------
 \label{sec:latex}
 
+%-------------------------------------------------------------------------------
 \subsection{Graphics}
 
-Use the {\tt graphicx} package \cite{} to include your plots and
-figure. The use of older packages like {\tt espfig} is deprecated.
-Since the {\tt graphicx} package is required by the {\tt atlasnote}
+Use the \Package{graphicx} package to include your plots and figures. 
+The use of older packages like \Package{espfig} is deprecated.
+Since the \Package{graphicx} package is required by the \texttt{atlasdoc}
 class, it is automatically loaded when using it, and there is no need
 to explicitly included it in the document preamble.
 
-Always include your graphics file without mentioning the file
-extension. For instance, if you want to include the \texttt{figure.eps}
+Always include your graphics file without giving the file extension.
+For instance, if you want to include the \File{figure.eps}
 file, you should use a syntax like this:
 \begin{verbatim}
   \includegraphics[width=\textwidth]{figure}
 \end{verbatim}
 This will allow you to compile your document using either \LaTeX{} or
 pdf\LaTeX{} without changing your source file: you can in fact have
-both \texttt{figure.eps} and \texttt{figure.pdf} in your working directory,
+both \File{figure.eps} and \File{figure.pdf} in your working directory,
 and the proper one will be picked up according to the processing method
 you choose.
 
-It is a good habit to keep you graphics file in a separate
-sub-directory (e.g.\ in \texttt{figure/}. In this case you can include them
-by mentioning it explicitly every time:
+It is a good habit to keep your graphics files in a separate
+sub-directory (e.g.\ in \File{figures/}. 
+In this case you can include them by mentioning it explicitly every time:
 \begin{verbatim}
   \includegraphics[width=\textwidth]{figures/figure}
 \end{verbatim}
@@ -445,23 +600,30 @@ for them, by using this command:
 \end{verbatim}
 
 
+%-------------------------------------------------------------------------------
 \subsection{Definitions}
 
 You can use \verb|\ensuremath| in definitions, so that they will work
-in both text mode and math mode, e.g.
-\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}}| to get
+in both text mode and math mode, e.g.\
+\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}\xspace}| to get
 \UoneS{} in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
 
+I highly recommend that you also terminate every definition with \Macro{xspace},
+as then you can use the definitions without having to terminate them with
+``\verb|\|'' or ``\verb|{}|''.
 
+
+
+%-------------------------------------------------------------------------------
 \section{Remarks on units and symbols}
 
 As discussed in the ATLAS Paper Template~\cite{atlas-paper},
 it is highly recommended to use a units package to format your units properly.
-The package \texttt{siunitx} works very well and is the package of choice.
-Alternatives include \texttt{units} and \texttt{hepunits},
-which is based on \texttt{SIunits}.
+The package \Package{siunitx} works very well and is the package of choice.
+Alternatives include \Package{units} and \Package{hepunits},
+which is based on \Package{SIunits}.
 
-The basic command to use in \texttt{siunitx} is \verb|\SI{20}{\GeV}| to get
+The basic command to use in \Package{siunitx} is \verb|\SI{20}{\GeV}| to get
 \SI{20}{\GeV}. 
 There are also several other useful commands for specifying ranges:
 \verb|\numrange| for a range of numbers and \verb|SIrange| for a range of numbers with a unit. 
@@ -482,7 +644,7 @@ In addition several extra units are defined:
 \end{itemize}
 Use the syntax \verb|\SI{20.3}{\per\fb}| to get \SI{20.3}{\per\fb}.
 
-Some things to note about using \texttt{siunitx}:
+Some things to note about using \Package{siunitx}:
 \begin{itemize}
 \item It tries to isolate itself from other packages.
 	If you just want to write \si{\GeV} in your text,
@@ -500,6 +662,12 @@ This short section tests whether that works properly.
 It is of course good if things like \pT and \ET are automatically in bold face in
 a header and normal font in the text (and table of contents).
 
+With the current setup, this works OK. 
+However, if you use the \Option{koma}, which then typesets titles using a sans serif font,
+the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
+which is probably not what one wants.!
+
+
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
 \label{sec:oldnote}
@@ -514,7 +682,7 @@ class, style files and templates.
 All style files are collected in the \texttt{style} subdirectory.
 It is assumed that this directory is a direct subdirectory of you main \LaTeX\ file.
 If you want to keep the style files in a central place you can either put them in
-\verb|${HOME}/texmf/tex/latex| or create a link from your main directoryto the location of
+\verb|${HOME}/texmf/tex/latex| or create a link from your main directory to the location of
 your \texttt{style} directory.
 
 The main changes the user has to make are:
@@ -582,6 +750,7 @@ This means that if you start from an old cover page the following changes have t
 
 Note that \texttt{atlaspreprint} is integrated into \texttt{atlascover} and not maintained as a separate style file.
 To get the CERN preprint front page, you have to include the option \Option{preprint} when you invoke \Package{atlasdoc}.
+If you start from an old preprint front page the following changes have to be made:
 \begin{center}
 	\begin{tabular}{ll}
 		Old                              & New                   \\
@@ -593,23 +762,9 @@ To get the CERN preprint front page, you have to include the option \Option{prep
 \end{center}
 The following changes are needed for the macros:
 \begin{itemize}
-\item The macro \Macro{AtlasCoverEdBoardMember} only has one argument, as a gnric email list now exists for every EdBoard.
+\item The macro \Macro{AtlasCoverEdBoardMember} only has one argument, as a generic email list now exists for every EdBoard.
 \end{itemize}
 
-
-%-------------------------------------------------------------------------------
-\section{Journal templates}
-%-------------------------------------------------------------------------------
-\label{sec:journal}
-
-This section collects information on where the \LaTeX\ templates for the different journals can be found:
-\begin{description}
-\item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-	TeX Live distribution. 
-	It can also be found at \url{http://www.elsevier.com/locate/latex}.
-\item[APS] APS journals use REV\TeX. This is also usually installed.
-	It can also be found at \url{http://} 
-\end{description}
 
 %-------------------------------------------------------------------------------
 \section*{History}

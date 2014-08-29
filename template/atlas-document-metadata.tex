@@ -9,15 +9,20 @@
 % Author --  Default is ``The ATLAS collaboration''
 %\author{The ATLAS Collaboration}
 
-% if multiple authors/affiliations are needed, use the authblk package
-\usepackage{authblk}
-\renewcommand\Authands{, } % avoid ``. and'' for last author
-\renewcommand\Affilfont{\itshape\small} % affiliation formatting
-
-\author[a]{First Author}
-\author[a]{Second Author}
-\author[b]{Third Author}
-
+% Authors and list of contributors to the analysis
+% \AtlasAuthorContribute also adds the name to the author list
+\usepackage{style/atlascontribute}
+% Use authblk package if there are multiple authors, which is included by style/atlascontribute
+% \usepackage{authblk}
+% \renewcommand\Authands{, } % avoid ``. and'' for last author
+% \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+\AtlasAuthorContributor{First AtlasAuthorContributor}{a}{Author's contribution.}
+\AtlasAuthorContributor{Second AtlasAuthorContributor}{b}{Author's contribution.}
+\AtlasAuthorContributor{Third AtlasAuthorContributor}{a}{Author's contribution.}
+\AtlasContributor{Fourth AtlasContributor}{Contribution to the analysis.}
+%\author[a]{First Author}
+%\author[a]{Second Author}
+%\author[b]{Third Author}
 \affil[a]{One Institution}
 \affil[b]{Another Institution}
 

@@ -1,3 +1,11 @@
+2014-08-29 Ian Brock <Ian.Brock@cern.ch>
+	* Added a new style file atlascontribute.sty. It can be used to create both the
+	  list of authors and the contributions they made to the analysis.
+	* atlas-document-contribute is no longer needed. This information should be
+	  included in atlas-document-metadata.tex instead.
+2014-08-28 Ian Brock <Ian.Brock@cern.ch>
+	* Add lineno as required package, so that atlasdoc does not need atlaspackage.
+	* Rounding note added to package.
 2014-08-27 Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 00-97-00.
 	* atlas-physics document list of definitions created automatically.

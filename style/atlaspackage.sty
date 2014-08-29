@@ -7,9 +7,9 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{00-97-00}
+\def\AP@PackageVersion{00-98-00}
 
-\ProvidesPackage{style/atlasphysics}[2014/08/28 v.00-97-00 ATLAS LaTeX packages]
+\ProvidesPackage{style/atlaspackage}[2014/08/29 v.00-98-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS LaTeX packages v.\AP@PackageVersion}
@@ -36,6 +36,7 @@
 \RequirePackage[utf8]{inputenc}
 % Encoding used for prinout
 \RequirePackage[T1]{fontenc}
+% Document font - this should be defined in the documement class
 %\RequirePackage{mathptmx}
 %\RequirePackage[varg]{txfonts}
 % amsmath and txfonts define the same symbols - use the txfont version
@@ -51,14 +52,14 @@
 \restoresymbol{AMS}{iiint}
 \restoresymbol{AMS}{iiiint}
 \restoresymbol{AMS}{idotsint}
-% Extra options for footnotes
-\RequirePackage[bottom]{footmisc}
 % Add line numbers
 \RequirePackage{lineno}
 % If you have an old lineno or do not have it, you can get it from the style/other directory
 % \RequirePackage{style/other/lineno}
 
 \if@Default
+	% Extra options for footnotes
+	\RequirePackage[bottom]{footmisc}
 	% Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
   % Typset anything with units using this package - also has very useful table formatting 
@@ -85,9 +86,10 @@
 \if@Maximum
 	% Tables that go over more than one page
 	\RequirePackage{longtable}
+	% \RequirePackage{supertable}
 	% Easy rotation of tables and figures
 	\RequirePackage{rotating}
-	% Quotes that are also langiage dependent - use \enquote{text} instead of ``text''
+	% Quotes that are also language dependent - use \enquote{text} instead of ``text''
 	\RequirePackage[autostyle=true]{csquotes}
 	% Nicer fractions
 	\RequirePackage{xfrac}
