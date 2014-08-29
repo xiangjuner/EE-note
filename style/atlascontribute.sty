@@ -1,0 +1,75 @@
+%-------------------------------------------------------------------------------
+% List of contributions to an ATLAS analysis
+%
+% See ChangeLog or SVN log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%-------------------------------------------------------------------------------
+% $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
+% $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
+%-------------------------------------------------------------------------------
+\def\AC@PackageVersion{00-98-00}
+
+\ProvidesPackage{style/atlascontribute}[2014/08/29 v.00-98-00 ATLAS analysis contributions]
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+
+\typeout{ATLAS analysis contributions v.\AC@PackageVersion}
+
+\let\if@AC@Supertabular\iffalse
+\DeclareOption{supertabular}{\let\if@AC@Supertabular\iftrue}
+\let\if@AC@Authblk\iftrue
+\DeclareOption{noauthblk}{\let\if@AC@Authblk\iffalse}
+
+\ProcessOptions\relax
+
+% Include array package so \raggedright works
+\RequirePackage{array}
+
+% Include supertabular package if necessary
+\if@AC@Supertabular \RequirePackage{supertabular} \fi
+
+% If multiple authors/affiliations are needed, use the authblk package
+\if@AC@Authblk
+	\RequirePackage{authblk}
+	\renewcommand\Authands{, } % avoid ``. and'' for last author
+	\renewcommand\Affilfont{\itshape\small} % affiliation formatting
+\fi
+
+% Analysis contributors: Name, Contributions
+\def\AC@Contributors{}
+\newcommand{\AtlasContributor}[2]{%
+  \g@addto@macro\AC@Contributors{%
+    #1 & #2 \tabularnewline
+  }
+}
+\newcommand{\AtlasAuthorContributor}[3]{%
+  \g@addto@macro\AC@Contributors{%
+    #1 & #3 \tabularnewline
+  }
+  \author[#2]{#1}
+}
+
+\newcommand{\PrintAtlasContribute}[1]{%
+	\newlength{\AC@namewidth}
+	\newlength{\AC@textwidth}
+	\setlength{\AC@namewidth}{#1\textwidth}
+	\setlength{\AC@textwidth}{\textwidth}
+	\addtolength{\AC@textwidth}{-#1\textwidth}
+	\section*{List of Contributions}
+	{\raggedright
+		\if@AC@Supertabular%
+	  	\begin{supertabular}{>{\raggedright}p{\AC@namewidth}p{\AC@textwidth}}
+		  	\toprule
+		  	\AC@Contributors
+		  	\bottomrule
+	  	\end{supertabular}
+	  \else %
+	  	\begin{tabular}{>{\raggedright}p{\AC@namewidth}p{\AC@textwidth}}
+		  	\toprule
+		  	\AC@Contributors
+		  	\bottomrule
+	  	\end{tabular}
+	  \fi
+	}
+}
+
+\endinput
