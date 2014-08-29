@@ -176,8 +176,8 @@ Alternatively you can make the author list using the syntax:
 \Package{authblk} package by giving the option \Option{noauthblk} to \Package{atlascontribute}.
 
 If the list of contributors is very long, it may spread over more than one page.
-The \Package{tabular} environment does not like this. Add the option \Option{supertabular} to use 
-\Package{supertabular} instead.
+The \Package{tabular} environment does not like this. Add the option \Option{xtab} to use 
+\Package{xtab} instead.
 
 
 %-------------------------------------------------------------------------------
@@ -459,7 +459,10 @@ release of Scientific Linux.
 
 I started with a fairly basic setup that included tools for development.
 I then installeed the \enquote{Technical Writing} collection.
-In addition I needed \Package{texlive-booktabs} (booktabs), \Package{texlive-tocloft} (tocloft).
+In addition I needed 
+\Package{texlive-booktabs} (booktabs),
+\Package{texlive-tocloft} (tocloft),
+\Package{texlive-xtab} (xtab).
 However, I still got complaints about \File{lineno.sty} and \File{siunitx.sty}.
 I was not able to find these in the standard RPM repositories.
 You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{style/other}),

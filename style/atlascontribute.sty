@@ -14,8 +14,8 @@
 
 \typeout{ATLAS analysis contributions v.\AC@PackageVersion}
 
-\let\if@AC@Supertabular\iffalse
-\DeclareOption{supertabular}{\let\if@AC@Supertabular\iftrue}
+\let\if@AC@Xtab\iffalse
+\DeclareOption{xtab}{\let\if@AC@Xtab\iftrue}
 \let\if@AC@Authblk\iftrue
 \DeclareOption{noauthblk}{\let\if@AC@Authblk\iffalse}
 
@@ -24,8 +24,8 @@
 % Include array package so \raggedright works
 \RequirePackage{array}
 
-% Include supertabular package if necessary
-\if@AC@Supertabular \RequirePackage{supertabular} \fi
+% Include xtab package if necessary
+\if@AC@Xtab \RequirePackage{xtab} \fi
 
 % If multiple authors/affiliations are needed, use the authblk package
 \if@AC@Authblk
@@ -56,12 +56,12 @@
 	\addtolength{\AC@textwidth}{-#1\textwidth}
 	\section*{List of Contributions}
 	{\raggedright
-		\if@AC@Supertabular%
-	  	\begin{supertabular}{>{\raggedright}p{\AC@namewidth}p{\AC@textwidth}}
+		\if@AC@Xtab%
+	  	\begin{xtabular}{>{\raggedright}p{\AC@namewidth}p{\AC@textwidth}}
 		  	\toprule
 		  	\AC@Contributors
 		  	\bottomrule
-	  	\end{supertabular}
+	  	\end{xtabular}
 	  \else %
 	  	\begin{tabular}{>{\raggedright}p{\AC@namewidth}p{\AC@textwidth}}
 		  	\toprule
