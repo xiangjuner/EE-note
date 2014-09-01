@@ -7,10 +7,10 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-98-00}
+\def\ATPackageVersion{00-99-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/08/29 v.00-98-00 ATLAS document]
+\ProvidesClass{latex/atlasdoc}[2014/09/01 v.00-99-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part

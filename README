@@ -15,7 +15,7 @@ The following template main files exist:
 See template/README for how to set up a new paper or note draft.
 
 The ATLAS document class (atlasdoc.cls) and style files can be found in 
-the style directory. The following style files exist:
+the latex directory. The following style files exist:
 	atlascover.sty			Make a cover (CONF note, CERN preprint, ATLAS draft)
 	atlaspackage.sty		Standard packages used in ATLAS documents
 	atlasphysics.sty		Useful definitions. This file simply inputs others.
@@ -33,8 +33,8 @@ https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComTemplates
 
 The general idea is that you create a separate directory tree for each document that
 you want to produce which contains the contents of this package.
-It is assumed that all style files are in a directory style, which is a subdirectory of 
-the one in which the main document sits. The style subdirectory can of course be a lin
+It is assumed that all style files are in a directory latex, which is a subdirectory of 
+the one in which the main document sits. The latex subdirectory can of course be a link
 to a central style directory.
 
 A users guide to the templates can be found in atlas-latex.pdf. You can produce
