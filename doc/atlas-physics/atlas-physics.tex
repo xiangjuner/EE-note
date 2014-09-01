@@ -1,14 +1,14 @@
 %-------------------------------------------------------------------------------
 % This note lists the symbols defined in atlasphysics.sty.
 %-------------------------------------------------------------------------------
-\documentclass[koma,UKenglish]{style/atlasdoc}
+\documentclass[koma,UKenglish]{latex/atlasdoc}
 
-\usepackage[default,biblatex]{style/atlaspackage}
+\usepackage[default,biblatex]{latex/atlaspackage}
 \usepackage{supertabular}
 %\usepackage{multicol}
 \usepackage{authblk}
 % Include all style files
-\usepackage[bsm,math,process,other]{style/atlasphysics}
+\usepackage[bsm,math,process,other]{latex/atlasphysics}
 %\usepackage{mathrsfs}
 
 \addbibresource{atlas-physics.bib}
@@ -60,7 +60,7 @@ symbols. It can included in the preamble of your paper with the usual
 syntax:
 %
 \begin{verbatim}
-  \usepackage{style/atlasphysics}
+  \usepackage{latex/atlasphysics}
 \end{verbatim}
 %
 As of version 01-00-00 the file is actually split into smaller files,
@@ -81,7 +81,7 @@ The following options are available, where the default setting is given in paren
 
 There is an additional option \Option{texmf}.
 If this option is included, the subfiles are included using the command:
-\verb|\RequirePackage{atlaspartcle}| etc. instead of \verb|\RequirePackage{style/atlaspartcle}|.
+\verb|\RequirePackage{atlaspartcle}| etc. instead of \verb|\RequirePackage{latex/atlaspartcle}|.
 This is useful if you install the ATLAS \LaTeX\ package in a central directory such as \File{\$\{HOME\}/texmf/tex/latex}.
 
 All definitions are done in a consistent way using \verb|\newcommand*|.

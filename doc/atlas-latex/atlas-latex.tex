@@ -1,12 +1,12 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[koma,UKenglish]{style/atlasdoc}
+\documentclass[koma,UKenglish]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex]{style/atlaspackage}
+\usepackage[biblatex]{latex/atlaspackage}
 \usepackage{authblk}
-\usepackage{style/atlasphysics}
+\usepackage{latex/atlasphysics}
 
 % Files with references in BibTeX format
 \addbibresource{../atlas-latex.bib}
@@ -85,8 +85,8 @@ that should provide examples of how to use the package and how to write
 good \LaTeX.
 
 The design principle is that you have a main document and 
-the style files and \texttt{atlasdoc} class are in a subdirectory \texttt{style}.
-This subdirectory can of course be a link to a centrally maintained \texttt{style} directory.
+the style files and \texttt{atlasdoc} class are in a subdirectory \File{latex}.
+This subdirectory can of course be a link to a centrally maintained \texttt{latex} directory.
 See Section~\ref{sec:texmf} for the changes that have to be made if you want to install
 the package in a central place.
 
@@ -270,24 +270,24 @@ For instance, this document has
 been produced using this very simple preamble:
 %
 \begin{verbatim}
-  \documentclass[koma,UKenglish]{style/atlasdoc}
-  \usepackage{style/atlaspackage}
-  \usepackage{style/atlasphysics}
+  \documentclass[koma,UKenglish]{latex/atlasdoc}
+  \usepackage{latex/atlaspackage}
+  \usepackage{latex/atlasphysics}
   \graphicspath{{../},{figures/}}
 \end{verbatim}
 %
 Note that the document language must be specified, otherwise \texttt{babel} will complain.
 
 The \LaTeX\ packages that are used in the document are mostly specified in 
-\texttt{style/atlaspackage.sty}.
+\texttt{latex/atlaspackage.sty}.
 
-The style file \texttt{style/atlasphysics.sty} defines a lot of useful
+The style file \texttt{latex/atlasphysics.sty} defines a lot of useful
 macros for particles and more. See the separate document
 \texttt{atlas-physics.pdf}~\cite{atlas-physics} for details.
 
 If you want to use \Macro{biblatex} you need to add the option \texttt{biblatex} when you
 include \texttt{atlaspackage}.
-Have a look at the \texttt{style/atlaspackage.sty} to see how \texttt{biblatex} is included.
+Have a look at the \texttt{latex/atlaspackage.sty} to see how \texttt{biblatex} is included.
 In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
@@ -356,7 +356,7 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{xfrac}
 \end{itemize}
 
-\texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{style/other}.
+\texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{latex/other}.
 They should be part of a standard \LaTeX\ installation though.
 
 There used to be a problem using the \texttt{tikz} package with \texttt{atlasnote}.
@@ -371,12 +371,12 @@ If you want to use it, just add the usual \verb|\usepackage{tikz| to your preamb
 %-------------------------------------------------------------------------------
 
 The package also provides cover pages for the circulations of ATLAS drafts and 
-for the CERN preprint version of an ATLAS paper. The style can be found in \texttt{style/atlascover.sty}.
+for the CERN preprint version of an ATLAS paper. The style can be found in \texttt{latex/atlascover.sty}.
 
 If you wish to use the \texttt{atlascover} package with the 
 \texttt{atlasdoc} class, you should usually use the \texttt{coverpage} option of the class:
 \begin{verbatim}
-  \documentclass[coverpage,UKenglish]{style/atlasdoc}
+  \documentclass[coverpage,UKenglish]{latex/atlasdoc}
 \end{verbatim}
 instead of the the usual \texttt{usepackage} command: this will ensure
 that the cover page is produced before the note title page.
@@ -458,15 +458,23 @@ CentOS is an RPM-based distribution that is supposed to form the basis of future
 release of Scientific Linux.
 
 I started with a fairly basic setup that included tools for development.
-I then installeed the \enquote{Technical Writing} collection.
+I then installed the \enquote{Technical Writing} collection.
 In addition I needed 
 \Package{texlive-booktabs} (booktabs),
+\Package{texlive-preprint} (authblk),
 \Package{texlive-tocloft} (tocloft),
 \Package{texlive-xtab} (xtab).
-However, I still got complaints about \File{lineno.sty} and \File{siunitx.sty}.
+However, I still got complaints about \File{lineno.sty} and \File{siunitx.sty}
+\File{biblatex.sty} and \File{logreq.sty}.
 I was not able to find these in the standard RPM repositories.
-You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{style/other}),
+You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{latex/other}),
 or install your own \TeX\ Live distribution.
+
+Finally, in order to use \Package{biber} rather than \BibTeX,
+I had to download the appropriate binary from SourceForge:
+\url{http://biblatex-biber.sourceforge.net}.
+In order to choose which binary you want you have to go to
+\url{http://sourceforge.net/projects/biblatex-biber/} ad click your way through.
 
 
 %-------------------------------------------------------------------------------
@@ -479,7 +487,7 @@ However, I had to install \Package{babel-english} before I could compile any of 
 If you want to compile the documentation under Windows you have to do some gymnastics,
 because I use links to find the style files.
 Windows~7 support symbolic links, but you have to create them.
-Hence the first step if to remove any \texttt{style} directory links.
+Hence the first step if to remove any \texttt{latex} directory links.
 These can be found in the directories: 
 \File{doc/atlas-bibtex}, \File{doc/atlas-latex}, \File{doc/atlas-paper}, \File{doc/atlas-physics}.
 To create the link you use the \Package{mklink} command.
@@ -487,8 +495,8 @@ You run this in a \Package{cmd} window, which you start as an Administrator.
 Here is what I did in the directory \File{doc/atlas-bibtex}:
 \begin{verbatim}
 mklink /D \
-  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas-bibtex\style" \
-  "C:\Users\brock\Documents\atlas\latex\atlaslatex\style"
+  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas-bibtex\latex" \
+  "C:\Users\brock\Documents\atlas\latex\atlaslatex\latex"
 \end{verbatim}
 This information I found under
 \url{http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/}
@@ -509,7 +517,7 @@ I use	MacTeX (which I download from \url{http://www.tug.org/mactex}) and TeXstud
 \label{sec:texmf}
 
 As mentioned in the introduction, the \texttt{atlasdoc} class and the style files can all be found in the 
-\File{style} subdirectory. The template documents are set up to pick up the style files from there.
+\File{latex} subdirectory. The template documents are set up to pick up the style files from there.
 
 If you want to install the package in a central area do the following:
 \begin{itemize}
@@ -521,7 +529,7 @@ If you want to install the package in a central area do the following:
 You can also checkout the two directory trees from SVN:
 \begin{verbatim}
 cd ~/texmf/tex/latex
-svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/style atlaslatex
+svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
 cd ~/texmf
 svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
 \end{verbatim}
@@ -536,10 +544,10 @@ In the template files, you have to change
 	\begin{tabular}{ll}
 		From & To \\
 		\midrule
-		\verb|\documentclass{style/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
-		\verb|\usepackage{style/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
-		\verb|\usepackage{style/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
-		\verb|\usepackage{style/atlasconribute}| & \verb|\usepackage{atlascontribute}|
+		\verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
+		\verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
+		\verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
+		\verb|\usepackage{latex/atlasconribute}| & \verb|\usepackage{atlascontribute}|
 	\end{tabular}
 \end{center}
 
@@ -561,7 +569,7 @@ This section collects information on where the \LaTeX\ templates for the differe
 	It can also be found at \url{http://} 
 \end{description}
 
-As you can ee this is \enquote{Work in Progress!} More information will be added once more journal templates are tested.
+As you can see this is \enquote{Work in Progress!} More information will be added once more journal templates are tested.
 
 
 %-------------------------------------------------------------------------------
@@ -574,7 +582,7 @@ As you can ee this is \enquote{Work in Progress!} More information will be added
 
 Use the \Package{graphicx} package to include your plots and figures. 
 The use of older packages like \Package{espfig} is deprecated.
-Since the \Package{graphicx} package is required by the \texttt{atlasdoc}
+Since the \Package{graphicx} package is required by the \Package{atlasdoc}
 class, it is automatically loaded when using it, and there is no need
 to explicitly included it in the document preamble.
 
@@ -596,7 +604,7 @@ In this case you can include them by mentioning it explicitly every time:
 \begin{verbatim}
   \includegraphics[width=\textwidth]{figures/figure}
 \end{verbatim}
-or by telling the \texttt{graphicx} package where to look
+or by telling the \Package{graphicx} package where to look
 for them, by using this command:
 \begin{verbatim}
   \graphicspath{{figures/}}
@@ -682,18 +690,18 @@ able to be used for (almost) all ATLAS documents.
 Some small changes in the user setup are necessary to use the new
 class, style files and templates.
 
-All style files are collected in the \texttt{style} subdirectory.
+All style files are collected in the \texttt{latex} subdirectory.
 It is assumed that this directory is a direct subdirectory of you main \LaTeX\ file.
 If you want to keep the style files in a central place you can either put them in
 \verb|${HOME}/texmf/tex/latex| or create a link from your main directory to the location of
-your \texttt{style} directory.
+your \texttt{latex} directory.
 
 The main changes the user has to make are:
 \begin{itemize}
-\item Change the class name from \texttt{atlasnote} to \texttt{style/atlasdoc};
+\item Change the class name from \texttt{atlasnote} to \texttt{latex/atlasdoc};
 \item Specify the document language as an option: UKenglish or USenglish;
-\item Add \verb|\usepackage{style/atlaspackage}| at the beginning of the document;
-\item Change \verb|\usepackage{atlasphysics}| to \verb|\usepackage{style/atlasphysics}|; 
+\item Add \verb|\usepackage{latex/atlaspackage}| at the beginning of the document;
+\item Change \verb|\usepackage{atlasphysics}| to \verb|\usepackage{latex/atlasphysics}|; 
 %\item Use the macro \Macro{AtlasTitle} instead of \Macro{title}.
 \end{itemize}
 
@@ -705,8 +713,8 @@ when you use \Macro{enquote}.
 All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of \BibTeX.
 The templates provide information on how to make the change in your own document.
 
-As of \texttt{atlascover-01-00-00} the same macro names are used in both \texttt{atlasdoc} and
-\texttt{atlascover} so that title, journal, version number and abstract only need to be specified once.
+As of \File{atlascover-01-00-00} the same macro names are used in both \Package{atlasdoc} and
+\Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
 This means that if you start from an old preamble the following changes should be made:
 \begin{center}
 	\begin{tabular}{ll}
@@ -725,19 +733,19 @@ they will continue to work in the document itself, but not on the cover page.
 
 The class and style files have been cleaned up and things 
 that were thought to no longer be necessary have been removed.
-These pieces have been collected in \texttt{style/atlasnote-obsolete.sty} in case they are needed.
+These pieces have been collected in \texttt{latex/atlasnote-obsolete.sty} in case they are needed.
 If something important has got lost, please let me know.
 
-The \texttt{subfigure} package has been replaced with \texttt{subfig}, as \texttt{subfigure} is now deprecated.
-If you use \texttt{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
+The \Package{subfigure} package has been replaced with \Package{subfig}, as \Package{subfigure} is now deprecated.
+If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
 
 %-------------------------------------------------------------------------------
 \section{Changes in \texttt{atlascover-01-00-00}}
 \label{sec:oldcover}
 %-------------------------------------------------------------------------------
 
-As of \texttt{atlascover-01-00-00} the same macro names are used in both \texttt{atlasdoc} and
-\texttt{atlascover} so that title, journal and version number only need to be specified once.
+As of \Package{atlascover-01-00-00} the same macro names are used in both \Package{atlasdoc} and
+\Package{atlascover} so that title, journal and version number only need to be specified once.
 This means that if you start from an old cover page the following changes have to be made:
 \begin{center}
 	\begin{tabular}{ll}
@@ -751,7 +759,7 @@ This means that if you start from an old cover page the following changes have t
 	\end{tabular}
 \end{center}
 
-Note that \texttt{atlaspreprint} is integrated into \texttt{atlascover} and not maintained as a separate style file.
+Note that \Package{atlaspreprint} is integrated into \Package{atlascover} and not maintained as a separate style file.
 To get the CERN preprint front page, you have to include the option \Option{preprint} when you invoke \Package{atlasdoc}.
 If you start from an old preprint front page the following changes have to be made:
 \begin{center}

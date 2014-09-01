@@ -10,7 +10,7 @@
 \def\ATPackageVersion{00-98-00}
 
 % --- Class structure: identification part
-\ProvidesClass{style/atlasdoc}[2014/08/29 v.00-98-00 ATLAS document]
+\ProvidesClass{latex/atlasdoc}[2014/08/29 v.00-98-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -200,18 +200,18 @@
 % ATLAS draft cover page
 \if@DraftCover%
 	\if@CONFNote
-    \RequirePackage[CONF,atlasdoc]{style/atlascover}
+    \RequirePackage[CONF,atlasdoc]{latex/atlascover}
   \else
 		\if@PUBNote
-    	\RequirePackage[PUB,atlasdoc]{style/atlascover}
+    	\RequirePackage[PUB,atlasdoc]{latex/atlascover}
     \else
-    	\RequirePackage[atlasdoc]{style/atlascover}
+    	\RequirePackage[atlasdoc]{latex/atlascover}
     \fi
   \fi
 \fi
 % CERN preprint cover page
 \if@PreprintCover %
-	\RequirePackage[atlasdoc]{style/atlascover}
+	\RequirePackage[atlasdoc]{latex/atlascover}
 \fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
@@ -225,8 +225,8 @@
 %\RequirePackage{mathptmx}
 % Add ability to include line numbers
 \RequirePackage{lineno}
-% If you have an old lineno or do not have it, you can get it from the style/other directory
-% \RequirePackage{style/other/lineno}
+% If you have an old lineno or do not have it, you can get it from the latex/other directory
+% \RequirePackage{latex/other/lineno}
 
 
 % Environment for analysis contributers

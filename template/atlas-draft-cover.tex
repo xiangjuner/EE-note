@@ -4,20 +4,25 @@
 % During the ATLAS editorial process you usually add the atlascover package
 % to append a cover page used to track the editorial details.
 % This file is for the case that you have to make the cover page separately.
+% You can also use the class latex/atlasdoc (with option nomaketitle).
 %-----------------------------------------------------------------------
 
 \usepackage[centering,scale=0.75]{geometry}
 % Either use atlaspackage or specify packages explicitly
-% \usepackage[minimal]{style/atlaspackage}
+% \usepackage[minimal]{latex/atlaspackage}
 \usepackage{graphicx}
 % hyperref is usually included as late as possible
-\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
+\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Draft Cover},pdfauthor={ATLAS Collaboration}]{hyperref}  
 \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 % Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft
-\usepackage{style/atlascover}
+\usepackage{latex/atlascover}
 % \usepackage[atlasdoc]{syle/atlascover}
-% \usepackage[CONF]{style/atlascover}
+% \usepackage[CONF]{latex/atlascover}
+
+% Package for creating list of authors and contributors to the analysis
+% The file atlas-document-metadata.tex includes atlascontribute also
+\usepackage{latex/atlascontribute}
 
 % Paths for figures
 \graphicspath{{figures/}}

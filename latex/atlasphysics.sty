@@ -12,7 +12,7 @@
 %-------------------------------------------------------------------------------
 \def\AP@PackageVersion{00-98-00}
 
-\ProvidesPackage{style/atlasphysics}[2014/08/29 v.00-98-00 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2014/08/29 v.00-98-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS physics style file v.\AP@PackageVersion}
@@ -71,25 +71,25 @@
 	\if@Unit     \RequirePackage{atlasunit} \fi
 \else
 	% BSM particles including SUSY
-  \if@BSM      \RequirePackage{style/atlasbsm} \fi
+  \if@BSM      \RequirePackage{latex/atlasbsm} \fi
 
   % Useful math related definitions
-  \if@Math     \RequirePackage{style/atlasmath} \fi
+  \if@Math     \RequirePackage{latex/atlasmath} \fi
 
 	% Miscellaneous useful definitions
-	\if@Misc     \RequirePackage{style/atlasmisc} \fi
+	\if@Misc     \RequirePackage{latex/atlasmisc} \fi
 
 	% Other maybe useful definitions
-	\if@Other    \RequirePackage{style/atlasother} \fi
+	\if@Other    \RequirePackage{latex/atlasother} \fi
 
 	% Particles
-	\if@Particle \RequirePackage{style/atlasparticle} \fi
+	\if@Particle \RequirePackage{latex/atlasparticle} \fi
 
 	% Processes
-	\if@Process  \RequirePackage{style/atlasprocess} \fi
+	\if@Process  \RequirePackage{latex/atlasprocess} \fi
 
 	% Units
-	\if@Unit     \RequirePackage{style/atlasunit} \fi
+	\if@Unit     \RequirePackage{latex/atlasunit} \fi
 \fi
 
 
