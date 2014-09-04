@@ -4,13 +4,13 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-% $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
-% $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
+% $Id$
+% $HeadURL$
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-99-00}
+\def\ATPackageVersion{01-00-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/09/01 v.00-99-00 ATLAS document]
+\ProvidesClass{latex/atlasdoc}[2014/09/04 v.01-00-00 ATLAS document]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -59,8 +59,12 @@
 \AN@skipbeforetitle=60\p@
 \newcommand{\skipbeforetitle}[1]{\AN@skipbeforetitle=#1}
 
-\def\@title{title: use \textbackslash title to set it}
-%\def\@atlastitle{atlastitle: use \textbackslash atlastitle to set it}
+\def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
+\newcommand{\AtlasTitleText}{Dummy AtlasTitleText in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
+\newcommand{\AtlasTitle}[1]{%
+  \def\@title{#1}%
+  \renewcommand{\AtlasTitleText}{#1}%
+}
 \def\@author{The ATLAS Collaboration}
 \def\@date{\today}
 
@@ -332,12 +336,12 @@
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@thanks\@empty
-  %\global\let\@author\@empty
-  %\global\let\@date\@empty
-  %\global\let\@title\@empty
-  %\global\let\title\relax
-  %\global\let\author\relax
-  %\global\let\date\relax
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
   \global\let\and\relax
 }
 

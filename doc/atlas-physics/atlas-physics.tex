@@ -4,16 +4,15 @@
 \documentclass[koma,UKenglish]{latex/atlasdoc}
 
 \usepackage[default,biblatex]{latex/atlaspackage}
-\usepackage{supertabular}
+\usepackage{xtab}
 %\usepackage{multicol}
 \usepackage{authblk}
 % Include all style files
-\usepackage[bsm,math,process,other]{latex/atlasphysics}
-%\usepackage{mathrsfs}
+\usepackage[BSM,journal,math,process,other,xref]{latex/atlasphysics}
 
 \addbibresource{atlas-physics.bib}
 
-\graphicspath{{../../figures/}}
+\graphicspath{{../../logos/}}
 
 \newcommand{\File}[1]{\texttt{#1}\xspace}
 \newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
@@ -27,7 +26,7 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\title{Symbols defined in \File{atlasphysics.sty}}
+\AtlasTitle{Symbols defined in \File{atlasphysics.sty}}
 
 \author{Ian C. Brock}
 \affil{University of Bonn}
@@ -56,7 +55,10 @@
 
 The \File{atlasphysics.sty} style file implements a series of useful
 shortcuts to typeset a physics paper, such as particle
-symbols. It can included in the preamble of your paper with the usual
+symbols.
+
+Options are parsed with the \Package{kvoptions} package, which is included by default.
+The style file can included in the preamble of your paper with the usual
 syntax:
 %
 \begin{verbatim}
@@ -67,17 +69,21 @@ As of version 01-00-00 the file is actually split into smaller files,
 which can be included or not using options.
 The following options are available, where the default setting is given in parentheses
 \begin{description}
-\item[bsm|nobs,](off) BSM and SUSY particles;
-\item[math|nomath] (off) A few extra maths definitions;
-\item[misc|nomisc](on) Miscellaneous definitions that are often used;
-\item[other|noother](off) Definitions that used to be in \File{atlasphysics.sty}, 
+\item[bsm](false) BSM and SUSY particles;
+\item[journal](true) Journal abbreviations and a few other definitions for references;
+\item[math](false) A few extra maths definitions;
+\item[misc](true) Miscellaneous definitions that are often used;
+\item[other](off) Definitions that used to be in \File{atlasphysics.sty}, 
 	but are probably too specialised to be needed by most people;
-\item[particle|noparticle](on) Standard Model particles and some combinations;
-\item[process|noprocess](off) Some example processes. 
+\item[particle](true) Standard Model particles and some combinations;
+\item[process](false) Some example processes. 
 	These are not included by default as the current choice is rather arbitrary
 	and certainly not complete;
-\item[unit|nounit](on) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
+\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
+\item[xref](true) Useful abbreviations for cross-references.
 \end{description}
+Note that \Option{bsm} and \Option{bsm=true} are equivalent.
+Use the syntax \Option{option=false]} to turn off an option.
 
 There is an additional option \Option{texmf}.
 If this option is included, the subfiles are included using the command:
@@ -100,18 +106,28 @@ The following sections list the macros defined in the various files.
 %-------------------------------------------------------------------------------
 \section{\File{atlasparticle.sty}}
 
-Turn on including these definitions with the option \Option{particle} and off with the option \Option{noparticle}.
+Turn on including these definitions with the option \Option{particle=on} and off with the option \Option{particle=false}.
 
 \input{atlasparticle}
 
-A generic macro \verb|\Ups[1]| is defined so that \verb|\Ups{3}| produces \Ups{3}.
+A generic macro \verb|\Ups[1]| is available.
+It is defined such that \verb|\Ups{3}| produces \Ups{3}.
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasjournal.sty}}
+
+Turn on including these definitions with the option \Option{journal=true} and off with the option \Option{journal=false}.
+
+\input{atlasjournal}
 
 
 \newpage
 %-------------------------------------------------------------------------------
 \section{\File{atlasmisc.sty}}
 
-Turn on including these definitions with the option \Option{math} and off with the option \Option{nomath}.
+Turn on including these definitions with the option \Option{math=true} and off with the option \Option{math=false}.
 
 \input{atlasmisc}
 
@@ -136,6 +152,15 @@ Note that \Macro{eqalign} is also redefined in this package so that \Macro{dk} w
 
 \newpage
 %-------------------------------------------------------------------------------
+\section{\File{atlasxref.sty}}
+
+Turn on including these definitions with the option \Option{xref=true} and off with the option \Option{xref=false}.
+
+\input{atlasxref}
+
+
+\newpage
+%-------------------------------------------------------------------------------
 \section{\File{atlasbsm.sty}}
 
 Turn on including these definitions with the option \Option{bsm} and off with the option \Option{nobsm}.
@@ -152,22 +177,6 @@ For the charginos the last letter(s) indicate(s) the charge:
 \enquote{p} for $+$, \enquote{m} for $-$, and \enquote{pm} for $\pm$.
 
 \input{atlasbsm}
-
-
-\newpage
-%-------------------------------------------------------------------------------
-\section{\File{atlasunit.sty}}
-
-Turn on including these definitions with the option \Option{unit} and off with the option \Option{nounit}.
-
-\input{atlasunit}
-
-\noindent Lower case versions of the units also exist, e.g.\ \verb|\tev|, \verb|\gev|, \verb|\mev|, \verb|\kev|, and
-\verb|\ev|. 
-
-As mentioned above, it is highly recommended to use a units package instead of
-these definitions. \Package{siunitx} is the preferred package; a good alternative is \Package{hepunits}.
-If either of these packages are used \File{atlasunit.sty} is not needed.
 
 
 \newpage
@@ -200,6 +209,22 @@ Turn on including these definitions with the option \Option{process} and off wit
 \input{atlasprocess}
 
 
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasunit.sty}}
+
+Turn on including these definitions with the option \Option{unit} and off with the option \Option{nounit}.
+
+\input{atlasunit}
+
+\noindent Lower case versions of the units also exist, e.g.\ \verb|\tev|, \verb|\gev|, \verb|\mev|, \verb|\kev|, and
+\verb|\ev|. 
+
+As mentioned above, it is highly recommended to use a units package instead of
+these definitions. \Package{siunitx} is the preferred package; a good alternative is \Package{hepunits}.
+If either of these packages are used \File{atlasunit.sty} is not needed.
+
+
 \onecolumn
 %-------------------------------------------------------------------------------
 \section{Old macros}
@@ -215,7 +240,8 @@ A few have been removed. The changes include:
 \item \verb|\Ups| replaces \verb|\ups|;
 	the use of \verb|\ups| to produce $\Upsilon$ in text mode has been removed;
 \item \verb|\cm| has been removed, as it was the only length unit defined for text and math mode;
-\item \verb|\mass| has been removed, as \verb|\twomass| can do the same thing and the name is more intuitive.
+\item \verb|\mass| has been removed, as \verb|\twomass| can do the same thing and the name is more intuitive;
+\item \Macro{mathcal} rather than \Macro{mathscr} is recommended for luminosity and aplanarity.
 \end{itemize}
 
 Quite a few macros are more related to \Zboson physics than they are to LHC physics and have

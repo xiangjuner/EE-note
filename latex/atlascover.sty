@@ -7,30 +7,59 @@
 % $Id: atlascover.sty 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlascover/trunk/atlascover.sty $
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{00-99-00}
+\def\ATPackageVersion{01-00-00}
 
-\ProvidesPackage{style/atlascover}[2014/09/01 v.00-99-00 ATLAS Cover Pages]
+\ProvidesPackage{latex/atlascover}[2014/09/04 v.01-00-00 ATLAS Cover Pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{********************************}
 \typeout{* ATLAS Cover Page v.\ATPackageVersion}
 \typeout{********************************}
 
-\let\if@AC@ClearPage\iffalse
-\DeclareOption{clearpage}{\let\if@AC@ClearPage\iftrue}
-\let\if@AC@Paper\iftrue
-\let\if@AC@CONFNote\iffalse
-\let\if@AC@PUBNote\iffalse
-\let\if@AC@Preprint\iffalse
-\DeclareOption{PAPER}   {\let\if@AC@Paper\iftrue  \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iffalse}
-\DeclareOption{CONF}    {\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iftrue  \let\if@AC@PUBNote\iffalse}
-\DeclareOption{PUB}     {\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iftrue}
-\DeclareOption{preprint}{\let\if@AC@Paper\iffalse \let\if@AC@CONFNote\iffalse \let\if@AC@PUBNote\iffalse \let\if@AC@Preprint\iftrue}
-\let\if@AC@UseFromAtlasDoc\iffalse
-\DeclareOption{atlasdoc}{\let\if@AC@UseFromAtlasDoc\iftrue}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+	family=AC,
+	prefix=AC@
+}
+\DeclareStringOption[0pt]{hoffset}
+\DeclareStringOption[0pt]{voffset}
+\DeclareBoolOption[true]{paper}
+\DeclareBoolOption[false]{CONF}
+\DeclareBoolOption[false]{PUB}
+\DeclareBoolOption[false]{preprint}
+\DeclareBoolOption[false]{clearpage}
+\DeclareBoolOption[false]{twocolumn}
+\DeclareBoolOption[false]{atlasdoc}
+\ProcessKeyvalOptions*
+
+%\typeout{Value of paper option is \AC@paper}
+\typeout{Value of hoffset is \AC@hoffset}
+\typeout{Value of voffset is \AC@voffset}
+
+%\let\ifAC@clearpage\iffalse
+%\DeclareOption{clearpage}{\let\ifAC@clearpage\iftrue}
+%\let\ifAC@paper\iftrue
+%\let\ifAC@CONF\iffalse
+%\let\ifAC@PUB\iffalse
+%\let\ifAC@preprint\iffalse
+%\DeclareOption{PAPER}   {\let\ifAC@paper\iftrue  \let\ifAC@CONF\iffalse \let\ifAC@PUB\iffalse}
+%\DeclareOption{CONF}    {\let\ifAC@paper\iffalse \let\ifAC@CONF\iftrue  \let\ifAC@PUBNote\iffalse}
+%\DeclareOption{PUB}     {\let\ifAC@paper\iffalse \let\ifAC@CONF\iffalse \let\ifAC@PUBNote\iftrue}
+%\DeclareOption{preprint}{\let\ifAC@paper\iffalse \let\ifAC@CONF\iffalse \let\ifAC@PUBNote\iffalse %\let\ifAC@preprint\iftrue}
+%\let\ifAC@atlasdoc\iffalse
+%\DeclareOption{atlasdoc}{\let\ifAC@atlasdoc\iftrue}
+%\let\ifAC@twocolumn\iffalse
+%\DeclareOption{twocolumn}{\let\ifAC@twocolumn\iftrue}
+
+%\newlength{\AC@hoffset}
+%\newlength{\AC@voffset}
+% Allow horizontal and vertical offset to be passed
+%\define@key{atlasdoc.cls}{hoffset}[0pt]{\setlength\AC@hoffset{#1}}
+%\define@key{atlasdoc.cls}{voffset}[0pt]{\setlength\AC@voffset{#1}}
 
 \let\AC@AdvancePageTwoSided\relax
-\ProcessOptions\relax
+%\ProcessOptions\relax
 
 % cover page dimensions
 %ICB \newdimen\AC@AtlasCoverWidth
@@ -55,18 +84,22 @@
 % Editorial information from main tex file
 %*********************************************
 
-\if@AC@UseFromAtlasDoc%
+\ifAC@atlasdoc%
+	\typeout{ATLAS cover called from atlasdoc}
 	\relax%
 \else%
-  \def\@title{Cover title: use \textbackslash AtlasTitle to set it}
-  %\def\@atlastitle{Cover atlastitle: use \textbackslash AtlasTitle to set it}
-%  \providecommand{\AtlasTitle}[1]{%}
-%    \def\@title{#1}%
-%    \def\@atlastitle{#1}%
-%  }
+	\typeout{ATLAS cover called standalone}
+  % \def\@title{Dummy title in atlascover\\ Use \textbackslash title to set it}
+  \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
+  \providecommand{\AtlasTitle}[1]{%
+    % \def\@title{#1}%
+    \renewcommand\AtlasTitleText{#1}%
+  }
+  % \def\@author{The ATLAS Collabration}
   % Draft version 
   \def\@draftversion{}
   \providecommand{\AtlasVersion}[1]{\def\@draftversion{#1}}
+  \def\AtlasAbstractText{}
   \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 	% ATLAS reference code - empty by default
 	\def\@refcode{}
@@ -75,6 +108,10 @@
   \def\@journal{}
   \providecommand{\AtlasJournal}[1]{\def\@journal{#1}}
 \fi
+
+% ATLAS note number
+\def\@atlasnote{}
+\providecommand{\AtlasNote}[1]{\def\@atlasnote{#1}}
 
 \def\AC@PreprintNumber{}
 \newcommand{\PreprintIdNumber}[1]{\def\AC@PreprintNumber{#1}}
@@ -123,7 +160,7 @@
 
 %\def\AC@TwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 \def\AC@TwikiURL{}
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\AC@TwikiURL{#1}}
+\newcommand{\AtlasCoverTwikiURL}[1]{\def\AC@TwikiURL{\url{#1}}}
 
 % Supporting note list
 \def\AC@Notes{}
@@ -142,12 +179,10 @@
 %**********************************************
 
 \newcommand{\AC@PrintAtlasCover}{
-  % \RequirePackage{graphics}
   \bgroup\global\setbox255\vbox{%
-    %\vspace*{-.25in}%
-    %\noindent\hspace*{-.25in}%
-%ICB    \rlap{\begin{minipage}[t][\AC@AtlasCoverHeight][c]{\AC@AtlasCoverWidth}%
-    \rlap{\begin{minipage}[t][\textheight][c]{\linewidth}%
+    \vspace*{\AC@voffset}%
+    \noindent\hspace*{\AC@hoffset}%
+    \rlap{\begin{minipage}[t][\textheight][c]{\textwidth}%
       	{\AtlasCoverHeader}%
         \vfill%
         {\AtlasCoverBody}%
@@ -159,12 +194,10 @@
 }
 
 \newcommand{\AC@PrintAtlasPage}{
-  % \RequirePackage{graphics}
   \bgroup\global\setbox255\vbox{%
-    %\vspace*{-.25in}%
-    %\noindent\hspace*{-.25in}%
-%ICB    \rlap{\begin{minipage}[t][\AC@AtlasCoverHeight][c]{\AC@AtlasCoverWidth}%
-    \rlap{\begin{minipage}[t][\textheight][c]{\linewidth}%
+    \vspace*{\AC@voffset}%
+    \noindent\hspace*{\AC@hoffset}%
+    \rlap{\begin{minipage}[t][\textheight][c]{\textwidth}%
     {\AtlasCoverPageTwo}%
         \vfill%
      \end{minipage}}%
@@ -172,9 +205,9 @@
   \egroup\shipout\box255
 
   % additional empty page
-  \if@AC@ClearPage 
-  \bgroup\global\setbox255\vbox{}
-  \egroup\shipout\box255
+  \ifAC@clearpage 
+    \bgroup\global\setbox255\vbox{}
+    \egroup\shipout\box255
   \fi
 }
 
@@ -191,13 +224,13 @@
     {
       %\LARGE\sffamily\bfseries\upshape
       \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont
-      \if@AC@Paper%
+      \ifAC@paper%
       	ATLAS Paper Draft
       \else
-      	\if@AC@CONFNote%
+      	\ifAC@CONF%
       		ATLAS Conference Note Draft
       	\else
-      		\if@AC@PUBNote%
+      		\ifAC@PUB%
       			ATLAS PUB Note Draft
       		\else
       			ATLAS Draft
@@ -218,7 +251,7 @@
       %\Huge\sffamily\bfseries\upshape 
       %\fontfamily{phv}\fontseries{b}\fontsize{20}{20}\selectfont 
       \fontfamily{phv}\bfseries\fontsize{20}{20}\selectfont 
-      \@title\par
+      \AtlasTitleText\par
     }
     \vspace{2mm}
     {%
@@ -238,7 +271,7 @@
       \@draftversion\par
     }
     \vspace{3mm}
-    \if@AC@Paper{%
+    \ifAC@paper{%
       	%\LARGE\sffamily\bfseries\upshape 
       	\fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
       	To be submitted to: 
@@ -340,7 +373,7 @@
       Analysis Team\par
     }
 
-		\if@AC@PUBNote%
+		\ifAC@PUB%
 			\relax
 		\else
       \vspace*{1.5mm}
@@ -367,7 +400,7 @@
     \rule{\linewidth}{1.5pt}\par
     \vspace*{2mm}
     % PUB notes have readers
-    \if@AC@PUBNote%
+    \ifAC@PUB%
       {%
         \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
         Readers\par
@@ -429,7 +462,7 @@
   	}
   	\egroup\shipout\box255
   	% additional empty page
-  	\if@AC@ClearPage 
+  	\ifAC@clearpage 
   		\bgroup\global\setbox255\vbox{}
   		\egroup\shipout\box255
   	\fi
@@ -465,7 +498,7 @@
 		\vspace*{20mm}
 		{\centering
 			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-			\@title \par
+			\AtlasTitleText \par
 		}
 		\vspace*{20mm}
 		{\centering
@@ -503,10 +536,11 @@
 %****************************************************
 
 \AtBeginDocument{
-  \if@AC@UseFromAtlasDoc%
+  \ifAC@atlasdoc%
    	\relax%
 	\else
-		\if@AC@Preprint%
+		\ifAC@twocolumn \onecolumn \fi
+		\ifAC@preprint%
 			\AC@PrintPreprintCover%
 	  	\AC@AdvancePageTwoSided%
   	\else%
@@ -514,6 +548,7 @@
     	\AC@PrintAtlasPage%
     	\AC@AdvancePageTwoSided%
     \fi
+		\ifAC@twocolumn \twocolumn \fi
   \fi
 }
 

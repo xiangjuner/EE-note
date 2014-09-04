@@ -8,19 +8,19 @@
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
 \usepackage[biblatex]{latex/atlaspackage}
-\usepackage{mathrsfs}
 % Useful macros
 \usepackage{latex/atlasphysics}
 \usepackage{tikz}
 
 % Files with references in BibTeX format
 \addbibresource{atlas-paper.bib}
+\addbibresource{../../bibtex/bib/atlas-paper.bib}
 \addbibresource{../atlas-latex.bib}
 
 % Paths for figures
-\graphicspath{{../../figures/},{figures/}}
+\graphicspath{{../../logos/},{figures/}}
 
-\newcommand{\Macro}[1]{\textbackslash #1\xspace}
+\newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
 
 %-------------------------------------------------------------------------------
 % Generic document information
@@ -29,7 +29,7 @@
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS paper template},pdfauthor={ATLAS Publications Committee}}
 
-\title{A template for ATLAS papers}
+\AtlasTitle{A template for ATLAS papers}
 
 \author{ATLAS Publication Committee}
 
@@ -265,6 +265,9 @@ If the results lead to exclusion plots, make sure that it is clear which region 
 Please also make sure that statistical interpretations and limit setting are done 
 following the current ATLAS Statistics Tools and Guidelines
 
+% All figures and tables should appear before the summary and conclusion
+% The package placeins provides the macro \FloatBarrier to achieve this
+% \FloatBarrier
 
 %-------------------------------------------------------------------------------
 \section{Summary and conclusion}
@@ -288,7 +291,9 @@ the current world average and recent measurements by other experiments.''
 This might lead a referee (internal or external) to wonder why it is worth publishing this paper!
 
 Note that all figures and tables should be output before the start of the
-``Summary and conclusion''. 
+``Summary and conclusion''.
+This can be achieved using the maco \Macro{FloatBarrier} that is part of the 
+\texttt{placeins} package.
 
 
 %-------------------------------------------------------------------------------
@@ -605,8 +610,10 @@ Momentum should be in lower case \verb+$p$+.
 Transverse momentum is a lower case $p$ with an upper case roman $\text{T}$ subscript: 
 \verb|\pT| produces \pT.
 Energy is an upper case \verb+$E$+, \verb+\ET+ produces \ET.  
-Use \verb|\mathscr| mode for luminosity $\mathscr{L}$ $\mathcal{L}$ or aplanarity
-$\mathscr{A}$ $\mathcal{A}$, including the package \verb|mathrsfs.sty|.
+Use \verb|\mathcal| mode for luminosity $\mathcal{L}$ or aplanarity
+$\mathcal{A}$.
+%Use \verb|\mathscr| mode for luminosity $\mathscr{L}$ $\mathcal{L}$ or aplanarity
+%$\mathscr{A}$ $\mathcal{A}$, including the package \verb|mathrsfs.sty|.
 
 Trigonometric functions should be in roman type. Natural logarithm
 should be ln and log base 10 is log.  When in math mode, use

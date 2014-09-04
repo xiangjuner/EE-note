@@ -12,7 +12,7 @@
 \addbibresource{../atlas-latex.bib}
 
 % Paths for figures
-\graphicspath{{../../figures/},{figures/}}
+\graphicspath{{../../logos/}{figures/}}
 
 % Shorthand for \phantom to use in tables
 \newcommand{\pho}{\phantom{0}}
@@ -29,7 +29,7 @@
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 
-\title{Users guide to the ATLAS \LaTeX\ package}
+\AtlasTitle{Users guide to the ATLAS \LaTeX\ package}
 
 \author{Ian C. Brock}
 \affil{University of Bonn}
@@ -171,13 +171,34 @@ Note that \Package{authblk} assumes that you will also have affiliations for eac
 You can avoid them by using the syntax \verb|\author{[ ]{Author Name}}|.
 Note that a space is needed in the optional argument.
 This means that a space appears between the author name and the comma after it, which is not so nice.
-Alternatively you can make the author list using the syntax:
+Alternatively you can make the author list using the syntax:\\
 \verb|\author{Joe Student \and Jane Student \and John Postdoc}| and avoid the use of the
 \Package{authblk} package by giving the option \Option{noauthblk} to \Package{atlascontribute}.
 
 If the list of contributors is very long, it may spread over more than one page.
 The \Package{tabular} environment does not like this. Add the option \Option{xtab} to use 
 \Package{xtab} instead.
+
+%-------------------------------------------------------------------------------
+\subsection{Special author lists}
+%-------------------------------------------------------------------------------
+
+Sometimes a PUB note has a special author list.
+Hence a link to this list should be added to the front page.
+This can be achieved with the following code snippet that should be used for the author:
+\begin{verbatim}
+\usepackage[marginal,hang]{footmisc}
+\setlength{\footnotemargin}{0.5em}
+\usepackage{authblk}
+\author{The ATLAS Collaboration%
+\thanks{The full author list can be found at:\\
+	\url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}
+	\vspace*{1.0ex}}%
+}
+\end{verbatim}
+
+Note that \Package{atlasdoc} has to be loaded with the option \Option{nomaketitle}
+and \Macro{maketitle} should be added after \verb|\begin{document}|.
 
 
 %-------------------------------------------------------------------------------
@@ -186,12 +207,12 @@ The \Package{tabular} environment does not like this. Add the option \Option{xta
 
 The standard list of metadata commands are given below.
 More are available for the draft cover page when a paper, CONF note or PUB note draft
-is circulated to the collaboration.
+is circulated to the collaboration.\\
 See \texttt{template/atlas-document-metadata.tex} for more details.
 
 \begin{itemize}
-  \item {\verb|\title{<Title>}|} typesets the paper title. If not
-    given, a dummy title will be produced.
+  \item {\verb|\AtlasTitle{<Title>}|} typesets the paper title. If not
+    given, you get either an error or a dummy title will be produced.
 
   \item {\verb|\author{<Author>}|} typesets the paper author. If not
     explicitly given, \emph{The ATLAS Collaborations} will be used by
@@ -262,10 +283,10 @@ order to demonstrate their use.
 This document has been typeset using the \texttt{atlasdoc.cls} class.
 
 The \texttt{atlasdoc} class can use either the standard \LaTeX\ \texttt{article} class
-as its basis or the \KOMAScript \texttt{sctartcl} class.
+as its basis or the \KOMAScript\ \texttt{sctartcl} class.
 All the usual commands and options you usually use
 with \texttt{article}  or \texttt{scrartcl} should work with it. 
-You turn on the use of \KOMAScript with the option \texttt{koma}.
+You turn on the use of \KOMAScript\ with the option \texttt{koma}.
 For instance, this document has
 been produced using this very simple preamble:
 %
@@ -273,7 +294,7 @@ been produced using this very simple preamble:
   \documentclass[koma,UKenglish]{latex/atlasdoc}
   \usepackage{latex/atlaspackage}
   \usepackage{latex/atlasphysics}
-  \graphicspath{{../},{figures/}}
+  \graphicspath{{../../logos/}{figures/}}
 \end{verbatim}
 %
 Note that the document language must be specified, otherwise \texttt{babel} will complain.
@@ -308,6 +329,7 @@ Several more options can be set:
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
 
+
 %-------------------------------------------------------------------------------
 \subsection{Dependencies}
 %-------------------------------------------------------------------------------
@@ -321,7 +343,7 @@ your system is required:
 \item \texttt{lineno}: Add line numbers to documents
 \item \texttt{txfonts}: The standard ATLAS document font
 \end{itemize}
-These should be installed in any modern \LaTeX{} installation.
+These should be installed in any modern \LaTeX\ installation.
 
 \texttt{atlascover} also needs \texttt{hyperref}. 
 Have a look at \texttt{templates/atlas-draft-cover.tex} to see how to include it by hand.
@@ -331,29 +353,29 @@ The style file \texttt{atlaspackage.sty} includes further packages.
 You can steer how many by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
 The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{amsmath}: Extra useful maths environments
-\item \texttt{inputenc}: Allow ä, ö, ø, ß, etc. to be input directly
-\item \texttt{fontenc}: Output font encoding
-\item \texttt{hyperref}: Add hyperlinks and ability to click on cross-references
-\item \Package{savesym}: Needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols
+\item \texttt{amsmath}: Extra useful maths environments;
+\item \texttt{inputenc}: Allow ä, ö, ø, ß, etc. to be input directly;
+\item \texttt{fontenc}: Output font encoding;
+\item \texttt{hyperref}: Add hyperlinks and ability to click on cross-references;
+\item \Package{savesym}: Needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols.
 \end{itemize}
 
 The default set adds in addition:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{booktabs}:
-\item \texttt{footmisc}: Extra footnote options
-\item \texttt{mhchem}: Chemical elements and molecules
-\item \texttt{siunitx}: Units package with extra functionality for tables
-\item \texttt{subfig}: More than one plot in a figure
+\item \texttt{booktabs}: Nicer tables. Use \Macro{toprule}, \Macro{midrule} and \Macro{bottomrule} instead of \Macro{hline};
+\item \texttt{footmisc}: Extra footnote options;
+\item \texttt{mhchem}: Chemical elements and molecules;
+\item \texttt{siunitx}: Units package with extra functionality for tables;
+\item \texttt{subfig}: More than one plot in a figure;
 \item \texttt{tocloft}: Extra options for typesetting table of contents etc.
 \end{itemize}
 
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{csquotes}
-\item \texttt{longtable}
-\item \texttt{rotating}
-\item \texttt{xfrac}
+\item \texttt{csquotes} Automatic quoting, which obeys language options;
+\item \texttt{xtab} Newer version of supertabular, which allows tabular environments to go over mote than one page;
+\item \texttt{rotating} Rotate figures, tables, etc.;
+\item \texttt{xfrac} Nicer fractions.
 \end{itemize}
 
 \texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{latex/other}.
@@ -391,8 +413,19 @@ The following options can be passed on to the \Package{atlascover} package:
 \item[PAPER] The document is an ATLAS paper draft (default);
 \item[CONF] The document is a CONF note;
 \item[PUB] The document is an PUB note;
-\item[preprint] The front page should be in the form of a CERN preprint.
+\item[preprint] The front page should be in the form of a CERN preprint;
+\item[twocolumn] Use this option if your document is formatted in two columns;
+\item[atlasdoc] This option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
+
+Some journal styles, especially JHEP, produce an ATLAS draft cover page that is offset.
+You can use the options \Option{hoffset} and \Option{voffset} to move the text around.
+JHEP needs \verb|hoffset=1in, voffset=1in|.
+revtex (APS journals) looks better with  \verb|hoffset=-0.25in, voffset=-0.25in|.
+
+\Package{atlascover} needs the package \Package{kvoptions} so that it can process
+options where a value for an option should be set.
+
 
 %-------------------------------------------------------------------------------
 \subsection{ATLAS notes}
@@ -474,7 +507,7 @@ Finally, in order to use \Package{biber} rather than \BibTeX,
 I had to download the appropriate binary from SourceForge:
 \url{http://biblatex-biber.sourceforge.net}.
 In order to choose which binary you want you have to go to
-\url{http://sourceforge.net/projects/biblatex-biber/} ad click your way through.
+\url{http://sourceforge.net/projects/biblatex-biber/} and click your way through.
 
 
 %-------------------------------------------------------------------------------
@@ -527,12 +560,14 @@ If you want to install the package in a central area do the following:
 	to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bst}, respectively.
 \end{itemize}
 You can also checkout the two directory trees from SVN:
+{\small
 \begin{verbatim}
 cd ~/texmf/tex/latex
 svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
 cd ~/texmf
 svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
 \end{verbatim}
+}
 The advantage of using SVN is that you can keep the package up to date, by just giving the command
 \verb|svn update|in the two directories.
 If you already have a \File{bibtex} directory, 
@@ -560,16 +595,20 @@ If you are using \BibTeX\ you also have to change\\
 %-------------------------------------------------------------------------------
 \label{sec:journal}
 
-This section collects information on where the \LaTeX\ templates for the different journals can be found:
+This section collects information on where the \LaTeX\ templates for the different journals can be found and how to use them.
+The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
+So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
+
 \begin{description}
 \item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
 	TeX Live distribution. 
 	It can also be found at \url{http://www.elsevier.com/locate/latex}.
 \item[APS] APS journals use REV\TeX. This is also usually installed.
-	It can also be found at \url{http://} 
+	It can also be found at \url{https://journals.aps.org/revtex}.
+	Note that you have to specify the author after \verb|\begin{document}| with this class.
+	Hence you should comment out the definition in your metadata file, e.g.\ \File{mydocument-metadata.tex}.
+\item{JHEP} The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
 \end{description}
-
-As you can see this is \enquote{Work in Progress!} More information will be added once more journal templates are tested.
 
 
 %-------------------------------------------------------------------------------
@@ -640,9 +679,9 @@ There are also several other useful commands for specifying ranges:
 \verb|\numrange| for a range of numbers and \verb|SIrange| for a range of numbers with a unit. 
 Options exist for specifying how they are formatted.
 The options can be set for an individual command or for the whole document.
-For example, in this document I have specified the options:
-\verb|\sisetup{separate-uncertainty, range-units = repeat, detect-family = true}|.
-and
+For example, in this document I have specified the options:\\
+\verb|\sisetup{separate-uncertainty, range-units=repeat, detect-family=true}|
+and\\
 \verb|\sisetup{group-digits=integer, group-minimum-digits=4}|.
 
 In addition several extra units are defined:
@@ -678,6 +717,38 @@ However, if you use the \Option{koma}, which then typesets titles using a sans s
 the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
 which is probably not what one wants.!
 
+%-------------------------------------------------------------------------------
+\subsection{Line numbers}
+%-------------------------------------------------------------------------------
+
+Line numbers can be printed using the \Package{lineno} package, 
+which is included by default.
+
+In order to avoid line numbers going slightly wrong around figures and tables,
+separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
+
+If you use AMS Math \LaTeX\ environments such as \Package{align} line numbering may be interrupted around the environment.
+Enclose the environment in a \Package{linenomath} environment to fix this problem:
+\begin{verbatim}
+\begin{linenomath}
+\begin{equation*}
+	E = m c^{2}
+\end{equation*}
+\end{linenomath}
+\end{verbatim}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Positions of figures and tables}
+%-------------------------------------------------------------------------------
+
+In an ATLAS paper, all figures and tables should be printed before the conclusions.
+You can achieve this by using the macro \Macro{FloatBarrier} from the
+\Package{placeins} package.
+
+In general you should separate the figure and table environments from the text by blank lines.
+This helps the line numbers. The standard options to use for the placement are \Option{[htbp]}.
+
 
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
@@ -702,7 +773,7 @@ The main changes the user has to make are:
 \item Specify the document language as an option: UKenglish or USenglish;
 \item Add \verb|\usepackage{latex/atlaspackage}| at the beginning of the document;
 \item Change \verb|\usepackage{atlasphysics}| to \verb|\usepackage{latex/atlasphysics}|; 
-%\item Use the macro \Macro{AtlasTitle} instead of \Macro{title}.
+\item Use the macro \Macro{AtlasTitle} instead of \Macro{title}.
 \end{itemize}
 
 The language specification means that dates etc.\ are also formatted according to 
@@ -713,14 +784,14 @@ when you use \Macro{enquote}.
 All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of \BibTeX.
 The templates provide information on how to make the change in your own document.
 
-As of \File{atlascover-01-00-00} the same macro names are used in both \Package{atlasdoc} and
+As of \File{atlaslatex-01-00-00} the same macro names are used in both \Package{atlasdoc} and
 \Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
 This means that if you start from an old preamble the following changes should be made:
 \begin{center}
 	\begin{tabular}{ll}
 		Old	& New\\
 		\midrule
-		%\Macro{title} & \Macro{AtlasTitle}\\
+		\Macro{title} & \Macro{AtlasTitle}\\
 		\Macro{draftversion} & \Macro{AtlasVersion}\\
 		\Macro{atlasnote} & \Macro{AtlasNote}\\
 		\Macro{journal} & \Macro{AtlasJournal}\\
@@ -751,7 +822,7 @@ This means that if you start from an old cover page the following changes have t
 	\begin{tabular}{ll}
 		Old                            & New                   \\
 		\midrule
-		\Macro{AtlasCoverPaperTitle}   & \Macro{title}    \\
+		\Macro{AtlasCoverPaperTitle}   & \Macro{AtlasTitle}    \\
 		\Macro{AtlasCoverNumber}       & \Macro{AtlasRefCode}  \\
 		\Macro{AtlasCoverPaperVersion} & \Macro{AtlasVersion}  \\
 		\Macro{AtlasCoverJournal}      & \Macro{AtlasJournal}  \\
@@ -766,7 +837,7 @@ If you start from an old preprint front page the following changes have to be ma
 	\begin{tabular}{ll}
 		Old                              & New                   \\
 		\midrule
-		\Macro{PreprintCoverPaperTitle} & \Macro{title}    \\
+		\Macro{PreprintCoverPaperTitle} & \Macro{AtlasTitle}    \\
 		\Macro{PreprintJournalName}     & \Macro{AtlasJournal}  \\
 		\Macro{PreprintCoverAbstract}   & \Macro{AtlasAbstract}
 	\end{tabular}

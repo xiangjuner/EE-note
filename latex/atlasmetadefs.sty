@@ -2,6 +2,13 @@
 % They are defined here so that this file does not have to be changed 
 % when adapting an ATLAS document for journal submission
 
+\newcommand{\AtlasTitleText}{ATLAS title: use \textbackslash AtlasTitle to set it}
+\newcommand{\AtlasTitle}[1]{%}
+  %\def\@title{#1}%
+  \renewcommand{\AtlasTitleText}{#1}%
+}
+% \def\@author{The ATLAS Collaboration in atlasmetadefs}
+
 % Draft version
 \def\@draftversion{}
 \newcommand*{\AtlasVersion}[1]{\def\@draftversion{#1}}
@@ -21,7 +28,7 @@
 %\newcommand*{\journal}[1]{\def\@journal{#1}}
 
 % Abstract text
-\def\@abstracttext{}
+\def\AtlasAbstractText{}
 \newcommand{\AtlasAbstract}[1]{%
 	\def\AtlasAbstractText{#1}
 }
@@ -69,3 +76,5 @@
     #1 & \url{#2} \\
   }
 }
+
+\endinput

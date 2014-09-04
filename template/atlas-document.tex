@@ -42,7 +42,7 @@
 % \addbibresource{atlas-document.bib}
 
 % Paths for figures
-\graphicspath{{figures/}}
+\graphicspath{{logos/}{figures/}}
 
 % Add you own definitions here (file atlas-document-defs.sty)
 \usepackage{atlas-document-defs}
@@ -63,9 +63,6 @@
 
 %\maketitle
 \tableofcontents
-
-% Test of tikz.sty loading in atlasnote.cls. Use 'usetikz' option in documentclass declaration
-%\input{tikz-test}
 
 
 %-------------------------------------------------------------------------------
@@ -89,6 +86,9 @@ Place your introduction here
 
 Place your results here.
 
+% All figures and tables should appear before the summary and conclusion
+% The package placeins provides the macro \FloatBarrier to achieve this
+% \FloatBarrier
 
 %-------------------------------------------------------------------------------
 \section{Conclusion}

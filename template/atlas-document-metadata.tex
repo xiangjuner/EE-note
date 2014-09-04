@@ -4,10 +4,10 @@
 %-------------------------------------------------------------------------------
 
 % Title
-\title{Bare bones ATLAS document}
+\AtlasTitle{AtlasTitle: Bare bones ATLAS document}
 
-% Author --  Default is ``The ATLAS Collaboration''
-%\author{The ATLAS Collaboration}
+% Author - this does not work with revtex
+\author{The ATLAS Collaboration}
 
 % Authors and list of contributors to the analysis
 % \AtlasAuthorContribute also adds the name to the author list
@@ -26,6 +26,16 @@
 \affil[a]{One Institution}
 \affil[b]{Another Institution}
 
+% If a special author list should be indicated via a link use the following code:
+%\usepackage[marginal,hang]{footmisc}
+%\setlength{\footnotemargin}{0.5em}
+%\usepackage{authblk}
+%\author{The ATLAS Collaboration%
+%\thanks{The full authorlist can be found at:\\
+%	\url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-007/authorlist.pdf}
+%	\vspace*{1.0ex}}%
+%}
+
 % Date: if not given, uses current date
 %\date{\today}
 
@@ -37,12 +47,12 @@
 \AtlasVersion{0.1}
 
 % ATLAS reference code, to help ATLAS members to locate the paper
-\AtlasRefCode{GROUP-2014-XX}
+% \AtlasRefCode{GROUP-2014-XX}
 
 % ATLAS note number. Can be an COM, INT, PUB or CONF note
 % \AtlasNote{ATLAS-CONF-2014-XXX}
 % \AtlasNote{ATLAS-PUB-2014-XXX}
-\AtlasNote{ATL-COM-PHYS-2014-XXX}
+% \AtlasNote{ATL-COM-PHYS-2014-XXX}
 
 % Submission journal
 % \AtlasJournal{Phys.\ Lett.\ B.}

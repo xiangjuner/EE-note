@@ -1,3 +1,10 @@
+2014-09-04 Ian Brock <Ian.Brock@cern.ch>
+	* Add some examples of paper drafts with journal formatting.
+	* More style files for journal names and cross references.
+	* Use kvoptions for setting options, as then offsets can be given.
+	* Move logos from figures to logos directory.
+	* Include JHEP BibTeX style file in bibtex/bst.
+	* Updates to documentation, especially BibTeX and LaTeX guide.
 2014-08-29 Ian Brock <Ian.Brock@cern.ch>
 	* Added a new style file atlascontribute.sty. It can be used to create both the
 	  list of authors and the contributions they made to the analysis.

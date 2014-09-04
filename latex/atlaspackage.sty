@@ -7,9 +7,9 @@
 % $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
 % $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{00-99-00}
+\def\AP@PackageVersion{01-00-00}
 
-\ProvidesPackage{latex/atlaspackage}[2014/09/01 v.00-99-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2014/09/04 v.01-00-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS LaTeX packages v.\AP@PackageVersion}
@@ -22,6 +22,10 @@
 \DeclareOption{full}{\let\if@Minimum\iftrue \let\if@Default\iftrue \let\if@Maximum\iftrue}
 \let\if@biblatex\iffalse
 \DeclareOption{biblatex}{\let\if@biblatex\iftrue}
+\let\if@subfigure\iffalse
+\DeclareOption{subfigure}{\let\if@subfigure\iftrue}
+\let\if@hyperref\iftrue
+\DeclareOption{nohyperref}{\let\if@hyperref\iffalse}
 
 % Execute options
 \ProcessOptions \relax
@@ -56,6 +60,8 @@
 \RequirePackage{lineno}
 % If you have an old lineno or do not have it, you can get it from the latex/other directory
 % \RequirePackage{latex/other/lineno}
+% Add command that can force all figures and tables (floats) to appear before a certain point
+\RequirePackage{placeins}
 
 \if@Default
 	% Extra options for footnotes
@@ -65,7 +71,11 @@
   % Typset anything with units using this package - also has very useful table formatting 
 	\RequirePackage{siunitx}
 	% Several plots in a single figure
-	\RequirePackage{subfig}
+	\if@subfigure%
+	  \RequirePackage{subfigure}
+	\else
+	  \RequirePackage{subfig}
+	\fi
   % subfigure option needed if subfig(ure) is also used
   \RequirePackage[subfigure]{tocloft}
   % Remove dots in table of contents
@@ -97,9 +107,13 @@
 \fi
 
 % hyperref is usually included as late as possible
-\PassOptionsToPackage{hyphens}{url}
-\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
-\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+\if@hyperref
+  \PassOptionsToPackage{hyphens}{url}
+	\usepackage{hyperref}
+  \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
+  \hypersetup{colorlinks,breaklinks}
+  \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+\fi
 
 % Use biblatex and biber for the bibliography
 % Style is numeric and comp option changes [1,2,3] into [1-3]
