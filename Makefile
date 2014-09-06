@@ -21,7 +21,7 @@ BASENAME = mydocument
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
 
-.PHONY: new cover clean help
+.PHONY: new draftcover preprintcover auxmat clean help
 
 new:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex
@@ -29,9 +29,15 @@ new:
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
-cover:
+draftcover:
 	cp template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
 	
+preprintcover:
+	cp template/atlas-draft-cover.tex $(BASENAME)-preprint-cover.tex
+	
+auxmat:
+	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex >$(BASENAME)-auxmat.tex
+
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
 
@@ -62,8 +68,16 @@ help:
 	@echo "make"
 	@echo ""
 	@echo "If you need a standalone draft cover give the commands:"
-	@echo "make cover [BASENAME=mydocument]"
+	@echo "make draftcover [BASENAME=mydocument]"
 	@echo "pdflatex mydocument-draft-cover"
+	@echo ""
+	@echo "If you need a standalone preprint cover give the commands:"
+	@echo "make preprintcover [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-preprint-cover"
+	@echo ""
+	@echo "If you need a document for auxiliary material give the commands:"
+	@echo "make auxmat [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-auxmat"
 
 %.ps:	%.dvi
 	$(DVIPS) $< -o $@
@@ -75,4 +89,6 @@ clean:
 		*.synctex.gz *~ ~* spellTmp 
 	
 cleanall: clean
-	-rm $(BASENAME).pdf
+	-rm $(BASENAME).pdf 
+	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
+	-rm $(BASENAME)-auxmat.pdf

@@ -1,4 +1,18 @@
+2014-09-06 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-01-00
+	* Add template for auxiliary material (atlas-auxmat).
+	* Add switch so that TeX Live 2009 also works.
+	* Do not include atlascontribute in metadata file.
+	* Add preprintcover to Makefile.
+	* Use fancyhdr to make header in draft mode (and also for auxiliary material).
+	* Use scrdate and scrtime for current date and time.
+	* Replace color with xcolor.
+	* Switch to kvoptions in atlaspackage.
+	* Add option to atlaspackage to turn off including siunitx.
+	* Added atlasjournal and atlasxref to atlasphysics.
+	* Further improvements to documentation, especially to atlas-latex.
 2014-09-04 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-00-00
 	* Add some examples of paper drafts with journal formatting.
 	* More style files for journal names and cross references.
 	* Use kvoptions for setting options, as then offsets can be given.
@@ -12,7 +26,7 @@
 	  included in atlas-document-metadata.tex instead.
 2014-08-28 Ian Brock <Ian.Brock@cern.ch>
 	* Add lineno as required package, so that atlasdoc does not need atlaspackage.
-	* Rounding note added to package.
+	* Rounding note added to documentation.
 2014-08-27 Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 00-97-00.
 	* atlas-physics document list of definitions created automatically.

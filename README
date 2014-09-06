@@ -4,9 +4,6 @@ See ChangeLog or SVN log for history of changes.
 
 Responsible: Ian Brock (Ian.Brock@cern.ch)
 ------------------------------------------------------------------------------
-$Id$
-$HeadURL$
-------------------------------------------------------------------------------
 
 The following template main files exist:
 	atlas-document.tex		Generic ATLAS document

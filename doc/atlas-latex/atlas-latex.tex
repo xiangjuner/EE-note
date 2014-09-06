@@ -261,6 +261,9 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
   \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
   	preprint number on the front page.
 
+  \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
+  	on the front page.
+
   \item {\verb|\skipbeforetitle{<length>}|} sets the distance between
     the title page header and the note title. The default value should
     be fine for most notes, but in case you have a long list of
@@ -306,7 +309,7 @@ The style file \texttt{latex/atlasphysics.sty} defines a lot of useful
 macros for particles and more. See the separate document
 \texttt{atlas-physics.pdf}~\cite{atlas-physics} for details.
 
-If you want to use \Macro{biblatex} you need to add the option \texttt{biblatex} when you
+If you want to use \Macro{biblatex} you need to add the option \Option{biblatex} when you
 include \texttt{atlaspackage}.
 Have a look at the \texttt{latex/atlaspackage.sty} to see how \texttt{biblatex} is included.
 In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
@@ -331,43 +334,51 @@ as they only influence the cover pages.
 
 
 %-------------------------------------------------------------------------------
-\subsection{Dependencies}
+\subsection{Dependencies and \Package{atlaspackage}}
+\label{sec:atlaspackage}
 %-------------------------------------------------------------------------------
 
 The \texttt{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{color}: Add colours to \LaTeX
-\item \texttt{babel}: Become language aware
-\item \texttt{graphicx}: Include graphics in the document
-\item \texttt{lineno}: Add line numbers to documents
-\item \texttt{txfonts}: The standard ATLAS document font
+\item \texttt{xcolor}: add colours to \LaTeX;
+\item \texttt{babel}: become language aware;
+\item \texttt{graphicx}: include graphics in the document;
+\item \texttt{lineno}: add line numbers to documents;
+\item \texttt{txfonts}: the standard ATLAS document font;
+\item \Package{fancyhdr}: defines header for draft mode;
+\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
+Note that under Ubuntu, \Package{lineno} can be found in the
+\Package{texlive-humanities} package!
+If you cannot find it, it is also included in \File{latex/other}.
+Copy it to you main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
+it centrally available.
 
 \texttt{atlascover} also needs \texttt{hyperref}. 
 Have a look at \texttt{templates/atlas-draft-cover.tex} to see how to include it by hand.
 You can also simply use \texttt{atlaspackage.sty}
 
 The style file \texttt{atlaspackage.sty} includes further packages.
-You can steer how many by using the option \texttt{minimal}, \texttt{default} or \texttt{full}.
+You can steer how many by using the option \Option{minimal}, \Option{default} or \Option{full}.
 The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{amsmath}: Extra useful maths environments;
-\item \texttt{inputenc}: Allow ä, ö, ø, ß, etc. to be input directly;
-\item \texttt{fontenc}: Output font encoding;
-\item \texttt{hyperref}: Add hyperlinks and ability to click on cross-references;
-\item \Package{savesym}: Needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols.
+\item \texttt{amsmath}: extra useful maths environments;
+\item \texttt{inputenc}: allow ä, ö, ø, ß, etc. to be input directly;
+\item \texttt{fontenc}: output font encoding;
+\item \texttt{hyperref}: add hyperlinks and ability to click on cross-references;
+\item \Package{savesym}: needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols.
 \end{itemize}
 
 The default set adds in addition:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{booktabs}: Nicer tables. Use \Macro{toprule}, \Macro{midrule} and \Macro{bottomrule} instead of \Macro{hline};
-\item \texttt{footmisc}: Extra footnote options;
-\item \texttt{mhchem}: Chemical elements and molecules;
-\item \texttt{siunitx}: Units package with extra functionality for tables;
-\item \texttt{subfig}: More than one plot in a figure;
-\item \texttt{tocloft}: Extra options for typesetting table of contents etc.
+\item \texttt{booktabs}: nicer tables. Use \Macro{toprule}, \Macro{midrule} and \Macro{bottomrule} instead of \Macro{hline};
+\item \texttt{footmisc}: extra footnote options;
+\item \texttt{mhchem}: chemical elements and molecules;
+\item \texttt{siunitx}: units package with extra functionality for tables;
+\item \texttt{subfig}: more than one plot in a figure;
+\item \texttt{tocloft}: extra options for typesetting table of contents etc.
 \end{itemize}
 
 Finally the full set includes further packages that may be useful:
@@ -378,12 +389,23 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{xfrac} Nicer fractions.
 \end{itemize}
 
-\texttt{lineno.sty} and \texttt{authblk.sty} are also provided in \texttt{latex/other}.
+Further options are:
+\begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item[\Option{biblatex=true|false}](false) Turn on/off use of \Package{biblatex} and \Package{biber}.
+\item[\Option{hyperref=true|false}](true) Turn on/off use of \Package{hyperref}.
+\item[\Option{siunitx=true|false}](true) Do not include the \Package{siunitx} package.
+\item[\Option{subfigure=true|false}](false) Use \Package{subfigure} instead of \Package{subfig}.
+\item[\Option{texlive=2009}] Set if you use and older version of \TeX\ Live like 2009.
+	The only value that has an effect is 2009, 
+	which this uses old (Version 1) option names for \Package{siunitx}.
+\end{description}
+
+\File{lineno.sty} and \File{authblk.sty} are also provided in \File{latex/other}.
 They should be part of a standard \LaTeX\ installation though.
 
-There used to be a problem using the \texttt{tikz} package with \texttt{atlasnote}.
-With \texttt{atlasdoc} this problem seems to have gone away.
-\texttt{tikz} is not included in \texttt{atlaspackage}.
+There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
+With \Package{atlasdoc} this problem seems to have gone away.
+\Package{tikz} is not included in \Package{atlaspackage}.
 If you want to use it, just add the usual \verb|\usepackage{tikz| to your preamble.
 
 
@@ -393,7 +415,9 @@ If you want to use it, just add the usual \verb|\usepackage{tikz| to your preamb
 %-------------------------------------------------------------------------------
 
 The package also provides cover pages for the circulations of ATLAS drafts and 
-for the CERN preprint version of an ATLAS paper. The style can be found in \texttt{latex/atlascover.sty}.
+for the front page for the CERN preprint version of an ATLAS paper.
+A further cover page is provided for a document containing auxiliary material associated with a preprint/paper.
+The style can be found in \texttt{latex/atlascover.sty}.
 
 If you wish to use the \texttt{atlascover} package with the 
 \texttt{atlasdoc} class, you should usually use the \texttt{coverpage} option of the class:
@@ -410,12 +434,13 @@ and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 
 The following options can be passed on to the \Package{atlascover} package:
 \begin{description}
-\item[PAPER] The document is an ATLAS paper draft (default);
-\item[CONF] The document is a CONF note;
-\item[PUB] The document is an PUB note;
-\item[preprint] The front page should be in the form of a CERN preprint;
-\item[twocolumn] Use this option if your document is formatted in two columns;
-\item[atlasdoc] This option is set by \Package{atlasdoc} and is not usually needed by the user.
+%\item[\Option{PAPER}] the document is an ATLAS paper draft (default);
+\item[\Option{CONF}] the document is a CONF note;
+\item[\Option{PUB}] the document is an PUB note;
+\item[\Option{preprint}] the front page should be in the form of a CERN preprint;
+\item[\Option{auxmat}] the front page for a document containing auxiliary material from a paper;
+\item[\Option{twocolumn}] use this option if your document is formatted in two columns;
+\item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
 
 Some journal styles, especially JHEP, produce an ATLAS draft cover page that is offset.
@@ -433,8 +458,26 @@ options where a value for an option should be set.
 %-------------------------------------------------------------------------------
 
 If you include the macro \Macro{AtlasNote} in your preamble,
-the note number will be printed under ``ATLASNOTE'' at the top of your document.
+the note number will be printed under ``ATLAS NOTE'' at the top of your document.
 This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Auxiliary material}
+\label{sec:auxmat}
+%-------------------------------------------------------------------------------
+
+Some papers have many pages of extra tables and plots that are mainly of use to theorists
+who need extra information.
+Such material can be collected in a separate document.
+The front page for this document is formatted using the \Option{auxmat} option.
+If you use this option you should specify the arXiv preprint identifier
+using the macro \Macro{arXivId} and the HepData record using the macro
+\Macro{HepDataRecord}.
+This information is then included on the cover page in the form of clickable links.
+
+Use of this option also adds the arXiv preprint identifier to the top of every page
+of the document.
 
 
 %-------------------------------------------------------------------------------
@@ -455,30 +498,49 @@ which can be included or not using options.
 The \texttt{atlasdoc} class works both with \LaTeX{} and PDF\LaTeX{}.
 I recommend to use PDF\LaTeX\ and this is now the default.
 
-I would expect everything to work with TeXLive 2012 or later.
+I would expect everything to work with \TeX\ Live 2012 or later.
 Before that some option names for \texttt{siunitx} were different, and \texttt{biblatex} and \texttt{biber}
 were not really stable.
 
-The package should work under Linux, MacOSX and Windows.
+If you have \TeX\ Live 2009, include the package \Package{atlaspackage} with the option
+\Option{texlive=2009}. This will then include \Package{siunitx} with the correct options for
+Version 1.
+
+The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
 The following sections give some details on the installations that I use for testing things.
 
 %-------------------------------------------------------------------------------
 \subsection{Ubuntu 14.04}
 
 I test things using Xubuntu 14.04.
-I start with the standard TeX Live installation (package \texttt{texlive}).
+I start with the standard \TeX\ Live installation (package \texttt{texlive}).
 The following extra packages had to be installed:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{texlive-latex-extra} (footmisc),
-\item \texttt{texlive-humanities} (lineno),
-\item \texttt{texlive-science} (siunitx),
-\item \texttt{texlive-bibtex-extra} and \texttt{biber} (biblatex and biber).
+\item \Package{texlive-latex-extra} (footmisc);
+\item \Package{texlive-humanities} (lineno);
+\item \Package{texlive-science} (siunitx)
+\item \Package{texlive-bibtex-extra} and \Package{biber} (biblatex and biber).
 \end{itemize}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Ubuntu 12.04}
+
+I also did some tests with Xubuntu 12.04.
+By default this has \TeX\ Live 2009 installed.
+You need to include \Package{atlaspackage} with the option \Option{texlive=2009}.
+The following extra packages had to be installed:
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \Package{texlive-latex-extra} (footmisc);
+\item \Package{texlive-science} (siunitx)
+\item \Package{biblatex} (biblatex and biber).
+\end{itemize}
+
 
 %-------------------------------------------------------------------------------
 \subsection{lxplus} 
 
-It works out of the box, if you modify your \texttt{PATH} to use a recent version of TeX Live.
+It works out of the box, if you modify your \texttt{PATH} to use a recent version of \TeX\ Live.
 Set your \texttt{PATH} as follows:
 \begin{verbatim}
 		export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
@@ -493,12 +555,14 @@ release of Scientific Linux.
 I started with a fairly basic setup that included tools for development.
 I then installed the \enquote{Technical Writing} collection.
 In addition I needed 
-\Package{texlive-booktabs} (booktabs),
-\Package{texlive-preprint} (authblk),
-\Package{texlive-tocloft} (tocloft),
-\Package{texlive-xtab} (xtab),
-\Package{texlive-placeins} (placeins).
-However, I still got complaints about \File{lineno.sty} and \File{siunitx.sty}
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \Package{texlive-booktabs} (booktabs);
+\item \Package{texlive-preprint} (authblk);
+\item \Package{texlive-tocloft} (tocloft);
+\item \Package{texlive-xtab} (xtab);
+\item \Package{texlive-placeins} (placeins).
+\end{itemize}
+However, I still got complaints about \File{lineno.sty}, \File{siunitx.sty},
 \File{biblatex.sty} and \File{logreq.sty}.
 I was not able to find these in the standard RPM repositories.
 You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{latex/other}),
@@ -602,7 +666,7 @@ So far the \Package{atlaslatex} package has been tested with the classes for Els
 
 \begin{description}
 \item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-	TeX Live distribution. 
+	\TeX\ Live distribution. 
 	It can also be found at \url{http://www.elsevier.com/locate/latex}.
 \item[APS] APS journals use REV\TeX. This is also usually installed.
 	It can also be found at \url{https://journals.aps.org/revtex}.
