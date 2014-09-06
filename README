@@ -4,19 +4,21 @@ See ChangeLog or SVN log for history of changes.
 
 Responsible: Ian Brock (Ian.Brock@cern.ch)
 ------------------------------------------------------------------------------
-$Id: README 301568 2014-08-15 15:05:46Z brock $
-$HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/README $
+$Id$
+$HeadURL$
 ------------------------------------------------------------------------------
 
 The following template main files exist:
 	atlas-document.tex		Generic ATLAS document
 	atlas-draft-cover.tex	Make a cover for an ATLAS draft
 	atlas-preprint-cover.tex	Make a cover for an ATLAS CERN preprint
+	atlas-auxmat.tex		A front page for auxiliary material
 See template/README for how to set up a new paper or note draft.
 
 The ATLAS document class (atlasdoc.cls) and style files can be found in 
 the latex directory. The following style files exist:
 	atlascover.sty			Make a cover (CONF note, CERN preprint, ATLAS draft)
+	atlascontribute.sty		List of contributors (and authors) for a document
 	atlaspackage.sty		Standard packages used in ATLAS documents
 	atlasphysics.sty		Useful definitions. This file simply inputs others.
 							Options can be used to specify which ones should be included.
