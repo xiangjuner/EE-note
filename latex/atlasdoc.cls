@@ -1,16 +1,13 @@
 %-------------------------------------------------------------------------------
-% Template class for ATLAS notes
+% Template class for ATLAS documents
 %
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-% $Id$
-% $HeadURL$
-%-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-00-00}
+\def\ATPackageVersion{01-01-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/09/04 v.01-00-00 ATLAS document]
+\ProvidesClass{latex/atlasdoc}[2014/09/06 v.01-01-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -20,7 +17,11 @@
 % Preprint cover page off by default
 % If preprint cover is made, regular title should be turned off
 \let\if@PreprintCover\iffalse
-\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@MakeTitle\iffalse}
+\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@AuxmatCover\iffalse \let\if@MakeTitle\iffalse}
+% Auxiliary material cover page off by default
+% If auxiliary material cover is made, regular title should be turned off
+\let\if@AuxmatCover\iffalse
+\DeclareOption{auxmat}{\let\if@PreprintCover\iffalse \let\if@AuxmatCover\iftrue \let\if@MakeTitle\iffalse}
 % Title page on by default
 \let\if@MakeTitle\iftrue
 \DeclareOption{nomaketitle}{\let\if@MakeTitle\iffalse}
@@ -85,19 +86,8 @@
 %  \def\@atlastitle{#1}
 %}
 
-% Draft version 
-\def\@draftversion{}
-\newcommand{\draftversion}[1]%
-{
-  \def\@draftversion{#1}
-}
-\newcommand{\AtlasVersion}[1]%
-{
-  \def\@draftversion{#1}
-}
-
 % Draft heading code
-\newcommand{\draftheading}%
+\newcommand{\olddraftheading}%
 {
   % 
   % compute the time in hours and minutes
@@ -124,20 +114,37 @@
   \pagestyle{myheadings}
 }
 
+\newcommand{\draftheading}{%
+	\RequirePackage{fancyhdr}
+	\RequirePackage{scrdate,scrtime}
+	\lhead[]{\ISOToday{} \thistime}
+	% \lhead[]{\today{} \thistime}
+	\chead[]{\protect\small\fbox{DRAFT}}
+	\rhead{\thepage}
+	\cfoot{}
+	\setlength\headheight{16pt}
+  \pagestyle{fancy}
+}
+
+% Draft version 
+\def\@draftversion{}
+\newcommand*{\draftversion}[1]{\def\@draftversion{#1}}
+\newcommand*{\AtlasVersion}[1]{\def\@draftversion{#1}}
+
 % ATLAS reference code - empty by default
 \def\@refcode{}
-\newcommand{\AtlasRefCode}[1]{\def\@refcode{#1}}
+\newcommand*{\AtlasRefCode}[1]{\def\@refcode{#1}}
 
 % ATLAS note number
 \def\@atlasnote{}
-\newcommand{\AtlasNote}[1]{\def\@atlasnote{#1}}
+\newcommand*{\AtlasNote}[1]{\def\@atlasnote{#1}}
 
 % Submission details
 \def\@subprepend{To be submitted to }
-\newcommand{\subprepend}[1]{\def\@subprepend{#1}}
+\newcommand*{\subprepend}[1]{\def\@subprepend{#1}}
 \def\@journal{}
-\newcommand{\AtlasJournal}[1]{\def\@journal{#1}}
-\newcommand{\journal}[1]{\def\@journal{#1}}
+\newcommand*{\AtlasJournal}[1]{\def\@journal{#1}}
+\newcommand*{\journal}[1]{\def\@journal{#1}}
 
 % Abstract text
 \def\AtlasAbstractText{}
@@ -214,7 +221,11 @@
   \fi
 \fi
 % CERN preprint cover page
-\if@PreprintCover %
+\if@PreprintCover%
+	\RequirePackage[atlasdoc]{latex/atlascover}
+\fi
+% Auxiliary material cover page
+\if@AuxmatCover%
 	\RequirePackage[atlasdoc]{latex/atlascover}
 \fi
 
@@ -348,13 +359,18 @@
 
 \AtBeginDocument{
   % If selected, generate ATLAS Cover Page
-	\if@PreprintCover%
-		\AC@PrintPreprintCover%
-	\fi
   \if@DraftCover%
   	\AC@PrintAtlasCover%
   	\AC@PrintAtlasPage%
   \fi
+  % If selected, generate ATLAS preprint front page
+	\if@PreprintCover%
+		\AC@PrintPreprintCover%
+	\fi
+  % If selected, generate ATLAS auxiliary material front page
+	\if@AuxmatCover%
+		\AC@PrintAuxmatCover%
+	\fi
   % Automatically generate title page
   \if@MakeTitle
   	\maketitle

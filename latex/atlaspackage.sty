@@ -4,31 +4,49 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-% $Id: atlasnote.cls 301586 2014-08-18 17:36:36Z brock $
-% $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/atlasnote.cls $
-%-------------------------------------------------------------------------------
-\def\AP@PackageVersion{01-00-00}
+\def\AP@PackageVersion{01-01-00}
 
-\ProvidesPackage{latex/atlaspackage}[2014/09/04 v.01-00-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2014/09/06 v.01-01-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS LaTeX packages v.\AP@PackageVersion}
 
-\let\if@Minimum\iffalse
-\let\if@Default\iftrue
-\let\if@Maximum\iffalse
-\DeclareOption{minimal}{\let\if@Minimum\iftrue \let\if@Default\iffalse}
-\DeclareOption{default}{\let\if@Minimum\iftrue \let\if@Default\iftrue}
-\DeclareOption{full}{\let\if@Minimum\iftrue \let\if@Default\iftrue \let\if@Maximum\iftrue}
-\let\if@biblatex\iffalse
-\DeclareOption{biblatex}{\let\if@biblatex\iftrue}
-\let\if@subfigure\iffalse
-\DeclareOption{subfigure}{\let\if@subfigure\iftrue}
-\let\if@hyperref\iftrue
-\DeclareOption{nohyperref}{\let\if@hyperref\iffalse}
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+	family=AP,
+	prefix=AP@
+}
+\DeclareBoolOption[false]{minimal}
+\DeclareBoolOption[true]{default}
+\DeclareBoolOption[false]{full}
+\DeclareBoolOption[false]{biblatex}
+\DeclareBoolOption[true]{siunitx}
+\DeclareBoolOption[false]{subfigure}
+\DeclareBoolOption[true]{hyperref}
+\DeclareStringOption[2013]{texlive}
+\ProcessKeyvalOptions*
 
-% Execute options
-\ProcessOptions \relax
+\typeout{Value of texlive is \AP@texlive}
+
+%\let\ifAP@minimum\iffalse
+%\let\ifAP@default\iftrue
+%\let\ifAP@full\iffalse
+%\DeclareOption{minimal}{\let\ifAP@minimum\iftrue \let\ifAP@default\iffalse}
+%\DeclareOption{default}{\let\ifAP@minimum\iftrue \let\ifAP@default\iftrue}
+%\DeclareOption{full}{\let\ifAP@minimum\iftrue \let\ifAP@default\iftrue \let\ifAP@full\iftrue}
+%\let\ifAP@biblatex\iffalse
+%\DeclareOption{biblatex}{\let\ifAP@biblatex\iftrue}
+%\let\ifAP@subfigure\iffalse
+%\DeclareOption{subfigure}{\let\ifAP@subfigure\iftrue}
+%\let\if@tlnine\iffalse
+%\DeclareOption{tl2009}{\let\if@tlnine\iftrue}
+%\let\ifAP@hyperref\iftrue
+%\DeclareOption{nohyperref}{\let\ifAP@hyperref\iffalse}
+%
+%% Execute options
+%\ProcessOptions \relax
+
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
 \RequirePackage{graphicx}
@@ -63,15 +81,13 @@
 % Add command that can force all figures and tables (floats) to appear before a certain point
 \RequirePackage{placeins}
 
-\if@Default
+\ifAP@default
 	% Extra options for footnotes
 	\RequirePackage[bottom]{footmisc}
 	% Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
-  % Typset anything with units using this package - also has very useful table formatting 
-	\RequirePackage{siunitx}
 	% Several plots in a single figure
-	\if@subfigure%
+	\ifAP@subfigure%
 	  \RequirePackage{subfigure}
 	\else
 	  \RequirePackage{subfig}
@@ -80,20 +96,36 @@
   \RequirePackage[subfigure]{tocloft}
   % Remove dots in table of contents
   \renewcommand{\cftdot}{}
+  % Typset anything with units using this package - also has very useful table formatting 
 	% Declare a few options and standard units for siunitx that are otherwise missing
-	\sisetup{separate-uncertainty, range-units = repeat,  detect-display-math=true}
-%		detect-family = true, detect-display-math=true}
-	\sisetup{group-digits=integer, group-minimum-digits=4}
-	\DeclareSIUnit\micron{\micro\metre}
-	\DeclareSIUnit\mrad{\milli\radian}
-	\DeclareSIUnit\nb{\nano\barn}
-	\DeclareSIUnit\pb{\pico\barn}
-	\DeclareSIUnit\fb{\femto\barn}
-	\DeclareSIUnit\clight{\ensuremath{c}}
+	\ifAP@siunitx
+  	\ifx\AP@texlive\2009
+			\RequirePackage[noload=addn]{siunitx}
+			\sisetup{seperr, repeatunits=false, alsoload=hep}
+    	\sisetup{obeyall}
+%	  	\newunit\micron{\micro\metre}
+%	  	\newunit\mrad{\milli\radian}
+%	  	\newunit\nb{\nano\barn}
+%	  	\newunit\pb{\pico\barn}
+%	  	\newunit\fb{\femto\barn}
+%	  	\newunit\clight{\ensuremath{c}}
+		\else
+			\RequirePackage{siunitx}
+  		\sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
+%	  		detect-family = true, detect-display-math=true}
+	  	\sisetup{group-digits=integer, group-minimum-digits=4}
+	  	\DeclareSIUnit\micron{\micro\metre}
+	  	\DeclareSIUnit\mrad{\milli\radian}
+	  	\DeclareSIUnit\nb{\nano\barn}
+	  	\DeclareSIUnit\pb{\pico\barn}
+	  	\DeclareSIUnit\fb{\femto\barn}
+	  	\DeclareSIUnit\clight{\ensuremath{c}}
+		\fi
+	\fi
 \fi
 
 
-\if@Maximum
+\ifAP@full
 	% Tables that go over more than one page
 	\RequirePackage{xtab}
 	% \RequirePackage{longtable}
@@ -107,7 +139,7 @@
 \fi
 
 % hyperref is usually included as late as possible
-\if@hyperref
+\ifAP@hyperref
   \PassOptionsToPackage{hyphens}{url}
 	\usepackage{hyperref}
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
@@ -121,7 +153,7 @@
 % block=ragged    turns off block form, which avoids large spaces
 % firstinits=true means initial are used for first names
 % Some more tweaks should be made to the appearance, but they are not yet implemented
-\if@biblatex
+\ifAP@biblatex
   \RequirePackage[backend=biber,
 	  style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \fi

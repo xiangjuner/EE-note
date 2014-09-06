@@ -4,12 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-% $Id: atlascover.sty 301586 2014-08-18 17:36:36Z brock $
-% $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlascover/trunk/atlascover.sty $
-%-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-00-00}
+\def\ATPackageVersion{01-01-00}
 
-\ProvidesPackage{latex/atlascover}[2014/09/04 v.01-00-00 ATLAS Cover Pages]
+\ProvidesPackage{latex/atlascover}[2014/09/06 v.01-01-00 ATLAS Cover Pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{********************************}
@@ -22,15 +19,16 @@
 	family=AC,
 	prefix=AC@
 }
-\DeclareStringOption[0pt]{hoffset}
-\DeclareStringOption[0pt]{voffset}
 \DeclareBoolOption[true]{paper}
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{preprint}
+\DeclareBoolOption[false]{auxmat}
 \DeclareBoolOption[false]{clearpage}
 \DeclareBoolOption[false]{twocolumn}
 \DeclareBoolOption[false]{atlasdoc}
+\DeclareStringOption[0pt]{hoffset}
+\DeclareStringOption[0pt]{voffset}
 \ProcessKeyvalOptions*
 
 %\typeout{Value of paper option is \AC@paper}
@@ -98,23 +96,32 @@
   % \def\@author{The ATLAS Collabration}
   % Draft version 
   \def\@draftversion{}
-  \providecommand{\AtlasVersion}[1]{\def\@draftversion{#1}}
-  \def\AtlasAbstractText{}
-  \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
+  \providecommand*{\AtlasVersion}[1]{\def\@draftversion{#1}}
 	% ATLAS reference code - empty by default
 	\def\@refcode{}
-	\providecommand{\AtlasRefCode}[1]{\def\@refcode{#1}}
+	\providecommand*{\AtlasRefCode}[1]{\def\@refcode{#1}}
+  % ATLAS note number
+  \def\@atlasnote{}
+  \providecommand*{\AtlasNote}[1]{\def\@atlasnote{#1}}
 	% Journal
   \def\@journal{}
-  \providecommand{\AtlasJournal}[1]{\def\@journal{#1}}
+  \providecommand*{\AtlasJournal}[1]{\def\@journal{#1}}
+  % Abstract
+  \def\AtlasAbstractText{}
+  \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \fi
 
-% ATLAS note number
-\def\@atlasnote{}
-\providecommand{\AtlasNote}[1]{\def\@atlasnote{#1}}
 
 \def\AC@PreprintNumber{}
-\newcommand{\PreprintIdNumber}[1]{\def\AC@PreprintNumber{#1}}
+\newcommand*{\PreprintIdNumber}[1]{\def\AC@PreprintNumber{#1}}
+
+\def\AtlasArXivId{}
+\def\AtlasArXivURL{}
+\newcommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
+\def\AtlasArXivCat{[hep-ex]}
+
+\def\AtlasHepDataRecord{}
+\newcommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
 
 % Single corresponding editor
 % \def\AC@EditorName{Corresponding editor name}
@@ -339,7 +346,7 @@
   }
   {%
     %\LARGE\sffamily\mdseries\upshape%        
-    \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
+    \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
     \AtlasAbstractText
   }
 }
@@ -389,7 +396,6 @@
       \AC@AnalysisTeam \par %Cover
     }
     \vspace*{2mm}
-%    \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
     {\fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
      (*): Contact Editors
     }
@@ -440,19 +446,15 @@
   }
 }
 
-% Print the cover
+%-------------------------------------------------------------------------------
+% Front pages for CERN preprint or auxiliary material
+%-------------------------------------------------------------------------------
+
+% Print the preprintcover
 \newcommand{\AC@PrintPreprintCover}{
 	\bgroup\global\setbox255\vbox{%
-		\@ifpackageloaded{jheppub}{%
-			\vspace*{1in}%
-			\noindent\hspace*{.7in}%
-		}{%
-    	%\vspace*{-.25in}%
-    	%\noindent\hspace*{-.25in}%
-		}
-   	\rlap{ %
-   		%ICB \begin{minipage}[t][\AC@PreprintCoverHeight][c]{\AC@PreprintCoverWidth}%
-   		\begin{minipage}[t][\textheight][c]{\linewidth}%
+   	\rlap{%
+   		\begin{minipage}[t][\textheight][c]{\textwidth}%
    			{\PreprintCoverHeader}%
       	\vfill%
       	{\PreprintCoverBody}%
@@ -468,9 +470,28 @@
   	\fi
 }
 
+% Print the auxilary material cover
+\newcommand{\AC@PrintAuxmatCover}{
+	\bgroup\global\setbox255\vbox{%
+   	\rlap{ %
+   		\begin{minipage}[t][\textheight][c]{\textwidth}%
+   			{\AuxmatCoverHeader}%
+      	\vfill%
+      	{\AuxmatCoverBody}%
+      	\vfill%
+      	{\PreprintCoverFooter}%
+      \end{minipage}}%
+  	}
+  	\egroup\shipout\box255
+  	% additional empty page
+  	\ifAC@clearpage 
+  		\bgroup\global\setbox255\vbox{}
+  		\egroup\shipout\box255
+  	\fi
+}
+
 % Preprint cover header
 \newcommand{\PreprintCoverHeader}{%
-	%\RequirePackage{graphicx}
 	\parbox[t]{\linewidth}{%
 		{\centering
     	\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
@@ -492,10 +513,44 @@
 		{%
 			\flushright
 			\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      			Submitted to: \@journal \par
+      Submitted to: \@journal \par
 		}
 		\rule{\linewidth}{1pt}\par
-		\vspace*{20mm}
+  }
+}
+
+% Auxiliary material cover header
+\newcommand{\AuxmatCoverHeader}{%
+	\parbox[t]{\linewidth}{%
+		{\centering
+    	\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN) \\
+    }
+		\vspace*{8mm}
+		{\centering
+      \includegraphics[height=30mm]{AT_atlaslogo}
+			\hspace*{\fill}
+			\raisebox{2.5mm}{\includegraphics[height=25mm]{AT_cernlogo}}
+		}
+		\vspace*{-5mm}
+		{%
+			\flushright
+      \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
+      \AC@PreprintNumber \par
+   	}
+		\vspace*{-1mm}
+		{%
+			\flushright
+			\fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
+      arXiv: \AtlasArXivId\ \AtlasArXivCat \par
+		}
+		\rule{\linewidth}{1pt}\par
+  }
+}
+
+% Preprint cover body
+\newcommand{\PreprintCoverBody}{
+	\parbox[t]{\linewidth}{%
 		{\centering
 			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
 			\AtlasTitleText \par
@@ -521,8 +576,35 @@
   }
 }
 
-% Preprint cover body
-\newcommand{\PreprintCoverBody}{}
+
+% Auxiliary material cover body
+\newcommand{\AuxmatCoverBody}{
+	\parbox[t]{\linewidth}{%
+		{\centering
+			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+			Auxiliary figures and tables from the paper\\
+			\AtlasTitleText \par
+		}
+		\vspace*{10mm}
+		{\centering
+			\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+			The ATLAS Collaboration \\
+		}
+		\vspace*{10mm}
+		{\centering
+			\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+			\@refcode \\
+		}
+		\vspace*{10mm}
+		{%\linespread{1.1}	
+			{%
+			  \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
+			  %\hspace*{15\p@}\AtlasAbstractText \par
+			  \AtlasAbstractText \par
+			}
+  	}
+  }
+}
 
 
 % Preprint cover footer
@@ -544,9 +626,14 @@
 			\AC@PrintPreprintCover%
 	  	\AC@AdvancePageTwoSided%
   	\else%
-    	\AC@PrintAtlasCover%
-    	\AC@PrintAtlasPage%
-    	\AC@AdvancePageTwoSided%
+			\ifAC@auxmat%
+				\AC@PrintAuxmatCover%
+	  		\AC@AdvancePageTwoSided%
+	  	\else%
+    		\AC@PrintAtlasCover%
+    		\AC@PrintAtlasPage%
+    		\AC@AdvancePageTwoSided%
+    	\fi%
     \fi
 		\ifAC@twocolumn \twocolumn \fi
   \fi
