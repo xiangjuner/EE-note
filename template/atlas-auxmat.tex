@@ -1,0 +1,63 @@
+%-------------------------------------------------------------------------------
+% An absolute minimal ATLAS document for auxiliary material.
+%-------------------------------------------------------------------------------
+\documentclass[auxmat,UKenglish]{latex/atlasdoc}
+
+% Extra packages:
+\usepackage{latex/atlaspackage}
+
+% Package for creating list of authors and contributors to the analysis
+% \usepackage{latex/atlascontribute}
+
+% Useful macros
+\usepackage{latex/atlasphysics}
+
+% Header package
+\usepackage{fancyhdr}
+
+% Paths for figures
+\graphicspath{{logos/}{figures/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS auxiliary material},pdfauthor={The ATLAS Collaboration}}
+% Title, abstract and document 
+\input{atlas-document-metadata}
+
+% Preprint title
+\AtlasTitle{AtlasTitle: Bare bones ATLAS document with auxiliary material}
+
+% CERN preprint number
+\PreprintIdNumber{CERN-PH-EP-2014-XXX}
+
+% arXiv identifier
+\arXivId{14XX.YYYY}
+
+% HepData record
+\HepDataRecord{1234567}
+
+\AtlasAbstract{%
+	This document contains auxiliary figures and tables from the paper:\\
+	``\AtlasTitleText''.
+	
+	All figures can be found at:\\
+	\AtlasArXivURL
+			  
+	The information is uploaded to HepData in the record:\\
+	\AtlasHepDataRecord,\\
+	where details about the models used in the paper, 
+	the selections and the final fit results can be found.
+}
+
+\chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+
+\begin{document}
+% Page style to get standard header with arXiv reference
+\pagestyle{fancy}
+
+Here is the document. Remove this text if you only want the front page.
+
+\end{document}

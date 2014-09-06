@@ -6,25 +6,25 @@
 % Title
 \AtlasTitle{AtlasTitle: Bare bones ATLAS document}
 
-% Author - this does not work with revtex
+% Author - this does not work with revtex (add it after \begin{document})
 \author{The ATLAS Collaboration}
 
 % Authors and list of contributors to the analysis
 % \AtlasAuthorContribute also adds the name to the author list
-\usepackage{latex/atlascontribute}
+% Include package latex/atlascontribute to use this
 % Use authblk package if there are multiple authors, which is included by latex/atlascontribute
 % \usepackage{authblk}
 % \renewcommand\Authands{, } % avoid ``. and'' for last author
 % \renewcommand\Affilfont{\itshape\small} % affiliation formatting
-\AtlasAuthorContributor{First AtlasAuthorContributor}{a}{Author's contribution.}
-\AtlasAuthorContributor{Second AtlasAuthorContributor}{b}{Author's contribution.}
-\AtlasAuthorContributor{Third AtlasAuthorContributor}{a}{Author's contribution.}
-\AtlasContributor{Fourth AtlasContributor}{Contribution to the analysis.}
-%\author[a]{First Author}
-%\author[a]{Second Author}
-%\author[b]{Third Author}
-\affil[a]{One Institution}
-\affil[b]{Another Institution}
+% \AtlasAuthorContributor{First AtlasAuthorContributor}{a}{Author's contribution.}
+% \AtlasAuthorContributor{Second AtlasAuthorContributor}{b}{Author's contribution.}
+% \AtlasAuthorContributor{Third AtlasAuthorContributor}{a}{Author's contribution.}
+% \AtlasContributor{Fourth AtlasContributor}{Contribution to the analysis.}
+% \author[a]{First Author}
+% \author[a]{Second Author}
+% \author[b]{Third Author}
+% \affil[a]{One Institution}
+% \affil[b]{Another Institution}
 
 % If a special author list should be indicated via a link use the following code:
 %\usepackage[marginal,hang]{footmisc}
@@ -47,12 +47,18 @@
 \AtlasVersion{0.1}
 
 % ATLAS reference code, to help ATLAS members to locate the paper
-% \AtlasRefCode{GROUP-2014-XX}
+\AtlasRefCode{GROUP-2014-XX}
 
 % ATLAS note number. Can be an COM, INT, PUB or CONF note
 % \AtlasNote{ATLAS-CONF-2014-XXX}
-% \AtlasNote{ATLAS-PUB-2014-XXX}
+% \AtlasNote{ATL-PHYS-PUB-2014-XXX}
 % \AtlasNote{ATL-COM-PHYS-2014-XXX}
+
+% arXiv identifier
+% \arXivId{14XX.YYYY}
+
+% HepData record
+% \HepDataRecord{ZZZZZZZZ}
 
 % Submission journal
 % \AtlasJournal{Phys.\ Lett.\ B.}
