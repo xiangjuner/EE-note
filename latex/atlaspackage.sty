@@ -4,18 +4,18 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{01-01-00}
+\def\APKG@PackageVersion{01-01-00}
 
 \ProvidesPackage{latex/atlaspackage}[2014/09/06 v.01-01-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
-\typeout{ATLAS LaTeX packages v.\AP@PackageVersion}
+\typeout{ATLAS LaTeX packages v.\APKG@PackageVersion}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
-	family=AP,
-	prefix=AP@
+	family=APKG,
+	prefix=APKG@
 }
 \DeclareBoolOption[false]{minimal}
 \DeclareBoolOption[true]{default}
@@ -27,22 +27,59 @@
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
-\typeout{Value of texlive is \AP@texlive}
+\typeout{Value of texlive is \APKG@texlive}
 
-%\let\ifAP@minimum\iffalse
-%\let\ifAP@default\iftrue
-%\let\ifAP@full\iffalse
-%\DeclareOption{minimal}{\let\ifAP@minimum\iftrue \let\ifAP@default\iffalse}
-%\DeclareOption{default}{\let\ifAP@minimum\iftrue \let\ifAP@default\iftrue}
-%\DeclareOption{full}{\let\ifAP@minimum\iftrue \let\ifAP@default\iftrue \let\ifAP@full\iftrue}
-%\let\ifAP@biblatex\iffalse
-%\DeclareOption{biblatex}{\let\ifAP@biblatex\iftrue}
-%\let\ifAP@subfigure\iffalse
-%\DeclareOption{subfigure}{\let\ifAP@subfigure\iftrue}
+\newif\ifAPKG@less
+\newif\ifAPKG@standard
+\newif\ifAPKG@more
+\ifAPKG@minimal
+	\APKG@lesstrue
+	\APKG@standardfalse
+	\APKG@morefalse
+\else
+	\ifAPKG@default
+		\APKG@lesstrue
+		\APKG@standardtrue
+		\APKG@morefalse
+	\else
+		\ifAPKG@full
+			\APKG@lesstrue
+			\APKG@standardtrue
+			\APKG@moretrue
+		\fi
+	\fi
+\fi
+
+\ifAPKG@less%
+  \typeout{Value of less is true}
+\else
+  \typeout{Value of less is false}
+\fi
+\ifAPKG@standard%
+  \typeout{Value of standard is true}
+\else
+  \typeout{Value of standard is false}
+\fi
+\ifAPKG@more%
+  \typeout{Value of more is true}
+\else
+  \typeout{Value of more is false}
+\fi
+
+%\let\ifAPKG@minimum\iffalse
+%\let\ifAPKG@default\iftrue
+%\let\ifAPKG@full\iffalse
+%\DeclareOption{minimal}{\let\ifAPKG@minimum\iftrue \let\ifAPKG@default\iffalse}
+%\DeclareOption{default}{\let\ifAPKG@minimum\iftrue \let\ifAPKG@default\iftrue}
+%\DeclareOption{full}{\let\ifAPKG@minimum\iftrue \let\ifAPKG@default\iftrue \let\ifAPKG@full\iftrue}
+%\let\ifAPKG@biblatex\iffalse
+%\DeclareOption{biblatex}{\let\ifAPKG@biblatex\iftrue}
+%\let\ifAPKG@subfigure\iffalse
+%\DeclareOption{subfigure}{\let\ifAPKG@subfigure\iftrue}
 %\let\if@tlnine\iffalse
 %\DeclareOption{tl2009}{\let\if@tlnine\iftrue}
-%\let\ifAP@hyperref\iftrue
-%\DeclareOption{nohyperref}{\let\ifAP@hyperref\iffalse}
+%\let\ifAPKG@hyperref\iftrue
+%\DeclareOption{nohyperref}{\let\ifAPKG@hyperref\iffalse}
 %
 %% Execute options
 %\ProcessOptions \relax
@@ -81,13 +118,13 @@
 % Add command that can force all figures and tables (floats) to appear before a certain point
 \RequirePackage{placeins}
 
-\ifAP@default
+\ifAPKG@standard%
 	% Extra options for footnotes
 	\RequirePackage[bottom]{footmisc}
 	% Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
 	% Several plots in a single figure
-	\ifAP@subfigure%
+	\ifAPKG@subfigure%
 	  \RequirePackage{subfigure}
 	\else
 	  \RequirePackage{subfig}
@@ -98,8 +135,8 @@
   \renewcommand{\cftdot}{}
   % Typset anything with units using this package - also has very useful table formatting 
 	% Declare a few options and standard units for siunitx that are otherwise missing
-	\ifAP@siunitx
-  	\ifx\AP@texlive\2009
+	\ifAPKG@siunitx%
+  	\ifx\APKG@texlive\2009
 			\RequirePackage[noload=addn]{siunitx}
 			\sisetup{seperr, repeatunits=false, alsoload=hep}
     	\sisetup{obeyall}
@@ -125,7 +162,7 @@
 \fi
 
 
-\ifAP@full
+\ifAPKG@more%
 	% Tables that go over more than one page
 	\RequirePackage{xtab}
 	% \RequirePackage{longtable}
@@ -139,7 +176,7 @@
 \fi
 
 % hyperref is usually included as late as possible
-\ifAP@hyperref
+\ifAPKG@hyperref%
   \PassOptionsToPackage{hyphens}{url}
 	\usepackage{hyperref}
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
@@ -153,7 +190,7 @@
 % block=ragged    turns off block form, which avoids large spaces
 % firstinits=true means initial are used for first names
 % Some more tweaks should be made to the appearance, but they are not yet implemented
-\ifAP@biblatex
+\ifAPKG@biblatex%
   \RequirePackage[backend=biber,
 	  style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \fi

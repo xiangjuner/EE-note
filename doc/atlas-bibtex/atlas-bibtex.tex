@@ -189,8 +189,8 @@ assuming that the reference is for an LHC collaboration paper:
 \item Change the field name \texttt{author} to \texttt{xauthor}.
 \item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form
 	\verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
-\item Either replace the journal name with the appropriate macro, e.g.\ \texttt{Phys.Lett.} with
-	\verb|\PLB|; or insert spaces between the parts of the name, i.e.\ \texttt{Phys.\ Lett.}.
+\item Either replace the journal name with the appropriate macro, e.g.\ ``\texttt{Phys.Lett.}'' with
+	\verb|\PLB|; or insert spaces between the parts of the name, i.e.\ \verb|Phys.\ Lett.|.
 	Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
 	as a regular interword space should be inserted and not an end of sentence space.
 \item Remove the journal letter from the volume and include it in the journal, e.g.\ ``\EPJC'', ``\PRD''. 
@@ -199,11 +199,11 @@ If the reference is for another collaboration, rename the \texttt{collaboration}
 \texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
 \texttt{author} field.
 
-Instead of renaming \texttt{author} or \texttt{collaboation} fields, you can of course simply delete them!
+Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
 
 
 %-------------------------------------------------------------------------------
-\section{\BibTeX tips}
+\section{\BibTeX\ tips}
 %-------------------------------------------------------------------------------
 
 \begin{itemize}
@@ -217,7 +217,7 @@ Instead of renaming \texttt{author} or \texttt{collaboation} fields, you can of 
 \end{verbatim}
 	The identifier directly after the document type declaration is how one should refer to this item inside the main \File{.tex} file.
 	Use a non-breaking space between the citation and the reference, i.e.\
-	\verb|... measured previously~\cite{lhcCollaboration:2012}|
+	\verb|... measured previously~\cite{lhcCollaboration:2012}|.
 \item When referencing ATLAS CONF notes, the url to the CDS page should be included.
 	For this to work, in the preamble of your \emph{.tex} document add
 	\texttt{\textbackslash usepackage\{hyperref\}}.
@@ -226,12 +226,15 @@ Instead of renaming \texttt{author} or \texttt{collaboation} fields, you can of 
 	the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
 \item When referencing papers from journals like PRD, PLB, etc.,
 	one has to be careful not to include the ``D'' or ``B'' as part of the volume but rather in the journal name. 
-	Macros have been added to the \File{.bst} style files for these journals. Please use these.
+	You can either use the macros that have been added to the \File{.bst} style files for these journals, or
+	the macros defined in \Package{atlasjournal}.
+	If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
+	\Package{atlasjournal} definitions.
 \end{itemize}
 
 In earlier versions of this document, it was recommended to include the \Package{cite} package, 
 if you use \BibTeX\ and want to cite multiple references in the format [A-Z].
-However, the journal style files can do this for you by using hte option \Option{sort\&compress} option if \Package{natbib} is used.
+However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
 The \texttt{revtex} style also does this for you.
 If you use \texttt{biblatex} use the option \texttt{style=numeric-comp}.
 

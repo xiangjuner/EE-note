@@ -317,16 +317,16 @@ In your main document you use \Macro{addbibresource} in the preamble to include 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
 \begin{description}
-\item[a4paper] Set paper size to A4 (default);
-\item[letter] Set paper size to letter;
-\item[coverpage] Include an ATLAS draft cover page;
-\item[preprint] Make the front page for a CERN preprint;
-%\item[paper] The document is an ATLAS paper;
-\item[CONF] The document is a CONF note;
-\item[PUB] The document is an PUB note;
-\item[nomaketitle] Do not create a title page; to make it yourself give the command \Macro{maketitle} after
+\item[a4paper]Set paper size to A4 (default);
+\item[letter]Set paper size to letter;
+\item[coverpage]Include an ATLAS draft cover page;
+\item[preprint]Make the front page for a CERN preprint;
+%\item[paper]The document is an ATLAS paper;
+\item[CONF]The document is a CONF note;
+\item[PUB]The document is an PUB note;
+\item[nomaketitle]Do not create a title page; to make it yourself give the command \Macro{maketitle} after
 	\verb|\begin{document}|
-\item[koma] Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article}. 
+\item[koma]Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article}. 
 	Note that some tuning of the \KOMAScript\ options still needs to be done.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
@@ -383,10 +383,10 @@ The default set adds in addition:
 
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{csquotes} Automatic quoting, which obeys language options;
-\item \texttt{xtab} Newer version of supertabular, which allows tabular environments to go over mote than one page;
-\item \texttt{rotating} Rotate figures, tables, etc.;
-\item \texttt{xfrac} Nicer fractions.
+\item \texttt{csquotes} automatic quoting, which obeys language options;
+\item \texttt{xtab} newer version of supertabular, which allows tabular environments to go over more than one page;
+\item \texttt{rotating} rotate figures, tables, etc.;
+\item \texttt{xfrac} nicer fractions.
 \end{itemize}
 
 Further options are:
@@ -435,12 +435,12 @@ and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 The following options can be passed on to the \Package{atlascover} package:
 \begin{description}
 %\item[\Option{PAPER}] the document is an ATLAS paper draft (default);
-\item[\Option{CONF}] the document is a CONF note;
-\item[\Option{PUB}] the document is an PUB note;
-\item[\Option{preprint}] the front page should be in the form of a CERN preprint;
-\item[\Option{auxmat}] the front page for a document containing auxiliary material from a paper;
-\item[\Option{twocolumn}] use this option if your document is formatted in two columns;
-\item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
+\item[\Option{CONF}]the document is a CONF note;
+\item[\Option{PUB}]the document is an PUB note;
+\item[\Option{preprint}]the front page should be in the form of a CERN preprint;
+\item[\Option{auxmat}]the front page for a document containing auxiliary material from a paper;
+\item[\Option{twocolumn}]use this option if your document is formatted in two columns;
+\item[\Option{atlasdoc}]this option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
 
 Some journal styles, especially JHEP, produce an ATLAS draft cover page that is offset.
@@ -509,6 +509,7 @@ Version 1.
 The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
 The following sections give some details on the installations that I use for testing things.
 
+
 %-------------------------------------------------------------------------------
 \subsection{Ubuntu 14.04}
 
@@ -532,6 +533,7 @@ You need to include \Package{atlaspackage} with the option \Option{texlive=2009}
 The following extra packages had to be installed:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{texlive-latex-extra} (footmisc);
+\item \Package{texlive-humanities} (lineno);
 \item \Package{texlive-science} (siunitx)
 \item \Package{biblatex} (biblatex and biber).
 \end{itemize}
@@ -587,7 +589,8 @@ because I use links to find the style files.
 Windows~7 support symbolic links, but you have to create them.
 Hence the first step if to remove any \texttt{latex} directory links.
 These can be found in the directories: 
-\File{doc/atlas-bibtex}, \File{doc/atlas-latex}, \File{doc/atlas-paper}, \File{doc/atlas-physics}.
+\File{journal}, \File{doc/atlas-bibtex}, \File{doc/atlas-latex}, \File{doc/atlas-paper}, 
+\File{doc/atlas-physics}, \File{doc/atlas-rounding}.
 To create the link you use the \Package{mklink} command.
 You run this in a \Package{cmd} window, which you start as an Administrator.
 Here is what I did in the directory \File{doc/atlas-bibtex}:
@@ -634,7 +637,7 @@ svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibt
 \end{verbatim}
 }
 The advantage of using SVN is that you can keep the package up to date, by just giving the command
-\verb|svn update|in the two directories.
+\verb|svn update| in the two directories.
 If you already have a \File{bibtex} directory, 
 first move it out of the way, then checkout from SVN
 and then move the contents of the old directory back into the \File{bibtex} tree.
@@ -655,6 +658,7 @@ If you are using \BibTeX\ you also have to change\\
 \verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
+
 %-------------------------------------------------------------------------------
 \section{Journal templates}
 %-------------------------------------------------------------------------------
@@ -665,14 +669,15 @@ The directory \File{journal} contains a very basic paper outline with the preamb
 So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
 
 \begin{description}
-\item[Elsevier] Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
 	\TeX\ Live distribution. 
 	It can also be found at \url{http://www.elsevier.com/locate/latex}.
-\item[APS] APS journals use REV\TeX. This is also usually installed.
+\item[APS]APS journals use REV\TeX. This is also usually installed.
 	It can also be found at \url{https://journals.aps.org/revtex}.
 	Note that you have to specify the author after \verb|\begin{document}| with this class.
-	Hence you should comment out the definition in your metadata file, e.g.\ \File{mydocument-metadata.tex}.
-\item{JHEP} The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+	Hence you should comment out the definition in your metadata file,\\
+	e.g.\ \File{mydocument-metadata.tex}.
+\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
 \end{description}
 
 
@@ -768,6 +773,12 @@ Some things to note about using \Package{siunitx}:
 	which are extremely useful for formatting tables properly.
 \end{itemize}
 
+The option names are somewhat different for \TeX\ Live 2009,
+as this contained \Package{siunitx} Version 1.
+You can use the older options by including \Package{atlaspackage} with the 
+option \Option{texlive=2009}.
+
+
 %-------------------------------------------------------------------------------
 \subsection{\pT or \ET\ -- that is the question}
 %-------------------------------------------------------------------------------
@@ -778,9 +789,12 @@ It is of course good if things like \pT and \ET are automatically in bold face i
 a header and normal font in the text (and table of contents).
 
 With the current setup, this works OK. 
-However, if you use the \Option{koma}, which then typesets titles using a sans serif font,
+However, if you use the option \Option{koma}, which then typesets titles using a sans serif font,
 the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
-which is probably not what one wants.!
+which is probably not what one wants!
+Work is still ongoing to find the optimal set of options
+-- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Line numbers}
@@ -811,7 +825,7 @@ In an ATLAS paper, all figures and tables should be printed before the conclusio
 You can achieve this by using the macro \Macro{FloatBarrier} from the
 \Package{placeins} package.
 
-In general you should separate the figure and table environments from the text by blank lines.
+In general, as mentioned above, you should separate the figure and table environments from the text by blank lines.
 This helps the line numbers. The standard options to use for the placement are \Option{[htbp]}.
 
 
@@ -874,6 +888,7 @@ If something important has got lost, please let me know.
 
 The \Package{subfigure} package has been replaced with \Package{subfig}, as \Package{subfigure} is now deprecated.
 If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
+
 
 %-------------------------------------------------------------------------------
 \section{Changes in \texttt{atlascover-01-00-00}}

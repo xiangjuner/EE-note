@@ -33,7 +33,7 @@ draftcover:
 	cp template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
 	
 preprintcover:
-	cp template/atlas-draft-cover.tex $(BASENAME)-preprint-cover.tex
+	cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
 	
 auxmat:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex >$(BASENAME)-auxmat.tex

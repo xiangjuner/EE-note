@@ -21,6 +21,8 @@
 \graphicspath{{../../logos/},{figures/}}
 
 \newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
+\newcommand{\Option}[1]{\textsf{#1}\xspace}
+\newcommand{\Package}[1]{\texttt{#1}\xspace}
 
 %-------------------------------------------------------------------------------
 % Generic document information
@@ -561,7 +563,8 @@ to include them in your paper. Note that only after the third run of
 you do not have to do the \texttt{bibtex} step again.
 
 Two \BibTeX{} style files 
-(\texttt{bibtex/bst/atlasBibStyleWoTitle.bst} and \texttt{bibtex/bst/atlasBibStyleWoTitle.bst})
+(\texttt{bibtex/bst/atlasBibStyleWoTitle.bst} and\\
+\texttt{bibtex/bst/atlasBibStyleWoTitle.bst})
 are provided with the ATLAS \LaTeX\ package. 
 You can use one of them in your text source file as follows:
 %
@@ -580,7 +583,8 @@ If you want to use this package, you should include commands like:
 \end{verbatim}
 %
 in the preamble of our document.
-The include the command:
+These are defined for you if you include \Package{atlaspackage} with the option \Option{biblatex}.
+Then include the command:
 %
 \begin{verbatim}
   \printbibliography
