@@ -14,8 +14,8 @@
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
-	family=APKG,
-	prefix=APKG@
+  family=APKG,
+  prefix=APKG@
 }
 \DeclareBoolOption[false]{minimal}
 \DeclareBoolOption[true]{default}
@@ -33,21 +33,21 @@
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifAPKG@minimal
-	\APKG@lesstrue
-	\APKG@standardfalse
-	\APKG@morefalse
+  \APKG@lesstrue
+  \APKG@standardfalse
+  \APKG@morefalse
 \else
-	\ifAPKG@default
-		\APKG@lesstrue
-		\APKG@standardtrue
-		\APKG@morefalse
-	\else
-		\ifAPKG@full
-			\APKG@lesstrue
-			\APKG@standardtrue
-			\APKG@moretrue
-		\fi
-	\fi
+  \ifAPKG@default
+    \APKG@lesstrue
+    \APKG@standardtrue
+    \APKG@morefalse
+  \else
+    \ifAPKG@full
+      \APKG@lesstrue
+      \APKG@standardtrue
+      \APKG@moretrue
+    \fi
+  \fi
 \fi
 
 %\ifAPKG@less%
@@ -119,66 +119,68 @@
 \RequirePackage{placeins}
 
 \ifAPKG@standard%
-	% Extra options for footnotes
-	\RequirePackage[bottom]{footmisc}
-	% Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
+  % Extra options for footnotes
+  \RequirePackage[bottom]{footmisc}
+  % Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
-	% Several plots in a single figure
-	\ifAPKG@subfigure%
-	  \RequirePackage{subfigure}
-	\else
-	  \RequirePackage{subfig}
-	\fi
+  % Several plots in a single figure
+  \ifAPKG@subfigure%
+    \RequirePackage{subfigure}
+  \else
+    \RequirePackage{subfig}
+  \fi
   % subfigure option needed if subfig(ure) is also used
   \RequirePackage[subfigure]{tocloft}
   % Remove dots in table of contents
   \renewcommand{\cftdot}{}
   % Typset anything with units using this package - also has very useful table formatting 
-	% Declare a few options and standard units for siunitx that are otherwise missing
-	\ifAPKG@siunitx%
-  	\ifx\APKG@texlive\2009
-			\RequirePackage[noload=addn]{siunitx}
-			\sisetup{seperr, repeatunits=false, alsoload=hep}
-    	\sisetup{obeyall}
-%	  	\newunit\micron{\micro\metre}
-%	  	\newunit\mrad{\milli\radian}
-%	  	\newunit\nb{\nano\barn}
-%	  	\newunit\pb{\pico\barn}
-%	  	\newunit\fb{\femto\barn}
-%	  	\newunit\clight{\ensuremath{c}}
-		\else
-			\RequirePackage{siunitx}
-  		\sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
-%	  		detect-family = true, detect-display-math=true}
-	  	\sisetup{group-digits=integer, group-minimum-digits=4}
-	  	\DeclareSIUnit\micron{\micro\metre}
-	  	\DeclareSIUnit\mrad{\milli\radian}
-	  	\DeclareSIUnit\nb{\nano\barn}
-	  	\DeclareSIUnit\pb{\pico\barn}
-	  	\DeclareSIUnit\fb{\femto\barn}
-	  	\DeclareSIUnit\clight{\ensuremath{c}}
-		\fi
-	\fi
+  % Declare a few options and standard units for siunitx that are otherwise missing
+  \ifAPKG@siunitx%
+    \def\siunitxone{2009}
+    \typeout{texlive is [\APKG@texlive] and siunitxone is [\siunitxone]}
+    \ifx\APKG@texlive\siunitxone
+      \RequirePackage[noload=addn]{siunitx}
+      \sisetup{seperr, repeatunits=false, alsoload=hep}
+      \sisetup{obeyall}
+%  	\newunit\micron{\micro\metre}
+%  	\newunit\mrad{\milli\radian}
+%  	\newunit\nb{\nano\barn}
+%  	\newunit\pb{\pico\barn}
+%  	\newunit\fb{\femto\barn}
+%  	\newunit\clight{\ensuremath{c}}
+    \else
+      \RequirePackage{siunitx}
+      \sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
+%  		detect-family = true, detect-display-math=true}
+      \sisetup{group-digits=integer, group-minimum-digits=4}
+      \DeclareSIUnit\micron{\micro\metre}
+      \DeclareSIUnit\mrad{\milli\radian}
+      \DeclareSIUnit\nb{\nano\barn}
+      \DeclareSIUnit\pb{\pico\barn}
+      \DeclareSIUnit\fb{\femto\barn}
+      \DeclareSIUnit\clight{\ensuremath{c}}
+    \fi
+  \fi
 \fi
 
 
 \ifAPKG@more%
-	% Tables that go over more than one page
-	\RequirePackage{xtab}
-	% \RequirePackage{longtable}
-	% \RequirePackage{supertable}
-	% Easy rotation of tables and figures
-	\RequirePackage{rotating}
-	% Quotes that are also language dependent - use \enquote{text} instead of ``text''
-	\RequirePackage[autostyle=true]{csquotes}
-	% Nicer fractions
-	\RequirePackage{xfrac}
+  % Tables that go over more than one page
+  \RequirePackage{xtab}
+  % \RequirePackage{longtable}
+  % \RequirePackage{supertable}
+  % Easy rotation of tables and figures
+  \RequirePackage{rotating}
+  % Quotes that are also language dependent - use \enquote{text} instead of ``text''
+  \RequirePackage[autostyle=true]{csquotes}
+  % Nicer fractions
+  \RequirePackage{xfrac}
 \fi
 
 % hyperref is usually included as late as possible
 \ifAPKG@hyperref%
   \PassOptionsToPackage{hyphens}{url}
-	\usepackage{hyperref}
+  \usepackage{hyperref}
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
   \hypersetup{colorlinks,breaklinks}
   \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
@@ -192,7 +194,7 @@
 % Some more tweaks should be made to the appearance, but they are not yet implemented
 \ifAPKG@biblatex%
   \RequirePackage[backend=biber,
-	  style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+    style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \fi
 
 \endinput
