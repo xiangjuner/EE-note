@@ -1,3 +1,5 @@
+2014-09-15 Ian Brock <Ian.Brock@cern.ch>
+        * Bug fixed for CentOS/Fedora, as scrdate/scrtime did not work properly.
 2014-09-09 Ian Brock <Ian.Brock@cern.ch>
 	* Add texmf swtich to atlasdoc (needed for cover).
 	* full option did not work in atlaspackage.
