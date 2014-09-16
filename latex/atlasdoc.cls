@@ -4,48 +4,50 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-01-01}
+\def\ATPackageVersion{01-02-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/09/08 v.01-01-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/09/10 v.01-02-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
-% ATLAS draft cover page off by default
-\let\if@DraftCover\iffalse
-\DeclareOption{coverpage}{\let\if@DraftCover\iftrue}
-% Preprint cover page off by default
+% Cover pages off and title page on by default
+\newif\ifADOC@coverpage
+\newif\ifADOC@preprint
+\newif\ifADOC@auxmat
+\newif\ifADOC@maketitle
+\newif\ifADOC@aivpaper
+\newif\ifADOC@letterpaper
+\newif\ifADOC@CONFnote
+\newif\ifADOC@PUBnote
+\newif\ifADOC@koma
+\newif\ifADOC@texmf
+\ADOC@coverpagefalse
+\ADOC@preprintfalse
+\ADOC@auxmatfalse
+\ADOC@maketitletrue
+\ADOC@aivpapertrue
+\ADOC@letterpaperfalse
+\ADOC@CONFnotefalse
+\ADOC@PUBnotefalse
+\ADOC@komafalse
+\ADOC@texmffalse
+\DeclareOption{coverpage}{\ADOC@coverpagetrue}
 % If preprint cover is made, regular title should be turned off
-\let\if@PreprintCover\iffalse
-\DeclareOption{preprint}{\let\if@PreprintCover\iftrue \let\if@AuxmatCover\iffalse \let\if@MakeTitle\iffalse}
-% Auxiliary material cover page off by default
+\DeclareOption{preprint}{\ADOC@preprinttrue \ADOC@auxmatfalse \ADOC@maketitlefalse}
 % If auxiliary material cover is made, regular title should be turned off
-\let\if@AuxmatCover\iffalse
-\DeclareOption{auxmat}{\let\if@PreprintCover\iffalse \let\if@AuxmatCover\iftrue \let\if@MakeTitle\iffalse}
-% Title page on by default
-\let\if@MakeTitle\iftrue
-\DeclareOption{nomaketitle}{\let\if@MakeTitle\iffalse}
+\DeclareOption{auxmat}{\ADOC@preprintfalse \ADOC@auxmattrue \ADOC@maketitlefalse}
+\DeclareOption{nomaketitle}{\ADOC@maketitlefalse}
 % Paper size A4 by default
-\let\if@APaper\iftrue
-\let\if@LPaper\iffalse
-\DeclareOption{a4paper}{\let\if@APaper\iftrue \let\if@LPaper\iffalse}
-\DeclareOption{letterpaper}{\let\if@APaper\iffalse \let\if@LPaper\iftrue}
+\DeclareOption{a4paper}{\ADOC@aivpapertrue \ADOC@letterpaperfalse}
+\DeclareOption{letterpaper}{\ADOC@aivpaperfalse \ADOC@letterpapertrue}
 % Type of document
-\let\if@CONFNote\iffalse
-\let\if@PUBNote\iffalse
-\DeclareOption{CONF}{\let\if@CONFNote\iftrue \let\if@PUBNote\iffalse}
-\DeclareOption{PUB}{\let\if@CONFNote\iffalse \let\if@PUBNote\iftrue}
+\DeclareOption{CONF}{\ADOC@CONFnotetrue \ADOC@PUBnotefalse}
+\DeclareOption{PUB}{\ADOC@CONFnotefalse \ADOC@PUBnotetrue}
 % Use KOMA-script instead of standard LaTeX
-\let\if@Koma\iffalse
-\DeclareOption{koma}{\let\if@Koma\iftrue}
-% Document language
-%\let\if@UKenglish\iftrue
-%\let\if@USenglish\iffalse
-%\DeclareOption{UKenglish}{\let\if@UKenglish\iftrue  \let\if@USenglish\iffalse}
-%\DeclareOption{USenglish}{\let\if@UKenglish\iffalse \let\if@USenglish\iftrue}
-% Include tikz package off by default - not necessary any more? ICB 2014-08-26
-%\let\if@usetikz\iffalse
-%\DeclareOption{usetikz}{\let\if@usetikz\iftrue}
+\DeclareOption{koma}{\ADOC@komatrue}
+% Packages available centrally, i.e. in texmf
+\DeclareOption{texmf}{\ADOC@texmftrue}
 
 % This class extends the article class
 % Read all the atlasnote options, pass them to article
@@ -56,9 +58,9 @@
 
 % --- Class structure: initial code part
 % Defaults for title page
-\newdimen\AN@skipbeforetitle
-\AN@skipbeforetitle=60\p@
-\newcommand{\skipbeforetitle}[1]{\AN@skipbeforetitle=#1}
+\newdimen\ADOC@skipbeforetitle
+\ADOC@skipbeforetitle=60\p@
+\newcommand{\skipbeforetitle}[1]{\ADOC@skipbeforetitle=#1}
 
 \def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitleText}{Dummy AtlasTitleText in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
@@ -87,8 +89,7 @@
 %}
 
 % Draft heading code
-\newcommand{\olddraftheading}%
-{
+\newcommand{\olddraftheading}{%
   % 
   % compute the time in hours and minutes
   % make new variables \timehh and \timemm
@@ -115,84 +116,98 @@
 }
 
 \newcommand{\draftheading}{%
-	\RequirePackage{fancyhdr}
-	\RequirePackage{scrdate,scrtime}
-	\lhead[]{\ISOToday{} \thistime}
-	% \lhead[]{\today{} \thistime}
-	\chead[]{\protect\small\fbox{DRAFT}}
-	\rhead{\thepage}
-	\cfoot{}
-	\setlength\headheight{16pt}
+  \RequirePackage{fancyhdr}
+  %
+  % Compute the time in hours and minutes; make new variables \timehh and \timemm
+  %
+  \newcount\timehh\newcount\timemm
+  \timehh=\time 
+  \divide\timehh by 60 \timemm=\time
+  \count255=\timehh\multiply\count255 by -60 \advance\timemm by \count255
+  %
+  % Now make a string with date and time
+  %
+  \newcommand{\dateandtime}{\today \ --
+    \ifnum\timehh<10 0\fi\number\timehh:\ifnum\timemm<10 0\fi\number\timemm}
+  % \RequirePackage{scrdate,scrtime}
+  % \lhead[]{\ISOToday{} \thistime}
+  \lhead[]{\dateandtime}
+  % \lhead[]{\today{} \thistime}
+  \chead[]{\protect\small\fbox{DRAFT}}
+  \rhead{\thepage}
+  \cfoot{}
+  \setlength\headheight{16pt}
   \pagestyle{fancy}
 }
 
 % Draft version 
-\def\@draftversion{}
-\newcommand*{\draftversion}[1]{\def\@draftversion{#1}}
-\newcommand*{\AtlasVersion}[1]{\def\@draftversion{#1}}
+\def\ADOC@draftversion{}
+\newcommand*{\draftversion}[1]{\def\ADOC@draftversion{#1}}
+\newcommand*{\AtlasVersion}[1]{\def\ADOC@draftversion{#1}}
 
 % ATLAS reference code - empty by default
-\def\@refcode{}
-\newcommand*{\AtlasRefCode}[1]{\def\@refcode{#1}}
+\def\ADOC@refcode{}
+\newcommand*{\AtlasRefCode}[1]{\def\ADOC@refcode{#1}}
 
 % ATLAS note number
-\def\@atlasnote{}
-\newcommand*{\AtlasNote}[1]{\def\@atlasnote{#1}}
+\def\ADOC@atlasnote{}
+\newcommand*{\AtlasNote}[1]{\def\ADOC@atlasnote{#1}}
+
+% Journal
+\def\ADOC@journal{}
+\newcommand*{\journal}[1]{\def\ADOC@journal{#1}}
+\newcommand*{\AtlasJournal}[1]{\def\ADOC@journal{#1}}
+
+% Preprint
+\def\ADOC@preprintnumber{}
+\newcommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
+
+% arXiv
+\def\AtlasArXivId{}
+\def\AtlasArXivURL{}
+\newcommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
+\newcommand*{\AtlasArXivCat}{[hep-ex]}
+
+% HEP Data
+\def\AtlasHepDataRecord{}
+\newcommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
 
 % Submission details
-\def\@subprepend{To be submitted to }
-\newcommand*{\subprepend}[1]{\def\@subprepend{#1}}
-\def\@journal{}
-\newcommand*{\AtlasJournal}[1]{\def\@journal{#1}}
-\newcommand*{\journal}[1]{\def\@journal{#1}}
+\def\ADOC@subprepend{To be submitted to }
+\newcommand*{\subprepend}[1]{\def\ADOC@subprepend{#1}}
 
 % Abstract text
 \def\AtlasAbstractText{}
-\newcommand{\AtlasAbstract}[1]{%
-	\def\AtlasAbstractText{#1}
-}
-\newcommand{\abstracttext}[1]{%
-	\def\AtlasAbstractText{#1}
-}
+\newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
+\newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
 
 % Shortcut to add submission text
-\newcommand{\submitted}%
-{
-  \ifx\@journal\@empty\mbox{}%
+\newcommand{\submitted}{%
+  \ifx\ADOC@journal\@empty
+    \mbox{}%
   \else
-  \vskip 0.8in plus 2in%
-  \begin{center}%
-    \@subprepend\space {\it \@journal}%
-    \vskip 1.5em%
-  \end{center}%
-  \vskip 0.5in
+    \vskip 0.8in plus 2in%
+    \begin{center}%
+      \ADOC@subprepend\space \textit{\ADOC@journal}%
+      \vskip 1.5em%
+    \end{center}%
+    \vskip 0.5in
   \fi
 }
 
-
 % --- Class structure: invoke main class
-\if@Koma%
-	\if@APaper%
-		\LoadClass[titlepage,a4paper,11pt]{scrartcl}
-	\else
-		\LoadClass[titlepage,letterpaper,11pt]{scrartcl}
-	\fi
+\ifADOC@koma%
+  \ifADOC@aivpaper%
+    \LoadClass[titlepage,a4paper,11pt]{scrartcl}
+  \else
+    \LoadClass[titlepage,letterpaper,11pt]{scrartcl}
+  \fi
 \else
-\if@APaper%
-	\LoadClass[titlepage,a4paper,11pt]{article}
-%	\if@USenglish%
-%	  \LoadClass[titlepage,a4paper,11pt]{article}
-%	\else%
-%	  \LoadClass[titlepage,a4paper,11pt]{article}
-%	\fi
-\else
-	\LoadClass[titlepage,letterpaper,11pt]{article}
-%	\if@USenglish%
-%	  \LoadClass[titlepage,letterpaper,11pt,USenglish]{article}
-%	\else%
-%	  \LoadClass[titlepage,letterpaper,11pt,UKenglish]{article}
-%	\fi
-\fi
+  \ifADOC@aivpaper%
+    \LoadClass[titlepage,a4paper,11pt]{article}
+  \else
+    \LoadClass[titlepage,letterpaper,11pt]{article}
+  \fi
 \fi
 
 \RequirePackage{geometry}
@@ -209,24 +224,44 @@
 
 % --- Class structure: main code part
 % ATLAS draft cover page
-\if@DraftCover%
-	\if@CONFNote
-    \RequirePackage[CONF,atlasdoc]{latex/atlascover}
-  \else
-		\if@PUBNote
-    	\RequirePackage[PUB,atlasdoc]{latex/atlascover}
+\ifADOC@coverpage%
+  \ifADOC@CONFnote
+    \ifADOC@texmf
+      \RequirePackage[CONF,atlasdoc]{atlascover}
     \else
-    	\RequirePackage[atlasdoc]{latex/atlascover}
+      \RequirePackage[CONF,atlasdoc]{latex/atlascover}
+    \fi
+  \else
+    \ifADOC@PUBnote
+      \ifADOC@texmf
+        \RequirePackage[PUB,atlasdoc]{atlascover}
+      \else
+        \RequirePackage[PUB,atlasdoc]{latex/atlascover}
+      \fi
+    \else
+      \ifADOC@texmf
+        \RequirePackage[atlasdoc]{atlascover}
+      \else
+        \RequirePackage[atlasdoc]{latex/atlascover}
+      \fi
     \fi
   \fi
 \fi
 % CERN preprint cover page
-\if@PreprintCover%
-	\RequirePackage[atlasdoc]{latex/atlascover}
+\ifADOC@preprint%
+  \ifADOC@texmf
+    \RequirePackage[atlasdoc]{atlascover}
+  \else
+    \RequirePackage[atlasdoc]{latex/atlascover}
+  \fi
 \fi
 % Auxiliary material cover page
-\if@AuxmatCover%
-	\RequirePackage[atlasdoc]{latex/atlascover}
+\ifADOC@auxmat%
+  \ifADOC@texmf
+    \RequirePackage[atlasdoc]{atlascover}
+  \else
+    \RequirePackage[atlasdoc]{latex/atlascover}
+  \fi
 \fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
@@ -234,7 +269,7 @@
 
 % Required packages
 \RequirePackage{graphicx}
-\RequirePackage{color}
+\RequirePackage{xcolor}
 \RequirePackage{babel}
 \RequirePackage[varg]{txfonts}
 %\RequirePackage{mathptmx}
@@ -264,8 +299,8 @@
   \thispagestyle{empty}
   \pagestyle{plain}
   \pagenumbering{arabic}
-  \ifx\@draftversion\@empty\mbox{}%
-  \else \flushright Draft version \@draftversion \\ 
+  \ifx\ADOC@draftversion\@empty\mbox{}%
+  \else \flushright Draft version \ADOC@draftversion \\ 
   \fi
   \begin{center}
     \vspace*{-6mm}
@@ -276,12 +311,12 @@
       \begin{center}
         {\huge \bf \textsf{ATLAS NOTE}}%
         % ATLAS note number, if any 
-        \ifx\@atlasnote\@empty 
-        	% ATLAS reference code, if any and no note number given
-        	\ifx\@refcode\@empty \vskip 4mm \mbox{}%
-        	\else \vskip 4mm {\Large \@refcode} \vskip 0mm%
-        	\fi
-        \else \vskip 4mm {\Large \@atlasnote} \vskip 0mm%
+        \ifx\ADOC@atlasnote\@empty
+          % ATLAS reference code, if any and no note number given
+          \ifx\ADOC@refcode\@empty \vskip 4mm \mbox{}%
+          \else \vskip 4mm {\Large \ADOC@refcode} \vskip 0mm%
+          \fi
+        \else \vskip 4mm {\Large \ADOC@atlasnote} \vskip 0mm%
         \fi
         % Date, if any
         \ifx\@date\@empty\mbox{}%	
@@ -291,43 +326,42 @@
       \vfill
     \end{minipage}
     \hfill
-    \includegraphics[width=3cm]{AT_cernlogo}    
+    \includegraphics[width=3cm]{AT_cernlogo}
   \end{center}
   % Add line numbers to front page content 
   {%
-  \ifx\@draftversion\@empty%
-  \else\linenumbers
-  \fi
-  % Title, author(s)
-  %\vskip 60\p@
-  \vskip \AN@skipbeforetitle
-  \begin{center}%
-    {\Large\bf \@title \par}%
-    \vskip 3em%
-    {\large
-     \lineskip .75em%
-      \begin{tabular}[t]{c}%
-        \@author
-      \end{tabular}\par}%
-  \end{center}\par
-  \vfill
-  % Abstract
-  \if\AtlasAbstractText\@empty\mbox{}%
-  \else%
-  \begin{center}
-    {\bfseries \abstractname}
-    \quotation
-    \setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
-    \endquotation
-  \end{center}
-  \fi
-  \vfill
-  % Submission details
-  \submitted
-  % Thanks
-  \@thanks
+    \ifx\@ADOCdraftversion\@empty%
+    \else\linenumbers
+    \fi
+    % Title, author(s)
+    %\vskip 60\p@
+    \vskip \ADOC@skipbeforetitle
+    \begin{center}%
+      {\Large\bf \@title \par}%
+      \vskip 3em%
+      {\large
+       \lineskip .75em%
+       \begin{tabular}[t]{c}%
+         \@author
+       \end{tabular}\par}%
+    \end{center}\par
+    \vfill
+    % Abstract
+    \if\AtlasAbstractText\@empty\mbox{}%
+    \else%
+      \begin{center}
+        {\bfseries \abstractname}
+        \quotation
+        \setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
+        \endquotation
+      \end{center}
+    \fi
+    \vfill
+    % Submission details
+    \submitted
+    % Thanks
+    \@thanks
   }%
-  %\vfil\null%
 }
 
 % This some before-and-after code that surrounds the title page. It
@@ -359,24 +393,24 @@
 
 \AtBeginDocument{
   % If selected, generate ATLAS Cover Page
-  \if@DraftCover%
-  	\AC@PrintAtlasCover%
-  	\AC@PrintAtlasPage%
+  \ifADOC@coverpage%
+    \ACOV@PrintAtlasCover%
+    \ACOV@PrintAtlasPage%
   \fi
   % If selected, generate ATLAS preprint front page
-	\if@PreprintCover%
-		\AC@PrintPreprintCover%
-	\fi
+  \ifADOC@preprint%
+    \ACOV@PrintPreprintCover%
+  \fi
   % If selected, generate ATLAS auxiliary material front page
-	\if@AuxmatCover%
-		\AC@PrintAuxmatCover%
-	\fi
+  \ifADOC@auxmat%
+    \ACOV@PrintAuxmatCover%
+  \fi
   % Automatically generate title page
-  \if@MakeTitle
-  	\maketitle
+  \ifADOC@maketitle
+    \maketitle
   \fi
   % Add draft heading and line numbers
-  \ifx\@draftversion\@empty%
+  \ifx\ADOC@draftversion\@empty%
   \else \linenumbers \draftheading 
   \fi
   % Hack for tikz (must be loaded here in order to avoid conflicts with graphicx user in \maketitle}
@@ -385,5 +419,4 @@
   %\pagenumbering{arabic} % reset page numbering after title page
 }
 
-% That's all, folks!
 \endinput

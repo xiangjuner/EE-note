@@ -9,6 +9,7 @@
 \usepackage{latex/atlasphysics}
 
 % Files with references in BibTeX format
+%\usepackage{latex/atlas-biblatex}
 \addbibresource{../atlas-latex.bib}
 
 % Paths for figures
@@ -44,7 +45,7 @@
   some help with the conversion of the document to the \LaTeX\ format needed for journal submission
   is being added.
 
-	This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+  This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
 }
 
 %-------------------------------------------------------------------------------
@@ -103,8 +104,8 @@ To create a new document you can issue the commands:
 make new BASENAME=mydocument
 \end{verbatim}
 %
-This command copies \texttt{atlas-document.tex}, 
-{atlas-document-metadata.tex} and {atlas-document-contribute.tex}
+This command copies \File{atlas-document.tex} and
+\File{atlas-document-metadata.tex}
 to \texttt{mydocument.tex} and  \texttt{mydocument-metadata.tex}.
 It also creates empty files \texttt{mydocument-defs.sty} and \texttt{mydocument.bib}.
 
@@ -131,7 +132,7 @@ In addition the abstract and title are needed on the front page of the document 
 The editors of the document, the editorial board members and the contributors to the analysis
 also need to be specified at some point.
 
-While all this information can be collected in the main file of he document, 
+While all this information can be collected in the main file of the document, 
 it is probably better to put it all in a separate document.
 By default this file is called \texttt{mydocument-metadata.tex}.
 
@@ -173,11 +174,14 @@ Note that a space is needed in the optional argument.
 This means that a space appears between the author name and the comma after it, which is not so nice.
 Alternatively you can make the author list using the syntax:\\
 \verb|\author{Joe Student \and Jane Student \and John Postdoc}| and avoid the use of the
-\Package{authblk} package by giving the option \Option{noauthblk} to \Package{atlascontribute}.
+\Package{authblk} package by giving the option \Option{authblk=false} to \Package{atlascontribute}.
 
+Note that the \Package{atlascontribute} package requires that the packages \Package{array} and \Package{booktabs} be installed.
 If the list of contributors is very long, it may spread over more than one page.
-The \Package{tabular} environment does not like this. Add the option \Option{xtab} to use 
-\Package{xtab} instead.
+The \Package{tabular} environment does not like this.
+Add the option \Option{xtab} to use \Package{xtab} instead.
+
+
 
 %-------------------------------------------------------------------------------
 \subsection{Special author lists}
@@ -192,8 +196,8 @@ This can be achieved with the following code snippet that should be used for the
 \usepackage{authblk}
 \author{The ATLAS Collaboration%
 \thanks{The full author list can be found at:\\
-	\url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}
-	\vspace*{1.0ex}}%
+  \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}
+  \vspace*{1.0ex}}%
 }
 \end{verbatim}
 
@@ -254,15 +258,15 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     the cover page. Not shown on the front page if the note number is given.
 
   \item {\verb|\AtlasNote{<Note number>}|} displays the note number
-  	for a CONF, PUB, INT or COM note, e.g.\ \texttt{ATLAS-CONF-2014-23},
-  	on the front page and cover page.
-  	If the note number is given, the reference code is not shown.
+    for a CONF, PUB, INT or COM note, e.g.\ \texttt{ATLAS-CONF-2014-23},
+    on the front page and cover page.
+    If the note number is given, the reference code is not shown.
 
   \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
-  	preprint number on the front page.
+    preprint number on the front page.
 
   \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
-  	on the front page.
+    on the front page.
 
   \item {\verb|\skipbeforetitle{<length>}|} sets the distance between
     the title page header and the note title. The default value should
@@ -396,8 +400,8 @@ Further options are:
 \item[\Option{siunitx=true|false}](true) Do not include the \Package{siunitx} package.
 \item[\Option{subfigure=true|false}](false) Use \Package{subfigure} instead of \Package{subfig}.
 \item[\Option{texlive=2009}] Set if you use and older version of \TeX\ Live like 2009.
-	The only value that has an effect is 2009, 
-	which this uses old (Version 1) option names for \Package{siunitx}.
+  The only value that has an effect is 2009, 
+  which this uses old (Version 1) option names for \Package{siunitx}.
 \end{description}
 
 \File{lineno.sty} and \File{authblk.sty} are also provided in \File{latex/other}.
@@ -545,7 +549,7 @@ The following extra packages had to be installed:
 It works out of the box, if you modify your \texttt{PATH} to use a recent version of \TeX\ Live.
 Set your \texttt{PATH} as follows:
 \begin{verbatim}
-		export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
+  export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
 \end{verbatim}
 
 %-------------------------------------------------------------------------------
@@ -625,7 +629,7 @@ If you want to install the package in a central area do the following:
 \item Unpack the tarball;
 \item Copy the style directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
 \item Copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
-	to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bst}, respectively.
+  to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bst}, respectively.
 \end{itemize}
 You can also checkout the two directory trees from SVN:
 {\small
@@ -644,14 +648,14 @@ and then move the contents of the old directory back into the \File{bibtex} tree
 
 In the template files, you have to change
 \begin{center}
-	\begin{tabular}{ll}
-		From & To \\
-		\midrule
-		\verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
-		\verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
-		\verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
-		\verb|\usepackage{latex/atlasconribute}| & \verb|\usepackage{atlascontribute}|
-	\end{tabular}
+  \begin{tabular}{ll}
+    From & To \\
+    \midrule
+    \verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
+    \verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
+    \verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
+    \verb|\usepackage{latex/atlasconribute}| & \verb|\usepackage{atlascontribute}|
+  \end{tabular}
 \end{center}
 
 If you are using \BibTeX\ you also have to change\\
@@ -670,13 +674,13 @@ So far the \Package{atlaslatex} package has been tested with the classes for Els
 
 \begin{description}
 \item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-	\TeX\ Live distribution. 
-	It can also be found at \url{http://www.elsevier.com/locate/latex}.
+  \TeX\ Live distribution. 
+  It can also be found at \url{http://www.elsevier.com/locate/latex}.
 \item[APS]APS journals use REV\TeX. This is also usually installed.
-	It can also be found at \url{https://journals.aps.org/revtex}.
-	Note that you have to specify the author after \verb|\begin{document}| with this class.
-	Hence you should comment out the definition in your metadata file,\\
-	e.g.\ \File{mydocument-metadata.tex}.
+  It can also be found at \url{https://journals.aps.org/revtex}.
+  Note that you have to specify the author after \verb|\begin{document}| with this class.
+  Hence you should comment out the definition in your metadata file,\\
+  e.g.\ \File{mydocument-metadata.tex}.
 \item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
 \end{description}
 
@@ -767,10 +771,10 @@ Use the syntax \verb|\SI{20.3}{\per\fb}| to get \SI{20.3}{\per\fb}.
 Some things to note about using \Package{siunitx}:
 \begin{itemize}
 \item It tries to isolate itself from other packages.
-	If you just want to write \si{\GeV} in your text,
-	then you must write \verb|\si{\GeV}|.
+  If you just want to write \si{\GeV} in your text,
+  then you must write \verb|\si{\GeV}|.
 \item It also contains two new column specifiers for tables ``S'' and ``s'',
-	which are extremely useful for formatting tables properly.
+  which are extremely useful for formatting tables properly.
 \end{itemize}
 
 The option names are somewhat different for \TeX\ Live 2009,
@@ -811,7 +815,7 @@ Enclose the environment in a \Package{linenomath} environment to fix this proble
 \begin{verbatim}
 \begin{linenomath}
 \begin{equation*}
-	E = m c^{2}
+  E = m c^{2}
 \end{equation*}
 \end{linenomath}
 \end{verbatim}
@@ -867,15 +871,15 @@ As of \File{atlaslatex-01-00-00} the same macro names are used in both \Package{
 \Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
 This means that if you start from an old preamble the following changes should be made:
 \begin{center}
-	\begin{tabular}{ll}
-		Old	& New\\
-		\midrule
-		\Macro{title} & \Macro{AtlasTitle}\\
-		\Macro{draftversion} & \Macro{AtlasVersion}\\
-		\Macro{atlasnote} & \Macro{AtlasNote}\\
-		\Macro{journal} & \Macro{AtlasJournal}\\
-		\Macro{abstracttext} & \Macro{AtlasAbstract}
-	\end{tabular}
+  \begin{tabular}{ll}
+    Old	& New\\
+    \midrule
+    \Macro{title} & \Macro{AtlasTitle}\\
+    \Macro{draftversion} & \Macro{AtlasVersion}\\
+    \Macro{atlasnote} & \Macro{AtlasNote}\\
+    \Macro{journal} & \Macro{AtlasJournal}\\
+    \Macro{abstracttext} & \Macro{AtlasAbstract}
+  \end{tabular}
 \end{center}
 If you use the old macro names 
 \Macro{draftversion}, \Macro{journal}, \Macro{abstracttext},
@@ -888,6 +892,9 @@ If something important has got lost, please let me know.
 
 The \Package{subfigure} package has been replaced with \Package{subfig}, as \Package{subfigure} is now deprecated.
 If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
+If you want to continue to use \Package{subfigure} include \Package{atlaspackage} with the option
+\Option{subfigure=true}. Similarly, if you do not want to include \Package{siunitx} set
+the option \Option{siunitx=false}.
 
 
 %-------------------------------------------------------------------------------
@@ -899,28 +906,28 @@ As of \Package{atlascover-01-00-00} the same macro names are used in both \Packa
 \Package{atlascover} so that title, journal and version number only need to be specified once.
 This means that if you start from an old cover page the following changes have to be made:
 \begin{center}
-	\begin{tabular}{ll}
-		Old                            & New                   \\
-		\midrule
-		\Macro{AtlasCoverPaperTitle}   & \Macro{AtlasTitle}    \\
-		\Macro{AtlasCoverNumber}       & \Macro{AtlasRefCode}  \\
-		\Macro{AtlasCoverPaperVersion} & \Macro{AtlasVersion}  \\
-		\Macro{AtlasCoverJournal}      & \Macro{AtlasJournal}  \\
-		\Macro{AtlasCoverAbstract}     & \Macro{AtlasAbstract}
-	\end{tabular}
+  \begin{tabular}{ll}
+    Old                            & New                   \\
+    \midrule
+    \Macro{AtlasCoverPaperTitle}   & \Macro{AtlasTitle}    \\
+    \Macro{AtlasCoverNumber}       & \Macro{AtlasRefCode}  \\
+    \Macro{AtlasCoverPaperVersion} & \Macro{AtlasVersion}  \\
+    \Macro{AtlasCoverJournal}      & \Macro{AtlasJournal}  \\
+    \Macro{AtlasCoverAbstract}     & \Macro{AtlasAbstract}
+  \end{tabular}
 \end{center}
 
 Note that \Package{atlaspreprint} is integrated into \Package{atlascover} and not maintained as a separate style file.
 To get the CERN preprint front page, you have to include the option \Option{preprint} when you invoke \Package{atlasdoc}.
 If you start from an old preprint front page the following changes have to be made:
 \begin{center}
-	\begin{tabular}{ll}
-		Old                              & New                   \\
-		\midrule
-		\Macro{PreprintCoverPaperTitle} & \Macro{AtlasTitle}    \\
-		\Macro{PreprintJournalName}     & \Macro{AtlasJournal}  \\
-		\Macro{PreprintCoverAbstract}   & \Macro{AtlasAbstract}
-	\end{tabular}
+  \begin{tabular}{ll}
+    Old                              & New                   \\
+    \midrule
+    \Macro{PreprintCoverPaperTitle} & \Macro{AtlasTitle}    \\
+    \Macro{PreprintJournalName}     & \Macro{AtlasJournal}  \\
+    \Macro{PreprintCoverAbstract}   & \Macro{AtlasAbstract}
+  \end{tabular}
 \end{center}
 The following changes are needed for the macros:
 \begin{itemize}

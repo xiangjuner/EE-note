@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\APKG@PackageVersion{01-01-01}
+\def\APKG@PackageVersion{01-02-00}
 
-\ProvidesPackage{latex/atlaspackage}[2014/09/08 v.01-01-01 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2014/09/10 v.01-02-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS LaTeX packages v.\APKG@PackageVersion}
@@ -33,20 +33,21 @@
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifAPKG@minimal
+  \typeout{APKG minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
 \else
-  \ifAPKG@default
+  \ifAPKG@full
+    \typeout{APKG full settings}
+    \APKG@lesstrue
+    \APKG@standardtrue
+    \APKG@moretrue
+  \else
+    \typeout{APKG default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
-  \else
-    \ifAPKG@full
-      \APKG@lesstrue
-      \APKG@standardtrue
-      \APKG@moretrue
-    \fi
   \fi
 \fi
 
@@ -86,18 +87,21 @@
 
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
+% Graphics
 \RequirePackage{graphicx}
-\RequirePackage{color}
+% Colour
+\RequirePackage{xcolor}
 % Document language control
 \RequirePackage{babel}
+% Add line numbers
+\RequirePackage{lineno}
 
+%-------------------------------------------------------------------------------
+% Minimal set of packages
 % Input encoding - allows ä, ö, ß etc. to be input directly
 \RequirePackage[utf8]{inputenc}
-% Encoding used for prinout
+% Encoding used for printout
 \RequirePackage[T1]{fontenc}
-% Document font - this should be defined in the documement class
-%\RequirePackage{mathptmx}
-%\RequirePackage[varg]{txfonts}
 % amsmath and txfonts define the same symbols - use the txfont version
 \RequirePackage{savesym}
 \savesymbol{iint}
@@ -111,8 +115,6 @@
 \restoresymbol{AMS}{iiint}
 \restoresymbol{AMS}{iiiint}
 \restoresymbol{AMS}{idotsint}
-% Add line numbers
-\RequirePackage{lineno}
 % If you have an old lineno or do not have it, you can get it from the latex/other directory
 % \RequirePackage{latex/other/lineno}
 % Add command that can force all figures and tables (floats) to appear before a certain point
@@ -142,16 +144,16 @@
       \RequirePackage[noload=addn]{siunitx}
       \sisetup{seperr, repeatunits=false, alsoload=hep}
       \sisetup{obeyall}
-%  	\newunit\micron{\micro\metre}
-%  	\newunit\mrad{\milli\radian}
-%  	\newunit\nb{\nano\barn}
-%  	\newunit\pb{\pico\barn}
-%  	\newunit\fb{\femto\barn}
-%  	\newunit\clight{\ensuremath{c}}
+%      \newunit\micron{\micro\metre}
+%      \newunit\mrad{\milli\radian}
+%      \newunit\nb{\nano\barn}
+%      \newunit\pb{\pico\barn}
+%      \newunit\fb{\femto\barn}
+%      \newunit\clight{\ensuremath{c}}
     \else
       \RequirePackage{siunitx}
       \sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
-%  		detect-family = true, detect-display-math=true}
+%      detect-family = true, detect-display-math=true}
       \sisetup{group-digits=integer, group-minimum-digits=4}
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}

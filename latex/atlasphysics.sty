@@ -6,18 +6,18 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\AP@PackageVersion{01-01-01}
+\def\APHY@PackageVersion{01-02-00}
 
-\ProvidesPackage{latex/atlasphysics}[2014/09/08 v.01-01-01 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2014/09/10 v.01-02-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
-\typeout{ATLAS physics style file v.\AP@PackageVersion}
+\typeout{ATLAS physics style file v.\APHY@PackageVersion}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
-	family=AP,
-	prefix=AP@
+  family=APHY,
+  prefix=APHY@
 }
 \DeclareBoolOption[false]{BSM}
 \DeclareBoolOption[true]{journal}
@@ -30,34 +30,34 @@
 \DeclareBoolOption[true]{xref}
 \DeclareBoolOption[false]{texmf}
 \ProcessKeyvalOptions*
-%\let\ifAP@BSM\iffalse
-%\let\ifAP@journal\iftrue
-%\let\ifAP@math\iffalse
-%\let\ifAP@misc\iftrue
-%\let\ifAP@other\iffalse
-%\let\ifAP@particle\iftrue
-%\let\ifAP@process\iffalse
-%\let\ifAP@unit\iftrue
-%\DeclareOption{bsm}{\let\ifAP@BSM\iftrue}
-%\DeclareOption{nobsm}{\let\ifAP@BSM\iffalse}
-%\DeclareOption{math}{\let\ifAP@math\iftrue}
-%\DeclareOption{nomath}{\let\ifAP@math\iffalse}
-%\DeclareOption{misc}{\let\ifAP@misc\iftrue}
-%\DeclareOption{nomisc}{\let\ifAP@misc\iffalse}
-%\DeclareOption{other}{\let\ifAP@other\iftrue}
-%\DeclareOption{noother}{\let\ifAP@other\iffalse}
-%\DeclareOption{particle}{\let\ifAP@particle\iftrue}
-%\DeclareOption{noparticle}{\let\ifAP@particle\iffalse}
-%\DeclareOption{process}{\let\ifAP@process\iftrue}
-%\DeclareOption{noprocess}{\let\ifAP@process\iffalse}
-%\DeclareOption{refs}{\let\ifAP@refs\iftrue}
-%\DeclareOption{norefs}{\let\ifAP@refs\iffalse}
-%\DeclareOption{unit}{\let\ifAP@unit\iftrue}
-%\DeclareOption{nounit}{\let\ifAP@unit\iffalse}
-%\DeclareOption{xref}{\let\ifAP@xref\iftrue}
-%\DeclareOption{noxref}{\let\ifAP@xref\iffalse}
-%\let\ifAP@texmf\iffalse
-%\DeclareOption{texmf}{\let\ifAP@texmf\iftrue}
+%\let\ifAPHY@BSM\iffalse
+%\let\ifAPHY@journal\iftrue
+%\let\ifAPHY@math\iffalse
+%\let\ifAPHY@misc\iftrue
+%\let\ifAPHY@other\iffalse
+%\let\ifAPHY@particle\iftrue
+%\let\ifAPHY@process\iffalse
+%\let\ifAPHY@unit\iftrue
+%\DeclareOption{bsm}{\let\ifAPHY@BSM\iftrue}
+%\DeclareOption{nobsm}{\let\ifAPHY@BSM\iffalse}
+%\DeclareOption{math}{\let\ifAPHY@math\iftrue}
+%\DeclareOption{nomath}{\let\ifAPHY@math\iffalse}
+%\DeclareOption{misc}{\let\ifAPHY@misc\iftrue}
+%\DeclareOption{nomisc}{\let\ifAPHY@misc\iffalse}
+%\DeclareOption{other}{\let\ifAPHY@other\iftrue}
+%\DeclareOption{noother}{\let\ifAPHY@other\iffalse}
+%\DeclareOption{particle}{\let\ifAPHY@particle\iftrue}
+%\DeclareOption{noparticle}{\let\ifAPHY@particle\iffalse}
+%\DeclareOption{process}{\let\ifAPHY@process\iftrue}
+%\DeclareOption{noprocess}{\let\ifAPHY@process\iffalse}
+%\DeclareOption{refs}{\let\ifAPHY@refs\iftrue}
+%\DeclareOption{norefs}{\let\ifAPHY@refs\iffalse}
+%\DeclareOption{unit}{\let\ifAPHY@unit\iftrue}
+%\DeclareOption{nounit}{\let\ifAPHY@unit\iffalse}
+%\DeclareOption{xref}{\let\ifAPHY@xref\iftrue}
+%\DeclareOption{noxref}{\let\ifAPHY@xref\iffalse}
+%\let\ifAPHY@texmf\iffalse
+%\DeclareOption{texmf}{\let\ifAPHY@texmf\iftrue}
 
 % Execute options
 % \ProcessOptions \relax
@@ -66,60 +66,60 @@
 \RequirePackage{xspace}
 
 % Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex
-\ifAP@texmf
-	% BSM particles including SUSY
-  \ifAP@BSM      \RequirePackage{atlasbsm} \fi
+\ifAPHY@texmf
+  % BSM particles including SUSY
+  \ifAPHY@BSM      \RequirePackage{atlasbsm} \fi
 
   % Journal abbreviations
-  \ifAP@journal  \RequirePackage{atlasjournal} \fi
+  \ifAPHY@journal  \RequirePackage{atlasjournal} \fi
 
   % Useful math related definitions
-  \ifAP@math     \RequirePackage{atlasmath} \fi
+  \ifAPHY@math     \RequirePackage{atlasmath} \fi
 
-	% Miscellaneous useful definitions
-	\ifAP@misc     \RequirePackage{atlasmisc} \fi
+  % Miscellaneous useful definitions
+  \ifAPHY@misc     \RequirePackage{atlasmisc} \fi
 
-	% Other maybe useful definitions
-	\ifAP@other    \RequirePackage{atlasother} \fi
+  % Other maybe useful definitions
+  \ifAPHY@other    \RequirePackage{atlasother} \fi
 
-	% Particles
-	\ifAP@particle \RequirePackage{atlasparticle} \fi
+  % Particles
+  \ifAPHY@particle \RequirePackage{atlasparticle} \fi
 
-	% Processes
-	\ifAP@process  \RequirePackage{atlasprocess} \fi
+  % Processes
+  \ifAPHY@process  \RequirePackage{atlasprocess} \fi
 
-	% Units
-	\ifAP@unit     \RequirePackage{atlasunit} \fi
+  % Units
+  \ifAPHY@unit     \RequirePackage{atlasunit} \fi
 
-	% Abbreviations when cross referencing
-  \ifAP@xref     \RequirePackage{atlasxref} \fi
+  % Abbreviations when cross referencing
+  \ifAPHY@xref     \RequirePackage{atlasxref} \fi
 \else
-	% BSM particles including SUSY
-  \ifAP@BSM      \RequirePackage{latex/atlasbsm} \fi
+  % BSM particles including SUSY
+  \ifAPHY@BSM      \RequirePackage{latex/atlasbsm} \fi
 
   % Journal abbreviations
-  \ifAP@journal  \RequirePackage{latex/atlasjournal} \fi
+  \ifAPHY@journal  \RequirePackage{latex/atlasjournal} \fi
 
   % Useful math related definitions
-  \ifAP@math     \RequirePackage{latex/atlasmath} \fi
+  \ifAPHY@math     \RequirePackage{latex/atlasmath} \fi
 
-	% Miscellaneous useful definitions
-	\ifAP@misc     \RequirePackage{latex/atlasmisc} \fi
+  % Miscellaneous useful definitions
+  \ifAPHY@misc     \RequirePackage{latex/atlasmisc} \fi
 
-	% Other maybe useful definitions
-	\ifAP@other    \RequirePackage{latex/atlasother} \fi
+  % Other maybe useful definitions
+  \ifAPHY@other    \RequirePackage{latex/atlasother} \fi
 
-	% Particles
-	\ifAP@particle \RequirePackage{latex/atlasparticle} \fi
+  % Particles
+  \ifAPHY@particle \RequirePackage{latex/atlasparticle} \fi
 
-	% Processes
-	\ifAP@process  \RequirePackage{latex/atlasprocess} \fi
+  % Processes
+  \ifAPHY@process  \RequirePackage{latex/atlasprocess} \fi
 
-	% Units
-	\ifAP@unit     \RequirePackage{latex/atlasunit} \fi
+  % Units
+  \ifAPHY@unit     \RequirePackage{latex/atlasunit} \fi
 
-	% Abbreviations when cross referencing
-  \ifAP@xref     \RequirePackage{latex/atlasxref} \fi
+  % Abbreviations when cross referencing
+  \ifAPHY@xref     \RequirePackage{latex/atlasxref} \fi
 \fi
 
 \endinput

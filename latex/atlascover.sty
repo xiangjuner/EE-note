@@ -4,20 +4,18 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-01-01}
+\def\ATPackageVersion{01-02-00}
 
-\ProvidesPackage{latex/atlascover}[2014/09/07 v.01-01-01 ATLAS Cover Pages]
+\ProvidesPackage{latex/atlascover}[2014/09/10 v.01-02-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
-\typeout{********************************}
-\typeout{* ATLAS Cover Page v.\ATPackageVersion}
-\typeout{********************************}
+\typeout{ATLAS Cover Page v.\ATPackageVersion}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
-	family=AC,
-	prefix=AC@
+	family=ACOV,
+	prefix=ACOV@
 }
 \DeclareBoolOption[true]{paper}
 \DeclareBoolOption[false]{CONF}
@@ -31,46 +29,46 @@
 \DeclareStringOption[0pt]{voffset}
 \ProcessKeyvalOptions*
 
-%\typeout{Value of paper option is \AC@paper}
-\typeout{Value of hoffset is \AC@hoffset}
-\typeout{Value of voffset is \AC@voffset}
+%\typeout{Value of paper option is \ACOV@paper}
+\typeout{Value of hoffset is \ACOV@hoffset}
+\typeout{Value of voffset is \ACOV@voffset}
 
-%\let\ifAC@clearpage\iffalse
-%\DeclareOption{clearpage}{\let\ifAC@clearpage\iftrue}
-%\let\ifAC@paper\iftrue
-%\let\ifAC@CONF\iffalse
-%\let\ifAC@PUB\iffalse
-%\let\ifAC@preprint\iffalse
-%\DeclareOption{PAPER}   {\let\ifAC@paper\iftrue  \let\ifAC@CONF\iffalse \let\ifAC@PUB\iffalse}
-%\DeclareOption{CONF}    {\let\ifAC@paper\iffalse \let\ifAC@CONF\iftrue  \let\ifAC@PUBNote\iffalse}
-%\DeclareOption{PUB}     {\let\ifAC@paper\iffalse \let\ifAC@CONF\iffalse \let\ifAC@PUBNote\iftrue}
-%\DeclareOption{preprint}{\let\ifAC@paper\iffalse \let\ifAC@CONF\iffalse \let\ifAC@PUBNote\iffalse %\let\ifAC@preprint\iftrue}
-%\let\ifAC@atlasdoc\iffalse
-%\DeclareOption{atlasdoc}{\let\ifAC@atlasdoc\iftrue}
-%\let\ifAC@twocolumn\iffalse
-%\DeclareOption{twocolumn}{\let\ifAC@twocolumn\iftrue}
+%\let\ifACOV@clearpage\iffalse
+%\DeclareOption{clearpage}{\let\ifACOV@clearpage\iftrue}
+%\let\ifACOV@paper\iftrue
+%\let\ifACOV@CONF\iffalse
+%\let\ifACOV@PUB\iffalse
+%\let\ifACOV@preprint\iffalse
+%\DeclareOption{PAPER}   {\let\ifACOV@paper\iftrue  \let\ifACOV@CONF\iffalse \let\ifACOV@PUB\iffalse}
+%\DeclareOption{CONF}    {\let\ifACOV@paper\iffalse \let\ifACOV@CONF\iftrue  \let\ifACOV@PUBNote\iffalse}
+%\DeclareOption{PUB}     {\let\ifACOV@paper\iffalse \let\ifACOV@CONF\iffalse \let\ifACOV@PUBNote\iftrue}
+%\DeclareOption{preprint}{\let\ifACOV@paper\iffalse \let\ifACOV@CONF\iffalse \let\ifACOV@PUBNote\iffalse %\let\ifACOV@preprint\iftrue}
+%\let\ifACOV@atlasdoc\iffalse
+%\DeclareOption{atlasdoc}{\let\ifACOV@atlasdoc\iftrue}
+%\let\ifACOV@twocolumn\iffalse
+%\DeclareOption{twocolumn}{\let\ifACOV@twocolumn\iftrue}
 
-%\newlength{\AC@hoffset}
-%\newlength{\AC@voffset}
+%\newlength{\ACOV@hoffset}
+%\newlength{\ACOV@voffset}
 % Allow horizontal and vertical offset to be passed
-%\define@key{atlasdoc.cls}{hoffset}[0pt]{\setlength\AC@hoffset{#1}}
-%\define@key{atlasdoc.cls}{voffset}[0pt]{\setlength\AC@voffset{#1}}
+%\define@key{atlasdoc.cls}{hoffset}[0pt]{\setlength\ACOV@hoffset{#1}}
+%\define@key{atlasdoc.cls}{voffset}[0pt]{\setlength\ACOV@voffset{#1}}
 
-\let\AC@AdvancePageTwoSided\relax
+\let\ACOV@AdvancePageTwoSided\relax
 %\ProcessOptions\relax
 
 % cover page dimensions
-%ICB \newdimen\AC@AtlasCoverWidth
-%ICB \newdimen\AC@AtlasCoverHeight
+%ICB \newdimen\ACOV@AtlasCoverWidth
+%ICB \newdimen\ACOV@AtlasCoverHeight
 % these fail with RevTeX4...
-%\AC@AtlasCoverWidth=\paperwidth
-%\AC@AtlasCoverHeight=\paperheight
+%\ACOV@AtlasCoverWidth=\paperwidth
+%\ACOV@AtlasCoverHeight=\paperheight
 % .. thus I force A4 paper size
-%ICB \AC@AtlasCoverWidth=21 cm
-%ICB \AC@AtlasCoverHeight=29.7 cm
+%ICB \ACOV@AtlasCoverWidth=21 cm
+%ICB \ACOV@AtlasCoverHeight=29.7 cm
 %
-%ICB \advance\AC@AtlasCoverWidth by -1.5in
-%ICB \advance\AC@AtlasCoverHeight by -1.5in
+%ICB \advance\ACOV@AtlasCoverWidth by -1.5in
+%ICB \advance\ACOV@AtlasCoverHeight by -1.5in
 
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
@@ -82,11 +80,11 @@
 % Editorial information from main tex file
 %*********************************************
 
-\ifAC@atlasdoc%
-	\typeout{ATLAS cover called from atlasdoc}
-	\relax%
+\ifACOV@atlasdoc%
+  \typeout{ATLAS cover called from atlasdoc}
+  \relax%
 \else%
-	\typeout{ATLAS cover called standalone}
+  \typeout{ATLAS cover called standalone}
   % \def\@title{Dummy title in atlascover\\ Use \textbackslash title to set it}
   \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
   \providecommand{\AtlasTitle}[1]{%
@@ -95,84 +93,85 @@
   }
   % \def\@author{The ATLAS Collabration}
   % Draft version 
-  \def\@draftversion{}
-  \providecommand*{\AtlasVersion}[1]{\def\@draftversion{#1}}
-	% ATLAS reference code - empty by default
-	\def\@refcode{}
-	\providecommand*{\AtlasRefCode}[1]{\def\@refcode{#1}}
+  \def\ADOC@draftversion{}
+  \providecommand*{\AtlasVersion}[1]{\def\ADOC@draftversion{#1}}
+  % ATLAS reference code - empty by default
+  \def\ADOC@refcode{}
+  \providecommand*{\AtlasRefCode}[1]{\def\ADOC@refcode{#1}}
   % ATLAS note number
-  \def\@atlasnote{}
-  \providecommand*{\AtlasNote}[1]{\def\@atlasnote{#1}}
-	% Journal
-  \def\@journal{}
-  \providecommand*{\AtlasJournal}[1]{\def\@journal{#1}}
+  \def\ADOC@atlasnote{}
+  \providecommand*{\AtlasNote}[1]{\def\ADOC@atlasnote{#1}}
+  % Journal
+  \def\ADOC@journal{}
+  \providecommand*{\AtlasJournal}[1]{\def\ADOC@journal{#1}}
+  % Preprint
+  \def\ADOC@preprintnumber{}
+  \providecommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
+  % ArXiv
+  \def\AtlasArXivId{}
+  \def\AtlasArXivURL{}
+  \providecommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
+  \providecommand*{\AtlasArXivCat}{[hep-ex]}
+  % HEP Data
+  \def\AtlasHepDataRecord{}
+  \providecommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
+
   % Abstract
   \def\AtlasAbstractText{}
   \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \fi
 
 
-\def\AC@PreprintNumber{}
-\newcommand*{\PreprintIdNumber}[1]{\def\AC@PreprintNumber{#1}}
-
-\def\AtlasArXivId{}
-\def\AtlasArXivURL{}
-\newcommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
-\newcommand*{\AtlasArXivCat}{[hep-ex]}
-
-\def\AtlasHepDataRecord{}
-\newcommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
-
 % Single corresponding editor
-% \def\AC@EditorName{Corresponding editor name}
-% \def\AC@EditorEmail{corresponding.editor@email}
+% \def\ACOV@EditorName{Corresponding editor name}
+% \def\ACOV@EditorEmail{corresponding.editor@email}
 % \newcommand{\AtlasCoverEditor}[2]{
-%   \def\AC@EditorName{#1}
-%   \def\AC@EditorEmail{#2}
+%   \def\ACOV@EditorName{#1}
+%   \def\ACOV@EditorEmail{#2}
 % }
 
 % Multiple corresponding editors
-\def\AC@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
+\def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
 \newcommand{\AtlasCoverEditor}[2]{%
-  \g@addto@macro\AC@Editors{%
+  \g@addto@macro\ACOV@Editors{%
     #1 & ({\tt #2}) \\
   }%
 }
 
-\def\AC@CommentsDeadline{Comments deadline}
-\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\AC@CommentsDeadline{#1}}
+\def\ACOV@CommentsDeadline{Comments deadline}
+\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
 
-\def\AC@AnalysisTeam{Analysis team}
-\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\AC@AnalysisTeam{#1}}
+\def\ACOV@AnalysisTeam{Analysis team}
+\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
 
-\def\AC@EgroupEditors{Editor egroup}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\def\AC@EgroupEditors{#1}}
+\def\ACOV@EgroupEditors{Editor egroup}
+\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
 
-\def\AC@EgroupEdBoard{EdBoard egroup}
-\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\AC@EgroupEdBoard{#1}}
+\def\ACOV@EgroupEdBoard{EdBoard egroup}
+\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
 
-\def\AC@EdBoardMembers{}
+\def\ACOV@EdBoardMembers{}
 \newcommand{\AtlasCoverEdBoardMember}[1]{%
-  \g@addto@macro\AC@EdBoardMembers{%
+  \g@addto@macro\ACOV@EdBoardMembers{%
     #1 \\
   }%
 }
 
-\def\AC@ReaderMembers{}
+\def\ACOV@ReaderMembers{}
 \newcommand{\AtlasCoverReaderMember}[1]{%
-  \g@addto@macro\AC@ReaderMembers{%
+  \g@addto@macro\ACOV@ReaderMembers{%
     #1 \\
   }%
 }
 
-%\def\AC@TwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
-\def\AC@TwikiURL{}
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\AC@TwikiURL{\url{#1}}}
+%\def\ACOV@TwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+\def\ACOV@TwikiURL{}
+\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
 
 % Supporting note list
-\def\AC@Notes{}
+\def\ACOV@Notes{}
 \newcommand{\AtlasCoverSupportingNote}[2]{%
-  \g@addto@macro\AC@Notes{%
+  \g@addto@macro\ACOV@Notes{%
     #1 & \url{#2} \\
   }%
 }
@@ -185,10 +184,10 @@
 % Main printout phase
 %**********************************************
 
-\newcommand{\AC@PrintAtlasCover}{
+\newcommand{\ACOV@PrintAtlasCover}{
   \bgroup\global\setbox255\vbox{%
-    \vspace*{\AC@voffset}%
-    \noindent\hspace*{\AC@hoffset}%
+    \vspace*{\ACOV@voffset}%
+    \noindent\hspace*{\ACOV@hoffset}%
     \rlap{\begin{minipage}[t][\textheight][c]{\textwidth}%
       	{\AtlasCoverHeader}%
         \vfill%
@@ -200,10 +199,10 @@
   \egroup\shipout\box255
 }
 
-\newcommand{\AC@PrintAtlasPage}{
+\newcommand{\ACOV@PrintAtlasPage}{
   \bgroup\global\setbox255\vbox{%
-    \vspace*{\AC@voffset}%
-    \noindent\hspace*{\AC@hoffset}%
+    \vspace*{\ACOV@voffset}%
+    \noindent\hspace*{\ACOV@hoffset}%
     \rlap{\begin{minipage}[t][\textheight][c]{\textwidth}%
     {\AtlasCoverPageTwo}%
         \vfill%
@@ -212,7 +211,7 @@
   \egroup\shipout\box255
 
   % additional empty page
-  \ifAC@clearpage 
+  \ifACOV@clearpage 
     \bgroup\global\setbox255\vbox{}
     \egroup\shipout\box255
   \fi
@@ -231,18 +230,18 @@
     {
       %\LARGE\sffamily\bfseries\upshape
       \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont
-      \ifAC@paper%
-      	ATLAS Paper Draft
+      \ifACOV@paper%
+        ATLAS Paper Draft
       \else
-      	\ifAC@CONF%
-      		ATLAS Conference Note Draft
-      	\else
-      		\ifAC@PUB%
-      			ATLAS PUB Note Draft
-      		\else
-      			ATLAS Draft
-      		\fi
-      	\fi
+        \ifACOV@CONF%
+          ATLAS Conference Note Draft
+        \else
+          \ifACOV@PUB%
+            ATLAS PUB Note Draft
+          \else
+            ATLAS Draft
+          \fi
+        \fi
       \fi
     }
   }
@@ -264,7 +263,7 @@
     {%
       %\LARGE\sffamily\mdseries\upshape 
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-      \@refcode\par
+      \ADOC@refcode\par
     }
     \vspace{3mm}
     {%
@@ -275,77 +274,70 @@
     {%
       %\LARGE\sffamily\mdseries\upshape 
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-      \@draftversion\par
+      \ADOC@draftversion\par
     }
     \vspace{3mm}
-    \ifAC@paper{%
-      	%\LARGE\sffamily\bfseries\upshape 
-      	\fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
-      	To be submitted to: 
+    \ifACOV@paper{%
+        %\LARGE\sffamily\bfseries\upshape 
+        \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
+        To be submitted to: 
       }
       {%
         %\LARGE\sffamily\mdseries\upshape 
         \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-        \@journal\par
+        \ADOC@journal\par
       }
     \fi
     \vspace{3mm}
-    \ifx\AC@TwikiURL\@empty
+    \ifx\ACOV@TwikiURL\@empty
       \relax
     \else
- %   \vspace*{2mm}
+%     \vspace*{2mm}
+      \rule{\linewidth}{1.5pt}\par
+      {%
+        \fontfamily{phv}\fontseries{b}\fontsize{12}{14}\selectfont 
+        A list of supporting internal notes can be found at: \par
+        \fontfamily{phv}\fontseries{m}\fontsize{12}{14}\selectfont
+        \medskip
+        \href{\ACOV@TwikiURL}{\ACOV@TwikiURL}
+      }
+    \fi
+    \ifx\ACOV@Notes\@empty
+      \relax
+    \else
+      \vspace*{2mm}
       \rule{\linewidth}{1.5pt}\par
       {%   
-        %\LARGE\sffamily\bfseries\upshape 
-      	\fontfamily{phv}\fontseries{b}\fontsize{12}{14}\selectfont 
-      	A list of supporting internal notes can be found at: \par
-      	\fontfamily{phv}\fontseries{m}\fontsize{12}{14}\selectfont
-      	\medskip
-      	\href{\AC@TwikiURL}{\AC@TwikiURL}
-    	}
-    \fi
-    \ifx\AC@Notes\@empty
-    	\relax
-    \else
-    	\vspace*{2mm}
-    	\rule{\linewidth}{1.5pt}\par
-    	{ %   
-      	\fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
-      	Supporting internal notes \par
-      	\fontfamily{phv}\fontseries{m}\fontsize{12}{14}\selectfont
-      	\medskip
-      	\begin{tabular}{ll}
-        	\AC@Notes
-      	\end{tabular}
-    	}
-	    \vspace*{4mm}
+        \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
+        Supporting internal notes \par
+        \fontfamily{phv}\fontseries{m}\fontsize{12}{14}\selectfont
+        \medskip
+        \begin{tabular}{ll}
+          \ACOV@Notes
+        \end{tabular}
+      }
+      \vspace*{4mm}
     \fi
     \rule{\linewidth}{2.0pt}\par
     \vspace*{2mm}
     {%
-      %\LARGE\sffamily\bfseries\upshape 
       \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
       Comments are due by:
     }
     {%
-      %\LARGE\sffamily\mdseries\upshape 
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-      \AC@CommentsDeadline\par
+      \ACOV@CommentsDeadline\par
     }
     \vspace*{2mm}
     \rule{\linewidth}{2.0pt}\par
     \vspace*{4mm}
-%    \rule{\linewidth}{1.5pt}\par
-%    \vspace*{2mm}
     {%
-      %\LARGE\sffamily\bfseries\upshape 
       \fontfamily{phv}\fontseries{b}\fontsize{14}{16}\selectfont 
       Abstract\par
     }
     \vspace*{2mm}
   }
   {%
-    %\LARGE\sffamily\mdseries\upshape%        
     \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
     \AtlasAbstractText
   }
@@ -355,7 +347,6 @@
 \newcommand{\AtlasCoverFooter}{%
   \begin{minipage}[b]{\textwidth}
     \vfill
-    %\small
     \fontfamily{phv}\fontseries{m}\fontsize{10}{10}\selectfont 
     Document created on \today\ from file \texttt{\jobname.tex}\\
     Cover page automatically created with \texttt{atlascover.sty}%
@@ -375,46 +366,45 @@
     \rule{\linewidth}{1.5pt}\par
     \vspace*{2mm}
     {
-      %\LARGE\sffamily\bfseries\upshape
       \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
       Analysis Team\par
     }
 
-		\ifAC@PUB%
-			\relax
-		\else
+    \ifACOV@PUB%
+      \relax
+    \else
       \vspace*{1.5mm}
       \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
       [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
       email:}
       \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-      \AC@EgroupEditors]\par
+      \ACOV@EgroupEditors]\par
     \fi
     \vspace*{4mm}
     {
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-      \AC@AnalysisTeam \par %Cover
+      \ACOV@AnalysisTeam \par %Cover
     }
     \vspace*{2mm}
     {\fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
      (*): Contact Editors
     }
     \vspace*{3mm}
-		%*******************
-		% Editorial Board or Readers
-		%*******************
+    %*******************
+    % Editorial Board or Readers
+    %*******************
     \rule{\linewidth}{1.5pt}\par
     \vspace*{2mm}
     % PUB notes have readers
-    \ifAC@PUB%
+    \ifACOV@PUB%
       {%
         \fontfamily{phv}\fontseries{b}\fontsize{16}{16}\selectfont 
         Readers\par
       }
       \vspace*{1.5mm}
-      {
+      {%
         \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-        \AC@ReaderMembers
+        \ACOV@ReaderMembers
       }
       \vspace*{2mm}
     % Everything else has an EdBoard
@@ -424,22 +414,22 @@
         Editorial Board\par
       }
       \vspace*{1.5mm}
-      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
-      email:}
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-      \AC@EgroupEdBoard]\par
+      {%
+        [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{16}\selectfont 
+        email:}
+        \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+        \ACOV@EgroupEdBoard]\par
+      }
       \vspace*{4mm}
-      {
-        %\LARGE\sffamily\mdseries\upshape%        
+      {%
         \fontfamily{phv}\fontseries{m}\fontsize{14}{16}\selectfont 
-%       \begin{tabular}{ll}
-        \AC@EdBoardMembers
-%       \end{tabular}
+        \ACOV@EdBoardMembers
       }
       \vspace*{2mm}
-%      \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-      {\fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
-      (*): EdBoard Chair}
+      {%
+        \fontfamily{phv}\fontseries{m}\fontsize{12}{16}\selectfont 
+        (*): EdBoard Chair
+      }
     \fi
     \vspace*{2mm}
     \rule{\linewidth}{1.5pt}\par
@@ -451,71 +441,73 @@
 %-------------------------------------------------------------------------------
 
 % Print the preprintcover
-\newcommand{\AC@PrintPreprintCover}{
-	\bgroup\global\setbox255\vbox{%
-   	\rlap{%
-   		\begin{minipage}[t][\textheight][c]{\textwidth}%
-   			{\PreprintCoverHeader}%
-      	\vfill%
-      	{\PreprintCoverBody}%
-      	\vfill%
-      	{\PreprintCoverFooter}%
-      \end{minipage}}%
-  	}
-  	\egroup\shipout\box255
-  	% additional empty page
-  	\ifAC@clearpage 
-  		\bgroup\global\setbox255\vbox{}
-  		\egroup\shipout\box255
-  	\fi
+\newcommand{\ACOV@PrintPreprintCover}{
+  \bgroup\global\setbox255\vbox{%
+    \rlap{%
+      \begin{minipage}[t][\textheight][c]{\textwidth}%
+        {\PreprintCoverHeader}%
+        \vfill%
+        {\PreprintCoverBody}%
+        \vfill%
+        {\PreprintCoverFooter}%
+      \end{minipage}
+    }%
+  }
+  \egroup\shipout\box255
+  % additional empty page
+  \ifACOV@clearpage 
+    \bgroup\global\setbox255\vbox{}
+    \egroup\shipout\box255
+  \fi
 }
 
 % Print the auxilary material cover
-\newcommand{\AC@PrintAuxmatCover}{
-	\bgroup\global\setbox255\vbox{%
-   	\rlap{ %
-   		\begin{minipage}[t][\textheight][c]{\textwidth}%
-   			{\AuxmatCoverHeader}%
-      	\vfill%
-      	{\AuxmatCoverBody}%
-      	\vfill%
-      	{\PreprintCoverFooter}%
-      \end{minipage}}%
-  	}
-  	\egroup\shipout\box255
-  	% additional empty page
-  	\ifAC@clearpage 
-  		\bgroup\global\setbox255\vbox{}
-  		\egroup\shipout\box255
-  	\fi
+\newcommand{\ACOV@PrintAuxmatCover}{
+  \bgroup\global\setbox255\vbox{%
+    \rlap{ %
+    \begin{minipage}[t][\textheight][c]{\textwidth}%
+      {\AuxmatCoverHeader}%
+      \vfill%
+      {\AuxmatCoverBody}%
+      \vfill%
+      {\PreprintCoverFooter}%
+      \end{minipage}
+    }%
+  }
+  \egroup\shipout\box255
+  % additional empty page
+  \ifACOV@clearpage 
+    \bgroup\global\setbox255\vbox{}
+    \egroup\shipout\box255
+  \fi
 }
 
 % Preprint cover header
 \newcommand{\PreprintCoverHeader}{%
-	\parbox[t]{\linewidth}{%
-		{\centering
-    	\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+  \parbox[t]{\linewidth}{%
+    {\centering
+      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN) \\
     }
-		\vspace*{8mm}
-		{\centering
+    \vspace*{8mm}
+    {\centering
       \includegraphics[height=30mm]{AT_atlaslogo}
-			\hspace*{\fill}
-			\raisebox{2.5mm}{\includegraphics[height=25mm]{AT_cernlogo}}
-		}
-		\vspace*{-5mm}
-		{%
-			\flushright
+      \hspace*{\fill}
+      \raisebox{2.5mm}{\includegraphics[height=25mm]{AT_cernlogo}}
+    }
+    \vspace*{-5mm}
+    {%
+      \flushright
       \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
-      \AC@PreprintNumber \par
-   	}
-		\vspace*{-1mm}
-		{%
-			\flushright
-			\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      Submitted to: \@journal \par
-		}
-		\rule{\linewidth}{1pt}\par
+      \ADOC@preprintnumber \par
+    }
+    \vspace*{-1mm}
+    {%
+      \flushright
+      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
+      Submitted to: \ADOC@journal \par
+    }
+    \rule{\linewidth}{1pt}\par
   }
 }
 
@@ -536,7 +528,7 @@
 		{%
 			\flushright
       \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
-      \AC@PreprintNumber \par
+      \ADOC@preprintnumber \par
    	}
 		\vspace*{-1mm}
 		{%
@@ -550,59 +542,58 @@
 
 % Preprint cover body
 \newcommand{\PreprintCoverBody}{
-	\parbox[t]{\linewidth}{%
-		{\centering
-			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-			\AtlasTitleText \par
-		}
-		\vspace*{20mm}
-		{\centering
-			\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-			The ATLAS Collaboration \\
-		}
-		\vspace*{20mm}
-		{\centering
-			\fontfamily{phv}\bfseries\fontsize{11}{13.2}\selectfont
-			Abstract \\
-		}
-		\vspace*{5mm}
-		{%\linespread{1.1}	
-			{%
-			  \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-			  %\hspace*{15\p@}\AtlasAbstractText \par
-			  \AtlasAbstractText \par
-			}
-  	}
+  \parbox[t]{\linewidth}{%
+    {\centering
+      \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+      \AtlasTitleText \par
+    }
+    \vspace*{20mm}
+    {\centering
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      The ATLAS Collaboration \\
+    }
+    \vspace*{20mm}
+    {\centering
+      \fontfamily{phv}\bfseries\fontsize{11}{13.2}\selectfont
+      Abstract \\
+    }
+    \vspace*{5mm}
+    {%\linespread{1.1}
+      {%
+        \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
+        \AtlasAbstractText\par
+      }
+    }
   }
 }
 
 
 % Auxiliary material cover body
 \newcommand{\AuxmatCoverBody}{
-	\parbox[t]{\linewidth}{%
-		{\centering
-			\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-			Auxiliary figures and tables from the paper\\
-			\AtlasTitleText \par
-		}
-		\vspace*{10mm}
-		{\centering
-			\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-			The ATLAS Collaboration \\
-		}
-		\vspace*{10mm}
-		{\centering
-			\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-			\@refcode \\
-		}
-		\vspace*{10mm}
-		{%\linespread{1.1}	
-			{%
-			  \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-			  %\hspace*{15\p@}\AtlasAbstractText \par
-			  \AtlasAbstractText \par
-			}
-  	}
+  \parbox[t]{\linewidth}{%
+    {\centering
+      \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+      Auxiliary figures and tables from the paper\\
+      \AtlasTitleText\par
+    }
+    \vspace*{10mm}
+    {\centering
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      The ATLAS Collaboration\\
+    }
+    \vspace*{10mm}
+    {\centering
+      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      \ADOC@refcode \\
+    }
+    \vspace*{10mm}
+    {%\linespread{1.1}
+      {%
+        \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
+        %\hspace*{15\p@}\AtlasAbstractText \par
+        \AtlasAbstractText \par
+      }
+    }
   }
 }
 
@@ -618,24 +609,24 @@
 %****************************************************
 
 \AtBeginDocument{
-  \ifAC@atlasdoc%
-   	\relax%
-	\else
-		\ifAC@twocolumn \onecolumn \fi
-		\ifAC@preprint%
-			\AC@PrintPreprintCover%
-	  	\AC@AdvancePageTwoSided%
-  	\else%
-			\ifAC@auxmat%
-				\AC@PrintAuxmatCover%
-	  		\AC@AdvancePageTwoSided%
-	  	\else%
-    		\AC@PrintAtlasCover%
-    		\AC@PrintAtlasPage%
-    		\AC@AdvancePageTwoSided%
-    	\fi%
+  \ifACOV@atlasdoc%
+    \relax%
+  \else
+    \ifACOV@twocolumn \onecolumn \fi
+    \ifACOV@preprint%
+      \ACOV@PrintPreprintCover%
+      \ACOV@AdvancePageTwoSided%
+    \else%
+      \ifACOV@auxmat%
+        \ACOV@PrintAuxmatCover%
+        \ACOV@AdvancePageTwoSided%
+      \else%
+        \ACOV@PrintAtlasCover%
+        \ACOV@PrintAtlasPage%
+        \ACOV@AdvancePageTwoSided%
+      \fi%
     \fi
-		\ifAC@twocolumn \twocolumn \fi
+    \ifACOV@twocolumn \twocolumn \fi
   \fi
 }
 

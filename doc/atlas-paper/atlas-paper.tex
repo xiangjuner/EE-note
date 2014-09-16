@@ -13,6 +13,7 @@
 \usepackage{tikz}
 
 % Files with references in BibTeX format
+\usepackage{latex/atlas-biblatex}
 \addbibresource{atlas-paper.bib}
 \addbibresource{../../bibtex/bib/atlas-paper.bib}
 \addbibresource{../atlas-latex.bib}
@@ -428,7 +429,7 @@ as, among other things, they introduce some extra spacing around the lines, whic
     \bottomrule
   \end{tabular}
   \caption[Monte Carlo purities in the single lepton sample]{%
-  	Monte Carlo estimates of the fraction of each process in the single
+    Monte Carlo estimates of the fraction of each process in the single
     lepton data sample. This table uses ``S'' format from \texttt{siunitx} and
     ``\texttt{$\,\pm\,$}'' as the intercolumn separator.}
   \label{tab:example1}
@@ -578,7 +579,7 @@ If you want to use this package, you should include commands like:
 %
 \begin{verbatim}
   \usepackage[backend=biber,
-	  style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
+    style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
   \addbibresource{atlas-paper.bib}
 \end{verbatim}
 %
@@ -649,8 +650,8 @@ should be used instead of \emph{top} in most places: say ``top quark
 mass'' instead of ``top mass''.  Top quark and bottom quark may be
 shortened to $t$ quark and $b$ quark. The neutrino
 symbol $\nu$ should not have any subscripts, unless necessary for
-understanding. For the \Jpsi{} use the command \verb+\Jpsi+ from {\tt
-atlasphysics.sty}: it will produce a lower case $\psi$.
+understanding. For the \Jpsi{} use the command \verb+\Jpsi+ from 
+\texttt{atlasphysics.sty}: it will produce a lower case $\psi$.
 
 When in doubt, use the PDG style.
 

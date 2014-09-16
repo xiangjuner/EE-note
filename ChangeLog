@@ -1,3 +1,11 @@
+2014-09-09 Ian Brock <Ian.Brock@cern.ch>
+	* Add texmf swtich to atlasdoc (needed for cover).
+	* full option did not work in atlaspackage.
+	* Use kvoptions in atlascontribute.
+	* Change option from noauthblk to authblk=false.
+	* Internally quite a lot of variable name changes.
+	* Prepare atlasdoc for moving to kvoptions.
+	* Switched from tabs to spaces in many places.
 2014-09-08 Ian Brock <Ian.Brock@cern.ch>
 	* Small fix to atlaspackage so texlive switch works.
 2014-09-06 Ian Brock <Ian.Brock@cern.ch>

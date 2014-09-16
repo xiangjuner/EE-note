@@ -35,11 +35,11 @@
 \affil{University of Bonn}
 
 \AtlasAbstract{%
-	This document illustrates how to use \BibTeX\ for the bibliography of your ATLAS paper.
-	Two \BibTeX (\texttt{.bst}) style files have been created that can be used with any of the ATLAS supported journals,
-	depending on whether they require the title of the references to be included or not.
+  This document illustrates how to use \BibTeX\ for the bibliography of your ATLAS paper.
+  Two \BibTeX (\texttt{.bst}) style files have been created that can be used with any of the ATLAS supported journals,
+  depending on whether they require the title of the references to be included or not.
 
-	This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+  This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
 }
 
 
@@ -188,11 +188,11 @@ assuming that the reference is for an LHC collaboration paper:
 \begin{enumerate}
 \item Change the field name \texttt{author} to \texttt{xauthor}.
 \item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form
-	\verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
+  \verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
 \item Either replace the journal name with the appropriate macro, e.g.\ ``\texttt{Phys.Lett.}'' with
-	\verb|\PLB|; or insert spaces between the parts of the name, i.e.\ \verb|Phys.\ Lett.|.
-	Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
-	as a regular interword space should be inserted and not an end of sentence space.
+  \verb|\PLB|; or insert spaces between the parts of the name, i.e.\ \verb|Phys.\ Lett.|.
+  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
+  as a regular interword space should be inserted and not an end of sentence space.
 \item Remove the journal letter from the volume and include it in the journal, e.g.\ ``\EPJC'', ``\PRD''. 
 \end{enumerate}
 If the reference is for another collaboration, rename the \texttt{collaboration} field to
@@ -210,26 +210,26 @@ Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of
 \item A bibliographic item is created in the \File{.bib} file as:
 \begin{verbatim}
 @Article{lhcCollaboration:2012,
-	author = "...",
-	title  = "...",
-	further bibliographic information}
+  author = "...",
+  title  = "...",
+  further bibliographic information}
 }
 \end{verbatim}
-	The identifier directly after the document type declaration is how one should refer to this item inside the main \File{.tex} file.
-	Use a non-breaking space between the citation and the reference, i.e.\
-	\verb|... measured previously~\cite{lhcCollaboration:2012}|.
+  The identifier directly after the document type declaration is how one should refer to this item inside the main \File{.tex} file.
+  Use a non-breaking space between the citation and the reference, i.e.\
+  \verb|... measured previously~\cite{lhcCollaboration:2012}|.
 \item When referencing ATLAS CONF notes, the url to the CDS page should be included.
-	For this to work, in the preamble of your \emph{.tex} document add
-	\texttt{\textbackslash usepackage\{hyperref\}}.
-	Note that \Package{hyperref} is included by default	if you you \Package{atlaspackage}.
+  For this to work, in the preamble of your \emph{.tex} document add
+  \texttt{\textbackslash usepackage\{hyperref\}}.
+  Note that \Package{hyperref} is included by default	if you you \Package{atlaspackage}.
 \item If the DOI is filled and the \texttt{hyperref} package loaded, 
-	the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
+  the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
 \item When referencing papers from journals like PRD, PLB, etc.,
-	one has to be careful not to include the ``D'' or ``B'' as part of the volume but rather in the journal name. 
-	You can either use the macros that have been added to the \File{.bst} style files for these journals, or
-	the macros defined in \Package{atlasjournal}.
-	If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
-	\Package{atlasjournal} definitions.
+  one has to be careful not to include the ``D'' or ``B'' as part of the volume but rather in the journal name. 
+  You can either use the macros that have been added to the \File{.bst} style files for these journals, or
+  the macros defined in \Package{atlasjournal}.
+  If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
+  \Package{atlasjournal} definitions.
 \end{itemize}
 
 In earlier versions of this document, it was recommended to include the \Package{cite} package, 
@@ -243,12 +243,12 @@ If you use \texttt{biblatex} use the option \texttt{style=numeric-comp}.
 %-------------------------------------------------------------------------------
 
 \begin{itemize}
-	\item LHC Collaboration~\cite{lhcCollaboration:2012}
-	\item Other Collaboration~\cite{otherCollaboration:2007}
-	\item Individual authors~\cite{authors:2008}
-	\item arXiv only~\cite{arxivOnly:2009}
-	\item arXiv only submitted to a journal~\cite{arxivSub:2011}
-	\item ATLAS CONF Note~\cite{atlasConf:2012} 
+\item LHC Collaboration~\cite{lhcCollaboration:2012}
+\item Other Collaboration~\cite{otherCollaboration:2007}
+\item Individual authors~\cite{authors:2008}
+\item arXiv only~\cite{arxivOnly:2009}
+\item arXiv only submitted to a journal~\cite{arxivSub:2011}
+\item ATLAS CONF Note~\cite{atlasConf:2012} 
 \end{itemize}
 
 While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
@@ -267,8 +267,8 @@ in the course of 2014.
 %-------------------------------------------------------------------------------
 
 \begin{description}
-  \item[2013-08-13: Cristina Oropeza Barrera] First version of the document released.
-  \item[2014-08-14: Ian Brock] Updated the example references a bit and gave a bit more background information.
+\item[2013-08-13: Cristina Oropeza Barrera] First version of the document released.
+\item[2014-08-14: Ian Brock] Updated the example references a bit and gave a bit more background information.
 \end{description}
 
 %-------------------------------------------------------------------------------

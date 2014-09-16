@@ -1,8 +1,5 @@
 # Makefile for creating an ATLAS LaTeX document
 #------------------------------------------------------------------------------
-# $Id: Makefile 301586 2014-08-18 17:36:36Z brock $
-# $HeadURL: svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlasnote/trunk/Makefile $
-#------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex
 # Replace mydocument with your main filename or add another target set
 # Replace BIBTEX = bibtex with BIBTEX = biber if you use biblatex and biber instead of bibtex
