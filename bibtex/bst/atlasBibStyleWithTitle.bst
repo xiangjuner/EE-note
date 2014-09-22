@@ -2,7 +2,8 @@
 % --- ATLAS Bibliographic Style
 % --- Based on UT Physics bibliographic style (utphys.bst)
 % --- Adapted by Cristina Oropeza Barrera (cbarrera@cern.ch)
-% --- version 0.1 - 02/07/2012
+% --- Further developments Ian Brock (ian.brock@cern.ch)
+% --- version 1.3 - 22/09/2014
 % -----------------------------------------------------------------------------
 
 FUNCTION {string.and} {" and "}
@@ -48,9 +49,9 @@ MACRO {pl} {"Phys. Lett."}
 MACRO {plb} {"Phys. Lett. B"}
 MACRO {pla} {"Phys. Lett. A"}
 MACRO {pr} {"Phys. Rev."}
-MACRO {prd} {"Phys. Rev. D"}
-MACRO {prc} {"Phys. Rev. C"}
 MACRO {pra} {"Phys. Rev. A"}
+MACRO {prc} {"Phys. Rev. C"}
+MACRO {prd} {"Phys. Rev. D"}
 MACRO {prl} {"Phys. Rev. Lett."}
 MACRO {repmp} {"Rep. Math. Phys"}
 MACRO {rmp} {"Rev. Mod. Phys."}
@@ -275,7 +276,7 @@ FUNCTION {format.names}
 	{ namesleft #1 >
 	    { ", " * t * }
 	    { numnames #2 >
-		{ "," * }
+		{ ", " * }
 		'skip$
 	      if$
 	      t "others" =
@@ -452,7 +453,11 @@ FUNCTION {format.date.paren}
 FUNCTION {format.collaboration}
 { collaboration empty$
     { "" }
-    { "{" collaboration * "} " * "Collaboration" * }
+    { author empty$
+    	{"{" collaboration * "} " * "Collaboration," *} 
+        {"{" collaboration * "} " * "Collaboration" * }
+      if$
+    }
   if$
 }
 

@@ -2,7 +2,8 @@
 % --- ATLAS Bibliographic Style
 % --- Based on UT Physics bibliographic style (utphys.bst)
 % --- Adapted by Cristina Oropeza Barrera (cbarrera@cern.ch)
-% --- version 0.1 - 15/06/2012
+% --- Further developments Ian Brock (ian.brock@cern.ch)
+% --- version 1.3 - 22/09/2014
 % -----------------------------------------------------------------------------
 
 FUNCTION {string.and} {" and "}
@@ -48,9 +49,9 @@ MACRO {pl} {"Phys. Lett."}
 MACRO {plb} {"Phys. Lett. B"}
 MACRO {pla} {"Phys. Lett. A"}
 MACRO {pr} {"Phys. Rev."}
-MACRO {prd} {"Phys. Rev. D"}
 MACRO {pra} {"Phys. Rev. A"}
 MACRO {prc} {"Phys. Rev. C"}
+MACRO {prd} {"Phys. Rev. D"}
 MACRO {prl} {"Phys. Rev. Lett."}
 MACRO {repmp} {"Rep. Math. Phys"}
 MACRO {rmp} {"Rev. Mod. Phys."}
@@ -798,6 +799,7 @@ FUNCTION {book}
       if$
     }
   if$
+  blank.sep
   format.btitle add.doi "title" output.check
   crossref missing$
     { format.bvolume output
@@ -867,6 +869,7 @@ FUNCTION {inbook}
       if$
     }
   if$
+  blank.sep
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
