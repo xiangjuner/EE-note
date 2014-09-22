@@ -1,5 +1,17 @@
+2014-09-22 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-03-00
+	* Instructions for Fedora added.
+	* Do not use lineno with revtex - use class option linenumbers instead.
+	* Add option to atlaspackage to turn off lineno.
+	* Use \linewidth instead of \textwidth in PrintAtlasContribute so it works in 
+	  two column format.
+	* Print out web page on auxiliary material cover.
+	* Fix typo that put line numbers on cover page.
+	* Move date and page number from header to footer in draft mode.
+	* List of contributors was too wide.
 2014-09-15 Ian Brock <Ian.Brock@cern.ch>
-        * Bug fixed for CentOS/Fedora, as scrdate/scrtime did not work properly.
+	* Tag as version 01-02-00
+    * Bug fixed for CentOS/Fedora, as scrdate/scrtime did not work properly.
 2014-09-09 Ian Brock <Ian.Brock@cern.ch>
 	* Add texmf swtich to atlasdoc (needed for cover).
 	* full option did not work in atlaspackage.

@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-02-00}
+\def\ATPackageVersion{01-03-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/09/16 v.01-02-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/09/22 v.01-03-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part
@@ -130,12 +130,14 @@
   \newcommand{\dateandtime}{\today \ --
     \ifnum\timehh<10 0\fi\number\timehh:\ifnum\timemm<10 0\fi\number\timemm}
   % \RequirePackage{scrdate,scrtime}
-  % \lhead[]{\ISOToday{} \thistime}
-  \lhead[]{\dateandtime}
-  % \lhead[]{\today{} \thistime}
   \chead[]{\protect\small\fbox{DRAFT}}
-  \rhead{\thepage}
+  \rhead{}
+  % \lhead[]{\ISOToday{} \thistime}
+  % \lhead[]{\today{} \thistime}
+  %\rhead{\thepage}
+  \lfoot{\dateandtime}
   \cfoot{}
+  \rfoot{\thepage}
   \setlength\headheight{16pt}
   \pagestyle{fancy}
 }
@@ -146,8 +148,10 @@
 \newcommand*{\AtlasVersion}[1]{\def\ADOC@draftversion{#1}}
 
 % ATLAS reference code - empty by default
+% Also create variable with web page
 \def\ADOC@refcode{}
 \newcommand*{\AtlasRefCode}[1]{\def\ADOC@refcode{#1}}
+\newcommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
 
 % ATLAS note number
 \def\ADOC@atlasnote{}
@@ -330,7 +334,7 @@
   \end{center}
   % Add line numbers to front page content 
   {%
-    \ifx\@ADOCdraftversion\@empty%
+    \ifx\ADOC@draftversion\@empty%
     \else\linenumbers
     \fi
     % Title, author(s)

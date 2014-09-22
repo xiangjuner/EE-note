@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ACTR@PackageVersion{01-02-00}
+\def\ACTR@PackageVersion{01-03-00}
 
-\ProvidesPackage{latex/atlascontribute}[2014/09/16 v.01-02-00 ATLAS analysis contributions]
+\ProvidesPackage{latex/atlascontribute}[2014/09/22 v.01-03-00 ATLAS analysis contributions]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS analysis contributions v.\ACTR@PackageVersion}
@@ -59,20 +59,21 @@
 
 \newcommand{\PrintAtlasContribute}[1]{%
   \newlength{\ACTR@namewidth}
-  \newlength{\ACTR@textwidth}
-  \setlength{\ACTR@namewidth}{#1\textwidth}
-  \setlength{\ACTR@textwidth}{\textwidth}
-  \addtolength{\ACTR@textwidth}{-#1\textwidth}
+  \newlength{\ACTR@linewidth}
+  \setlength{\ACTR@namewidth}{#1\linewidth}
+  \setlength{\ACTR@linewidth}{\linewidth}
+  \addtolength{\ACTR@linewidth}{-#1\linewidth}
+  \addtolength{\ACTR@linewidth}{-4\tabcolsep}
   \section*{List of Contributions}
   {\raggedright
     \ifACTR@xtab%
-      \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@textwidth}}
+      \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
         \toprule
         \ACTR@Contributors
         \bottomrule
       \end{xtabular}
     \else %
-      \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@textwidth}}
+      \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
         \toprule
         \ACTR@Contributors
         \bottomrule

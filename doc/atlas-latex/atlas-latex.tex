@@ -148,7 +148,7 @@ The macros in the style file can also build the author list at the same time.
 Two basic macros are used to add names to the author list and list of contributions:
 \Macro{AtlasContributor} and \Macro{AtlasAuthorContributor}. 
 The first macro adds a person to the list of contributors, while the second one also adds the person
-to the author list.
+to the author list. I assume that in almost all cases you will want to use \Macro{AtlasAuthorContributor}.
 Typical commands are:
 \begin{verbatim}
 \AtlasAuthorContributor{Joe Student}{a}{fake background estimate.}
@@ -165,6 +165,8 @@ The optional argument is a letter or number that should also be given as the sec
 You can keep the list of authors and contributors separate
 by using \Macro{author} for the authors and \Macro{AtlasContribute} for the contributors.
 You print the list of contributors by giving the command \Macro{PrintAtlasContribute}.
+Note that \Macro{PrintAtlasContribute} has na argument that gives the fraction of the line width
+to be used for the name of the person.
 The list should either be printed before the table of contents or after the conclusions
 (i.e.\ where the Acknowledgements appear in a paper).
 
@@ -176,11 +178,11 @@ Alternatively you can make the author list using the syntax:\\
 \verb|\author{Joe Student \and Jane Student \and John Postdoc}| and avoid the use of the
 \Package{authblk} package by giving the option \Option{authblk=false} to \Package{atlascontribute}.
 
-Note that the \Package{atlascontribute} package requires that the packages \Package{array} and \Package{booktabs} be installed.
+Note that the \Package{atlascontribute} package requires that the packages 
+\Package{array} and \Package{booktabs} be installed.
 If the list of contributors is very long, it may spread over more than one page.
 The \Package{tabular} environment does not like this.
 Add the option \Option{xtab} to use \Package{xtab} instead.
-
 
 
 %-------------------------------------------------------------------------------
@@ -329,9 +331,9 @@ Several more options can be set:
 \item[CONF]The document is a CONF note;
 \item[PUB]The document is an PUB note;
 \item[nomaketitle]Do not create a title page; to make it yourself give the command \Macro{maketitle} after
-	\verb|\begin{document}|
+  \verb|\begin{document}|
 \item[koma]Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article}. 
-	Note that some tuning of the \KOMAScript\ options still needs to be done.
+  Note that some tuning of the \KOMAScript\ options still needs to be done.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
@@ -359,6 +361,10 @@ Note that under Ubuntu, \Package{lineno} can be found in the
 If you cannot find it, it is also included in \File{latex/other}.
 Copy it to you main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
 it centrally available.
+
+All style files, \Package{atlascover}, \Package{atlascontribute}, 
+\Package{atlaspackage} and \Package{atlasphysics}, need the package \Package{kvoptions} 
+so that they can process options where a value for an option should be set.
 
 \texttt{atlascover} also needs \texttt{hyperref}. 
 Have a look at \texttt{templates/atlas-draft-cover.tex} to see how to include it by hand.
@@ -452,9 +458,6 @@ You can use the options \Option{hoffset} and \Option{voffset} to move the text a
 JHEP needs \verb|hoffset=1in, voffset=1in|.
 revtex (APS journals) looks better with  \verb|hoffset=-0.25in, voffset=-0.25in|.
 
-\Package{atlascover} needs the package \Package{kvoptions} so that it can process
-options where a value for an option should be set.
-
 
 %-------------------------------------------------------------------------------
 \subsection{ATLAS notes}
@@ -492,6 +495,7 @@ of the document.
 Many useful symbols are defined in \texttt{atlasphysics.sty}.
 While this used to be a very long file, it has now been split into several smaller files,
 which can be included or not using options.
+The definitions can be found in a separate document \File{atlas-physics.pdf}.
 
 
 %-------------------------------------------------------------------------------
@@ -552,6 +556,45 @@ Set your \texttt{PATH} as follows:
   export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
 \end{verbatim}
 
+
+%-------------------------------------------------------------------------------
+\subsection{Fedora 20} 
+
+Fedora 20 is an RPM-based distribution that is the version of Red Hat made for normal users.
+
+I started with a fairly basic setup.
+As I tested things with a virtual machine, I had to install the \enquote{Guest Additions},
+which also need things like the header files.
+I then installed the following:
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \Package{texlive}: basic \TeX\ Live installation;
+\item \Package{texlive-lineno} (lineno);
+\item \Package{texlive-savesym} (savesym);
+\item \Package{texlive-placeins} (placeins).
+\item \Package{texlive-tocloft} (tocloft);
+\item \Package{texlive-siunitx} (siunitx);
+\item \Package{texlive-preprint} (authblk);
+\item \Package{texlive-biblatex} (biblatex);
+\item \Package{texlive-booktabs} (booktabs);
+\item \Package{texlive-xtab} (xtab);
+\end{itemize}
+
+Finally, in order to use \Package{biber} rather than \BibTeX,
+I had to download the appropriate binary from SourceForge:
+\url{http://biblatex-biber.sourceforge.net}.
+In order to choose which binary you want you have to go to
+\url{http://sourceforge.net/projects/biblatex-biber/} and click your way through.
+The 1.8 version of \Package{biber} seems to work fine.
+
+An alternative (and probably better) way to install \Package{biber} is to follow the
+instructions that can be found on
+\url{http://copr.fedoraproject.org/coprs/cbm/Biber/}.
+You have to add a new repository to \Package{yum} and then you
+can install \Package{biber} like any other package.
+
+In order to download the \Package{atlaslatex} package, I had to install \Package{svn}.
+
+
 %-------------------------------------------------------------------------------
 \subsection{CentOS 7} 
 
@@ -579,6 +622,8 @@ I had to download the appropriate binary from SourceForge:
 \url{http://biblatex-biber.sourceforge.net}.
 In order to choose which binary you want you have to go to
 \url{http://sourceforge.net/projects/biblatex-biber/} and click your way through.
+The 1.9 version of \Package{biber} seems to work fine.
+This makes sense, as \Package{biblatex} from CTAN is also a recent version.
 
 
 %-------------------------------------------------------------------------------
@@ -676,11 +721,15 @@ So far the \Package{atlaslatex} package has been tested with the classes for Els
 \item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
   \TeX\ Live distribution. 
   It can also be found at \url{http://www.elsevier.com/locate/latex}.
+  
 \item[APS]APS journals use REV\TeX. This is also usually installed.
   It can also be found at \url{https://journals.aps.org/revtex}.
   Note that you have to specify the author after \verb|\begin{document}| with this class.
   Hence you should comment out the definition in your metadata file,\\
   e.g.\ \File{mydocument-metadata.tex}.
+  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
+  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
+  
 \item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
 \end{description}
 

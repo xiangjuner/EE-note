@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\APKG@PackageVersion{01-02-00}
+\def\APKG@PackageVersion{01-03-00}
 
-\ProvidesPackage{latex/atlaspackage}[2014/09/16 v.01-02-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2014/09/22 v.01-03-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS LaTeX packages v.\APKG@PackageVersion}
@@ -24,6 +24,7 @@
 \DeclareBoolOption[true]{siunitx}
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[true]{hyperref}
+\DeclareBoolOption[true]{lineno}
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
@@ -94,7 +95,9 @@
 % Document language control
 \RequirePackage{babel}
 % Add line numbers
-\RequirePackage{lineno}
+\ifAPKG@lineno%
+  \RequirePackage{lineno}
+\fi
 
 %-------------------------------------------------------------------------------
 % Minimal set of packages

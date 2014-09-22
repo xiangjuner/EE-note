@@ -44,7 +44,7 @@
   ``\AtlasTitleText''.
 
   All figures can be found at:\\
-  \AtlasArXivURL
+  \AtlasPaperWebpage
 
   The information is uploaded to HepData in the record:\\
   \AtlasHepDataRecord,\\
@@ -54,8 +54,10 @@
 
 \begin{document}
 % Page style to get standard header with arXiv reference
-% Define \chead here, so that it overwrite \fbox{DRAFT} if necessary
+% Define \chead here, so that it overwrites \fbox{DRAFT} if necessary
 \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+% If you do not want the date, either comment out \AtlasVersion or uncomment
+% \lfoot{}
 \pagestyle{fancy}
 
 Here is the document. Remove this text if you only want the front page.

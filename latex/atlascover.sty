@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-02-00}
+\def\ATPackageVersion{01-03-00}
 
-\ProvidesPackage{latex/atlascover}[2014/09/16 v.01-02-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2014/09/22 v.01-03-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS Cover Page v.\ATPackageVersion}
@@ -98,6 +98,7 @@
   % ATLAS reference code - empty by default
   \def\ADOC@refcode{}
   \providecommand*{\AtlasRefCode}[1]{\def\ADOC@refcode{#1}}
+  \providecommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
   % ATLAS note number
   \def\ADOC@atlasnote{}
   \providecommand*{\AtlasNote}[1]{\def\ADOC@atlasnote{#1}}
@@ -573,10 +574,10 @@
   \parbox[t]{\linewidth}{%
     {\centering
       \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-      Auxiliary figures and tables from the paper\\
+      Auxiliary figures and tables from the paper\\[1.5ex]
       \AtlasTitleText\par
     }
-    \vspace*{10mm}
+    \vspace*{8mm}
     {\centering
       \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
       The ATLAS Collaboration\\
