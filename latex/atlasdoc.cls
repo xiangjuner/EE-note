@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-03-02}
+\def\ATPackageVersion{01-03-04}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/09/22 v.01-03-02 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/10/10 v.01-03-04 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: declaration of options part

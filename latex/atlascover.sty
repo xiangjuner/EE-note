@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-03-02}
+\def\ATPackageVersion{01-03-04}
 
-\ProvidesPackage{latex/atlascover}[2014/09/22 v.01-03-02 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2014/10/10 v.01-03-04 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS Cover Page v.\ATPackageVersion}
@@ -32,6 +32,12 @@
 %\typeout{Value of paper option is \ACOV@paper}
 \typeout{Value of hoffset is \ACOV@hoffset}
 \typeout{Value of voffset is \ACOV@voffset}
+\ifACOV@CONF
+  \ACOV@paperfalse
+\fi
+\ifACOV@PUB
+  \ACOV@paperfalse
+\fi
 
 %\let\ifACOV@clearpage\iffalse
 %\DeclareOption{clearpage}{\let\ifACOV@clearpage\iftrue}
@@ -488,7 +494,34 @@
   \parbox[t]{\linewidth}{%
     {\centering
       \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
-      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN) \\
+      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
+    }
+    \vspace*{8mm}
+    {\centering
+      \includegraphics[height=30mm]{AT_atlaslogo}
+      \hspace*{\fill}
+      \raisebox{2.5mm}{\includegraphics[height=25mm]{AT_cernlogo}}
+    }
+    \vspace*{-5mm}
+    {\flushright
+      \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
+      \ADOC@preprintnumber \par
+    }
+    \vspace*{-1mm}
+    {\flushright
+      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
+      Submitted to: \ADOC@journal\par
+    }
+    \rule{\linewidth}{1pt}\par
+  }
+}
+
+% Auxiliary material cover header
+\newcommand{\AuxmatCoverHeader}{%
+  \parbox[t]{\linewidth}{%
+    {\centering
+      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{8mm}
     {\centering
@@ -500,44 +533,15 @@
     {%
       \flushright
       \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
-      \ADOC@preprintnumber \par
+      \ADOC@preprintnumber\par
     }
     \vspace*{-1mm}
     {%
       \flushright
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      Submitted to: \ADOC@journal \par
+      \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
+      arXiv: \AtlasArXivId\ \AtlasArXivCat\par
     }
     \rule{\linewidth}{1pt}\par
-  }
-}
-
-% Auxiliary material cover header
-\newcommand{\AuxmatCoverHeader}{%
-	\parbox[t]{\linewidth}{%
-		{\centering
-    	\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
-      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN) \\
-    }
-		\vspace*{8mm}
-		{\centering
-      \includegraphics[height=30mm]{AT_atlaslogo}
-			\hspace*{\fill}
-			\raisebox{2.5mm}{\includegraphics[height=25mm]{AT_cernlogo}}
-		}
-		\vspace*{-5mm}
-		{%
-			\flushright
-      \fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
-      \ADOC@preprintnumber \par
-   	}
-		\vspace*{-1mm}
-		{%
-			\flushright
-			\fontfamily{phv}\fontseries{m}\fontsize{13}{15.6}\selectfont 
-      arXiv: \AtlasArXivId\ \AtlasArXivCat \par
-		}
-		\rule{\linewidth}{1pt}\par
   }
 }
 
@@ -546,17 +550,17 @@
   \parbox[t]{\linewidth}{%
     {\centering
       \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-      \AtlasTitleText \par
+      \AtlasTitleText\par
     }
     \vspace*{20mm}
     {\centering
       \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      The ATLAS Collaboration \\
+      The ATLAS Collaboration\par
     }
     \vspace*{20mm}
     {\centering
       \fontfamily{phv}\bfseries\fontsize{11}{13.2}\selectfont
-      Abstract \\
+      Abstract\par
     }
     \vspace*{5mm}
     {%\linespread{1.1}
@@ -574,25 +578,25 @@
   \parbox[t]{\linewidth}{%
     {\centering
       \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-      Auxiliary figures and tables from the paper\\[1.5ex]
+      Auxiliary figures and tables related to the paper\\[1.5ex]
       \AtlasTitleText\par
     }
     \vspace*{8mm}
     {\centering
       \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      The ATLAS Collaboration\\
+      The ATLAS Collaboration\par
     }
     \vspace*{10mm}
     {\centering
       \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      \ADOC@refcode \\
+      \ADOC@refcode\par
     }
     \vspace*{10mm}
     {%\linespread{1.1}
       {%
         \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
         %\hspace*{15\p@}\AtlasAbstractText \par
-        \AtlasAbstractText \par
+        \AtlasAbstractText\par
       }
     }
   }
