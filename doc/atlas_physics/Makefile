@@ -1,8 +1,8 @@
 #------------------------------------------------------------------------------
-# Makefile to make ATLAS rounding note
+# Makefile to make atlas-physics documentation
 #------------------------------------------------------------------------------
 
-BASENAME = atlas-rounding
+BASENAME = atlas_physics
 
 all:
 	make -f ../Makefile BASENAME=$(BASENAME)

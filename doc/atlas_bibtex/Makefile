@@ -1,8 +1,8 @@
 #------------------------------------------------------------------------------
-# Makefile to make atlas-physics documentation
+# Makefile to make atlas_bibtex documentation
 #------------------------------------------------------------------------------
 
-BASENAME = atlas-physics
+BASENAME = atlas_bibtex
 
 all:
 	make -f ../Makefile BASENAME=$(BASENAME)
