@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-03-05}
+\def\ATPackageVersion{01-03-06}
 
-\ProvidesPackage{latex/atlascover}[2014/10/16 v.01-03-05 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2014/10/20 v.01-03-06 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 
 \typeout{ATLAS Cover Page v.\ATPackageVersion}
@@ -173,7 +173,8 @@
 
 %\def\ACOV@TwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 \def\ACOV@TwikiURL{}
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
+%\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
+\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\protect\url{#1}}}
 
 % Supporting note list
 \def\ACOV@Notes{}
@@ -183,9 +184,9 @@
   }%
 }
 
-% PDF SETUP
-% \RequirePackage[colorlinks,breaklinks,pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}]{hyperref}  
-% \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue} 
+% It seems as if hyperref has to inclued here
+% if you include a cover page from within atlasdoc
+\RequirePackage{hyperref}  
 
 %**********************************************
 % Main printout phase
@@ -306,7 +307,8 @@
         A list of supporting internal notes can be found at: \par
         \fontfamily{phv}\fontseries{m}\fontsize{12}{14}\selectfont
         \medskip
-        \href{\ACOV@TwikiURL}{\ACOV@TwikiURL}
+        %\href{\ACOV@TwikiURL}{\ACOV@TwikiURL}
+        \ACOV@TwikiURL
       }
     \fi
     \ifx\ACOV@Notes\@empty

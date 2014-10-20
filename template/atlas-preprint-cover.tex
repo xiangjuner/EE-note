@@ -7,11 +7,12 @@
 \usepackage[centering,scale=0.75]{geometry}
 % Either use atlaspackage or specify packages explicitly
 % \usepackage[minimal]{latex/atlaspackage}
-% hyperref is usually included as late as possible
-%\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}]{hyperref}  
-%\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 \usepackage[preprint]{latex/atlascover}
+
+% hyperref is included in atlascover. Set options here if atlaspackage is not included.
+\hypersetup{colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 % Paths for figures
 \graphicspath{{logos/}}
@@ -35,9 +36,9 @@
 
 % Abstract
 \AtlasAbstract{ %
-	This is a test of how a cover for the ATLAS-CERN preprints can be produced as standalone document.
-	The idea is that it should be included before the paper in the journal format.
-	With this, there is no need for CDS to stamp the CERN logo and preprint number and risk an overlapping with the title and/or other information.
+  This is a test of how a cover for the ATLAS-CERN preprints can be produced as standalone document.
+  The idea is that it should be included before the paper in the journal format.
+  With this, there is no need for CDS to stamp the CERN logo and preprint number and risk an overlapping with the title and/or other information.
 }
 
 \begin{document}

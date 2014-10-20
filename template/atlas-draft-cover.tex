@@ -11,14 +11,15 @@
 % Either use atlaspackage or specify packages explicitly
 % \usepackage[minimal]{latex/atlaspackage}
 \usepackage{graphicx}
-% hyperref is usually included as late as possible
-\usepackage[colorlinks,breaklinks,pdftitle={ATLAS Draft Cover},pdfauthor={ATLAS Collaboration}]{hyperref}  
-\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 % Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft
 \usepackage{latex/atlascover}
 % \usepackage[atlasdoc]{syle/atlascover}
 % \usepackage[CONF]{latex/atlascover}
+
+% hyperref is included in atlascover. Set options here if atlaspackage is not included.
+\hypersetup{colorlinks,breaklinks,pdftitle={ATLAS Draft Cover},pdfauthor={ATLAS Collaboration}}
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 
 % Package for creating list of authors and contributors to the analysis
 % The file atlas-document-metadata.tex includes atlascontribute also
@@ -50,10 +51,10 @@
 
 % Abstract
 \AtlasAbstract{ %
-	This is the abstract for this paper.
-	We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
-	We are going to continue to look very hard for new physics in 2015 
-	when the energy and the luminosity are increased; hopefully we find it.
+  This is the abstract for this paper.
+  We looked hard for new physics from 2010 to 2014 and did not find anything unexpected.
+  We are going to continue to look very hard for new physics in 2015 
+  when the energy and the luminosity are increased; hopefully we find it.
 }
 
 % Explicit list of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)

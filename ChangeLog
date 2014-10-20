@@ -1,3 +1,6 @@
+2014-10-20 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-03-06.
+	* Require hyperref in atlascover to avoid problems with supporting documentation.
 2014-10-16 Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 01-03-05.
 	* Rename documentation directories and files to use _ instead of -.
