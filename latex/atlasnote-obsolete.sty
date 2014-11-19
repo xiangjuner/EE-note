@@ -22,4 +22,20 @@
       {\caption{#2}}%
       {\caption[#1]{#2}}
       \vspace*{3mm}
-  \end{minipage}}
+  \end{minipage}
+}
+
+% Environment for analysis contributers
+\newenvironment{atlascontribute}[1][3.5cm]
+  {\section*{List of contributions to analysis}
+   \begin{list}{}%
+    {\setlength{\leftmargin}{#1}
+     \setlength{\labelwidth}{#1}
+     \addtolength{\leftmargin}{0.2cm}
+     \setlength{\labelsep}{0.2cm}
+     \setlength{\itemsep}{0.0cm}
+     \renewcommand{\makelabel}[1]{##1 \hfill}}
+  }
+  {\end{list}
+}
+

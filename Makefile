@@ -75,6 +75,10 @@ help:
 	@echo "If you need a document for auxiliary material give the commands:"
 	@echo "make auxmat [BASENAME=mydocument]"
 	@echo "pdflatex mydocument-auxmat"
+	@echo ""
+	@echo "make clean    to clean auxiliary files (not output PDF)"
+	@echo "make cleanpdf to clean output PDF files"
+	@echo "make cleanall to clean all files"
 
 %.ps:	%.dvi
 	$(DVIPS) $< -o $@
@@ -85,7 +89,12 @@ clean:
 		*.cb *.ind *.idx *.ilg *.inx \
 		*.synctex.gz *~ ~* spellTmp 
 	
-cleanall: clean
+cleanpdf:
+	-rm $(BASENAME).pdf 
+	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
+	-rm $(BASENAME)-auxmat.pdf
+
+cleanall: clean cleanpdf
 	-rm $(BASENAME).pdf 
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
 	-rm $(BASENAME)-auxmat.pdf

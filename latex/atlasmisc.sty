@@ -1,7 +1,5 @@
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  Useful things for proton-proton physics                           |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
 \newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
@@ -33,26 +31,22 @@
 %\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
 \newcommand{\twomass}[2]{\ensuremath{m_{#1#2}}\xspace}
 
+% +--------------------------------------------------------------------+
+% |  Monte Carlo generators                                            |
+% +--------------------------------------------------------------------+
+\newcommand*{\ALPGEN}{\textsc{Alpgen}\xspace}
+\newcommand*{\GEANT}{\textsc{Geant}\xspace}
+\newcommand*{\HERWIG}{\textsc{Herwig}\xspace}
+\newcommand*{\JIMMY}{\textsc{Jimmy}\xspace}
+\newcommand*{\METOP}{\textsc{MEtop}\xspace}
+\newcommand*{\POWHEG}{\textsc{Powheg}\xspace}
+\newcommand*{\PROTOS}{\textsc{Protos}\xspace}
+\newcommand*{\PYTHIA}{\textsc{Pythia}\xspace}
+\newcommand*{\SHERPA}{\textsc{Sherpa}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
-% |  Hours:minutes macro                                               |
-% |                                                                    |
-% +--------------------------------------------------------------------+
-
-\newcount\hrs\newcount\minu\newcount\temptime
-\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
-\multiply\temptime by 60%
-\advance\minu by -\temptime
-\ifnum\minu<10 \let\zerofill=0\else \let\zerofill=\relax\fi
- \the\hrs:\zerofill\the\minu}
-
-% +--------------------------------------------------------------------+
-% |                                                                    |
 % |  Useful symbols for use in or out of math mode                     |
-% |                                                                    |
 % +--------------------------------------------------------------------+
-
 \newcommand*{\ra}{\ensuremath{\rightarrow}\xspace}
 \newcommand*{\la}{\ensuremath{\leftarrow}\xspace}
 \newcommand*{\rarrow}{\ensuremath{\rightarrow}\xspace}
@@ -65,13 +59,10 @@
 \newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
 \newcommand*{\stat}{\mbox{$\;$(stat.)}\xspace}
 \newcommand*{\syst}{\mbox{$\;$(syst.)}\xspace}
-%
+
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  QCD                                                               |
-% |                                                                    |
 % +--------------------------------------------------------------------+
-%
 \newcommand*{\alphas}{\ensuremath{\alpha_{\text{S}}}\xspace}
 \newcommand*{\NF}{\ensuremath{N_{\text{F}}}\xspace}
 \newcommand*{\NC}{\ensuremath{N_{\text{C}}}\xspace}
@@ -81,13 +72,10 @@
 \newcommand*{\Lms}{\ensuremath{\Lambda_{\overline{\text{MS}}}}\xspace}
 \newcommand*{\Lmsfive}{\ensuremath{\Lambda^{(5)}_{\overline{\text{MS}}}}\xspace}
 \newcommand*{\KT}{\ensuremath{k_{\perp}}\xspace}
-%
+
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  CKM matrix                                                        |
-% |                                                                    |
 % +--------------------------------------------------------------------+
-%
 \newcommand*{\Vcb}{\ensuremath{\vert V_{cb} \vert}\xspace}
 \newcommand*{\Vub}{\ensuremath{\vert V_{ub} \vert}\xspace}
 \newcommand*{\Vtd}{\ensuremath{\vert V_{td} \vert}\xspace}
@@ -97,9 +85,8 @@
 \newcommand*{\Vud}{\ensuremath{\vert V_{ud} \vert}\xspace}
 \newcommand*{\Vus}{\ensuremath{\vert V_{us} \vert}\xspace}
 \newcommand*{\Vcd}{\ensuremath{\vert V_{cd} \vert}\xspace}
-%
+
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  The decay symbol, to be used in \eqalign.                         |
 % |  It works like: \[\eqalign{a\ra &b+c\cr &\dk &e+f\cr &&\dk g+h}\]  |
 % |                                                                    |
@@ -110,9 +97,7 @@
 % |                                 |                                  |
 % |                                 |                                  |
 % |                                 +----> g + h                       |
-% |                                                                    |
 % +--------------------------------------------------------------------+
-%
 \newdimen\dkwidth
 \def\dk{%
    \dkwidth=\baselineskip
@@ -129,15 +114,12 @@
       }%
    \kern0.6em%
    }}%
-}%
-%
+}
+
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  Redefine \eqalign to allow more than one column; very             |
 % |  useful for multiple decays as defined above.                      |
-% |                                                                    |
 % +--------------------------------------------------------------------+
-%
 %\unlock
 \def\eqalign#1{%
    \,
@@ -150,3 +132,14 @@
    }%
    \,
 }%
+
+% +--------------------------------------------------------------------+
+% |  Hours:minutes macro                                               |
+% +--------------------------------------------------------------------+
+\newcount\hrs\newcount\minu\newcount\temptime
+\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
+\multiply\temptime by 60%
+\advance\minu by -\temptime
+\ifnum\minu<10 \let\zerofill=0\else \let\zerofill=\relax\fi
+ \the\hrs:\zerofill\the\minu}
+

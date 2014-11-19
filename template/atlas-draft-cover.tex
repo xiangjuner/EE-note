@@ -4,7 +4,7 @@
 % During the ATLAS editorial process you usually add the atlascover package
 % to append a cover page used to track the editorial details.
 % This file is for the case that you have to make the cover page separately.
-% You can also use the class latex/atlasdoc (with option nomaketitle).
+% You can also use the class latex/atlasdoc (with option maketitle=false).
 %-----------------------------------------------------------------------
 
 \usepackage[centering,scale=0.75]{geometry}
@@ -12,10 +12,10 @@
 % \usepackage[minimal]{latex/atlaspackage}
 \usepackage{graphicx}
 
+% Need option coverpage to produce a cover
 % Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft
-\usepackage{latex/atlascover}
-% \usepackage[atlasdoc]{syle/atlascover}
-% \usepackage[CONF]{latex/atlascover}
+\usepackage[coverpage]{latex/atlascover}
+% \usepackage[CONF,coverpage]{latex/atlascover}
 
 % hyperref is included in atlascover. Set options here if atlaspackage is not included.
 \hypersetup{colorlinks,breaklinks,pdftitle={ATLAS Draft Cover},pdfauthor={ATLAS Collaboration}}
@@ -69,7 +69,7 @@
 % Comment deadline
 \AtlasCoverCommentsDeadline{1 April 2015}
 
-% Analysis team members -- Indicate the Contact Editors (usually two) by (*) after their name
+% Analysis team members - indicate the Contact Editors (usually two) by (*) after their name
 \AtlasCoverAnalysisTeam{Peter~Analyser, Contact Editor~(*), Contact~Editor2~(*), Alphonse~Physicien}
 
 % Editorial Board Members --- Indicate the Chair by a (*) after his/her name
@@ -80,7 +80,7 @@
 \AtlasCoverEdBoardMember{EB~Member~2}
 \AtlasCoverEdBoardMember{EB~Member~3}
 
-% A PUB note has readers and not an EdBoard -- give their names here (one line or several entries)
+% A PUB note has readers and not an EdBoard - give their names here (one line or several entries)
 \AtlasCoverReaderMember{Reader~1, Reader~2}
 % \AtlasCoverReaderMember{Reader~1}
 % \AtlasCoverReaderMember{Reader~2}

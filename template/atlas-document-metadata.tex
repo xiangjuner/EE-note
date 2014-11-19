@@ -27,13 +27,14 @@
 % \affil[b]{Another Institution}
 
 % If a special author list should be indicated via a link use the following code:
+% Include the two lines below if you do not use atlasstyle:
 % \usepackage[marginal,hang]{footmisc}
 % \setlength{\footnotemargin}{0.5em}
+% Use the following lines in all cases:
 % \usepackage{authblk}
 % \author{The ATLAS Collaboration%
-% \thanks{The full authorlist can be found at:\\
-%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-007/authorlist.pdf}
-%   \vspace*{1.0ex}}%
+% \thanks{The full author list can be found at:\newline
+%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-007/authorlist.pdf}}
 % }
 
 % Date: if not given, uses current date
@@ -60,8 +61,10 @@
 % HepData record
 % \HepDataRecord{ZZZZZZZZ}
 
-% Submission journal
+% Submission journal and final reference
 % \AtlasJournal{Phys.\ Lett.\ B.}
+% \AtlasJournalRef{\PLB 789 (2014) 123}
+% \AtlasDOI{}
 
 % Abstract - % directly after { is important for correct indentation
 \AtlasAbstract{%

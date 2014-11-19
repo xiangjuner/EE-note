@@ -1,3 +1,18 @@
+2014-11-19 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-04-00.
+	* First implementation of the ATLAS preprint style.
+	* Fonts still have to be checked on other platforms.
+	* Major rewrite of both atlasdoc.cls and atlascover.sty, which removes spurious offsets.
+	* Removed need for title skip parameter and horizontal and vertical offsets on cover pages.
+	* Need coverpage=true in atlascover.sty if you want a draft cover and are using
+	  atlascover.sty standalone.
+	* No longer need atlasdoc as option to atlascover,
+	  as package checks if atlasdoc is being used itself.
+	* make cleanpdf command added (or being added) to standard Makefiles.
+	* Adding of extra blank pages after cover page mostly removed.
+	  Have to see if it is necessary somewhere.
+	* Options added to atlasdoc for different fonts.
+	* showframe option added for debugging.
 2014-10-20 Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 01-03-06.
 	* Require hyperref in atlascover to avoid problems with supporting documentation.

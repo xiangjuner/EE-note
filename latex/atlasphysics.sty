@@ -6,10 +6,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\APHY@PackageVersion{01-03-06}
+\def\APHY@PackageVersion{01-04-00}
 
-\ProvidesPackage{latex/atlasphysics}[2014/10/20 v.01-03-06 ATLAS physics macros]
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{latex/atlasphysics}[2014/11/19 v.01-04-00 ATLAS physics macros]
+\NeedsTeXFormat{LaTeX2e}
 
 \typeout{ATLAS physics style file v.\APHY@PackageVersion}
 
@@ -30,37 +30,6 @@
 \DeclareBoolOption[true]{xref}
 \DeclareBoolOption[false]{texmf}
 \ProcessKeyvalOptions*
-%\let\ifAPHY@BSM\iffalse
-%\let\ifAPHY@journal\iftrue
-%\let\ifAPHY@math\iffalse
-%\let\ifAPHY@misc\iftrue
-%\let\ifAPHY@other\iffalse
-%\let\ifAPHY@particle\iftrue
-%\let\ifAPHY@process\iffalse
-%\let\ifAPHY@unit\iftrue
-%\DeclareOption{bsm}{\let\ifAPHY@BSM\iftrue}
-%\DeclareOption{nobsm}{\let\ifAPHY@BSM\iffalse}
-%\DeclareOption{math}{\let\ifAPHY@math\iftrue}
-%\DeclareOption{nomath}{\let\ifAPHY@math\iffalse}
-%\DeclareOption{misc}{\let\ifAPHY@misc\iftrue}
-%\DeclareOption{nomisc}{\let\ifAPHY@misc\iffalse}
-%\DeclareOption{other}{\let\ifAPHY@other\iftrue}
-%\DeclareOption{noother}{\let\ifAPHY@other\iffalse}
-%\DeclareOption{particle}{\let\ifAPHY@particle\iftrue}
-%\DeclareOption{noparticle}{\let\ifAPHY@particle\iffalse}
-%\DeclareOption{process}{\let\ifAPHY@process\iftrue}
-%\DeclareOption{noprocess}{\let\ifAPHY@process\iffalse}
-%\DeclareOption{refs}{\let\ifAPHY@refs\iftrue}
-%\DeclareOption{norefs}{\let\ifAPHY@refs\iffalse}
-%\DeclareOption{unit}{\let\ifAPHY@unit\iftrue}
-%\DeclareOption{nounit}{\let\ifAPHY@unit\iffalse}
-%\DeclareOption{xref}{\let\ifAPHY@xref\iftrue}
-%\DeclareOption{noxref}{\let\ifAPHY@xref\iffalse}
-%\let\ifAPHY@texmf\iffalse
-%\DeclareOption{texmf}{\let\ifAPHY@texmf\iftrue}
-
-% Execute options
-% \ProcessOptions \relax
 
 % xspace is always needed 
 \RequirePackage{xspace}
