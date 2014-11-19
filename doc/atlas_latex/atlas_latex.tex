@@ -9,7 +9,7 @@
 \usepackage{latex/atlasphysics}
 
 % Files with references in BibTeX format
-%\usepackage{latex/atlas_biblatex}
+\usepackage{../../bibtex/bst/atlas-biblatex}
 \addbibresource{../atlas_latex.bib}
 
 % Paths for figures
@@ -87,7 +87,8 @@ good \LaTeX.
 
 The design principle is that you have a main document and 
 the style files and \texttt{atlasdoc} class are in a subdirectory \File{latex}.
-This subdirectory can of course be a link to a centrally maintained \texttt{latex} directory.
+The logos that are needed are kept in a \File{logos} directory.
+This subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
 See Section~\ref{sec:texmf} for the changes that have to be made if you want to install
 the package in a central place.
 
@@ -203,7 +204,7 @@ This can be achieved with the following code snippet that should be used for the
 }
 \end{verbatim}
 
-Note that \Package{atlasdoc} has to be loaded with the option \Option{nomaketitle}
+Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=false}
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
 
 
@@ -267,15 +268,19 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
   \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
     preprint number on the front page.
 
+  \item {\verb|\AtlasJournalRef{<Journal reference>}|} displays the journal reference
+    on the preprint front page.
+    This should be used for the arXiV update after the paper has been published.
+    Can be omitted.
+
+  \item {\verb|\AtlasDOI{<Journal reference>}|} displays the DOI
+    on the preprint front page.
+    This should be used for the arXiV update after the paper has been published.
+    Can be omitted.
+
   \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
     on the front page.
 
-  \item {\verb|\skipbeforetitle{<length>}|} sets the distance between
-    the title page header and the note title. The default value should
-    be fine for most notes, but in case you have a long list of
-    authors or a lengthy abstract you can use this command to buy
-    some extra space. Note that \verb|<length>| can also be negative
-    (use it at your own risk!).
 \end{itemize}
 %
 \texttt{template/atlas-document.tex} contains a basic skeleton that can be
@@ -328,17 +333,28 @@ In your main document you use \Macro{addbibresource} in the preamble to include 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
 \begin{description}
-\item[a4paper]Set paper size to A4 (default);
-\item[letter]Set paper size to letter;
-\item[coverpage]Include an ATLAS draft cover page;
-\item[preprint]Make the front page for a CERN preprint;
+\item[atlasstyle] Use the ATLAS style for the document;
+\item[paper=a4|letter] Set the paper size. The default size is A4;
+\item[a4paper] Set paper size to A4 (default);
+\item[letter] Set paper size to letter.
+  This option is deprecated -- use \Option{paper=letter} instead;
+\item[coverpage] Include an ATLAS draft cover page;
+\item[cernpreprint]Make the front page for a CERN preprint.
+  The option \Option{preprint} works as well, but is deprecated;
 %\item[paper]The document is an ATLAS paper;
-\item[CONF]The document is a CONF note;
-\item[PUB]The document is an PUB note;
-\item[nomaketitle]Do not create a title page; to make it yourself give the command \Macro{maketitle} after
-  \verb|\begin{document}|
-\item[koma]Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article}. 
-  Note that some tuning of the \KOMAScript\ options still needs to be done.
+\item[CONF] The document is a CONF note;
+\item[PUB] The document is an PUB note;
+\item[auxmat] The document contains auxiliary material for a preprint;
+\item[maketitle=true|false] Turn on or off the creation of a title page. If you turn it off,
+  but still want a title give the command \Macro{maketitle} after
+  \verb|\begin{document}|;
+\item[nomaketitle] Do not create a title page; equivalent to \Option{maketitle=false};
+\item[koma] Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
+\item[texmf] Use the syntax \Macro{usepackage\{package\}}
+  instead of \Macro{usepackage\{latex/package\}} to include packages.
+  This is needed if you install \Package{atlaslatex} centrally,
+  rather than in a \File{latex} subdirectory;
+\item[txfonts] Use the \Package{txfonts} package for fonts instead of the default;
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
@@ -364,11 +380,12 @@ These should be installed in any modern \LaTeX\ installation.
 Note that under Ubuntu, \Package{lineno} can be found in the
 \Package{texlive-humanities} package!
 If you cannot find it, it is also included in \File{latex/other}.
-Copy it to you main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
+Copy it to your main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
 it centrally available.
 
-All style files, \Package{atlascover}, \Package{atlascontribute}, 
-\Package{atlaspackage} and \Package{atlasphysics}, need the package \Package{kvoptions} 
+Both the class \Package{atlasdoc} and all style files, 
+\Package{atlascover}, \Package{atlascontribute}, \Package{atlaspackage} and \Package{atlasphysics}
+need the package \Package{kvoptions} 
 so that they can process options where a value for an option should be set.
 
 \texttt{atlascover} also needs \texttt{hyperref}. 
@@ -383,14 +400,13 @@ The minimal set is:
 \item \texttt{inputenc}: allow ä, ö, ø, ß, etc. to be input directly;
 \item \texttt{fontenc}: output font encoding;
 \item \texttt{hyperref}: add hyperlinks and ability to click on cross-references;
-\item \Package{savesym}: needed to avoid errors, as \Package{txfonts}and \Package{amsmath} define the same symbols.
+\item \texttt{placeins}: adds commands to force figure and table output before a certain position in the text;
 \end{itemize}
 
 The default set adds in addition:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{booktabs}: nicer tables. Use \Macro{toprule}, \Macro{midrule} and \Macro{bottomrule} instead of \Macro{hline};
-\item \texttt{footmisc}: extra footnote options;
-\item \texttt{mhchem}: chemical elements and molecules;
+\item \texttt{csquotes}: smart quotes that incorporate language dependence;
 \item \texttt{siunitx}: units package with extra functionality for tables;
 \item \texttt{subfig}: more than one plot in a figure;
 \item \texttt{tocloft}: extra options for typesetting table of contents etc.
@@ -398,10 +414,10 @@ The default set adds in addition:
 
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{csquotes} automatic quoting, which obeys language options;
-\item \texttt{xtab} newer version of supertabular, which allows tabular environments to go over more than one page;
+\item \texttt{mhchem}: chemical elements and molecules;
 \item \texttt{rotating} rotate figures, tables, etc.;
-\item \texttt{xfrac} nicer fractions.
+\item \texttt{xfrac} nicer fractions;
+\item \texttt{xtab} newer version of supertabular, which allows tabular environments to go over more than one page.
 \end{itemize}
 
 Further options are:
@@ -409,10 +425,15 @@ Further options are:
 \item[\Option{biblatex=true|false}](false) Turn on/off use of \Package{biblatex} and \Package{biber}.
 \item[\Option{hyperref=true|false}](true) Turn on/off use of \Package{hyperref}.
 \item[\Option{siunitx=true|false}](true) Do not include the \Package{siunitx} package.
-\item[\Option{subfigure=true|false}](false) Use \Package{subfigure} instead of \Package{subfig}.
+\item[\Option{subcaption=true|false}](false) Use \Package{subcaption} instead of \Package{subfig}.
+  \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
+  \Package{subfigure}.
+\item[\Option{subfigure=true|false}](false) Use the deprecated package \Package{subfigure} 
+  instead of \Package{subfig}.
 \item[\Option{texlive=2009}] Set if you use and older version of \TeX\ Live like 2009.
   The only value that has an effect is 2009, 
   which this uses old (Version 1) option names for \Package{siunitx}.
+\item[\Option{lineno=true|false}](false) Load the \Package{lineno} package.
 \end{description}
 
 \File{lineno.sty} and \File{authblk.sty} are also provided in \File{latex/other}.
@@ -421,7 +442,15 @@ They should be part of a standard \LaTeX\ installation though.
 There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
 With \Package{atlasdoc} this problem seems to have gone away.
 \Package{tikz} is not included in \Package{atlaspackage}.
-If you want to use it, just add the usual \verb|\usepackage{tikz| to your preamble.
+If you want to use it, just add the usual \verb|\usepackage{tikz}| to your preamble.
+
+Other packages that have been used at some point include:
+\begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \Package{savesym}: needed to avoid errors if \Package{txfonts} is used, 
+  as \Package{txfonts} and \Package{amsmath} define the same symbols.
+\item \texttt{footmisc}: extra footnote options. 
+  These mess up the \Option{atlasstyle} settings.
+\end{description}
 
 
 %-------------------------------------------------------------------------------
@@ -443,26 +472,35 @@ instead of the the usual \texttt{usepackage} command: this will ensure
 that the cover page is produced before the note title page.
 
 You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
-In this case you need the option \texttt{nomaketitle} in the \texttt{atlasdoc} class
+In this case you need the option \texttt{maketitle=false} in the \texttt{atlasdoc} class
 (if you are using it)
 and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 
 The following options can be passed on to the \Package{atlascover} package:
 \begin{description}
-%\item[\Option{PAPER}] the document is an ATLAS paper draft (default);
-\item[\Option{CONF}]the document is a CONF note;
-\item[\Option{PUB}]the document is an PUB note;
-\item[\Option{preprint}]the front page should be in the form of a CERN preprint;
-\item[\Option{auxmat}]the front page for a document containing auxiliary material from a paper;
-\item[\Option{twocolumn}]use this option if your document is formatted in two columns;
-\item[\Option{atlasdoc}]this option is set by \Package{atlasdoc} and is not usually needed by the user.
+\item[\Option{coverpage}] outputs the standard ATLAS paper draft cover page;
+\item[\Option{CONF}] the document is a CONF note;
+\item[\Option{PUB}] the document is an PUB note;
+\item[\Option{cernpreprint}] the front page should be in the form of a CERN preprint;
+  The option \Option{preprint} works as well, but is deprecated;
+%\item[\Option{preprint}] the front page should be in the form of a CERN preprint;
+\item[\Option{auxmat}] the front page for a document containing auxiliary material from a paper;
+\item[\Option{twocolumn}] use this option if your document is formatted in two columns;
+\item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
 
-Some journal styles, especially JHEP, produce an ATLAS draft cover page that is offset.
+If you use \Package{atlascover} standalone, use the option \Option{coverpage=true} to
+actually output a cover page. 
+This is necessary as of Version 01-04-00 of \Package{atlaslatex} to make the use of options more consistent.
+
+It used to be the case that some journal styles, especially JHEP,
+produce an ATLAS draft cover page that is offset.
 You can use the options \Option{hoffset} and \Option{voffset} to move the text around.
 JHEP needs \verb|hoffset=1in, voffset=1in|.
 revtex (APS journals) looks better with  \verb|hoffset=-0.25in, voffset=-0.25in|.
+These offsets are ignored, as of Version 01-04-00 of \Package{atlaslatex}, as the
 
+The option \Option{clearpage}, which used to exist, has no effect.
 
 %-------------------------------------------------------------------------------
 \subsection{ATLAS notes}
@@ -949,6 +987,15 @@ If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \M
 If you want to continue to use \Package{subfigure} include \Package{atlaspackage} with the option
 \Option{subfigure=true}. Similarly, if you do not want to include \Package{siunitx} set
 the option \Option{siunitx=false}.
+
+The option \verb|\skipbeforetitle{<length>}| used to set the distance between
+the title page header and the note title. 
+Given that stretchable space is now used, such an option is no longer appropriate.
+It can be given, but will be ignored.
+%The default value should be fine for most notes, but in case you have a long list of
+%authors or a lengthy abstract you can use this command to buy
+%some extra space. Note that \verb|<length>| can also be negative
+%(use it at your own risk!).
 
 
 %-------------------------------------------------------------------------------
