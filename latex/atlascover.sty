@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-04-00}
+\def\ATPackageVersion{01-04-01}
 
-\ProvidesPackage{latex/atlascover}[2014/11/19 v.01-04-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2014/11/20 v.01-04-01 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 \typeout{ATLAS Cover Page v.\ATPackageVersion}
@@ -37,12 +37,15 @@
 \newif\ifACOV@atlaspaper
 \ACOV@atlaspapertrue
 \ifACOV@CONF
+  \typeout{atlascover: Cover page for CONF note will be made}
   \ACOV@atlaspaperfalse
 \fi
 \ifACOV@PUB
+  \typeout{atlascover: Cover page for PUB note will be made}
   \ACOV@atlaspaperfalse
 \fi
 \ifACOV@preprint
+  \typeout{atlascover: Front page for a CERN preprint will be made}
   \ACOV@cernpreprinttrue
 \fi
 
@@ -52,14 +55,25 @@
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
-%*********************************************
-% Editorial information from main tex file
-%*********************************************
-\@ifclassloaded{latex/atlasdoc}{%
-  \ACOV@atlasdoctrue
-}{%
-  \ACOV@atlasdocfalse
-}
+% See if atlascover is called from atlasdoc
+\ifACOV@atlasdoc
+  \relax
+\else
+  \@ifclassloaded{latex/atlasdoc}{%
+    \typeout{Class loaded is latex/atlasdoc}
+    \ACOV@atlasdoctrue
+  }{%
+    \@ifclassloaded{atlasdoc}{%
+      \typeout{Class loaded is atlasdoc}
+      \ACOV@atlasdoctrue
+    }{%
+      \typeout{atlasdoc does not appear to be loaded}
+      \ACOV@atlasdocfalse
+    }
+  }
+\fi
+
+% If atlascover called from atlasdoc, do not need to do much
 \ifACOV@atlasdoc%
   \typeout{ATLAS cover called from atlasdoc}
   % Let atlasdoc know we want a cover page
@@ -67,7 +81,8 @@
     \ADOC@coverpagetrue
   \fi
   \relax%
-\else%
+\else
+  % Define macros that are needed here and usually defined in atlasdoc
   \typeout{ATLAS cover called standalone}
   \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
   \providecommand{\AtlasTitle}[1]{%

@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-04-00}
+\def\ATPackageVersion{01-04-01}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/11/19 v.01-04-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/11/20 v.01-04-01 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -232,18 +232,18 @@
     \fi
   \fi
   \RequirePackage{\ADOC@atlascover}
-\fi
+\else
+  % CERN preprint cover page
+  \ifADOC@cernpreprint
+    \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
+    \RequirePackage{\ADOC@atlascover}
+  \fi
 
-% CERN preprint cover page
-\ifADOC@cernpreprint
-  \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
-  \RequirePackage{\ADOC@atlascover}
-\fi
-
-% Auxiliary material cover page
-\ifADOC@auxmat
-  \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
-  \RequirePackage{\ADOC@atlascover}
+  % Auxiliary material cover page
+  \ifADOC@auxmat
+    \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
+    \RequirePackage{\ADOC@atlascover}
+  \fi
 \fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)

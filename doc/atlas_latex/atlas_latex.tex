@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[koma,UKenglish]{latex/atlasdoc}
+\documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
 \usepackage[biblatex]{latex/atlaspackage}
@@ -46,6 +46,7 @@
   is being added.
 
   This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+  It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
 }
 
 %-------------------------------------------------------------------------------
@@ -79,25 +80,28 @@ Section~\ref{sec:oldnote} summarises the changes that have been made and
 how you can adapt your documents to use the new package.
 Section~\ref{sec:oldcover} summarises the changes to the cover macros.
 
-The package includes the \texttt{atlasdoc} class, useful style files
+The package includes the \Package{atlasdoc} class, useful style files
 and documentation of the package.
+The package also defines a standard ATLAS style for papers.
+This style should be used for paper drafts and for submission to the arXiv and the journal.
+Add the option \Option{atlasstyle} to the \Package{atlasdoc} class to use this style.
 The documentation is provided as both PDF files and \LaTeX\ documents
 that should provide examples of how to use the package and how to write
 good \LaTeX.
 
 The design principle is that you have a main document and 
-the style files and \texttt{atlasdoc} class are in a subdirectory \File{latex}.
+the style files and \Package{atlasdoc} class are in a subdirectory \File{latex}.
 The logos that are needed are kept in a \File{logos} directory.
 This subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
 See Section~\ref{sec:texmf} for the changes that have to be made if you want to install
 the package in a central place.
 
 The usual procedure is that for each document that you create,
-you first unpack the latest version of \texttt{atlaslatex} and
+you first unpack the latest version of \Package{atlaslatex} and
 then create your main document in the top-level directory.
 This structure means that it is easier to update the style files if a new version of
-\texttt{atlaslatex} is released. 
-Each document can then be independent of the \texttt{atlaslatex} release.
+\Package{atlaslatex} is released. 
+Each document can then be independent of the \Package{atlaslatex} release.
 
 To create a new document you can issue the commands:
 %
@@ -107,17 +111,17 @@ make new BASENAME=mydocument
 %
 This command copies \File{atlas-document.tex} and
 \File{atlas-document-metadata.tex}
-to \texttt{mydocument.tex} and  \texttt{mydocument-metadata.tex}.
-It also creates empty files \texttt{mydocument-defs.sty} and \texttt{mydocument.bib}.
+to \File{mydocument.tex} and \File{mydocument-metadata.tex}.
+It also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
 
-In the \texttt{Makefile} you should change the \texttt{BASENAME} to the name of your document.
+In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
 
 Note that you have to specify the language of your document as an option in the
 \Macro{documentclass} command. Typical settings are
 \begin{itemize}
-\item UKenglish (or british)
-\item USenglish (or american)
+\item UKenglish (or british);
+\item USenglish (or american).
 \end{itemize}
 
 
@@ -194,16 +198,16 @@ Sometimes a PUB note has a special author list.
 Hence a link to this list should be added to the front page.
 This can be achieved with the following code snippet that should be used for the author:
 \begin{verbatim}
-\usepackage[marginal,hang]{footmisc}
-\setlength{\footnotemargin}{0.5em}
+% \usepackage[marginal,hang]{footmisc}
+% \setlength{\footnotemargin}{0.5em}
 \usepackage{authblk}
 \author{The ATLAS Collaboration%
 \thanks{The full author list can be found at:\\
-  \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}
-  \vspace*{1.0ex}}%
+  \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}}
 }
 \end{verbatim}
 
+The first two lines are needed if you do not use the standard ATLAS preprint style.
 Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=false}
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
 
@@ -291,7 +295,7 @@ order to demonstrate their use.
 Links to supporting documentation should also be included on the cover page of draft papers circulated to ATLAS.
 They can be included using
 \verb|\AtlasCoverSupportingNote{Short title}{CDS link}|.
-It is also possible to give a TWiki page instead, but this is deprecated.
+It is also possible to give a TWiki page instead, but this is deprecated.\\
 As mentioned above, see \texttt{template/atlas-document-metadata.tex} for more details.
 
 %-------------------------------------------------------------------------------
@@ -310,7 +314,7 @@ For instance, this document has
 been produced using this very simple preamble:
 %
 \begin{verbatim}
-  \documentclass[koma,UKenglish]{latex/atlasdoc}
+  \documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
   \usepackage{latex/atlaspackage}
   \usepackage{latex/atlasphysics}
   \graphicspath{{../../logos/}{figures/}}
@@ -333,28 +337,29 @@ In your main document you use \Macro{addbibresource} in the preamble to include 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
 \begin{description}
-\item[atlasstyle] Use the ATLAS style for the document;
-\item[paper=a4|letter] Set the paper size. The default size is A4;
-\item[a4paper] Set paper size to A4 (default);
-\item[letter] Set paper size to letter.
+\item[atlasstyle] use the ATLAS style for the document;
+\item[paper=a4|letter] set the paper size. The default size is A4;
+\item[a4paper] set the paper size to A4 (default);
+  This option is deprecated;
+\item[letter] set the paper size to letter.
   This option is deprecated -- use \Option{paper=letter} instead;
-\item[coverpage] Include an ATLAS draft cover page;
-\item[cernpreprint]Make the front page for a CERN preprint.
+\item[coverpage] include an ATLAS draft cover page;
+\item[cernpreprint] make the front page for a CERN preprint.
   The option \Option{preprint} works as well, but is deprecated;
-%\item[paper]The document is an ATLAS paper;
-\item[CONF] The document is a CONF note;
-\item[PUB] The document is an PUB note;
-\item[auxmat] The document contains auxiliary material for a preprint;
-\item[maketitle=true|false] Turn on or off the creation of a title page. If you turn it off,
+%\item[paper] the document is an ATLAS paper;
+\item[CONF] the document is a CONF note;
+\item[PUB] the document is an PUB note;
+\item[auxmat] the document contains auxiliary material for a preprint;
+\item[maketitle=true|false] turn on or off the creation of a title page. If you turn it off,
   but still want a title give the command \Macro{maketitle} after
   \verb|\begin{document}|;
-\item[nomaketitle] Do not create a title page; equivalent to \Option{maketitle=false};
-\item[koma] Use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
-\item[texmf] Use the syntax \Macro{usepackage\{package\}}
+\item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false};
+\item[koma] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
+\item[texmf] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
   rather than in a \File{latex} subdirectory;
-\item[txfonts] Use the \Package{txfonts} package for fonts instead of the default;
+\item[txfonts] use the \Package{txfonts} package for fonts instead of the default.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
@@ -365,16 +370,18 @@ as they only influence the cover pages.
 \label{sec:atlaspackage}
 %-------------------------------------------------------------------------------
 
-The \texttt{atlasdoc} class depends on these packages, whose presence in
+The \Package{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{xcolor}: add colours to \LaTeX;
-\item \texttt{babel}: become language aware;
-\item \texttt{graphicx}: include graphics in the document;
-\item \texttt{lineno}: add line numbers to documents;
-\item \texttt{txfonts}: the standard ATLAS document font;
-\item \Package{fancyhdr}: defines header for draft mode;
-\item \Package{scrdate, scrtime}: Current date and time for use in the header.
+\item \Package{babel}: become language aware;
+\item \Package{fancyhdr}: defines the header for draft mode;
+\item \Package{fontenc}: output font encoding;
+\item \Package{hyperref}: add hyperlinks and ability to click on cross-references;
+\item \Package{graphicx}: include graphics in the document;
+\item \Package{lineno}: add line numbers to documents;
+\item \Package{txfonts}: the standard ATLAS document font;
+\item \Package{xcolor}: add colours to \LaTeX.
+%\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
 Note that under Ubuntu, \Package{lineno} can be found in the
@@ -398,9 +405,8 @@ The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{amsmath}: extra useful maths environments;
 \item \texttt{inputenc}: allow ä, ö, ø, ß, etc. to be input directly;
-\item \texttt{fontenc}: output font encoding;
 \item \texttt{hyperref}: add hyperlinks and ability to click on cross-references;
-\item \texttt{placeins}: adds commands to force figure and table output before a certain position in the text;
+\item \texttt{placeins}: adds commands to force figure and table output before a certain position in the text.
 \end{itemize}
 
 The default set adds in addition:
@@ -422,17 +428,17 @@ Finally the full set includes further packages that may be useful:
 
 Further options are:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item[\Option{biblatex=true|false}](false) Turn on/off use of \Package{biblatex} and \Package{biber}.
-\item[\Option{hyperref=true|false}](true) Turn on/off use of \Package{hyperref}.
-\item[\Option{siunitx=true|false}](true) Do not include the \Package{siunitx} package.
-\item[\Option{subcaption=true|false}](false) Use \Package{subcaption} instead of \Package{subfig}.
+\item[\Option{biblatex=true|false}](false) turn on/off use of \Package{biblatex} and \Package{biber};
+\item[\Option{hyperref=true|false}](true) turn on/off use of \Package{hyperref};
+\item[\Option{siunitx=true|false}](true) do not include the \Package{siunitx} package;
+\item[\Option{subcaption=true|false}](false) use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
-  \Package{subfigure}.
-\item[\Option{subfigure=true|false}](false) Use the deprecated package \Package{subfigure} 
-  instead of \Package{subfig}.
-\item[\Option{texlive=2009}] Set if you use and older version of \TeX\ Live like 2009.
+  \Package{subfigure};
+\item[\Option{subfigure=true|false}](false) use the deprecated package \Package{subfigure} 
+  instead of \Package{subfig};
+\item[\Option{texlive=2009}] set if you use and older version of \TeX\ Live like 2009.
   The only value that has an effect is 2009, 
-  which this uses old (Version 1) option names for \Package{siunitx}.
+  which this uses old (Version 1) option names for \Package{siunitx};
 \item[\Option{lineno=true|false}](false) Load the \Package{lineno} package.
 \end{description}
 
@@ -529,6 +535,35 @@ This information is then included on the cover page in the form of clickable lin
 Use of this option also adds the arXiv preprint identifier to the top of every page
 of the document.
 
+
+%-------------------------------------------------------------------------------
+\section{The ATLAS preprint style}
+\label{sec:atlasstyle}
+%-------------------------------------------------------------------------------
+
+This style is currently being developed and changes in the settings may still occur.
+In particular, more tests have to be made to make sure that the style
+works everywhere that it should!
+
+Documents can be typeset in the standard ATLAS preprint style by using the option
+\Option{atlasstyle}.
+This style should be used for the preparation of paper drafts,
+as well as for the submission of papers to the arXiv and journals.
+The journals will then convert the documents to the style appropriate for the journal.
+This style uses \KOMAScript as the base class.
+Further settings include:
+\begin{description}
+\item[Layout] \Option{DIV=14} and an extra \SI{5}{\mm} for the binding;
+\item[Paragraph] The paragraph indentation is set to zero and 
+  there is a half-line separation between paragraphs.
+\item[Figures and tables] a small font size is used for the captions.
+  Captions are not indented.
+  They should be below both figures and tables;
+\item[Font] the default fonts are from the \Package{newtx} package.
+  These are very similar to \Package{txfonts} that have been used up to now,
+  but have a better spacing in a few cases;
+\item[Section headers] the standard serif font is used;
+\end{description}
 
 %-------------------------------------------------------------------------------
 \section{Symbols in \texttt{atlasphysics.sty}}
@@ -691,8 +726,8 @@ mklink /D \
   "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas-bibtex\latex" \
   "C:\Users\brock\Documents\atlas\latex\atlaslatex\latex"
 \end{verbatim}
-This information I found under
-\url{http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/}
+This information I found under\\
+{\footnotesize \url{http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/}}
 
 
 %-------------------------------------------------------------------------------
