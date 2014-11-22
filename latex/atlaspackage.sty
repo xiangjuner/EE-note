@@ -22,10 +22,12 @@
 \DeclareBoolOption[false]{full}
 \DeclareBoolOption[false]{biblatex}
 \DeclareBoolOption[true]{siunitx}
+\DeclareBoolOption[true]{csquotes}
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[false]{subcaption}
 \DeclareBoolOption[true]{hyperref}
 \DeclareBoolOption[true]{lineno}
+\DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
@@ -73,11 +75,6 @@
 % Input encoding - allows ä, ö, ß etc. to be input directly
 \RequirePackage[utf8]{inputenc}
 
-% Font
-%\RequirePackage[varg]{txfonts}
-% Encoding used for printout
-%\RequirePackage[T1]{fontenc}
-
 %\RequirePackage{newtxtext}
 %\RequirePackage{newtxmath}
 
@@ -89,30 +86,42 @@
 %\normalfont
 %\usepackage[T1]{fontenc}
 
-% amsmath and txfonts define the same symbols - use the txfont version
-%\RequirePackage{savesym}
-%\savesymbol{iint}
-%\savesymbol{iiint}
-%\savesymbol{iiiint}
-%\savesymbol{idotsint}
+% Font
+\ifAPKG@txfonts
+  \RequirePackage[varg]{txfonts}
+  % Encoding used for printout
+  \RequirePackage[T1]{fontenc}
+
+  % amsmath and txfonts define the same symbols - use the txfont version
+  \RequirePackage{savesym}
+  \savesymbol{iint}
+  \savesymbol{iiint}
+  \savesymbol{iiiint}
+  \savesymbol{idotsint}
+\fi
 % Extra and very useful maths macros from AMS
 \RequirePackage{amsmath}
 % The AMS \iint etc. is now defined as \AMSiint
-%\restoresymbol{AMS}{iint}
-%\restoresymbol{AMS}{iiint}
-%\restoresymbol{AMS}{iiiint}
-%\restoresymbol{AMS}{idotsint}
+\ifAPKG@txfonts
+  \restoresymbol{AMS}{iint}
+  \restoresymbol{AMS}{iiint}
+  \restoresymbol{AMS}{iiiint}
+  \restoresymbol{AMS}{idotsint}
+\fi
 
 
 % Add command that can force all figures and tables (floats) to appear before a certain point
 \RequirePackage{placeins}
 
 \ifAPKG@standard%
-  % Language-sensitive quotes
-  \ifx\APKG@texlive2009
-    \RequirePackage[babel=true]{csquotes}
-  \else
-    \RequirePackage[autostyle=true]{csquotes}
+  \ifAPKG@csquotes%
+    \def\csquotesone{2009}
+    % Language-sensitive quotes
+    \ifx\APKG@texlive\csquotesone
+      \RequirePackage[babel=true]{csquotes}
+    \else
+      \RequirePackage[autostyle=true]{csquotes}
+    \fi
   \fi
   % Extra options for footnotes
   % \RequirePackage[bottom]{footmisc}

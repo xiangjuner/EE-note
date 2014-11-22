@@ -138,7 +138,7 @@
 \newcommand*{\AtlasJournal}[1]{\def\ADOC@journal{#1}}
 
 % Preprint
-\def\ADOC@cernpreprintnumber{}
+\def\ADOC@preprintnumber{}
 \newcommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
 
 % Journal
@@ -207,7 +207,7 @@
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
 \else
-  \RequirePackage[centering,scale=0.75]{geometry}
+  \RequirePackage[centering,scale=0.75,headheight=14pt]{geometry}
   %\RequirePackage[\ADOC@paperstring,centering,scale=0.75]{geometry}
 \fi
 

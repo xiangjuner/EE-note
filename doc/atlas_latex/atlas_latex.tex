@@ -606,8 +606,16 @@ The following extra packages had to be installed:
 \item \Package{texlive-latex-extra} (footmisc);
 \item \Package{texlive-humanities} (lineno);
 \item \Package{texlive-science} (siunitx)
-\item \Package{texlive-bibtex-extra} and \Package{biber} (biblatex and biber).
+\item \Package{texlive-bibtex-extra} and \Package{biber} (biblatex and biber);
+\item \Package{texlive-fonts-extra} (newtx fonts);
+\item \Package{texlivepublishers} (elsarticle).
 \end{itemize}
+Using \Package{csquotes} can also cause an error
+\enquote{! You can't use a prefix with \enquote{\Macro{begingroup}}}.
+This seems to be coupled to the order in which the packages are loaded, 
+but I have not yet found an order that works.
+If you get this error, load \Package{atlaspackage} with the option \Option{csquotes=off}.
+This problem is associated with \TeX\ Live 2013 and has been fixed in \TeX\ Live 2014.
 
 
 %-------------------------------------------------------------------------------
@@ -615,7 +623,11 @@ The following extra packages had to be installed:
 
 I also did some tests with Xubuntu 12.04.
 By default this has \TeX\ Live 2009 installed.
-You need to include \Package{atlaspackage} with the option \Option{texlive=2009}.
+The font package \Package{newtx} did not exist with this version of \TeX\ Live.
+Hence you need to give the option \Option{txfonts} to both \Package{atlasdoc} and \Package{atlaspackage}.
+You also to add the option \Option{texlive=2009} to \Package{atlaspackage}.
+If you are using \Package{siunitx}, then you also have to load \Package{atlasphysics}
+with the option \Option{unit=off}.
 The following extra packages had to be installed:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{texlive-latex-extra} (footmisc);

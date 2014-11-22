@@ -27,52 +27,68 @@
 \newcommand*{\AtlasJournal}[1]{\def\@journal{#1}}
 %\newcommand*{\journal}[1]{\def\@journal{#1}}
 
+% Preprint
+\def\ADOC@preprintnumber{}
+\newcommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
+
+% Journal
+\def\ADOC@journalref{}
+\newcommand*{\AtlasJournalRef}[1]{\def\ADOC@journalref{#1}}
+
+% DOI
+\def\ADOC@doi{}
+\newcommand*{\AtlasDOI}[1]{\def\ADOC@doi{#1}}
+
+% arXiv
+\def\AtlasArXivId{}
+\def\AtlasArXivURL{}
+\newcommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
+\newcommand*{\AtlasArXivCat}{[hep-ex]}
+
+% HEP Data
+\def\AtlasHepDataRecord{}
+\newcommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
+
 % Abstract text
 \def\AtlasAbstractText{}
-\newcommand{\AtlasAbstract}[1]{%
-	\def\AtlasAbstractText{#1}
-}
-\newcommand{\abstracttext}[1]{%
-	\def\AtlasAbstractText{#1}
-}
+\newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
+\newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
 
-\def\AC@PreprintNumber{}
-\newcommand*{\PreprintIdNumber}[1]{\def\AC@PreprintNumber{#1}}
 % Multiple corresponding editors
-\def\AC@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
-\newcommand{\AtlasCoverEditor}[2]{\def\AC@Editors{#1, #2}}%
-%  \g@addto@macro\AC@Editors{%
-%    #1 & ({\tt #2}) \\
-%  }%
-%}
+\def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
+\newcommand{\AtlasCoverEditor}[2]{%
+  \g@addto@macro\ACOV@Editors{%
+    #1 & (\texttt{#2}) \\
+  }%
+}
 
-\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\AC@CommentsDeadline{#1}}
-\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\AC@AnalysisTeam{#1}}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\def\AC@EgroupEditors{#1}}
-\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\AC@EgroupEdBoard{#1}}
+\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
+\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
+\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
+\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
 
 % EdBoard members
-\def\AC@EdBoardMembers{}
+\def\ACOV@EdBoardMembers{}
 \newcommand{\AtlasCoverEdBoardMember}[1]{%
-  \g@addto@macro\AC@EdBoardMembers{%
+  \g@addto@macro\ACOV@EdBoardMembers{%
     #1 \\
   }
 }
 
 % Readers (for PUB notes)
-\def\AC@ReaderMembers{}
+\def\ACOV@ReaderMembers{}
 \newcommand{\AtlasCoverReaderMember}[1]{%
-  \g@addto@macro\AC@ReaderMembers{%
+  \g@addto@macro\ACOV@ReaderMembers{%
     #1 \\
   }
 }
 
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\AC@TwikiURL{#1}}
+\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{#1}}
 
 % Supporting note list
-\def\AC@Notes{}
+\def\ACOV@Notes{}
 \newcommand{\AtlasCoverSupportingNote}[2]{%
-  \g@addto@macro\AC@Notes{%
+  \g@addto@macro\ACOV@Notes{%
     #1 & \url{#2} \\
   }
 }
