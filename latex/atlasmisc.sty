@@ -136,10 +136,10 @@
 % +--------------------------------------------------------------------+
 % |  Hours:minutes macro                                               |
 % +--------------------------------------------------------------------+
-\newcount\hrs\newcount\minu\newcount\temptime
-\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
-\multiply\temptime by 60%
-\advance\minu by -\temptime
-\ifnum\minu<10 \let\zerofill=0\else \let\zerofill=\relax\fi
- \the\hrs:\zerofill\the\minu}
+%\newcount\hrs\newcount\minu\newcount\temptime
+%\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
+%\multiply\temptime by 60%
+%\advance\minu by -\temptime
+%\ifnum\minu<10 \let\zerofill=0\else \let\zerofill=\relax\fi
+% \the\hrs:\zerofill\the\minu}
 
