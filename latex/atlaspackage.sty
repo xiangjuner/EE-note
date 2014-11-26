@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\APKG@PackageVersion{01-04-01}
+\def\APKG@PackageVersion{01-04-02}
 
-\ProvidesPackage{latex/atlaspackage}[2014/11/20 v.01-04-01 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2014/11/26 v.01-04-02 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 \typeout{ATLAS LaTeX packages v.\APKG@PackageVersion}
@@ -29,6 +29,7 @@
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2013]{texlive}
+\DeclareStringOption[biber]{backend}
 \ProcessKeyvalOptions*
 
 \typeout{Value of texlive is \APKG@texlive}
@@ -207,7 +208,7 @@
 % Some more tweaks should be made to the appearance,
 % see/include bibtex/bst/atlas-biblatex.sty
 \ifAPKG@biblatex%
-  \RequirePackage[backend=biber,
+  \RequirePackage[backend=\APKG@backend,
     style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \fi
 

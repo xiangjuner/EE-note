@@ -4,12 +4,13 @@
 \documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex]{latex/atlaspackage}
+\usepackage[biblatex,backend=bibtex]{latex/atlaspackage}
+\usepackage{latex/atlasbiblatex}
+
 \usepackage{authblk}
 \usepackage{latex/atlasphysics}
 
 % Files with references in BibTeX format
-\usepackage{../../bibtex/bst/atlas-biblatex}
 \addbibresource{../atlas_latex.bib}
 
 % Paths for figures
@@ -429,6 +430,8 @@ Finally the full set includes further packages that may be useful:
 Further options are:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item[\Option{biblatex=true|false}](false) turn on/off use of \Package{biblatex} and \Package{biber};
+\item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{biber}.
+  Specify \Option{backend=bibtex} to use \BibTeX\ instead.
 \item[\Option{hyperref=true|false}](true) turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|false}](true) do not include the \Package{siunitx} package;
 \item[\Option{subcaption=true|false}](false) use \Package{subcaption} instead of \Package{subfig};

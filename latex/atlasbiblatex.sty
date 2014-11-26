@@ -1,31 +1,56 @@
-%
+%-------------------------------------------------------------------------------
 % This file contains adjustments to the numeric-comp (and numeric)
-% biblatex styles that are suggested for PI theses
+% biblatex styles that are suggested for ATLAS documents
 %
+% See ChangeLog or SVN log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlasbiblatex}[2014/11/26 v.01-04-02 ATLAS biblatex style]
+\NeedsTeXFormat{LaTeX2e}
+
+\typeout{ATLAS biblatex style v.01-04-02}
+
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=ABIB,
+  prefix=ABIB@
+}
+\DeclareBoolOption[true]{articletitle}
+\DeclareBoolOption[false]{titlequote}
+\ProcessKeyvalOptions*
+
+% Turn off title for articles
+\ifABIB@articletitle
+\else
+  \AtEveryBibitem{
+    \ifentrytype{article}{\clearfield{title}}{}
+  }
+\fi
+
 % Titles all in italics or in quotes
-%
-% \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
-\DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
-%
+\ifABIB@titlequote
+  \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
+\else
+  \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
+\fi
+
 % Change punctuation to comma
-%
 \renewcommand*{\newunitpunct}{\addcomma\space}
-%
+
 % You can include the following line(s) if you want to shorten your
 % bibliography by not including url fields
 % \AtEveryBibitem{\clearfield{url}}
 % \AtEveryCitekey{\clearfield{url}}
-%
+
 % Do not add "In:"
-%
 \renewbibmacro{in:}{}
 % \renewbibmacro{in:}{%
 %   \ifentrytype{article}{}{%
 %   \printtext{\bibstring{in}\intitlepunct}}}
-%
+
 % Remove p. or pp. by pages - this has to be done for every language
 % separately as these strings depend on the language
-%
 \renewcommand{\bibpagespunct}{\space}
 \DefineBibliographyStrings{UKenglish}{%
   page = {},
@@ -39,6 +64,7 @@
   page = {},
   pages = {}
 }
+
 % If you get an error here use institution+location+year
 % \renewbibmacro*{institution+location+year}{%
 \renewbibmacro*{institution+location+date}{%
