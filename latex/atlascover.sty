@@ -49,14 +49,6 @@
   \ACOV@cernpreprinttrue
 \fi
 
-% Set ADOC options so that atlasdoc can handle the printing of the front pages
-\ifACOV@cernpreprint
-  \ADOC@cernpreprinttrue
-\fi
-\ifACOV@auxmat
-  \ADOC@auxmattrue
-\fi
-
 \let\ACOV@AdvancePageTwoSided\relax
 
 
@@ -88,6 +80,15 @@
   \ifACOV@coverpage
     \ADOC@coverpagetrue
   \fi
+  % Let atlasdoc know we want a CERN preprint front page
+  \ifACOV@cernpreprint
+    \ADOC@cernpreprinttrue
+  \fi
+  % Let atlasdoc know we want an auxiliary material front page
+  \ifACOV@auxmat
+    \ADOC@auxmattrue
+  \fi
+
   \relax%
 \else
   % Define macros that are needed here and usually defined in atlasdoc
