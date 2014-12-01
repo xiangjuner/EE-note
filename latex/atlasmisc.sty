@@ -1,15 +1,17 @@
 % +--------------------------------------------------------------------+
 % |  Useful things for proton-proton physics                           |
 % +--------------------------------------------------------------------+
-\newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
 \newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
-\newcommand*{\et}{\ensuremath{E_{\text{T}}}\xspace}
-\newcommand*{\eT}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
 \newcommand*{\ET}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\eT}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\et}{\ensuremath{E_{\text{T}}}\xspace}
 \newcommand*{\HT}{\ensuremath{H_{\text{T}}}\xspace}
-\newcommand*{\ptsq}{\ensuremath{p^2_{\text{T}}}\xspace}
-\newcommand*{\MET}{\ensuremath{E_{\mathrm{T}}^{\text{miss}}}\xspace}
+\newcommand*{\pTsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+%\newcommand*{\ptsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+\newcommand*{\MET}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
 \newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand*{\sumET}{\ensuremath{\sum \ET}\xspace}
 \newcommand{\EjetRec}{\ensuremath{E_{\text{rec}}}}
 \newcommand{\PjetRec}{\ensuremath{p_{\text{rec}}}}
 \newcommand{\EjetTru}{\ensuremath{E_{\text{truth}}}}
@@ -18,6 +20,12 @@
 \newcommand{\Rcone}{\ensuremath{R_{\text{cone}}}}
 \newcommand*{\abseta}{\ensuremath{|\eta|}\xspace}
 \newcommand*{\Ecm}{\ensuremath{E_{\text{cm}}}}
+\newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\sqs}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\Nevt}{\ensuremath{N_{\mathrm{evt}}}\xspace}
+\newcommand*{\zvtx}{\ensuremath{z_{\mathrm{vtx}}}\xspace}
+\newcommand*{\dzero}{\ensuremath{d_{0}}\xspace}
+\newcommand*{\zzsth}{\ensuremath{z_{0} \sin(\theta)}\xspace}
 
 % +--------------------------------------------------------------------+
 % | Masses                                                             |
@@ -56,7 +64,6 @@
 \newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$<$}}\xspace}%  Or use \lsim
 \newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$>$}}\xspace}%  and \rsim.
 \newcommand*{\gam}{\ensuremath{\gamma}\xspace}
-\newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
 \newcommand*{\stat}{\mbox{$\;$(stat.)}\xspace}
 \newcommand*{\syst}{\mbox{$\;$(syst.)}\xspace}
 
@@ -102,18 +109,18 @@
 \def\dk{%
    \dkwidth=\baselineskip
    {\def\to{\rightarrow}%  allows "\rightarrowfill" to work.
-   \kern 3pt%
+   \kern 3pt
    \hbox{%
-      \raise 3pt%
+      \raise 3pt
       \hbox{%
-         \vrule height 0.8\dkwidth width 0.7pt depth0pt%
-      }%
+         \vrule height 0.8\dkwidth width 0.7pt depth0pt
+      }
       \kern-0.4pt%
       \hbox to 1.5\dkwidth{%
          \rightarrowfill
-      }%
-   \kern0.6em%
-   }}%
+      }
+   \kern0.6em
+   }}
 }
 
 % +--------------------------------------------------------------------+
@@ -128,10 +135,10 @@
       \ialign{%
          \strut\hfil$\displaystyle{##}$&&$%
          \displaystyle{{}##}$\hfil\crcr#1\crcr%
-      }%
-   }%
+      }
+   }
    \,
-}%
+}
 
 % +--------------------------------------------------------------------+
 % |  Hours:minutes macro                                               |

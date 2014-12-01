@@ -7,7 +7,7 @@
 \def\ATPackageVersion{01-04-02}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/11/26 v.01-04-02 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/12/02 v.01-04-02 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -455,7 +455,7 @@
 
 \AtBeginDocument{%
   % If selected, generate ATLAS Cover Page
-  % \typeout{atlasdoc is producing the cover and title pages}
+  \typeout{atlasdoc is producing the cover and title pages}
   \ifADOC@coverpage
     \nolinenumbers
     \ACOV@PrintAtlasCover
@@ -468,14 +468,17 @@
   \fi
   % If selected, generate CERN preprint front page
   \ifADOC@cernpreprint
+    \typeout{Making CERN preprint front page in atlasdoc}
     \ACOV@PrintCERNPreprintCover
   \else
     % If selected, generate ATLAS auxiliary material front page
     \ifADOC@auxmat
+      \typeout{Making auxiliary material front page in atlasdoc}
       \ACOV@PrintAuxmatCover
     % Standard title page
     \else
       \ifADOC@maketitle
+        \typeout{Making standard document title page in atlasdoc}
         \maketitle
       \fi
     \fi

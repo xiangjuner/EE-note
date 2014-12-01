@@ -7,7 +7,7 @@ BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
-.PHONY: clean
+.PHONY: clean cleanpdf
 
 BASENAME = dummy
 
@@ -36,5 +36,8 @@ $(BASENAME).dvi: $(BASENAME).tex *.bib
 	$(BIBTEX) $*
 
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf \
+	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
 	 *.run.xml *.synctex.gz *~
+	 
+cleanpdf:
+	-rm $(BASENAME).pdf

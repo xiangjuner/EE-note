@@ -4,7 +4,7 @@
 \documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex,backend=bibtex]{latex/atlaspackage}
+\usepackage[biblatex]{latex/atlaspackage}
 \usepackage{latex/atlasbiblatex}
 
 \usepackage{authblk}
@@ -107,7 +107,7 @@ Each document can then be independent of the \Package{atlaslatex} release.
 To create a new document you can issue the commands:
 %
 \begin{verbatim}
-make new BASENAME=mydocument
+make new [BASENAME=mydocument]
 \end{verbatim}
 %
 This command copies \File{atlas-document.tex} and
@@ -117,6 +117,18 @@ It also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}
 
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
+If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is:
+%
+\begin{verbatim}
+make newtexmf [BASENAME=mydocument]
+\end{verbatim}
+%
+but see Section~\ref{sec:texmf} for more details.
+If you have an older version of \TeX\ Live (2009) you can use the command:
+%
+\begin{verbatim}
+make new2009 [BASENAME=mydocument]
+\end{verbatim}
 
 Note that you have to specify the language of your document as an option in the
 \Macro{documentclass} command. Typical settings are
@@ -124,6 +136,8 @@ Note that you have to specify the language of your document as an option in the
 \item UKenglish (or british);
 \item USenglish (or american).
 \end{itemize}
+
+Add the option \Option{atlasstyle} to the \Macro{documentclass} to typeset your document in the ATLAS preprint style.
 
 
 %-------------------------------------------------------------------------------
@@ -334,6 +348,7 @@ If you want to use \Macro{biblatex} you need to add the option \Option{biblatex}
 include \texttt{atlaspackage}.
 Have a look at the \texttt{latex/atlaspackage.sty} to see how \texttt{biblatex} is included.
 In your main document you use \Macro{addbibresource} in the preamble to include your \texttt{.bib} files.
+A style file \File{latex/atlasbiblatex} is available that adjusts the format of the references to the usual ATLAS conventions.
 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
@@ -354,7 +369,8 @@ Several more options can be set:
 \item[maketitle=true|false] turn on or off the creation of a title page. If you turn it off,
   but still want a title give the command \Macro{maketitle} after
   \verb|\begin{document}|;
-\item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false};
+\item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
+  This option is deprecated -- use \Option{maketitle=false} instead;
 \item[koma] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
 \item[texmf] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
@@ -392,7 +408,7 @@ Copy it to your main directory, or to \verb|${HOME}/texmf/tex/latex| in order to
 it centrally available.
 
 Both the class \Package{atlasdoc} and all style files, 
-\Package{atlascover}, \Package{atlascontribute}, \Package{atlaspackage} and \Package{atlasphysics}
+\Package{atlasbiblatex}, \Package{atlascontribute}, \Package{atlascover}, \Package{atlaspackage} and \Package{atlasphysics}
 need the package \Package{kvoptions} 
 so that they can process options where a value for an option should be set.
 
@@ -429,20 +445,22 @@ Finally the full set includes further packages that may be useful:
 
 Further options are:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item[\Option{biblatex=true|false}](false) turn on/off use of \Package{biblatex} and \Package{biber};
+\item[\Option{biblatex=true|false}] (false) turn on/off use of \Package{biblatex} and \Package{biber};
 \item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{biber}.
-  Specify \Option{backend=bibtex} to use \BibTeX\ instead.
-\item[\Option{hyperref=true|false}](true) turn on/off use of \Package{hyperref};
-\item[\Option{siunitx=true|false}](true) do not include the \Package{siunitx} package;
-\item[\Option{subcaption=true|false}](false) use \Package{subcaption} instead of \Package{subfig};
+  Specify \Option{backend=bibtex} to use \BibTeX\ instead;
+\item[\Option{hyperref=true|false}] (true) turn on/off use of \Package{hyperref};
+\item[\Option{siunitx=true|false}] (true) do not include the \Package{siunitx} package;
+\item[\Option{csquotes=true|false}] (true) do not include the \Package{csquotes} package;
+\item[\Option{subcaption=true|false}] (false) use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
   \Package{subfigure};
-\item[\Option{subfigure=true|false}](false) use the deprecated package \Package{subfigure} 
+\item[\Option{subfigure=true|false}] (false) use the deprecated package \Package{subfigure} 
   instead of \Package{subfig};
 \item[\Option{texlive=2009}] set if you use and older version of \TeX\ Live like 2009.
   The only value that has an effect is 2009, 
   which this uses old (Version 1) option names for \Package{siunitx};
-\item[\Option{lineno=true|false}](false) Load the \Package{lineno} package.
+\item[\Option{txfonts=true|false}] (false) load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
+\item[\Option{lineno=true|false}] (false) load the \Package{lineno} package.
 \end{description}
 
 \File{lineno.sty} and \File{authblk.sty} are also provided in \File{latex/other}.
@@ -456,7 +474,7 @@ If you want to use it, just add the usual \verb|\usepackage{tikz}| to your pream
 Other packages that have been used at some point include:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{savesym}: needed to avoid errors if \Package{txfonts} is used, 
-  as \Package{txfonts} and \Package{amsmath} define the same symbols.
+  as \Package{txfonts} and \Package{amsmath} define the same symbols;
 \item \texttt{footmisc}: extra footnote options. 
   These mess up the \Option{atlasstyle} settings.
 \end{description}
@@ -553,7 +571,7 @@ Documents can be typeset in the standard ATLAS preprint style by using the optio
 This style should be used for the preparation of paper drafts,
 as well as for the submission of papers to the arXiv and journals.
 The journals will then convert the documents to the style appropriate for the journal.
-This style uses \KOMAScript as the base class.
+This style uses \KOMAScript\ as the base class.
 Further settings include:
 \begin{description}
 \item[Layout] \Option{DIV=14} and an extra \SI{5}{\mm} for the binding;
@@ -617,7 +635,8 @@ Using \Package{csquotes} can also cause an error
 \enquote{! You can't use a prefix with \enquote{\Macro{begingroup}}}.
 This seems to be coupled to the order in which the packages are loaded, 
 but I have not yet found an order that works.
-If you get this error, load \Package{atlaspackage} with the option \Option{csquotes=off}.
+As of Version 01-04-02, the date/time defintions in \File{atlasmisc.sty} have been commented out and the problem has disappeared again!
+If for some reason you still get this error, try loading \Package{atlaspackage} with the option \Option{csquotes=off}.
 This problem is associated with \TeX\ Live 2013 and has been fixed in \TeX\ Live 2014.
 
 
@@ -731,14 +750,14 @@ because I use links to find the style files.
 Windows~7 support symbolic links, but you have to create them.
 Hence the first step if to remove any \texttt{latex} directory links.
 These can be found in the directories: 
-\File{journal}, \File{doc/atlas-bibtex}, \File{doc/atlas-latex}, \File{doc/atlas-paper}, 
-\File{doc/atlas-physics}, \File{doc/atlas-rounding}.
+\File{journal}, \File{doc/atlas\_bibtex}, \File{doc/atlas\_latex}, \File{doc/atlas\_paper}, 
+\File{doc/atlas\_physics}, \File{doc/atlas\_tables}.
 To create the link you use the \Package{mklink} command.
 You run this in a \Package{cmd} window, which you start as an Administrator.
-Here is what I did in the directory \File{doc/atlas-bibtex}:
+Here is what I did in the directory \File{doc/atlas\_bibtex}:
 \begin{verbatim}
 mklink /D \
-  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas-bibtex\latex" \
+  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas_bibtex\latex" \
   "C:\Users\brock\Documents\atlas\latex\atlaslatex\latex"
 \end{verbatim}
 This information I found under\\
@@ -751,7 +770,7 @@ This information I found under\\
 I do all my development with MacOSX.
 Hence I would not expect any problems here, provided again you have a fairly recent
 installation of Mac\TeX.
-I use	MacTeX (which I download from \url{http://www.tug.org/mactex}) and TeXstudio 2.8.2.
+I use	Mac\TeX\ (which I download from \url{http://www.tug.org/mactex}) and TeXstudio 2.8.6.
 
 
 %-------------------------------------------------------------------------------
@@ -760,14 +779,20 @@ I use	MacTeX (which I download from \url{http://www.tug.org/mactex}) and TeXstud
 \label{sec:texmf}
 
 As mentioned in the introduction, the \texttt{atlasdoc} class and the style files can all be found in the 
-\File{latex} subdirectory. The template documents are set up to pick up the style files from there.
+\File{latex} subdirectory. The template documents are usually set up to pick up the style files from there.
+If you want to use the centrally installed version,
+you should first copy \File{Makefile} and the \File{template} directory from 
+\File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
+For the main document, you can then use the command \texttt{make newtexmf} to get a template which uses the
+centrally installed style files.
 
-If you want to install the package in a central area do the following:
+If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
+Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do it by hand you can do:
 \begin{itemize}
 \item Unpack the tarball;
-\item Copy the style directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
+\item Copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
 \item Copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
-  to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bst}, respectively.
+  to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bib}, respectively.
 \end{itemize}
 You can also checkout the two directory trees from SVN:
 {\small
@@ -784,15 +809,16 @@ If you already have a \File{bibtex} directory,
 first move it out of the way, then checkout from SVN
 and then move the contents of the old directory back into the \File{bibtex} tree.
 
-In the template files, you have to change
+In the template files, you have to use the command \texttt{make newtexmf} or change
 \begin{center}
   \begin{tabular}{ll}
     From & To \\
     \midrule
-    \verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass{atlasdoc}| \\
+    \verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass[texmf]{atlasdoc}| \\
     \verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
-    \verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage{atlasphysics}| \\
-    \verb|\usepackage{latex/atlasconribute}| & \verb|\usepackage{atlascontribute}|
+    \verb|\usepackage{latex/atlasbiblatex}|   & \verb|\usepackage{atlasbiblatex}| \\
+    \verb|\usepackage{latex/atlasconribute}| & \verb|\usepackage{atlascontribute}| \\
+    \verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage[texmf]{atlasphysics}|
   \end{tabular}
 \end{center}
 
@@ -833,7 +859,40 @@ So far the \Package{atlaslatex} package has been tested with the classes for Els
 \label{sec:latex}
 
 %-------------------------------------------------------------------------------
-\subsection{Graphics}
+\subsection{Line numbers}
+
+Line numbers can be printed using the \Package{lineno} package, 
+which is included by default.
+
+In order to avoid line numbers going slightly wrong around figures and tables,
+separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
+
+If you use AMS Math \LaTeX\ environments such as \Package{align} line numbering may be interrupted around the environment.
+Enclose the environment in a \Package{linenomath} environment to fix this problem:
+\begin{verbatim}
+\begin{linenomath}
+\begin{equation*}
+  E = m c^{2}
+\end{equation*}
+\end{linenomath}
+\end{verbatim}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Definitions}
+
+You can use \verb|\ensuremath| in definitions, so that they will work
+in both text mode and math mode, e.g.\
+\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}\xspace}| to get
+\UoneS{} in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
+
+I highly recommend that you also terminate every definition with \Macro{xspace},
+as then you can use the definitions without having to terminate them with
+``\verb|\|'' or ``\verb|{}|''.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Figures}
 
 Use the \Package{graphicx} package to include your plots and figures. 
 The use of older packages like \Package{espfig} is deprecated.
@@ -853,6 +912,12 @@ both \File{figure.eps} and \File{figure.pdf} in your working directory,
 and the proper one will be picked up according to the processing method
 you choose.
 
+Figures should be in general be made available in both \texttt{eps} (or \texttt{pdf}) and 
+\texttt{png} format. Additionally, a \texttt{pdf} version of the plots can be
+useful in case \verb|pdflatex| is used to produce a publication.
+%Colour versions are appropriate for talks, and black-and-white
+%versions are necessary for the publication itself.
+
 It is a good habit to keep your graphics files in a separate
 sub-directory (e.g.\ in \File{figures/}. 
 In this case you can include them by mentioning it explicitly every time:
@@ -867,23 +932,88 @@ for them, by using this command:
 
 
 %-------------------------------------------------------------------------------
-\subsection{Definitions}
+\subsection{Subfigures}
 
-You can use \verb|\ensuremath| in definitions, so that they will work
-in both text mode and math mode, e.g.\
-\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}\xspace}| to get
-\UoneS{} in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
+An example figure can be seen in Figure~\ref{fig:example}.
+The standard options to use for the positioning are \Option{htbp}.
+If you get a couple of lines of text at the top of the page,
+make sure the figure is separated from the rest of the text with blank lines and/or try dropping the \Option{h} option.
 
-I highly recommend that you also terminate every definition with \Macro{xspace},
-as then you can use the definitions without having to terminate them with
-``\verb|\|'' or ``\verb|{}|''.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\columnwidth]{AtlasExample}
+  \caption{An example ATLAS figure.}
+  \label{fig:example}
+\end{figure}
 
+A figure with subfigures can be made as shown in the example of
+Figure~\ref{fig:subfigexample}. In this example the \Package{subfig} package is used.
+The syntax with the \Package{subcaption} and \Package{subfigure} packages is very similar.
+The following commands were used to produce Figure~\ref{fig:subfigexample}:
+\begin{verbatim}
+\begin{figure}[htbp]
+  \centering
+  \subfloat[One subfigure example]{
+    \includegraphics[width=0.45\textwidth]{AtlasExample}
+    \label{fig:SubfigureExample1}
+  }
+  \subfloat[Another subfigure example]{
+    \includegraphics[width= 0.45\textwidth]{AtlasExample}
+    \label{fig:SubfigureExample2}
+  }
+  \caption{Subfigure example (\ref{fig:SubfigureExample1}) and
+    (\ref{fig:SubfigureExample2}).}
+  \label{fig:subfigexample}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[One subfigure example]{
+    \includegraphics[width=0.45\textwidth]{AtlasExample}
+    \label{fig:SubfigureExample1}
+  }
+  \subfloat[Another subfigure example]{
+    \includegraphics[width= 0.45\textwidth]{AtlasExample}
+    \label{fig:SubfigureExample2}
+  }
+  \caption{Subfigure example (\ref{fig:SubfigureExample1}) and
+    (\ref{fig:SubfigureExample2}).}
+  \label{fig:subfigexample}
+\end{figure}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Positions of figures and tables}
+
+In an ATLAS paper, all figures and tables should be printed before the conclusions.
+You can achieve this by using the macro \Macro{FloatBarrier} from the
+\Package{placeins} package.
+
+In general, as mentioned above, you should separate the figure and table environments from the text by blank lines.
+This helps the line numbers. The standard options to use for the placement are \Option{[htbp]}.
+
+
+%-------------------------------------------------------------------------------
+\subsection{\pT or \ET\ -- that is the question}
+
+Bold math should be automatically invoked in titles.
+This short section tests whether that works properly.
+It is of course good if things like \pT and \ET are automatically in bold face in
+a header and normal font in the text (and table of contents).
+
+With the current setup, this works OK. 
+However, if you use the option \Option{koma}, which then typesets titles using a sans serif font,
+the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
+which is probably not what one wants!
+Work is still ongoing to find the optimal set of options
+-- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
 
 
 %-------------------------------------------------------------------------------
 \section{Remarks on units and symbols}
 
-As discussed in the ATLAS Paper Template~\cite{atlas-paper},
+As discussed in the \enquote{General Guidelines for ATLAS Papers}~\cite{atlas-paper},
 it is highly recommended to use a units package to format your units properly.
 The package \Package{siunitx} works very well and is the package of choice.
 Alternatives include \Package{units} and \Package{hepunits},
@@ -923,56 +1053,8 @@ The option names are somewhat different for \TeX\ Live 2009,
 as this contained \Package{siunitx} Version 1.
 You can use the older options by including \Package{atlaspackage} with the 
 option \Option{texlive=2009}.
-
-
-%-------------------------------------------------------------------------------
-\subsection{\pT or \ET\ -- that is the question}
-%-------------------------------------------------------------------------------
-
-Bold math should be automatically invoked in titles.
-This short section tests whether that works properly.
-It is of course good if things like \pT and \ET are automatically in bold face in
-a header and normal font in the text (and table of contents).
-
-With the current setup, this works OK. 
-However, if you use the option \Option{koma}, which then typesets titles using a sans serif font,
-the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
-which is probably not what one wants!
-Work is still ongoing to find the optimal set of options
--- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
-
-
-%-------------------------------------------------------------------------------
-\subsection{Line numbers}
-%-------------------------------------------------------------------------------
-
-Line numbers can be printed using the \Package{lineno} package, 
-which is included by default.
-
-In order to avoid line numbers going slightly wrong around figures and tables,
-separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
-
-If you use AMS Math \LaTeX\ environments such as \Package{align} line numbering may be interrupted around the environment.
-Enclose the environment in a \Package{linenomath} environment to fix this problem:
-\begin{verbatim}
-\begin{linenomath}
-\begin{equation*}
-  E = m c^{2}
-\end{equation*}
-\end{linenomath}
-\end{verbatim}
-
-
-%-------------------------------------------------------------------------------
-\subsection{Positions of figures and tables}
-%-------------------------------------------------------------------------------
-
-In an ATLAS paper, all figures and tables should be printed before the conclusions.
-You can achieve this by using the macro \Macro{FloatBarrier} from the
-\Package{placeins} package.
-
-In general, as mentioned above, you should separate the figure and table environments from the text by blank lines.
-This helps the line numbers. The standard options to use for the placement are \Option{[htbp]}.
+You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
+the \Package{atlasphysics} package.
 
 
 %-------------------------------------------------------------------------------

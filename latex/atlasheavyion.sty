@@ -1,0 +1,182 @@
+% Collection of HI definitions, typically not included in the other style files
+% Compiled by Sasha Milov.
+% Adapted for atlaslatex by Ian Brock
+
+% Package used for chemical elements
+\RequirePackage{mhchem}
+
+% +------------------------------------+
+% |                                    |
+% |  System related notations          |
+% |                                    |
+% +------------------------------------+
+
+\newcommand*{\NucNuc}{\ce{A}+\ce{A}\xspace}
+%\newcommand*{\nucnuc}{\NucNuc\xspace}
+%%\newcommand*{\AA}{\NucNuc\xspace} % already used
+%\newcommand*{\aA}{\NucNuc\xspace}
+%%\newcommand*{\aa}{\NucNuc\xspace} % already used
+
+\newcommand*{\nn}{NN\xspace}
+\newcommand*{\pp}{\ensuremath{pp}\xspace}
+\newcommand*{\pn}{\ensuremath{pn}\xspace}
+\newcommand*{\np}{\ensuremath{np}\xspace}
+
+\newcommand*{\PbPb}{\ce{Pb}+\ce{Pb}\xspace}
+%\newcommand*{\pbpb}{\PbPb\xspace}
+
+\newcommand*{\AuAu}{\ce{Au}+\ce{Au}\xspace}
+%\newcommand*{\auau}{\AuAu\xspace}
+
+\newcommand*{\CuCu}{\ce{Cu}+\ce{Cu}\xspace}
+%\newcommand*{\cucu}{\CuCu\xspace}
+
+\newcommand*{\pA}{\ensuremath{p}+\ce{A}\xspace}
+\newcommand*{\pNuc}{\pA\xspace}
+\newcommand*{\pdA}{\ensuremath{p}/\ensuremath{d}+\ce{A}\xspace}
+
+\newcommand*{\dAu}{\ensuremath{d}+\ce{Au}\xspace}
+%\newcommand*{\dA}{\dAu\xspace}
+
+\newcommand*{\pPb}{\ensuremath{p}+\ce{Pb}\xspace}
+%\newcommand*{\ppb}{\pPb\xspace}
+
+% +--------------------------------------+
+% |                                                   |
+% |  Centrality related notations          |
+% |                                                   |
+% +--------------------------------------+
+\newcommand*{\Npart}{\ensuremath{N_{\mathrm{part}}}\xspace}
+%\newcommand*{\npart}{\ensuremath{\Npart}\xspace}
+\newcommand*{\avgNpart}{\ensuremath{\langle\Npart\rangle}\xspace}
+
+\newcommand*{\Ncoll}{\ensuremath{N_{\mathrm{coll}}}\xspace}
+%\newcommand*{\ncoll}{\ensuremath{\Ncoll}\xspace}
+\newcommand*{\avgNcoll}{\ensuremath{\langle\Ncoll\rangle}\xspace}
+
+\newcommand*{\TA}{\ensuremath{T_{\mathrm{A}}}\xspace}
+%\newcommand*{\Ta}{\ensuremath{T_{\mathrm{A}}}\xspace}
+%\newcommand*{\ta}{\ensuremath{\TA}\xspace}
+\newcommand*{\avgTA}{\ensuremath{\langle\TA\rangle}\xspace}
+%\newcommand*{\avgTa}{\ensuremath{\langle\TA\rangle}\xspace}
+
+\newcommand*{\TPb}{\ensuremath{T_{\mathrm{Pb}}}\xspace}
+%\newcommand*{\Tpb}{\ensuremath{T_{\mathrm{Pb}}}\xspace}
+%\newcommand*{\tpb}{\ensuremath{\Tpb}\xspace}
+\newcommand*{\avgTPb}{\ensuremath{\langle\TPb\rangle}\xspace}
+%\newcommand*{\avgTpb}{\ensuremath{\langle\TPb\rangle}\xspace}
+
+\newcommand*{\TAA}{\ensuremath{T_{\mathrm{AA}}}\xspace}
+%\newcommand*{\Taa}{\ensuremath{T_{\mathrm{AA}}}\xspace}
+%\newcommand*{\taa}{\ensuremath{\TAA}\xspace}
+\newcommand*{\avgTAA}{\ensuremath{\langle\TAA\rangle}\xspace}
+%\newcommand*{\avgTaa}{\ensuremath{\langle\TAA\rangle}\xspace}
+
+\newcommand{\TAB}{\ensuremath{T_{\mathrm{AB}}}\xspace}
+%\newcommand{\Tab}{\ensuremath{T_{\mathrm{AB}}}\xspace}
+%\newcommand{\tab}{\ensuremath{\TAB}\xspace}
+\newcommand{\avgTAB}{\ensuremath{\langle\TAB\rangle}\xspace}
+%\newcommand{\avgTab}{\ensuremath{\langle\TAB\rangle}\xspace}
+
+\newcommand*{\TpPb}{\ensuremath{T_{p\ce{Pb}}}\xspace}
+%\newcommand*{\Tppb}{\ensuremath{T_{\mathrm{pPb}}}\xspace}
+%\newcommand*{\tppb}{\ensuremath{\TpPb}\xspace}
+\newcommand*{\avgTpPb}{\ensuremath{\langle\TpPb\rangle}\xspace}
+%\newcommand*{\avgTppb}{\ensuremath{\langle\TpPb\rangle}\xspace}
+
+\newcommand{\Gl}{Glauber\xspace}
+\newcommand{\GG}{Glauber-Gribov\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  C.M. energy related notations       |
+% |                                      |
+% +--------------------------------------+
+
+%\newcommand{\energy}{\ensuremath{\sqrt{s_{\mathrm{NN}}}=5.02~TeV}\xspace}
+\newcommand*{\sqn}{\ensuremath{\sqrt{s_{_\mathrm{NN}}}}\xspace}
+%\newcommand*{\sqs}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand{\lns}{\ensuremath{\ln(\kern -0.2em\sqrt{s})}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Some useful parameters              |
+% |                                      |
+% +--------------------------------------+
+
+%\newcommand*{\Nevt}{\ensuremath{N_{\mathrm{evt}}}\xspace}
+%\newcommand*{\nevt}{\ensuremath{\Nevt}\xspace}
+%
+%\newcommand*{\Zvtx}{\ensuremath{z_{\mathrm{vtx}}}\xspace}
+%\newcommand*{\zvtx}{\ensuremath{\Zvtx}\xspace}
+%
+%\newcommand*{\dz}{\ensuremath{\text{d}_{0}}\xspace}
+%%\newcommand*{\zz}{\ensuremath{\text{z}_{0} \sin(\theta)}\xspace}
+%
+%\newcommand*{\sumET}{\ensuremath{\sum \et}\xspace}
+%\newcommand*{\sumet}{\ensuremath{\sumET}\xspace}
+
+\newcommand*{\sumETPb}{\ensuremath{\Sigma E_{\mathrm{T}}^{\mathrm{Pb}}}\xspace}
+\newcommand*{\sumETp}{\ensuremath{\Sigma E_{\mathrm{T}}^{p}}\xspace}
+\newcommand*{\sumETA}{\ensuremath{\Sigma E_{\mathrm{T}}^{\mathrm{A}}}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Some useful constructions           |
+% |                                      |
+% +--------------------------------------+
+
+\newcommand*{\RAA}{\ensuremath{R_{\mathrm{AA}}}\xspace}
+%\newcommand*{\rAA}{\ensuremath{\RAA}\xspace}
+%\newcommand*{\raa}{\ensuremath{\RAA}\xspace}
+
+\newcommand*{\RCP}{\ensuremath{R_{\mathrm{CP}}}\xspace}
+%\newcommand*{\rCP}{\ensuremath{\RCP}\xspace}
+%\newcommand*{\rcp}{\ensuremath{\RCP}\xspace}
+
+\newcommand*{\RpA}{\ensuremath{R_{p\ce{A}}}\xspace}
+%\newcommand*{\rpa}{\ensuremath{\RpA}\xspace}
+
+\newcommand*{\RpPb}{\ensuremath{R_{p\ce{Pb}}}\xspace}
+%\newcommand*{\rpPb}{\ensuremath{\RpPb}\xspace}
+%\newcommand*{\rppb}{\ensuremath{\RpPb}\xspace}
+%\newcommand*{\rpA}{\ensuremath{\RpPb}\xspace}
+
+\newcommand*{\dif}{\ensuremath{\text{d}}}
+\newcommand*{\dNchdeta}{\ensuremath{\dif N_{\text{ch}}/\dif \eta}\xspace}
+\newcommand*{\dNevtdET}{\ensuremath{\dif N_{\text{evt}}/\dif \ET}\xspace}
+
+% +--------------------------------------+
+% |                                      |
+% |  Framework transforms                |
+% |                                      |
+% +--------------------------------------+
+
+\newcommand*{\ystar}{\ensuremath{y^{*}}\xspace}
+%\newcommand*{\ystar}{\ensuremath{y^{\mathrm{\star}}}\xspace}
+\newcommand*{\ycms}{\ensuremath{y_\mathrm{CM}}\xspace}
+\newcommand*{\ygappb}{\ensuremath{\Delta \eta_{\mathrm{gap}}^{\mathrm{Pb}}}\xspace}
+\newcommand*{\ygapp}{\ensuremath{\Delta \eta_{\mathrm{gap}}^{p}}\xspace}
+\newcommand*{\fgap}{\ensuremath{f_{\mathrm{gap}}}\xspace}
+
+\newcommand*{\ypi}{\ensuremath{y_\mathrm{\pi}}\xspace}
+\newcommand*{\ystarpi}{\ensuremath{y^{*}_{\pi}}\xspace}
+%\newcommand*{\ystarpi}{\ensuremath{y^{\mathrm{\star}}_{\pi}}\xspace}
+\newcommand*{\ylab}{\ensuremath{y_{\mathrm{lab}}}\xspace}
+\newcommand*{\ystarpii}{\ensuremath{y^{*}_{\pi,i}}\xspace}
+\newcommand*{\ystari}{\ensuremath{y^{*}_{\mathrm{i}}}\xspace}
+%\newcommand*{\ystarpii}{\ensuremath{y^{\mathrm{\star}}_{\pi,i}}\xspace}
+%\newcommand*{\ystari}{\ensuremath{y^{\mathrm{\star}}_{\mathrm{i}}}\xspace}
+\newcommand*{\mpi}{\ensuremath{m_{\mathrm{\pi}}}\xspace}
+
+
+% +--------------+
+% |              |
+% |  Text colors |
+% |              |
+% +--------------+
+
+%\newcommand*{\red}{\color{red}}
+%\newcommand*{\blue}{\color{blue}}	 
+%\newcommand*{\green}{\color{green}}	 
+%\newcommand*{\magenta}{\color{magenta}}

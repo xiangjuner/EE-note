@@ -6,12 +6,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\APHY@PackageVersion{01-04-02}
-
-\ProvidesPackage{latex/atlasphysics}[2014/11/26 v.01-04-02 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2014/12/02 v.01-04-02 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
-\typeout{ATLAS physics style file v.\APHY@PackageVersion}
+\typeout{ATLAS physics style file v.01-04-02}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
@@ -20,6 +18,7 @@
   prefix=APHY@
 }
 \DeclareBoolOption[false]{BSM}
+\DeclareBoolOption[false]{hion}
 \DeclareBoolOption[true]{journal}
 \DeclareBoolOption[false]{math}
 \DeclareBoolOption[true]{misc}
@@ -38,6 +37,9 @@
 \ifAPHY@texmf
   % BSM particles including SUSY
   \ifAPHY@BSM      \RequirePackage{atlasbsm} \fi
+
+  % Heavy ion physics
+  \ifAPHY@hion     \RequirePackage{atlasheavyion} \fi
 
   % Journal abbreviations
   \ifAPHY@journal  \RequirePackage{atlasjournal} \fi
@@ -65,6 +67,9 @@
 \else
   % BSM particles including SUSY
   \ifAPHY@BSM      \RequirePackage{latex/atlasbsm} \fi
+
+  % Heavy ion physics
+  \ifAPHY@hion     \RequirePackage{latex/atlasheavyion} \fi
 
   % Journal abbreviations
   \ifAPHY@journal  \RequirePackage{latex/atlasjournal} \fi
