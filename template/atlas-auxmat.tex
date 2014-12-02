@@ -12,9 +12,6 @@
 % Useful macros
 \usepackage{latex/atlasphysics}
 
-% Header package
-% \usepackage{fancyhdr}
-
 % Paths for figures
 \graphicspath{{logos/}{figures/}}
 
@@ -57,8 +54,10 @@
 % Define \chead here, so that it overwrites \fbox{DRAFT} if necessary
 \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
 % If you do not want the date, either comment out \AtlasVersion or uncomment
-% \lfoot{}
-\pagestyle{fancy}
+% \ifoot{} % KOMA-Script
+% \lfoot{} % Standard LaTeX classes
+% \pagestyle{fancy}
+% \pagestyle{scrheadings}
 
 Here is the document. Remove this text if you only want the front page.
 

@@ -17,7 +17,7 @@
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage[txfonts,texlive=2009]{latex/atlaspackage}
+\usepackage[texlive=2009]{latex/atlaspackage}
 % Selected options:
 %  biblatex  Use biblatex and biber for the bibliography
 %  minimal   Minimal set of packages
@@ -30,16 +30,17 @@
 \usepackage{latex/atlascontribute}
 
 % Useful macros
-\usepackage[units=false]{latex/atlasphysics}
+\usepackage[unit=false]{latex/atlasphysics}
 % See doc/atlas-physics.pdf for a list of the defined symbols
 % Default options are 
 %   True:  journal, misc, particle, unit, xref
 %   False: bsm, math, process, other, texmf
 % See the package for details on the options
 
-% Setting and files with references for use with biblatex
-% \usepackage{bibtex/bst/atlas-bibtex}
+% Files with references for use with biblatex
+% Note that biber gives an error if it finds empty bib files
 % \addbibresource{atlas-document.bib}
+% \addbibresource{bibtex/bib/atlas-paper.bib}
 
 % Paths for figures - do not forget the / at the end of the directory name
 \graphicspath{{logos/}{figures/}}

@@ -38,6 +38,10 @@
   \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
 \fi
 
+% Journal in upright font
+\DeclareFieldFormat[article]{journaltitle}{#1\isdot}
+\DeclareFieldFormat[article]{journalsubtitle}{#1\isdot}
+
 % Change punctuation to comma
 \renewcommand*{\newunitpunct}{\addcomma\space}
 

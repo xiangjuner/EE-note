@@ -77,30 +77,30 @@
 
 % Decide on the main class
 \ifADOC@koma%
-  \typeout{Use KOMA-script scrartcl class}
+  \typeout{atlasdoc: use KOMA-script scrartcl class}
   \def\ADOC@mainclass{scrartcl}
 \else
-  \typeout{Use standard LaTeX article class}
+  \typeout{atlasdoc: use standard LaTeX article class}
   \def\ADOC@mainclass{article}
 \fi
 
 % Set paper size
 \ifx\ADOC@paper\@empty
-  %\typeout{Paper option not specified}
+  %\typeout{atlasdoc: paper option not specified}
   \ifADOC@letterpaper%
-    \typeout{Set paper size to letter - deprecated option}
+    \typeout{atlasdoc: set paper size to letter - deprecated option}
     \def\ADOC@paperstring{letterpaper}
     \PassOptionsToClass{letterpaper}{\ADOC@mainclass}
-    \typeout{Paper size set to letter}
+    \typeout{atlasdoc: paper size set to letter}
   \else
     \def\ADOC@paperstring{a4paper}
     \PassOptionsToClass{a4paper}{\ADOC@mainclass}
-    \typeout{Paper size set to default A4}
+    \typeout{atlasdoc: paper size set to default A4}
   \fi
 \else
   \def\ADOC@paperstring{\ADOC@paper paper}
   \PassOptionsToClass{\ADOC@paperstring}{\ADOC@mainclass}
-  \typeout{Paper is \ADOC@paper, string for class is \ADOC@paperstring}
+  \typeout{atlasdoc: paper is \ADOC@paper, string for class is \ADOC@paperstring}
 \fi
 
 % Defaults for title page
@@ -168,21 +168,7 @@
 \newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
 
-% Shortcut to add submission text
-%\newcommand{\submitted}{%
-%  \ifx\ADOC@journal\@empty
-%    \mbox{}%
-%  \else
-%    \vskip 0.8in plus 2in%
-%    \begin{center}%
-%      \ADOC@subprepend\space \textit{\ADOC@journal}%
-%      \vskip 1.5em%
-%    \end{center}%
-%    \vskip 0.5in
-%  \fi
-%}
-
-% --- Class structure: invoke main class
+% Invoke main class
 \ifADOC@koma%
   \LoadClass[titlepage,11pt]{scrartcl}
   %\LoadClass[titlepage,11pt,twoside=semi]{scrartcl}
@@ -202,12 +188,14 @@
   %\KOMAoptions{headings=normal}
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
-  \setkomafont{pageheadfoot}{\normalsize\sffamily}
+  \addtokomafont{descriptionlabel}{\rmfamily}
+  %\setkomafont{pageheadfoot}{\normalsize\sffamily}
+  \setkomafont{pageheadfoot}{\normalsize\rmfamily}
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
 \else
-  \RequirePackage[centering,scale=0.75,headheight=14pt]{geometry}
+  \RequirePackage[centering,scale=0.75,headheight=16pt]{geometry}
   %\RequirePackage[\ADOC@paperstring,centering,scale=0.75]{geometry}
 \fi
 
@@ -259,15 +247,18 @@
 % Font(s)
 \ifADOC@txfonts
   % Needs special amsmath code in atlaspackage
+  \typeout{atlasdoc: using txfonts}
   \RequirePackage[varg]{txfonts}
   \RequirePackage[T1]{fontenc}
 \else
   \ifADOC@libertine
+    \typeout{atlasdoc: using Libertine fonts}
     \RequirePackage{libertine}
     \RequirePackage[T1]{fontenc}
     \RequirePackage[libertine]{newtxmath}
   \else
     \ifADOC@palatino
+      \typeout{atlasdoc: using Palatino fonts}
       % Palatino for rm and math | Helvetica for ss | Courier for tt
       \RequirePackage{mathpazo} % math & rm
       \linespread{1.05}        % Palatino needs more leading (space between lines)
@@ -276,6 +267,7 @@
       \normalfont
       \RequirePackage[T1]{fontenc}
     \else
+      \typeout{atlasdoc: using newtx fonts package}
       \RequirePackage{newtxtext}
       \RequirePackage{newtxmath}
     \fi
@@ -292,6 +284,67 @@
   \RequirePackage{showframe}
 \fi
 
+% Compute the time in hours and minutes; make new variables \timehh and \timemm
+\newcount\timehh\newcount\timemm
+\timehh=\time 
+\divide\timehh by 60 \timemm=\time
+\count255=\timehh\multiply\count255 by -60 \advance\timemm by \count255
+% Now make a string with date and time
+\newcommand{\dateandtime}{\today \ --
+  \ifnum\timehh<10 0\fi\number\timehh:\ifnum\timemm<10 0\fi\number\timemm}
+% \RequirePackage{scrdate,scrtime}
+
+% Draft heading/footer code
+\newcommand{\draftheading}{%
+  \ifADOC@koma
+    \RequirePackage[headsepline]{scrpage2}
+    \ihead{}
+    \chead[]{\fbox{\bfseries DRAFT}}
+    \ohead{}
+    \ifoot{\dateandtime}
+    \cfoot{}
+    \ofoot{\thepage}
+    \pagestyle{scrheadings}
+  \else
+    \RequirePackage{fancyhdr}
+    \chead[]{\fbox{\textsf\bfseries DRAFT}}
+    \rhead{}
+    \lfoot{\dateandtime}
+    \cfoot{}
+    \rfoot{\thepage}
+    \setlength\headheight{16pt}
+    \pagestyle{fancy}
+  \fi
+}
+
+\newcommand{\olddraftheading}{%
+  % Put date and time in header
+  \markboth
+  % --- Left mark
+  {\hspace*{\fill}{\fbox{\textbf{DRAFT}}}
+    \hspace*{\fill}
+    \protect\makebox[0pt][r]{\protect\small\textsl{\dateandtime}}
+  }%--- right mark
+  {\protect\makebox[0pt][l]{\protect\small\textsl{\dateandtime}}
+    \hspace*{\fill}
+    {\fbox{\textbf{DRAFT}}}
+    \hspace*{\fill}}
+  \pagestyle{myheadings}
+}
+
+% Include fancier header and footer for auxiliary material document
+\ifADOC@auxmat
+  \ifADOC@koma
+    \RequirePackage[headsepline]{scrpage2}
+    \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+  \else
+    \RequirePackage{fancyhdr}
+    \lhead{}
+    \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+    \rhead{}
+  \fi
+\fi
+
 % Title page design
 \newcommand{\AtlasTitleHeader}{%
   \begin{minipage}{\linewidth}
@@ -301,7 +354,9 @@
     \hspace*{\fill}
     \begin{minipage}[c][35mm][c]{0.40\linewidth}
       \centering
-        {\huge \bf \textsf{ATLAS NOTE}}\par
+        {\fontfamily{phv}\bfseries\fontsize{20}{24}\selectfont
+          \textsf{ATLAS NOTE}\par
+        }
         \vspace*{2ex}
         % ATLAS note number, if any 
         \ifx\ADOC@atlasnote\@empty
@@ -336,7 +391,7 @@
 
 \newcommand{\AtlasTitleBody}{%
   {\centering
-    {\Large\bf \@title \par}
+    {\bfseries\fontsize{16}{19.2}\selectfont \@title \par}
     \vskip 3em
     {\large
      \lineskip .75em
@@ -410,49 +465,6 @@
 %  \fi
 }
 
-% Compute the time in hours and minutes; make new variables \timehh and \timemm
-\newcount\timehh\newcount\timemm
-\timehh=\time 
-\divide\timehh by 60 \timemm=\time
-\count255=\timehh\multiply\count255 by -60 \advance\timemm by \count255
-% Now make a string with date and time
-\newcommand{\dateandtime}{\today \ --
-  \ifnum\timehh<10 0\fi\number\timehh:\ifnum\timemm<10 0\fi\number\timemm}
-% \RequirePackage{scrdate,scrtime}
-
-% Draft heading/footer code
-\newcommand{\draftheading}{%
-  \RequirePackage{fancyhdr}
-  \chead[]{\protect\small\fbox{DRAFT}}
-  \rhead{}
-  % \lhead[]{\ISOToday{} \thistime}
-  % \lhead[]{\today{} \thistime}
-  %\rhead{\thepage}
-  \lfoot{\dateandtime}
-  \cfoot{}
-  \rfoot{\thepage}
-  \setlength\headheight{16pt}
-  \pagestyle{fancy}
-}
-
-\newcommand{\olddraftheading}{%
-  % Put date and time in header
-  \markboth
-  % --- Left mark
-  {\hspace*{\fill}{\protect\small\bf \fbox{DRAFT}}
-    \hspace*{\fill}
-    \protect\makebox[0pt][r]{\protect\small\sl\today\ -- 
-      \ifnum\timehh<10 0\fi\number\timehh\,:\,\ifnum\timemm<10 0\fi\number\timemm}
-  }%--- right mark
-  {\protect\makebox[0pt][l]{\protect\small\sl\today\ -- 
-      \ifnum\timehh<10 0\fi\number\timehh\,:\,\ifnum\timemm<10 0\fi\number\timemm}
-    \hspace*{\fill}
-    {\fbox{\textbf{DRAFT}}}
-    \hspace*{\fill}}
-  %
-  \pagestyle{myheadings}
-}
-
 \AtBeginDocument{%
   % If selected, generate ATLAS Cover Page
   \typeout{atlasdoc is producing the cover and title pages}
@@ -468,17 +480,17 @@
   \fi
   % If selected, generate CERN preprint front page
   \ifADOC@cernpreprint
-    \typeout{Making CERN preprint front page in atlasdoc}
+    \typeout{atlasdoc: making CERN preprint front page}
     \ACOV@PrintCERNPreprintCover
   \else
     % If selected, generate ATLAS auxiliary material front page
     \ifADOC@auxmat
-      \typeout{Making auxiliary material front page in atlasdoc}
+      \typeout{atlasdoc: making auxiliary material front page}
       \ACOV@PrintAuxmatCover
     % Standard title page
     \else
       \ifADOC@maketitle
-        \typeout{Making standard document title page in atlasdoc}
+        \typeout{atlasdoc: making standard document title page}
         \maketitle
       \fi
     \fi

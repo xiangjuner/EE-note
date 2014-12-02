@@ -38,9 +38,10 @@
 %   False: bsm, math, process, other, texmf
 % See the package for details on the options
 
-% Setting and files with references for use with biblatex
-% \usepackage{bibtex/bst/atlas-bibtex}
+% Files with references for use with biblatex
+% Note that biber gives an error if it finds empty bib files
 % \addbibresource{atlas-document.bib}
+% \addbibresource{atlas-paper.bib}
 
 % Paths for figures - do not forget the / at the end of the directory name
 \graphicspath{{logos/}{figures/}}
@@ -126,7 +127,7 @@ The list should be printed either here or before the table of contents.
 % \printbibliography
 % If you want to use BibTeX you need to use the syntax below.
 \bibliographystyle{atlasBibStyleWoTitle}
-\bibliography{atlas-document,bibtex/bib/atlas-paper}
+\bibliography{atlas-document,atlas-paper}
 %-------------------------------------------------------------------------------
 
 \end{document}

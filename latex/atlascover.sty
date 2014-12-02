@@ -483,21 +483,25 @@
 \newcommand{\CERNPreprintCoverBody}{%
   \parbox[t]{\linewidth}{%
     {\centering
-      \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+      \bfseries\fontsize{16}{19.2}\selectfont 
+      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
       \AtlasTitleText\par
     }
     \vspace*{15mm}
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      \fontseries{m}\fontsize{12}{14.4}\selectfont
+      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
       The ATLAS Collaboration\par
     }
     \vspace*{15mm}
     {\centering
-      \fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
+      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
+      \bfseries\fontsize{12}{14.4}\selectfont
       Abstract\par
     }
-    {\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-      \centering
+    {\centering
+      \fontseries{m}\fontsize{11}{13.2}\selectfont%
+      %\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
       \begin{quote}
       %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
         \AtlasAbstractText
@@ -511,27 +515,32 @@
 \newcommand{\AuxmatCoverBody}{%
   \parbox[t]{\linewidth}{%
     {\centering
-      \fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+      \bfseries\fontsize{16}{19.2}\selectfont 
+      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
       Auxiliary figures and tables related to the paper\\[1.5ex]
       \AtlasTitleText\par
     }
     \vspace*{2ex}
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      \fontseries{m}\fontsize{12}{14.4}\selectfont
+      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
       The ATLAS Collaboration\par
     }
     \vspace*{2ex}
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
+      \fontseries{m}\fontsize{12}{14.4}\selectfont
+      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
       \ADOC@refcode\par
     }
     \vspace*{2ex}
     {\centering
-      \fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
+      \bfseries\fontsize{12}{14.4}\selectfont
+      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
       \abstractname\par
     }
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
+      \fontseries{m}\fontsize{11}{13.2}\selectfont%
+      %\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
       \begin{quote}
       %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
         \AtlasAbstractText
@@ -545,7 +554,8 @@
 % Copyright cover footer - parbox does not introduce spurious vertical space
 \newcommand{\CopyrightCoverFooter}{%
   \parbox[b]{\linewidth}{%
-    \fontfamily{phv}\fontseries{m}\fontsize{10}{12}\selectfont%
+    \fontseries{m}\fontsize{10}{12}\selectfont
+    %\fontfamily{phv}\fontseries{m}\fontsize{10}{12}\selectfont
     \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
     Reproduction of this article or parts of it is allowed as specified in the CC-BY-3.0 license.
   }\par

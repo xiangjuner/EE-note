@@ -30,7 +30,7 @@
 \DeclareStringOption[biber]{backend}
 \ProcessKeyvalOptions*
 
-\typeout{Value of texlive is \APKG@texlive}
+\typeout{atlaspackage: value of texlive is \APKG@texlive}
 
 \newif\ifAPKG@less
 \newif\ifAPKG@standard
@@ -87,11 +87,13 @@
 
 % Font
 \ifAPKG@txfonts
+  \typeout{Using txfonts and savesym}
   \RequirePackage[varg]{txfonts}
   % Encoding used for printout
   \RequirePackage[T1]{fontenc}
 
   % amsmath and txfonts define the same symbols - use the txfont version
+  % Save txfont symbols to amsmath can be loaded
   \RequirePackage{savesym}
   \savesymbol{iint}
   \savesymbol{iiint}
@@ -112,8 +114,8 @@
 % Add command that can force all figures and tables (floats) to appear before a certain point
 \RequirePackage{placeins}
 
-\ifAPKG@standard%
-  \ifAPKG@csquotes%
+\ifAPKG@standard
+  \ifAPKG@csquotes
     \def\csquotesone{2009}
     % Language-sensitive quotes
     \ifx\APKG@texlive\csquotesone
@@ -144,7 +146,7 @@
 
   % Typset anything with units using this package - also has very useful table formatting 
   % Declare a few options and standard units for siunitx that are otherwise missing
-  \ifAPKG@siunitx%
+  \ifAPKG@siunitx
     \def\siunitxone{2009}
     \typeout{texlive is [\APKG@texlive] and siunitxone is [\siunitxone]}
     \ifx\APKG@texlive\siunitxone
@@ -173,7 +175,7 @@
 \fi
 
 
-\ifAPKG@more%
+\ifAPKG@more
   % Tables that go over more than one page
   \RequirePackage{xtab}
   % \RequirePackage{longtable}
@@ -190,7 +192,7 @@
 \fi
 
 % hyperref is usually included as late as possible
-\ifAPKG@hyperref%
+\ifAPKG@hyperref
   \PassOptionsToPackage{hyphens}{url}
   \usepackage{hyperref}
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
@@ -205,7 +207,7 @@
 % firstinits=true means initials are used for first names
 % Some more tweaks should be made to the appearance,
 % see/include bibtex/bst/atlas-biblatex.sty
-\ifAPKG@biblatex%
+\ifAPKG@biblatex
   \RequirePackage[backend=\APKG@backend,
     style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
 \fi

@@ -76,7 +76,7 @@ The following options are available, where the default setting is given in paren
 \item[journal](true) Journal abbreviations and a few other definitions for references;
 \item[math](false) A few extra maths definitions;
 \item[misc](true) Miscellaneous definitions that are often used;
-\item[other](off) Definitions that used to be in \File{atlasphysics.sty}, 
+\item[other](false) Definitions that used to be in \File{atlasphysics.sty}, 
   but are probably too specialised to be needed by most people;
 \item[particle](true) Standard Model particles and some combinations;
 \item[process](false) Some example processes. 
@@ -85,7 +85,7 @@ The following options are available, where the default setting is given in paren
 \item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
 \item[xref](true) Useful abbreviations for cross-references.
 \end{description}
-Note that \Option{bsm} and \Option{bsm=true} are equivalent.
+Note that \Option{BSM} and \Option{BSM=true} are equivalent.
 Use the syntax \Option{option=false} to turn off an option.
 
 There is an additional option \Option{texmf}.
@@ -109,7 +109,7 @@ The following sections list the macros defined in the various files.
 %-------------------------------------------------------------------------------
 \section{\File{atlasparticle.sty}}
 
-Turn on including these definitions with the option \Option{particle=on} and off with the option \Option{particle=false}.
+Turn on including these definitions with the option \Option{particle=true} and off with the option \Option{particle=false}.
 
 \input{atlasparticle}
 
@@ -183,7 +183,7 @@ Turn on including these definitions with the option \Option{xref=true} and off w
 %-------------------------------------------------------------------------------
 \section{\File{atlasbsm.sty}}
 
-Turn on including these definitions with the option \Option{bsm} and off with the option \Option{nobsm}.
+Turn on including these definitions with the option \Option{BSM} and off with the option \Option{BSM=false}.
 
 The macro \Macro{susy} simply puts a tilde ($\tilde{\ }$) over its argument,
 e.g.\ \verb|\susy{q}| produces \susy{q}.
@@ -204,7 +204,7 @@ For the charginos the last letter(s) indicate(s) the charge:
 \section{\File{atlasheavyion.sty}}
 
 Turn on including these definitions with the option \Option{hion=true} and off with the option \Option{hion=false}.
-The heavy ion definition use the package \Package{mhchem} to help with the formatting of chemical elements.
+The heavy ion definitions use the package \Package{mhchem} to help with the formatting of chemical elements.
 This package is included by \File{atlasheavyion.sty}.
 
 \input{atlasheavyion}
@@ -218,7 +218,7 @@ This package is included by \File{atlasheavyion.sty}.
 %-------------------------------------------------------------------------------
 \section{\File{atlasmath.sty}}
 
-Turn on including these definitions with the option \Option{math} and off with the option \Option{nomath}.
+Turn on including these definitions with the option \Option{math=true} and off with the option \Option{math=false}.
 
 \input{atlasmath}
 
@@ -230,7 +230,7 @@ Turn on including these definitions with the option \Option{math} and off with t
 %-------------------------------------------------------------------------------
 \section{\File{atlasother.sty}}
 
-Turn on including these definitions with the option \Option{other} and off with the option \Option{noother}.
+Turn on including these definitions with the option \Option{other} and off with the option \Option{other=false}.
 
 \input{atlasother}
 
@@ -239,7 +239,7 @@ Turn on including these definitions with the option \Option{other} and off with 
 %-------------------------------------------------------------------------------
 \section{\File{atlasprocess.sty}}
 
-Turn on including these definitions with the option \Option{process} and off with the option \Option{noprocess}.
+Turn on including these definitions with the option \Option{process} and off with the option \Option{process=false}.
 
 \input{atlasprocess}
 
@@ -248,7 +248,7 @@ Turn on including these definitions with the option \Option{process} and off wit
 %-------------------------------------------------------------------------------
 \section{\File{atlasunit.sty}}
 
-Turn on including these definitions with the option \Option{unit} and off with the option \Option{nounit}.
+Turn on including these definitions with the option \Option{unit} and off with the option \Option{unit=false}.
 
 \input{atlasunit}
 

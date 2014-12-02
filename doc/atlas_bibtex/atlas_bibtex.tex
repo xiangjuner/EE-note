@@ -89,7 +89,7 @@ The typical compilation cycle when using \BibTeX{} looks like the following:
   pdflatex mydocument
   pdflatex mydocument
 \end{verbatim}
-If you use \Package{biblatex} rather the \Package{bibtex}, replace the command
+If you use \Package{biblatex} with the backend \Package{biber} rather than \Package{bibtex}, replace the command
 \texttt{bibtex} with \texttt{biber}.
 
 \Package{biblatex} and \BibTeX{} create a file with the extension \texttt{.bbl}, which
@@ -98,9 +98,9 @@ to include them in your paper. Note that only after the third run of
 \LaTeX{} will all references be correct. Unless you change a reference
 you do not have to do the \texttt{bibtex} step again.
 
-You can of course use \LaTeX\ rather than PDF\LaTeX, but PDF\LaTeX\ is preferred,
+You can of course use \LaTeX\ rather than pdf\LaTeX, but pdf\LaTeX\ is preferred,
 as things like clicking on cross-references and links to publications in the bibliography
-work much more reliably with PDF\LaTeX.
+work much more reliably with pdf\LaTeX.
 
 
 %-------------------------------------------------------------------------------
@@ -143,6 +143,7 @@ Then include the command:
 %
 where the bibliography should get printed.
 As mentioned above, use the command \texttt{biber} instead of \texttt{bibtex} to process the \texttt{.bib} files.
+Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib} file.
 
 
 %-------------------------------------------------------------------------------
@@ -225,8 +226,10 @@ Journals:
 
 If you use \Package{biblatex} a style file: \Package{atlasbiblatex.sty}
 which you should include with a normal \Macro{usepackage} command.
-By defaulk, this style includes the document title.
+By default, this style includes the document title.
 The title can be turned off by including the option \Option{articletitle=false}.
+This option turns off the title for entry types \texttt{@Article} and \texttt{@Booklet},
+as \texttt{@Booklet} should be used for CONF and PUB notes.
 
 
 %-------------------------------------------------------------------------------
@@ -295,7 +298,8 @@ Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of
 \item If the DOI is filled and the \texttt{hyperref} package loaded, 
   the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
 \item When referencing papers from journals like PRD, PLB, etc.,
-  one has to be careful not to include the ``D'' or ``B'' as part of the volume but rather in the journal name. 
+  one has to be careful not to include the \enquote{D} or \enquote{B} as part of the volume.
+  Instead these belong to the journal name. 
   You can either use the macros that have been added to the \File{.bst} style files for these journals, or
   the macros defined in \Package{atlasjournal}.
   If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
@@ -303,10 +307,10 @@ Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of
 \end{itemize}
 
 In earlier versions of this document, it was recommended to include the \Package{cite} package, 
-if you use \BibTeX\ and want to cite multiple references in the format [A-Z].
+if you use \BibTeX\ and want to cite multiple references in the format [m-n].
 However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
 The \texttt{revtex} style also does this for you.
-If you use \texttt{biblatex} use the option \texttt{style=numeric-comp}.
+If you use \texttt{biblatex} use the option \Option{style=numeric-comp}.
 
 %-------------------------------------------------------------------------------
 \section{Examples}
