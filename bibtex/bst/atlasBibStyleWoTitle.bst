@@ -3,7 +3,7 @@
 % --- Based on UT Physics bibliographic style (utphys.bst)
 % --- Adapted by Cristina Oropeza Barrera (cbarrera@cern.ch)
 % --- Further developments Ian Brock (ian.brock@cern.ch)
-% --- version 1.3 - 22/09/2014
+% --- version 1.4 - 03/12/2014
 % -----------------------------------------------------------------------------
 
 FUNCTION {string.and} {" and "}
@@ -297,7 +297,7 @@ FUNCTION {format.names}
 FUNCTION {format.authors}
 { author empty$
     { "" }
-    { author format.names "," *}
+    { author format.names }
   if$
 }
 
@@ -378,6 +378,13 @@ FUNCTION {format.editors}
 }
 
 FUNCTION {format.title}
+{ title empty$
+    { "" }
+    { "" title emphasize "t" change.case$ * "," * }
+  if$
+}
+
+FUNCTION {format.notitle}
 { title empty$
     { "" }
     { "" }
@@ -761,8 +768,7 @@ FUNCTION {article}
 { output.bibitem
   format.collaboration output
   format.authors "author" output.check
-  format.title "title" output.check
-  blank.sep
+  format.notitle "title" output.check
   crossref missing$
   { journal missing$   
         {}
@@ -799,7 +805,6 @@ FUNCTION {book}
       if$
     }
   if$
-  blank.sep
   format.btitle add.doi "title" output.check
   crossref missing$
     { format.bvolume output
@@ -829,7 +834,7 @@ FUNCTION {book}
 FUNCTION {booklet}
 { output.bibitem
   format.collaboration output
-  format.authors output
+  format.authors "author" output.check
   title empty$
     { "empty title in " cite$ * warning$
       howpublished new.sentence.checka
@@ -837,8 +842,8 @@ FUNCTION {booklet}
     { howpublished empty$ not
       address empty$ month empty$ year empty$ and and
       or
-	{ format.title.p output.nonnull }
-	{ format.title output.nonnull }
+	{ format.notitle output.nonnull }
+	{ format.notitle output.nonnull }
       if$
       blank.sep
     }
@@ -852,7 +857,7 @@ FUNCTION {booklet}
   format.url output
   new.block
   note output
-  new.sentence
+  new.block
   format.SLACcitation output
   fin.entry
 }
@@ -869,7 +874,6 @@ FUNCTION {inbook}
       if$
     }
   if$
-  blank.sep
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
@@ -1027,7 +1031,7 @@ FUNCTION {misc}
     { howpublished empty$ not
       month empty$ year empty$ and
       or
-	{ format.title.p output.nonnull }
+	{ format.title output.nonnull }
 	{ format.title output.nonnull }
       if$
       blank.sep
@@ -1115,7 +1119,7 @@ FUNCTION {unpublished}
 { output.bibitem
   format.collaboration output
   format.authors "author" output.check
-  format.title.p "title" output.check
+  format.title "title" output.check
   blank.sep
   note "note" output.check
   format.date output

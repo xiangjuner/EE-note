@@ -1,10 +1,10 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex]{latex/atlaspackage}
+\usepackage[backend=biber]{latex/atlaspackage}
 \usepackage{latex/atlasbiblatex}
 
 \usepackage{authblk}
@@ -85,7 +85,7 @@ The package includes the \Package{atlasdoc} class, useful style files
 and documentation of the package.
 The package also defines a standard ATLAS style for papers.
 This style should be used for paper drafts and for submission to the arXiv and the journal.
-Add the option \Option{atlasstyle} to the \Package{atlasdoc} class to use this style.
+This option is the default. Add the option \Option{atlasstyle=false} to the \Package{atlasdoc} class if you do not want to use this style.
 The documentation is provided as both PDF files and \LaTeX\ documents
 that should provide examples of how to use the package and how to write
 good \LaTeX.
@@ -137,7 +137,7 @@ Note that you have to specify the language of your document as an option in the
 \item USenglish (or american).
 \end{itemize}
 
-Add the option \Option{atlasstyle} to the \Macro{documentclass} to typeset your document in the ATLAS preprint style.
+Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
 
 
 %-------------------------------------------------------------------------------
@@ -329,7 +329,7 @@ For instance, this document has
 been produced using this very simple preamble:
 %
 \begin{verbatim}
-  \documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
+  \documentclass[]UKenglish]{latex/atlasdoc}
   \usepackage{latex/atlaspackage}
   \usepackage{latex/atlasphysics}
   \graphicspath{{../../logos/}{figures/}}
@@ -354,7 +354,7 @@ A style file \File{latex/atlasbiblatex} is available that adjusts the format of 
 As mentioned above, you have to specify the document language as an option to \Package{atlasdoc}.
 Several more options can be set:
 \begin{description}
-\item[atlasstyle] use the ATLAS style for the document;
+\item[atlasstyle=true|false] turn on (default) or off the use of the ATLAS style for the document;
 \item[paper=a4|letter] set the paper size. The default size is A4;
 \item[a4paper] set the paper size to A4 (default);
   This option is deprecated;
@@ -367,7 +367,7 @@ Several more options can be set:
 \item[CONF] the document is a CONF note;
 \item[PUB] the document is an PUB note;
 \item[auxmat] the document contains auxiliary material for a preprint;
-\item[maketitle=true|false] turn on or off the creation of a title page. If you turn it off,
+\item[maketitle=true|false] turn on (default) or off the creation of a title page. If you turn it off,
   but still want a title give the command \Macro{maketitle} after
   \verb|\begin{document}|;
 \item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
@@ -392,7 +392,10 @@ The \Package{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{babel}: become language aware;
-\item \Package{fancyhdr}: defines the header for draft mode;
+\item \Package{fancyhdr} or \Package{scrpage2}: defines the header for draft mode
+  and for auxiliary material documents.
+  \Package{fancyhdr} is used for the standard \LaTeX\ classes and
+  \Package{scrpage2} for \KOMAScript;
 \item \Package{fontenc}: output font encoding;
 \item \Package{hyperref}: add hyperlinks and ability to click on cross-references;
 \item \Package{graphicx}: include graphics in the document;
@@ -447,8 +450,8 @@ Finally the full set includes further packages that may be useful:
 Further options are:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item[\Option{biblatex=true|false}] (false) turn on/off use of \Package{biblatex} and \Package{biber};
-\item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{biber}.
-  Specify \Option{backend=bibtex} to use \BibTeX\ instead;
+\item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{bibtex}.
+  Specify \Option{backend=biber} to use \Package{biber} instead;
 \item[\Option{hyperref=true|false}] (true) turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|false}] (true) do not include the \Package{siunitx} package;
 \item[\Option{csquotes=true|false}] (true) do not include the \Package{csquotes} package;
@@ -522,11 +525,12 @@ actually output a cover page.
 This is necessary as of Version 01-04-00 of \Package{atlaslatex} to make the use of options more consistent.
 
 It used to be the case that some journal styles, especially JHEP,
-produce an ATLAS draft cover page that is offset.
-You can use the options \Option{hoffset} and \Option{voffset} to move the text around.
-JHEP needs \verb|hoffset=1in, voffset=1in|.
-revtex (APS journals) looks better with  \verb|hoffset=-0.25in, voffset=-0.25in|.
-These offsets are ignored, as of Version 01-04-00 of \Package{atlaslatex}, as the
+produced an ATLAS draft cover page that was offset.
+You could use the options \Option{hoffset} and \Option{voffset} to move the text around.\\
+JHEP needed \verb|hoffset=1in, voffset=1in|.\\
+revtex (APS journals) looked better with  \verb|hoffset=-0.25in, voffset=-0.25in|.\\
+These offsets are ignored, as of Version 01-04-00 of \Package{atlaslatex},
+as the problems with spurious offsets have been eliminated.
 
 The option \Option{clearpage}, which used to exist, has no effect.
 
@@ -558,7 +562,7 @@ Use of this option also adds the arXiv preprint identifier to the top of every p
 of the document.
 
 If you want to create an auxiliary material document with \TeX\ Live 2009, look
-at Section`\ref{sec:version} and the differences between
+at Section~\ref{sec:version} and the differences between
 \File{atlas-document.tex} and \File{atlas-document-2009.tex} to see what has to be changed.
 
 
@@ -567,15 +571,15 @@ at Section`\ref{sec:version} and the differences between
 \label{sec:atlasstyle}
 %-------------------------------------------------------------------------------
 
-This style is currently being developed and changes in the settings may still occur.
-In particular, more tests have to be made to make sure that the style
-works everywhere that it should!
-
-Documents can be typeset in the standard ATLAS preprint style by using the option
-\Option{atlasstyle}.
 This style should be used for the preparation of paper drafts,
 as well as for the submission of papers to the arXiv and journals.
 The journals will then convert the documents to the style appropriate for the journal.
+As some experience has to be gained with this package,
+feedback on any problems that occur with the style are very welcome.
+
+Documents are typeset by default in the the standard ATLAS preprint style.
+The use of this style can be turned off by using the option
+\Option{atlasstyle=false}.
 This style uses \KOMAScript\ as the base class.
 Further settings include:
 \begin{description}
@@ -590,6 +594,10 @@ Further settings include:
   but have a better spacing in a few cases;
 \item[Section headers] the standard serif font is used;
 \end{description}
+
+If you have problems with the \Package{newtx} fonts,
+you can switch to \Package{txfonts} by including the option \Option{txfonts} with \Package{atlasdoc}.
+
 
 %-------------------------------------------------------------------------------
 \section{Symbols in \texttt{atlasphysics.sty}}
@@ -649,7 +657,7 @@ The following extra packages had to be installed:
 I also did some tests with Xubuntu 12.04.
 By default this has \TeX\ Live 2009 installed.
 The font package \Package{newtx} did not exist with this version of \TeX\ Live.
-Hence you need to give the option \Option{txfonts} to both \Package{atlasdoc}.
+Hence you need to give the option \Option{txfonts} to \Package{atlasdoc}.
 You also to add the option \Option{texlive=2009} to \Package{atlaspackage}.
 If you are using \Package{siunitx}, then you also have to load \Package{atlasphysics}
 with the option \Option{unit=off}.
@@ -792,9 +800,9 @@ centrally installed style files.
 If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
 Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do it by hand you can do:
 \begin{itemize}
-\item Unpack the tarball;
-\item Copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
-\item Copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
+\item unpack the tarball;
+\item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
+\item copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
   to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bib}, respectively.
 \end{itemize}
 You can also checkout the two directory trees from SVN:
@@ -829,6 +837,9 @@ If you are using \BibTeX\ you also have to change\\
 \verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
+The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
+but it does not do any harm.
+
 
 %-------------------------------------------------------------------------------
 \section{Journal templates}
@@ -838,6 +849,8 @@ If you are using \BibTeX\ you also have to change\\
 This section collects information on where the \LaTeX\ templates for the different journals can be found and how to use them.
 The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
 So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
+You should turn off the use of \Package{biblatex} if you use a journal template.
+Add the option \Option{biblatex=false} to \Package{atlaspackage}.
 
 \begin{description}
 \item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 

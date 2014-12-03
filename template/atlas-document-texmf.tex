@@ -20,12 +20,13 @@
 % Extra packages:
 \usepackage{atlaspackage}
 % Selected options:
-%  biblatex  Use biblatex and biber for the bibliography
-%  minimal   Minimal set of packages
-%  default   Standard set of packages
-%  full      Full set of packages
+%  biblatex=true|false Use biblatex (default) or bibtex for the bibliography
+%  backend=biber       Use the biber backend rather than bibtex
+%  minimal             Minimal set of packages
+%  default             Standard set of packages
+%  full                Full set of packages
 % Style file with biblatex options for ATLAS documents
-% \usepackage{atlasbiblatex}
+\usepackage{atlasbiblatex}
 
 % Package for creating list of authors and contributors to the analysis
 \usepackage{atlascontribute}
@@ -35,13 +36,13 @@
 % See doc/atlas-physics.pdf for a list of the defined symbols
 % Default options are 
 %   True:  journal, misc, particle, unit, xref
-%   False: bsm, math, process, other, texmf
+%   False: bsm, hion, math, process, other, texmf
 % See the package for details on the options
 
 % Files with references for use with biblatex
 % Note that biber gives an error if it finds empty bib files
-% \addbibresource{atlas-document.bib}
-% \addbibresource{atlas-paper.bib}
+\addbibresource{atlas-document.bib}
+\addbibresource{atlas-paper.bib}
 
 % Paths for figures - do not forget the / at the end of the directory name
 \graphicspath{{logos/}{figures/}}
@@ -76,7 +77,8 @@ Place your introduction here
 
 
 %-------------------------------------------------------------------------------
-% ATLAS detector description
+\section{ATLAS detector}
+\label{sec:detector}
 %-------------------------------------------------------------------------------
 
 The ATLAS detector~\cite{atlas-detector} ...
@@ -124,10 +126,10 @@ The list should be printed either here or before the table of contents.
 
 %-------------------------------------------------------------------------------
 % If you use biblatex and biber to process the bibliography just say \printbibliogrpahy here
-% \printbibliography
+\printbibliography
 % If you want to use BibTeX you need to use the syntax below.
-\bibliographystyle{atlasBibStyleWoTitle}
-\bibliography{atlas-document,atlas-paper}
+%\bibliographystyle{atlasBibStyleWoTitle}
+%\bibliography{atlas-document,atlas-paper}
 %-------------------------------------------------------------------------------
 
 \end{document}

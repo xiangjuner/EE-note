@@ -3,17 +3,16 @@
 % to get your paper draft into a form that minimises the amount of work needed
 % to get it approved by the collaboration - assuming that the physics is OK!
 %-------------------------------------------------------------------------------
-\documentclass[atlasstyle,UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish]{latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex]{latex/atlaspackage}
+\usepackage[backend=biber]{latex/atlaspackage}
 % Style file with biblatex options for ATLAS documents
 \usepackage{latex/atlasbiblatex}
 
 % Useful macros
 \usepackage{latex/atlasphysics}
-%\usepackage{tikz}
 
 % Files with references in BibTeX format and biblatex style options
 \addbibresource{atlas_paper.bib}
@@ -313,10 +312,10 @@ The acknowledgements should be in an unnumbered section.
 % Bibliography
 %-------------------------------------------------------------------------------
 \printbibliography
-% This document uses biblatext and bib to process the bibliography.
+% This document uses biblatex and biber to process the bibliography.
 % If you want to use BibTeX you need to use the syntax below.
 % \bibliographystyle{../atlasBibStyleWoTitle}
-% \bibliography{atlas_paper}
+% \bibliography{atlas_paper,../../bibtex/bib/atlas-paper,../atlas_latex.bib}
 
 
 %-------------------------------------------------------------------------------

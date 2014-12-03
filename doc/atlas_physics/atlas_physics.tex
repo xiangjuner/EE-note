@@ -1,21 +1,24 @@
 %-------------------------------------------------------------------------------
 % This note lists the symbols defined in atlasphysics.sty.
 %-------------------------------------------------------------------------------
-\documentclass[koma,UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish]{latex/atlasdoc}
 
-\usepackage[default,biblatex]{latex/atlaspackage}
+% Standard packages that can and should be used in ATLAS papers
+\usepackage[default,backend=biber]{latex/atlaspackage}
 \usepackage{latex/atlasbiblatex}
 \usepackage{xtab}
-%\usepackage{multicol}
 \usepackage{authblk}
+
 % Include all style files
 \usepackage[BSM,hion,journal,math,process,other,xref]{latex/atlasphysics}
 %\usepackage{latex/atlasheavyion-mod}
 
+% Files with references in BibTeX format and biblatex style options
 \addbibresource{atlas_physics.bib}
 
 \graphicspath{{../../logos/}}
 
+% Useful macros for documentation
 \newcommand{\File}[1]{\texttt{#1}\xspace}
 \newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
 \newcommand{\Option}[1]{\textsf{#1}\xspace}
@@ -24,7 +27,6 @@
 %-------------------------------------------------------------------------------
 % Generic document information
 %-------------------------------------------------------------------------------
-
 % Set author and title for the PDF file
 \hypersetup{pdftitle={ATLAS LaTeX guide},pdfauthor={Ian Brock}}
 

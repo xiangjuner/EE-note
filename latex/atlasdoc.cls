@@ -7,7 +7,7 @@
 \def\ATPackageVersion{01-04-02}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/12/02 v.01-04-02 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/12/04 v.01-04-02 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -17,7 +17,7 @@
   family=ADOC,
   prefix=ADOC@
 }
-\DeclareBoolOption[false]{atlasstyle}
+\DeclareBoolOption[true]{atlasstyle}
 \DeclareBoolOption[false]{coverpage}
 \DeclareBoolOption[false]{cernpreprint}
 \DeclareBoolOption[false]{preprint}
@@ -299,9 +299,10 @@
   \ifADOC@koma
     \RequirePackage[headsepline]{scrpage2}
     \ihead{}
-    \chead[]{\fbox{\bfseries DRAFT}}
+    \chead[]{\fbox{\textsf\bfseries DRAFT}}
     \ohead{}
     \ifoot{\dateandtime}
+    %\cfoot{atlasdoc: \ATPackageVersion}
     \cfoot{}
     \ofoot{\thepage}
     \pagestyle{scrheadings}
@@ -310,6 +311,7 @@
     \chead[]{\fbox{\textsf\bfseries DRAFT}}
     \rhead{}
     \lfoot{\dateandtime}
+    %\cfoot{atlasdoc: \ATPackageVersion}
     \cfoot{}
     \rfoot{\thepage}
     \setlength\headheight{16pt}

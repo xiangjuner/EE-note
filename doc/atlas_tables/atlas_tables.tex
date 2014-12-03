@@ -2,10 +2,11 @@
 % Examples on how to make tables for ATLAS documents
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass[atlasstyle,UKenglish]{../../latex/atlasdoc}
+\documentclass[UKenglish]{../../latex/atlasdoc}
 
+% Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
-\usepackage[biblatex]{../../latex/atlaspackage}
+\usepackage[backend=biber]{../../latex/atlaspackage}
 \usepackage{latex/atlasbiblatex}
 \usepackage{authblk}
 \usepackage{verbatim}
@@ -143,7 +144,7 @@ as, among other things, they introduce some extra spacing around the lines, whic
 \begin{table}[htbp]
   \centering
   \begin{tabular}{l S[table-format=2.1]@{$\;\pm\;$}S[table-format=1.1]@{\,}s
-  	S[table-format=3.1]@{\,}s}
+    S[table-format=3.1]@{\,}s}
     \toprule
     Category            & \multicolumn{3}{c}{$\mu$}&\multicolumn{2}{c}{$e$}\\ 
     \midrule

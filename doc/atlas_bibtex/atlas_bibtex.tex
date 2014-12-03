@@ -6,7 +6,7 @@
 
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{latex/atlaspackage}
-\usepackage[minimal,biblatex]{latex/atlaspackage}
+\usepackage[minimal,backend=biber]{latex/atlaspackage}
 \usepackage[articletitle=false]{latex/atlasbiblatex}
 
 \usepackage{authblk}
@@ -54,7 +54,7 @@
 %\maketitle
 
 %-------------------------------------------------------------------------------
-\section{mydocument}
+\section{Introduction}
 %-------------------------------------------------------------------------------
 
 The ATLAS Collaboration has specific guidelines as to what constitutes a good bibliographic style. 
@@ -72,7 +72,7 @@ will be correct, without you having to worry about formatting it.
 In addition the order of the references is automatically correct.
 
 A new implementation of \BibTeX\ is provided by the \texttt{biblatex}~\cite{biblatex} package.
-It is planned to move all ATLAS documents to the use of this package.
+All ATLAS documents use this package now by default.
 One major advantage of the package is that it defines quite a few more entry types
 that are much more suitable for online documents and things like CONF and PUB notes.
 It is also possible to use UTF-8 encoding in the entries, which means that letters such as
@@ -81,7 +81,8 @@ Adjustment of the style is also much simpler.
 It is possible to take a base style and then just apply changes to it rather than
 having to learn the details of how \texttt{bst} files are constructed.
 
-The typical compilation cycle when using \BibTeX{} looks like the following:
+The typical compilation cycle when using \Package{biblatex} with the \BibTeX\ backend 
+or the traditional version of \BibTeX{} looks like the following:
 %
 \begin{verbatim}
   pdflatex mydocument
@@ -116,33 +117,30 @@ You should check that you base your \File{.bib} file on the examples provided,
 as it has the references in the style recommended for ATLAS publications.
 This will definitely save time in the reviewing process!
 
-If you use \BibTeX\ you include the source file(s) as follows:
-%
-\begin{verbatim}
-  \bibliography{../atlas_latex,atlas_biblatex}
-  \bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
-\end{verbatim}
-at the point where the bibliography should be printed.
-
 If you use \Package{biblatex}, you should include commands like:
 %
 \begin{verbatim}
-  \usepackage[backend=biber,
-    style=numeric-comp,sorting=none,block=ragged,firstinits=true]{biblatex}
   \addbibresource{../atlas_latex.bib}
   \addbibresource{atlas_biblatex.bib}
 \end{verbatim}
 %
 in the preamble of our document.
-These are included for you if you include \Package{atlaspackage} with the option \Option{biblatex}.
-Then include the command:
+
+If you use \BibTeX\ you include the source file(s) at the place where the bibliography should be printed as follows:
 %
 \begin{verbatim}
-  \printbibliography
+{\raggedright
+  \bibliography{../atlas_latex,%
+  atlas_biblatex}
+}
 \end{verbatim}
-%
-where the bibliography should get printed.
-As mentioned above, use the command \texttt{biber} instead of \texttt{bibtex} to process the \texttt{.bib} files.
+at the point where the bibliography should be printed.
+
+If you use \Package{atlaspackage}, then \Package{biblatex} is used with the \BibTeX\ backend by default.
+Turn off the use with the option \Option{biblatex=false}.
+
+If you want to use the \Package{biber} backend, include \Package{atlaspackage} with the option \Option{backend=biber} and
+use the command \texttt{biber} instead of \texttt{bibtex} to process the \texttt{.bib} files.
 Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib} file.
 
 
@@ -155,23 +153,48 @@ The format of the references in your ATLAS paper depends on the journal to which
 but in general we can classify the journal styles in two categories: 
 those which require the title of the references and those which do not. 
 To ensure the homogeneity in all ATLAS publications, 
-\BibTeX style files are provided for each of these categories 
+\Package{biblatex} and \BibTeX style files are provided for each of these categories 
 along with an example file that illustrates how different types of bibliographic material should be referenced.
 
-The style files can be found in the directory \File{bibtex/bst} of the \Package{atlaslatex} package.
+The \Package{biblatex} style file can be found in the directory \File{latex},
+while the \BibTeX\ style files can be found in the directory \File{bibtex/bst} of the \Package{atlaslatex} package.
+
+For the final version of ATLAS notes, both internal and public, a style without the title for papers in journals is recommended.
+For draft versions, it is good to include the title, as it is then clearer what the reference refers to.
+
+
+%-------------------------------------------------------------------------------
+\subsection{\Package{biblatex} style file}
+%-------------------------------------------------------------------------------
+
+If you use \Package{biblatex} a style file: \Package{atlasbiblatex.sty}
+which you should include with a normal \Macro{usepackage} command.
+By default, this style includes the document title.
+The title can be turned off by including the option \Option{articletitle=false}.
+This option turns off the title for entry types \texttt{@Article} and \texttt{@Booklet},
+as \texttt{@Booklet} should be used as the entry type for CONF and PUB notes.
+
+To print the bibliography include the command:
+%
+\begin{verbatim}
+  \printbibliography
+\end{verbatim}
+%
+where it should get printed.
+
+
+%-------------------------------------------------------------------------------
+\subsection{\BibTeX\ style files}
+%-------------------------------------------------------------------------------
 
 If you use \BibTeX, you should choose between the two style files given below, 
 depending on the journal to which they wish to submit their paper.
 These style files have been successfully tested in the framework provided by 
 the journals listed in the following sections and with the standard ATLAS document template.
 
-For ATLAS notes, both internal and public, a style without the title for papers in journals is recommended.
-
 
 %-------------------------------------------------------------------------------
-\subsection{\BibTeX\ style file for journals with the title in the reference}
-\label{sec:withtitle}
-%-------------------------------------------------------------------------------
+\subsubsection{\BibTeX\ style file for journals with the title in the reference}
 
 Journals:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
@@ -184,7 +207,7 @@ Journals:
 
 \noindent Include at the end of your \File{.tex} file the following lines:
 \begin{verbatim}
-\bibliographystyle{atlasBibStyleWithTitle}
+\bibliographystyle{bibtex/bst/atlasBibStyleWithTitle}
 \bibliography{atlas-bibtex}
 \end{verbatim}
 
@@ -198,9 +221,7 @@ replace all \texttt{@Booklet} entry types with \texttt{@Article}.
 
 
 %-------------------------------------------------------------------------------
-\subsection{\BibTeX\ style file for journals without the title in the reference}
-\label{sec:wotitle}
-%-------------------------------------------------------------------------------
+\subsubsection{\BibTeX\ style file for journals without the title in the reference}
 
 Journals:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
@@ -211,25 +232,13 @@ Journals:
 \item \textbf{PRL}
 \end{itemize}
 %
-\BibTeX\ style file: \Package{atlasBibStyleWoTitle}
+\BibTeX\ style file: \Package{atlasBibStyleWoTitle.bst}
 
 \noindent Include at the end of your \File{.tex} file the following lines:
 \begin{verbatim}
-\bibliographystyle{atlasBibStyleWoTitle}
+\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
 \bibliography{atlas-bibtex}
 \end{verbatim}
-
-
-%-------------------------------------------------------------------------------
-\subsection{\Package{biblatex} style file}
-%-------------------------------------------------------------------------------
-
-If you use \Package{biblatex} a style file: \Package{atlasbiblatex.sty}
-which you should include with a normal \Macro{usepackage} command.
-By default, this style includes the document title.
-The title can be turned off by including the option \Option{articletitle=false}.
-This option turns off the title for entry types \texttt{@Article} and \texttt{@Booklet},
-as \texttt{@Booklet} should be used for CONF and PUB notes.
 
 
 %-------------------------------------------------------------------------------
@@ -260,19 +269,20 @@ In order that the reference follows the ATLAS conventions you need to do the fol
 assuming that the reference is for an LHC collaboration paper:
 \begin{enumerate}
 \item Change the field name \texttt{author} to \texttt{xauthor}.
-\item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form
+\item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form\\
   \verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
-\item Either replace the journal name with the appropriate macro, e.g.\ ``\texttt{Phys.Lett.}'' with
-  \verb|\PLB|; or insert spaces between the parts of the name, i.e.\ \verb|Phys.\ Lett.|.
+\item Either replace the journal name with the appropriate macro, e.g.\ \verb|"Phys.Lett."| with
+  \verb|"\PLB"|; or insert spaces between the parts of the name, i.e.\ \verb|"Phys.\ Lett."|.
   Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
   as a regular interword space should be inserted and not an end of sentence space.
-\item Remove the journal letter from the volume and include it in the journal, e.g.\ ``\EPJC'', ``\PRD''. 
+\item Remove the journal letter from the volume and include it in the journal,
+  e.g.\ \enquote{\EPJC}, \enquote{\PRD}. 
 \end{enumerate}
 If the reference is for another collaboration, rename the \texttt{collaboration} field to
 \texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
 \texttt{author} field.
 
-Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
+Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
 
 
 %-------------------------------------------------------------------------------
@@ -295,8 +305,9 @@ Instead of renaming \texttt{author} or \texttt{collaboration} fields, you can of
   For this to work, in the preamble of your \File{.tex} document add
   \texttt{\textbackslash usepackage\{hyperref\}}.
   Note that \Package{hyperref} is included by default if you use \Package{atlasdoc} and/or \Package{atlaspackage}.
-\item If the DOI is filled and the \texttt{hyperref} package loaded, 
-  the title of the journal will be highlighted in blue and become a hyperlink to the online paper.
+\item Depending on the style that is used,
+  if the DOI is filled and the \texttt{hyperref} package loaded, 
+  the title of the journal can be highlighted in blue and become a hyperlink to the online paper.
 \item When referencing papers from journals like PRD, PLB, etc.,
   one has to be careful not to include the \enquote{D} or \enquote{B} as part of the volume.
   Instead these belong to the journal name. 
@@ -334,8 +345,9 @@ Note that in \Ref{\cite{atlasConf:2012}} the entry type \texttt{@Article} used t
 was abused for the conference note number. This is a result of the \BibTeX\ restrictions on the entry types.
 The current version uses \texttt{@Booklet} and includes the CONF note number via the \texttt{howpublished} field.
 In general, \texttt{biblatex} provides a lot more entry types.
-It is planned to move to \texttt{biblatex} as the default for the ATLAS templates early in 2015.
-All documentation already uses \Package{biblatex}.
+This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
+All documentation uses \Package{biblatex} with the backend \Package{biber}.
+The default for ATLAS documents is to use the backend \Package{bibtex}.
 
 
 %-------------------------------------------------------------------------------
@@ -345,7 +357,8 @@ All documentation already uses \Package{biblatex}.
 \begin{description}
 \item[2013-08-13: Cristina Oropeza Barrera] First version of the document released.
 \item[2014-08-14: Ian Brock] Updated the example references a bit and gave a bit more background information.
-\item[2014-11-26: Ian Brock] Text taken from paper template and merged into this document.
+\item[2014-12-03: Ian Brock] Text taken from paper template and merged into this document. 
+  Document adjusted for use of \Package{biblatex} as the default.
 \end{description}
 
 %-------------------------------------------------------------------------------
