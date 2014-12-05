@@ -309,20 +309,10 @@ The acknowledgements should be in an unnumbered section.
 
 
 %-------------------------------------------------------------------------------
-% Bibliography
-%-------------------------------------------------------------------------------
-\printbibliography
-% This document uses biblatex and biber to process the bibliography.
-% If you want to use BibTeX you need to use the syntax below.
-% \bibliographystyle{../atlasBibStyleWoTitle}
-% \bibliography{atlas_paper,../../bibtex/bib/atlas-paper,../atlas_latex.bib}
-
-
-%-------------------------------------------------------------------------------
 \clearpage
 \appendix
-\part*{Appendices}
-\addcontentsline{toc}{part}{Appendices}
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
 %-------------------------------------------------------------------------------
 
 In general, you use the appendices to include all the technical details of your work
@@ -334,8 +324,8 @@ Use the following commands to start the Appendices section:
 \begin{verbatim}
    \clearpage
    \appendix
-   \part*{Appendices}
-   \addcontentsline{toc}{part}{Appendices}
+   \section*{Appendices}
+   \addcontentsline{toc}{section}{Appendices}
 \end{verbatim}
 
 In this document the appendices contain some general remarks on the style to use in ATLAS papers.
@@ -353,7 +343,7 @@ these recommendations can be found in other documents:
 
 
 %-------------------------------------------------------------------------------
-\section{General Style}
+\section{General style}
 \label{sec:english}
 %-------------------------------------------------------------------------------
 
@@ -541,6 +531,24 @@ Several options exist to turn on or off the loading of various packages.
 The style file \texttt{atlasphysics.sty} defines a lot of useful
 macros for particles and more. See the separate document
 \texttt{atlas\_physics.pdf}~\cite{atlas-physics} for details.
+
+
+%-------------------------------------------------------------------------------
+% Bibliography
+%-------------------------------------------------------------------------------
+\printbibliography
+% This document uses biblatex and biber to process the bibliography.
+% If you want to use BibTeX you need to use the syntax below.
+% \bibliographystyle{../atlasBibStyleWoTitle}
+% \bibliography{atlas_paper,../../bibtex/bib/atlas-paper,../atlas_latex.bib}
+
+
+%-------------------------------------------------------------------------------
+\clearpage
+\appendix
+\section*{Auxiliary material}
+\addcontentsline{toc}{section}{Auxiliary material}
+%-------------------------------------------------------------------------------
 
 
 %-------------------------------------------------------------------------------

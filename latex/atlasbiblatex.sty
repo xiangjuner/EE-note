@@ -5,10 +5,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2014/12/04 v.01-04-02 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2014/12/05 v.01-05-00 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
-\typeout{ATLAS biblatex style v.01-04-02}
+\typeout{ATLAS biblatex style v.01-05-00}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
@@ -18,10 +18,31 @@
 }
 \DeclareBoolOption[true]{articletitle}
 \DeclareBoolOption[false]{titlequote}
+\DeclareBoolOption[false]{showdoi}
 \ProcessKeyvalOptions*
 
-% Turn off title for articles
+% Include the DOI as a hyerlink with the journal.
+\ifABIB@showdoi
+  \relax
+\else
+  \ExecuteBibliographyOptions{doi=false}
+  \newbibmacro{string+doi}[1]{%
+    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+  %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+\fi
+\ExecuteBibliographyOptions{date=year}
+
+
+% Turn off title for articles and booklets (CONF/PUB notes)
 \ifABIB@articletitle
+  % Titles all in italics or in quotes
+  \ifABIB@titlequote
+    \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
+    \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
+  \else
+    \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
+    \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
+  \fi
 \else
   \AtEveryBibitem{
     \ifentrytype{article}{\clearfield{title}}{}
@@ -29,18 +50,46 @@
   }
 \fi
 
-% Titles all in italics or in quotes
-\ifABIB@titlequote
-  \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
-  \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
-\else
-  \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
-  \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
-\fi
-
 % Journal in upright font
 \DeclareFieldFormat[article]{journaltitle}{#1\isdot}
 \DeclareFieldFormat[article]{journalsubtitle}{#1\isdot}
+
+% Volume in bold font
+\DeclareFieldFormat[article]{volume}{\textbf{#1}\isdot}
+
+% DOI as link with journal reference
+\ifABIB@showdoi
+  \relax
+\else
+  %\DeclareFieldFormat[article]{journaltitle}{\usebibmacro{string+doi}{#1\isdot}}
+  %\DeclareFieldFormat[article]{journal+issuetitle}{\usebibmacro{string+doi}{#1}}
+  % Adapted from /usr/local/texlive/2014/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+  % Merge page number into jounral+issuetitle and remove it from note+pages
+  \renewbibmacro*{journal+issuetitle}{%
+    \usebibmacro{string+doi}{%
+    \usebibmacro{journal}%
+    \setunit*{\addspace}%
+    \iffieldundef{series}
+      {}
+      {\newunit
+       \printfield{series}%
+       \setunit{\addspace}}%
+    \usebibmacro{volume+number+eid}%
+    \setunit{\addspace}%
+    \usebibmacro{issue+date}%
+    \setunit{\addcolon\space}%
+    \usebibmacro{issue}%
+    \setunit{\bibpagespunct}%
+    \printfield{pages}%
+    \newunit
+    }%
+  }
+  \renewbibmacro*{note+pages}{%
+    \printfield{note}%
+    %\setunit{\bibpagespunct}%
+    %\printfield{pages}%
+    \newunit}
+\fi
 
 % Change punctuation to comma
 \renewcommand*{\newunitpunct}{\addcomma\space}

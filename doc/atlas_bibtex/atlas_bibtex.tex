@@ -7,7 +7,7 @@
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{latex/atlaspackage}
 \usepackage[minimal,backend=biber]{latex/atlaspackage}
-\usepackage[articletitle=false]{latex/atlasbiblatex}
+\usepackage[articletitle=true,showdoi=false]{latex/atlasbiblatex}
 
 \usepackage{authblk}
 \usepackage{latex/atlasphysics}
@@ -253,6 +253,9 @@ It is then also possible to modify the abbreviation if a journal uses a differen
 
 The abbreviations can be found in the style file \File{latex/atlasjournal.sty},
 which is included by default if you load \Package{atlasphysics}.
+If you use \BibTeX, you should give the journal name in the form
+\verb|journal = "\PLB{}",|. 
+If you use \Package{biblatex} the form \verb|journal = "\PLB",| works without problems.
 This style file also defines several other abbreviations that can be adjusted to the
 journal style. 
 Standard sets for different journals can be provided by an option in the future.
@@ -348,6 +351,11 @@ In general, \texttt{biblatex} provides a lot more entry types.
 This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
 All documentation uses \Package{biblatex} with the backend \Package{biber}.
 The default for ATLAS documents is to use the backend \Package{bibtex}.
+
+For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@Article}.
+You should specify the journal in the \texttt{journal} field and add a note: 
+\texttt{note = "submitted"} or
+\texttt{note = "accepted"}.
 
 
 %-------------------------------------------------------------------------------

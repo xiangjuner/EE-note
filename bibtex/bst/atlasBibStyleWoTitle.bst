@@ -88,7 +88,6 @@ ENTRY
     year
     archive
     eprint
-    report
     collaboration
     SLACcitation
     archivePrefix
@@ -348,13 +347,6 @@ FUNCTION {add.doi}
       if$
     }
   if$
-}
-
-FUNCTION {format.report}
-{ report empty$
-     { ""}
-     { report}
-     if$
 }
 
 FUNCTION {format.howpublished}
@@ -771,23 +763,17 @@ FUNCTION {article}
   format.notitle "title" output.check
   crossref missing$
   { journal missing$   
-        {}
-        { format.journal add.doi "journal" output.check}
-      if$
-    report missing$
-        {format.eprint output}
-        {blank.sep format.report output format.eprint output}
-      if$
-    }
-    { format.article.crossref output.nonnull
-      format.pages output
-      format.eprint output
-    }
+    {}
+    { format.journal add.doi "journal" output.check }
+    if$
+  }
+  { format.article.crossref output.nonnull
+    format.pages output
+  }
   if$
-  new.sentence
-  format.url output
-  new.sentence
   note output
+  format.eprint output
+  format.url output
   new.sentence
   format.SLACcitation output
   fin.entry
@@ -851,13 +837,10 @@ FUNCTION {booklet}
   format.howpublished output
   address output
   format.date output
-  new.block
   format.eprint output
-  new.block
   format.url output
-  new.block
   note output
-  new.block
+  new.sentence
   format.SLACcitation output
   fin.entry
 }
@@ -997,11 +980,9 @@ FUNCTION {manual}
   if$
   format.edition output
   format.date output
-  new.block
   format.eprint output
-  new.block
   format.url output
-  new.block
+  new.sentence
   note output
   fin.entry
 }

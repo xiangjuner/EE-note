@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-04-02}
+\def\ATPackageVersion{01-05-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/12/04 v.01-04-02 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/12/05 v.01-04-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
