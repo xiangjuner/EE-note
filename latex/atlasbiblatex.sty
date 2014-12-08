@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2014/12/05 v.01-05-00 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2014/12/09 v.01-05-00 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 \typeout{ATLAS biblatex style v.01-05-00}
@@ -19,6 +19,7 @@
 \DeclareBoolOption[true]{articletitle}
 \DeclareBoolOption[false]{titlequote}
 \DeclareBoolOption[false]{showdoi}
+\DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
 % Include the DOI as a hyerlink with the journal.
@@ -30,7 +31,15 @@
     \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
   %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
 \fi
-\ExecuteBibliographyOptions{date=year}
+
+% date=year option works for TeX Live 2013 or so onwards, but not for 2009
+\def\biblatexone{2009}
+\typeout{texlive is [\ABIB@texlive] and biblatexone is [\biblatexone]}
+\ifx\APKG@texlive\biblatexone
+  \relax
+\else
+  \ExecuteBibliographyOptions{date=year}
+\fi
 
 
 % Turn off title for articles and booklets (CONF/PUB notes)

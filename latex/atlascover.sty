@@ -7,7 +7,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{01-05-00}
 
-\ProvidesPackage{latex/atlascover}[2014/12/05 v.01-05-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2014/12/09 v.01-05-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 \typeout{ATLAS Cover Page v.\ATPackageVersion}
@@ -114,6 +114,9 @@
   % Preprint
   \def\ADOC@preprintnumber{}
   \providecommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
+  % ATLAS date - arXiv submission; to be filled in by the Physics Office
+  \def\ADOC@atlasdate{\today}
+  \providecommand*{\AtlasDate}[1]{\def\ADOC@atlasdate{#1}}
   % Journal
   \def\ADOC@journalref{}
   \providecommand*{\AtlasJournalRef}[1]{\def\ADOC@journalref{#1}}
@@ -446,6 +449,7 @@
       \includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
       \ADOC@preprintnumber\par
+      \ADOC@atlasdate\par
     \end{minipage}\par
     \vspace*{2mm}
     \rule{\linewidth}{1pt}\par
@@ -472,6 +476,7 @@
       \includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       \ADOC@preprintnumber\par
+      \ADOC@atlasdate\par
     \end{minipage}\par
     \vspace*{2mm}
     \rule{\linewidth}{1pt}\par
@@ -487,20 +492,19 @@
       %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
       \AtlasTitleText\par
     }
-    \vspace*{15mm}
+    \vspace*{6ex}
     {\centering
       \fontseries{m}\fontsize{12}{14.4}\selectfont
       %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
       The ATLAS Collaboration\par
     }
-    \vspace*{15mm}
+    \vspace*{6ex}
     {\centering
-      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
       \bfseries\fontsize{12}{14.4}\selectfont
-      Abstract\par
+      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
+      \abstractname\par
     }
-    {\centering
-      \fontseries{m}\fontsize{11}{13.2}\selectfont%
+    {\fontseries{m}\fontsize{11}{13.2}\selectfont%
       %\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
       \begin{quote}
       %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
@@ -545,7 +549,6 @@
       %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
         \AtlasAbstractText
       \end{quote}
-      %\AtlasAbstractText\par
     }
   }
 }

@@ -311,21 +311,25 @@ The acknowledgements should be in an unnumbered section.
 %-------------------------------------------------------------------------------
 \clearpage
 \appendix
-\section*{Appendices}
-\addcontentsline{toc}{section}{Appendices}
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
 %-------------------------------------------------------------------------------
 
-In general, you use the appendices to include all the technical details of your work
+In a paper, an appendix is used for technical details that would otherwise disturb the flow of the paper.
+Such an appendix should be printed before the Bibliography.
+In an ATLAS paper, auxiliary plots and tables that are supposed to be made public 
+should be collected in an appendix that has the title \enquote{Auxiliary material}.
+This appendix should be printed after the Bibliography.
+
+In an ATLAS note, use the appendices to include all the technical details of your work
 that are relevant for the ATLAS Collaboration only (e.g.\ dataset details, software release used).
-In an ATLAS paper auxiliary plots and tables that are supposed to be made public 
-should be collected in an appendix.
 
 Use the following commands to start the Appendices section:
 \begin{verbatim}
    \clearpage
    \appendix
-   \section*{Appendices}
-   \addcontentsline{toc}{section}{Appendices}
+   \part*{Appendices}
+   \addcontentsline{toc}{part}{Appendices}
 \end{verbatim}
 
 In this document the appendices contain some general remarks on the style to use in ATLAS papers.
@@ -546,8 +550,8 @@ macros for particles and more. See the separate document
 %-------------------------------------------------------------------------------
 \clearpage
 \appendix
-\section*{Auxiliary material}
-\addcontentsline{toc}{section}{Auxiliary material}
+\part*{Auxiliary material}
+\addcontentsline{toc}{part}{Auxiliary material}
 %-------------------------------------------------------------------------------
 
 

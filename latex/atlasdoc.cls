@@ -7,7 +7,7 @@
 \def\ATPackageVersion{01-05-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/12/05 v.01-04-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/12/09 v.01-05-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -132,6 +132,10 @@
 \def\ADOC@atlasnote{}
 \newcommand*{\AtlasNote}[1]{\def\ADOC@atlasnote{#1}}
 
+% ATLAS date - arXiv submission; to be filled in by the Physics Office
+\def\ADOC@atlasdate{\today}
+\newcommand*{\AtlasDate}[1]{\def\ADOC@atlasdate{#1}}
+
 % Journal
 \def\ADOC@journal{}
 \newcommand*{\journal}[1]{\def\ADOC@journal{#1}}
@@ -188,6 +192,7 @@
   %\KOMAoptions{headings=normal}
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
+  \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
   \setkomafont{pageheadfoot}{\normalsize\rmfamily}
@@ -402,25 +407,26 @@
      \end{tabular}\par}
   }\par
   \vspace{\stretch{0.5}}
-  {% Abstract
-    \if\AtlasAbstractText\@empty
-      \mbox{}
-    \else
-      {\centering
-        \bfseries\fontsize{12}{14.4}\selectfont
-        \abstractname\par
-      }
+  % Astract
+  \if\AtlasAbstractText\@empty
+    \mbox{}
+  \else
+    {\centering
+      \bfseries\fontsize{12}{14.4}\selectfont
+      \abstractname\par
+    }
+    {\fontseries{m}\fontsize{11}{13.2}\selectfont%
       \begin{quote}
         %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
         \AtlasAbstractText
       \end{quote}
-    \fi
-  }
+    }
+  \fi
+  % Submission details
   \ifx\ADOC@journal\@empty
     \relax
   \else
     \vspace{\stretch{1}}
-    % Submission details
     \noindent\begin{minipage}[c]{\linewidth}
       \centering
       \ADOC@subprepend\ \textit{\ADOC@journal}

@@ -20,11 +20,11 @@
 % Extra packages:
 \usepackage{atlaspackage}
 % Selected options:
-%  biblatex=true|false Use biblatex (default) or bibtex for the bibliography
-%  backend=biber       Use the biber backend rather than bibtex
-%  minimal             Minimal set of packages
-%  default             Standard set of packages
-%  full                Full set of packages
+%  biblatex=true|false  Use biblatex (default) or bibtex for the bibliography
+%  backend=biber        Use the biber backend rather than bibtex
+%  minimal              Minimal set of packages
+%  default              Standard set of packages
+%  full                 Full set of packages
 % Style file with biblatex options for ATLAS documents
 \usepackage{atlasbiblatex}
 
@@ -118,18 +118,46 @@ The list should be printed either here or before the table of contents.
 
 
 %-------------------------------------------------------------------------------
-% Print the list of contributors to the analysis
-% The argument gives the fraction of the text width used for the names
+\clearpage
+\appendix
+\part*{Appendix}
+\addcontentsline{toc}{part}{Appendix}
 %-------------------------------------------------------------------------------
-\PrintAtlasContribute{0.30}
+
+In a paper, an appendix is used for technical details that would otherwise disturb the flow of the paper.
+Such an appendix should be printed before the Bibliography.
 
 
 %-------------------------------------------------------------------------------
 % If you use biblatex and biber to process the bibliography just say \printbibliogrpahy here
 \printbibliography
 % If you want to use BibTeX you need to use the syntax below.
-%\bibliographystyle{atlasBibStyleWoTitle}
-%\bibliography{atlas-document,atlas-paper}
+%\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
+%\bibliography{atlas-document,bibtex/bib/atlas-paper}
 %-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Print the list of contributors to the analysis
+% The argument gives the fraction of the text width used for the names
+%-------------------------------------------------------------------------------
+\clearpage
+\PrintAtlasContribute{0.30}
+
+%-------------------------------------------------------------------------------
+\clearpage
+\appendix
+\part*{Auxiliary material}
+\addcontentsline{toc}{part}{Auxiliary material}
+%-------------------------------------------------------------------------------
+
+In an ATLAS paper, auxiliary plots and tables that are supposed to be made public 
+should be collected in an appendix that has the title \enquote{Auxiliary material}.
+This appendix should be printed after the Bibliography.
+At the end of the paper approval procedure, this information can be split into a separate document
+-- see \texttt{atlas-auxmat.tex}.
+
+In an ATLAS note, use the appendices to include all the technical details of your work
+that are relevant for the ATLAS Collaboration only (e.g.\ dataset details, software release used).
+This information should be printed after the Bibliography.
 
 \end{document}

@@ -286,6 +286,8 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
 
   \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
     preprint number on the front page.
+    
+  \item{\verb|\AtlasDate{<Date>}|} set by the Physics Office as the date of submission of a paper.
 
   \item {\verb|\AtlasJournalRef{<Journal reference>}|} displays the journal reference
     on the preprint front page.
@@ -294,7 +296,7 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
 
   \item {\verb|\AtlasDOI{<Journal reference>}|} displays the DOI
     on the preprint front page.
-    This should be used for the arXiV update after the paper has been published.
+    This should be used for the arXiv update after the paper has been published.
     Can be omitted.
 
   \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
@@ -658,9 +660,11 @@ I also did some tests with Xubuntu 12.04.
 By default this has \TeX\ Live 2009 installed.
 The font package \Package{newtx} did not exist with this version of \TeX\ Live.
 Hence you need to give the option \Option{txfonts} to \Package{atlasdoc}.
-You also to add the option \Option{texlive=2009} to \Package{atlaspackage}.
+You also to add the option \Option{texlive=2009} to \Package{atlaspackage} and \Package{biblatex}
+(if you are using \Package{biblatex}).
 If you are using \Package{siunitx}, then you also have to load \Package{atlasphysics}
 with the option \Option{unit=off}.
+It is also possible to pass the option \Option{texlive=2009} to the main class \Package{atlasdoc}.
 The following extra packages had to be installed:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{texlive-latex-extra} (footmisc);
@@ -696,10 +700,14 @@ I then installed the following:
 \item \Package{texlive-placeins} (placeins).
 \item \Package{texlive-tocloft} (tocloft);
 \item \Package{texlive-siunitx} (siunitx);
+\item \Package{texlive-newtx}, \Package{texlive-newtx-doc} and \Package{texlive-boondox} (newtx);
 \item \Package{texlive-preprint} (authblk);
 \item \Package{texlive-biblatex} (biblatex);
 \item \Package{texlive-booktabs} (booktabs);
 \item \Package{texlive-xtab} (xtab);
+\item \Package{texlive-mhchem} (mhchem);
+\item \Package{texlive-elsarticle} (elsarticle) Elsevier journals;
+\item \Package{texlive-revtex} (revtex) APS journals;
 \end{itemize}
 
 Finally, in order to use \Package{biber} rather than \BibTeX,
