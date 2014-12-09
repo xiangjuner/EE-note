@@ -744,9 +744,15 @@ In addition I needed
 \end{itemize}
 However, I still got complaints about \File{lineno.sty}, \File{siunitx.sty},
 \File{biblatex.sty} and \File{logreq.sty}.
+If you want to use the ATLAS preprint style you also have to install
+\Package{newtx}, \Package{fontaxes} and \Package{boondox}.
+For the documentation and the heavy ion symbols you also need the \Package{mhchem} package.
 I was not able to find these in the standard RPM repositories.
 You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{latex/other}),
 or install your own \TeX\ Live distribution.
+If you download the packages from CTAN, follow the \File{README} in each package to install them.
+The \Package{boondox} packages also needs \File{MD5.pm} in order to update the font map.
+You can install it with the command \texttt{yum install perl-Digest-MD5} as superuser.
 
 Finally, in order to use \Package{biber} rather than \BibTeX,
 I had to download the appropriate binary from SourceForge:
