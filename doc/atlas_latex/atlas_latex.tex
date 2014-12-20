@@ -183,9 +183,9 @@ The optional argument is a letter or number that should also be given as the sec
 \Macro{AtlasAuthorContributor}.
 
 You can keep the list of authors and contributors separate
-by using \Macro{author} for the authors and \Macro{AtlasContribute} for the contributors.
+by using \Macro{author} for the authors and \Macro{AtlasContributor} for the contributors.
 You print the list of contributors by giving the command \Macro{PrintAtlasContribute}.
-Note that \Macro{PrintAtlasContribute} has na argument that gives the fraction of the line width
+Note that \Macro{PrintAtlasContribute} has an argument that gives the fraction of the line width
 to be used for the name of the person.
 The list should either be printed before the table of contents or after the conclusions
 (i.e.\ where the Acknowledgements appear in a paper).
@@ -379,6 +379,7 @@ Several more options can be set:
   instead of \Macro{usepackage\{latex/package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
   rather than in a \File{latex} subdirectory;
+\item[newtx] use the \Package{newtxtext} and \Package{newtxmath} packages for fonts (default);
 \item[txfonts] use the \Package{txfonts} package for fonts instead of the default.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
@@ -407,6 +408,9 @@ your system is required:
 %\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
+See \cite{atlas-faq} for details on which collections are needed to get these packages
+for your operating system.
+
 Note that under Ubuntu, \Package{lineno} can be found in the
 \Package{texlive-humanities} package!
 If you cannot find it, it is also included in \File{latex/other}.
@@ -418,8 +422,8 @@ Both the class \Package{atlasdoc} and all style files,
 need the package \Package{kvoptions} 
 so that they can process options where a value for an option should be set.
 
-\texttt{atlascover} also needs \texttt{hyperref}. 
-Have a look at \texttt{templates/atlas-draft-cover.tex} to see how to include it by hand.
+\Package{atlascover} and Package{atlascover} both needs \texttt{hyperref}. 
+Have a look at one of these packages to see how to include it by hand.
 You can also simply use \texttt{atlaspackage.sty}
 
 The style file \texttt{atlaspackage.sty} includes further packages.
@@ -536,13 +540,14 @@ as the problems with spurious offsets have been eliminated.
 
 The option \Option{clearpage}, which used to exist, has no effect.
 
+
 %-------------------------------------------------------------------------------
 \subsection{ATLAS notes}
 \label{sec:note}
 %-------------------------------------------------------------------------------
 
 If you include the macro \Macro{AtlasNote} in your preamble,
-the note number will be printed under ``ATLAS NOTE'' at the top of your document.
+the note number will be printed under \enquote{ATLAS NOTE} at the top of your document.
 This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
 
 
@@ -579,7 +584,7 @@ The journals will then convert the documents to the style appropriate for the jo
 As some experience has to be gained with this package,
 feedback on any problems that occur with the style are very welcome.
 
-Documents are typeset by default in the the standard ATLAS preprint style.
+Documents are typeset by default in the standard ATLAS preprint style.
 The use of this style can be turned off by using the option
 \Option{atlasstyle=false}.
 This style uses \KOMAScript\ as the base class.
@@ -597,7 +602,15 @@ Further settings include:
 \item[Section headers] the standard serif font is used;
 \end{description}
 
-If you have problems with the \Package{newtx} fonts,
+The default fonts for ATLAS documents are \Package{newtxtext} and \Package{newtxmath}.
+These are more modern variants of the package \Package{txfonts} that has been used in
+ATLAS documents in the past.
+However, arXiv currently uses an older version of \TeX\ Live (2011) that does not include the
+\Package{newtx} fonts. 
+Hence, in ATLAS papers, please add the option \Option{txfonts} to \Package{atlasdoc}.
+As soon as arXiv switches to a newer version of \TeX\ Live this option will no longer be necessary.
+
+In general, if you have problems with the \Package{newtx} fonts,
 you can switch to \Package{txfonts} by including the option \Option{txfonts} with \Package{atlasdoc}.
 
 

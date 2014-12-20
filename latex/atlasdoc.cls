@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-05-00}
+\def\ATPackageVersion{01-05-01}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/12/09 v.01-05-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2014/12/20 v.01-05-01 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -195,7 +195,7 @@
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
-  \setkomafont{pageheadfoot}{\normalsize\rmfamily}
+  \setkomafont{pagehead}{\normalsize\rmfamily}
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }

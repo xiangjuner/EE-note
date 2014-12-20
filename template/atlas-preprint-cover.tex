@@ -1,27 +1,33 @@
 % ----------------------------------------------------------- 
-%  Standalone cover page for CERN preprints 
+% Standalone cover page for CERN preprints 
+% atlaspackage and/or atlasphysics are only needed if symbols
+% defined in them are used in the abstract
 % ----------------------------------------------------------- 
-\documentclass[UKenglish]{latex/atlasdoc}
+\documentclass[atlasstyle,txfonts,UKenglish]{latex/atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish
+% british and american also work!
+% Relevant options:
+%  atlasstyle=true|false Use ATLAS style for document
+%  txfonts=true|false    Use txfonts rather than the default newtx - needed for arXiv submission
+%  paper=a4|letter       Set paper size to A4 (default) or letter
 
-% Either use atlaspackage or specify packages explicitly
-\usepackage[minimal]{latex/atlaspackage}
-% \usepackage[centering,scale=0.75]{geometry}
-% \usepackage{graphicx}
+% Use minimal version of atlaspackage - probably not needed
+% \usepackage[minimal]{latex/atlaspackage}
 
+% CERN preprint frontpage
 \usepackage[cernpreprint]{latex/atlascover}
 
-% hyperref is included in atlascover. Set options here if atlaspackage is not included.
-%\hypersetup{colorlinks,breaklinks,pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
-%\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+% Useful macros - probably not needed
+% \usepackage{latex/atlasphysics}
 
-% Paths for figures
+% Paths for figures - ATLAS and CERN logos
 \graphicspath{{logos/}}
 
 %-------------------------------------------------------------------------------
 % Generic document information
 %-------------------------------------------------------------------------------
 
-% Take information form the metadata file you have for your document
+% Take information from the metadata file you have for your document
 % \input{mydocument-metadata}
 
 % or specify all information in this document

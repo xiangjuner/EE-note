@@ -74,12 +74,14 @@
 
 Before we get to the meat of the document, a few remarks about the paper front page.
 
+
 %-------------------------------------------------------------------------------
 \subsection{Title} 
 \label{sec:title}
 %-------------------------------------------------------------------------------
 
 The title should be concise, clear and descriptive, and should include the word \enquote{ATLAS}.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Author list}
@@ -137,15 +139,16 @@ which is consistent with the standard model prediction of \SI{44 \pm 3}{\pb} cal
 This should be fairly brief. 
 State the measurement being made, motivate its importance experimentally and theoretically.
 It is considered bad form to point out being the first to publish something as a motivation.
-Include a summary of what has already been published on this subject, as well as the most appropriate theory references.
+Include a summary of what has already been published on this subject,
+as well as the most appropriate theory references.
 For a longer paper, give a brief outline of the paper, especially if the structure is unusual.
 Even for a long paper, the introduction should generally not exceed one page.
 
 Your first action before embarking on writing a paper should be to
 read the ATLAS Publication Policy~\cite{publication-policy}, available
-from the web pages of the Publication Committee. Chapter 3 of this
+from the web pages of the Publication Committee. Chapter~3 of this
 document details the refereeing and approval procedures that you will
-need to follow; Chapter 4 gives information on the style.
+need to follow; Chapter~4 gives information on the style.
 
 At some point during the writing of an ATLAS paper, you should decide what journal it will be submitted to.
 Please keep in mind that each journal makes specific demands on length and style.
@@ -344,7 +347,12 @@ these recommendations can be found in other documents:
 \item Report of the ATLAS figures task force~\cite{atlas-figures}.
 \end{itemize}
 
-
+ATLAS papers should use the \Option{atlasstyle} option with the class \Package{atlasdoc}.
+The default fonts for ATLAS documents are \Package{newtxtext} and \Package{newtxmath}.
+These are more modern variants of the package \Package{txfonts} that has been used in
+ATLAS documents in the past.
+However, arXiv currently uses an older version of \TeX\ Live (2011) that does not include the
+\Package{newtx} fonts. Hence, in ATLAS papers, please add the option \Option{txfonts} to \Package{atlasdoc}.
 
 %-------------------------------------------------------------------------------
 \section{General style}
