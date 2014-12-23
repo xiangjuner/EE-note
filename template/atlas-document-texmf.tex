@@ -68,6 +68,9 @@
 %\maketitle
 \tableofcontents
 
+% List of contributors - print here or after the Bibliogrphy
+%\AtlasPrintContribute{0.3}
+
 
 %-------------------------------------------------------------------------------
 \section{Introduction}
@@ -110,9 +113,14 @@ Place your conclusion here.
 \section*{Acknowledgements}
 %-------------------------------------------------------------------------------
 
-For ATLAS papers and CONF notes, download the latest set of acknowledgements and include here.
-They can be found at:\\
-\url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComTemplates#Acknowledgements_template}
+%\input{acknowledgements/Acknowledgements}
+
+The \texttt{atlaslatex} package contains the acknowledgements that were valid 
+at the time of the release you are using. These can be found in the
+\texttt{acknowledgements} subdirectory.
+When your ATLAS papers or CONF note is ready to be published,
+download the latest set of acknowledgements from:\\
+\url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComAcknowledgements}
 
 The supporting notes for the analysis should also contain a list of contributors.
 This information should usually be included in \texttt{mydocument-metadata.tex}.
