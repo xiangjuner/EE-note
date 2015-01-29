@@ -5,12 +5,12 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-05-03}
+\def\ATPackageVersion{01-05-04}
 
-\ProvidesPackage{latex/atlascover}[2014/12/23 v.01-05-03 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2015/01/30 v.01-05-04 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
-\typeout{ATLAS Cover Page v.\ATPackageVersion}
+%\typeout{ATLAS cover page v.\ATPackageVersion}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
@@ -28,6 +28,7 @@
 \DeclareBoolOption[false]{clearpage}
 \DeclareBoolOption[false]{twocolumn}
 \DeclareBoolOption[false]{atlasdoc}
+\DeclareStringOption[11pt]{coverfontsize}
 \DeclareStringOption[0pt]{hoffset}
 \DeclareStringOption[0pt]{voffset}
 \ProcessKeyvalOptions*
@@ -50,7 +51,6 @@
 \fi
 
 \let\ACOV@AdvancePageTwoSided\relax
-
 
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
@@ -170,13 +170,15 @@
   }%
 }
 
+\newif\ifACOV@support
+\ACOV@supportfalse
 \def\ACOV@TwikiURL{}
 %\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
+\newcommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\def\ACOV@TwikiURL{\url{#1}}}
 
 % Supporting note list
 \def\ACOV@Notes{}
-\newcommand{\AtlasCoverSupportingNote}[2]{%
+\newcommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
   \g@addto@macro\ACOV@Notes{%
     #1 & \url{#2} \\
   }%
@@ -184,6 +186,38 @@
 
 % It seemed as if hyperref has to included here if you include a cover page from within atlasdoc
 \RequirePackage{hyperref}
+
+% Set font sizes - an option could then be made for this in the future
+\newlength{\ACOV@size}
+\newlength{\ACOV@space}
+\newlength{\ACOV@sizes}
+\newlength{\ACOV@spaces}
+\newlength{\ACOV@sizel}
+\newlength{\ACOV@spacel}
+\newlength{\ACOV@sizeL}
+\newlength{\ACOV@spaceL}
+\newlength{\ACOV@sizeh}
+\newlength{\ACOV@spaceh}
+\setlength{\ACOV@size}{\ACOV@coverfontsize}
+\setlength{\ACOV@space}{1.2\ACOV@size}
+\setlength{\ACOV@sizes}{\ACOV@size}
+\addtolength{\ACOV@sizes}{-1pt}
+\setlength{\ACOV@spaces}{1.2\ACOV@sizes}
+\setlength{\ACOV@sizel}{\ACOV@size}
+\addtolength{\ACOV@sizel}{+2pt}
+\setlength{\ACOV@spacel}{1.2\ACOV@sizel}
+\setlength{\ACOV@sizeL}{\ACOV@size}
+\addtolength{\ACOV@sizeL}{+3pt}
+\setlength{\ACOV@spaceL}{1.2\ACOV@sizeL}
+\setlength{\ACOV@sizeh}{\ACOV@size}
+\addtolength{\ACOV@sizeh}{+5pt}
+\setlength{\ACOV@spaceh}{1.2\ACOV@sizeh}
+\typeout{Value of font sizes and spacing are:}
+\typeout{Default: \the\ACOV@size\ and \the\ACOV@space}
+\typeout{small:   \the\ACOV@sizes\ and \the\ACOV@spaces}
+\typeout{large:   \the\ACOV@sizel\ and \the\ACOV@spacel}
+\typeout{Large:   \the\ACOV@sizeL\ and \the\ACOV@spaceL}
+\typeout{huge:    \the\ACOV@sizeh\ and \the\ACOV@spaceh}
 
 %-------------------------------------------------------------------------------
 % Main printout phase
@@ -215,12 +249,12 @@
   \end{minipage}
   \begin{minipage}{0.5\linewidth}
     \centering
-    \fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont
+    \fontfamily{phv}\fontseries{b}\fontsize{16}{19.2}\selectfont
       \ifACOV@atlaspaper%
         ATLAS Paper Draft
       \else
         \ifACOV@CONF%
-          ATLAS Conference Note Draft
+          ATLAS CONF Note Draft
         \else
           \ifACOV@PUB%
             ATLAS PUB Note Draft
@@ -235,75 +269,74 @@
   \begin{minipage}{\linewidth}
     \centering
     \rule{\linewidth}{1.5pt}\par
-    \vspace*{1ex}
-    {\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+    \vspace*{0.8ex}
+    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
       \AtlasTitleText\par
     }
-    \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+    \vspace*{0.8ex}
+    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
       \ADOC@refcode\par
     }
-    \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont 
+    \vspace*{0.8ex}
+    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
       Version:
     }
-    {\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
       \ADOC@draftversion\par
     }
-    \vspace*{1ex}
+    \vspace*{0.8ex}
     \ifACOV@atlaspaper
-      {\fontfamily{phv}\fontseries{b}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         To be submitted to: 
       }
-      {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ADOC@journal\par
       }
-      \vspace*{1ex}
+      \vspace*{0.8ex}
     \fi
-    \ifx\ACOV@TwikiURL\@empty
-      \relax
-    \else
+    \ifACOV@support
       \rule{\linewidth}{1.5pt}\par
-      {\fontfamily{phv}\fontseries{b}\fontsize{12}{14.4}\selectfont 
-        A list of supporting internal notes can be found at: \par
-        \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-        \medskip
-        \ACOV@TwikiURL\par
-      }
-      \vspace*{1ex}
-    \fi
-    \ifx\ACOV@Notes\@empty
-      \relax
-    \else
-      \rule{\linewidth}{1.5pt}\par
-      {\fontfamily{phv}\fontseries{b}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         Supporting internal notes \par
-        \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-        \medskip
-        \begin{tabular}{ll}
-          \ACOV@Notes
-        \end{tabular}\par
       }
-      \vspace*{1ex}
+      \ifx\ACOV@TwikiURL\@empty
+        \relax
+      \else
+        {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont
+          \medskip
+          \ACOV@TwikiURL\par
+        }
+      \fi
+      \ifx\ACOV@Notes\@empty
+        \relax
+      \else
+      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont 
+          \medskip
+          \begin{tabular}{ll}
+            \ACOV@Notes
+          \end{tabular}\par
+        }
+      \fi
+      \vspace*{0.8ex}
     \fi
     \rule{\linewidth}{1.5pt}\par
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont 
+    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
       Comments are due by:
     }
-    {\fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
       \ACOV@CommentsDeadline\par
     }
-    \vspace*{1ex}
+    \vspace*{0.8ex}
   \end{minipage}
   %\vspace*{6mm}
   \rule{\linewidth}{1.5pt}\par
-  \vspace*{4mm}
+  \vspace*{1ex}
   {\centering
-    \fontfamily{phv}\fontseries{b}\fontsize{12}{14.4}\selectfont 
+    \fontfamily{phv}\fontseries{b}\fontsize{\ACOV@size}{\ACOV@space}\selectfont 
     Abstract\par
   }
-  {\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
+  {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
     \centering
     \begin{quote}
     %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
@@ -315,7 +348,7 @@
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverFooter}{%
   \begin{minipage}[b]{\linewidth}
-    \fontfamily{phv}\fontseries{m}\fontsize{10}{12}\selectfont 
+    \fontfamily{phv}\fontseries{m}\fontsize{9}{10.8}\selectfont 
     Document created on \today\ from file \texttt{\jobname.tex}\newline
     Cover page automatically created with \texttt{atlascover.sty}
   \end{minipage}%
@@ -330,25 +363,25 @@
     \centering
     \rule{\linewidth}{1.5pt}\par
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont 
+    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
       Analysis Team\par
     }
     \ifACOV@PUB%
       \relax
     \else
       \vspace*{1ex}
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
-      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{14.4}\selectfont 
+      %\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       email:}
-      \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+      \fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       \ACOV@EgroupEditors]\par
     \fi
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       \ACOV@AnalysisTeam\par
     }
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
      (*): Contact Editors\par
     }
     \vspace*{1ex}
@@ -357,30 +390,30 @@
     \vspace*{1ex}
     % PUB notes have readers
     \ifACOV@PUB%
-      {\fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont 
+      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
         Readers\par
       }
       \vspace*{1ex}
-      {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@ReaderMembers\par
       }
     % Everything else has an EdBoard
     \else
-      {\fontfamily{phv}\fontseries{b}\fontsize{14}{16.8}\selectfont 
+      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
         Editorial Board\par
       }
       \vspace*{1ex}
-      {[{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{12}{14.4}\selectfont 
+      {[{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         email:}
-        \fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+        \fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@EgroupEdBoard]\par
       }
       \vspace*{1ex}
-      {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@EdBoardMembers\par
       }
       \vspace*{1ex}
-      {\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont 
+      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         (*): EdBoard Chair\par
       }
     \fi

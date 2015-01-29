@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-05-03}
+\def\ATPackageVersion{01-05-04}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2014/12/23 v.01-05-03 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/01/30 v.01-05-04 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package for all other options
@@ -21,6 +21,8 @@
 \DeclareBoolOption[false]{coverpage}
 \DeclareBoolOption[false]{cernpreprint}
 \DeclareBoolOption[false]{preprint}
+\DeclareBoolOption[true]{NOTE}
+\DeclareBoolOption[false]{PAPER}
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{auxmat}
@@ -31,6 +33,7 @@
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
+\DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[false]{koma}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[false]{showframe}
@@ -46,33 +49,49 @@
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
 
+% ATLAS style needs KOMA-Script
 \ifADOC@atlasstyle
   \ADOC@komatrue
 \fi
-\ifADOC@preprint
-  \ADOC@cernpreprinttrue
-  \ADOC@auxmatfalse
-  \ADOC@maketitlefalse
-\fi
+
+% CERN preprint or auxiliary material
 \ifADOC@cernpreprint
   \ADOC@auxmatfalse
   \ADOC@maketitlefalse
+\else
+  \ifADOC@preprint
+    \ADOC@cernpreprinttrue
+    \ADOC@auxmatfalse
+    \ADOC@maketitlefalse
+  \else
+    \ifADOC@auxmat
+      \ADOC@cernpreprintfalse
+      \ADOC@auxmattrue
+      \ADOC@maketitlefalse
+    \fi
+  \fi
 \fi
-\ifADOC@auxmat
-  \ADOC@cernpreprintfalse
-  \ADOC@auxmattrue
-  \ADOC@maketitlefalse
-\fi
-\ifADOC@nomaketitle
-  \ADOC@maketitlefalse
-\fi
-\ifADOC@CONF
-  \ADOC@CONFnotetrue
-  \ADOC@PUBnotefalse
-\fi
-\ifADOC@PUB
+
+% Type of document
+\ifADOC@PAPER
+  \ADOC@PAPERtrue
+  \ADOC@NOTEfalse
   \ADOC@CONFnotefalse
-  \ADOC@PUBnotetrue
+  \ADOC@PUBnotefalse
+\else
+  \ifADOC@CONF
+    \ADOC@PAPERfalse
+    \ADOC@NOTEfalse
+    \ADOC@CONFnotetrue
+    \ADOC@PUBnotefalse
+  \else
+    \ifADOC@PUB
+      \ADOC@PAPERfalse
+      \ADOC@NOTEfalse
+      \ADOC@CONFnotefalse
+      \ADOC@PUBnotetrue
+    \fi
+  \fi
 \fi
 
 % Decide on the main class
@@ -101,6 +120,11 @@
   \def\ADOC@paperstring{\ADOC@paper paper}
   \PassOptionsToClass{\ADOC@paperstring}{\ADOC@mainclass}
   \typeout{atlasdoc: paper is \ADOC@paper, string for class is \ADOC@paperstring}
+\fi
+
+% Obsolete command to turn off making title page
+\ifADOC@nomaketitle
+  \ADOC@maketitlefalse
 \fi
 
 % Defaults for title page
@@ -204,8 +228,7 @@
   %\RequirePackage[\ADOC@paperstring,centering,scale=0.75]{geometry}
 \fi
 
-% ATLAS cover pages
-% ATLAS draft cover pages for papers, PUB and CONF otes need
+% ATLAS draft cover pages for papers, PUB and CONF notes
 \ifADOC@texmf
   \def\ADOC@atlascover{atlascover}
 \else
@@ -214,14 +237,11 @@
 \ifADOC@coverpage
   \ifADOC@CONFnote
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}
-%    \RequirePackage[CONF,atlasdoc]{\ADOC@atlascover}
   \else
     \ifADOC@PUBnote
       \PassOptionsToPackage{PUB,atlasdoc}{\ADOC@atlascover}
-%      \RequirePackage[PUB,atlasdoc]{\ADOC@atlascover}
     \else
       \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
-%      \RequirePackage[atlasdoc]{\ADOC@atlascover}
     \fi
   \fi
   \RequirePackage{\ADOC@atlascover}
@@ -279,6 +299,19 @@
   \fi
 \fi
 
+% Adjust float settings to try to avoid problems.
+% These follow the UK FAQ - see also P.199-200 of the LaTeX Book
+\ifADOC@floatopt
+  \renewcommand{\topfraction}{0.85}
+  \renewcommand{\bottomfraction}{0.70}
+  \renewcommand{\textfraction}{0.15}
+  \renewcommand{\floatpagefraction}{0.66}
+  \renewcommand{\dbltopfraction}{0.66}
+  \renewcommand{\dblfloatpagefraction}{0.66}
+  \setcounter{topnumber}{9}
+  \setcounter{bottomnumber}{9}
+  \setcounter{totalnumber}{20}
+\fi
 
 % Add ability to include line numbers
 \RequirePackage{lineno}
@@ -362,7 +395,11 @@
     \begin{minipage}[c][35mm][c]{0.40\linewidth}
       \centering
         {\fontfamily{phv}\bfseries\fontsize{20}{24}\selectfont
-          \textsf{ATLAS NOTE}\par
+          \ifADOC@PAPER
+            \textsf{ATLAS PAPER}\par
+          \else
+            \textsf{ATLAS NOTE}\par
+          \fi
         }
         \vspace*{2ex}
         % ATLAS note number, if any 
@@ -426,12 +463,14 @@
   \ifx\ADOC@journal\@empty
     \relax
   \else
-    \vspace{\stretch{1}}
-    \noindent\begin{minipage}[c]{\linewidth}
-      \centering
-      \ADOC@subprepend\ \textit{\ADOC@journal}
-    \end{minipage}
-    %{\submitted}\par
+    \ifADOC@PAPER
+      \vspace{\stretch{1}}
+      \noindent\begin{minipage}[c]{\linewidth}
+        \centering
+        \ADOC@subprepend\ \textit{\ADOC@journal}
+      \end{minipage}
+      %{\submitted}\par
+    \fi
   \fi
 }
 

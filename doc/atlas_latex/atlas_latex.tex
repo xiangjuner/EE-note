@@ -114,6 +114,8 @@ This command copies \File{atlas-document.tex} and
 \File{atlas-document-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.
 It also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
+By default the document will be an ATLAS note.
+If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
@@ -366,6 +368,8 @@ Several more options can be set:
 \item[cernpreprint] make the front page for a CERN preprint.
   The option \Option{preprint} works as well, but is deprecated;
 %\item[paper] the document is an ATLAS paper;
+\item[NOTE] the document is an ATLAS note (default);
+\item[PAPER] the document is an ATLAS paper (draft);
 \item[CONF] the document is a CONF note;
 \item[PUB] the document is an PUB note;
 \item[auxmat] the document contains auxiliary material for a preprint;
@@ -374,6 +378,7 @@ Several more options can be set:
   \verb|\begin{document}|;
 \item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
   This option is deprecated -- use \Option{maketitle=false} instead;
+\item[floatopt] adjust the options governing number and placement of floats on a page;
 \item[koma] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
 \item[texmf] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
@@ -384,6 +389,15 @@ Several more options can be set:
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
+
+The
+\href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}
+recommends changing several default \LaTeX\ options so that there are fewer problems
+with figure and table placement.
+It is certainly worth reading that page for further advice.
+As it is very hard to really test how well these options work
+they can be turned on or off in \Package{atlasdoc} via the option \Option{floatopt=true|false}.
+The default value is set to \Option{true}.
 
 
 %-------------------------------------------------------------------------------
@@ -408,7 +422,7 @@ your system is required:
 %\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
-See \cite{atlas-faq} for details on which collections are needed to get these packages
+See \cite{latex-faq} for details on which collections are needed to get these packages
 for your operating system.
 
 Note that under Ubuntu, \Package{lineno} can be found in the
@@ -422,7 +436,7 @@ Both the class \Package{atlasdoc} and all style files,
 need the package \Package{kvoptions} 
 so that they can process options where a value for an option should be set.
 
-\Package{atlascover} and Package{atlascover} both needs \texttt{hyperref}. 
+\Package{atlasdoc} and \Package{atlascover} both need \texttt{hyperref}. 
 Have a look at one of these packages to see how to include it by hand.
 You can also simply use \texttt{atlaspackage.sty}
 
@@ -498,7 +512,7 @@ Other packages that have been used at some point include:
 The package also provides cover pages for the circulations of ATLAS drafts and 
 for the front page for the CERN preprint version of an ATLAS paper.
 A further cover page is provided for a document containing auxiliary material associated with a preprint/paper.
-The style can be found in \texttt{latex/atlascover.sty}.
+The style file can be found in \texttt{latex/atlascover.sty}.
 
 If you wish to use the \texttt{atlascover} package with the 
 \texttt{atlasdoc} class, you should usually use the \texttt{coverpage} option of the class:
@@ -506,7 +520,7 @@ If you wish to use the \texttt{atlascover} package with the
   \documentclass[coverpage,UKenglish]{latex/atlasdoc}
 \end{verbatim}
 instead of the the usual \texttt{usepackage} command: this will ensure
-that the cover page is produced before the note title page.
+that the cover page is produced before the title page of the document.
 
 You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
 In this case you need the option \texttt{maketitle=false} in the \texttt{atlasdoc} class
@@ -522,6 +536,7 @@ The following options can be passed on to the \Package{atlascover} package:
   The option \Option{preprint} works as well, but is deprecated;
 %\item[\Option{preprint}] the front page should be in the form of a CERN preprint;
 \item[\Option{auxmat}] the front page for a document containing auxiliary material from a paper;
+\item[\Option{coverfontsize}] the base font size used for the cover (default is 11pt). Adjust this for long abstracts;
 \item[\Option{twocolumn}] use this option if your document is formatted in two columns;
 \item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
@@ -529,6 +544,10 @@ The following options can be passed on to the \Package{atlascover} package:
 If you use \Package{atlascover} standalone, use the option \Option{coverpage=true} to
 actually output a cover page. 
 This is necessary as of Version 01-04-00 of \Package{atlaslatex} to make the use of options more consistent.
+
+Some papers have a very long abstract, such that it does not fit on the cover page.
+You can reduce the font size used on the cover by setting the option \Option{coverfontsize}.
+The default value is 11pt. Try 10.5pt or 10pt instead to get the abstract onto the page.
 
 It used to be the case that some journal styles, especially JHEP,
 produced an ATLAS draft cover page that was offset.
@@ -1046,11 +1065,12 @@ It is of course good if things like \pT and \ET are automatically in bold face i
 a header and normal font in the text (and table of contents).
 
 With the current setup, this works OK. 
-However, if you use the option \Option{koma}, which then typesets titles using a sans serif font,
+However, if you just use the option \Option{koma}, which then typesets titles using a sans serif font,
 the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
 which is probably not what one wants!
 Work is still ongoing to find the optimal set of options
 -- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
+This is not a problem for the ATLAS preprint style as it uses a serif font for the section titles.
 
 
 %-------------------------------------------------------------------------------
@@ -1152,6 +1172,10 @@ If you use the old macro names
 \Macro{draftversion}, \Macro{journal}, \Macro{abstracttext},
 they will continue to work in the document itself, but not on the cover page.
 
+When you want to circulate a draft with cover pages, 
+you also need to set the macro \Macro{AtlasRefCode}.
+This replaces \Macro{AtlasCoverNumber} as it is used in several places.
+
 The class and style files have been cleaned up and things 
 that were thought to no longer be necessary have been removed.
 These pieces have been collected in \texttt{latex/atlasnote-obsolete.sty} in case they are needed.
@@ -1160,7 +1184,10 @@ If something important has got lost, please let me know.
 The \Package{subfigure} package has been replaced with \Package{subfig}, as \Package{subfigure} is now deprecated.
 If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.
 If you want to continue to use \Package{subfigure} include \Package{atlaspackage} with the option
-\Option{subfigure=true}. Similarly, if you do not want to include \Package{siunitx} set
+\Option{subfigure=true}. 
+You should also comment out the \Macro{usepackage\{subfigure\}}.
+
+Similarly, if you do not want to include \Package{siunitx} set
 the option \Option{siunitx=false}.
 
 The option \verb|\skipbeforetitle{<length>}| used to set the distance between

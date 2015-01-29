@@ -3,7 +3,7 @@
 % to get your paper draft into a form that minimises the amount of work needed
 % to get it approved by the collaboration - assuming that the physics is OK!
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{latex/atlasdoc}
+\documentclass[PAPER,UKenglish]{latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
@@ -365,12 +365,6 @@ information on writing, spelling and typographic style, etc. please
 see the ATLAS Style Guide~\cite{atlas-style}. 
 The ATLAS Glossary~\cite{atlas-glossary} contains a list of ATLAS detector acronyms.
 
-
-%-------------------------------------------------------------------------------
-\subsection{Emphasis}
-\label{sec:emphasis}
-%-------------------------------------------------------------------------------
-
 Use italics for emphasis sparingly: too many italicised words defeat
 their purpose. When you do italicise a word, really italicise it: do
 not use math mode! Note the difference between \emph{per se}
@@ -461,7 +455,7 @@ This is not a problem if the ATLAS preprint style is used,
 as the journals will adapt the document to their style.
 
 For further information on \BibTeX\ and on the standard ATLAS style for referencing, 
-see the ``ATLAS \BibTeX\ Guide''~\cite{atlas-bibtex}.
+see the \enquote{ATLAS \BibTeX\ Guide}~\cite{atlas-bibtex}.
 More details on what to pay attention to can be found in Section~3.6 of the \enquote{ATLAS Style Guide}~\cite{atlas-style}.
 
 
@@ -478,7 +472,7 @@ which is based on \texttt{SIunits}.
 If you use a units package, it automatically set SI units in an upright font
 and leaves a small space between
 the value and the units (e.g.\ \SI{12}{\mm}). 
-In addition, it makes sure the value and unit end up on the same line. \verb|\SI{12}{\mm}|.
+In addition, it makes sure the value and unit end up on the same line: \verb|\SI{12}{\mm}|.
 Natural units, where $c=\hbar=1$, should be used for all
 ATLAS publications. Masses are therefore in \si{\GeV}, not \si[per-mode=symbol]{\GeV\per\clight}.
 

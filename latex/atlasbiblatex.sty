@@ -5,10 +5,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2014/12/23 v.01-05-03 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2015/01/30 v.01-05-04 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
-\typeout{ATLAS biblatex style v.01-05-03}
+%\typeout{ATLAS biblatex style v.01-05-04}
 
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
@@ -34,7 +34,8 @@
 
 % date=year option works for TeX Live 2013 or so onwards, but not for 2009
 \def\biblatexone{2009}
-\typeout{atlasbiblatex: texlive is [\ABIB@texlive] and biblatexone is [\biblatexone]}
+%\typeout{atlasbiblatex: texlive is [\ABIB@texlive] and biblatexone is [\biblatexone]}
+\typeout{atlasbiblatex: texlive is [\ABIB@texlive]}
 \ifx\APKG@texlive\biblatexone
   \relax
 \else
