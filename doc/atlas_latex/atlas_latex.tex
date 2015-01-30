@@ -417,8 +417,10 @@ your system is required:
 \item \Package{hyperref}: add hyperlinks and ability to click on cross-references;
 \item \Package{graphicx}: include graphics in the document;
 \item \Package{lineno}: add line numbers to documents;
-\item \Package{newtxtext} and \Package{newtxmath}: the standard ATLAS document font;
-\item \Package{xcolor}: add colours to \LaTeX.
+\item \Package{newtxtext} and \Package{newtxmath}: the standard ATLAS document font.
+  If this is not available, you can fall back to \Package{txfonts};
+\item \Package{xcolor}: add colours to \LaTeX;
+\item \Package{ifthen}: improved handling of conditionals.
 %\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
@@ -480,7 +482,7 @@ Further options are:
   \Package{subfigure};
 \item[\Option{subfigure=true|false}] (false) use the deprecated package \Package{subfigure} 
   instead of \Package{subfig};
-\item[\Option{texlive=2009}] set if you use and older version of \TeX\ Live like 2009.
+\item[\Option{texlive=2009}] set if you use an older version of \TeX\ Live like 2009.
   The only value that has an effect is 2009, 
   which this uses old (Version 1) option names for \Package{siunitx};
 \item[\Option{txfonts=true|false}] (false) load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
@@ -692,7 +694,7 @@ I also did some tests with Xubuntu 12.04.
 By default this has \TeX\ Live 2009 installed.
 The font package \Package{newtx} did not exist with this version of \TeX\ Live.
 Hence you need to give the option \Option{txfonts} to \Package{atlasdoc}.
-You also to add the option \Option{texlive=2009} to \Package{atlaspackage} and \Package{biblatex}
+You also have to add the option \Option{texlive=2009} to \Package{atlaspackage} and \Package{biblatex}
 (if you are using \Package{biblatex}).
 If you are using \Package{siunitx}, then you also have to load \Package{atlasphysics}
 with the option \Option{unit=off}.

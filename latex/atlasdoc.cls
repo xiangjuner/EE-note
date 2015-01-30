@@ -10,7 +10,8 @@
 \ProvidesClass{latex/atlasdoc}[2015/01/30 v.01-05-04 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
-% Use kvoptions package for all other options
+%-------------------------------------------------------------------------------
+% Process options. Use kvoptions package.
 \RequirePackage{kvoptions}
 %\RequirePackage[debugshow]{kvoptions}
 \SetupKeyvalOptions{
@@ -127,6 +128,7 @@
   \ADOC@maketitlefalse
 \fi
 
+%-------------------------------------------------------------------------------
 % Defaults for title page
 \newdimen\ADOC@skipbeforetitle
 \ADOC@skipbeforetitle=60\p@
@@ -196,6 +198,7 @@
 \newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
 
+%-------------------------------------------------------------------------------
 % Invoke main class
 \ifADOC@koma%
   \LoadClass[titlepage,11pt]{scrartcl}
@@ -263,6 +266,7 @@
 %\setcounter{secnumdepth}{-1}
 
 % Required packages
+\RequirePackage{ifthen}
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{babel}

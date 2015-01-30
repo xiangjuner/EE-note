@@ -10,7 +10,8 @@
 
 %\typeout{ATLAS biblatex style v.01-05-04}
 
-% Use kvoptions package to set options
+%-------------------------------------------------------------------------------
+% Process option. Use kvoptions package.
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
   family=ABIB,
@@ -22,6 +23,10 @@
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
+% Need ifthen package for improved conditional handling
+\RequirePackage{ifthen}
+
+%-------------------------------------------------------------------------------
 % Include the DOI as a hyerlink with the journal.
 \ifABIB@showdoi
   \relax
@@ -32,15 +37,13 @@
   %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
 \fi
 
-% date=year option works for TeX Live 2013 or so onwards, but not for 2009
-\def\biblatexone{2009}
-%\typeout{atlasbiblatex: texlive is [\ABIB@texlive] and biblatexone is [\biblatexone]}
+% date=year option works for TeX Live 2013 or so onwards
 \typeout{atlasbiblatex: texlive is [\ABIB@texlive]}
-\ifx\APKG@texlive\biblatexone
+\ifthenelse{\APKG@texlive < 2013}{%
   \relax
-\else
+}{%
   \ExecuteBibliographyOptions{date=year}
-\fi
+}
 
 
 % Turn off title for articles and booklets (CONF/PUB notes)
@@ -131,6 +134,7 @@
   pages = {}
 }
 
+% Check which version this works for
 % If you get an error here use institution+location+year
 % \renewbibmacro*{institution+location+year}{%
 \renewbibmacro*{institution+location+date}{%

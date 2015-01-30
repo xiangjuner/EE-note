@@ -56,6 +56,8 @@
 
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
+% More advanced if syntax
+\RequirePackage{ifthen}
 % Graphics
 \RequirePackage{graphicx}
 % Colour
@@ -116,13 +118,12 @@
 
 \ifAPKG@standard
   \ifAPKG@csquotes
-    \def\csquotesone{2009}
     % Language-sensitive quotes
-    \ifx\APKG@texlive\csquotesone
+    \ifthenelse{\APKG@texlive < 2010}{%
       \RequirePackage[babel=true]{csquotes}
-    \else
+    }{%
       \RequirePackage[autostyle=true]{csquotes}
-    \fi
+    }
   \fi
   % Extra options for footnotes
   % \RequirePackage[bottom]{footmisc}
@@ -147,9 +148,7 @@
   % Typset anything with units using this package - also has very useful table formatting 
   % Declare a few options and standard units for siunitx that are otherwise missing
   \ifAPKG@siunitx
-    \def\siunitxone{2009}
-    \typeout{texlive is [\APKG@texlive] and siunitxone is [\siunitxone]}
-    \ifx\APKG@texlive\siunitxone
+    \ifthenelse{\APKG@texlive < 2010}{
       \RequirePackage[noload=addn]{siunitx}
       \sisetup{seperr, repeatunits=false, alsoload=hep}
       \sisetup{obeyall}
@@ -159,7 +158,7 @@
 %      \newunit\pb{\pico\barn}
 %      \newunit\fb{\femto\barn}
 %      \newunit\clight{\ensuremath{c}}
-    \else
+    }{%
       \RequirePackage{siunitx}
       \sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
 %      detect-family = true, detect-display-math=true}
@@ -170,7 +169,7 @@
       \DeclareSIUnit\pb{\pico\barn}
       \DeclareSIUnit\fb{\femto\barn}
       \DeclareSIUnit\clight{\ensuremath{c}}
-    \fi
+    }
   \fi
 \fi
 
