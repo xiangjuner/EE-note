@@ -148,7 +148,7 @@
   % Typset anything with units using this package - also has very useful table formatting 
   % Declare a few options and standard units for siunitx that are otherwise missing
   \ifAPKG@siunitx
-    \ifthenelse{\APKG@texlive < 2010}{
+    \ifthenelse{\APKG@texlive < 2012}{
       \RequirePackage[noload=addn]{siunitx}
       \sisetup{seperr, repeatunits=false, alsoload=hep}
       \sisetup{obeyall}

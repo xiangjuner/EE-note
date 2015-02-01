@@ -479,12 +479,15 @@ Further options are:
 \item[\Option{csquotes=true|false}] (true) do not include the \Package{csquotes} package;
 \item[\Option{subcaption=true|false}] (false) use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
-  \Package{subfigure};
+  \Package{subfigure}.
+  It is probably best to only use it with \TeX\ Live 2012 or later;
 \item[\Option{subfigure=true|false}] (false) use the deprecated package \Package{subfigure} 
   instead of \Package{subfig};
-\item[\Option{texlive=2009}] set if you use an older version of \TeX\ Live like 2009.
-  The only value that has an effect is 2009, 
-  which this uses old (Version 1) option names for \Package{siunitx};
+\item[\Option{texlive=YYYY} set if you use an older version of \TeX\ Live like 2009.
+  A value less than 2013 adjusts a few \Package{biblatex} options.
+  A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
+  A value less than 2010 uses the old option names for ]\Package{csquotes}.
+  Use options \Option{txfonts} and \Option{texlive=2011} to test options for arXiv submissions;
 \item[\Option{txfonts=true|false}] (false) load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
 \item[\Option{lineno=true|false}] (false) load the \Package{lineno} package.
 \end{description}
@@ -658,178 +661,18 @@ I would expect everything to work with \TeX\ Live 2012 or later.
 Before that some option names for \Package{siunitx} were different, 
  and \Package{biblatex} and \Package{biber} were not really stable.
 
-If you have \TeX\ Live 2009, include the package \Package{atlaspackage} with the option
+If for example you have \TeX\ Live 2009, include the package \Package{atlaspackage} with the option
 \Option{texlive=2009}.
 This will then include \Package{siunitx} with the correct options for Version 1.
 You also have to add the option \Option{unit=false} to \Package{atlasphysics}
 and the option \Option{txfonts} to \Package{atlasdoc}.
 If you want to use \Package{biblatex},
-then it is probably better to use the \Package{bibtex} backend rather than \Package{biber}
+then it is probably better to use the \Package{bibtex} backend rather than \Package{biber}.
+This is the default and can be set by passing he option \Option{backend=bibtex} to \Package{atlaspackage}.
 
 The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
-The following sections give some details on the installations that I use for testing things.
-More complete and up-to-date information can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
-
-
-%-------------------------------------------------------------------------------
-\subsection{Ubuntu 14.04}
-
-I test things using Xubuntu 14.04.
-I start with the standard \TeX\ Live installation (package \texttt{texlive}).
-The following extra packages had to be installed:
-\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \Package{texlive-latex-extra} (footmisc);
-\item \Package{texlive-humanities} (lineno);
-\item \Package{texlive-science} (siunitx)
-\item \Package{texlive-bibtex-extra} and \Package{biber} (biblatex and biber);
-\item \Package{texlive-fonts-extra} (newtx fonts);
-\item \Package{texlivepublishers} (elsarticle).
-\end{itemize}
-
-
-%-------------------------------------------------------------------------------
-\subsection{Ubuntu 12.04}
-
-I also did some tests with Xubuntu 12.04.
-By default this has \TeX\ Live 2009 installed.
-The font package \Package{newtx} did not exist with this version of \TeX\ Live.
-Hence you need to give the option \Option{txfonts} to \Package{atlasdoc}.
-You also have to add the option \Option{texlive=2009} to \Package{atlaspackage} and \Package{biblatex}
-(if you are using \Package{biblatex}).
-If you are using \Package{siunitx}, then you also have to load \Package{atlasphysics}
-with the option \Option{unit=off}.
-It is also possible to pass the option \Option{texlive=2009} to the main class \Package{atlasdoc}.
-The following extra packages had to be installed:
-\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \Package{texlive-latex-extra} (footmisc);
-\item \Package{texlive-humanities} (lineno);
-\item \Package{texlive-science} (siunitx)
-\item \Package{biblatex} (biblatex and biber).
-\end{itemize}
-
-
-%-------------------------------------------------------------------------------
-\subsection{lxplus} 
-
-It works out of the box, if you modify your \texttt{PATH} to use a recent version of \TeX\ Live.
-Set your \texttt{PATH} as follows:
-\begin{verbatim}
-  export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
-\end{verbatim}
-
-
-%-------------------------------------------------------------------------------
-\subsection{Fedora 20} 
-
-Fedora 20 is an RPM-based distribution that is the version of Red Hat made for normal users.
-
-I started with a fairly basic setup.
-As I tested things with a virtual machine, I had to install the \enquote{Guest Additions},
-which also need things like the header files.
-I then installed the following:
-\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \Package{texlive}: basic \TeX\ Live installation;
-\item \Package{texlive-lineno} (lineno);
-\item \Package{texlive-savesym} (savesym);
-\item \Package{texlive-placeins} (placeins).
-\item \Package{texlive-tocloft} (tocloft);
-\item \Package{texlive-siunitx} (siunitx);
-\item \Package{texlive-newtx}, \Package{texlive-newtx-doc} and \Package{texlive-boondox} (newtx);
-\item \Package{texlive-preprint} (authblk);
-\item \Package{texlive-biblatex} (biblatex);
-\item \Package{texlive-booktabs} (booktabs);
-\item \Package{texlive-xtab} (xtab);
-\item \Package{texlive-mhchem} (mhchem);
-\item \Package{texlive-elsarticle} (elsarticle) Elsevier journals;
-\item \Package{texlive-revtex} (revtex) APS journals;
-\end{itemize}
-
-Finally, in order to use \Package{biber} rather than \BibTeX,
-I had to download the appropriate binary from SourceForge:
-\url{http://biblatex-biber.sourceforge.net}.
-In order to choose which binary you want you have to go to
-\url{http://sourceforge.net/projects/biblatex-biber/} and click your way through.
-The 1.8 version of \Package{biber} seems to work fine.
-
-An alternative (and probably better) way to install \Package{biber} is to follow the
-instructions that can be found on
-\url{http://copr.fedoraproject.org/coprs/cbm/Biber/}.
-You have to add a new repository to \Package{yum} and then you
-can install \Package{biber} like any other package.
-
-In order to download the \Package{atlaslatex} package, I had to install \Package{svn}.
-
-
-%-------------------------------------------------------------------------------
-\subsection{CentOS 7} 
-
-CentOS is an RPM-based distribution that is supposed to form the basis of future
-release of Scientific Linux.
-
-I started with a fairly basic setup that included tools for development.
-I then installed the \enquote{Technical Writing} collection.
-In addition I needed 
-\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \Package{texlive-booktabs} (booktabs);
-\item \Package{texlive-preprint} (authblk);
-\item \Package{texlive-tocloft} (tocloft);
-\item \Package{texlive-xtab} (xtab);
-\item \Package{texlive-placeins} (placeins).
-\end{itemize}
-However, I still got complaints about \File{lineno.sty}, \File{siunitx.sty},
-\File{biblatex.sty} and \File{logreq.sty}.
-If you want to use the ATLAS preprint style you also have to install
-\Package{newtx}, \Package{fontaxes} and \Package{boondox}.
-For the documentation and the heavy ion symbols you also need the \Package{mhchem} package.
-I was not able to find these in the standard RPM repositories.
-You can either get and install them from CTAN (\File{lineno.sty} is also available in \File{latex/other}),
-or install your own \TeX\ Live distribution.
-If you download the packages from CTAN, follow the \File{README} in each package to install them.
-The \Package{boondox} packages also needs \File{MD5.pm} in order to update the font map.
-You can install it with the command \texttt{yum install perl-Digest-MD5} as superuser.
-
-Finally, in order to use \Package{biber} rather than \BibTeX,
-I had to download the appropriate binary from SourceForge:
-\url{http://biblatex-biber.sourceforge.net}.
-In order to choose which binary you want you have to go to
-\url{http://sourceforge.net/projects/biblatex-biber/} and click your way through.
-The 1.9 version of \Package{biber} seems to work fine.
-This makes sense, as \Package{biblatex} from CTAN is also a recent version.
-
-
-%-------------------------------------------------------------------------------
-\subsection{Windows 7}
-
-MikTeX 2.9 (\url{http://miktex.org}) and TeXstudio 2.8.2 (\url{http://texstudio.sourceforge.net}).
-MikTeX has the advantage that it installs missing packages, provided you activated that option.
-However, I had to install \Package{babel-english} before I could compile any of the documents.
-
-If you want to compile the documentation under Windows you have to do some gymnastics,
-because I use links to find the style files.
-Windows~7 support symbolic links, but you have to create them.
-Hence the first step if to remove any \texttt{latex} directory links.
-These can be found in the directories: 
-\File{journal}, \File{doc/atlas\_bibtex}, \File{doc/atlas\_latex}, \File{doc/atlas\_paper}, 
-\File{doc/atlas\_physics}, \File{doc/atlas\_tables}.
-To create the link you use the \Package{mklink} command.
-You run this in a \Package{cmd} window, which you start as an Administrator.
-Here is what I did in the directory \File{doc/atlas\_bibtex}:
-\begin{verbatim}
-mklink /D \
-  "C:\Users\brock\Documents\atlas\latex\atlaslatex\doc\atlas_bibtex\latex" \
-  "C:\Users\brock\Documents\atlas\latex\atlaslatex\latex"
-\end{verbatim}
-This information I found under\\
-{\footnotesize \url{http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/}}
-
-
-%-------------------------------------------------------------------------------
-\subsection{MacOSX 10.9}
-
-I do all my development with MacOSX.
-Hence I would not expect any problems here, provided again you have a fairly recent
-installation of Mac\TeX.
-I use	Mac\TeX\ (which I download from \url{http://www.tug.org/mactex}) and TeXstudio 2.8.6.
+Details on the installations that I use for testing things
+and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
 
 
 %-------------------------------------------------------------------------------
@@ -881,7 +724,7 @@ In the template files, you have to use the command \texttt{make newtexmf} or cha
   \end{tabular}
 \end{center}
 
-If you are using \BibTeX\ you also have to change\\
+If you are using traditional \BibTeX\ you also have to change\\
 \verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
