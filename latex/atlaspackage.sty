@@ -7,6 +7,8 @@
 \ProvidesPackage{latex/atlaspackage}[2015/02/01 v.01-06-01 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
+% More advanced if syntax
+\RequirePackage{ifthen}
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -28,34 +30,39 @@
 \DeclareStringOption[bibtex]{backend}
 \ProcessKeyvalOptions*
 
-\typeout{atlaspackage: value of texlive is \APKG@texlive}
+\typeout{atlaspackage: value of APKG@texlive is \APKG@texlive}
 
 \newif\ifAPKG@less
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifAPKG@minimal
-  \typeout{APKG minimal settings}
+  \typeout{atlaspackage: minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
 \else
   \ifAPKG@full
-    \typeout{APKG full settings}
+    \typeout{atlaspackage: full settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@moretrue
   \else
-    \typeout{APKG default settings}
+    \typeout{atlaspackage: default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
   \fi
 \fi
 
+% Packages that did not exist for TeX Live < 2009
+\ifthenelse{\APKG@texlive < 2009}{%
+  \APKG@siunitxfalse
+  \APKG@biblatexfalse
+}{%
+}
+
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
-% More advanced if syntax
-\RequirePackage{ifthen}
 % Graphics
 \RequirePackage{graphicx}
 % Colour

@@ -7,6 +7,7 @@
 # Use "make cleanpdf to delete $(BASENAME).pdf.
 # "make cleanall" also deletes the PDF file $(BASENAME).pdf.
 
+TEXLIVE  = 2013
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = bibtex
@@ -22,13 +23,15 @@ default: run_pdflatex
 .PHONY: new newtexmf new2009 draftcover preprintcover auxmat clean cleanpdf help
 
 new:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex
+	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
+	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME).tex
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 newtexmf:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex >$(BASENAME).tex
+	sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex | \
+	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME).tex
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty

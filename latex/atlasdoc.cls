@@ -4,13 +4,15 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-06-00}
+\def\ATPackageVersion{01-06-01}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2015/02/01 v.01-06-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/02/01 v.01-06-01 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
 % Process options. Use kvoptions package.
 \RequirePackage{kvoptions}
 %\RequirePackage[debugshow]{kvoptions}
@@ -30,7 +32,9 @@
 \DeclareBoolOption[true]{maketitle}
 \DeclareBoolOption[false]{nomaketitle}
 \DeclareBoolOption[false]{letterpaper}
+\DeclareStringOption[2013]{texlive}
 \DeclareStringOption{paper}
+\DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
@@ -127,6 +131,21 @@
 \ifADOC@nomaketitle
   \ADOC@maketitlefalse
 \fi
+
+% Switch to txfonts for TeX Live <= 2012
+% Need to pass this option to atlaspackage as well
+\ifthenelse{\ADOC@texlive < 2012 \AND \boolean{ADOC@newtx}}{%
+  \typeout{*** atlasdoc: use txfonts instead of newtx}
+  \ADOC@newtxfalse
+  \ADOC@txfontstrue
+  \ifADOC@texmf
+    \def\ADOC@atlaspackage{atlaspackage}
+  \else
+    \def\ADOC@atlaspackage{latex/atlaspackage}
+  \fi
+  \PassOptionsToPackage{txfonts}{\ADOC@atlaspackage}
+}{%
+}
 
 %-------------------------------------------------------------------------------
 % Defaults for title page
@@ -266,7 +285,6 @@
 %\setcounter{secnumdepth}{-1}
 
 % Required packages
-\RequirePackage{ifthen}
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{babel}
@@ -298,6 +316,11 @@
     \else
       \typeout{atlasdoc: using newtx fonts package}
       \RequirePackage{newtxtext}
+      \ifthenelse{\ADOC@texlive < 2013}{%
+        \typeout{*** atlasdoc: include amsmath before newtxmath}
+        \RequirePackage{amsmath}
+      }{%
+      }
       \RequirePackage{newtxmath}
     \fi
   \fi
@@ -518,7 +541,7 @@
 
 \AtBeginDocument{%
   % If selected, generate ATLAS Cover Page
-  \typeout{atlasdoc is producing the cover and title pages}
+  %\typeout{atlasdoc is producing the cover and title pages}
   \ifADOC@coverpage
     \nolinenumbers
     \ACOV@PrintAtlasCover

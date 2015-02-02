@@ -2,15 +2,17 @@
 % This file provides a skeleton ATLAS document 
 % This file assumes that atlaslatex is installed in a central place like ~/texmf
 %-------------------------------------------------------------------------------
-\documentclass[texmf,UKenglish]{atlasdoc}
+\documentclass[texmf,UKenglish,texlive=2013]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish
 % british and american also work!
 % Selected options:
+%  texlive=YYYY          Specify TeX Live version (2013 is default)
 %  atlasstyle=true|false Use ATLAS style for document (default)
 %  coverpage             Create ATLAS draft cover page for collaboration circulation
 %                        See atlas-draft-cover.tex for a list of variables that should be defined.
 %  cernpreprint          Create front page for a CERN preprint
 %                        See atlas-preprint-cover.tex for a list of variables that should be defined.
+%  PAPER                 The document is an ATLAS paper (draft)
 %  CONF                  The document is a CONF note (only useful together with coverpage)
 %  PUB                   The document is a PUB note (only useful together with coverpage)
 %  txfonts=true|false    Use txfonts rather than the default newtx - needed for arXiv submission
