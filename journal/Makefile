@@ -1,5 +1,6 @@
 # Makefile for creating an ATLAS paper draft using journal classes
 
+TEXLIVE = 2013
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = bibtex
@@ -10,6 +11,9 @@ OPEN     = open
 .PHONY: clean
 
 all: atlas-elsevier atlas-jhep atlas-revtex
+
+texlive: $(BASENAME).tex
+	sed -i '.bak' 's/texlive=2013/texlive=$(TEXLIVE)/' $<
 
 atlas-elsevier: atlas-elsevier.pdf
 	@echo "Made $<"
