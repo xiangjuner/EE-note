@@ -24,29 +24,29 @@ default: run_pdflatex
 
 new:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
-	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME).tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 newtexmf:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex | \
-	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME).tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 draftcover:
-	sed 's/texlive=2013/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex >$(BASENAME)-draft-cover.tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex >$(BASENAME)-draft-cover.tex
 	#cp  $(BASENAME)-draft-cover.tex
 	
 preprintcover:
-	sed 's/texlive=2013/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
 	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
 	
 auxmat:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
-	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
 
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"

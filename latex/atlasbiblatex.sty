@@ -9,6 +9,8 @@
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
 % Process option. Use kvoptions package.
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -21,8 +23,7 @@
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
-% Need ifthen package for improved conditional handling
-\RequirePackage{ifthen}
+\typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
 
 %-------------------------------------------------------------------------------
 % Include the DOI as a hyerlink with the journal.
@@ -36,7 +37,6 @@
 \fi
 
 % date=year option works for TeX Live 2013 or so onwards
-\typeout{atlasbiblatex: texlive is [\ABIB@texlive]}
 \ifthenelse{\ABIB@texlive < 2013}{%
   \relax
 }{%

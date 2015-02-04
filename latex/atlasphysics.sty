@@ -9,6 +9,9 @@
 \ProvidesPackage{latex/atlasphysics}[2015/02/01 v.01-06-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
+%-------------------------------------------------------------------------------
+% xspace is always needed 
+\RequirePackage{xspace}
 % More advanced if syntax
 \RequirePackage{ifthen}
 % Use kvoptions package to set options
@@ -31,17 +34,18 @@
 \DeclareBoolOption[false]{texmf}
 \ProcessKeyvalOptions*
 
-% xspace is always needed 
-\RequirePackage{xspace}
+\typeout{atlasphysics: APHY@texlive is [\APHY@texlive]}
+
+%\APKG@siunitxtrue
 
 % Turn off units if siunitx is included and TeX Live is between 2009 and 2010
-\ifthenelse{\isundefined{\APKG@siunitx}}{%
-}{%
+\@ifpackageloaded{siunitx}{%
   \ifthenelse {\APHY@texlive > 2008 \AND \APHY@texlive < 2011 \AND \boolean{APKG@siunitx}}{%
-    \typeout{*** atlasphysics: turn off use of units definitions}
+    \typeout{*** atlasphysics: turn off use of atlasunit definitions}
       \APHY@unitfalse
-  }{%
+  }{%\typeout{*** atlasphysics: do not change use of atlasunit}
   }
+}{%\typeout{*** atlasphysics: siunitx is not loaded}
 }
 
 % Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex

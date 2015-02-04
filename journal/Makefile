@@ -16,7 +16,7 @@ all: atlas-elsevier atlas-jhep atlas-revtex
 
 texlive:
 	for file in $(TEXFILES); do \
-	  sed -i'.bak' 's/texlive=2013/texlive=$(TEXLIVE)/' $$file; \
+	  sed -i'.bak' 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' $$file; \
 	done
 
 atlas-elsevier: atlas-elsevier.pdf

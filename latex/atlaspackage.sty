@@ -7,6 +7,7 @@
 \ProvidesPackage{latex/atlaspackage}[2015/02/01 v.01-06-01 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
+%-------------------------------------------------------------------------------
 % More advanced if syntax
 \RequirePackage{ifthen}
 % Use kvoptions package to set options
@@ -30,7 +31,7 @@
 \DeclareStringOption[bibtex]{backend}
 \ProcessKeyvalOptions*
 
-\typeout{atlaspackage: value of APKG@texlive is \APKG@texlive}
+\typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
 
 \newif\ifAPKG@less
 \newif\ifAPKG@standard
