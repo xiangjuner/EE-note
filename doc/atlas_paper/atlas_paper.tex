@@ -3,7 +3,7 @@
 % to get your paper draft into a form that minimises the amount of work needed
 % to get it approved by the collaboration - assuming that the physics is OK!
 %-------------------------------------------------------------------------------
-\documentclass[PAPER,UKenglish]{latex/atlasdoc}
+\documentclass[PAPER,UKenglish,texlive=2014]{latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
@@ -115,7 +115,7 @@ If only Monte Carlo data are used in the publication, this fact should be stated
 \subsubsection*{Example of a Search Analysis Abstract}
 
 A search for the Standard Model Higgs boson in the two photon decay channel is reported, 
-using \SI{1.08}{\per\fb} of proton-proton collision data at a centre-of-mass energy of \SI{7}{\TeV} recorded by the ATLAS detector.
+using \SI{1.08}{\per\fb} of proton--proton collision data at a centre-of-mass energy of \SI{7}{\TeV} recorded by the ATLAS detector.
 No significant excess is observed in the investigated mass range of \SIrange{110}{150}{\GeV}. 
 Upper limits on the cross-section times branching ratio of between 2.0 and 5.8 times the Standard Model prediction are derived for this mass range.
 
@@ -159,12 +159,13 @@ The notable exception is Physical Review Letters, which capitalises the
 first word and all other important words,
 e.g.\ \enquote{The Search for Large Extra Dimensions}.
 
-This document can be found on the web pages of the ATLAS Publication Committee. 
-The Publication Committee also provides standard texts giving examples
-for description of the ATLAS detector, and the appropriate references,
+This document can be found on the web pages of the ATLAS Publication Committee
+and in the \texttt{atlaslatex} package. 
+The Publication Committee provides standard texts giving examples
+for the description of the ATLAS detector, and the appropriate references,
 as well as other text snippets that may be useful to avoid too much use of ATLAS jargon.
-These text pieces are included in Appendices~\ref{app:atlasdet} and \ref{app:snippet}.
-They are also part of the ATLAS \LaTeX\ package.
+The ATLAS detector description is included in Appendix~\ref{app:atlasdet}.
+Text snippets can be found on the web pages~\cite{pubcom-snippet}.
 Comments and/or suggestions on improvements are very welcome and
 should be given to the Publication Committee.
 
@@ -340,10 +341,11 @@ More technical details on how to use the ATLAS \LaTeX\ templates to help you fol
 these recommendations can be found in other documents:
 \begin{itemize}
 \item ATLAS style guide~\cite{atlas-style}.
-\item ATLAS \LaTeX\ guide~\cite{atlas-latex};
-\item ATLAS \BibTeX\ guide~\cite{atlas-bibtex};
+\item Users guide to the ATLAS \LaTeX\ package~\cite{atlas-latex};
+\item Guide to references and \BibTeX\ in ATLAS documents~\cite{atlas-bibtex};
 \item ATLAS physics symbols~\cite{atlas-physics};
-\item Rounding in ATLAS~\cite{atlas-rounding};
+\item Guide to formatting tables for ATLAS documents~\cite{atlas-tables};
+\item Rounding – ATLAS Recommendations~\cite{atlas-rounding};
 \item Report of the ATLAS figures task force~\cite{atlas-figures}.
 \end{itemize}
 
@@ -565,16 +567,6 @@ macros for particles and more. See the separate document
 These descriptions can be found in the file \File{templates/atlas-detector.tex}.
 
 \input{../../template/atlas-detector}
-
-
-%-------------------------------------------------------------------------------
-\section{Text snippets}
-\label{app:snippet}
-%-------------------------------------------------------------------------------
-
-These text snippets can be found in the file \File{templates/atlas-snippets.tex}.
-
-\input{../../template/atlas-snippet}
 
 
 \end{document}

@@ -2,7 +2,7 @@
 % Examples on how to make tables for ATLAS documents
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{../../latex/atlasdoc}
+\documentclass[UKenglish,texlive=2014]{../../latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
@@ -201,7 +201,7 @@ You may also need to rotate a big table.
 The \Package{rotating} package can be used for this.
 
 In order to shorten commands when doing rounding in tables, it is useful to define a few extra macros.
-Typical definition can be found in the file \File{atlas\_tables-defs.sty}.
+Typical definitions can be found in the file \File{atlas\_tables-defs.sty}.
 
 
 %-------------------------------------------------------------------------------
@@ -377,7 +377,7 @@ This appendix gives the \LaTeX\ code including the raw data used for
 Tables~\ref{tab:rounding:xsect}, 
 \ref{tab:xsect-ET} and \ref{tab:xsect-x}.
 These files for Tables~\ref{tab:xsect-ET} and \ref{tab:xsect-x} can also be 
-found on \url{http://to-be-defined}.
+found in the \texttt{doc/atlas\_tables} directory of the \texttt{atlaslatex} package.
 
 \subsection{Table~\protect\ref{tab:rounding:xsect}}
 \begin{verbatim}

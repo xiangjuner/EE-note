@@ -2,7 +2,7 @@
 % Examples on how to fill BibTeX entries in the ATLAS Bibliographic Style
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish,texlive=2014]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{latex/atlaspackage}
@@ -93,7 +93,7 @@ There are 3 possible cases that will be considered here:
 2. is the default for ATLAS. You can change to the \texttt{biber} backend (alternative 1.) by passing the option
 \Option{backend=biber} to \Package{atlaspackage}. 
 Use of traditional \BibTeX\ (alternative 3.) is deprecated.
-However the templates indicate via commented out commands how to use it.
+However, the templates indicate via commented out commands how to use it.
 
 The typical compilation cycle when using \Package{biblatex} with the \texttt{bibtex} backend 
 or the traditional version of \BibTeX{} looks like the following:
@@ -108,10 +108,9 @@ If you use \Package{biblatex} with the backend \Package{biber} rather than \Pack
 \texttt{bibtex} with \texttt{biber}.
 
 \texttt{biber} and \texttt{bibtex} create a file with the extension \texttt{.bbl}, which
-contains the actual references used, and \LaTeX{} then takes care
-to include them in your paper. Note that only after the third run of
-pdf\LaTeX\ will all references be correct. Unless you change a reference
-you do not have to do the \texttt{bibtex/biber} step again.
+contains the actual references used, and (pdf)\LaTeX{} then takes care to include them in your document. 
+Note that only after the third run of pdf\LaTeX\ will all references be correct. 
+Unless you change a reference you do not have to do the \texttt{bibtex/biber} step again.
 The style of the references is governed by the \Package{biblatex} options that you
 use or the \BibTeX\ style file (which has the extension \File{bst}).
 
@@ -150,7 +149,6 @@ If you use traditional \BibTeX\ you include the source file(s) at the place wher
   atlas_biblatex}
 }
 \end{verbatim}
-at the point where the bibliography should be printed.
 
 If you use \Package{atlaspackage}, then \Package{biblatex} is used with the \texttt{bibtex} backend by default.
 Turn off the use with the option \Option{biblatex=false}.
@@ -169,7 +167,7 @@ The format of the references in your ATLAS paper depends on the journal to which
 but in general we can classify the journal styles in two categories: 
 those which require the title of the references and those which do not. 
 To ensure the homogeneity in all ATLAS publications, 
-\Package{biblatex} and \BibTeX style files are provided for each of these categories 
+\Package{biblatex} and \BibTeX\ style files are provided for each of these categories 
 along with an example file that illustrates how different types of bibliographic material should be referenced.
 
 The \Package{biblatex} style file can be found in the directory \File{latex},
@@ -188,7 +186,7 @@ A few adjustments are made in the style file \Package{latex/atlasbiblatex.sty},
 which you should include with a normal \Macro{usepackage} command.
 By default, this style includes the document title.
 The title can be turned off by including the option \Option{articletitle=false}.
-This option turns off the title for entry types \texttt{@Article} and \texttt{@Booklet},
+This option turns off the title for entry types \texttt{@Article}, \texttt{@Booklet} and \texttt{@Report},
 as \texttt{@Booklet} should be used as the entry type for CONF and PUB notes.
 
 To print the bibliography include the command:
@@ -292,13 +290,14 @@ assuming that the reference is for an LHC collaboration paper:
 %  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
 %  as a regular interword space should be inserted and not an end of sentence space.
 \item Remove the journal letter from the volume and include it in the journal,
-  e.g.\ \enquote{\EPJC}, \enquote{\PRD}. 
+  e.g.\ "\EPJC", "\PRD". 
 \end{enumerate}
 If the reference is for another collaboration, rename the \texttt{collaboration} field to
 \texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
 \texttt{author} field.
 
 Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
+Do not comment the lines out, as comment lines are not recognised inside \BibTeX\ entries.
 
 
 %-------------------------------------------------------------------------------
@@ -331,7 +330,7 @@ Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you ca
   the macros defined in \Package{atlasjournal}.
   If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
   \Package{atlasjournal} definitions.
-\item Comments are not part of the bibliogrpahy databse format. Text outside entries will be ignored.
+\item Comments are not part of the bibliography database format. Text outside entries will be ignored.
   Do not try to comment out fields inside an entry!
   If there are fields that you do not want, you have to move them outside the entry.
 \end{itemize}
@@ -340,7 +339,8 @@ In earlier versions of this document, it was recommended to include the \Package
 if you use \BibTeX\ and want to cite multiple references in the format [m-n].
 However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
 The \texttt{revtex} style also does this for you.
-If you use \texttt{biblatex} use the option \Option{style=numeric-comp}.
+If you use \texttt{biblatex} use the option \Option{style=numeric-comp},
+which is the default in \Package{atlaslatex}.
 
 %-------------------------------------------------------------------------------
 \section{Examples}
@@ -383,7 +383,8 @@ You should specify the journal in the \texttt{journal} field in form:\\
 \item[2014-08-14: Ian Brock] Updated the example references a bit and gave a bit more background information.
 \item[2014-12-03: Ian Brock] Text taken from paper template and merged into this document. 
   Document adjusted for use of \Package{biblatex} as the default.
-\item[015-01-30] Try to clarify nomenclature and what the recommended way to use \BibTeX\ proceed is.
+\item[2015-01-30: Ian Brock] Try to clarify the nomenclature and 
+  the recommended way to use \BibTeX.
 \end{description}
 
 %-------------------------------------------------------------------------------

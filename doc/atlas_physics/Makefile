@@ -1,13 +1,17 @@
 #------------------------------------------------------------------------------
-# Makefile to make atlas-physics documentation
+# Makefile to make atlas_physics documentation
 #------------------------------------------------------------------------------
+
+BASENAME = atlas_physics
+TEXLIVE = 2013
 
 .PHONY: clean cleanpdf
 
-BASENAME = atlas_physics
-
 all:
 	make -f ../Makefile BASENAME=$(BASENAME)
+
+texlive:
+	make -f ../Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
 
 clean:
 	make -f ../Makefile clean
@@ -15,5 +19,4 @@ clean:
 cleanpdf:
 	-rm $(BASENAME).pdf
 
-cleanall: clean
-	-rm $(BASENAME).pdf
+cleanall: clean cleanpdf

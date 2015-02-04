@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % This note lists the symbols defined in atlasphysics.sty.
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish,texlive=2014]{latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 \usepackage[default,backend=biber]{latex/atlaspackage}
@@ -84,15 +84,19 @@ The following options are available, where the default setting is given in paren
 \item[process](false) Some example processes. 
   These are not included by default as the current choice is rather arbitrary
   and certainly not complete;
-\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
-\item[xref](true) Useful abbreviations for cross-references.
+\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits};
+\item[xref](true) Useful abbreviations for cross-references;
+\item[texlive=YYYY](2013) set if you use an older version of \TeX\ Live like 2009;
+\item[texmf] use the syntax \Macro{usepackage\{package\}}
+  instead of \Macro{usepackage\{latex/package\}} to include packages.
+  This is needed if you install \Package{atlaslatex} centrally,
+  rather than in a \File{latex} subdirectory;
 \end{description}
 Note that \Option{BSM} and \Option{BSM=true} are equivalent.
 Use the syntax \Option{option=false} to turn off an option.
 
-There is an additional option \Option{texmf}.
-If this option is included, the subfiles are included using the command:
-\verb|\RequirePackage{atlaspartcle}| etc. instead of \verb|\RequirePackage{latex/atlaspartcle}|.
+If the  option \Option{texmf} is included, the subfiles are included using the command:
+\verb|\RequirePackage{atlasparticle}| etc. instead of \verb|\RequirePackage{latex/atlasparticle}|.
 This is useful if you install the ATLAS \LaTeX\ package in a central directory such as \File{\$\{HOME\}/texmf/tex/latex}.
 
 All definitions are done in a consistent way using \verb|\newcommand*|.
@@ -156,8 +160,8 @@ produces
 \]
 Note that \Macro{eqalign} is also redefined in this package so that \Macro{dk} works.
 
-The following macro names have been changed:
-\verb|\ptsq| $\to$ \verb|\pTsq|: \Macro{pTsq}
+The following macro names have been changed:\\
+\verb|\ptsq| $\to$ \verb|\pTsq|.
 
 
 \newpage

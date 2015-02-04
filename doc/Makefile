@@ -7,9 +7,10 @@ BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
-.PHONY: clean cleanpdf
-
+TEXLIVE  = 2013
 BASENAME = dummy
+
+.PHONY: clean cleanpdf
 
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
@@ -17,6 +18,9 @@ run_pdflatex: $(BASENAME).pdf
 run_latex: $(BASENAME).dvi
 	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress $<
 	@echo "Made $< and $(basename $<).pdf"
+
+texlive: $(BASENAME).tex
+	sed -i '.bak' 's/texlive=2013/texlive=$(TEXLIVE)/' $<
 
 # Standard LaTeX targets
 $(BASENAME).pdf: $(BASENAME).tex *.bib

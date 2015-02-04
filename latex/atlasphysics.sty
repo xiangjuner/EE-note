@@ -27,6 +27,7 @@
 \DeclareBoolOption[false]{process}
 \DeclareBoolOption[true]{unit}
 \DeclareBoolOption[true]{xref}
+\DeclareStringOption[2013]{texlive}
 \DeclareBoolOption[false]{texmf}
 \ProcessKeyvalOptions*
 
@@ -34,10 +35,13 @@
 \RequirePackage{xspace}
 
 % Turn off units if siunitx is included and TeX Live is between 2009 and 2010
-\ifthenelse {\ADOC@texlive > 2008 \AND \ADOC@texlive < 2011 \AND \boolean{APKG@siunitx}}{%
-  \typeout{*** atlasphysics: turn off use of units definitions}
-    \APHY@unitfalse
+\ifthenelse{\isundefined{\APKG@siunitx}}{%
 }{%
+  \ifthenelse {\APHY@texlive > 2008 \AND \APHY@texlive < 2011 \AND \boolean{APKG@siunitx}}{%
+    \typeout{*** atlasphysics: turn off use of units definitions}
+      \APHY@unitfalse
+  }{%
+  }
 }
 
 % Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex

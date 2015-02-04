@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish]{latex/atlasdoc}
+\documentclass[UKenglish,texlive=2014]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
 \usepackage[backend=biber]{latex/atlaspackage}
@@ -94,7 +94,7 @@ The design principle is that you have a main document and
 the style files and \Package{atlasdoc} class are in a subdirectory \File{latex}.
 The logos that are needed are kept in a \File{logos} directory.
 This subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
-See Section~\ref{sec:texmf} for the changes that have to be made if you want to install
+See below and Section~\ref{sec:texmf} for how to proceed if you want to use and/or install
 the package in a central place.
 
 The usual procedure is that for each document that you create,
@@ -107,30 +107,26 @@ Each document can then be independent of the \Package{atlaslatex} release.
 To create a new document you can issue the commands:
 %
 \begin{verbatim}
-make new [BASENAME=mydocument]
+make new [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
 This command copies \File{atlas-document.tex} and
 \File{atlas-document-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.
+The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2013.
 It also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
 By default the document will be an ATLAS note.
 If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
-
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
+
 If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is:
 %
 \begin{verbatim}
-make newtexmf [BASENAME=mydocument]
+make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
-but see Section~\ref{sec:texmf} for more details.
-If you have an older version of \TeX\ Live (2009) you can use the command:
-%
-\begin{verbatim}
-make new2009 [BASENAME=mydocument]
-\end{verbatim}
+See Section~\ref{sec:texmf} for more details.
 
 Note that you have to specify the language of your document as an option in the
 \Macro{documentclass} command. Typical settings are
@@ -138,6 +134,13 @@ Note that you have to specify the language of your document as an option in the
 \item UKenglish (or british);
 \item USenglish (or american).
 \end{itemize}
+
+As mentioned above the default \TeX\ Live version is currently set to 2013.
+This should be the only option you have to adjust if you use different versions of \LaTeX.
+You can always set a version lower than the one you have installed to maintain compatibility with older versions.
+To test compatibility with arXiv, try a setting of 2011.
+This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
+are using the ATLAS preprint style.
 
 Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
 
@@ -655,20 +658,21 @@ The definitions can be found in a separate document \File{atlas-physics.pdf}.
 %-------------------------------------------------------------------------------
 
 The \Package{atlasdoc} class works both with \LaTeX{} and pdf\LaTeX{}.
-I recommend to use pdf\LaTeX\ and this is now the default.
+I recommend to use pdf\LaTeX\ and this is the default.
 
-I would expect everything to work with \TeX\ Live 2012 or later.
-Before that some option names for \Package{siunitx} were different, 
- and \Package{biblatex} and \Package{biber} were not really stable.
+I would expect everything to work with \TeX\ Live 2009 or later.
+You should just set the option \Option{texlive} appropriately.
+This is best done in the document class, as the option is then passed to all other packages.
+Examples of changes include some option names for \Package{siunitx},
+and \Package{biblatex} and \Package{biber} were not really stable in earlier years.
 
-If for example you have \TeX\ Live 2009, include the package \Package{atlaspackage} with the option
-\Option{texlive=2009}.
+If for example you have \TeX\ Live 2009, add the option \Option{texlive=2009} to the document class.
 This will then include \Package{siunitx} with the correct options for Version 1.
-You also have to add the option \Option{unit=false} to \Package{atlasphysics}
-and the option \Option{txfonts} to \Package{atlasdoc}.
+It will also switch to \Option{unit=false} to \Package{atlasphysics}
+and use option \Option{txfonts} in \Package{atlasdoc}.
 If you want to use \Package{biblatex},
-then it is probably better to use the \Package{bibtex} backend rather than \Package{biber}.
-This is the default and can be set by passing he option \Option{backend=bibtex} to \Package{atlaspackage}.
+the current default for all years is to use the \Package{bibtex} backend rather than \Package{biber}.
+You can use \Package{biber} instead by passing he option \Option{backend=biber} to \Package{atlaspackage}.
 
 The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
 Details on the installations that I use for testing things
@@ -710,6 +714,10 @@ The advantage of using SVN is that you can keep the package up to date, by just 
 If you already have a \File{bibtex} directory, 
 first move it out of the way, then checkout from SVN
 and then move the contents of the old directory back into the \File{bibtex} tree.
+
+Under Windows, it appears to be better to use \texttt{https} instead of \texttt{svn+ssh}.
+You should therefore checkout:\\
+\verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
 
 In the template files, you have to use the command \texttt{make newtexmf} or change
 \begin{center}

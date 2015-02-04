@@ -37,22 +37,24 @@
 
 % date=year option works for TeX Live 2013 or so onwards
 \typeout{atlasbiblatex: texlive is [\ABIB@texlive]}
-\ifthenelse{\APKG@texlive < 2013}{%
+\ifthenelse{\ABIB@texlive < 2013}{%
   \relax
 }{%
   \ExecuteBibliographyOptions{date=year}
 }
 
 
-% Turn off title for articles and booklets (CONF/PUB notes)
+% Turn off title for articles and booklets/reports (CONF/PUB notes)
 \ifABIB@articletitle
   % Titles all in italics or in quotes
   \ifABIB@titlequote
     \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
     \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
+    \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
   \else
     \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
     \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
+    \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
   \fi
 \else
   \AtEveryBibitem{

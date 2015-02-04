@@ -20,7 +20,7 @@ BASENAME = mydocument
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
 
-.PHONY: new newtexmf new2009 draftcover preprintcover auxmat clean cleanpdf help
+.PHONY: new newtexmf draftcover preprintcover auxmat clean cleanpdf help
 
 new:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
@@ -36,20 +36,17 @@ newtexmf:
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
-new2009:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-document-2009.tex >$(BASENAME).tex
-	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	touch $(BASENAME).bib
-	touch $(BASENAME)-defs.sty
-
 draftcover:
-	cp template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
+	sed 's/texlive=2013/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex >$(BASENAME)-draft-cover.tex
+	#cp  $(BASENAME)-draft-cover.tex
 	
 preprintcover:
-	cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
+	sed 's/texlive=2013/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
+	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
 	
 auxmat:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex >$(BASENAME)-auxmat.tex
+	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
+	sed 's/texlive=2013/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
 
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
@@ -77,25 +74,22 @@ run_latex: $(BASENAME).dvi
 	
 help:
 	@echo "To create a new document give the commands:"
-	@echo "make new [BASENAME=mydocument]"
+	@echo "make new [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "make"
 	@echo ""
 	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
-	@echo "make newtexmf [BASENAME=mydocument]"
-	@echo ""
-	@echo "If you have an old version of TeX Live (2009):"
-	@echo "make new2009 [BASENAME=mydocument]"
+	@echo "make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo ""
 	@echo "If you need a standalone draft cover give the commands:"
-	@echo "make draftcover [BASENAME=mydocument]"
+	@echo "make draftcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "pdflatex mydocument-draft-cover"
 	@echo ""
 	@echo "If you need a standalone preprint cover give the commands:"
-	@echo "make preprintcover [BASENAME=mydocument]"
+	@echo "make preprintcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "pdflatex mydocument-preprint-cover"
 	@echo ""
 	@echo "If you need a document for auxiliary material give the commands:"
-	@echo "make auxmat [BASENAME=mydocument]"
+	@echo "make auxmat [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "pdflatex mydocument-auxmat"
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
