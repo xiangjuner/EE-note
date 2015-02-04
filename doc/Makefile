@@ -1,13 +1,13 @@
 # Makefile for creating documentation for ATLAS LaTeX
 # Usually called from a subdirectory
 
+TEXLIVE  = 2013
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
-TEXLIVE  = 2013
 BASENAME = dummy
 
 .PHONY: clean cleanpdf
@@ -20,7 +20,7 @@ run_latex: $(BASENAME).dvi
 	@echo "Made $< and $(basename $<).pdf"
 
 texlive: $(BASENAME).tex
-	sed -i '.bak' 's/texlive=2013/texlive=$(TEXLIVE)/' $<
+	sed -i'.bak' 's/texlive=2013/texlive=$(TEXLIVE)/' $<
 
 # Standard LaTeX targets
 $(BASENAME).pdf: $(BASENAME).tex *.bib
