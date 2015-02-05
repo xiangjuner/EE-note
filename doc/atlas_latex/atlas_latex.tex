@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2014]{latex/atlasdoc}
+\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
 
 % Use biblatex and biber for the bibliography
 \usepackage[backend=biber]{latex/atlaspackage}
@@ -490,7 +490,7 @@ Further options are:
   A value less than 2013 adjusts a few \Package{biblatex} options.
   A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
   A value less than 2010 uses the old option names for ]\Package{csquotes}.
-  Use options \Option{txfonts} and \Option{texlive=2011} to test options for arXiv submissions;
+  Use options \Option{txfonts} and \Option{texlive=2013} to test options for arXiv submissions;
 \item[\Option{txfonts=true|false}] (false) load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
 \item[\Option{lineno=true|false}] (false) load the \Package{lineno} package.
 \end{description}
@@ -666,7 +666,7 @@ This is best done in the document class, as the option is then passed to all oth
 Examples of changes include some option names for \Package{siunitx},
 and \Package{biblatex} and \Package{biber} were not really stable in earlier years.
 
-If for example you have \TeX\ Live 2009, add the option \Option{texlive=2009} to the document class.
+If for example you have \TeX\ Live 2009, add the option \Option{texlive=2013} to the document class.
 This will then include \Package{siunitx} with the correct options for Version 1.
 It will also switch to \Option{unit=false} to \Package{atlasphysics}
 and use option \Option{txfonts} in \Package{atlasdoc}.
@@ -968,7 +968,7 @@ Some things to note about using \Package{siunitx}:
 The option names are somewhat different for \TeX\ Live 2009,
 as this contained \Package{siunitx} Version 1.
 You can use the older options by including \Package{atlaspackage} with the 
-option \Option{texlive=2009}.
+option \Option{texlive=2013}.
 You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
 the \Package{atlasphysics} package.
 

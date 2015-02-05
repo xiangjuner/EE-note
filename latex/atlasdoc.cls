@@ -50,6 +50,7 @@
 %\DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpapertrue} %\def\ADOC@paperstring{a4paper}}
 %\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpaperfalse} %\def\ADOC@paperstring{letterpaper}}
 %\ProcessOptions\relax
+\newcommand*{\ATTeXLiveVersion}{\ADOC@texlive}
 
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
