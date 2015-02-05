@@ -23,22 +23,37 @@ default: run_pdflatex
 .PHONY: new newtexmf draftcover preprintcover auxmat clean cleanpdf help
 
 new:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
+	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex; \
+	fi
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 newtexmf:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex | \
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex | \
+	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex; \
+	fi
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 draftcover:
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex >$(BASENAME)-draft-cover.tex
-	#cp  $(BASENAME)-draft-cover.tex
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
+	    >$(BASENAME)-draft-cover.tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex; \
+	fi
 	
 preprintcover:
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
