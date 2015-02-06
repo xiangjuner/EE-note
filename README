@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------
-ATLAS LaTeX class, style files and templates to typeset notes and papers
+ATLAS LaTeX class, style files and templates to typeset notes and papers.
 See ChangeLog or SVN log for history of changes.
 
 Responsible: Ian Brock (Ian.Brock@cern.ch)
@@ -19,12 +19,12 @@ the latex directory. The following main style files exist:
   atlascontribute.sty	List of contributors (and authors) for a document
   atlaspackage.sty		Standard packages used in ATLAS documents
   atlasphysics.sty		Useful definitions. This file simply inputs others.
-					Options can be used to specify which ones should be included.
+						Options can be used to specify which ones should be included.
 
 Documentation can be found in the doc directory.
   atlas-paper.pdf		Guide to the content and style of ATLAS papers
   atlas-latex.pdf		Guide to the use of the ATLAS document templates and styles
-  atlas-bibtex.pdf		Short guide to BibTeX in ATLAS
+  atlas-bibtex.pdf		Guide to references and BibTeX in ATLAS
   atlas-physics.pdf		Symbols defined in atlasphysics.sty
   atlas-tables.pdf		Some guidelines and help for tables
 
@@ -43,10 +43,10 @@ The TeX Live version is set to 2013 by default.
 This version number should be fine for newer versions of TeX Live 
 and also for an up-to-date MikTeX 2.9 installation.
   make help
-gives you a bit more assistance on which make targets exist.s
+gives you a bit more assistance on which make targets exist.
 
-A users guide to the templates can be found in atlas_latex.pdf. You can produce
-yourself this document (and thus test that your LaTeX setup is working)
+A users guide to the templates can be found in doc/atlas_latex.pdf. You can produce
+this document yourself (and thus test that your LaTeX setup is working)
 by giving the commands:
   cd doc/atlas_latex
   make

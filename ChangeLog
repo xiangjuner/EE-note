@@ -1,4 +1,5 @@
 2015-02-02	 Ian Brock <Ian.Brock@cern.ch>
+	* Remove contact editor from cover page.
 	* Adjust things so that only TeX Live version has to be specified.
 	* Remove 'make new2009' target. Use 'make new TEXLIVE=2009' etc instead.
 	* Should work back to TeX Live 2009. Before that have to turn off biblatex.
