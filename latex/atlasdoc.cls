@@ -7,7 +7,7 @@
 \def\ATPackageVersion{01-06-01}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2015/02/01 v.01-06-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/02/08 v.01-06-01 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------

@@ -1,7 +1,9 @@
-2015-02-02	 Ian Brock <Ian.Brock@cern.ch>
+2015-02-08	 Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 01-06-01.
 	* Remove contact editor from cover page.
 	* Adjust things so that only TeX Live version has to be specified.
 	* Remove 'make new2009' target. Use 'make new TEXLIVE=2009' etc instead.
+	* Remove atlas-document-2009.tex, as texlive=YYYY now steers everything.
 	* Should work back to TeX Live 2009. Before that have to turn off biblatex.
 2015-02-01	 Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 01-06-00.
