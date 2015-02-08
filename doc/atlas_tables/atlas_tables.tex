@@ -2,16 +2,16 @@
 % Examples on how to make tables for ATLAS documents
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{../../latex/atlasdoc}
+\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
-\usepackage[backend=biber]{../../latex/atlaspackage}
+\usepackage[backend=biber]{latex/atlaspackage}
 \usepackage{latex/atlasbiblatex}
 \usepackage{authblk}
 \usepackage{verbatim}
 
-\usepackage{../../latex/atlasphysics}
+\usepackage{latex/atlasphysics}
 
 \usepackage{atlas_tables-defs}
 
@@ -55,8 +55,12 @@ Tables should only contain as many lines as are needed for clarity.
 Table~\ref{tab:yield:2dig} shows a good example that has been taken
 from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
 
-\begin{table}[htbp]
+\ifthenelse{\ATTeXLiveVersion < 2012}{%
+  \sisetup{retainplus=true}
+}{
   \sisetup{retain-explicit-plus=true}
+}
+\begin{table}[htbp]
   \centering
   \begin{tabular}{%
       l
@@ -331,15 +335,22 @@ is non-trivial.
 \begin{table}[htb]
   \centering
   \renewcommand{\arraystretch}{1.4}
-  \subfloat[No special formatting or rounding. Option
-  \textsf{scientific-notation=fixed} used.]{%
-    \label{tab:xsect-x1}%
-    \input{cross_sections_charm-x1}}
-  \qquad
-  \subfloat[Several fixes including rescaled cross-section. Quite a
-  lot of \Macro{phantom} commands are applied to get alignment correct.]{%
-    \label{tab:xsect-x2}%
-    \input{cross_sections_charm-x2}}
+  \ifthenelse{\ATTeXLiveVersion < 2012}{%
+    \textbf{This table does not appear here, as it uses features that were only 
+    properly implemented for \TeX\ Live 2012  and later.}
+  }{%
+    \subfloat[No special formatting or rounding. Option
+      \textsf{scientific-notation=fixed} used.]{%
+      \label{tab:xsect-x1}%
+      \input{cross_sections_charm-x1}
+    }
+    \qquad
+    \subfloat[Several fixes including rescaled cross-section. Quite a
+      lot of \Macro{phantom} commands are applied to get alignment correct.]{%
+      \label{tab:xsect-x2}%
+      \input{cross_sections_charm-x2}
+    }
+  }
   \caption{Cross-section vs.\ $x$.}
   \label{tab:xsect-x}
 \end{table}
@@ -380,6 +391,8 @@ Tables~\ref{tab:rounding:xsect},
 \ref{tab:xsect-ET} and \ref{tab:xsect-x}.
 These files for Tables~\ref{tab:xsect-ET} and \ref{tab:xsect-x} can also be 
 found in the \texttt{doc/atlas\_tables} directory of the \texttt{atlaslatex} package.
+The options given here correspond to those that are need for \TeX\ Live 2012 and later.
+See the code for the appropriate options for earlier versions.
 
 \subsection{Table~\protect\ref{tab:rounding:xsect}}
 \begin{verbatim}

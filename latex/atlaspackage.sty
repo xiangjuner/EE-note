@@ -159,10 +159,22 @@
       \sisetup{seperr, repeatunits=false, alsoload=hep}
       \sisetup{obeyall}
 %      \newunit\micron{\micro\metre}
-%      \newunit\mrad{\milli\radian}
-%      \newunit\nb{\nano\barn}
-%      \newunit\pb{\pico\barn}
-%      \newunit\fb{\femto\barn}
+      \renewunit\mrad{\milli\radian}
+      \newunit{\barn}{b}
+      \newunit{\TeVc}{\tera\eVperc}
+      \newunit{\GeVc}{\giga\eVperc}
+      \newunit{\MeVc}{\mega\eVperc}
+      \newunit{\keVc}{\kilo\eVperc}
+      \newunit{\eVc}{\eVperc}
+      \newunit{\TeVcc}{\tera\eVperc\squared}
+      \newunit{\GeVcc}{\giga\eVperc\squared}
+      \newunit{\MeVcc}{\mega\eVperc\squared}
+      \newunit{\keVcc}{\kilo\eVperc\squared}
+      \newunit{\eVcc}{\eVperc\squared}
+      \newunit\inb{\per\nano\barn}
+      \newunit\ipb{\per\pico\barn}
+      \newunit\ifb{\per\femto\barn}
+      \newunit\degr{\degree}
 %      \newunit\clight{\ensuremath{c}}
     }{%
       \RequirePackage{siunitx}
