@@ -3,7 +3,12 @@
 % atlaspackage and/or atlasphysics are only needed if symbols
 % defined in them are used in the abstract
 % ----------------------------------------------------------- 
-\documentclass[atlasstyle,txfonts,UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found
+\newcommand*{\ATLASLATEXPATH}{latex/}
+% Use this variant if the files are in a central location, e.g. $HOME/texmf
+% \newcommand*{\ATLASLATEXPATH}{}
+%-------------------------------------------------------------------------------
+\documentclass[atlasstyle,txfonts,UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish
 % british and american also work!
 % Relevant options:
@@ -16,10 +21,10 @@
 % \usepackage[minimal]{latex/atlaspackage}
 
 % CERN preprint frontpage
-\usepackage[cernpreprint]{latex/atlascover}
+\usepackage[cernpreprint]{\ATLASLATEXPATH atlascover}
 
 % Useful macros - probably not needed
-% \usepackage{latex/atlasphysics}
+% \usepackage{\ATLASLATEXPATH atlasphysics}
 
 % Paths for figures - ATLAS and CERN logos
 \graphicspath{{logos/}}

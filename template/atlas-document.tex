@@ -1,7 +1,12 @@
 %-------------------------------------------------------------------------------
 % This file provides a skeleton ATLAS document
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found
+\newcommand*{\ATLASLATEXPATH}{latex/}
+% Use this variant if the files are in a central location, e.g. $HOME/texmf
+% \newcommand*{\ATLASLATEXPATH}{}
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish
 % british and american also work!
 % Selected options:
@@ -20,7 +25,7 @@
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{latex/atlaspackage}
+\usepackage{\ATLASLATEXPATH atlaspackage}
 % Selected options:
 %  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography
 %  backend=biber         Use the biber backend rather than bibtex
@@ -28,13 +33,13 @@
 %  default               Standard set of packages
 %  full                  Full set of packages
 % Style file with biblatex options for ATLAS documents
-\usepackage{latex/atlasbiblatex}
+\usepackage{\ATLASLATEXPATH atlasbiblatex}
 
 % Package for creating list of authors and contributors to the analysis
-\usepackage{latex/atlascontribute}
+\usepackage{\ATLASLATEXPATH atlascontribute}
 
 % Useful macros
-\usepackage{latex/atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 % See doc/atlas-physics.pdf for a list of the defined symbols
 % Default options are 
 %   true:  journal, misc, particle, unit, xref

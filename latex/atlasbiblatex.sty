@@ -20,6 +20,7 @@
 \DeclareBoolOption[true]{articletitle}
 \DeclareBoolOption[false]{titlequote}
 \DeclareBoolOption[false]{showdoi}
+\DeclareBoolOption[true]{eprint}
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
@@ -36,6 +37,13 @@
   %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
 \fi
 
+% Turn off printing of arXiv
+\ifABIB@eprint
+  \relax
+\else
+  \ExecuteBibliographyOptions{eprint=false}
+\fi
+
 % date=year option works for TeX Live 2013 or so onwards
 \ifthenelse{\ABIB@texlive < 2013}{%
   \relax
@@ -44,7 +52,7 @@
 }
 
 
-% Turn off title for articles and booklets/reports (CONF/PUB notes)
+% Use consistent format for title for articles and booklets/reports (CONF/PUB notes)
 \ifABIB@articletitle
   % Titles all in italics or in quotes
   \ifABIB@titlequote

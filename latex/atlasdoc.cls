@@ -78,6 +78,13 @@
   \fi
 \fi
 
+% Directory for style files
+\ifADOC@texmf
+  \providecommand*{\ATLASLATEXPATH}{}
+\else
+  \providecommand*{\ATLASLATEXPATH}{latex/}
+\fi
+
 % Type of document
 \ifADOC@PAPER
   \ADOC@PAPERtrue
@@ -139,12 +146,13 @@
   \typeout{*** atlasdoc: use txfonts instead of newtx}
   \ADOC@newtxfalse
   \ADOC@txfontstrue
-  \ifADOC@texmf
-    \def\ADOC@atlaspackage{atlaspackage}
-  \else
-    \def\ADOC@atlaspackage{latex/atlaspackage}
-  \fi
-  \PassOptionsToPackage{txfonts}{\ADOC@atlaspackage}
+%  \ifADOC@texmf
+%    \def\ADOC@atlaspackage{atlaspackage}
+%  \else
+%    \def\ADOC@atlaspackage{latex/atlaspackage}
+%  \fi
+%  \PassOptionsToPackage{txfonts}{\ADOC@atlaspackage}
+  \PassOptionsToPackage{txfonts}{\ATLASLATEXPATH atlaspackage}
 }{%
 }
 
@@ -252,11 +260,12 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\ifADOC@texmf
-  \def\ADOC@atlascover{atlascover}
-\else
-  \def\ADOC@atlascover{latex/atlascover}
-\fi
+%\ifADOC@texmf
+%  \def\ADOC@atlascover{atlascover}
+%\else
+%  \def\ADOC@atlascover{latex/atlascover}
+%\fi
+\def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
 \ifADOC@coverpage
   \ifADOC@CONFnote
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}

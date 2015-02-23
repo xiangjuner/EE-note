@@ -40,7 +40,7 @@
 
 % Turn off units if siunitx is included and TeX Live is between 2009 and 2010
 \@ifpackageloaded{siunitx}{%
-  \ifthenelse {\APHY@texlive > 2008 \AND \APHY@texlive < 2011 \AND \boolean{APKG@siunitx}}{%
+  \ifthenelse {\APHY@texlive > 2008 \AND \APHY@texlive < 2011}{%
     \typeout{*** atlasphysics: turn off use of atlasunit definitions}
       \APHY@unitfalse
   }{%\typeout{*** atlasphysics: do not change use of atlasunit}
@@ -49,11 +49,15 @@
 }
 
 % Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex
-\ifAPHY@texmf
-  \newcommand*{\APHY@atlasdir}{}
-\else
-  \newcommand*{\APHY@atlasdir}{latex/}
-\fi
+\ifthenelse{\isundefined{\ATLASLATEXPATH}}{%
+  \ifAPHY@texmf
+    \newcommand*{\APHY@atlasdir}{}
+  \else
+    \newcommand*{\APHY@atlasdir}{latex/}
+  \fi
+}{%
+  \newcommand*{\APHY@atlasdir}{\ATLASLATEXPATH}
+}
 
 % BSM particles including SUSY
 \ifAPHY@BSM      \RequirePackage{\APHY@atlasdir atlasbsm} \fi

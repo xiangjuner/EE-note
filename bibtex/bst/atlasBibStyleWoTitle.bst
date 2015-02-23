@@ -771,9 +771,9 @@ FUNCTION {article}
     format.pages output
   }
   if$
-  note output
   format.eprint output
   format.url output
+  note output
   new.sentence
   format.SLACcitation output
   fin.entry

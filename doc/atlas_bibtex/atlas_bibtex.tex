@@ -190,6 +190,19 @@ By default, this style includes the document title.
 The title can be turned off by including the option \Option{articletitle=false}.
 This option turns off the title for entry types \texttt{@Article}, \texttt{@Booklet} and \texttt{@Report},
 as \texttt{@Booklet} should be used as the entry type for CONF and PUB notes.
+A summary of the options is:
+\begin{description}
+\item[\Option{articletitle=true|false}] turn on (default) or off including the article title in the bibliography;
+\item[\Option{titlequote=true|false}] enclose the title in quotes instead of emphasize (default);
+\item[\Option{showdoi=true|false}] make the journal reference a link to the DOI instead of displaying it (default);
+\item[\Option{eprint=true|false}] print the arXiv reference if available (default).
+\item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2009.
+  This option is usually set in the document class.
+\end{description}
+
+With \Package{biblatex}, notes are printed after the journal reference and before the arXiv or URL.
+If you want the note to be printed after the arXiv or URL, use the \texttt{adddendum} rather than the \texttt{note} field.
+The \texttt{addendum} field is ignored by traditional \BibTeX.
 
 To print the bibliography include the command:
 %
