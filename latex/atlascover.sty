@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-06-02}
+\def\ATPackageVersion{01-06-03}
 
-\ProvidesPackage{latex/atlascover}[2015/02/23 v.01-06-02 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2015/03/02 v.01-06-03 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\typeout{ATLAS cover page v.\ATPackageVersion}
@@ -348,9 +348,12 @@
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverFooter}{%
   \begin{minipage}[b]{\linewidth}
-    \fontfamily{phv}\fontseries{m}\fontsize{9}{10.8}\selectfont 
-    Document created on \today\ from file \texttt{\jobname.tex}\newline
-    Cover page automatically created with \texttt{atlascover.sty}
+    \fontfamily{phv}\fontseries{m}\fontsize{9}{10.8}\selectfont
+    \ifACOV@atlasdoc%
+      Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion
+    \else
+      Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion
+    \fi
   \end{minipage}%
 }
 
