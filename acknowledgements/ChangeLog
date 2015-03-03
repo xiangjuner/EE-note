@@ -1,5 +1,12 @@
+2015-02-19 Ian Brock <Ian.Brock@cern.ch>
+	* Add support from China
 2014-12-08 Ian Brock <Ian.Brock@cern.ch>
 	* Imported into atlaslatex
+2014-10-14 Alessandra Ciocio for Pub. Com. 
+	* replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX)
+2014-02-19 Alessandra Ciocio for Pub. Com. 
+	* replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel (19-Feb-2014) (DOC, TEX)
+	
 Assembled by Pub. Com. (Jul 19, 2006) (DOC)
 Updated by Kerstin Jon-And for the detector paper (Jan 12, 2008) (DOC, PDF)
 Updated by Chara Petridou for the CSC book (Apr 20, 2009) (DOC, TEX)
@@ -25,6 +32,4 @@ Updated by Alessandra Ciocio for Pub. Com. (replaced old name with new name ARRS
 Updated by Alessandra Ciocio for Pub. Com. (replace MERYS (MECTS), Romania with MNE/IFA, Romania) (19-Sep-2013) (DOC, TEX)
 Updated by Alessandra Ciocio for Pub. Com. (replace MICINN, Spain with MINECO, Spain) (2-Oct-2013) (DOC, TEX)
 Updated by Alessandra Ciocio for Pub. Com. (replace MNiSW, Poland with MNiSW and NCN, Poland) (4-Nov-2013) (DOC, TEX)
-Updated by Alessandra Ciocio for Pub. Com. (replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel) (19-Feb-2014) (DOC, TEX)
-Updated by Alessandra Ciocio for Pub. Com. (replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX)
 
