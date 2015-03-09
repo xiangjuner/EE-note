@@ -38,8 +38,11 @@
 \affil{University of Bonn}
 
 \AtlasAbstract{%
-  This document illustrates how to use \BibTeX\ for the bibliography of your ATLAS paper.
-  It discusses what to pay attention to when creating references and how to get round common problems.
+  This document discusses how to use \BibTeX\ for the bibliography of your ATLAS paper.
+  It covers what to pay attention to when creating references and how to get round common problems.
+  Standard \texttt{.bib} bibliography files are provided
+  which contain all ATLAS and CMS journal publications as well as ATLAS CONF and PUB notes.
+
   Use of both \Package{biblatex} and the more traditional \BibTeX\ for formatting the references is covered.
   A \Package{biblatex} style file and two \BibTeX\ (\texttt{.bst}) style files have been created 
   that can be used with any of the ATLAS supported journals,
@@ -54,7 +57,7 @@
 %-------------------------------------------------------------------------------
 \begin{document} 
 
-%\maketitle
+\maketitle
 
 %-------------------------------------------------------------------------------
 \section{Introduction}
@@ -73,13 +76,13 @@ Although it often appears harder to use at the beginning, it means that the numb
 typos should be reduced significantly and the format of the references
 will be correct, without you having to worry about formatting it.
 In addition the order of the references is automatically correct.
+Files which contain ATLAS and CMS journal publications
+as well as ATLAS CONF and PUB notes in \BibTeX{} format are provided -- see \Sect{\ref{sec:atlascmsrefs}}.
 
 A new implementation of \BibTeX\ is provided by the \Package{biblatex}~\cite{biblatex} package.
 All ATLAS documents use this package now by default.
 One major advantage of the package is that it defines quite a few more entry types
 that are much more suitable for online documents and things like CONF and PUB notes.
-It is also possible to use UTF-8 encoding in the entries, which means that letters such as
-ä, é, ß can be included directly in the text.
 Adjustment of the style is also much simpler.
 It is possible to take a base style and then just apply changes to it rather than
 having to learn the details of how \texttt{bst} files are constructed.
@@ -96,6 +99,8 @@ There are 3 possible cases that will be considered here:
 \Option{backend=biber} to \Package{atlaspackage}. 
 Use of traditional \BibTeX\ (alternative 3.) is deprecated.
 However, the templates indicate via commented out commands how to use it.
+If you use the \texttt{biber} backend, it is also possible to use UTF-8 encoding in the entries, which means that letters such as
+ä, é, ß can be included directly in the text.
 
 The typical compilation cycle when using \Package{biblatex} with the \texttt{bibtex} backend 
 or the traditional version of \BibTeX{} looks like the following:
@@ -122,13 +127,15 @@ work much more reliably with pdf\LaTeX.
 
 
 %-------------------------------------------------------------------------------
-\section{Bibliography database}
+\section{Bibliography databases}
 %-------------------------------------------------------------------------------
 
 One or more files with the extension \texttt{.bib} 
 (in this example: \texttt{atlas\_paper.bib}) should contain all the references. 
 The files may also contain references that you do not use, so they may act like a
-library of references. 
+library of references.
+See \Sect{\ref{sec:atlascmsrefs}} for details on files which contain ATLAS and CMS journal publications
+as well as ATLAS CONF and PUB notes.
 
 You should check that you base your \File{.bib} file on the examples provided,
 as it has the references in the style recommended for ATLAS publications.
@@ -159,6 +166,25 @@ If you want to use the \Package{biber} backend, include \Package{atlaspackage} w
 use the command \texttt{biber} instead of \texttt{bibtex} to process the \texttt{.bib} files.
 Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib} file.
 
+
+%-------------------------------------------------------------------------------
+\subsection{Databases with ATLAS and CMS references}
+\label{sec:atlascmsrefs}
+
+Four database files with all ATLAS and CMS journal references as well as
+ATLAS CONF and PUB notes are provided:
+\begin{description}
+\item[ATLASbib.bib] The citation key is the ATLAS reference code, e.g.\ \texttt{HIGG-2012-27};
+\item[CMSbib.bib] The citation key is the CMS reference code, e.g.\ \texttt{CMS-HIG-12-036};
+\item[ConfNotes.bib] The citation key is the CONF note number, e.g.\ \texttt{ATLAS-CONF-2014-063};
+\item[PubNotes.bib] The citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
+\end{description}
+These are available in the directory \File{bibtex/bib} of \Package{atlaslatex}.
+However, these files are only updated when a new version of \Package{atlaslatex} is released.
+Up-to-date versions are available from the PubCom TWiki~\cite{pubcom-refs}.
+The files are updated once per month and all entries have been checked for correct formatting.
+You are strongly encouraged to use these files and not try to maintain your own copies of
+such publications.
 
 %-------------------------------------------------------------------------------
 \section{ATLAS bibliography style files}

@@ -178,9 +178,10 @@
 %      \newunit\clight{\ensuremath{c}}
     }{%
       \RequirePackage{siunitx}
-      \sisetup{separate-uncertainty, range-units=repeat, detect-display-math=true}
-%      detect-family = true, detect-display-math=true}
+      \sisetup{separate-uncertainty, range-units=repeat}
       \sisetup{group-digits=integer, group-minimum-digits=4}
+      \sisetup{detect-all}
+%      detect-family = true, detect-display-math=true}
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}
       \DeclareSIUnit\nb{\nano\barn}

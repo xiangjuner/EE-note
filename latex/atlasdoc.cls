@@ -4,10 +4,10 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-06-03}
+\def\ATPackageVersion{01-07-00}
 
 % --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2015/03/02 v.01-06-03 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/03/10 v.01-07-00 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -29,8 +29,8 @@
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{auxmat}
-\DeclareBoolOption[true]{maketitle}
-\DeclareBoolOption[false]{nomaketitle}
+\DeclareBoolOption[false]{maketitle}
+\DeclareBoolOption[true]{nomaketitle}
 \DeclareBoolOption[false]{letterpaper}
 \DeclareStringOption[2013]{texlive}
 \DeclareStringOption{paper}
@@ -63,17 +63,16 @@
 % CERN preprint or auxiliary material
 \ifADOC@cernpreprint
   \ADOC@auxmatfalse
-  \ADOC@maketitlefalse
 \else
   \ifADOC@preprint
     \ADOC@cernpreprinttrue
     \ADOC@auxmatfalse
-    \ADOC@maketitlefalse
+    %\ADOC@maketitlefalse
   \else
     \ifADOC@auxmat
       \ADOC@cernpreprintfalse
       \ADOC@auxmattrue
-      \ADOC@maketitlefalse
+      %\ADOC@maketitlefalse
     \fi
   \fi
 \fi
@@ -137,7 +136,14 @@
 
 % Obsolete command to turn off making title page
 \ifADOC@nomaketitle
-  \ADOC@maketitlefalse
+  \relax
+\else
+  \typeout{*** atlasdoc: This option has no effect. Users should use the macro maketitle instead}
+\fi
+% Obsolete command to turn on or off making title page - user should say \maketile
+\ifADOC@maketitle
+  \typeout{*** atlasdoc: maketitle is a deprecated option.}
+  \typeout{*** atlasdoc: Users should use the macro maketitle instead}
 \fi
 
 % Switch to txfonts for TeX Live <= 2012
@@ -146,12 +152,6 @@
   \typeout{*** atlasdoc: use txfonts instead of newtx}
   \ADOC@newtxfalse
   \ADOC@txfontstrue
-%  \ifADOC@texmf
-%    \def\ADOC@atlaspackage{atlaspackage}
-%  \else
-%    \def\ADOC@atlaspackage{latex/atlaspackage}
-%  \fi
-%  \PassOptionsToPackage{txfonts}{\ADOC@atlaspackage}
   \PassOptionsToPackage{txfonts}{\ATLASLATEXPATH atlaspackage}
 }{%
 }
@@ -522,8 +522,7 @@
   \@thanks
 }
 
-% Follow style of atlascover to create title page.
-\renewcommand\maketitle{%
+\newcommand\MakeAtlasTitle{%
   \thispagestyle{empty}
 %  \pagestyle{plain}
   \pagenumbering{arabic}
@@ -533,35 +532,17 @@
   \vfill
   \noindent{\AtlasTitleFooter}
   \clearpage
-%  \setcounter{page}{1}%
-%  \global\let\thanks\relax
-%  \global\let\maketitle\relax
-%  \global\let\@thanks\@empty
-%  \global\let\@author\@empty
-%  \global\let\@date\@empty
-%  \global\let\@title\@empty
-%  \global\let\title\relax
-%  \global\let\author\relax
-%  \global\let\date\relax
-%  \global\let\and\relax
-%  \ifADOC@atlasstyle
-%    \deffootnote{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
-%  \fi
 }
 
-\AtBeginDocument{%
+\newcommand{\MakeAtlasCoverTitle}{%
   % If selected, generate ATLAS Cover Page
-  %\typeout{atlasdoc is producing the cover and title pages}
+  \typeout{atlasdoc: producing the cover and title pages}
   \ifADOC@coverpage
     \nolinenumbers
     \ACOV@PrintAtlasCover
     \ACOV@PrintAtlasCoverPageTwo
   \fi
   \setcounter{page}{1}
-  % Add line numbers
-  \ifx\ADOC@draftversion\@empty%
-  \else \linenumbers
-  \fi
   % If selected, generate CERN preprint front page
   \ifADOC@cernpreprint
     \typeout{atlasdoc: making CERN preprint front page}
@@ -573,16 +554,32 @@
       \ACOV@PrintAuxmatCover
     % Standard title page
     \else
-      \ifADOC@maketitle
-        \typeout{atlasdoc: making standard document title page}
-        \maketitle
-      \fi
+      \typeout{atlasdoc: making standard ATLAS document title page}
+      \MakeAtlasTitle
     \fi
   \fi
   \clearpage
+}
+
+% Follow style of atlascover to create title page.
+\renewcommand\maketitle{%
+  \MakeAtlasCoverTitle
+}
+
+\AtBeginDocument{%
+  % Deprecated option, but kept for backwards compatibility
+  \ifADOC@maketitle%
+    \typeout{atlasdoc: deprecated maktitle option set}
+    \MakeAtlasCoverTitle
+  \else
+    \typeout{atlasdoc: deprecated maketitle option not set :-)}
+  \fi
   % Add draft heading and line numbers
   \ifx\ADOC@draftversion\@empty%
-  \else \draftheading 
+    \typeout{atlasdoc: this is not an ATLAS draft}
+  \else 
+    \typeout{atlasdoc: this is an ATLAS draft}
+    \draftheading 
   \fi
 }
 

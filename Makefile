@@ -1,12 +1,17 @@
 # Makefile for creating an ATLAS LaTeX document
 #------------------------------------------------------------------------------
-# By default makes mydocument.pdf using target run_pdflatex
-# Replace mydocument with your main filename or add another target set
-# Replace BIBTEX = bibtex with BIBTEX = biber if you use biblatex and biber instead of bibtex
+# By default makes mydocument.pdf using target run_pdflatex.
+# Replace mydocument with your main filename or add another target set.
+# Adjust TEXLIVE if it is not correct, or pass it to "make new"
+# Replace BIBTEX = bibtex with BIBTEX = biber if you use biber instead of bibtex.
+# Adjust FIGSDIR for your figures directory tree
+# Adjust the %.pdf dependicies according to your diredctory structure
 # Use "make clean" to cleanup.
-# Use "make cleanpdf to delete $(BASENAME).pdf.
+# Use "make cleanpdf" to delete $(BASENAME).pdf.
 # "make cleanall" also deletes the PDF file $(BASENAME).pdf.
 
+#-------------------------------------------------------------------------------
+# Check which TeX Live installation you have with the command pdflatex --version
 TEXLIVE  = 2013
 LATEX    = latex
 PDFLATEX = pdflatex
@@ -15,12 +20,38 @@ BIBTEX   = bibtex
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
+#-------------------------------------------------------------------------------
+# The main document filename
 BASENAME = mydocument
+#-------------------------------------------------------------------------------
+# Adjust this according to your top-level figures directory
+# This directory tree is used by the "make cleanepstopdf" command
+FIGSDIR  = figs
+#-------------------------------------------------------------------------------
+
+# EPSTOPDFFILES = `find . -name \*eps-converted-to.pdf`
+rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
+EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
 
-.PHONY: new newtexmf draftcover preprintcover auxmat clean cleanpdf help
+.PHONY: new newtexmf draftcover preprintcover auxmat \
+	clean cleanpdf help
+
+# Standard pdflatex target
+run_pdflatex: $(BASENAME).pdf
+	@echo "Made $<"
+
+#-------------------------------------------------------------------------------
+# If your bib files are not in the main directory adjust this target accordingly
+#%.pdf:	%.tex *.bib bibtex/bib/*.bib
+%.pdf:	%.tex *.bib
+	$(PDFLATEX) $<
+	-$(BIBTEX)  $(basename $<)
+	$(PDFLATEX) $<
+	$(PDFLATEX) $<
+#-------------------------------------------------------------------------------
 
 new:
 	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
@@ -54,29 +85,20 @@ draftcover:
 	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
 	  cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex; \
 	fi
-	
+
 preprintcover:
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
 	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
-	
+
 auxmat:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
-
-run_pdflatex: $(BASENAME).pdf
-	@echo "Made $<"
 
 run_latex: $(BASENAME).dvi
 	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress ${BASENAME}
 	@echo "Made $<"
 
-# Standard Latex targets
-%.pdf:	%.tex *.bib
-	$(PDFLATEX) $<
-	-$(BIBTEX)  $(basename $<)
-	$(PDFLATEX) $<
-	$(PDFLATEX) $<
-
+# Targets if you run latex instead of pdflatex
 %.dvi:	%.tex 
 	$(LATEX)    $<
 	-$(BIBTEX)  $(basename $<)
@@ -86,11 +108,12 @@ run_latex: $(BASENAME).dvi
 %.bbl:	%.tex *.bib
 	$(LATEX) $*
 	$(BIBTEX) $*
-	
+
 help:
 	@echo "To create a new document give the commands:"
 	@echo "make new [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "make"
+	@echo "If your bib files are not in the main directory, adjust the %.pdf target accordingly." 
 	@echo ""
 	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
 	@echo "make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]"
@@ -110,6 +133,8 @@ help:
 	@echo "make clean    to clean auxiliary files (not output PDF)"
 	@echo "make cleanpdf to clean output PDF files"
 	@echo "make cleanall to clean all files"
+	@echo "make cleanepstopdf to clean PDF files automatically made from EPS"
+	@echo ""
 
 %.ps:	%.dvi
 	$(DVIPS) $< -o $@
@@ -119,10 +144,15 @@ clean:
 		*.bbl *.blg *.brf *.bcf *-blx.bib *.run.xml \
 		*.cb *.ind *.idx *.ilg *.inx \
 		*.synctex.gz *~ ~* spellTmp 
-	
+
 cleanpdf:
 	-rm $(BASENAME).pdf 
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
 	-rm $(BASENAME)-auxmat.pdf
 
 cleanall: clean cleanpdf
+
+# Clean the PDF files created automatically from EPS files
+cleanepstopdf: $(EPSTOPDFFILES)
+	@echo "Removing PDF files made automatically from EPS files"
+	-rm $^

@@ -61,6 +61,7 @@ By default the document will be an ATLAS note.
 If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
+Have a look at \File{Makefile} for other things you can adjust.
 
 If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is:
 %
@@ -83,6 +84,9 @@ You can always set a version lower than the one you have installed to maintain c
 To test compatibility with arXiv, try a setting of 2011.
 This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 are using the ATLAS preprint style.
+
+As of Version 01-07-00 of \Package{atlaslatex} you should include the command \Macro{maketitle} after your
+\verb|\begin{document}| if you want the document title to be printed.
 
 Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
 
@@ -172,6 +176,7 @@ This can be achieved with the following code snippet that should be used for the
 The first two lines are needed if you do not use the standard ATLAS preprint style.
 Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=false}
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
+This is the default as of Version 01-07-00 of \Package{atlaslatex}.
 
 
 %-------------------------------------------------------------------------------
@@ -318,11 +323,11 @@ Several more options can be set:
 \item[CONF] the document is a CONF note;
 \item[PUB] the document is an PUB note;
 \item[auxmat] the document contains auxiliary material for a preprint;
-\item[maketitle=true|false] turn on (default) or off the creation of a title page. If you turn it off,
-  but still want a title give the command \Macro{maketitle} after
-  \verb|\begin{document}|;
+\item[maketitle=true|false] turn on or off (default) the creation of a title page within \Macro{AtBeginDocument}.
+  If the option is false, but you still want a title, give the command \Macro{maketitle} after
+  \verb|\begin{document}|. This is the recommended way of proceeding;
 \item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
-  This option is deprecated -- use \Option{maketitle=false} instead;
+  This option has no effect as of Version 01-07-00 of \Package{atlaslatex};
 \item[floatopt=true|false] adjust the options (default) governing number and placement of floats on a page;
 \item[koma] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
 \item[texmf] use the syntax \Macro{usepackage\{package\}}
@@ -475,7 +480,8 @@ instead of the the usual \texttt{usepackage} command: this will ensure
 that the cover page is produced before the title page of the document.
 
 You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
-In this case you need the option \texttt{maketitle=false} in the \texttt{atlasdoc} class
+In this case you need the option \texttt{maketitle=false}
+(which is the default as of Version 01-07-00 of \Package{atlaslatex}) in the \texttt{atlasdoc} class
 (if you are using it)
 and you include the \Macro{maketitle} command after \verb|\begin{document}|.
 
@@ -510,6 +516,22 @@ These offsets are ignored, as of Version 01-04-00 of \Package{atlaslatex},
 as the problems with spurious offsets have been eliminated.
 
 The option \Option{clearpage}, which used to exist, has no effect.
+
+
+%-------------------------------------------------------------------------------
+\subsection{CERN preprint and arXiv}
+\label{sec:preprint}
+%-------------------------------------------------------------------------------
+
+If you are writing an ATLAS paper and it has been approved by the collaboration,
+you have to make a CERN preprint title page before submitting the paper to arXiv.
+You do this by replacing the option \Option{PAPER} by \Option{cernpreprint} for \Package{atlasdoc}.
+The CERN preprint number is given via the macro \Macro{PreprintIdNumber}.
+At the same time you should pass the option \Option{texlive=2011} (or earlier) to
+\Package{atlasdoc}. This is because arXiv contains a 2011 \TeX\ Live installation.
+Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
+Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
+Further details on how to proceed can be found on the Physics Office TWiki.
 
 
 %-------------------------------------------------------------------------------
@@ -608,13 +630,14 @@ logos are in \File{logos}. This structure assumes that you will make a separate 
 for each document that you create. If you want to include these files in SVN, note that you only need to add the
 \File{latex}, \File{logos} and \File{bibtex} directories of the \Package{atlaslatex} package to SVN.
 
-If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the
+If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
 \File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree -- see Section~\ref{sec:texmf}.
 
 If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
 at the beginning of your document. This would enable you to maintain a single copy of each 
 \Package{atlaslatex} version and easily switch between versions.
-For example, you give the command \verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-06-01/}|
+For example, you give the command\\
+\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-06-01/}|
 to use version 01-06-01 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
 \File{../atlaslatex-01-06-01}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
@@ -1073,3 +1096,4 @@ Mike Vetterli implemented several changes to the cover pages, including switchin
 Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributions to the preprint cover page.
 
 Sven Menke provided the code so that bold math works in titles correctly.
+Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
