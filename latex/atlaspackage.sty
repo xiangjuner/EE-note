@@ -37,18 +37,18 @@
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifAPKG@minimal
-  \typeout{atlaspackage: minimal settings}
+  \typeout{atlaspackage: using minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
 \else
   \ifAPKG@full
-    \typeout{atlaspackage: full settings}
+    \typeout{atlaspackage: using full settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@moretrue
   \else
-    \typeout{atlaspackage: default settings}
+    \typeout{atlaspackage: using default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
@@ -95,7 +95,7 @@
 
 % Font
 \ifAPKG@txfonts
-  \typeout{Using txfonts and savesym}
+  \typeout{atlaspackage: using txfonts and savesym}
   \RequirePackage[varg]{txfonts}
   % Encoding used for printout
   \RequirePackage[T1]{fontenc}

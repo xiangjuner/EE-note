@@ -3,6 +3,9 @@
 % This file assumes that atlaslatex is installed in a central place like ~/texmf
 %-------------------------------------------------------------------------------
 \documentclass[texmf,UKenglish,texlive=2013]{atlasdoc}
+% The following command is needed by arXiv to ensure use of pdflatex
+% It should be included in the first 5 lines of the preamble
+% \pdfoutput=1
 % The language of the document must be set: usually UKenglish or USenglish
 % british and american also work!
 % Selected options:
@@ -13,11 +16,11 @@
 %  cernpreprint          Create front page for a CERN preprint
 %                        See atlas-preprint-cover.tex for a list of variables that should be defined.
 %  PAPER                 The document is an ATLAS paper (draft)
-%  CONF                  The document is a CONF note (only useful together with coverpage)
-%  PUB                   The document is a PUB note (only useful together with coverpage)
+%  CONF                  The document is a CONF note (draft)
+%  PUB                   The document is a PUB note (draft)
 %  txfonts=true|false    Use txfonts rather than the default newtx - needed for arXiv submission
 %  paper=a4|letter       Set paper size to A4 (default) or letter
-%  maketitle=true|false  Run or do not run \maketitle from the class
+%  maketitle=true|false  Run or do not run (default) \maketitle from the class
 
 %-------------------------------------------------------------------------------
 % Extra packages:

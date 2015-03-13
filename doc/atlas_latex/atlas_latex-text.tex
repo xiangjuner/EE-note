@@ -236,14 +236,14 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     on the front page and cover page.
     If the note number is given, the reference code is not shown.
 
-  \item {\verb|\PreprintIdNumber{<Preprint number>}|} displays the CERN
+  \item {\verb|\PreprintIdNumber{<CERN preprint number>}|} displays the CERN
     preprint number on the front page.
     
-  \item{\verb|\AtlasDate{<Date>}|} set by the Physics Office as the date of submission of a paper.
+  \item {\verb|\AtlasDate{<Date>}|} set by the Physics Office as the date of submission of a paper.
 
   \item {\verb|\AtlasJournalRef{<Journal reference>}|} displays the journal reference
     on the preprint front page.
-    This should be used for the arXiV update after the paper has been published.
+    This should be used for the arXiv update after the paper has been published.
     Can be omitted.
 
   \item {\verb|\AtlasDOI{<Journal reference>}|} displays the DOI
@@ -266,6 +266,7 @@ They can be included using
 \verb|\AtlasCoverSupportingNote{Short title}{CDS link}|.
 It is also possible to give a TWiki page instead, but this is deprecated.\\
 As mentioned above, see \texttt{template/atlas-document-metadata.tex} for more details.
+
 
 %-------------------------------------------------------------------------------
 \section{The \texttt{atlasdoc} class}
@@ -519,54 +520,6 @@ The option \Option{clearpage}, which used to exist, has no effect.
 
 
 %-------------------------------------------------------------------------------
-\subsection{CERN preprint and arXiv}
-\label{sec:preprint}
-%-------------------------------------------------------------------------------
-
-If you are writing an ATLAS paper and it has been approved by the collaboration,
-you have to make a CERN preprint title page before submitting the paper to arXiv.
-You do this by replacing the option \Option{PAPER} by \Option{cernpreprint} for \Package{atlasdoc}.
-The CERN preprint number is given via the macro \Macro{PreprintIdNumber}.
-At the same time you should pass the option \Option{texlive=2011} (or earlier) to
-\Package{atlasdoc}. This is because arXiv contains a 2011 \TeX\ Live installation.
-Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
-Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
-Further details on how to proceed can be found on the Physics Office TWiki.
-
-
-%-------------------------------------------------------------------------------
-\subsection{ATLAS notes}
-\label{sec:note}
-%-------------------------------------------------------------------------------
-
-If you include the macro \Macro{AtlasNote} in your preamble,
-the note number will be printed under \enquote{ATLAS NOTE} at the top of your document.
-This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
-
-
-%-------------------------------------------------------------------------------
-\subsection{Auxiliary material}
-\label{sec:auxmat}
-%-------------------------------------------------------------------------------
-
-Some papers have many pages of extra tables and plots that are mainly of use to theorists
-who need extra information.
-Such material can be collected in a separate document.
-The front page for this document is formatted using the \Option{auxmat} option.
-If you use this option you should specify the arXiv preprint identifier
-using the macro \Macro{arXivId} and the HepData record using the macro
-\Macro{HepDataRecord}.
-This information is then included on the cover page in the form of clickable links.
-
-Use of this option also adds the arXiv preprint identifier to the top of every page
-of the document.
-
-If you want to create an auxiliary material document with \TeX\ Live 2009, 
-use the command \texttt{make new TEXLIVE=2009}.
-Look at Section~\ref{sec:version} to see what is changed.
-
-
-%-------------------------------------------------------------------------------
 \section{The ATLAS preprint style}
 \label{sec:atlasstyle}
 %-------------------------------------------------------------------------------
@@ -606,6 +559,80 @@ or will no longer be necessary.
 
 In general, if you have problems with the \Package{newtx} fonts,
 you can switch to \Package{txfonts} by including the option \Option{txfonts} with \Package{atlasdoc}.
+
+
+%-------------------------------------------------------------------------------
+\section{CERN preprint and arXiv}
+\label{sec:preprint}
+%-------------------------------------------------------------------------------
+
+If you are writing an ATLAS paper and it has been approved by the collaboration,
+you have to make a version with the CERN preprint title page before submitting the paper to arXiv.
+You do this by replacing the option \Option{PAPER} by \Option{cernpreprint} in \Package{atlasdoc}.
+The CERN preprint number is given via the macro \Macro{PreprintIdNumber}.
+At the same time you should pass the option \Option{texlive=2011} (or earlier) to
+\Package{atlasdoc}. This is because arXiv contains a 2011 \TeX\ Live installation.
+Summarising, a typical \Macro{documentclass} command would be:
+\begin{verbatim}
+\documentclass[cernpreprint,texlive=2011,txfonts,UKenglish]{latex/atlasdoc}
+\pdfoutput=1
+\end{verbatim}
+The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
+You should also turn off ATLAS draft cover page -- remove the option \Option{coverpage=true}.
+If you move the class and style files to the same directory as the main file,
+you need to add the option \Option{texmf} to the \Macro{documentclass}.
+
+Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
+Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
+Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} -- see
+the Section on \enquote{Guidelines for paper submission}.
+
+It also makes sense to clean up the metadata file at this point.
+I recommend moving the relevant definitions into the main \TeX\ file so that the metadata file is no longer needed.
+If you clean things up, the \Package{atlascover} package is no longer needed.
+The metadata commands that are needed in addition to the title, author and abstract are:
+\begin{itemize}
+  \item {\verb|\AtlasJournal{<Journal Name>}|}
+  \item {\verb|\PreprintIdNumber{<CERN preprint number>}|}
+  \item {\verb|\AtlasDate{<Date>}|} set by the Physics Office
+  \item {\verb|\AtlasJournalRef{<Journal reference>}|} once it exists
+  \item {\verb|\AtlasDOI{<Journal reference>}|} once it exists
+  \item {\verb|\arXivId{<arXiv identifier>}|} once it exists
+\end{itemize}
+
+More details on arXiv recommendations can be found at
+\url{https://arxiv.org/help/submit_tex}.
+
+
+%-------------------------------------------------------------------------------
+\section{ATLAS notes}
+\label{sec:note}
+%-------------------------------------------------------------------------------
+
+If you include the macro \Macro{AtlasNote} in your preamble,
+the note number will be printed under \enquote{ATLAS NOTE} at the top of your document.
+This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
+
+
+%-------------------------------------------------------------------------------
+\section{Auxiliary material}
+\label{sec:auxmat}
+%-------------------------------------------------------------------------------
+
+Some papers have many pages of extra tables and plots that are mainly of use to theorists
+who need extra information.
+Such material can be collected in a separate document.
+The front page for this document is formatted using the \Option{auxmat} option.
+If you use this option you should specify the arXiv preprint identifier
+using the macro \Macro{arXivId} and the HepData record using the macro
+\Macro{HepDataRecord}.
+This information is then included on the cover page in the form of clickable links.
+
+Use of this option also adds the arXiv preprint identifier to the top of every page
+of the document.
+
+If you want to create an auxiliary material document with an older \TeX\ Live version such as 2009, 
+use the command \texttt{make auxmat TEXLIVE=2009}.
 
 
 %-------------------------------------------------------------------------------
@@ -729,37 +756,6 @@ You can use \Package{biber} instead by passing the option \Option{backend=biber}
 The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
 Details on the installations that I use for testing things
 and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
-
-
-%-------------------------------------------------------------------------------
-\section{Journal templates}
-%-------------------------------------------------------------------------------
-\label{sec:journal}
-
-This section collects information on where the \LaTeX\ templates for the different journals can be found and how to use them.
-However, with the advent of the ATLAS preprint style, 
-it should no longer be necessary to format papers in the style used by the journals.
-
-The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
-So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
-You should turn off the use of \Package{biblatex} if you use a journal template.
-Add the option \Option{biblatex=false} to \Package{atlaspackage}.
-
-\begin{description}
-\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-  \TeX\ Live distribution. 
-  It can also be found at \url{http://www.elsevier.com/locate/latex}.
-  
-\item[APS]APS journals use REV\TeX. This is also usually installed.
-  It can also be found at \url{https://journals.aps.org/revtex}.
-  Note that you have to specify the author after \verb|\begin{document}| with this class.
-  Hence you should comment out the definition in your metadata file,\\
-  e.g.\ \File{mydocument-metadata.tex}.
-  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
-  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
-  
-\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
-\end{description}
 
 
 %-------------------------------------------------------------------------------
@@ -1084,6 +1080,39 @@ The following changes are needed for the macros:
 \begin{itemize}
 \item The macro \Macro{AtlasCoverEdBoardMember} only has one argument, as a generic email list now exists for every EdBoard.
 \end{itemize}
+
+
+\appendix
+%-------------------------------------------------------------------------------
+\section{Journal templates}
+%-------------------------------------------------------------------------------
+\label{sec:journal}
+
+This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
+However, with the advent of the ATLAS preprint style, 
+it should no longer be necessary to format papers in the style used by the journals.
+This section has therefore been moved to an appendix.
+
+The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
+So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
+You should turn off the use of \Package{biblatex} if you use a journal template.
+Add the option \Option{biblatex=false} to \Package{atlaspackage}.
+
+\begin{description}
+\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+  \TeX\ Live distribution. 
+  It can also be found at \url{http://www.elsevier.com/locate/latex}.
+  
+\item[APS]APS journals use REV\TeX. This is also usually installed.
+  It can also be found at \url{https://journals.aps.org/revtex}.
+  Note that you have to specify the author after \verb|\begin{document}| with this class.
+  Hence you should comment out the definition in your metadata file,\\
+  e.g.\ \File{mydocument-metadata.tex}.
+  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
+  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
+  
+\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+\end{description}
 
 
 %-------------------------------------------------------------------------------
