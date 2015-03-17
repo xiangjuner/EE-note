@@ -427,6 +427,9 @@ Further options are:
 \item[\Option{biblatex=true|false}] (false) turn on/off use of \Package{biblatex} and \Package{biber/bibtex};
 \item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{bibtex}.
   Specify \Option{backend=biber} to use \Package{biber} instead;
+\item[\Option{block=ragged}] specify the option for extra spacing between blocks when making the bibliography with \Package{biblatex}.
+  \Option{ragged} uses \Macro{raggedright}, but tries not to break titles across lines;
+  \Option{none} and \Option{space} print the references in block mode, while \Option{space} includes an extra space between the author and title;
 \item[\Option{hyperref=true|false}] (true) turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|false}] (true) do not include the \Package{siunitx} package;
 \item[\Option{csquotes=true|false}] (true) do not include the \Package{csquotes} package;

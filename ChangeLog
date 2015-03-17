@@ -1,3 +1,7 @@
+2015-03-17  Ian Brock  <Ian.Brock@cern.ch>
+	* Line numbers turned off by mistake in Version 01-07-00.
+        * Added preliminary version of ATLAS.bib.
+	* Add block option to atlaspackage.
 2015-03-13  Ian Brock  <Ian.Brock@cern.ch>
         * Updated PUB and CONF note bib files. ATLASbib comes a bit later.
         * Improve instructions for arXiv and CERN preprint.

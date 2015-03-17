@@ -541,6 +541,13 @@
     \nolinenumbers
     \ACOV@PrintAtlasCover
     \ACOV@PrintAtlasCoverPageTwo
+    % Turn line numbers back on
+    \ifx\ADOC@draftversion\@empty%
+      \relax
+    \else
+      \typeout{atlasdoc: turning on line numbers}
+      \linenumbers
+    \fi
   \fi
   \setcounter{page}{1}
   % If selected, generate CERN preprint front page
@@ -579,7 +586,8 @@
     \typeout{atlasdoc: this is not an ATLAS draft}
   \else 
     \typeout{atlasdoc: this is an ATLAS draft}
-    \draftheading 
+    \draftheading
+    \linenumbers
   \fi
 }
 
