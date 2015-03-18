@@ -59,6 +59,8 @@
 
 \maketitle
 
+\tableofcontents
+
 %-------------------------------------------------------------------------------
 \section{Introduction}
 %-------------------------------------------------------------------------------
@@ -174,8 +176,8 @@ Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib
 Four database files with all ATLAS and CMS journal references as well as
 ATLAS CONF and PUB notes are provided:
 \begin{description}
-\item[ATLASbib.bib] The citation key is the ATLAS reference code, e.g.\ \texttt{HIGG-2012-27};
-\item[CMSbib.bib] The citation key is the CMS reference code, e.g.\ \texttt{CMS-HIG-12-036};
+\item[ATLAS.bib] The citation key is the ATLAS reference code, e.g.\ \texttt{HIGG-2012-27};
+\item[CMS.bib] The citation key is the CMS reference code, e.g.\ \texttt{CMS-HIG-12-036};
 \item[ConfNotes.bib] The citation key is the CONF note number, e.g.\ \texttt{ATLAS-CONF-2014-063};
 \item[PubNotes.bib] The citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
 \end{description}
@@ -185,6 +187,36 @@ Up-to-date versions are available from the PubCom TWiki~\cite{pubcom-refs}.
 The files are updated once per month and all entries have been checked for correct formatting.
 You are strongly encouraged to use these files and not try to maintain your own copies of
 such publications.
+
+For Version 01-07-01 of \Package{atlaslatex}, CONF and PUB notes are available.
+The list of ATLAS publications is complete and the titles have been checked.
+However, quite a few of the more recent publication are missing the journal information.
+This problem is being worked on and Inspire has been contacted.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Extracting used database entries}
+\label{sec:bibtool}
+
+At some point you may want to create a bibliography database that only contains the references you are actually using in a document.
+You can do this using the \File{bibtool} program.
+Giving the command:
+\begin{verbatim}
+bibtool -x mydocument.aux -o refs.bib
+\end{verbatim}
+will extract the entries that you use and in future you can use and
+correct \texttt{refs.bib}, which only contains the references that you
+actually cite.\footnote{%
+I got this tip from
+\url{http://tex.stackexchange.com/questions/417/how-to-split-all-bibtex-referenced-entries-from-a-big-bibtex-database-to-a-copy}. Do
+not forget to change \texttt{mydocument.tex}, or whatever your main filename is, to use
+\texttt{refs.bib} instead of the previous sources.}
+
+For Debian/Ubuntu distributions you should be able to install \File{bibtool} by giving the command
+\verb|(sudo) apt-get install bibtool|. 
+For RPM-based Linux (CentOS, Scientific Linux, Fedora, ...) distributions the equivalent command is \verb|yum install bibtool|.
+On a Mac, you can install it via MacPorts: \verb|(sudo) port install bibtool|.
+
 
 %-------------------------------------------------------------------------------
 \section{ATLAS bibliography style files}
@@ -222,6 +254,10 @@ A summary of the options is:
 \item[\Option{titlequote=true|false}] enclose the title in quotes instead of emphasize (default);
 \item[\Option{showdoi=true|false}] make the journal reference a link to the DOI instead of displaying it (default);
 \item[\Option{eprint=true|false}] print the arXiv reference if available (default).
+\item[\Option{block=ragged|space|none}] use \Macro{raggedright} (default) for typesetting the references.
+  Alternatives are \Option{block=space} and \Option{block=none}.
+  The default option (\Option{ragged}) tries to fit the title into a single line 
+  and so sometimes leads to a new line starting immediately after the author.
 \item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2009.
   This option is usually set in the document class.
 \end{description}

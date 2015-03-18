@@ -54,7 +54,9 @@ make new [BASENAME=mydocument] [TEXLIVE=YYYY]
 %
 This command copies \File{atlas-document.tex} and
 \File{atlas-document-metadata.tex}
-to \File{mydocument.tex} and \File{mydocument-metadata.tex}.
+to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
+\footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
+  For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
 The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2013.
 The \texttt{make} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
 By default the document will be an ATLAS note.
@@ -85,7 +87,7 @@ To test compatibility with arXiv, try a setting of 2011.
 This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 are using the ATLAS preprint style.
 
-As of Version 01-07-00 of \Package{atlaslatex} you should include the command \Macro{maketitle} after your
+As of Version 01-07-00 of \Package{atlaslatex} you should include the command \Macro{maketitle} after your\\
 \verb|\begin{document}| if you want the document title to be printed.
 
 Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
@@ -193,7 +195,7 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     given, you get either an error or a dummy title will be produced.
 
   \item {\verb|\author{<Author>}|} typesets the paper author. If not
-    explicitly given, \emph{The ATLAS Collaborations} will be used by
+    explicitly given, \enquote{The ATLAS Collaboration} will be used by
     default. Note that the \verb|\author{}| command is pretty limited
     in case you want to display multiple author names and multiple
     affiliations. For this use case the \verb|authblk.sty| package is
@@ -297,7 +299,7 @@ The \LaTeX\ packages that are used in the document are mostly specified in
 
 The style file \texttt{latex/atlasphysics.sty} defines a lot of useful
 macros for particles and more. See the separate document
-\texttt{atlas-physics.pdf}~\cite{atlas-physics} for details.
+\texttt{atlas\_physics.pdf}~\cite{atlas-physics} for details.
 
 If you do not want to use \Package{biblatex} you need to add the option \Option{biblatex=false} when you
 include \texttt{atlaspackage}.
@@ -591,6 +593,7 @@ Further details on how to proceed can be found on the Physics Office TWiki~\cite
 the Section on \enquote{Guidelines for paper submission}.
 
 It also makes sense to clean up the metadata file at this point.
+You get rid of line numbering by making sure that neither \Macro{AtlasVersion} nor \Macro{draftversion} are defined.
 I recommend moving the relevant definitions into the main \TeX\ file so that the metadata file is no longer needed.
 If you clean things up, the \Package{atlascover} package is no longer needed.
 The metadata commands that are needed in addition to the title, author and abstract are:
@@ -646,7 +649,7 @@ use the command \texttt{make auxmat TEXLIVE=2009}.
 Many useful symbols are defined in \texttt{atlasphysics.sty}.
 While this used to be a very long file, it has now been split into several smaller files,
 which can be included or not using options.
-The definitions can be found in a separate document \File{atlas-physics.pdf}.
+The definitions can be found in a separate document \File{atlas\_physics.pdf}.
 
 
 %-------------------------------------------------------------------------------
@@ -771,6 +774,10 @@ and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite
 
 Line numbers can be printed using the \Package{lineno} package, 
 which is included by default.
+Line numbers are automatically turned on if you set \Macro{AtlasVersion} (or \Macro{draftversion}).
+In general, you can turn them on and off in a document by using the \Macro{linenumbers} or \Macro{nolinenumbers} commands.
+Note that if \Macro{AtlasVersion} is set, you will always get line numbers on the standard title page.
+Hence, for CONF and PUB notes it is important to comment out \Macro{AtlaVersion} in order to suppress the line numbers for the final version.
 
 In order to avoid line numbers going slightly wrong around figures and tables,
 separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
@@ -837,6 +844,14 @@ for them, by using this command:
 \begin{verbatim}
   \graphicspath{{figures/}}
 \end{verbatim}
+
+If you use a modern version of \TeX\ Live, it creates PDF files automatically from EPS files
+(if they do not exist) when you use \File{pdflatex}.
+An EPS file with the name \File{picture1.eps} will lead to a PDF file with the name
+\File{picture1-eps-converted-to.pdf}.
+If you have a lot of figures in many different directories, you may want to clean up the PDF files every so often.
+You can use the command \verb|make cleanepstopdf| to achieve this.
+You should adjust the top-level figures directory in the \File{Makefile} accordingly.
 
 
 %-------------------------------------------------------------------------------
@@ -922,7 +937,7 @@ This is not a problem for the ATLAS preprint style as it uses a serif font for t
 %-------------------------------------------------------------------------------
 \section{Remarks on units and symbols}
 
-As discussed in the \enquote{General Guidelines for ATLAS Papers}~\cite{atlas-paper},
+As discussed in the \enquote{General guidelines for ATLAS papers}~\cite{atlas-paper},
 it is highly recommended to use a units package to format your units properly.
 The package \Package{siunitx} works very well and is the package of choice.
 Alternatives include \Package{units} and \Package{hepunits},
@@ -935,7 +950,7 @@ There are also several other useful commands for specifying ranges:
 Options exist for specifying how they are formatted.
 The options can be set for an individual command or for the whole document.
 For example, in this document I have specified the options:\\
-\verb|\sisetup{separate-uncertainty, range-units=repeat, detect-family=true}|
+\verb|\sisetup{separate-uncertainty, range-units=repeat, detect-all}|
 and\\
 \verb|\sisetup{group-digits=integer, group-minimum-digits=4}|.
 

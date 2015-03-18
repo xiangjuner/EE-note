@@ -4,10 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-00}
+\def\ATPackageVersion{01-07-01}
 
-% --- Class structure: identification part
-\ProvidesClass{latex/atlasdoc}[2015/03/10 v.01-07-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/03/17 v.01-07-01 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -138,12 +137,12 @@
 \ifADOC@nomaketitle
   \relax
 \else
-  \typeout{*** atlasdoc: This option has no effect. Users should use the macro maketitle instead}
+  \typeout{*** atlasdoc: this option has no effect. Users should use the macro maketitle instead}
 \fi
 % Obsolete command to turn on or off making title page - user should say \maketile
 \ifADOC@maketitle
   \typeout{*** atlasdoc: maketitle is a deprecated option.}
-  \typeout{*** atlasdoc: Users should use the macro maketitle instead}
+  \typeout{*** atlasdoc: users should use the macro maketitle instead}
 \fi
 
 % Switch to txfonts for TeX Live <= 2012
@@ -538,6 +537,7 @@
   % If selected, generate ATLAS Cover Page
   \typeout{atlasdoc: producing the cover and title pages}
   \ifADOC@coverpage
+    % Turn line numbers off for cover pages
     \nolinenumbers
     \ACOV@PrintAtlasCover
     \ACOV@PrintAtlasCoverPageTwo
@@ -545,7 +545,6 @@
     \ifx\ADOC@draftversion\@empty%
       \relax
     \else
-      \typeout{atlasdoc: turning on line numbers}
       \linenumbers
     \fi
   \fi
