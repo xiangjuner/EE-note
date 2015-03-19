@@ -132,21 +132,19 @@ work much more reliably with pdf\LaTeX.
 \section{Bibliography databases}
 %-------------------------------------------------------------------------------
 
-One or more files with the extension \texttt{.bib} 
-(in this example: \texttt{atlas\_paper.bib}) should contain all the references. 
-The files may also contain references that you do not use, so they may act like a
-library of references.
+One or more files with the extension \texttt{.bib} should contain all the references. 
+The files may also contain references that you do not use, so they act like a library of references.
 See \Sect{\ref{sec:atlascmsrefs}} for details on files which contain ATLAS and CMS journal publications
 as well as ATLAS CONF and PUB notes.
 
 You should check that you base your \File{.bib} file on the examples provided,
-as it has the references in the style recommended for ATLAS publications.
+as they have the references in the style recommended for ATLAS publications.
 This will definitely save time in the reviewing process!
 
 If you use \Package{biblatex}, you should include commands like:
 %
 \begin{verbatim}
-  \addbibresource{../atlas_latex.bib}
+  \addbibresource{bibtex/bib/ATLAS.bib}
   \addbibresource{atlas_biblatex.bib}
 \end{verbatim}
 %
@@ -156,7 +154,7 @@ If you use traditional \BibTeX\ you include the source file(s) at the place wher
 %
 \begin{verbatim}
 {\raggedright
-  \bibliography{../atlas_latex,%
+  \bibliography{bibtex/bib/ATLAS,%
   atlas_biblatex}
 }
 \end{verbatim}
@@ -176,10 +174,10 @@ Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib
 Four database files with all ATLAS and CMS journal references as well as
 ATLAS CONF and PUB notes are provided:
 \begin{description}
-\item[ATLAS.bib] The citation key is the ATLAS reference code, e.g.\ \texttt{HIGG-2012-27};
-\item[CMS.bib] The citation key is the CMS reference code, e.g.\ \texttt{CMS-HIG-12-036};
-\item[ConfNotes.bib] The citation key is the CONF note number, e.g.\ \texttt{ATLAS-CONF-2014-063};
-\item[PubNotes.bib] The citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
+\item[ATLAS.bib] the citation key is the ATLAS reference code, e.g.\ \texttt{HIGG-2012-27};
+\item[CMS.bib] the citation key is the CMS reference code, e.g.\ \texttt{CMS-HIG-12-036};
+\item[ConfNotes.bib] the citation key is the CONF note number, e.g.\ \texttt{ATLAS-CONF-2014-063};
+\item[PubNotes.bib] the citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
 \end{description}
 These are available in the directory \File{bibtex/bib} of \Package{atlaslatex}.
 However, these files are only updated when a new version of \Package{atlaslatex} is released.
@@ -188,11 +186,8 @@ The files are updated once per month and all entries have been checked for corre
 You are strongly encouraged to use these files and not try to maintain your own copies of
 such publications.
 
-For Version 01-07-01 of \Package{atlaslatex}, CONF and PUB notes are available.
-The list of ATLAS publications is complete and the titles have been checked.
-However, quite a few of the more recent publication are missing the journal information.
-This problem is being worked on and Inspire has been contacted.
-
+As of Version 01-07-01 of \Package{atlaslatex}, ATLAS journal publications, CONF and PUB notes are available.
+CMS publications will be made available soon.
 
 %-------------------------------------------------------------------------------
 \subsection{Extracting used database entries}
@@ -429,7 +424,7 @@ which is the default in \Package{atlaslatex}.
 \item Individual authors~\cite{authors:2008}
 \item arXiv only~\cite{arxivOnly:2009}
 \item arXiv only submitted to a journal~\cite{arxivSub:2011}
-\item ATLAS CONF Note~\cite{atlasConf:2012}
+\item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058}
 \end{itemize}
 
 While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
@@ -437,7 +432,7 @@ Hence in \Ref{\cite{lhcCollaboration:2012}}, \texttt{collaboration} has been ren
 the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \texttt{collaboration} and omit
 \texttt{author} you will get a warning when you run \texttt{bibtex}.
 
-Note that in \Ref{\cite{atlasConf:2012}} the entry type \texttt{@Article} used to be used and the field \texttt{journal} 
+Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@Article} used to be used and the field \texttt{journal} 
 was abused for the conference note number. This is a result of the traditional \BibTeX\ restrictions on the entry types.
 The current version uses \texttt{@Booklet} and includes the CONF note number via the \texttt{howpublished} field.
 In general, \texttt{biblatex} provides a lot more entry types.
@@ -462,6 +457,7 @@ You should specify the journal in the \texttt{journal} field in form:\\
   Document adjusted for use of \Package{biblatex} as the default.
 \item[2015-01-30: Ian Brock] Try to clarify the nomenclature and 
   the recommended way to use \BibTeX.
+\item[2015-03-20: Ian Brock] Add information about standard ATLAS and CMS bibliography databases.
 \end{description}
 
 %-------------------------------------------------------------------------------
