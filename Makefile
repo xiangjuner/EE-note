@@ -2,13 +2,20 @@
 #------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex.
 # Replace mydocument with your main filename or add another target set.
-# Adjust TEXLIVE if it is not correct, or pass it to "make new"
+# Adjust TEXLIVE if it is not correct, or pass it to "make new".
 # Replace BIBTEX = bibtex with BIBTEX = biber if you use biber instead of bibtex.
-# Adjust FIGSDIR for your figures directory tree
-# Adjust the %.pdf dependicies according to your diredctory structure
+# Adjust FIGSDIR for your figures directory tree.
+# Adjust the %.pdf dependencies according to your directory structure.
 # Use "make clean" to cleanup.
 # Use "make cleanpdf" to delete $(BASENAME).pdf.
 # "make cleanall" also deletes the PDF file $(BASENAME).pdf.
+# Use "make cleanepstopdf" to rmeove PDF files created automatically from EPS files.
+#   Note that FIGSDIR has to be set properly for this to work.
+
+# If you have to run latex rather than pdflatex adjust the dependencies of %.dvi target
+#   and use the command "make run_latex" to compile.
+# Specify dvipdf or dvips as the run_latex dependency,
+#   depending on which you want to use.
 
 #-------------------------------------------------------------------------------
 # Check which TeX Live installation you have with the command pdflatex --version
@@ -44,9 +51,10 @@ run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
 
 #-------------------------------------------------------------------------------
+# Specify the tex and bib file dependencies for running pdflatex
 # If your bib files are not in the main directory adjust this target accordingly
-#%.pdf:	%.tex *.bib bibtex/bib/*.bib
-%.pdf:	%.tex *.bib
+#%.pdf:	%.tex *.tex bibtex/bib/*.bib
+%.pdf:	%.tex *.tex *.bib
 	$(PDFLATEX) $<
 	-$(BIBTEX)  $(basename $<)
 	$(PDFLATEX) $<
@@ -94,20 +102,28 @@ auxmat:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
 
-run_latex: $(BASENAME).dvi
-	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress ${BASENAME}
-	@echo "Made $<"
+run_latex: dvipdf
 
 # Targets if you run latex instead of pdflatex
-%.dvi:	%.tex 
+dvipdf:	$(BASENAME).dvi
+	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress $<
+	@echo "Made $(basename $<).pdf"
+
+dvips:	$(BASENAME).dvi
+	$(DVIPS) $<
+	@echo "Made $(basename $<).ps"
+
+# Specify dependencies for running latex
+#%.dvi:	%.tex tex/*.tex bibtex/bib/*.bib
+%.dvi:	%.tex *.tex *.bib
 	$(LATEX)    $<
 	-$(BIBTEX)  $(basename $<)
 	$(LATEX)    $<
 	$(LATEX)    $<
 
 %.bbl:	%.tex *.bib
-	$(LATEX) $*
-	$(BIBTEX) $*
+	$(LATEX) $<
+	$(BIBTEX) $<
 
 help:
 	@echo "To create a new document give the commands:"
@@ -132,12 +148,10 @@ help:
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
 	@echo "make cleanpdf to clean output PDF files"
+	@echo "make cleanps  to clean output PS files"
 	@echo "make cleanall to clean all files"
 	@echo "make cleanepstopdf to clean PDF files automatically made from EPS"
 	@echo ""
-
-%.ps:	%.dvi
-	$(DVIPS) $< -o $@
 
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out \
@@ -150,7 +164,12 @@ cleanpdf:
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
 	-rm $(BASENAME)-auxmat.pdf
 
-cleanall: clean cleanpdf
+cleanps:
+	-rm $(BASENAME).ps 
+	-rm $(BASENAME)-draft-cover.ps $(BASENAME)-preprint-cover.ps
+	-rm $(BASENAME)-auxmat.ps
+
+cleanall: clean cleanpdf cleanps
 
 # Clean the PDF files created automatically from EPS files
 cleanepstopdf: $(EPSTOPDFFILES)

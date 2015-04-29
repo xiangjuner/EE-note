@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-02}
+\def\ATPackageVersion{01-07-03}
 
-\ProvidesPackage{latex/atlascover}[2015/03/26 v.01-07-02 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2015/04/29 v.01-07-03 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\typeout{ATLAS cover page v.\ATPackageVersion}
@@ -179,8 +179,11 @@
 % Supporting note list
 \def\ACOV@Notes{}
 \newcommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
+%  \ifx\ACOV@Notes\@empty
+%    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
+%  \fi
   \g@addto@macro\ACOV@Notes{%
-    #1 & \url{#2} \\
+    #1: \url{#2} \\
   }%
 }
 
@@ -297,24 +300,25 @@
     \ifACOV@support
       \rule{\linewidth}{1.5pt}\par
       {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-        Supporting internal notes \par
+        Supporting internal notes\par
       }
       \ifx\ACOV@TwikiURL\@empty
         \relax
       \else
         {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont
-          \medskip
-          \ACOV@TwikiURL\par
+          %\medskip
+          \flushleft\ACOV@TwikiURL\par
         }
       \fi
       \ifx\ACOV@Notes\@empty
         \relax
       \else
-      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont 
-          \medskip
-          \begin{tabular}{ll}
-            \ACOV@Notes
-          \end{tabular}\par
+        {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont
+          %\medskip
+          %\g@addto@macro\ACOV@Notes{\end{tabular}}
+          %\begin{tabular}{ll}
+          \flushleft\ACOV@Notes\par
+          %\end{tabular}\par
         }
       \fi
       \vspace*{0.8ex}
