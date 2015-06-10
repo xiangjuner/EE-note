@@ -875,6 +875,7 @@ A figure with subfigures can be made as shown in the example of
 Figure~\ref{fig:subfigexample}. In this example the \Package{subfig} package is used.
 The syntax with the \Package{subcaption} and \Package{subfigure} packages is very similar.
 The following commands were used to produce Figure~\ref{fig:subfigexample}:
+{\footnotesize
 \begin{verbatim}
 \begin{figure}[htbp]
   \centering
@@ -886,24 +887,36 @@ The following commands were used to produce Figure~\ref{fig:subfigexample}:
     \includegraphics[width= 0.45\textwidth]{AtlasExample}
     \label{fig:SubfigureExample2}
   }
-  \caption{Subfigure example (\ref{fig:SubfigureExample1}) and
-    (\ref{fig:SubfigureExample2}).}
+  \caption{Subfigure example.
+    \protect\subref{fig:SubfigureExample1} shows the cross-section as a function of $E_{\text{T,jet}}$ and 
+    \protect\subref{fig:SubfigureExample2} shows exactly the same thing!}
   \label{fig:subfigexample}
 \end{figure}
 \end{verbatim}
+}
+
+You refer to the main figure using the usual \verb|\ref| command, e.g.\ see \Fig{\ref{fig:subfigexample}}.
+You can refer to the subfigures using either the syntax \verb|\ref{fig:subfiglabel}| 
+(e.g.\ see \Fig{\ref{fig:SubfigureExample2}}) or\\
+\verb|\ref{fig:mainfiglabel}\subref{fig:subfiglabel}|
+(e.g.\ see \Fig{\ref{fig:subfigexample}\subref{fig:SubfigureExample1}}).
+Note that if you use the \Package{subfig} package and want to use the labels of the subfigures in the caption,
+you have to use the syntax \verb|\protect\subref{fig:SubfigureExample1}|.
+The packages \Package{subfigure} and \Package{subcaption} do not need protect, but it does not do any harm.
 
 \begin{figure}[htbp]
   \centering
-  \subfloat[One subfigure example]{
+  \subfloat[One subfigure example.]{
     \includegraphics[width=0.45\textwidth]{AtlasExample}
     \label{fig:SubfigureExample1}
   }
-  \subfloat[Another subfigure example]{
+  \subfloat[Another subfigure example.]{
     \includegraphics[width= 0.45\textwidth]{AtlasExample}
     \label{fig:SubfigureExample2}
   }
-  \caption{Subfigure example (\ref{fig:SubfigureExample1}) and
-    (\ref{fig:SubfigureExample2}).}
+  \caption{Subfigure example.
+    \protect\subref{fig:SubfigureExample1} shows the cross-section as a function of $E_{\text{T,jet}}$ and 
+    \protect\subref{fig:SubfigureExample2} shows exactly the same thing!}
   \label{fig:subfigexample}
 \end{figure}
 

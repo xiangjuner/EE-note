@@ -4,7 +4,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2015/06/03 v.01-07-04 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2015/06/10 v.01-07-05 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -140,10 +140,14 @@
   \ifAPKG@subfigure%
     \RequirePackage{subfigure}
   \else
+    % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
+    % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
     \ifAPKG@subcaption%
-      \RequirePackage{subcaption}
+      \RequirePackage[labelformat=simple]{subcaption}
+      \renewcommand\thesubfigure{(\alph{subfigure})}
     \else
-      \RequirePackage{subfig}
+      \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
+      \renewcommand\thesubfigure{(\alph{subfigure})}
     \fi
   \fi
   % subfigure option needed if subfig(ure) is also used
