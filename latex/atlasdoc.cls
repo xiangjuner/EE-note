@@ -227,7 +227,14 @@
 
 %-------------------------------------------------------------------------------
 % Invoke main class
+% Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
 \ifADOC@koma%
+    \ifthenelse{\ADOC@texlive < 2009}{%
+      \PassOptionsToClass{headinclude=true, footinclude=false}{scrartcl}
+      \PassOptionsToClass{DIV=14,BCOR=5mm}{scrartcl}
+      %\PassOptionsToClass{headings=normal}{scratcl}
+      \PassOptionsToClass{parskip=half}{scrartcl}
+    }{}
   \LoadClass[titlepage,11pt]{scrartcl}
   %\LoadClass[titlepage,11pt,twoside=semi]{scrartcl}
   %\LoadClass[titlepage,\ADOC@paperstring,11pt,twoside=semi]{scrartcl}
@@ -241,10 +248,13 @@
 
 % Set KOMA-script options for ATLAS style
 \ifADOC@atlasstyle
-  \KOMAoptions{headinclude=true, footinclude=false}
-  \KOMAoptions{DIV=14,BCOR=5mm}
-  %\KOMAoptions{headings=normal}
-  \KOMAoptions{parskip=half}
+  % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
+  \ifthenelse{\ADOC@texlive < 2009}{}{%
+    \KOMAoptions{headinclude=true, footinclude=false}
+    \KOMAoptions{DIV=14,BCOR=5mm}
+    %\KOMAoptions{headings=normal}
+    \KOMAoptions{parskip=half}
+  }
   \addtokomafont{disposition}{\rmfamily}
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
