@@ -4,7 +4,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2015/06/10 v.01-07-05 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2015/07/31 v.01-07-06 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -162,33 +162,64 @@
 
   % Typset anything with units using this package - also has very useful table formatting 
   % Declare a few options and standard units for siunitx that are otherwise missing
+  % Before 2011 siunitx Version 1 (to be checked)
+  % Before 2012 siunitx Version 2 (arXiv)
+  % Otherwise   siunitx Version 3
   \ifAPKG@siunitx
     \ifthenelse{\APKG@texlive < 2012}{
-      \RequirePackage[noload=addn]{siunitx}
-      \sisetup{seperr, repeatunits=false, alsoload=hep}
-      \sisetup{obeyall}
+      \ifthenelse{\APKG@texlive < 2011}{
+        \RequirePackage[noload=addn]{siunitx}
+        \sisetup{seperr}
+        \sisetup{repeatunits=false}
+        \sisetup{obeyall}
+        \sisetup{alsoload=hep}
+        \renewunit\mrad{\milli\radian}
+        % \newunit\micron{\micro\metre}
+        \newunit{\barn}{b}
+        \newunit{\TeVc}{\tera\eVperc}
+        \newunit{\GeVc}{\giga\eVperc}
+        \newunit{\MeVc}{\mega\eVperc}
+        \newunit{\keVc}{\kilo\eVperc}
+        \newunit{\eVc}{\eVperc}
+        \newunit{\TeVcc}{\tera\eVperc\squared}
+        \newunit{\GeVcc}{\giga\eVperc\squared}
+        \newunit{\MeVcc}{\mega\eVperc\squared}
+        \newunit{\keVcc}{\kilo\eVperc\squared}
+        \newunit{\eVcc}{\eVperc\squared}
+        \newunit\inb{\per\nano\barn}
+        \newunit\ipb{\per\pico\barn}
+        \newunit\ifb{\per\femto\barn}
+        \newunit\degr{\degree}
+        % \newunit\clight{\ensuremath{c}}
+      }{
+        \RequirePackage{siunitx}
+        \sisetup{separate-uncertainty}
+        \sisetup{detect-all}
+        \sisetup{range-units=single, list-units=single}
+        \DeclareSIUnit\mrad{\milli\radian}
+        % \DeclareSIUnit\micron{\micro\metre}
+        \DeclareSIUnit\barn{b}
+        \DeclareSIUnit\TeVc{\tera\eVperc}
+        \DeclareSIUnit\GeVc{\giga\eVperc}
+        \DeclareSIUnit\MeVc{\mega\eVperc}
+        \DeclareSIUnit\keVc{\kilo\eVperc}
+        \DeclareSIUnit\eVc{\eVperc}
+        \DeclareSIUnit\TeVcc{\tera\eVperc\squared}
+        \DeclareSIUnit\GeVcc{\giga\eVperc\squared}
+        \DeclareSIUnit\MeVcc{\mega\eVperc\squared}
+        \DeclareSIUnit\keVcc{\kilo\eVperc\squared}
+        \DeclareSIUnit\eVcc{\eVperc\squared}
+        \DeclareSIUnit\inb{\per\nano\barn}
+        \DeclareSIUnit\ipb{\per\pico\barn}
+        \DeclareSIUnit\ifb{\per\femto\barn}
+        \DeclareSIUnit\degr{\degree}
+        % \DeclareSIUnit\clight{\ensuremath{c}}
+      }
       \sisetup{group-digits=true, group-four-digits=true}
-%      \newunit\micron{\micro\metre}
-      \renewunit\mrad{\milli\radian}
-      \newunit{\barn}{b}
-      \newunit{\TeVc}{\tera\eVperc}
-      \newunit{\GeVc}{\giga\eVperc}
-      \newunit{\MeVc}{\mega\eVperc}
-      \newunit{\keVc}{\kilo\eVperc}
-      \newunit{\eVc}{\eVperc}
-      \newunit{\TeVcc}{\tera\eVperc\squared}
-      \newunit{\GeVcc}{\giga\eVperc\squared}
-      \newunit{\MeVcc}{\mega\eVperc\squared}
-      \newunit{\keVcc}{\kilo\eVperc\squared}
-      \newunit{\eVcc}{\eVperc\squared}
-      \newunit\inb{\per\nano\barn}
-      \newunit\ipb{\per\pico\barn}
-      \newunit\ifb{\per\femto\barn}
-      \newunit\degr{\degree}
-%      \newunit\clight{\ensuremath{c}}
     }{%
       \RequirePackage{siunitx}
-      \sisetup{separate-uncertainty, range-units=repeat}
+      \sisetup{separate-uncertainty}
+      \sisetup{range-units=single, list-units=single}
       \sisetup{group-digits=integer, group-minimum-digits=4}
       \sisetup{detect-all}
 %      detect-family = true, detect-display-math=true}

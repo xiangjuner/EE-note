@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2015/06/10 v.01-07-05 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2015/07/31 v.01-07-05 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -61,15 +61,19 @@
       \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
     \else
       \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
     \fi
   \else
     \AtEveryBibitem{
       \ifentrytype{article}{\clearfield{title}}{}
       \ifentrytype{booklet}{\clearfield{title}}{}
+      \ifentrytype{report}{\clearfield{title}}{}
+      %\ifentrytype{misc}{\clearfield{title}}{}
     }
   \fi
   
@@ -87,7 +91,7 @@
     %\DeclareFieldFormat[article]{journaltitle}{\usebibmacro{string+doi}{#1\isdot}}
     %\DeclareFieldFormat[article]{journal+issuetitle}{\usebibmacro{string+doi}{#1}}
     % Adapted from /usr/local/texlive/2014/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
-    % Merge page number into jounral+issuetitle and remove it from note+pages
+    % Merge page number into journal+issuetitle and remove it from note+pages
     \renewbibmacro*{journal+issuetitle}{%
       \usebibmacro{string+doi}{%
       \usebibmacro{journal}%
@@ -113,6 +117,13 @@
       %\printfield{pages}%
       \newunit}
   \fi
+  
+  % Print only first page - only works for TeX Live 2012 onwards I think
+  \ifthenelse{\ABIB@texlive < 2012}{%
+    \relax
+  }{%
+    \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
+  }
   
   % Change punctuation to comma
   \renewcommand*{\newunitpunct}{\addcomma\space}

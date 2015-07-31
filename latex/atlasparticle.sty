@@ -13,7 +13,12 @@
 \newcommand*{\antibar}[1]{\ensuremath{#1\bar{#1}}\xspace}
 \newcommand*{\tbar}{\ensuremath{\bar{t}}\xspace}
 \newcommand*{\ttbar}{\antibar{t}}
-\newcommand*{\bbar}{\ensuremath{\bar{b}}\xspace}
+% SIunits already defines \bbar - supersede the definition
+\@ifpackageloaded{SIunits}{%}
+  \renewcommand*{\bbar}{\ensuremath{\bar{b}}\xspace}
+}{%
+  \newcommand*{\bbar}{\ensuremath{\bar{b}}\xspace}
+}
 \newcommand*{\bbbar}{\antibar{b}}
 \newcommand*{\cbar}{\ensuremath{\bar{c}}\xspace}
 \newcommand*{\ccbar}{\antibar{c}}

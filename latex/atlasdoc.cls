@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-05}
+\def\ATPackageVersion{01-07-06}
 
-\ProvidesClass{latex/atlasdoc}[2015/06/10 v.01-07-05 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/07/31 v.01-07-06 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -229,12 +229,12 @@
 % Invoke main class
 % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
 \ifADOC@koma%
-    \ifthenelse{\ADOC@texlive < 2009}{%
-      \PassOptionsToClass{headinclude=true, footinclude=false}{scrartcl}
-      \PassOptionsToClass{DIV=14,BCOR=5mm}{scrartcl}
-      %\PassOptionsToClass{headings=normal}{scratcl}
-      \PassOptionsToClass{parskip=half}{scrartcl}
-    }{}
+  \ifthenelse{\ADOC@texlive < 2009}{%
+    %\PassOptionsToClass{headinclude=true, footinclude=false}{scrartcl}
+    \PassOptionsToClass{DIV=14,BCOR=5mm}{scrartcl}
+    %\PassOptionsToClass{headings=normal}{scratcl}
+    \PassOptionsToClass{parskip=half}{scrartcl}
+  }{}
   \LoadClass[titlepage,11pt]{scrartcl}
   %\LoadClass[titlepage,11pt,twoside=semi]{scrartcl}
   %\LoadClass[titlepage,\ADOC@paperstring,11pt,twoside=semi]{scrartcl}
@@ -249,7 +249,13 @@
 % Set KOMA-script options for ATLAS style
 \ifADOC@atlasstyle
   % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
-  \ifthenelse{\ADOC@texlive < 2009}{}{%
+  \ifthenelse{\ADOC@texlive < 2009}{%
+    % Adjust text height according to option headinclude
+    \addtolength{\topmargin}{\headheight}
+    \addtolength{\topmargin}{\headsep}
+    \addtolength{\textheight}{-\headheight}
+    \addtolength{\textheight}{-\headsep}
+  }{%
     \KOMAoptions{headinclude=true, footinclude=false}
     \KOMAoptions{DIV=14,BCOR=5mm}
     %\KOMAoptions{headings=normal}
