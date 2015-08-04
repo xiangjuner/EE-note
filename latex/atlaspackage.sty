@@ -173,6 +173,7 @@
         \sisetup{repeatunits=false}
         \sisetup{obeyall}
         \sisetup{alsoload=hep}
+        \sisetup{sepfour}
         \renewunit\mrad{\milli\radian}
         % \newunit\micron{\micro\metre}
         \newunit{\barn}{b}
@@ -196,6 +197,7 @@
         \sisetup{separate-uncertainty}
         \sisetup{detect-all}
         \sisetup{range-units=single, list-units=single}
+        \sisetup{group-digits=true, group-four-digits=true}
         \DeclareSIUnit\mrad{\milli\radian}
         % \DeclareSIUnit\micron{\micro\metre}
         \DeclareSIUnit\barn{b}
@@ -215,7 +217,6 @@
         \DeclareSIUnit\degr{\degree}
         % \DeclareSIUnit\clight{\ensuremath{c}}
       }
-      \sisetup{group-digits=true, group-four-digits=true}
     }{%
       \RequirePackage{siunitx}
       \sisetup{separate-uncertainty}
