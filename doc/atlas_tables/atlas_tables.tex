@@ -55,7 +55,7 @@ Tables should only contain as many lines as are needed for clarity.
 Table~\ref{tab:yield:2dig} shows a good example that has been taken
 from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
 
-\ifthenelse{\ATTeXLiveVersion < 2012}{%
+\ifthenelse{\ATTeXLiveVersion < 2011}{%
   \sisetup{retainplus=true}
 }{
   \sisetup{retain-explicit-plus=true}
@@ -336,8 +336,10 @@ is non-trivial.
   \centering
   \renewcommand{\arraystretch}{1.4}
   \ifthenelse{\ATTeXLiveVersion < 2012}{%
-    \textbf{This table does not appear here, as it uses features that were only 
-    properly implemented for \TeX\ Live 2012  and later.}
+    \centering\fbox{\parbox{0.8\textwidth}{%
+      \textbf{This table does not appear here, as it uses features that were only 
+      properly implemented for \TeX\ Live 2012 and later.}
+    }}
   }{%
     \subfloat[No special formatting or rounding. Option
       \textsf{scientific-notation=fixed} used.]{%

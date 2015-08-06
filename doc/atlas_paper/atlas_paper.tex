@@ -128,12 +128,17 @@ Upper limits on the cross-section times branching ratio of between 2.0 and 5.8 t
 
 This Letter presents a measurement of the $WW$ production cross section in $\sqrt{s} = \SI{7}{\TeV}$ $pp$ collisions by the ATLAS experiment, using \SI{34}{\per\pb} of integrated luminosity produced by the Large Hadron Collider at CERN. Selecting events with two isolated leptons, each either an electron or a muon, 8 candidate events are observed with an expected background of $1.7 \pm 0.6$ events.
 The measured cross section is 
-\ifthenelse{\ATTeXLiveVersion < 2012}{%
-$41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.})\;\si{\pb}$,
-which is consistent with the standard model prediction of \SI[trapambigerr=false]{44(3)}{\pb} calculated at next-to-leading order in QCD. 
+\ifthenelse{\ATTeXLiveVersion < 2011}{%
+$(41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.}))\;\si{\pb}$,
 }{%
-\SI[parse-numbers=false]{41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.})}{\pb},
-which is consistent with the standard model prediction of \SI[multi-part-units=single]{44 \pm 3}{\pb} calculated at next-to-leading order in QCD. 
+\SI[parse-numbers=false]{(41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.}))}{\pb},
+}
+which is consistent with the standard model prediction of \SI{44(3)}{\pb} calculated at next-to-leading order in QCD. 
+In fact, the ATLAS convention is to write this as
+\ifthenelse{\ATTeXLiveVersion < 2011}{%
+\SI[trapambigerr=false]{44(3)}{\pb}, i.e.\ without the enclosing parentheses.
+}{%
+\SI[multi-part-units=single]{44(3)}{\pb}, i.e.\ without the enclosing parentheses.
 }
 
 \noindent(From \enquote{Measurement of the WW cross section in $\sqrt{s} = \SI{7}{\TeV}$ $pp$ collisions with ATLAS})
@@ -485,7 +490,7 @@ the value and the units (e.g.\ \SI{12}{\mm}).
 In addition, it makes sure the value and unit end up on the same line: \verb|\SI{12}{\mm}|.
 Natural units, where $c=\hbar=1$, should be used for all
 ATLAS publications.
-\ifthenelse{\ATTeXLiveVersion < 2012}{%
+\ifthenelse{\ATTeXLiveVersion < 2011}{%
 Masses are therefore in \si{\GeV}, not \si[per=slash]{\GeV\per\clight}.
 }{%
 Masses are therefore in \si{\GeV}, not \si[per-mode=symbol]{\GeV\per\clight}.
