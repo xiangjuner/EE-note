@@ -4,7 +4,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2015/07/31 v.01-07-06 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2015/08/07 v.01-07-06 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -138,7 +138,7 @@
   \RequirePackage{booktabs}
   % Several plots in a single figure
   \ifAPKG@subfigure%
-    \RequirePackage{subfigure}
+    \RequirePackage[TABBOTCAP]{subfigure}
   \else
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
     % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
@@ -149,9 +149,11 @@
       }
       \RequirePackage[labelformat=simple]{subcaption}
       \renewcommand\thesubfigure{(\alph{subfigure})}
+      \renewcommand\thesubtable{(\alph{subtable})}
     \else
       \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
       \renewcommand\thesubfigure{(\alph{subfigure})}
+      \renewcommand\thesubtable{(\alph{subtable})}
     \fi
   \fi
   % subfigure option needed if subfig(ure) is also used
