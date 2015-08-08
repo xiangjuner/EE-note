@@ -6,7 +6,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{01-07-06}
 
-\ProvidesClass{latex/atlasdoc}[2015/08/07 v.01-07-06 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/08/08 v.01-07-06 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -440,11 +440,11 @@
 % Title page design
 \newcommand{\AtlasTitleHeader}{%
   \begin{minipage}{\linewidth}
-    \begin{minipage}[c][35mm][t]{0.25\linewidth}
+    \begin{minipage}[c][35mm][t]{0.24\linewidth}
       \includegraphics[height=30mm]{AT_atlaslogo}
     \end{minipage}
     \hspace*{\fill}
-    \begin{minipage}[c][35mm][c]{0.40\linewidth}
+    \begin{minipage}[c][35mm][c]{0.48\linewidth}
       \centering
         {\fontfamily{phv}\bfseries\fontsize{20}{24}\selectfont
           \ifADOC@PAPER
@@ -474,7 +474,7 @@
         \fi
     \end{minipage}
     \hspace*{\fill}
-    \begin{minipage}[c][35mm][t]{0.25\linewidth}
+    \begin{minipage}[c][35mm][t]{0.24\linewidth}
       \flushright\includegraphics[height=25mm]{AT_cernlogo}
       \ifx\ADOC@draftversion\@empty
         \relax

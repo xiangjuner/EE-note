@@ -3,7 +3,8 @@
 	* June and July updates of ATLAS and CMS publications.
 	* Improve siunitx option setting for TeX Live 2011 (arXiv version).
 	* A few fixes so that things (sort of) work with TeX Live earlier than 2009.
-	* Move \pdfoutput=1 command even earlier in template
+	* Move \pdfoutput=1 command even earlier in template.
+	* Small tweak of title page header for long note numbers.
 	* Add \App etc. to atlasxref.sty for appendices.
 	* Add some more Monte Carlos to atlasmisc.sty.
 	* Add some more units to atlas_physics for testing.
