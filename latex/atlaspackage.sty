@@ -171,29 +171,32 @@
     \ifthenelse{\APKG@texlive < 2012}{
       \ifthenelse{\APKG@texlive < 2011}{
         \RequirePackage[noload=addn]{siunitx}
+        \sisetup{alsoload=hep}
         \sisetup{seperr}
         \sisetup{repeatunits=false}
         \sisetup{obeyall}
-        \sisetup{alsoload=hep}
         \sisetup{sepfour}
-        \renewunit\mrad{\milli\radian}
-        % \newunit\micron{\micro\metre}
+        \renewunit{\mrad}{\milli\radian}
         \newunit{\barn}{b}
-        \newunit{\TeVc}{\tera\eVperc}
-        \newunit{\GeVc}{\giga\eVperc}
-        \newunit{\MeVc}{\mega\eVperc}
-        \newunit{\keVc}{\kilo\eVperc}
-        \newunit{\eVc}{\eVperc}
-        \newunit{\TeVcc}{\tera\eVperc\squared}
-        \newunit{\GeVcc}{\giga\eVperc\squared}
-        \newunit{\MeVcc}{\mega\eVperc\squared}
-        \newunit{\keVcc}{\kilo\eVperc\squared}
-        \newunit{\eVcc}{\eVperc\squared}
-        \newunit\inb{\per\nano\barn}
-        \newunit\ipb{\per\pico\barn}
-        \newunit\ifb{\per\femto\barn}
-        \newunit\degr{\degree}
-        % \newunit\clight{\ensuremath{c}}
+        \renewunit{\clight}{\ensuremath{c}}
+        \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
+        \newunit[per=slash]{\TeVc}{\tera\eVperc}
+        \newunit[per=slash]{\GeVc}{\giga\eVperc}
+        \newunit[per=slash]{\MeVc}{\mega\eVperc}
+        \newunit[per=slash]{\keVc}{\kilo\eVperc}
+        \newunit[per=slash]{\eVc}{\eVperc}
+        \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
+        \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
+        \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
+        \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
+        \newunit[per=slash]{\eVcc}{\eVperc\squared}
+        \newunit{\inb}{\per\nano\barn}
+        \newunit{\ipb}{\per\pico\barn}
+        \newunit{\ifb}{\per\femto\barn}
+        \newunit{\degr}{\degree}
+        \newunit{\m}{m}
+        \newunit{\um}{\micro\meter}
+        % \newunit\micron{\micro\metre}
       }{
         \RequirePackage{siunitx}
         \sisetup{load-configurations=abbreviations}
@@ -204,18 +207,18 @@
         \DeclareSIUnit\mrad{\milli\radian}
         % \DeclareSIUnit\micron{\micro\metre}
         \DeclareSIUnit\barn{b}
-        % \DeclareSIUnit\clight{\ensuremath{c}}
-        \DeclareSIUnit\eVperc{\eV\per\clight}
-        \DeclareSIUnit\TeVc{\tera\eVperc}
-        \DeclareSIUnit\GeVc{\giga\eVperc}
-        \DeclareSIUnit\MeVc{\mega\eVperc}
-        \DeclareSIUnit\keVc{\kilo\eVperc}
-        \DeclareSIUnit\eVc{\eVperc}
-        \DeclareSIUnit\TeVcc{\tera\eVperc\squared}
-        \DeclareSIUnit\GeVcc{\giga\eVperc\squared}
-        \DeclareSIUnit\MeVcc{\mega\eVperc\squared}
-        \DeclareSIUnit\keVcc{\kilo\eVperc\squared}
-        \DeclareSIUnit\eVcc{\eVperc\squared}
+        \DeclareSIUnit\clight{\ensuremath{c}}
+        \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
+        \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
+        \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
+        \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
+        \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
+        \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
+        \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
+        \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
+        \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
+        \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
+        \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
         \DeclareSIUnit\micron{\micro\metre}
         \DeclareSIUnit\mrad{\milli\radian}
         \DeclareSIUnit\nb{\nano\barn}
