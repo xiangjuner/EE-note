@@ -38,18 +38,18 @@
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifAPKG@minimal
-  \typeout{atlaspackage: using minimal settings}
+  \typeout{atlaspackage: Using minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
 \else
   \ifAPKG@full
-    \typeout{atlaspackage: using full settings}
+    \typeout{atlaspackage: Using full settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@moretrue
   \else
-    \typeout{atlaspackage: using default settings}
+    \typeout{atlaspackage: Using default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
@@ -96,7 +96,7 @@
 
 % Font
 \ifAPKG@txfonts
-  \typeout{atlaspackage: using txfonts and savesym}
+  \typeout{atlaspackage: Using txfonts and savesym}
   \RequirePackage[varg]{txfonts}
   % Encoding used for printout
   \RequirePackage[T1]{fontenc}
@@ -170,6 +170,7 @@
   \ifAPKG@siunitx
     \ifthenelse{\APKG@texlive < 2012}{
       \ifthenelse{\APKG@texlive < 2011}{
+        \typeout{atlaspackage: Loading siunitx definitions for TeX Live < 2011}
         \RequirePackage[noload=addn]{siunitx}
         \sisetup{alsoload=hep}
         \sisetup{seperr}
@@ -178,7 +179,7 @@
         \sisetup{sepfour}
         \renewunit{\mrad}{\milli\radian}
         \newunit{\barn}{b}
-        \renewunit{\clight}{\ensuremath{c}}
+        \renewunit{\clight}{\text{\ensuremath{c}}}
         \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
         \newunit[per=slash]{\TeVc}{\tera\eVperc}
         \newunit[per=slash]{\GeVc}{\giga\eVperc}
@@ -198,6 +199,7 @@
         \newunit{\um}{\micro\meter}
         % \newunit\micron{\micro\metre}
       }{
+        \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
         \RequirePackage{siunitx}
         \sisetup{load-configurations=abbreviations}
         \sisetup{separate-uncertainty}
@@ -207,7 +209,7 @@
         \DeclareSIUnit\mrad{\milli\radian}
         % \DeclareSIUnit\micron{\micro\metre}
         \DeclareSIUnit\barn{b}
-        \DeclareSIUnit\clight{\ensuremath{c}}
+        \DeclareSIUnit\clight{\text{\ensuremath{c}}}
         \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
         \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
         \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
@@ -230,6 +232,7 @@
         \DeclareSIUnit\degr{\degree}
       }
     }{%
+      \typeout{atlaspackage: Loading siunitx definitions for TeX Live > 2011}
       \RequirePackage{siunitx}
       \sisetup{separate-uncertainty}
       \sisetup{range-units=single, list-units=single}
@@ -241,7 +244,7 @@
       \DeclareSIUnit\nb{\nano\barn}
       \DeclareSIUnit\pb{\pico\barn}
       \DeclareSIUnit\fb{\femto\barn}
-      \DeclareSIUnit\clight{\ensuremath{c}}
+      \DeclareSIUnit\clight{\text{\ensuremath{c}}}
     }
   \fi
 \fi
