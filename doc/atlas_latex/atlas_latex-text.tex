@@ -587,12 +587,18 @@ You should also turn off ATLAS draft cover page -- remove the option \Option{cov
 If you move the class and style files to the same directory as the main file,
 you need to add the option \Option{texmf} to the \Macro{documentclass}.
 
+You can test whether your document compiles with \TeX\ Live 2011 by setting your \texttt{PATH} on \texttt{lxplus} to
+\begin{verbatim}
+export PATH=/afs/cern.ch/user/a/atlaspo/workspace/texlive/2011/bin/x86_64-linux:$PATH
+\end{verbatim}
+
 Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
 Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
 Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} -- see
 the Section on \enquote{Guidelines for paper submission}.
 APS journals have special requirements on the directory structure and the filenames for figures.
-JINST uses a very old version of \LaTeX (2004). Neither \Package{biblatex} nor \Package{siunitx} are available
+JINST uses a very old version of \LaTeX (2004).
+Neither \Package{biblatex} nor \Package{siunitx} are available
 and \KOMAScript does not contain the \Macro{KOMAoptions} command.
 See the Physics Office TWiki~\cite{atlas-physicsoffice} for more information.
 

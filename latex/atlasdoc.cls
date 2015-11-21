@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-06}
+\def\ATPackageVersion{01-07-07}
 
-\ProvidesClass{latex/atlasdoc}[2015/08/08 v.01-07-06 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2015/11/21 v.01-07-07 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -531,7 +531,7 @@
   \parbox[b]{\linewidth}{%
     \small
     \copyright\ \the\year\ CERN for the benefit of the ATLAS Collaboration.\newline
-    Reproduction of this article or parts of it is allowed as specified in the CC-BY-3.0 license.
+    Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
   }\par
   % Thanks
   \@thanks
