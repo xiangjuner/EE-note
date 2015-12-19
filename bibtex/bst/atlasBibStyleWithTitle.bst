@@ -3,7 +3,7 @@
 % --- Based on UT Physics bibliographic style (utphys.bst)
 % --- Adapted by Cristina Oropeza Barrera (cbarrera@cern.ch)
 % --- Further developments Ian Brock (ian.brock@cern.ch)
-% --- version 1.4 - 03/12/2014
+% --- version 1.5 - 19/12/2015
 % -----------------------------------------------------------------------------
 
 FUNCTION {string.and} {" and "}
@@ -573,12 +573,20 @@ FUNCTION {format.volume}
   if$
 }
 
+% Do not print issue number
 FUNCTION {format.number}
 { number empty$
     { "" }
-    { "no.~" number * ", " *}
+    { "" }
   if$
 }
+
+%FUNCTION {format.number}
+%{ number empty$
+%    { "" }
+%    { "no.~" number * ", " *}
+%  if$
+%}
 
 FUNCTION {format.chapter.pages}
 { chapter empty$

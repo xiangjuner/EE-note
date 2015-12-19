@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2015/11/21 v.01-07-07 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2015/12/19 v.01-07-08 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -83,6 +83,11 @@
   
   % Volume in bold font
   \DeclareFieldFormat[article]{volume}{\textbf{#1}\isdot}
+  
+  % Suppress issue number
+  \AtEveryBibitem{
+    \ifentrytype{article}{\clearfield{number}}{}
+  }
   
   % DOI as link with journal reference
   \ifABIB@showdoi
