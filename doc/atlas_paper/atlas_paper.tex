@@ -3,16 +3,19 @@
 % to get your paper draft into a form that minimises the amount of work needed
 % to get it approved by the collaboration - assuming that the physics is OK!
 %-------------------------------------------------------------------------------
-\documentclass[PAPER,UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+%-------------------------------------------------------------------------------
+\documentclass[PAPER,UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 % Use biblatex and biber for the bibliography
-\usepackage[backend=biber]{latex/atlaspackage}
+\usepackage[backend=biber]{\ATLASLATEXPATH atlaspackage}
 % Style file with biblatex options for ATLAS documents
-\usepackage{latex/atlasbiblatex}
+\usepackage{\ATLASLATEXPATH atlasbiblatex}
 
 % Useful macros
-\usepackage{latex/atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 
 % Files with references in BibTeX format and biblatex style options
 \addbibresource{atlas_paper.bib}
@@ -26,7 +29,7 @@
 % Generic document information
 %-------------------------------------------------------------------------------
 % Set author and title for the PDF file
-\hypersetup{pdftitle={ATLAS paper template},pdfauthor={ATLAS Publications Committee}}
+\hypersetup{pdftitle={ATLAS paper template},pdfauthor={ATLAS Publication Committee}}
 
 \AtlasTitle{General guidelines for ATLAS papers}
 

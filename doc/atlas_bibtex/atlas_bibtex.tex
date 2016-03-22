@@ -2,15 +2,18 @@
 % Examples on how to fill BibTeX entries in the ATLAS Bibliographic Style
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 
 % Use biblatex and biber for the bibliography
-%\usepackage[minimal]{latex/atlaspackage}
-\usepackage[minimal,backend=biber]{latex/atlaspackage}
-\usepackage[articletitle=true,showdoi=false]{latex/atlasbiblatex}
+%\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
+\usepackage[minimal,backend=biber]{\ATLASLATEXPATH atlaspackage}
+\usepackage[articletitle=true,showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
 
 \usepackage{authblk}
-\usepackage{latex/atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 
 % Files with references in BibTeX format
 \addbibresource{atlas_bibtex.bib}

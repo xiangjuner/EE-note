@@ -1,14 +1,17 @@
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 
 % Use biblatex and biber for the bibliography
-\usepackage[backend=biber]{latex/atlaspackage}
-\usepackage{latex/atlasbiblatex}
+\usepackage[backend=biber]{\ATLASLATEXPATH atlaspackage}
+\usepackage{\ATLASLATEXPATH atlasbiblatex}
 
 \usepackage{authblk}
-\usepackage{latex/atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 
 % Files with references in BibTeX format
 \addbibresource{../atlas_latex.bib}

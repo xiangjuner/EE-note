@@ -1,17 +1,20 @@
 %-------------------------------------------------------------------------------
 % This note lists the symbols defined in atlasphysics.sty.
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{latex/atlasdoc}
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+%-------------------------------------------------------------------------------
+\documentclass[UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[default,backend=biber]{latex/atlaspackage}
-\usepackage{latex/atlasbiblatex}
+\usepackage[default,backend=biber]{\ATLASLATEXPATH atlaspackage}
+\usepackage{\ATLASLATEXPATH atlasbiblatex}
 \usepackage{xtab}
 \usepackage{authblk}
 
 % Include all style files
-\usepackage[BSM,hion,journal,math,process,other,xref]{latex/atlasphysics}
-%\usepackage{latex/atlasheavyion-mod}
+\usepackage[BSM,hion,journal,math,process,other,xref]{\ATLASLATEXPATH atlasphysics}
+%\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
 
 % Files with references in BibTeX format and biblatex style options
 \addbibresource{atlas_physics.bib}
@@ -70,7 +73,7 @@ The style file can included in the preamble of your paper with the usual
 syntax:
 %
 \begin{verbatim}
-  \usepackage{latex/atlasphysics}
+  \usepackage{\ATLASLATEXPATH atlasphysics}
 \end{verbatim}
 %
 As of version 01-00-00 the file is actually split into smaller files,
@@ -92,15 +95,15 @@ The following options are available, where the default setting is given in paren
 \item[xref](true) Useful abbreviations for cross-references;
 \item[texlive=YYYY](2013) set if you use an older version of \TeX\ Live like 2009;
 \item[texmf] use the syntax \Macro{usepackage\{package\}}
-  instead of \Macro{usepackage\{latex/package\}} to include packages.
+  instead of \Macro{usepackage\{\textbackslash ATLASLATEXPATH package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
-  rather than in a \File{latex} subdirectory;
+  rather than in a \File{latex} subdirectory.
 \end{description}
 Note that \Option{BSM} and \Option{BSM=true} are equivalent.
 Use the syntax \Option{option=false} to turn off an option.
 
 If the  option \Option{texmf} is included, the subfiles are included using the command:
-\verb|\RequirePackage{atlasparticle}| etc. instead of \verb|\RequirePackage{latex/atlasparticle}|.
+\verb|\RequirePackage{atlasparticle}| etc. instead of \verb|\RequirePackage{\ATLASLATEXPATH atlasparticle}|.
 This is useful if you install the ATLAS \LaTeX\ package in a central directory such as \File{\$\{HOME\}/texmf/tex/latex}.
 
 All definitions are done in a consistent way using \verb|\newcommand*|.
@@ -336,7 +339,7 @@ A few have been removed. The changes include:
 \begin{itemize}
 \item Kaons now have a capital ``K'' in the macro name, e.g.\ \verb|\Kplus| for \Kplus;
 \item \verb|\Ztau|, \verb|\Wtau|, \verb|\Htau| \verb|\Atau| have been replaced by
-  \verb|\Ztautau|, \verb|\Wtautau|, \verb|\Htautau| \verb|{Atautau|;
+  \verb|\Ztautau|, \verb|\Wtautau|, \verb|\Htautau| \verb|\Atautau|;
 \item \verb|\Ups| replaces \verb|\ups|;
   the use of \verb|\ups| to produce $\Upsilon$ in text mode has been removed;
 \item \verb|\cm| has been removed, as it was the only length unit defined for text and math mode;

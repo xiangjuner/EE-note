@@ -224,11 +224,14 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
   \item {\verb|\AtlasVersion{<Draft Version>}|} displays the draft
     version on the front page, a DRAFT banner on all the other page
     headings, and adds line numbers to all text to easy commenting and
-    reviewing. Can be omitted.
+    reviewing.
+    Should be included when paper draft is circulated to ATLAS.
+    Highly recommended for all documents in the draft stage.
 
   \item {\verb|\AtlasJournal{<Journal Name>}|} displays the phrase \emph{to
     be submitted to Journal Name} at the bottom of the front page and
-    on the cover page. Can be omitted.
+    on the cover page.
+    Should be included when a paper draft is circulated to ATLAS.
 
   \item {\verb|\AtlasRefCode{<Reference code>}|} displays the ATLAS
     standard reference code, e.g.\ \texttt{BPHY-2014-03}, on the front page and
@@ -247,12 +250,10 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
   \item {\verb|\AtlasJournalRef{<Journal reference>}|} displays the journal reference
     on the preprint front page.
     This should be used for the arXiv update after the paper has been published.
-    Can be omitted.
 
   \item {\verb|\AtlasDOI{<Journal reference>}|} displays the DOI
     on the preprint front page.
     This should be used for the arXiv update after the paper has been published.
-    Can be omitted.
 
   \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
     on the front page.
@@ -598,9 +599,9 @@ Depending on which journal you submit to, you should turn on or off the printing
 Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} -- see
 the Section on \enquote{Guidelines for paper submission}.
 APS journals have special requirements on the directory structure and the filenames for figures.
-JINST uses a very old version of \LaTeX (2004).
+JINST uses a very old version of \LaTeX\ (2004).
 Neither \Package{biblatex} nor \Package{siunitx} are available
-and \KOMAScript does not contain the \Macro{KOMAoptions} command.
+and \KOMAScript\ does not contain the \Macro{KOMAoptions} command.
 See the Physics Office TWiki~\cite{atlas-physicsoffice} for more information.
 
 It also makes sense to clean up the metadata file at this point.

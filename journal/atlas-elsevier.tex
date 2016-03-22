@@ -1,18 +1,21 @@
 %-------------------------------------------------------------------------------
 % Standard ATLAS paper template with Elsevier class
 %-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../latex/}
+%-------------------------------------------------------------------------------
 \documentclass[UKenglish,texlive=2013]{elsarticle}
 
 \usepackage[centering, scale=0.75]{geometry}
 
 % ATLAS packages
-\usepackage[biblatex=false]{latex/atlaspackage}
+\usepackage[biblatex=false]{\ATLASLATEXPATH atlaspackage}
 
 % Extra packages
 % \usepackage{showframe}
 
 % Useful macros
-\usepackage{latex/atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 
 % Paths for figures
 \graphicspath{{../logos/}{figures/}}
@@ -21,10 +24,10 @@
 \hypersetup{pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}}
 
 % Either include atlascover or atlasmetadefs
-\usepackage[coverpage=true]{latex/atlascover}
+\usepackage[coverpage=true]{\ATLASLATEXPATH atlascover}
 
 % Use the atlasmetadefs package so that you can use atlas-document-metadata.tex without changes
-% \usepackage{../latex/atlasmetadefs}
+% \usepackage{\ATLASLATEXPATH atlasmetadefs}
 \newcommand*{\DocumentStyle}{\texttt{elsarticle} class}
 
 % Title, abstract and document 
