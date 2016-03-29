@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-10}
+\def\ATPackageVersion{01-07-11}
 
-\ProvidesClass{latex/atlasdoc}[2016/03/22 v.01-07-10 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2016/03/29 v.01-07-11 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -441,7 +441,7 @@
 \newcommand{\AtlasTitleHeader}{%
   \begin{minipage}{\linewidth}
     \begin{minipage}[c][35mm][t]{0.24\linewidth}
-      \includegraphics[height=30mm]{AT_atlaslogo}
+      \includegraphics[height=25mm]{AT_atlaslogo_2015}
     \end{minipage}
     \hspace*{\fill}
     \begin{minipage}[c][35mm][c]{0.48\linewidth}
