@@ -6,7 +6,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{01-07-11}
 
-\ProvidesClass{latex/atlasdoc}[2016/03/29 v.01-07-11 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2016/05/09 v.01-07-11 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
