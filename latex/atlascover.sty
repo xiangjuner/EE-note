@@ -1,13 +1,13 @@
 %-------------------------------------------------------------------------------
 % Style file for ATLAS cover page for circulation of ATLAS drafts,
-% CERN preprint and auxilairy material front pages
+% CERN preprint and auxiliary material front pages
 %
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-11}
+\def\ATPackageVersion{01-07-12}
 
-\ProvidesPackage{latex/atlascover}[2016/05/09 v.01-07-11 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2016/05/20 v.01-07-12 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\typeout{ATLAS cover page v.\ATPackageVersion}
@@ -247,10 +247,10 @@
 % Page One: Header/Body/Footer
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverHeader}{%
-  \begin{minipage}{0.25\linewidth}
+  \parbox{0.25\linewidth}{%
     \includegraphics[height=25mm]{AT_atlaslogo_2015}
-  \end{minipage}
-  \begin{minipage}{0.5\linewidth}
+  }
+  \parbox{0.5\linewidth}{%
     \centering
     \fontfamily{phv}\fontseries{b}\fontsize{16}{19.2}\selectfont
       \ifACOV@atlaspaper%
@@ -264,12 +264,12 @@
           \fi
         \fi
       \fi
-  \end{minipage}
+  }
 }
 
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverBody}{%
-  \begin{minipage}{\linewidth}
+  \parbox{\linewidth}{%
     \centering
     \rule{\linewidth}{1.5pt}\par
     \vspace*{0.8ex}
@@ -332,7 +332,7 @@
       \ACOV@CommentsDeadline\par
     }
     \vspace*{0.8ex}
-  \end{minipage}
+  }
   %\vspace*{6mm}
   \rule{\linewidth}{1.5pt}\par
   \vspace*{1ex}
@@ -351,14 +351,14 @@
 
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverFooter}{%
-  \begin{minipage}[b]{\linewidth}
+  \parbox[b]{\linewidth}{%
     \fontfamily{phv}\fontseries{m}\fontsize{9}{10.8}\selectfont
     \ifACOV@atlasdoc%
       Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \else
       Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \fi
-  \end{minipage}%
+  }
 }
 
 %-------------------------------------------------------------------------------
@@ -366,7 +366,7 @@
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverPageTwo}{%
   % Analysis team
-  \begin{minipage}{\linewidth}
+  \parbox{\linewidth}{%
     \centering
     \rule{\linewidth}{1.5pt}\par
     \vspace*{1ex}
@@ -426,7 +426,7 @@
     \fi
     \vspace*{1ex}
     \rule{\linewidth}{1.5pt}\par
-  \end{minipage}
+  }
 }
 
 %-------------------------------------------------------------------------------
@@ -465,7 +465,7 @@
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
-    \begin{minipage}[t]{0.45\linewidth}
+    \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
       \ifx\ADOC@journalref\@empty
@@ -482,15 +482,14 @@
       \else
         DOI: \href{http://dx.doi.org/\ADOC@doi}{\ADOC@doi}\par
       \fi
-    \end{minipage}
+    }
     \hspace*{\fill}
-    \begin{minipage}[t]{0.45\linewidth}
-      \flushright
-      \includegraphics[height=25mm]{AT_cernlogo}\par
+    \parbox[t]{0.45\linewidth}{%
+      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
-      \ADOC@preprintnumber\par
-      \ADOC@atlasdate\par
-    \end{minipage}\par
+      \hspace*{\fill}\ADOC@preprintnumber\par
+      \hspace*{\fill}\ADOC@atlasdate\par
+    }\par
     \vspace*{2mm}
     \rule{\linewidth}{1pt}\par
   }
@@ -505,19 +504,18 @@
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
-    \begin{minipage}[t]{0.45\linewidth}
+    \parbox[b][35mm][t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       arXiv: \AtlasArXivId\ \AtlasArXivCat
-    \end{minipage}
+    }
     \hspace*{\fill}
-    \begin{minipage}[t]{0.45\linewidth}
-      \flushright
-      \includegraphics[height=25mm]{AT_cernlogo}\par
+    \parbox[b][35mm][t]{0.45\linewidth}{%
+      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      \ADOC@preprintnumber\par
-      \ADOC@atlasdate\par
-    \end{minipage}\par
+      \hspace*{\fill}\ADOC@preprintnumber\par
+      \hspace*{\fill}\ADOC@atlasdate\par
+    }\par
     \vspace*{2mm}
     \rule{\linewidth}{1pt}\par
   }

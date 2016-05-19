@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-11}
+\def\ATPackageVersion{01-07-12}
 
-\ProvidesClass{latex/atlasdoc}[2016/05/09 v.01-07-11 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2016/05/20 v.01-07-12 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -437,14 +437,22 @@
   \fi
 \fi
 
+% Length needed for parbox/minipage in title page
+\newlength{\titlepageparbox}
+\setlength{\titlepageparbox}{\textwidth}
+%\addtolength{\titlepageparbox}{-2\fboxrule}
+%\addtolength{\titlepageparbox}{-2\fboxsep}
+%\addtolength{\titlepageparbox}{-9pt}
+%\typeout{titlepageparbox is \the\titlepageparbox}
+
 % Title page design
 \newcommand{\AtlasTitleHeader}{%
-  \begin{minipage}{\linewidth}
-    \begin{minipage}[c][35mm][t]{0.24\linewidth}
+  \parbox[t][35mm]{\titlepageparbox}{%
+    \parbox[b][35mm][t]{0.24\titlepageparbox}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}
-    \end{minipage}
+    }
     \hspace*{\fill}
-    \begin{minipage}[c][35mm][c]{0.48\linewidth}
+    \parbox[b][35mm][c]{0.48\titlepageparbox}{%
       \centering
         {\fontfamily{phv}\bfseries\fontsize{20}{24}\selectfont
           \ifADOC@PAPER
@@ -472,17 +480,17 @@
         \else
           \@date\par
         \fi
-    \end{minipage}
+    }
     \hspace*{\fill}
-    \begin{minipage}[c][35mm][t]{0.24\linewidth}
-      \flushright\includegraphics[height=25mm]{AT_cernlogo}
+    \parbox[b][35mm][t]{0.24\titlepageparbox}{%
+      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
       \ifx\ADOC@draftversion\@empty
         \relax
       \else
-        \flushright\normalsize Draft version \ADOC@draftversion
+        \normalsize\hspace*{\fill}Draft version \ADOC@draftversion
       \fi
-    \end{minipage}
-  \end{minipage}\par
+    }
+  }\par
 }
 
 \newcommand{\AtlasTitleBody}{%
@@ -528,7 +536,7 @@
 
 \newcommand{\AtlasTitleFooter}{%
   % Copyright
-  \parbox[b]{\linewidth}{%
+  \parbox[b]{\titlepageparbox}{%
     \small
     \copyright\ \the\year\ CERN for the benefit of the ATLAS Collaboration.\newline
     Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
