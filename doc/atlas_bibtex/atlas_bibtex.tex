@@ -251,8 +251,10 @@ A summary of the options is:
 \begin{description}
 \item[\Option{articletitle=true|false}] turn on (default) or off including the article title in the bibliography;
 \item[\Option{titlequote=true|false}] enclose the title in quotes instead of emphasize (default);
-\item[\Option{showdoi=true|false}] make the journal reference a link to the DOI instead of displaying it (default);
+\item[\Option{showdoi=true|false}] make the journal reference a link to the DOI (default) instead of displaying it;
 \item[\Option{eprint=true|false}] print the arXiv reference if available (default).
+\item[\Option{address=true|false}] turn on or off (default) the printing of the address field.
+\item[\Option{location=true|false}] turn on or off (default) the printing of the location field.
 \item[\Option{block=ragged|space|none}] use \Macro{raggedright} (default) for typesetting the references.
   Alternatives are \Option{block=space} and \Option{block=none}.
   The default option (\Option{ragged}) tries to fit the title into a single line 
@@ -264,6 +266,8 @@ A summary of the options is:
 With \Package{biblatex}, notes are printed after the journal reference and before the arXiv or URL.
 If you want the note to be printed after the arXiv or URL, use the \texttt{adddendum} rather than the \texttt{note} field.
 The \texttt{addendum} field is ignored by traditional \BibTeX.
+The field \texttt{address} is an alias for \texttt{location} in \Package{biblatex}.
+The \texttt{month} field is ignored when using \Package{biblatex}.
 
 To print the bibliography include the command:
 %
@@ -282,6 +286,9 @@ If you use traditional \BibTeX, you should choose between the two style files gi
 depending on the journal to which they wish to submit their paper.
 These style files have been successfully tested in the framework provided by 
 the journals listed in the following sections and with the standard ATLAS document template.
+
+Note that use of traditional \BibTeX\ style files is deprecated
+and not all options provided for \Package{biblatex} have been ported to the \BibTeX\ style files.
 
 
 %-------------------------------------------------------------------------------
@@ -418,6 +425,7 @@ The \texttt{revtex} style also does this for you.
 If you use \texttt{biblatex} use the option \Option{style=numeric-comp},
 which is the default in \Package{atlaslatex}.
 
+
 %-------------------------------------------------------------------------------
 \section{Examples}
 %-------------------------------------------------------------------------------
@@ -462,6 +470,7 @@ You should specify the journal in the \texttt{journal} field in form:\\
 \item[2015-01-30: Ian Brock] Try to clarify the nomenclature and 
   the recommended way to use \BibTeX.
 \item[2015-03-20: Ian Brock] Add information about standard ATLAS and CMS bibliography databases.
+\item[2016-06-14: Ian Brock] Add information about address and location options.
 \end{description}
 
 %-------------------------------------------------------------------------------

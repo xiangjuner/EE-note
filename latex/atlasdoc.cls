@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-07-12}
+\def\ATPackageVersion{01-07-13}
 
-\ProvidesClass{latex/atlasdoc}[2016/05/20 v.01-07-12 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2016/06/27 v.01-07-13 ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------

@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2016/05/20 v.01-07-12 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2016/06/27 v.01-07-13 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -21,6 +21,8 @@
 \DeclareBoolOption[false]{titlequote}
 \DeclareBoolOption[false]{showdoi}
 \DeclareBoolOption[true]{eprint}
+\DeclareBoolOption[false]{address}
+\DeclareBoolOption[false]{location}
 \DeclareStringOption[2013]{texlive}
 \ProcessKeyvalOptions*
 
@@ -56,6 +58,10 @@
     \ExecuteBibliographyOptions{date=year}
   }
   
+  % Don't want months
+  \AtEveryBibitem{%
+    \clearfield{month}
+  }
   
   % Use consistent format for title for articles and booklets/reports (CONF/PUB notes)
   \ifABIB@articletitle
@@ -92,6 +98,19 @@
     \ifentrytype{article}{\clearfield{number}}{}
   }
   
+  % Do not print out the address
+  \ifABIB@address
+    \relax
+  \else
+    \ifABIB@location
+      \relax
+    \else
+      \AtEveryBibitem{%
+        \clearlist{location}
+      }
+    \fi
+  \fi
+
   % DOI as link with journal reference
   \ifABIB@showdoi
     \relax
