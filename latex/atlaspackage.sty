@@ -4,7 +4,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2016/06/27 v.01-07-13 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2016/06/28 v.01-08-00 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -178,8 +178,15 @@
         \sisetup{repeatunits=false}
         \sisetup{obeyall}
         \sisetup{sepfour}
+        \newunit{\m}{m}
+        % \newunit\micron{\micro\metre}
+        \newunit{\um}{\micro\meter}
         \renewunit{\mrad}{\milli\radian}
+        \newunit{\degr}{\degree}
         \newunit{\barn}{b}
+        \newunit{\inb}{\per\nano\barn}
+        \newunit{\ipb}{\per\pico\barn}
+        \newunit{\ifb}{\per\femto\barn}
         \renewunit{\clight}{\text{\ensuremath{c}}}
         \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
         \newunit[per=slash]{\TeVc}{\tera\eVperc}
@@ -192,13 +199,6 @@
         \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
         \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
         \newunit[per=slash]{\eVcc}{\eVperc\squared}
-        \newunit{\inb}{\per\nano\barn}
-        \newunit{\ipb}{\per\pico\barn}
-        \newunit{\ifb}{\per\femto\barn}
-        \newunit{\degr}{\degree}
-        \newunit{\m}{m}
-        \newunit{\um}{\micro\meter}
-        % \newunit\micron{\micro\metre}
       }{
         \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
         \RequirePackage{siunitx}
@@ -207,9 +207,16 @@
         \sisetup{detect-all}
         \sisetup{range-units=single, list-units=single}
         \sisetup{group-digits=true, group-four-digits=true}
+        \DeclareSIUnit\micron{\micro\metre}
         \DeclareSIUnit\mrad{\milli\radian}
-        % \DeclareSIUnit\micron{\micro\metre}
+        \DeclareSIUnit\degr{\degree}
         \DeclareSIUnit\barn{b}
+        \DeclareSIUnit\nb{\nano\barn}
+        \DeclareSIUnit\pb{\pico\barn}
+        \DeclareSIUnit\fb{\femto\barn}
+        \DeclareSIUnit\inb{\per\nano\barn}
+        \DeclareSIUnit\ipb{\per\pico\barn}
+        \DeclareSIUnit\ifb{\per\femto\barn}
         \DeclareSIUnit\clight{\text{\ensuremath{c}}}
         \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
         \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
@@ -222,15 +229,6 @@
         \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
         \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
         \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
-        \DeclareSIUnit\micron{\micro\metre}
-        \DeclareSIUnit\mrad{\milli\radian}
-        \DeclareSIUnit\nb{\nano\barn}
-        \DeclareSIUnit\pb{\pico\barn}
-        \DeclareSIUnit\fb{\femto\barn}
-        \DeclareSIUnit\inb{\per\nano\barn}
-        \DeclareSIUnit\ipb{\per\pico\barn}
-        \DeclareSIUnit\ifb{\per\femto\barn}
-        \DeclareSIUnit\degr{\degree}
       }
     }{%
       \typeout{atlaspackage: Loading siunitx definitions for TeX Live > 2011}
@@ -242,10 +240,25 @@
 %      detect-family = true, detect-display-math=true}
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}
+      \DeclareSIUnit\degr{\degree}
       \DeclareSIUnit\nb{\nano\barn}
       \DeclareSIUnit\pb{\pico\barn}
       \DeclareSIUnit\fb{\femto\barn}
+      \DeclareSIUnit\inb{\per\nano\barn}
+      \DeclareSIUnit\ipb{\per\pico\barn}
+      \DeclareSIUnit\ifb{\per\femto\barn}
       \DeclareSIUnit\clight{\text{\ensuremath{c}}}
+      \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
+      \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
+      \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
+      \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
+      \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
+      \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
+      \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
+      \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
+      \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
+      \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
+      \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
     }
   \fi
 \fi

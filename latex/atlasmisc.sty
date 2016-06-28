@@ -1,3 +1,8 @@
+%-------------------------------------------------------------------------------
+% Miscellaneous useful definitions for ATLAS documents.
+% Include with misc option in atlasphysics.sty.
+%-------------------------------------------------------------------------------
+
 % +--------------------------------------------------------------------+
 % |  Useful things for proton-proton physics                           |
 % +--------------------------------------------------------------------+
@@ -27,6 +32,25 @@
 \newcommand*{\dzero}{\ensuremath{d_{0}}\xspace}
 \newcommand*{\zzsth}{\ensuremath{z_{0} \sin(\theta)}\xspace}
 
+% LHC standard terms
+\newcommand*{\RunOne}{Run~1\xspace}
+\newcommand*{\RunTwo}{Run~2\xspace}
+\newcommand*{\RunThr}{Run~3\xspace}
+
+% ATLAS jets standard terms
+\newcommand*{\kt}{\ensuremath{k_{t}}\xspace}
+\newcommand*{\antikt}{anti-\kt\xspace}
+\newcommand*{\Antikt}{Anti-\kt\xspace}
+
+% b-tagging standard terms
+\newcommand*{\btag}{\ensuremath{b\text{-tagging}}\xspace}
+\newcommand*{\btagged}{\ensuremath{b\text{-tagged}}\xspace}
+\newcommand*{\bquark}{\ensuremath{b\text{-quark}}\xspace}
+\newcommand*{\bquarks}{\ensuremath{b\text{-quarks}}\xspace}
+\newcommand*{\bjet}{\ensuremath{b\text{-jet}}\xspace}
+\newcommand*{\bjets}{\ensuremath{b\text{-jets}}\xspace}
+
+
 % +--------------------------------------------------------------------+
 % | Masses                                                             |
 % +--------------------------------------------------------------------+
@@ -42,25 +66,45 @@
 % +--------------------------------------------------------------------+
 % |  Monte Carlo generators                                            |
 % +--------------------------------------------------------------------+
+\newcommand*{\ACERMC}{\textsc{AcerMC}\xspace}
+\newcommand*{\ACERMCV}[1]{\textsc{AcerMC}~#1\xspace}
 \newcommand*{\ALPGEN}{\textsc{Alpgen}\xspace}
+\newcommand*{\ALPGENV}[1]{\textsc{Alpgen}~#1\xspace}
 \newcommand*{\GEANT}{\textsc{Geant}\xspace}
 \newcommand*{\Herwigpp}{Herwig++\xspace}
 \newcommand*{\HERWIGpp}{Herwig++\xspace}
 \newcommand*{\Herwig}{Herwig\xspace}
+\newcommand*{\HerwigV}[1]{Herwig~#1\xspace}
 \newcommand*{\HERWIG}{\textsc{Herwig}\xspace}
+\newcommand*{\HERWIGV}[1]{\textsc{Herwig}~#1\xspace}
 \newcommand*{\JIMMY}{\textsc{Jimmy}\xspace}
-\newcommand*{\METOP}{\textsc{MEtop}\xspace}
-\newcommand*{\POWHEG}{\textsc{Powheg}\xspace}
-\newcommand*{\PROTOS}{\textsc{Protos}\xspace}
-\newcommand*{\PYTHIA}{\textsc{Pythia}\xspace}
-\newcommand*{\SHERPA}{\textsc{Sherpa}\xspace}
-\newcommand*{\ACERMC}{\textsc{AcerMC}\xspace}
-\newcommand*{\MCatNLO}{MC@NLO\xspace}
-\newcommand*{\AMCatNLO}{aMC@NLO\xspace}
 \newcommand*{\MADSPIN}{\textsc{MadSpin}\xspace}
 \newcommand*{\MADGRAPH}{\textsc{MadGraph}\xspace}
 \newcommand*{\MGMCatNLO}{\textsc{MadGraph5}\_aMC@NLO\xspace} 
+\newcommand*{\MCatNLO}{MC@NLO\xspace}
+\newcommand*{\AMCatNLO}{aMC@NLO\xspace}
 \newcommand*{\MCFM}{MCFM\xspace}
+\newcommand*{\METOP}{\textsc{MEtop}\xspace}
+\newcommand*{\POWHEG}{\textsc{Powheg}\xspace}
+\newcommand*{\POWHEGBOX}{\textsc{Powheg-Box}\xspace}
+\newcommand*{\POWPYTHIA}{\POWHEG{}+\PYTHIA}
+\newcommand*{\PROTOS}{\textsc{Protos}\xspace}
+\newcommand*{\PYTHIA}{\textsc{Pythia}\xspace}
+\newcommand*{\PYTHIAV}[1]{\textsc{Pythia}~#1\xspace}
+\newcommand*{\SHERPA}{\textsc{Sherpa}\xspace}
+\newcommand*{\SHERPAV}[1]{\textsc{Sherpa}~#1\xspace}
+
+%%% Event generator extras
+\newcommand*{\Comphep}{CompHEP\xspace}
+\newcommand*{\Perugia}{Perugia\xspace}
+\newcommand*{\Prospino}{Prospino\xspace}
+
+\newcommand*{\LO}{\ensuremath{\text{LO}}\xspace}
+\newcommand*{\NLO}{\ensuremath{\text{NLO}}\xspace}
+\newcommand*{\NLL}{\ensuremath{\text{NLL}}\xspace}
+\newcommand*{\NNLO}{\ensuremath{\text{N}}\NLO\xspace}
+\newcommand*{\muF}{\ensuremath{\mu_\textsc{f}}\xspace}
+\newcommand*{\muR}{\ensuremath{\mu_\textsc{r}}\xspace}
 
 % +--------------------------------------------------------------------+
 % |  Useful symbols for use in or out of math mode                     |
@@ -76,6 +120,8 @@
 \newcommand*{\gam}{\ensuremath{\gamma}\xspace}
 \newcommand*{\stat}{\mbox{$\;$(stat.)}\xspace}
 \newcommand*{\syst}{\mbox{$\;$(syst.)}\xspace}
+\newcommand*{\radlength}{\ensuremath{X_0}}
+\newcommand*{\StoB}{\ensuremath{S/B}\xspace}
 
 % +--------------------------------------------------------------------+
 % |  QCD                                                               |

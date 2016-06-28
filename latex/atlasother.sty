@@ -1,7 +1,9 @@
 %-------------------------------------------------------------------------------
-% Other definitions that used to be in atlasphysics.sty
-% Include with other option in atlasphysics.sty
-% Not included by default
+% Other definitions that used to be in atlasphysics.sty.
+% Include with other option in atlasphysics.sty.
+% Not included by default.
+% Also needs atlasmisc.sty (option misc) and
+% Also needs atlasparticle.sty (option particle).
 %-------------------------------------------------------------------------------
 
 \chardef\letterchar=11
@@ -20,13 +22,11 @@
 % Conflicts with \mA in siunitx version 1
 \providecommand*{\mA}{\ensuremath{m_{A}}\xspace}
 
-%
 % +--------------------------------------------------------------------+
 % |                                                                    |
 % |  sin2thetaW m_W m_Z etc.                                           |
 % |                                                                    |
 % +--------------------------------------------------------------------+
-%
 \newcommand*{\Mtau}{\ensuremath{m_{\tau}}\xspace}
 \newcommand*{\swsq}{\ensuremath{\sin^2\!\theta_{W}}\xspace}
 \newcommand*{\swel}{\ensuremath{\sin^2\!\theta_{\text{eff}}^{\text{lept}}}\xspace}
@@ -36,14 +36,13 @@
 \newcommand*{\ga}{\ensuremath{g_{\text{A}}}\xspace}
 \newcommand*{\gvbar}{\ensuremath{\bar{g}_\text{V}}\xspace}
 \newcommand*{\gabar}{\ensuremath{\bar{g}_\text{A}}\xspace}
-%
+
 % +--------------------------------------------------------------------+
 % |                                                                    |
 % |  Useful Z0 type stuff    Gammas, asymmetries                       |
 % |                                                                    |
 % +--------------------------------------------------------------------+
-%
-\newcommand*{\Zzv}{\ensuremath{\Zzero^{\textstyle *}}\xspace}
+\newcommand*{\Zzv}{\ensuremath{Z^{\textstyle *}}\xspace}
 \newcommand*{\Abb}{\ensuremath{A_{\bbbar}}\xspace}
 \newcommand*{\Acc}{\ensuremath{A_{\ccbar}}\xspace}
 \newcommand*{\Aqq}{\ensuremath{A_{\qqbar}}\xspace}
@@ -57,13 +56,12 @@
 \newcommand*{\Gcc}{\ensuremath{\Gamma_{\ccbar}}\xspace}
 \newcommand*{\Gvis}{\ensuremath{\Gamma_{\text{vis}}}\xspace}
 \newcommand*{\Ginv}{\ensuremath{\Gamma_{\text{inv}}}\xspace}
-%
+
 % +--------------------------------------------------------------------+
 % |                                                                    |
 % |  Notation for the P-lines: \nspj211 -->  2 1P1, etc.               |
 % |                                                                    |
 % +--------------------------------------------------------------------+
-%
 \def\nsPj#1#2#3{\ensuremath{#1\,^{#2}\!P_{#3}}}%
 \let\nspj=\nsPj
 \def\nsSj#1#2#3{\ensuremath{#1\,^{#2}\!S_{#3}}}%

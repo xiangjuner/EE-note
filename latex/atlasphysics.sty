@@ -6,7 +6,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasphysics}[2016/06/27 v.01-07-13 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2016/06/28 v.01-08-00 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -23,6 +23,7 @@
 \DeclareBoolOption[false]{BSM}
 \DeclareBoolOption[false]{bsm}
 \DeclareBoolOption[false]{hion}
+\DeclareBoolOption[false]{jetetmiss}
 \DeclareBoolOption[true]{journal}
 \DeclareBoolOption[false]{math}
 \DeclareBoolOption[true]{misc}
@@ -66,6 +67,9 @@
 
 % Heavy ion physics
 \ifAPHY@hion     \RequirePackage{\APHY@atlasdir atlasheavyion} \fi
+
+% Jet/ETmiss group abbreviations
+\ifAPHY@jetetmiss \RequirePackage{\APHY@atlasdir atlasjetetmiss} \fi
 
 % Journal abbreviations
 \ifAPHY@journal  \RequirePackage{\APHY@atlasdir atlasjournal} \fi

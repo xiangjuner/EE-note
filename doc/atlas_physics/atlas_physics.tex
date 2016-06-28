@@ -13,7 +13,9 @@
 \usepackage{authblk}
 
 % Include all style files
-\usepackage[BSM,hion,journal,math,process,other,xref]{\ATLASLATEXPATH atlasphysics}
+\usepackage[BSM, hion, jetetmiss,
+  journal, math, misc, other, particle, process,
+  unit,xref]{\ATLASLATEXPATH atlasphysics}
 %\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
 
 % Files with references in BibTeX format and biblatex style options
@@ -78,23 +80,24 @@ syntax:
 %
 As of version 01-00-00 the file is actually split into smaller files,
 which can be included or not using options.
-The following options are available, where the default setting is given in parentheses
+The following options are available, where the default setting is given in parentheses:
 \begin{description}
-\item[BSM](false) BSM and SUSY particles;
-\item[hion](false) Useful macros for heavy ion physics;
-\item[journal](true) Journal abbreviations and a few other definitions for references;
-\item[math](false) A few extra maths definitions;
-\item[misc](true) Miscellaneous definitions that are often used;
+\item[BSM](false) BSM and SUSY particles.
+\item[hion](false) Useful macros for heavy ion physics.
+\item[jetetmiss](false) Useful macros for Jet/ETmiss publications.
+\item[journal](true) Journal abbreviations and a few other definitions for references.
+\item[math](false) A few extra maths definitions.
+\item[misc](true) Miscellaneous definitions that are often used.
 \item[other](false) Definitions that used to be in \File{atlasphysics.sty}, 
-  but are probably too specialised to be needed by most people;
-\item[particle](true) Standard Model particles and some combinations;
+  but are probably too specialised to be needed by most people.
+\item[particle](true) Standard Model particles and some combinations.
 \item[process](false) Some example processes. 
   These are not included by default as the current choice is rather arbitrary
-  and certainly not complete;
-\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits};
-\item[xref](true) Useful abbreviations for cross-references;
-\item[texlive=YYYY](2013) set if you use an older version of \TeX\ Live like 2009;
-\item[texmf] use the syntax \Macro{usepackage\{package\}}
+  and certainly not complete.
+\item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
+\item[xref](true) Useful abbreviations for cross-references.
+\item[texlive=YYYY](2013) Set if you use an older version of \TeX\ Live like 2009.
+\item[texmf] Use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{\textbackslash ATLASLATEXPATH package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
   rather than in a \File{latex} subdirectory.
@@ -111,10 +114,18 @@ All definitions use \verb|\ensuremath| where appropriate and are terminated with
 \verb|\xspace|, so you can simply write {\verb|\ttbar production| instead of
 \verb|\ttbar\ production| or \verb|\ttbar{} production| to get \enquote{\ttbar production}.
 
-See Section~\ref{sec:old} for details on changes that were introduced when
+The \Package{hepparticles}~\cite{hepparticles} package has uniform definitions for many Standard Model and BSM particles.
+In fact you should use the package \Package{heppennames} and/or \Package{hepnicenames},
+which contain many predefined particles.
+These packages load \Package{hepparticles}, which can then be used to define more particles if you need them.
+One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
+
+See \Sect{\ref{sec:old}} for details on changes that were introduced when
 when going from version 00-04-05 of \Package{atlasnote}
 to version 01-00-00 of \Package{atlaslatex}.
 Let me know if you spot some other changes that are not documented here!
+
+Changes to the contents that might affect existing documents are given in \Sect{\ref{sec:change}}.
 
 The following sections list the macros defined in the various files.
 
@@ -123,6 +134,13 @@ The following sections list the macros defined in the various files.
 \section{\File{atlasparticle.sty}}
 
 Turn on including these definitions with the option \Option{particle=true} and off with the option \Option{particle=false}.
+
+As an alternative you can use the \Package{hepparticles}~\cite{hepparticles} package,
+which has uniform definitions for many Standard Model and BSM particles.
+In practice you should use the package \Package{heppennames} and/or \Package{hepnicenames},
+which contain many predefined particles.
+These packages load \Package{hepparticles}, which can then be used to define more particles if you need them.
+One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
 
 \input{atlasparticle}
 
@@ -148,6 +166,11 @@ Turn on including these definitions with the option \Option{misc=true} and off w
 \input{atlasmisc}
 
 \noindent A length \Macro{figwidth} is defined that is \SI{2}{\cm} smaller than \Macro{textwidth}.
+
+\noindent Most Monte Carlo generators also have a form with a suffix \enquote{V}
+that allows you to include the version, e.g.
+\verb|\PYTHIA{8}| to produce \PYTHIAV{8} or
+\verb|\PYTHIA{8 (v8.160)}| to produce \PYTHIAV{8 (v8.160)}.
 
 \noindent A generic macro \verb|\twomass| is defined, so that for example
 \verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.
@@ -235,8 +258,22 @@ This package is included by \File{atlasheavyion.sty}.
 \input{atlasheavyion}
 
 %The following symbols were removed or modified with respect to the original submission
-%
 %\input{atlasheavyion-mod}
+
+
+\newpage
+%-------------------------------------------------------------------------------
+\section{\File{atlasjetetmiss.sty}}
+
+Turn on including these definitions with the option \Option{jetetmiss=true} and off with the option \Option{jetetmiss=false}.
+
+\input{atlasjetetmiss}
+
+\noindent The macro \Macro{etaRange} produces what you would expect:
+\verb|\etaRange{-2.5}{+2.5}| produces \etaRange{-2.5}{+2.5} while
+\verb|\AetaRange{1.0}| produces \AetaRange{1.0}.
+The macro \Macro{avg} can be used for average values:
+\verb|\avg{\mu}| produces \avg{\mu}.
 
 
 \newpage
@@ -327,8 +364,31 @@ In order to use them in your document the unit should be included in
 \end{xtabular}
 
 
-
 \onecolumn
+%-------------------------------------------------------------------------------
+\section{Changes}
+\label{sec:change}
+%-------------------------------------------------------------------------------
+
+Version 01-08-00 of \Package{atlaslatex} included quite a few definitions from the Jet/ETmiss group.
+A new style file has been created \texttt{atlasjetetmiss.sty} that is not included by default.
+Some of the definitions from the Jet/ETmiss group are of more general use and so have been merged into existing style files:
+\begin{description}
+\item[atlasmisc.sty] List of Monte Carlo generators expanded:
+  \Macro{POWHEGBOX}, \Macro{POWPYTHIA}.
+  Add MC macros with suffix \enquote{V} for version number.
+  \Macro{kt}, \Macro{antikt}, \Macro{Antikt}, \Macro{LO}, \Macro{NLO}, \Macro{NLL}, \Macro{NNLO},
+  \Macro{muF}, \Macro{muR}.
+  Added macros \Macro{Runone}, \Macro{Runtwo}, \Macro{Runthr},
+  Added \Macro{radlength} and \Macro{StoB}.
+  Added some standard $b$-tagging terms:
+  \Macro{btag}, \Macro{btagged}, \Macro{bquark}, \Macro{bquarks}, \Macro{bjet}, \Macro{bjets}.
+\item[atlasparticle.sty] Now includes \Macro{pp}, \Macro{enu}, \Macro{munu},
+\item[atlasprocess.sty] Added \Macro{Zbb}, \Macro{tWb}, \Macro{Wqqbar}, \Macro{enu}, \Macro{Zmumu},
+  \Macro{Wlnu}, \Macro{Wenu}, \Macro{munu}, \Macro{Wmunu}, \Macro{Wjets}, \Macro{Zjets}.
+\item[atlasheavyion.sty] \Macro{pp} moved to \File{atlasparticle.sty}.
+\end{description}
+
 %-------------------------------------------------------------------------------
 \section{Old macros}
 \label{sec:old}
@@ -337,7 +397,7 @@ In order to use them in your document the unit should be included in
 With the introduction of \Package{atlaslatex} several macro names have been changed to make them more consistent.
 A few have been removed. The changes include:
 \begin{itemize}
-\item Kaons now have a capital ``K'' in the macro name, e.g.\ \verb|\Kplus| for \Kplus;
+\item Kaons now have a capital \enquote{K} in the macro name, e.g.\ \verb|\Kplus| for \Kplus;
 \item \verb|\Ztau|, \verb|\Wtau|, \verb|\Htau| \verb|\Atau| have been replaced by
   \verb|\Ztautau|, \verb|\Wtautau|, \verb|\Htautau| \verb|\Atautau|;
 \item \verb|\Ups| replaces \verb|\ups|;
@@ -359,4 +419,7 @@ as somehow \Package{xspace} did not do a good job for \met.
 However, with the latest version of the packages both forms work fine.
 You can compare \MET and \MET\ and see that the spacing is correct in both cases.
 
+\printbibliography
+
 \end{document}
+atlasm
