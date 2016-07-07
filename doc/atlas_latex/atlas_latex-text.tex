@@ -384,7 +384,7 @@ These should be installed in any modern \LaTeX\ installation.
 See \cite{latex-faq} for details on which collections are needed to get these packages
 for your operating system.
 
-Note that under Ubuntu, \Package{lineno} can be found in the
+Note that under Ubuntu versions 12.04 and 14.04, \Package{lineno} can be found in the
 \Package{texlive-humanities} package!
 If you cannot find it, it is also included in \File{latex/other}.
 Copy it to your main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
@@ -423,10 +423,10 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{mhchem}: chemical elements and molecules;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
-\item \texttt{xtab} newer version of supertabular, which allows tabular environments to go over more than one page.
+\item \texttt{xtab} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
 \end{itemize}
 
-Further options are:
+The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item[\Option{biblatex=true|false}] (false) turn on/off use of \Package{biblatex} and \Package{biber/bibtex};
 \item[\Option{backend=biber|bibtex}] specify the backend to use with \Package{biblatex}. The default is \Package{bibtex}.
@@ -437,6 +437,7 @@ Further options are:
 \item[\Option{maxbibnames=n}] (3) specify the maximum number of author names before \enquote{et al.} is used, where n is an integer;
 \item[\Option{hyperref=true|false}] (true) turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|false}] (true) do not include the \Package{siunitx} package;
+\item[\Option{eVkern=true|false}] (false) apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together;
 \item[\Option{csquotes=true|false}] (true) do not include the \Package{csquotes} package;
 \item[\Option{subcaption=true|false}] (false) use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
@@ -455,6 +456,16 @@ Further options are:
 
 \File{lineno.sty} and \File{authblk.sty} are also provided in \File{latex/other}.
 They should be part of a standard \LaTeX\ installation though.
+
+Depending on the font you use, you may find that the \enquote{e} and \enquote{V} in \si{\eV}, \si{\MeV} etc.\
+are too far apart.
+You can pass the option \Option{eVkern} to \Package{atlaspackage} in order to move them 0.1em closer together.\footnote{%
+This option has no effect for \TeX\ Live 2011 and older, as \Package{siunitx}
+adjusted the spacing internally using the parameter \Option{eVcorra}.}
+This is the amount used in the \File{atlasunit.sty} for \Macro{gev} etc.
+which is included by passing the option \Option{unit=true} to \Package{atlasphysics}.
+If you use \Package{siunitx}, I recommend setting \Option{unit=false},
+so that you use one consistent set of definitions throughout your document.
 
 There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
 With \Package{atlasdoc} this problem seems to have gone away.

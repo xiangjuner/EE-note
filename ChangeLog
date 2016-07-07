@@ -1,8 +1,11 @@
-2016-06-28  Ian Brock  <Ian.Brock@cern.ch>
+2016-07-08  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-08-00.
 	* New style file atlasjetetmiss.sty with definitions from the Jet/ETmiss group.
 	* A number of definitions from the Jet/ETmiss group were added to atlasmisc.sty,
 	atlasparticle,sty and atlasprocess.sty.
+	* Add option eVkern to atlaspackage to move 'e' and 'V' closer
+	together in eV and its variants, e.g. GeV.
+	* Add some discussion about \it, \tt etc. rrors in TeX Live 2016.
 2016-06-15  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-07-13.
 	* Add location and address options to atlasbiblatex.

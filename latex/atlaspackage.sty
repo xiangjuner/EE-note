@@ -21,6 +21,7 @@
 \DeclareBoolOption[false]{full}
 \DeclareBoolOption[true]{biblatex}
 \DeclareBoolOption[true]{siunitx}
+\DeclareBoolOption[false]{eVkern}
 \DeclareBoolOption[true]{csquotes}
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[false]{subcaption}
@@ -218,6 +219,10 @@
         \DeclareSIUnit\ipb{\per\pico\barn}
         \DeclareSIUnit\ifb{\per\femto\barn}
         \DeclareSIUnit\clight{\text{\ensuremath{c}}}
+        \ifAPKG@eVkern
+          \typeout{atlaspackage: Applying kern to eV}
+          \DeclareSIUnit\electronvolt{\text{e\kern-.1em V}}
+        \fi
         \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
         \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
         \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
@@ -248,6 +253,10 @@
       \DeclareSIUnit\ipb{\per\pico\barn}
       \DeclareSIUnit\ifb{\per\femto\barn}
       \DeclareSIUnit\clight{\text{\ensuremath{c}}}
+      \ifAPKG@eVkern
+        \typeout{atlaspackage: Applying kern to eV}
+        \DeclareSIUnit\electronvolt{\text{e\kern-.1em V}}
+      \fi
       \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
       \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
       \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
