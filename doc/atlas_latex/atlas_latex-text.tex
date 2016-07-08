@@ -611,7 +611,7 @@ Depending on which journal you submit to, you should turn on or off the printing
 Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} -- see
 the Section on \enquote{Guidelines for paper submission}.
 APS journals have special requirements on the directory structure and the filenames for figures.
-JINST uses a very old version of \LaTeX\ (2004).
+%JINST uses a very old version of \LaTeX\ (2004).
 Neither \Package{biblatex} nor \Package{siunitx} are available
 and \KOMAScript\ does not contain the \Macro{KOMAoptions} command.
 See the Physics Office TWiki~\cite{atlas-physicsoffice} for more information.
@@ -694,9 +694,9 @@ If you want to use another setup, you should set the variable \Macro{ATLASLATEXP
 at the beginning of your document. This would enable you to maintain a single copy of each 
 \Package{atlaslatex} version and easily switch between versions.
 For example, you give the command\\
-\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-06-01/}|
-to use version 01-06-01 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
-\File{../atlaslatex-01-06-01}.
+\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-08-00/}|
+to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
+\File{../atlaslatex-01-08-00}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
 
 
@@ -801,7 +801,7 @@ which is included by default.
 Line numbers are automatically turned on if you set \Macro{AtlasVersion} (or \Macro{draftversion}).
 In general, you can turn them on and off in a document by using the \Macro{linenumbers} or \Macro{nolinenumbers} commands.
 Note that if \Macro{AtlasVersion} is set, you will always get line numbers on the standard title page.
-Hence, for CONF and PUB notes it is important to comment out \Macro{AtlaVersion} in order to suppress the line numbers for the final version.
+Hence, for CONF and PUB notes it is important to comment out \Macro{AtlasVersion} in order to suppress the line numbers for the final version.
 
 In order to avoid line numbers going slightly wrong around figures and tables,
 separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
@@ -822,12 +822,12 @@ Enclose the environment in a \Package{linenomath} environment to fix this proble
 
 You can use \verb|\ensuremath| in definitions, so that they will work
 in both text mode and math mode, e.g.\
-\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\mathrm{1S})}\xspace}| to get
-\UoneS{} in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
+\verb|\newcommand{\UoneS}{\ensuremath{\Upsilon(\text{1S})}\xspace}| to get
+\UoneS in either mode (\verb|\UoneS{}| or \verb|$\UoneS$|).
 
 I highly recommend that you also terminate every definition with \Macro{xspace},
 as then you can use the definitions without having to terminate them with
-``\verb|\|'' or ``\verb|{}|''.
+\enquote{\textbackslash\textvisiblespace} or \enquote{\{\}}.
 
 
 %-------------------------------------------------------------------------------
@@ -987,9 +987,9 @@ There are also several other useful commands for specifying ranges:
 Options exist for specifying how they are formatted.
 The options can be set for an individual command or for the whole document.
 For example, in this document I have specified the options:\\
-\verb|\sisetup{separate-uncertainty, range-units=repeat, detect-all}|
+\verb|\sisetup{separate-uncertainty, range-units=single, list=units=single}|
 and\\
-\verb|\sisetup{group-digits=integer, group-minimum-digits=4}|.
+\verb|\sisetup{group-digits=integer, group-minimum-digits=4, detect-all}|.
 
 In addition several extra units are defined:
 \begin{itemize}

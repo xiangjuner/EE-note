@@ -15,6 +15,11 @@
 \usepackage{authblk}
 \usepackage{\ATLASLATEXPATH atlasphysics}
 
+% Add many more possibilities to break URLs
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
 % Files with references in BibTeX format
 \addbibresource{atlas_bibtex.bib}
 \addbibresource{atlas_biblatex.bib}
@@ -183,9 +188,9 @@ ATLAS CONF and PUB notes are provided:
 \item[PubNotes.bib] the citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
 \end{description}
 These are available in the directory \File{bibtex/bib} of \Package{atlaslatex}.
-However, these files are only updated when a new version of \Package{atlaslatex} is released.
-Up-to-date versions are available from the PubCom TWiki~\cite{pubcom-refs}.
 The files are updated once per month and all entries have been checked for correct formatting.
+These files included whenever a new version of \Package{atlaslatex} is released.
+They are also available directly from the PubCom TWiki~\cite{pubcom-refs}.
 You are strongly encouraged to use these files and not try to maintain your own copies of
 such publications.
 
@@ -194,27 +199,147 @@ CMS publications are available.
 
 
 %-------------------------------------------------------------------------------
-\subsection{Extracting used database entries}
-\label{sec:bibtool}
+\subsection{References from Inspire}
+\label{sc:inquire}
+%-------------------------------------------------------------------------------
 
-At some point you may want to create a bibliography database that only contains the references you are actually using in a document.
-You can do this using the \File{bibtool} program.
-Giving the command:
+A common way to find a reference is using Inspire~\cite{inspire}.
+You can select the output format as BibTeX and simply copy the result(s) to your \File{.bib} file.
+In order that the reference follows the ATLAS conventions you need to do the following,
+assuming that the reference is for an LHC collaboration paper:
+\begin{enumerate}
+\item Change the field name \texttt{author} to \texttt{xauthor}.
+\item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form\\
+  \verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
+\item Either replace the journal name with the appropriate macro, e.g.\ \verb|"Phys.Lett."| with
+  \verb|"\PLB"|; or insert spaces between the parts of the name, i.e.\ \verb|"Phys. Lett."|.
+%  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
+%  as a regular interword space should be inserted and not an end of sentence space.
+\item Remove the journal letter from the volume and include it in the journal,
+  e.g.\ "\EPJC", "\PRD". 
+\end{enumerate}
+If the reference is for another collaboration, rename the \texttt{collaboration} field to
+\texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
+\texttt{author} field.
+
+Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
+Do not comment the lines out, as comment lines are not recognised inside \BibTeX\ entries.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Entry types to use}
+%-------------------------------------------------------------------------------
+
+Sometimes it is not clear what entry type to use.
+Here are a few guidelines.
+Note that some of the entry types that \Package{biblatex} has are not part of \BibTeX.
+
+\begin{description}
+\item[@article] This is easy -- use it for articles\index{article} published in
+  journals, e.g.~\cite{lhcCollaboration:2012}.
+\item[@book] Just as easy -- use it for books,\index{book} e.g.~\cite{kopka04}.
+\item[@proceedings, @inproceedings] The name says it all. Use
+  \Option{@inproceedings} for a paper in the proceedings and
+  \Option{@proceedings} for the whole volume.
+\item[@collection] Use it for things such as the ATLAS Technical Design
+  Report~\cite{lhc:vol1a}\index{report!technical} where the names that you find are the
+  editors. Use \Option{@incollection} for a single article in a
+  collection.
+  If you use traditional \BibTeX, you have to use \Option{@booklet} as in Ref.~\cite{lhc:vol1b}.
+\item[@report] Use it for conference and
+  internal\index{internal note}\index{note!internal} notes. This is
+  probably also the best type to use for preprints if you use \Package{biblatex}.
+  You can also use \Option{@booklet} or \Option{@online} instead.
+\item[@online] Use it for things that are only available online,
+  e.g.~\cite{lshort}.
+  If you use traditional \BibTeX you have to use \Macro{@misc} instead.
+\item[@thesis] The name says it all.
+  \Option{@phdthesis}\index{PhD thesis} and
+  \Option{@mastersthesis}
+  also exist. If you are using \Package{biblatex} you can and should specify
+  the thesis type, e.g.\ \texttt{type = \{PhD\}}, see for example a
+  PhD thesis~\cite{tlodd:2012}.
+\end{description}
+
+\Package{biblatex} also knows about multivolume proceedings etc. See
+the manual for more details.
+
+%-------------------------------------------------------------------------------
+\section{Examples}
+%-------------------------------------------------------------------------------
+
+The examples given above and in this section can be found in the file \File{doc/atlas\_bibtex/atlas\_bibtex.bib}
+of \Package{atlaslatex}.
+Here are some typical reference types needed in ATLAS documents:
+\begin{itemize}
+\item LHC Collaboration~\cite{lhcCollaboration:2012}
+\item Other collaboration~\cite{otherCollaboration:2007}
+\item Individual authors~\cite{authors:2008}
+\item arXiv only~\cite{arxivOnly:2009}
+\item arXiv only submitted to a journal~\cite{arxivSub:2011}
+\item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058}
+\end{itemize}
+
+While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
+Hence in \Ref{\cite{lhcCollaboration:2012}}, \texttt{collaboration} has been renamed to \texttt{author} and
+the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \texttt{collaboration} and omit
+\texttt{author} you will get a warning when you run \texttt{bibtex}.
+
+Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@article} used to be used and the field \texttt{journal} 
+was abused for the conference note number. This is a result of the traditional \BibTeX\ restrictions on the entry types.
+The current version uses \texttt{@booklet} and includes the CONF note number via the \texttt{howpublished} field.
+In general, \texttt{biblatex} provides a lot more entry types.
+This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
+All \Package{atlaslatex} documentation uses \Package{biblatex} with the backend \Package{biber}.
+The default for ATLAS documents is to use \Package{biblatex} with the backend \Package{bibtex}.
+
+For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@article}.
+You should specify the journal in the \texttt{journal} field in form:\\
+\texttt{journal = "submitted to \Macro{PLB}{}\{\}"} or\\
+\texttt{journal = "accepted by \Macro{PLB}{}\{\}"}.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Bibliography database tips}
+%-------------------------------------------------------------------------------
+
+\begin{itemize}
+\item A bibliographic item is created in the \File{.bib} file as:
 \begin{verbatim}
-bibtool -x mydocument.aux -o refs.bib
+@article{lhcCollaboration:2012,
+  author = "...",
+  title  = "...",
+  further bibliographic information}
+}
 \end{verbatim}
-will extract the entries that you use and in future you can use and
-correct \texttt{refs.bib}, which only contains the references that you
-actually cite.\footnote{%
-I got this tip from
-\url{http://tex.stackexchange.com/questions/417/how-to-split-all-bibtex-referenced-entries-from-a-big-bibtex-database-to-a-copy}. Do
-not forget to change \texttt{mydocument.tex}, or whatever your main filename is, to use
-\texttt{refs.bib} instead of the previous sources.}
+  The identifier directly after the document type declaration is how one should refer to this item inside the main \File{.tex} file.
+  Use a non-breaking space between the citation and the reference, i.e.\
+  \verb|... measured previously~\cite{lhcCollaboration:2012}|.
+\item When referencing ATLAS CONF notes, the URL to the CDS page should be included.
+  For this to work, in the preamble of your \File{.tex} document add
+  \texttt{\textbackslash usepackage\{hyperref\}}.
+  Note that \Package{hyperref} is included by default if you use \Package{atlasdoc} and/or \Package{atlaspackage}.
+\item Depending on the style that is used,
+  if the DOI is filled and the \texttt{hyperref} package loaded, 
+  the title of the journal can be highlighted in blue and become a hyperlink to the online paper.
+\item When referencing papers from journals like PRD, PLB, etc.,
+  one has to be careful not to include the \enquote{D} or \enquote{B} as part of the volume.
+  Instead these belong to the journal name. 
+  You can either use the macros that have been added to the \File{.bst} style files for these journals, or
+  the macros defined in \Package{atlasjournal}.
+  If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
+  \Package{atlasjournal} definitions.
+\item Comments are not part of the bibliography database format. Text outside entries will be ignored.
+  Do not try to comment out fields inside an entry!
+  If there are fields that you do not want, you have to move them outside the entry.
+\end{itemize}
 
-For Debian/Ubuntu distributions you should be able to install \File{bibtool} by giving the command\\
-\verb|(sudo) apt-get install bibtool|. 
-For RPM-based Linux (CentOS, Scientific Linux, Fedora, ...) distributions the equivalent command is \verb|yum install BibTool|.
-On a Mac, you can install it via MacPorts: \verb|(sudo) port install BibTool|.
+In earlier versions of this document, it was recommended to include the \Package{cite} package, 
+if you use \BibTeX\ and want to cite multiple references in the format [m-n].
+However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
+The \texttt{revtex} style also does this for you.
+If you use \texttt{biblatex} use the option \Option{style=numeric-comp},
+which is the default in \Package{atlaslatex}.
 
 
 %-------------------------------------------------------------------------------
@@ -245,8 +370,8 @@ A few adjustments are made in the style file \Package{latex/atlasbiblatex.sty},
 which you should include with a normal \Macro{usepackage} command.
 By default, this style includes the document title.
 The title can be turned off by including the option \Option{articletitle=false}.
-This option turns off the title for entry types \texttt{@Article}, \texttt{@Booklet} and \texttt{@Report},
-as \texttt{@Booklet} should be used as the entry type for CONF and PUB notes.
+This option turns off the title for entry types \texttt{@article}, \texttt{@booklet} and \texttt{@report},
+as \texttt{@booklet} should be used as the entry type for CONF and PUB notes.
 A summary of the options is:
 \begin{description}
 \item[\Option{articletitle=true|false}] turn on (default) or off including the article title in the bibliography;
@@ -308,12 +433,12 @@ Journals:
 \end{verbatim}
 
 You can use the \BibTeX\ style \File{JHEP.bst} for papers that are supposed to be submitted to JHEP.
-However, note that JHEP only prints the arXiv entry etc.\ if the entry type is \texttt{@Article}.
+However, note that JHEP only prints the arXiv entry etc.\ if the entry type is \texttt{@article}.
 In the examples included in this document,
-the entry type \texttt{@Booklet} is used for preprints and CONF notes,
+the entry type \texttt{@booklet} is used for preprints and CONF notes,
 as this works best with other \BibTeX\ styles.
 If you are planning to submit to JHEP/JINST and use \File{JHEP.bst} 
-replace all \texttt{@Booklet} entry types with \texttt{@Article}.
+replace all \texttt{@booklet} entry types with \texttt{@article}.
 
 
 %-------------------------------------------------------------------------------
@@ -356,106 +481,28 @@ Standard sets for different journals can be provided by an option in the future.
 
 
 %-------------------------------------------------------------------------------
-\section{References from Inspire}
-\label{sc:inquire}
-%-------------------------------------------------------------------------------
+\section{Extracting used database entries}
+\label{sec:bibtool}
 
-A common way to find a reference is using Inspire~\cite{inspire}.
-You can select the output format as BibTeX and simply copy the result(s) to your \File{.bib} file.
-In order that the reference follows the ATLAS conventions you need to do the following,
-assuming that the reference is for an LHC collaboration paper:
-\begin{enumerate}
-\item Change the field name \texttt{author} to \texttt{xauthor}.
-\item Change the field name \texttt{collaboration} to \texttt{author} and write the collaboration in the form\\
-  \verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
-\item Either replace the journal name with the appropriate macro, e.g.\ \verb|"Phys.Lett."| with
-  \verb|"\PLB"|; or insert spaces between the parts of the name, i.e.\ \verb|"Phys. Lett."|.
-%  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
-%  as a regular interword space should be inserted and not an end of sentence space.
-\item Remove the journal letter from the volume and include it in the journal,
-  e.g.\ "\EPJC", "\PRD". 
-\end{enumerate}
-If the reference is for another collaboration, rename the \texttt{collaboration} field to
-\texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
-\texttt{author} field.
-
-Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
-Do not comment the lines out, as comment lines are not recognised inside \BibTeX\ entries.
-
-
-%-------------------------------------------------------------------------------
-\section{Bibliography database tips}
-%-------------------------------------------------------------------------------
-
-\begin{itemize}
-\item A bibliographic item is created in the \File{.bib} file as:
+At some point you may want to create a bibliography database that only contains the references you are actually using in a document.
+You can do this using the \File{bibtool} program.
+Giving the command:
 \begin{verbatim}
-@Article{lhcCollaboration:2012,
-  author = "...",
-  title  = "...",
-  further bibliographic information}
-}
+bibtool -x mydocument.aux -o refs.bib
 \end{verbatim}
-  The identifier directly after the document type declaration is how one should refer to this item inside the main \File{.tex} file.
-  Use a non-breaking space between the citation and the reference, i.e.\
-  \verb|... measured previously~\cite{lhcCollaboration:2012}|.
-\item When referencing ATLAS CONF notes, the URL to the CDS page should be included.
-  For this to work, in the preamble of your \File{.tex} document add
-  \texttt{\textbackslash usepackage\{hyperref\}}.
-  Note that \Package{hyperref} is included by default if you use \Package{atlasdoc} and/or \Package{atlaspackage}.
-\item Depending on the style that is used,
-  if the DOI is filled and the \texttt{hyperref} package loaded, 
-  the title of the journal can be highlighted in blue and become a hyperlink to the online paper.
-\item When referencing papers from journals like PRD, PLB, etc.,
-  one has to be careful not to include the \enquote{D} or \enquote{B} as part of the volume.
-  Instead these belong to the journal name. 
-  You can either use the macros that have been added to the \File{.bst} style files for these journals, or
-  the macros defined in \Package{atlasjournal}.
-  If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
-  \Package{atlasjournal} definitions.
-\item Comments are not part of the bibliography database format. Text outside entries will be ignored.
-  Do not try to comment out fields inside an entry!
-  If there are fields that you do not want, you have to move them outside the entry.
-\end{itemize}
+will extract the entries that you use and in future you can use and
+correct \texttt{refs.bib}, which only contains the references that you
+actually cite.\footnote{%
+I got this tip from
+\url{http://tex.stackexchange.com/questions/417/how-to-split-all-bibtex-referenced-entries-from-a-big-bibtex-database-to-a-copy}. Do
+not forget to change \texttt{mydocument.tex}, or whatever your main filename is, to use
+\texttt{refs.bib} instead of the previous sources.}
 
-In earlier versions of this document, it was recommended to include the \Package{cite} package, 
-if you use \BibTeX\ and want to cite multiple references in the format [m-n].
-However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
-The \texttt{revtex} style also does this for you.
-If you use \texttt{biblatex} use the option \Option{style=numeric-comp},
-which is the default in \Package{atlaslatex}.
-
-
-%-------------------------------------------------------------------------------
-\section{Examples}
-%-------------------------------------------------------------------------------
-
-\begin{itemize}
-\item LHC Collaboration~\cite{lhcCollaboration:2012}
-\item Other Collaboration~\cite{otherCollaboration:2007}
-\item Individual authors~\cite{authors:2008}
-\item arXiv only~\cite{arxivOnly:2009}
-\item arXiv only submitted to a journal~\cite{arxivSub:2011}
-\item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058}
-\end{itemize}
-
-While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
-Hence in \Ref{\cite{lhcCollaboration:2012}}, \texttt{collaboration} has been renamed to \texttt{author} and
-the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \texttt{collaboration} and omit
-\texttt{author} you will get a warning when you run \texttt{bibtex}.
-
-Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@Article} used to be used and the field \texttt{journal} 
-was abused for the conference note number. This is a result of the traditional \BibTeX\ restrictions on the entry types.
-The current version uses \texttt{@Booklet} and includes the CONF note number via the \texttt{howpublished} field.
-In general, \texttt{biblatex} provides a lot more entry types.
-This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
-All \Package{atlaslatex} documentation uses \Package{biblatex} with the backend \Package{biber}.
-The default for ATLAS documents is to use \Package{biblatex} with the backend \Package{bibtex}.
-
-For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@Article}.
-You should specify the journal in the \texttt{journal} field in form:\\
-\texttt{journal = "submitted to \Macro{PLB}{}\{\}"} or\\
-\texttt{journal = "accepted by \Macro{PLB}{}\{\}"}.
+For Debian/Ubuntu distributions you should be able to install \File{bibtool} by giving the command\\
+\verb|(sudo) apt-get install bibtool|. 
+For RPM-based Linux (CentOS, Scientific Linux, Fedora, ...) distributions the equivalent command is \verb|yum install BibTool|.
+On a Mac, you can install it via MacPorts: \verb|(sudo) port install BibTool|,
+or via Homebrew: \verb|brew install bib-tool|.
 
 
 %-------------------------------------------------------------------------------
@@ -471,6 +518,7 @@ You should specify the journal in the \texttt{journal} field in form:\\
   the recommended way to use \BibTeX.
 \item[2015-03-20: Ian Brock] Add information about standard ATLAS and CMS bibliography databases.
 \item[2016-06-14: Ian Brock] Add information about address and location options.
+\item[2016-07-08: Ian Brock] Add some advice on entry types to use. Reorganise a bit.
 \end{description}
 
 %-------------------------------------------------------------------------------
