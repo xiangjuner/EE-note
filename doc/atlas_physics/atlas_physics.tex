@@ -389,6 +389,10 @@ Some of the definitions from the Jet/ETmiss group are of more general use and so
 \item[atlasheavyion.sty] \Macro{pp} moved to \File{atlasparticle.sty}.
 \end{description}
 
+The definitions of \MeV, \GeV etc.\ in \texttt{atlasunit.sty} were updated in Version 01-08-00 in order to remove the \texttt{if} tests in them.
+The \texttt{if} tests caused a problem in a paper draft, although the reason was not understood.
+The new definitions do not introduce extra space before the unit in math mode.
+
 %-------------------------------------------------------------------------------
 \section{Old macros}
 \label{sec:old}
@@ -422,4 +426,3 @@ You can compare \MET and \MET\ and see that the spacing is correct in both cases
 \printbibliography
 
 \end{document}
-atlasm

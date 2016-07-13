@@ -221,9 +221,9 @@
         \DeclareSIUnit\clight{\text{\ensuremath{c}}}
         \ifAPKG@eVkern
           \typeout{atlaspackage: Applying kern to eV}
-          \DeclareSIUnit\electronvolt{\text{e\kern-.1em V}}
+          \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
         \fi
-        \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
+        \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
         \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
         \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
         \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
@@ -255,9 +255,9 @@
       \DeclareSIUnit\clight{\text{\ensuremath{c}}}
       \ifAPKG@eVkern
         \typeout{atlaspackage: Applying kern to eV}
-        \DeclareSIUnit\electronvolt{\text{e\kern-.1em V}}
+        \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
       \fi
-      \DeclareSIUnit[per-mode=symbol]\eVperc{\eV\per\clight}
+      \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
       \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
       \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
       \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
