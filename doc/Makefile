@@ -46,6 +46,6 @@ $(BASENAME).dvi: $(BASENAME).tex *.bib
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
 	 *.run.xml *.synctex.gz *~
-	 
+
 cleanpdf:
 	-rm $(BASENAME).pdf
