@@ -6,7 +6,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasphysics}[2016/06/28 v.01-08-00 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2016/08/23 v.01-08-01 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -28,6 +28,9 @@
 \DeclareBoolOption[false]{math}
 \DeclareBoolOption[true]{misc}
 \DeclareBoolOption[false]{other}
+\DeclareBoolOption[true]{hepitalic}
+\DeclareBoolOption[false]{hepparticle}
+\DeclareBoolOption[false]{hepprocess}
 \DeclareBoolOption[true]{particle}
 \DeclareBoolOption[false]{process}
 \DeclareBoolOption[true]{unit}
@@ -84,10 +87,20 @@
 \ifAPHY@other    \RequirePackage{\APHY@atlasdir atlasother} \fi
 
 % Particles
-\ifAPHY@particle \RequirePackage{\APHY@atlasdir atlasparticle} \fi
+% Load either atlasparticle or atlashepparticle, but not both.
+% Priority given to atlashepparticle.
+\ifAPHY@hepparticle \RequirePackage{\APHY@atlasdir atlashepparticle}
+\else
+  \ifAPHY@particle \RequirePackage{\APHY@atlasdir atlasparticle} \fi
+\fi
 
 % Processes
-\ifAPHY@process  \RequirePackage{\APHY@atlasdir atlasprocess} \fi
+% Load either atlasprocess or atlashepprocess, but not both.
+% Priority given to atlashepprocess.
+\ifAPHY@hepprocess \RequirePackage{\APHY@atlasdir atlashepprocess}
+\else
+  \ifAPHY@process \RequirePackage{\APHY@atlasdir atlasprocess} \fi
+\fi
 
 % Units
 \ifAPHY@unit     \RequirePackage{\APHY@atlasdir atlasunit} \fi
