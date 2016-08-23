@@ -9,7 +9,6 @@
 \@ifpackageloaded{siunitx}{%
   \ifthenelse {\ATTeXLiveVersion > 2008 \AND \ATTeXLiveVersion < 2011}{%
     \typeout{*** atlasunit: do not define siunitx units}
-      \APHY@unitfalse
   }{
     \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
     \newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
@@ -24,58 +23,74 @@
   \newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
   \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
 }
-%\newcommand*{\TeV}{\ifmmode {\mathrm{\ Te\kern -0.1em V}}\else
-%                   \textrm{Te\kern -0.1em V}\fi}%
-%\newcommand*{\GeV}{\ifmmode {\mathrm{\ Ge\kern -0.1em V}}\else
-%                   \textrm{Ge\kern -0.1em V}\fi}%
-%\newcommand*{\MeV}{\ifmmode {\mathrm{\ Me\kern -0.1em V}}\else
-%                   \textrm{Me\kern -0.1em V}\fi}%
-%\newcommand*{\keV}{\ifmmode {\mathrm{\ ke\kern -0.1em V}}\else
-%                   \textrm{ke\kern -0.1em V}\fi}%
-%\newcommand*{\eV}{\ifmmode  {\mathrm{\ e\kern -0.1em V}}\else
-%                   \textrm{e\kern -0.1em V}\fi}%
+
+% Complicated logic to cope with TeVc etc. being defined in atlaspackage
+% and siunitx units are not isolated from other units iun siunitx Version 1.
+\@ifpackageloaded{siunitx}{%
+  \@ifpackageloaded{latex/atlaspackage}{%
+    \ifthenelse {\ATTeXLiveVersion > 2008 \AND \ATTeXLiveVersion < 2011}{%
+      \typeout{*** atlasunit: do not define TeVc, TeVcc etc.}
+    }{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx > 2011}
+      \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
+      \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
+      \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
+      \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
+      \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
+      \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
+      \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
+      \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
+      \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
+      \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
+      \newcommand*{\ifb}{\mbox{fb$^{-1}$}}
+      \newcommand*{\ipb}{\mbox{pb$^{-1}$}}
+      \newcommand*{\inb}{\mbox{nb$^{-1}$}}
+      \newcommand*{\degr}{\ensuremath{^\circ}}
+    }
+  }{\typeout{*** atlasunit: defining TeVc, TeVcc as atlaspackage not loaded}
+    \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
+    \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
+    \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
+    \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
+    \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
+    \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
+    \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
+    \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
+    \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
+    \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
+    \newcommand*{\ifb}{\mbox{fb$^{-1}$}}
+    \newcommand*{\ipb}{\mbox{pb$^{-1}$}}
+    \newcommand*{\inb}{\mbox{nb$^{-1}$}}
+    \newcommand*{\degr}{\ensuremath{^\circ}}
+  }
+}{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx is not loaded}
+  \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
+  \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
+  \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
+  \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
+  \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
+  \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
+  \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
+  \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
+  \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
+  \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
+  \newcommand*{\ifb}{\mbox{fb$^{-1}$}}
+  \newcommand*{\ipb}{\mbox{pb$^{-1}$}}
+  \newcommand*{\inb}{\mbox{nb$^{-1}$}}
+  \newcommand*{\degr}{\ensuremath{^\circ}}
+}
+
 \let\tev=\TeV
 \let\gev=\GeV
 \let\mev=\MeV
 \let\kev=\keV
 \let\ev=\eV
 
-\newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
-\newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
-\newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
-\newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
-\newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
-%\newcommand*{\TeVc}{\ifmmode {\mathrm{\ Te\kern -0.1em V}/c}\else
-%                   {\textrm{Te\kern -0.1em V}/$c$}\fi}%
-%\newcommand*{\GeVc}{\ifmmode {\mathrm{\ Ge\kern -0.1em V}/c}\else
-%                   {\textrm{Ge\kern -0.1em V}/$c$}\fi}%
-%\newcommand*{\MeVc}{\ifmmode {\mathrm{\ Me\kern -0.1em V}/c}\else
-%                   {\textrm{Me\kern -0.1em V}/$c$}\fi}%
-%\newcommand*{\keVc}{\ifmmode {\mathrm{\ ke\kern -0.1em V}/c}\else
-%                   {\textrm{ke\kern -0.1em V}/$c$}\fi}%
-%\newcommand*{\eVc}{\ifmmode  {\mathrm{\ e\kern -0.1em V}/c}\else
-%                   {\textrm{e\kern -0.1em V}/$c$}\fi}%
 \let\tevc=\TeVc
 \let\gevc=\GeVc
 \let\mevc=\MeVc
 \let\kevc=\keVc
 \let\evc=\eVc
 
-\newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
-\newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
-\newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
-\newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
-\newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
-%\newcommand*{\TeVcc}{\ifmmode {\mathrm{\ Te\kern -0.1em V}/c^2}\else
-%                   {\textrm{Te\kern -0.1em V}/$c^2$}\fi}%
-%\newcommand*{\GeVcc}{\ifmmode {\mathrm{\ Ge\kern -0.1em V}/c^2}\else
-%                   {\textrm{Ge\kern -0.1em V}/$c^2$}\fi}%
-%\newcommand*{\MeVcc}{\ifmmode {\mathrm{\ Me\kern -0.1em V}/c^2}\else
-%                   {\textrm{Me\kern -0.1em V}/$c^2$}\fi}%
-%\newcommand*{\keVcc}{\ifmmode {\mathrm{\ ke\kern -0.1em V}/c^2}\else
-%                   {\textrm{ke\kern -0.1em V}/$c^2$}\fi}%
-%\newcommand*{\eVcc}{\ifmmode  {\mathrm{\ e\kern -0.1em V}/c^2}\else
-%                   {\textrm{e\kern -0.1em V}/$c^2$}\fi}%
 \let\tevcc=\TeVcc
 \let\gevcc=\GeVcc
 \let\mevcc=\MeVcc
@@ -85,8 +100,5 @@
 %\def\cm{\ifmmode  {\mathrm{\ cm}}\else
 %                   \textrm{~cm}\fi}%
 
-\newcommand*{\ifb}{\mbox{fb$^{-1}$}}
-\newcommand*{\ipb}{\mbox{pb$^{-1}$}}
-\newcommand*{\inb}{\mbox{nb$^{-1}$}}
 
-\newcommand*{\degr}{\ensuremath{^\circ}}
+
