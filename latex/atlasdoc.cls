@@ -549,11 +549,11 @@
   \thispagestyle{empty}
 %  \pagestyle{plain}
   \pagenumbering{arabic}
-  \noindent{\AtlasTitleHeader}
+  \noindent\AtlasTitleHeader
   \vfill
-  \noindent{\AtlasTitleBody}
+  \noindent\AtlasTitleBody
   \vfill
-  \noindent{\AtlasTitleFooter}
+  \noindent\AtlasTitleFooter
   \clearpage
 }
 

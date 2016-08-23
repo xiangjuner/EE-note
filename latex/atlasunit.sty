@@ -5,11 +5,25 @@
 % Not included by default.
 %-------------------------------------------------------------------------------
 
-\newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
-\newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
-\newcommand*{\MeV}{\ensuremath{\text{Me\kern -0.1em V}}}
-\newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
-\newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
+% Turn off units if siunitx is included and TeX Live is between 2009 and 2010
+\@ifpackageloaded{siunitx}{%
+  \ifthenelse {\ATTeXLiveVersion > 2008 \AND \ATTeXLiveVersion < 2011}{%
+    \typeout{*** atlasunit: do not define siunitx units}
+      \APHY@unitfalse
+  }{
+    \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
+    \newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
+    \newcommand*{\MeV}{\ensuremath{\text{Me\kern -0.1em V}}}
+    \newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
+    \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
+  }
+}{\typeout{*** atlasunit: siunitx is not loaded}
+  \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
+  \newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
+  \newcommand*{\MeV}{\ensuremath{\text{Me\kern -0.1em V}}}
+  \newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
+  \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
+}
 %\newcommand*{\TeV}{\ifmmode {\mathrm{\ Te\kern -0.1em V}}\else
 %                   \textrm{Te\kern -0.1em V}\fi}%
 %\newcommand*{\GeV}{\ifmmode {\mathrm{\ Ge\kern -0.1em V}}\else
