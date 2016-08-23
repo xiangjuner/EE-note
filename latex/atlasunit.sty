@@ -5,9 +5,20 @@
 % Not included by default.
 %-------------------------------------------------------------------------------
 
+% Use kvoptions package to set options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=AUNIT,
+  prefix=AUNIT@
+}
+\DeclareStringOption[2013]{texlive}
+\ProcessKeyvalOptions*
+
+\typeout{atlasphysics: AUNIT@texlive is [\AUNIT@texlive]}
+
 % Turn off units if siunitx is included and TeX Live is between 2009 and 2010
 \@ifpackageloaded{siunitx}{%
-  \ifthenelse {\ATTeXLiveVersion > 2008 \AND \ATTeXLiveVersion < 2011}{%
+  \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
     \typeout{*** atlasunit: do not define siunitx units}
   }{
     \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
@@ -28,7 +39,7 @@
 % and siunitx units are not isolated from other units iun siunitx Version 1.
 \@ifpackageloaded{siunitx}{%
   \@ifpackageloaded{latex/atlaspackage}{%
-    \ifthenelse {\ATTeXLiveVersion > 2008 \AND \ATTeXLiveVersion < 2011}{%
+    \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
       \typeout{*** atlasunit: do not define TeVc, TeVcc etc.}
     }{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx > 2011}
       \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
