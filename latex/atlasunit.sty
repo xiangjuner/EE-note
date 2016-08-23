@@ -35,13 +35,18 @@
   \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
 }
 
+\@ifundefined{APKG@texlive}{
+  \typeout{*** atlasunit: atlaspackage TeX Live is not defined}
+}{
+  \typeout{*** atlasunit: atlaspackage TeX Live is defined}
+}
+
 % Complicated logic to cope with TeVc etc. being defined in atlaspackage
 % and siunitx units are not isolated from other units iun siunitx Version 1.
 \@ifpackageloaded{siunitx}{%
-  \@ifpackageloaded{latex/atlaspackage}{%
-    \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
-      \typeout{*** atlasunit: do not define TeVc, TeVcc etc.}
-    }{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx > 2011}
+  \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
+    \@ifundefined{APKG@texlive}{%
+      \typeout{*** atlasunit: defining TeVc, TeVcc as atlaspackage not loaded}
       \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
       \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
       \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
@@ -56,8 +61,9 @@
       \newcommand*{\ipb}{\mbox{pb$^{-1}$}}
       \newcommand*{\inb}{\mbox{nb$^{-1}$}}
       \newcommand*{\degr}{\ensuremath{^\circ}}
+    }{\typeout{*** atlasunit: do not define TeVc, TeVcc etc.}
     }
-  }{\typeout{*** atlasunit: defining TeVc, TeVcc as atlaspackage not loaded}
+  }{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx > 2010}
     \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
     \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
     \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
