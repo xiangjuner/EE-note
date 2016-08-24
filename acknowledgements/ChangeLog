@@ -1,11 +1,13 @@
+2015-08-02 Ian Brock <Ian.Brock@cern.ch>
+	* Add Tier-2 computing reference to acknowledgements. New file Acknowledgemnts.bib, but entry also included in ATLAS.bib.
 2015-02-19 Ian Brock <Ian.Brock@cern.ch>
-	* Add support from China
+	* Add support from China.
 2014-12-08 Ian Brock <Ian.Brock@cern.ch>
-	* Imported into atlaslatex
+	* Imported into atlaslatex.
 2014-10-14 Alessandra Ciocio for Pub. Com. 
-	* replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX)
+	* Replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX).
 2014-02-19 Alessandra Ciocio for Pub. Com. 
-	* replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel (19-Feb-2014) (DOC, TEX)
+	* Replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel (19-Feb-2014) (DOC, TEX).
 	
 Assembled by Pub. Com. (Jul 19, 2006) (DOC)
 Updated by Kerstin Jon-And for the detector paper (Jan 12, 2008) (DOC, PDF)
