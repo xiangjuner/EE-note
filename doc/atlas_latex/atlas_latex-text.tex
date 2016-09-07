@@ -73,6 +73,15 @@ make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 %
 See Section~\ref{sec:texmf} for more details.
 
+%In order to make a new document of book form like a TDR, use the command
+%%
+%\begin{verbatim}
+%make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
+%\end{verbatim}
+%%
+%By default, this will pass the option \Option{TDR} to \PackageP{atlasdoc}.
+%Use \verb|make newbooktexmf| for a book with \Package{atlaslatex} in a central directory.
+
 Note that you have to specify the language of your document as an option in the
 \Macro{documentclass} command. Typical settings are
 \begin{itemize}
@@ -327,6 +336,7 @@ Several more options can be set:
 \item[PAPER] the document is an ATLAS paper (draft);
 \item[CONF] the document is a CONF note;
 \item[PUB] the document is an PUB note;
+%\item[TDR] the document is book form like an LOI or TDR;
 \item[auxmat] the document contains auxiliary material for a preprint;
 \item[maketitle=true|false] turn on or off (default) the creation of a title page within \Macro{AtBeginDocument}.
   If the option is false, but you still want a title, give the command \Macro{maketitle} after
@@ -346,6 +356,7 @@ Several more options can be set:
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
+%The option \Option{TDR} uses book intead of article as the base class.
 
 The
 \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}

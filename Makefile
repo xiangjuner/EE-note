@@ -79,7 +79,7 @@ newtexmf:
 	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
 	else \
 	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex; \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex >$(BASENAME).tex; \
 	fi
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib
