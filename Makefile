@@ -43,7 +43,7 @@ EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
 
-.PHONY: new newtexmf draftcover preprintcover auxmat \
+.PHONY: new newtexmf newbook newbooktexmf draftcover preprintcover auxmat \
 	clean cleanpdf help
 
 # Standard pdflatex target
@@ -80,6 +80,30 @@ newtexmf:
 	else \
 	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
 	  sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex >$(BASENAME).tex; \
+	fi
+	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
+	touch $(BASENAME).bib
+	touch $(BASENAME)-defs.sty
+
+newbook:
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-book.tex | \
+	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-book.tex >$(BASENAME).tex; \
+	fi
+	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
+	touch $(BASENAME).bib
+	touch $(BASENAME)-defs.sty
+
+newbooktexmf:
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-book-texmf.tex | \
+	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/atlas-book-texmf.tex >$(BASENAME).tex; \
 	fi
 	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
 	touch $(BASENAME).bib

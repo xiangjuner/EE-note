@@ -73,14 +73,14 @@ make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 %
 See Section~\ref{sec:texmf} for more details.
 
-%In order to make a new document of book form like a TDR, use the command
-%%
-%\begin{verbatim}
-%make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
-%\end{verbatim}
-%%
-%By default, this will pass the option \Option{TDR} to \PackageP{atlasdoc}.
-%Use \verb|make newbooktexmf| for a book with \Package{atlaslatex} in a central directory.
+In order to make a new document of book form like a TDR, use the command
+%
+\begin{verbatim}
+make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
+\end{verbatim}
+%
+By default, this will pass the option \Option{BOOK} to \Package{atlasdoc}.
+Use \verb|make newbooktexmf| for a book with \Package{atlaslatex} in a central directory.
 
 Note that you have to specify the language of your document as an option in the
 \Macro{documentclass} command. Typical settings are
@@ -325,26 +325,30 @@ Several more options can be set:
 \item[atlasstyle=true|false] turn on (default) or off the use of the ATLAS style for the document;
 \item[paper=a4|letter] set the paper size. The default size is A4;
 \item[a4paper] set the paper size to A4 (default);
-  This option is deprecated;
+  This option was removed in \Package{atlaslatex} 02-00-00;
 \item[letter] set the paper size to letter.
-  This option is deprecated -- use \Option{paper=letter} instead;
+  This option was removed in \Package{atlaslatex} 02-00-00
+  -- use \Option{paper=letter} instead;
 \item[coverpage] include an ATLAS draft cover page;
 \item[cernpreprint] make the front page for a CERN preprint.
   The option \Option{preprint} works as well, but is deprecated;
-%\item[paper] the document is an ATLAS paper;
 \item[NOTE] the document is an ATLAS note (default);
 \item[PAPER] the document is an ATLAS paper (draft);
 \item[CONF] the document is a CONF note;
 \item[PUB] the document is an PUB note;
-%\item[TDR] the document is book form like an LOI or TDR;
+\item[BOOK] the document is book form like an LOI or TDR;
 \item[auxmat] the document contains auxiliary material for a preprint;
-\item[maketitle=true|false] turn on or off (default) the creation of a title page within \Macro{AtBeginDocument}.
+\item[maketitle={\normalfont true}|false] turn on or off (default) the creation of a title page within \Macro{AtBeginDocument}.
   If the option is false, but you still want a title, give the command \Macro{maketitle} after
-  \verb|\begin{document}|. This is the recommended way of proceeding;
+  \verb|\begin{document}|.
+  This is the recommended way of proceeding;
+  \emph{This option is only available in \Package{atlasdoc1} as of \Package{atlaslatex} 02-00-00.}
 \item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
-  This option has no effect as of Version 01-07-00 of \Package{atlaslatex};
-\item[floatopt=true|false] adjust the options (default) governing number and placement of floats on a page;
-\item[koma] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
+  This option has no effect as of \Package{atlaslatex} 01-07-00 of \Package{atlaslatex};
+ \emph{This option is only available in \Package{atlasdoc1} as of \Package{atlaslatex} 02-00-00.}
+\item[floatopt=true|{\normalfont false}] adjust the options (default) governing number and placement of floats on a page;
+\item[koma=true|{\normalfont false}] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
+  \emph{This option is only available in \Package{atlasdoc1} as of \Package{atlaslatex} 02-00-00.}
 \item[texmf] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
@@ -352,11 +356,15 @@ Several more options can be set:
 \item[newtx] use the \Package{newtxtext} and \Package{newtxmath} packages for fonts 
   (default for \TeX Live > 2012);
 \item[txfonts] use the \Package{txfonts} package for fonts instead of the default
-  (default for older \TeX Live versions).
+  (default for older \TeX Live versions);
+\item[showframe={\normalfont true}|false] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
+\item[titleextraheight=0em] extra height that could be needed for the title, if it is very long;
+\item[copyrightoffset=0em] adjust the position of the copyright,
+  if it is not completely correct.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
-%The option \Option{TDR} uses book intead of article as the base class.
+%The option \Option{BOOK} uses book intead of article as the base class.
 
 The
 \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}
@@ -366,6 +374,14 @@ It is certainly worth reading that page for further advice.
 As it is very hard to really test how well these options work
 they can be turned on or off in \Package{atlasdoc} via the option \Option{floatopt=true|false}.
 The default value is set to \Option{true}.
+
+As of \Package{atlasdoc} Version 02-00-00,
+the \KOMAScript elements are used to create the title pages.
+In particular, \Macro{publishers} is used for the abtract and copyright.
+The space and position for this may need to be adjusted,
+if you have a very long title. Use the options
+\Option{titleextraheight} and \Option{copyrightoffset} to make adjustments.
+It is very helpful to turn on the \Option{showframe} option when doing this.
 
 
 %-------------------------------------------------------------------------------
@@ -521,10 +537,10 @@ The following options can be passed on to the \Package{atlascover} package:
 \item[\Option{coverpage}] outputs the standard ATLAS paper draft cover page;
 \item[\Option{CONF}] the document is a CONF note;
 \item[\Option{PUB}] the document is an PUB note;
-\item[\Option{cernpreprint}] the front page should be in the form of a CERN preprint;
+\item[\Option{cernpreprint}] the title page should be in the form of a CERN preprint;
   The option \Option{preprint} works as well, but is deprecated;
-%\item[\Option{preprint}] the front page should be in the form of a CERN preprint;
-\item[\Option{auxmat}] the front page for a document containing auxiliary material from a paper;
+%\item[\Option{preprint}] the title page should be in the form of a CERN preprint;
+\item[\Option{auxmat}] the title page for a document containing auxiliary material from a paper;
 \item[\Option{coverfontsize}] the base font size used for the cover (default is 11pt). Adjust this for long abstracts;
 \item[\Option{twocolumn}] use this option if your document is formatted in two columns;
 \item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
@@ -533,6 +549,9 @@ The following options can be passed on to the \Package{atlascover} package:
 If you use \Package{atlascover} standalone, use the option \Option{coverpage=true} to
 actually output a cover page. 
 This is necessary as of Version 01-04-00 of \Package{atlaslatex} to make the use of options more consistent.
+As of Version 02-00-00, the options \Option{cernpreprint}, \Option{preprint} and \Option{auxmat} are no longer available
+in \Package{atlascover}.
+You should pass these to \Package{atlasdoc} instead, as the title pages are now part of the main class.
 
 Some papers have a very long abstract, such that it does not fit on the cover page.
 You can reduce the font size used on the cover by setting the option \Option{coverfontsize}.
@@ -1110,8 +1129,73 @@ It can be given, but will be ignored.
 %(use it at your own risk!).
 
 
+\appendix
 %-------------------------------------------------------------------------------
-\section{Changes in \texttt{atlascover-01-00-00}}
+\section{Journal templates}
+%-------------------------------------------------------------------------------
+\label{sec:journal}
+
+This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
+However, with the advent of the ATLAS preprint style, 
+it should no longer be necessary to format papers in the style used by the journals.
+This section has therefore been moved to an appendix.
+
+The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
+So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
+You should turn off the use of \Package{biblatex} if you use a journal template.
+Add the option \Option{biblatex=false} to \Package{atlaspackage}.
+
+\begin{description}
+\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+  \TeX\ Live distribution. 
+  It can also be found at \url{http://www.elsevier.com/locate/latex}.
+  
+\item[APS]APS journals use REV\TeX. This is also usually installed.
+  It can also be found at \url{https://journals.aps.org/revtex}.
+  Note that you have to specify the author after \verb|\begin{document}| with this class.
+  Hence you should comment out the definition in your metadata file,\\
+  e.g.\ \File{mydocument-metadata.tex}.
+  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
+  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
+  
+\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+\end{description}
+
+
+%-------------------------------------------------------------------------------
+\section{History}
+%-------------------------------------------------------------------------------
+
+Quite a lot of people have contributed to the ATLAS \LaTeX\ templates over time.
+Marco Delmastro set them up in the first place and added a number of improvements over time.
+Mike Vetterli implemented several changes to the cover pages, including switching to two pages.
+Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributions to the preprint cover page.
+
+Sven Menke provided the code so that bold math works in titles correctly.
+Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-02-00-00}}
+\label{sec:oldcover}
+%-------------------------------------------------------------------------------
+
+As of Version 02-00-00 of \Package{atlaslatex}, only the \KOMAScript\ classes are supported.
+At the same time, the option BOOK was introduced, which user \Package{scrbook} as the base class.
+This is more suitable for long documents such as a TDR.
+Several options, which make maintenance more difficult have been removed:
+\Option{maketitle}, \Option{nomaketitle}, \Option{koma}.
+In addition, support for \TeX\ Live versions older than 2009 has been removed.
+A version of the class with these options, which should still work with \TeX\ Live 2007,
+but without the \Option{BOOK} option is available as \File{atlasdoc1.cls}.
+This class (\Package{atlasdoc1}) will not be actively maintained or developed any more.
+
+The options \Option{cernpreprint}, \Option{preprint} and \Option{auxmat} are no longer available
+in \Package{atlascover}.
+You should pass these to \Package{atlasdoc} instead, as the title pages are now part of the main class.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlascover-01-00-00}}
 \label{sec:oldcover}
 %-------------------------------------------------------------------------------
 
@@ -1148,47 +1232,3 @@ The following changes are needed for the macros:
 \end{itemize}
 
 
-\appendix
-%-------------------------------------------------------------------------------
-\section{Journal templates}
-%-------------------------------------------------------------------------------
-\label{sec:journal}
-
-This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
-However, with the advent of the ATLAS preprint style, 
-it should no longer be necessary to format papers in the style used by the journals.
-This section has therefore been moved to an appendix.
-
-The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
-So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
-You should turn off the use of \Package{biblatex} if you use a journal template.
-Add the option \Option{biblatex=false} to \Package{atlaspackage}.
-
-\begin{description}
-\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-  \TeX\ Live distribution. 
-  It can also be found at \url{http://www.elsevier.com/locate/latex}.
-  
-\item[APS]APS journals use REV\TeX. This is also usually installed.
-  It can also be found at \url{https://journals.aps.org/revtex}.
-  Note that you have to specify the author after \verb|\begin{document}| with this class.
-  Hence you should comment out the definition in your metadata file,\\
-  e.g.\ \File{mydocument-metadata.tex}.
-  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
-  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
-  
-\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
-\end{description}
-
-
-%-------------------------------------------------------------------------------
-\section*{History}
-%-------------------------------------------------------------------------------
-
-Quite a lot of people have contributed to the ATLAS \LaTeX\ templates over time.
-Marco Delmastro set them up in the first place and added a number of improvements over time.
-Mike Vetterli implemented several changes to the cover pages, including switching to two pages.
-Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributions to the preprint cover page.
-
-Sven Menke provided the code so that bold math works in titles correctly.
-Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.

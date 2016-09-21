@@ -1,13 +1,16 @@
 %-------------------------------------------------------------------------------
-% This file provides a skeleton ATLAS document.
+% This file provides a skeleton ATLAS boook for things like TDRs.
 %-------------------------------------------------------------------------------
 % \pdfoutput=1
 % The \pdfoutput command is needed by arXiv/JHEP/JINST to ensure use of pdflatex.
 % It should be included in the first 5 lines of the file.
 %-------------------------------------------------------------------------------
-% This file assumes that atlaslatex is installed in a central place like ~/texmf.
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{latex/}
+% Use this variant if the files are in a central location, e.g. $HOME/texmf.
+% \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[texmf,UKenglish,texlive=2013]{atlasdoc}
+\documentclass[BOOK,UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -26,7 +29,7 @@
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{atlaspackage}
+\usepackage{\ATLASLATEXPATH atlaspackage}
 % Commonly used options:
 %  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography.
 %  backend=biber         Use the biber backend rather than bibtex.
@@ -36,13 +39,13 @@
 %  full                  Full set of packages.
 %-------------------------------------------------------------------------------
 % Style file with biblatex options for ATLAS documents.
-\usepackage{atlasbiblatex}
+\usepackage{\ATLASLATEXPATH atlasbiblatex}
 
 % Package for creating list of authors and contributors to the analysis.
-\usepackage{atlascontribute}
+\usepackage{\ATLASLATEXPATH atlascontribute}
 
 % Useful macros
-\usepackage{atlasphysics}
+\usepackage{\ATLASLATEXPATH atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -52,7 +55,7 @@
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.
 \addbibresource{atlas-document.bib}
-\addbibresource{ATLAS.bib}
+\addbibresource{bibtex/bib/ATLAS.bib}
 
 % Paths for figures - do not forget the / at the end of the directory name.
 \graphicspath{{logos/}{figures/}}
@@ -73,62 +76,46 @@
 % Content
 %-------------------------------------------------------------------------------
 \begin{document}
-
+\frontmatter
 \maketitle
 
+\pagenumbering{roman}
 \tableofcontents
 
-% List of contributors - print here or after the Bibliography.
-%\PrintAtlasContribute{0.30}
-%\clearpage
+\clearpage
+\mainmatter
+\pagenumbering{arabic}
+%===============================================================================
+\chapter{Executive summary}
+%===============================================================================
 
-%-------------------------------------------------------------------------------
-\section{Introduction}
-\label{sec:intro}
-%-------------------------------------------------------------------------------
+%===============================================================================
+\part{Motivation}
+%===============================================================================
 
-Place your introduction here.
+Put the motivation here ...
 
+%===============================================================================
+\chapter{Physics}
+%===============================================================================
 
-%-------------------------------------------------------------------------------
-\section{ATLAS detector}
-\label{sec:detector}
-%-------------------------------------------------------------------------------
+%===============================================================================
+\part{Implementation}
+%===============================================================================
 
-The ATLAS detector~\cite{PERF-2007-01} ...
-% \input{atlas-detector}
+%===============================================================================
+\chapter{Plan}
+%===============================================================================
 
+Put the description of the plan here.
 
-%-------------------------------------------------------------------------------
-\section{Analysis}
-\label{sec:analysis}
-%-------------------------------------------------------------------------------
+%===============================================================================
+\chapter{Finances}
+%===============================================================================
 
-You can find some text snippets that can be used in papers in \texttt{template/atlas-snippets.tex}.
-Some of the snippets need the \texttt{jetetmiss} option passed to \texttt{atlasphysics}.
-%\input{atlas-snippets}
+Put the costs here.
 
-
-%-------------------------------------------------------------------------------
-\section{Results}
-\label{sec:result}
-%-------------------------------------------------------------------------------
-
-Place your results here.
-
-% All figures and tables should appear before the summary and conclusion.
-% The package placeins provides the macro \FloatBarrier to achieve this.
-% \FloatBarrier
-
-
-%-------------------------------------------------------------------------------
-\section{Conclusion}
-\label{sec:conclusion}
-%-------------------------------------------------------------------------------
-
-Place your conclusion here.
-
-
+\clearpage
 %-------------------------------------------------------------------------------
 \section*{Acknowledgements}
 %-------------------------------------------------------------------------------
@@ -142,10 +129,6 @@ When your ATLAS paper or PUB/CONF note is ready to be published,
 download the latest set of acknowledgements from:\\
 \url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComAcknowledgements}
 
-The supporting notes for the analysis should also contain a list of contributors.
-This information should usually be included in \texttt{mydocument-metadata.tex}.
-The list should be printed either here or before the table of contents.
-
 
 %-------------------------------------------------------------------------------
 \clearpage
@@ -154,7 +137,7 @@ The list should be printed either here or before the table of contents.
 \addcontentsline{toc}{part}{Appendix}
 %-------------------------------------------------------------------------------
 
-In a paper, an appendix is used for technical details that would otherwise disturb the flow of the paper.
+In a document, an appendix is used for technical details that would otherwise disturb the flow.
 Such an appendix should be printed before the Bibliography.
 
 
@@ -163,9 +146,17 @@ Such an appendix should be printed before the Bibliography.
 % just say \printbibliography here
 \printbibliography
 % If you want to use the traditional BibTeX you need to use the syntax below.
-%\bibliographystyle{atlasBibStyleWoTitle}
+%\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
 %\bibliography{atlas-document,bibtex/bib/ATLAS}
 %-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\backmatter
+
+% Lists of figures and tables
+\listoffigures
+\listoftables
+
 
 %-------------------------------------------------------------------------------
 % Print the list of contributors to the analysis
@@ -173,22 +164,5 @@ Such an appendix should be printed before the Bibliography.
 %-------------------------------------------------------------------------------
 \clearpage
 \PrintAtlasContribute{0.30}
-
-%-------------------------------------------------------------------------------
-\clearpage
-\appendix
-\part*{Auxiliary material}
-\addcontentsline{toc}{part}{Auxiliary material}
-%-------------------------------------------------------------------------------
-
-In an ATLAS paper, auxiliary plots and tables that are supposed to be made public 
-should be collected in an appendix that has the title \enquote{Auxiliary material}.
-This appendix should be printed after the Bibliography.
-At the end of the paper approval procedure, this information can be split into a separate document
--- see \texttt{atlas-auxmat.tex}.
-
-In an ATLAS note, use the appendices to include all the technical details of your work
-that are relevant for the ATLAS Collaboration only (e.g.\ dataset details, software release used).
-This information should be printed after the Bibliography.
 
 \end{document}

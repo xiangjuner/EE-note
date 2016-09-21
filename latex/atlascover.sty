@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{01-08-02}
+\def\ATPackageVersion{02-00-00}
 
-\ProvidesPackage{latex/atlascover}[2016/09/07 v.01-08-02 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2016/09/20 v.02-00-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\typeout{ATLAS cover page v.\ATPackageVersion}
@@ -22,10 +22,6 @@
 \DeclareBoolOption[false]{coverpage}
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
-\DeclareBoolOption[false]{preprint}
-\DeclareBoolOption[false]{cernpreprint}
-\DeclareBoolOption[false]{auxmat}
-\DeclareBoolOption[false]{clearpage}
 \DeclareBoolOption[false]{twocolumn}
 \DeclareBoolOption[false]{atlasdoc}
 \DeclareStringOption[11pt]{coverfontsize}
@@ -45,10 +41,10 @@
   \typeout{atlascover: Cover page for PUB note will be made}
   \ACOV@atlaspaperfalse
 \fi
-\ifACOV@preprint
-  \typeout{atlascover: Front page for a CERN preprint will be made}
-  \ACOV@cernpreprinttrue
-\fi
+%\ifACOV@preprint
+%  \typeout{atlascover: Front page for a CERN preprint will be made}
+%  \ACOV@cernpreprinttrue
+%\fi
 
 \let\ACOV@AdvancePageTwoSided\relax
 
@@ -81,13 +77,13 @@
     \ADOC@coverpagetrue
   \fi
   % Let atlasdoc know we want a CERN preprint front page
-  \ifACOV@cernpreprint
-    \ADOC@cernpreprinttrue
-  \fi
+  %\ifACOV@cernpreprint
+  %  \ADOC@cernpreprinttrue
+  %\fi
   % Let atlasdoc know we want an auxiliary material front page
-  \ifACOV@auxmat
-    \ADOC@auxmattrue
-  \fi
+  %\ifACOV@auxmat
+  %  \ADOC@auxmattrue
+  %\fi
 
   \relax%
 \else
@@ -123,6 +119,9 @@
   % DOI
   \def\ADOC@doi{}
   \providecommand*{\AtlasDOI}[1]{\def\ADOC@doi{#1}}
+  % ATLAS document heading
+  \def\ADOC@docheading{}
+  \providecommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}}
   % ArXiv
   \def\AtlasArXivId{}
   \def\AtlasArXivURL{}
@@ -221,27 +220,6 @@
 \typeout{large:   \the\ACOV@sizel\ and \the\ACOV@spacel}
 \typeout{Large:   \the\ACOV@sizeL\ and \the\ACOV@spaceL}
 \typeout{huge:    \the\ACOV@sizeh\ and \the\ACOV@spaceh}
-
-%-------------------------------------------------------------------------------
-% Main printout phase
-%-------------------------------------------------------------------------------
-\newcommand{\ACOV@PrintAtlasCover}{
-  \thispagestyle{empty}
-  \noindent{\AtlasCoverHeader}
-  \vfill
-  \noindent{\AtlasCoverBody}
-  \vfill
-  \noindent{\AtlasCoverFooter}
-  \clearpage
-}
-
-\newcommand{\ACOV@PrintAtlasCoverPageTwo}{
-  \thispagestyle{empty}
-  \vspace*{\fill}
-  \noindent{\AtlasCoverPageTwo}
-  \vfill
-  \clearpage
-}
 
 %-------------------------------------------------------------------------------
 % Page One: Header/Body/Footer
@@ -358,7 +336,7 @@
     \else
       Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \fi
-  }
+  }\par
 }
 
 %-------------------------------------------------------------------------------
@@ -430,203 +408,40 @@
 }
 
 %-------------------------------------------------------------------------------
-% Front pages for CERN preprint or auxiliary material
+% Main printout phase
 %-------------------------------------------------------------------------------
-% \setlength{\fboxsep}{0pt}
-% Print the CERN preprintcover
-\newcommand{\ACOV@PrintCERNPreprintCover}{%
+\newcommand{\ACOV@PrintAtlasCover}{
   \thispagestyle{empty}
-  \noindent{\CERNPreprintCoverHeader}
+  \noindent{\AtlasCoverHeader}
   \vfill
-  \noindent{\CERNPreprintCoverBody}
+  \noindent{\AtlasCoverBody}
   \vfill
-  \noindent{\CopyrightCoverFooter}
+  \noindent{\AtlasCoverFooter}
+  \clearpage
+}
+
+\newcommand{\ACOV@PrintAtlasCoverPageTwo}{
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \noindent{\AtlasCoverPageTwo}
+  \vfill
   \clearpage
 }
 
 %-------------------------------------------------------------------------------
-% Print the auxilary material cover
-\newcommand{\ACOV@PrintAuxmatCover}{%
-  \thispagestyle{empty}
-  \noindent{\AuxmatCoverHeader}
-  \vfill
-  \noindent{\AuxmatCoverBody}
-  \vfill
-  \noindent{\CopyrightCoverFooter}
-  \clearpage
-}
-
-%-------------------------------------------------------------------------------
-% CERN preprint cover header
-\newcommand{\CERNPreprintCoverHeader}{%
-  \parbox[t]{\linewidth}{%
-    {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont
-      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
-    }
-    \vspace*{2mm}
-    \parbox[t]{0.45\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
-      \ifx\ADOC@journalref\@empty
-        \ifx\ADOC@journal\@empty
-          \relax
-        \else
-          Submitted to: \ADOC@journal\par
-        \fi
-      \else
-          \ADOC@journalref\par
-      \fi
-      \ifx\ADOC@doi\@empty
-        \relax
-      \else
-        DOI: \href{http://dx.doi.org/\ADOC@doi}{\ADOC@doi}\par
-      \fi
-    }
-    \hspace*{\fill}
-    \parbox[t]{0.45\linewidth}{%
-      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
-      \hspace*{\fill}\ADOC@preprintnumber\par
-      \hspace*{\fill}\ADOC@atlasdate\par
-    }\par
-    \vspace*{2mm}
-    \rule{\linewidth}{1pt}\par
-  }
-}
-
-%-------------------------------------------------------------------------------
-% Auxiliary material cover header
-\newcommand{\AuxmatCoverHeader}{%
-  \parbox[t]{\linewidth}{%
-    {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
-      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
-    }
-    \vspace*{2mm}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      arXiv: \AtlasArXivId\ \AtlasArXivCat
-    }
-    \hspace*{\fill}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
-      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
-      \hspace*{\fill}\ADOC@preprintnumber\par
-      \hspace*{\fill}\ADOC@atlasdate\par
-    }\par
-    \vspace*{2mm}
-    \rule{\linewidth}{1pt}\par
-  }
-}
-
-%-------------------------------------------------------------------------------
-% CERN Preprint cover body
-\newcommand{\CERNPreprintCoverBody}{%
-  \parbox[t]{\linewidth}{%
-    {\centering
-      \bfseries\fontsize{16}{19.2}\selectfont 
-      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-      \AtlasTitleText\par
-    }
-    \vspace*{6ex}
-    {\centering
-      \fontseries{m}\fontsize{12}{14.4}\selectfont
-      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      The ATLAS Collaboration\par
-    }
-    \vspace*{6ex}
-    {\centering
-      \bfseries\fontsize{12}{14.4}\selectfont
-      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
-      \abstractname\par
-    }
-    {\fontseries{m}\fontsize{11}{13.2}\selectfont%
-      %\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-      \begin{quote}
-      %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
-        \AtlasAbstractText
-      \end{quote}
-    }
-  }
-}
-
-%-------------------------------------------------------------------------------
-% Auxiliary material cover body
-\newcommand{\AuxmatCoverBody}{%
-  \parbox[t]{\linewidth}{%
-    {\centering
-      \bfseries\fontsize{16}{19.2}\selectfont 
-      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
-      Auxiliary figures and tables related to the paper\\[1.5ex]
-      \AtlasTitleText\par
-    }
-    \vspace*{2ex}
-    {\centering
-      \fontseries{m}\fontsize{12}{14.4}\selectfont
-      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      The ATLAS Collaboration\par
-    }
-    \vspace*{2ex}
-    {\centering
-      \fontseries{m}\fontsize{12}{14.4}\selectfont
-      %\fontfamily{phv}\fontseries{m}\fontsize{12}{14.4}\selectfont
-      \ADOC@refcode\par
-    }
-    \vspace*{2ex}
-    {\centering
-      \bfseries\fontsize{12}{14.4}\selectfont
-      %\fontfamily{phv}\bfseries\fontsize{12}{14.4}\selectfont
-      \abstractname\par
-    }
-    {\centering
-      \fontseries{m}\fontsize{11}{13.2}\selectfont%
-      %\fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont%
-      \begin{quote}
-      %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
-        \AtlasAbstractText
-      \end{quote}
-    }
-  }
-}
-
-%-------------------------------------------------------------------------------
-% Copyright cover footer - parbox does not introduce spurious vertical space
-\newcommand{\CopyrightCoverFooter}{%
-  \parbox[b]{\linewidth}{%
-    \fontseries{m}\fontsize{10}{12}\selectfont
-    %\fontfamily{phv}\fontseries{m}\fontsize{10}{12}\selectfont
-    \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
-    Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
-  }\par
-}
-
-%-------------------------------------------------------------------------------
-% Print cover page first, then document
+% Print cover page here, if not called from atlasdoc
 %-------------------------------------------------------------------------------
 \AtBeginDocument{
   \ifACOV@atlasdoc
     \relax
   \else
-    \typeout{atlascover is producing the cover and title pages}
+    \typeout{atlascover: producing the cover pages}
     \ifACOV@twocolumn \onecolumn \fi
     \ifACOV@coverpage
       \ACOV@PrintAtlasCover
       \ACOV@PrintAtlasCoverPageTwo
     \fi
     \setcounter{page}{1}
-    \ifACOV@cernpreprint
-      \typeout{Making CERN preprint front page in atlascover}
-      \ACOV@PrintCERNPreprintCover
-      %\ACOV@AdvancePageTwoSided
-    \else
-      \ifACOV@auxmat
-        \typeout{Making auxiliary material front page in atlascover}
-        \ACOV@PrintAuxmatCover
-        %\ACOV@AdvancePageTwoSided
-      \fi
-    \fi
     \ifACOV@twocolumn \twocolumn \fi
   \fi
 }
