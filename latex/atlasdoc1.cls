@@ -827,14 +827,14 @@
   \end{minipage}\par
   \vspace*{\copyrightoffset}
 }
+
+\publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
 \else
   % Use AtlasCoverTitle for title page
   \renewcommand\maketitle{%
     \MakeAtlasCoverTitle
   }
 \fi
-
-\publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
 
 % Cover page needs to be made after preamble, as otherwise title page comes first!
 % Deprecated option, but kept for backwards compatibility
