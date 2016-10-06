@@ -492,13 +492,13 @@
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
+    \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       arXiv: \AtlasArXivId\ \AtlasArXivCat
     }
     \hspace*{\fill}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
+    \parbox[t]{0.45\linewidth}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       \hspace*{\fill}\ADOC@preprintnumber\par
@@ -634,22 +634,6 @@
 }
 
 % Add elements to KOMA-Script title page
-% Cover pages
-\ifADOC@coverpage
-  \extratitle{%
-    % Turn line numbers off for cover pages
-    \nolinenumbers
-    \ACOV@PrintAtlasCover
-    \ACOV@PrintAtlasCoverPageTwo
-    % Turn line numbers back on
-    \ifx\ADOC@draftversion\@empty%
-      \relax
-    \else
-      \linenumbers
-    \fi
-  }
-\fi
-
 % Header
 \ifADOC@cernpreprint
   \typeout{atlasdoc: defining CERN preprint title page}
@@ -716,6 +700,21 @@
 \publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
 
 \AtBeginDocument{%
+  % Cover pages - add here, so atlascover options work
+  \ifADOC@coverpage
+    \extratitle{%
+      % Turn line numbers off for cover pages
+      \nolinenumbers
+      \ACOV@PrintAtlasCover
+      \ACOV@PrintAtlasCoverPageTwo
+      % Turn line numbers back on
+      \ifx\ADOC@draftversion\@empty%
+        \relax
+      \else
+        \linenumbers
+      \fi
+    }
+  \fi
   % Add heading for books (i.e. TDR)
   \ifADOC@BOOK
     \AtlasBookHeading

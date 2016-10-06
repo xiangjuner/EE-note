@@ -58,30 +58,30 @@
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
 % See if atlascover is called from atlasdoc
-%\def\@atlasdocref{atlasdoc}
-%\def\@atlasdoclatexref{latex/atlasdoc}
+%\def\@atlasdocref{atlasdoc1}
+%\def\@atlasdoclatexref{latex/atlasdoc1}
 \ifACOV@atlasdoc
-  \typeout{atlascover: loaded from atlasdoc}
+  \typeout{atlascover: loaded from atlasdoc1}
   \relax
 \else
 %  \ifx\@currentclass\@atlasdoclatexref
-%    \typeout{atlascover: current class loaded is latex/atlasdoc}
+%    \typeout{atlascover: current class loaded is latex/atlasdoc1}
 %    \ACOV@atlasdoctrue
 %  \else
 %    \ifx\@currentclass\@atlasdocref
-%      \typeout{atlascover: current class loaded is atlasdoc}
+%      \typeout{atlascover: current class loaded is atlasdoc1}
 %      \ACOV@atlasdoctrue
 %    \else
 %      \typeout{atlascover: current class loaded does not appear to be atlasdoc}
 %      \ACOV@atlasdocfalse
 %    \fi
 %  \fi
-  \@ifclassloaded{latex/atlasdoc}{%
-    \typeout{atlascover: class loaded is latex/atlasdoc}
+  \@ifclassloaded{latex/atlasdoc1}{%
+    \typeout{atlascover: class loaded is latex/atlasdoc1}
     \ACOV@atlasdoctrue
   }{%
-    \@ifclassloaded{atlasdoc}{%
-      \typeout{atlascover: class loaded is atlasdoc}
+    \@ifclassloaded{atlasdoc1}{%
+      \typeout{atlascover: class loaded is atlasdoc1}
       \ACOV@atlasdoctrue
     }{%
       \typeout{atlascover: class loaded does not appear to be atlasdoc}
@@ -92,10 +92,9 @@
 
 % If atlascover called from atlasdoc, do not need to do much
 \ifACOV@atlasdoc%
-  \typeout{atlascover: ATLAS cover called from atlasdoc}
+  \typeout{atlascover: telling atlasdoc we want a cover page}
   % Let atlasdoc know we want a cover page
   \ifACOV@coverpage
-    \typeout{atlascover: telling atlasdoc we want a cover page}
     \ADOC@coverpagetrue
   \fi
   % Let atlasdoc know we want a CERN preprint front page

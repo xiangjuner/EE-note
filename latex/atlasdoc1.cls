@@ -289,9 +289,9 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
+\def\ADOC@atlascover{\ATLASLATEXPATH atlascover1}
 \ifADOC@coverpage
-  \typeout{atlasdoc: load atlascover package}
+  \typeout{atlasdoc1: load atlascover1 package}
   \ifADOC@CONFnote
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}
   \else
@@ -317,18 +317,18 @@
 % Font(s)
 \ifADOC@txfonts
   % Needs special amsmath code in atlaspackage
-  \typeout{atlasdoc: using txfonts}
+  \typeout{atlasdoc1: using txfonts}
   \RequirePackage[varg]{txfonts}
   \RequirePackage[T1]{fontenc}
 \else
   \ifADOC@libertine
-    \typeout{atlasdoc: using Libertine fonts}
+    \typeout{atlasdoc1: using Libertine fonts}
     \RequirePackage{libertine}
     \RequirePackage[T1]{fontenc}
     \RequirePackage[libertine]{newtxmath}
   \else
     \ifADOC@palatino
-      \typeout{atlasdoc: using Palatino fonts}
+      \typeout{atlasdoc1: using Palatino fonts}
       % Palatino for rm and math | Helvetica for ss | Courier for tt
       \RequirePackage{mathpazo} % math & rm
       \linespread{1.05}        % Palatino needs more leading (space between lines)
@@ -337,10 +337,10 @@
       \normalfont
       \RequirePackage[T1]{fontenc}
     \else
-      \typeout{atlasdoc: using newtx fonts package}
+      \typeout{atlasdoc1: using newtx fonts package}
       \RequirePackage{newtxtext}
       \ifthenelse{\ADOC@texlive < 2013}{%
-        \typeout{*** atlasdoc: include amsmath before newtxmath}
+        \typeout{*** atlasdoc1: include amsmath before newtxmath}
         \RequirePackage{amsmath}
       }{%
       }
@@ -525,13 +525,13 @@
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
+    \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       arXiv: \AtlasArXivId\ \AtlasArXivCat
     }
     \hspace*{\fill}
-    \parbox[b][35mm][t]{0.45\linewidth}{%
+    \parbox[t]{0.45\linewidth}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
       \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
       \hspace*{\fill}\ADOC@preprintnumber\par
@@ -715,7 +715,7 @@
 % Cover and title pages in one command for old maketitle option
 \newcommand{\MakeAtlasCoverTitle}{%
   % If selected, generate ATLAS Cover Page
-  \typeout{atlasdoc: producing the cover and title pages}
+  \typeout{atlasdoc1: producing the cover and title pages}
   \ifADOC@coverpage
     % Turn line numbers off for cover pages
     \nolinenumbers
@@ -731,16 +731,16 @@
   \setcounter{page}{1}
   % If selected, generate CERN preprint title page
   \ifADOC@cernpreprint
-    \typeout{atlasdoc: making CERN preprint title page}
+    \typeout{atlasdoc1: making CERN preprint title page}
     \MakeCERNPreprintTitle
   \else
     % If selected, generate ATLAS auxiliary material title page
     \ifADOC@auxmat
-      \typeout{atlasdoc: making auxiliary material title page}
+      \typeout{atlasdoc1: making auxiliary material title page}
       \MakeAuxmatTitle
     % Standard title page
     \else
-      \typeout{atlasdoc: making standard ATLAS document title page}
+      \typeout{atlasdoc1: making standard ATLAS document title page}
       \MakeAtlasTitle
     \fi
   \fi
@@ -749,34 +749,18 @@
 
 % KOMA-Script - set up title page elements
 \ifADOC@koma
-% Cover pages
-\ifADOC@coverpage
-  \extratitle{%
-    % Turn line numbers off for cover pages
-    \nolinenumbers
-    \ACOV@PrintAtlasCover
-    \ACOV@PrintAtlasCoverPageTwo
-    % Turn line numbers back on
-    \ifx\ADOC@draftversion\@empty%
-      \relax
-    \else
-      \linenumbers
-    \fi
-  }
-\fi
-
 % Header
 \ifADOC@cernpreprint
-  \typeout{atlasdoc: defining CERN preprint title page}
+  \typeout{atlasdoc1: defining CERN preprint title page}
   \titlehead{\CERNPreprintTitleHeader}
   \date{}%\vspace*{-5ex}}
 \else
   \ifADOC@auxmat
-    \typeout{atlasdoc: defining Auxiliary Material title page}
+    \typeout{atlasdoc1: defining Auxiliary Material title page}
     \titlehead{\AuxmatTitleHeader}
     \date{}%\vspace*{-5ex}}
   \else
-    \typeout{atlasdoc: defining ATLAS document title page}
+    \typeout{atlasdoc1: defining ATLAS document title page}
     \titlehead{\AtlasTitleHeader}
   \fi
 \fi
@@ -831,6 +815,7 @@
 \publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
 \else
   % Use AtlasCoverTitle for title page
+  \typeout{atlasdoc1: redefining the maketitle command to MakeAtlasCoverTitle}
   \renewcommand\maketitle{%
     \MakeAtlasCoverTitle
   }
@@ -838,20 +823,43 @@
 
 % Cover page needs to be made after preamble, as otherwise title page comes first!
 % Deprecated option, but kept for backwards compatibility
-\ifADOC@maketitle
-  \AfterEndPreamble{%
-    \typeout{atlasdoc1: deprecated maketitle option set}
-    \ifADOC@koma
-      \typeout{atlasdoc1: executing MakeAtlasCoverTitle from atlasdoc1!}
-      \MakeAtlasCoverTitle
-    \else
-      \typeout{atlasdoc1: executing MakeAtlasCoverTitle from atlasdoc1!}
-      \MakeAtlasCoverTitle
-    \fi
-  }
-\fi
+%\ifADOC@maketitle
+%  %\AfterEndPreamble{%
+%  \AtBeginDocument{%
+%    \typeout{atlasdoc1: deprecated maketitle option set}
+%    \ifADOC@koma
+%      \typeout{atlasdoc1: executing MakeAtlasCoverTitle from atlasdoc1!}
+%      \MakeAtlasCoverTitle
+%    \else
+%      \typeout{atlasdoc1: executing MakeAtlasCoverTitle from atlasdoc1!}
+%      \MakeAtlasCoverTitle
+%    \fi
+%  }
+%\fi
 
 \AtBeginDocument{%
+  % Deprecated option, but kept for backwards compatibility
+  \ifADOC@maketitle
+    \typeout{atlasdoc1: deprecated maketitle option set}
+    \typeout{atlasdoc1: executing MakeAtlasCoverTitle}
+    \MakeAtlasCoverTitle
+  \else
+    % Cover pages - add here, so atlascover options work
+    \ifADOC@coverpage
+      \extratitle{%
+        % Turn line numbers off for cover pages
+        \nolinenumbers
+        \ACOV@PrintAtlasCover
+        \ACOV@PrintAtlasCoverPageTwo
+        % Turn line numbers back on
+        \ifx\ADOC@draftversion\@empty%
+          \relax
+        \else
+          \linenumbers
+        \fi
+      }
+    \fi
+  \fi
   % Add draft heading and line numbers
   \ifx\ADOC@draftversion\@empty
     \typeout{atlasdoc1: this is not an ATLAS draft}
