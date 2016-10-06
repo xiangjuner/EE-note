@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{02-00-00}
+\def\ATPackageVersion{02-00-01}
 
-\ProvidesClass{latex/atlasdoc}[2016/09/20 v.02-00-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2016/10/06 v.02-00-01 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -256,7 +256,7 @@
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
   \setkomafont{pagehead}{\normalsize\rmfamily}
-  \setkomafont{publishers}{\normalsize\rmfamily}
+  %\setkomafont{publishers}{\normalsize\rmfamily}
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
@@ -265,6 +265,7 @@
 % ATLAS draft cover pages for papers, PUB and CONF notes
 \def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
 \ifADOC@coverpage
+  \typeout{atlasdoc: load atlascover package}
   \ifADOC@CONFnote
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}
   \else
@@ -676,42 +677,43 @@
 \newlength{\copyrightoffset}
 \setlength{\copyrightoffset}{-6em}
 \addtolength{\copyrightoffset}{\ADOC@copyrightoffset}
-%\publishers{\fbox{\begin{minipage}[b][\abstractheight]{\abstractparbox}
-\publishers{\begin{minipage}[b][\abstractheight]{\abstractparbox}
-  % Astract
-  \if\AtlasAbstractText\@empty
-    \mbox{}
-  \else
-    \begin{quote}
-    \ifx\ADOC@draftversion\@empty%
-      \AtlasAbstractText\par
+\newcommand{\AtlasAbstractCopyright}{%
+  \begin{minipage}[b][\abstractheight]{\abstractparbox}
+    % Astract
+    \if\AtlasAbstractText\@empty
+      \mbox{}
     \else
-      \begin{internallinenumbers}
-        \AtlasAbstractText
-      \end{internallinenumbers}\par
+      \begin{quote}
+      \ifx\ADOC@draftversion\@empty%
+        \AtlasAbstractText\par
+      \else
+        \begin{internallinenumbers}
+          \AtlasAbstractText
+        \end{internallinenumbers}\par
+      \fi
+      \end{quote}
     \fi
-    \end{quote}
-  \fi
-  %\vspace*{\stretch{1}}
-  % Submission details
-  \ifx\ADOC@journal\@empty
-    \relax
-  \else
-    \ifADOC@PAPER
-      \vskip 2em
-      \parbox[c]{\linewidth}{
-        \centering
-        \ADOC@subprepend\ \textit{\ADOC@journal}
-      }\par
-      \vskip 2em
+    %\vspace*{\stretch{1}}
+    % Submission details
+    \ifx\ADOC@journal\@empty
+      \relax
+    \else
+      \ifADOC@PAPER
+        \vskip 2em
+        \parbox[c]{\linewidth}{
+          \centering
+          \ADOC@subprepend\ \textit{\ADOC@journal}
+        }\par
+        \vskip 2em
+      \fi
     \fi
-  \fi
-  \vspace*{\stretch{1}}
-  \AtlasCopyrightFooter
+    \vspace*{\stretch{1}}
+    \AtlasCopyrightFooter
   \end{minipage}\par
-  %\end{minipage}}\par
   \vspace*{\copyrightoffset}
 }
+
+\publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
 
 \AtBeginDocument{%
   % Add heading for books (i.e. TDR)
