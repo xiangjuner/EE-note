@@ -1,3 +1,8 @@
+2016-10-10  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 02-00-01.
+	* Fixes known bugs in version 02-00-00. Tested on usual platforms.
+	* Add atlascover1.sty to go with atlasdoc1.cls.
+	* September update of publications.
 2016-09-21  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 02-00-00.
 	* Drop standard LaTeX classes - only use KOMA-Script.
