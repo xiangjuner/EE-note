@@ -19,7 +19,7 @@
 
 #-------------------------------------------------------------------------------
 # Check which TeX Live installation you have with the command pdflatex --version
-TEXLIVE  = 2013
+TEXLIVE  = 2016
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = bibtex
@@ -181,7 +181,7 @@ clean:
 	-rm *.dvi *.toc *.aux *.log *.out \
 		*.bbl *.blg *.brf *.bcf *-blx.bib *.run.xml \
 		*.cb *.ind *.idx *.ilg *.inx \
-		*.synctex.gz *~ ~* spellTmp 
+		*.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp 
 
 cleanpdf:
 	-rm $(BASENAME).pdf 

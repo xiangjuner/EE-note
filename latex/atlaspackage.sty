@@ -5,7 +5,7 @@
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latex/atlaspackage}[2016/10/10 v.02-00-01 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2017/02/16 v.03-00-XX ATLAS LaTeX packages]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -23,6 +23,7 @@
 \DeclareBoolOption[true]{siunitx}
 \DeclareBoolOption[false]{eVkern}
 \DeclareBoolOption[true]{csquotes}
+\DeclareBoolOption[true]{subfig}
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[false]{subcaption}
 \DeclareBoolOption[true]{hyperref}
@@ -30,8 +31,10 @@
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2013]{texlive}
 \DeclareStringOption[bibtex]{backend}
-\DeclareStringOption[ragged]{block}
-\DeclareStringOption[3]{maxbibnames}
+% \DeclareStringOption[ragged]{block}
+% \DeclareStringOption[3]{maxbibnames}
+\DeclareStringOption[]{block}
+\DeclareStringOption[]{maxbibnames}
 \ProcessKeyvalOptions*
 
 \typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
@@ -141,6 +144,8 @@
   % Several plots in a single figure
   \ifAPKG@subfigure%
     \RequirePackage[TABBOTCAP]{subfigure}
+    % subfigure option needed if subfig(ure) is also used
+    \RequirePackage[subfigure]{tocloft}
   \else
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
     % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
@@ -152,14 +157,20 @@
       \RequirePackage[labelformat=simple]{subcaption}
       \renewcommand\thesubfigure{(\alph{subfigure})}
       \renewcommand\thesubtable{(\alph{subtable})}
+      % subfigure option needed if subfig(ure) is also used
+      \RequirePackage{tocloft}
     \else
-      \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
-      \renewcommand\thesubfigure{(\alph{subfigure})}
-      \renewcommand\thesubtable{(\alph{subtable})}
+      \ifAPKG@subfig%
+        \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
+        \renewcommand\thesubfigure{(\alph{subfigure})}
+        \renewcommand\thesubtable{(\alph{subtable})}
+        % subfigure option needed if subfig(ure) is also used
+        \RequirePackage[subfigure]{tocloft}
+      \else
+        \RequirePackage{tocloft}
+      \fi
     \fi
   \fi
-  % subfigure option needed if subfig(ure) is also used
-  \RequirePackage[subfigure]{tocloft}
 
   % Remove dots in table of contents
   \renewcommand{\cftdot}{}
@@ -167,7 +178,7 @@
   % Typset anything with units using this package - also has very useful table formatting 
   % Declare a few options and standard units for siunitx that are otherwise missing
   % Before 2011 siunitx Version 1 (to be checked)
-  % Before 2012 siunitx Version 2 (arXiv)
+  % Before 2012 siunitx Version 2 (arXiv until 10/02/2017)
   % Otherwise   siunitx Version 3
   \ifAPKG@siunitx
     \ifthenelse{\APKG@texlive < 2012}{
@@ -182,58 +193,16 @@
         \newunit{\m}{m}
         % \newunit\micron{\micro\metre}
         \newunit{\um}{\micro\meter}
-        \renewunit{\mrad}{\milli\radian}
-        \newunit{\degr}{\degree}
-        \newunit{\barn}{b}
-        \newunit{\inb}{\per\nano\barn}
-        \newunit{\ipb}{\per\pico\barn}
-        \newunit{\ifb}{\per\femto\barn}
-        \renewunit{\clight}{\text{\ensuremath{c}}}
-        \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
-        \newunit[per=slash]{\TeVc}{\tera\eVperc}
-        \newunit[per=slash]{\GeVc}{\giga\eVperc}
-        \newunit[per=slash]{\MeVc}{\mega\eVperc}
-        \newunit[per=slash]{\keVc}{\kilo\eVperc}
-        \newunit[per=slash]{\eVc}{\eVperc}
-        \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
-        \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
-        \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
-        \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
-        \newunit[per=slash]{\eVcc}{\eVperc\squared}
       }{
         \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
         \RequirePackage{siunitx}
         \sisetup{load-configurations=abbreviations}
         \sisetup{separate-uncertainty}
-        \sisetup{detect-all}
         \sisetup{range-units=single, list-units=single}
         \sisetup{group-digits=true, group-four-digits=true}
-        \DeclareSIUnit\micron{\micro\metre}
-        \DeclareSIUnit\mrad{\milli\radian}
-        \DeclareSIUnit\degr{\degree}
+        \sisetup{detect-all}
+        %\sisetup{detect-mode=false, mode=text}
         \DeclareSIUnit\barn{b}
-        \DeclareSIUnit\nb{\nano\barn}
-        \DeclareSIUnit\pb{\pico\barn}
-        \DeclareSIUnit\fb{\femto\barn}
-        \DeclareSIUnit\inb{\per\nano\barn}
-        \DeclareSIUnit\ipb{\per\pico\barn}
-        \DeclareSIUnit\ifb{\per\femto\barn}
-        \DeclareSIUnit\clight{\text{\ensuremath{c}}}
-        \ifAPKG@eVkern
-          \typeout{atlaspackage: Applying kern to eV}
-          \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
-        \fi
-        \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
-        \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
-        \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
-        \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
-        \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
-        \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
-        \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
-        \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
-        \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
-        \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
-        \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
       }
     }{%
       \typeout{atlaspackage: Loading siunitx definitions for TeX Live > 2011}
@@ -242,7 +211,29 @@
       \sisetup{range-units=single, list-units=single}
       \sisetup{group-digits=integer, group-minimum-digits=4}
       \sisetup{detect-all}
-%      detect-family = true, detect-display-math=true}
+      %\sisetup{detect-mode=false, mode=text}
+    }
+    % Units
+    \ifthenelse{\APKG@texlive < 2011}{
+      \renewunit{\mrad}{\milli\radian}
+      \newunit{\degr}{\degree}
+      \newunit{\barn}{b}
+      \newunit{\inb}{\per\nano\barn}
+      \newunit{\ipb}{\per\pico\barn}
+      \newunit{\ifb}{\per\femto\barn}
+      \renewunit{\clight}{\text{\ensuremath{c}}}
+      \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
+      \newunit[per=slash]{\TeVc}{\tera\eVperc}
+      \newunit[per=slash]{\GeVc}{\giga\eVperc}
+      \newunit[per=slash]{\MeVc}{\mega\eVperc}
+      \newunit[per=slash]{\keVc}{\kilo\eVperc}
+      \newunit[per=slash]{\eVc}{\eVperc}
+      \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
+      \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
+      \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
+      \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
+      \newunit[per=slash]{\eVcc}{\eVperc\squared}
+    }{%
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}
       \DeclareSIUnit\degr{\degree}
@@ -302,16 +293,32 @@
 % backend=biber|bibtex to select backend to use (biber is default)
 % Style is numeric and comp option changes [1,2,3] into [1-3]
 % sorting=none    means the order is as they are cited
+% firstinits=true means initials are used for first names
+%
+% The following options are passed to atlasbiblatex.
+% They are kept here only for backwards compatibility.
 % block=ragged    turns off block form, which avoids large spaces
 %                 block=space or block=none are also possible
-% firstinits=true means initials are used for first names
-% maxbibnames=3   is maximum number of authors before et al. i used.
+% maxbibnames=5   is maximum number of authors before et al. is used.
 % Some more tweaks should be made to the appearance,
 % see/include bibtex/bst/atlas-biblatex.sty
 \ifAPKG@biblatex
+  % \typeout{atlaspackage: block set to \APKG@block}
+  % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
+  \ifx\APKG@block\@empty%
+    \relax
+  \else
+    \typeout{atlaspackage: passing block option to biblatex}
+    \PassOptionsToPackage{block=\APKG@block}{\ATLASLATEXPATH atlasbiblatex}
+  \fi
+  \ifx\APKG@maxbibnames\@empty%
+    \relax
+  \else
+    \typeout{atlaspackage: passing maxbibnames option to biblatex}
+    \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ATLASLATEXPATH atlasbiblatex}
+  \fi
   \RequirePackage[backend=\APKG@backend,
-    style=numeric-comp, sorting=none, block=\APKG@block,
-    maxbibnames=\APKG@maxbibnames, firstinits=true]{biblatex}
+    style=numeric-comp, sorting=none, firstinits=true]{biblatex}
 \fi
 
 \endinput

@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 
 BASENAME = atlas_latex
-TEXLIVE = 2013
+TEXLIVE = 2016
 
 .PHONY: clean cleanpdf
 

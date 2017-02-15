@@ -1,7 +1,7 @@
 # Makefile for creating documentation for ATLAS LaTeX
 # Usually called from a subdirectory
 
-TEXLIVE  = 2013
+TEXLIVE  = 2016
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = biber
@@ -45,7 +45,7 @@ $(BASENAME).dvi: $(BASENAME).tex *.bib
 
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
-	 *.run.xml *.synctex.gz *~
+	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk .*.lb *~
 
 cleanpdf:
 	-rm $(BASENAME).pdf

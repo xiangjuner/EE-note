@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2016/10/10 v.02-00-01 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2017/02/16 v.03-00-XX ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -17,13 +17,15 @@
   family=ABIB,
   prefix=ABIB@
 }
+\DeclareStringOption[ragged]{block}
+\DeclareStringOption[5]{maxbibnames}
 \DeclareBoolOption[true]{articletitle}
 \DeclareBoolOption[false]{titlequote}
 \DeclareBoolOption[false]{showdoi}
 \DeclareBoolOption[true]{eprint}
 \DeclareBoolOption[false]{address}
 \DeclareBoolOption[false]{location}
-\DeclareStringOption[2013]{texlive}
+\DeclareStringOption[2016]{texlive}
 \ProcessKeyvalOptions*
 
 \typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
@@ -31,6 +33,12 @@
 %-------------------------------------------------------------------------------
 % Only set things if biblatex is actually loaded
 \@ifpackageloaded{biblatex}{%
+  % Set block mode
+  \typeout{atlasbiblatex: block set to \ABIB@block}
+  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
+  \ExecuteBibliographyOptions{block=\ABIB@block}
+  % Set maxbibnames
+  \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
   % Include the DOI as a hyerlink with the journal.
   \ifABIB@showdoi
     \relax

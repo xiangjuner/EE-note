@@ -1,3 +1,19 @@
+2017-02-16  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 03-00-00.
+  * Default TeX Live version changed to 2016 to match arXiv.
+  * October 2016 to January 2017 updates of ATLAS publications.
+	* eVkern option selected by default when using txfonts.
+  * Some options to add more real estate for the abstract on the title page.
+  * Add option datetop to put the date at the top of the title page.
+  * Add option titlepage to select normal or smaller fonts for the title page.
+  * Fix problem when using subcaption with list of figures or tables.
+  * Move maxbibnames and block options to atlasbiblatex.sty.
+  * Set maxbibnames=5 by default to conform with current recommendations.
+  * Added option subfig to atlaspackage, so all subfigure packages can be turned off.
+  * More generic font commands on cover and title pages.
+  * Add option to reduce font sizes on title page.
+  * Add some more temporary files that come from latexmk and TextMate to the list to clean up.
+
 2016-10-10  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 02-00-01.
 	* Fixes known bugs in version 02-00-00. Tested on usual platforms.
@@ -11,6 +27,7 @@
 	* Use the command "make newbook" to create such a document.
 	* This release is not perfect. You have to steer the coverpage from class options.
 	Hopefully this will be fixed in the next release.
+
 2016-09-07  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-08-02.
 	* June, July, August updates of ATLAS and CMS publications.

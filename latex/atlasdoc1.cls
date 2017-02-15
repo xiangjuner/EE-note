@@ -28,21 +28,21 @@
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{auxmat}
-\DeclareBoolOption[false]{maketitle}
-\DeclareBoolOption[true]{nomaketitle}
-\DeclareBoolOption[false]{letterpaper}
 \DeclareStringOption[2013]{texlive}
 \DeclareStringOption{paper}
+\DeclareBoolOption[true]{floatopt}
+\DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
-\DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[false]{koma}
-\DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[false]{showframe}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
+\DeclareBoolOption[false]{maketitle}
+\DeclareBoolOption[true]{nomaketitle}
+\DeclareBoolOption[false]{koma}
+\DeclareBoolOption[false]{letterpaper}
 \ProcessKeyvalOptions{ADOC}
 
 % Standard LaTeX options for paper size
@@ -457,13 +457,13 @@
         \else
           {\Large \ADOC@atlasnote}\par
         \fi
-        %\vspace*{2ex}
-        % Date, if any
-        %\ifx\@date\@empty
-        %  \mbox{}\par
-        %\else
-        %  \@date\par
-        %\fi
+        % \vspace*{1.5ex}
+        % % Date, if any
+        % \ifx\@date\@empty
+        %   \mbox{}\par
+        % \else
+        %   \@date\par
+        % \fi
     }
     \hspace*{\fill}
     \parbox[b][35mm][t]{0.24\titlepageparbox}{%

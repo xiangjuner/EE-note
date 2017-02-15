@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{02-00-01}
+\def\ATPackageVersion{03-00-XX}
 
-\ProvidesClass{latex/atlasdoc}[2016/10/10 v.02-00-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2017/02/16 v.03-00-XX ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -30,14 +30,16 @@
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
 \DeclareBoolOption[false]{auxmat}
-\DeclareStringOption[2013]{texlive}
+\DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
+\DeclareStringOption[normal]{titlepage}
+\DeclareBoolOption[true]{floatopt}
+\DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
-\DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[false]{texmf}
+\DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
@@ -139,6 +141,22 @@
   \PassOptionsToClass{\ADOC@paperstring}{\ADOC@mainclass}
   \typeout{atlasdoc: paper is \ADOC@paper, string for class is \ADOC@paperstring}
 \fi
+
+% Set font sizes for title page
+%\ifthenelse{\ADOC@texlive < 2013}{%
+%    \typeout{*** atlasdoc: reduced font sizes not available for TeX Live < 2013}
+%    \newcommand*{\ADOC@abstractsize}{\normalsize}
+%}{%
+  \ifthenelse{\equal{\ADOC@titlepage}{small}}{%
+    \newcommand*{\ADOC@titlesize}{\LARGE}
+    \newcommand*{\ADOC@authorsize}{\large}
+    \newcommand*{\ADOC@abstractsize}{\small}
+  }{%
+    \newcommand*{\ADOC@titlesize}{\huge}
+    \newcommand*{\ADOC@authorsize}{\Large}
+    \newcommand*{\ADOC@abstractsize}{\normalsize}
+  }
+%}
 
 % Switch to txfonts for TeX Live <= 2012
 % Need to pass this option to atlaspackage as well
@@ -252,6 +270,11 @@
   % Paragraph spacing is half a line
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
+  \ifthenelse{\ADOC@texlive < 2013}{%
+    \relax
+  }{%
+    \addtokomafont{author}{\ADOC@authorsize}
+  }
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
@@ -260,6 +283,28 @@
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
+\fi
+
+  % Some tweaks to remove the date from \maketitle
+  % For recent TeX Live version use xpatch. Have to use etoolbox for older versions.
+  %\expandafter\show\csname\string\maketitle\endcsname
+  %\expandafter\show\csname\string\maketitle\space\endcsname
+\ifADOC@datetop
+  \ifthenelse{\ADOC@texlive < 2013}{%
+    \RequirePackage{etoolbox}
+    \tracingpatches
+    \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@titlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
+    % Remove \@date and spacing following it from \@maketitle
+    \expandafter\patchcmd\csname\string\maketitle\endcsname{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{etoolbox: OK! Date removed!}}{\typeout{etoolbox: Oh no! Date is still there!}}
+  }{%
+    \RequirePackage{xpatch}
+    % \xshowcmd\maketitle
+    \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@titlesize \@title \par}}{\typeout{xpatch: OK! Title size changed!}}{\typeout{xpatch: Oh no! Title size is still huge!}}
+    % \xpatchcmd{\@maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\small \@title \par}}{}{}
+    % Remove \@date and spacing following it from \@maketitle
+    \xpatchcmd{\maketitle}{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{xpatch: OK! Date font adjusted!}}{\typeout{xpatch: Oh no! Date font unchanged!}}
+    % \xshowcmd\maketitle
+  }
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
@@ -294,6 +339,9 @@
   \typeout{atlasdoc: using txfonts}
   \RequirePackage[varg]{txfonts}
   \RequirePackage[T1]{fontenc}
+  % Pass eVkern option to atlaspackage for siunitx
+  \def\ADOC@atlaspackage{\ATLASLATEXPATH atlaspackage}
+  \PassOptionsToPackage{eVkern}{\ADOC@atlaspackage}
 \else
   \ifADOC@libertine
     \typeout{atlasdoc: using Libertine fonts}
@@ -405,7 +453,7 @@
     \hspace*{\fill}
     \parbox[b][35mm][c]{0.48\titlepageparbox}{%
       \centering
-        {\fontfamily{phv}\bfseries\fontsize{20}{24}\selectfont
+        {\sffamily\bfseries\fontsize{20}{24}\selectfont
          \ifx\ADOC@docheading\@empty
            \textsf{\ADOC@docheadingdefault}\par
          \else
@@ -424,13 +472,15 @@
         \else
           {\Large \ADOC@atlasnote}\par
         \fi
-        %\vspace*{2ex}
+        \vspace*{1.5ex}
         % Date, if any
-        %\ifx\@date\@empty
-        %  \mbox{}\par
-        %\else
-        %  \@date\par
-        %\fi
+        \ifADOC@datetop
+          \ifx\@date\@empty
+            \mbox{}\par
+          \else
+            \@date\par
+          \fi
+        \fi
     }
     \hspace*{\fill}
     \parbox[b][35mm][t]{0.24\titlepageparbox}{%
@@ -449,13 +499,13 @@
 \newcommand{\CERNPreprintTitleHeader}{%
   \parbox[t]{\linewidth}{%
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont
+      \sffamily\mdseries\fontsize{14}{16.8}\selectfont
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
     \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \ifx\ADOC@journalref\@empty
         \ifx\ADOC@journal\@empty
           \relax
@@ -474,7 +524,7 @@
     \hspace*{\fill}
     \parbox[t]{0.45\linewidth}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \hspace*{\fill}\ADOC@preprintnumber\par
       \hspace*{\fill}\ADOC@atlasdate\par
     }\par
@@ -488,19 +538,19 @@
 \newcommand{\AuxmatTitleHeader}{%
   \parbox[t]{\linewidth}{%
     {\centering
-      \fontfamily{phv}\fontseries{m}\fontsize{14}{16.8}\selectfont 
+      \sffamily\mdseries\fontsize{14}{16.8}\selectfont 
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
     \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont 
       arXiv: \AtlasArXivId\ \AtlasArXivCat
     }
     \hspace*{\fill}
     \parbox[t]{0.45\linewidth}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \fontfamily{phv}\fontseries{m}\fontsize{11}{13.2}\selectfont 
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont 
       \hspace*{\fill}\ADOC@preprintnumber\par
       \hspace*{\fill}\ADOC@atlasdate\par
     }\par
@@ -626,8 +676,7 @@
 % Copyright cover footer - parbox does not introduce spurious vertical space
 \newcommand{\AtlasCopyrightFooter}{%
   \parbox[b]{\linewidth}{%
-    \fontseries{m}\fontsize{10}{12}\selectfont
-    %\fontfamily{phv}\fontseries{m}\fontsize{10}{12}\selectfont
+    \rmfamily\mdseries\fontsize{10}{12}\selectfont
     \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
     Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
   }\par
@@ -653,21 +702,27 @@
 % Body and copyright
 \newlength{\abstractparbox}
 \setlength{\abstractparbox}{\textwidth}
-%\addtolength{\abstractparbox}{-2\fboxrule}
-%\addtolength{\abstractparbox}{-2\fboxsep}
+% \addtolength{\abstractparbox}{-2\fboxrule}
+% \addtolength{\abstractparbox}{-2\fboxsep}
 \newlength{\abstractheight}
-\setlength{\abstractheight}{0.45\textheight}
+\setlength{\abstractheight}{0.50\textheight}
 \addtolength{\abstractheight}{-\ADOC@titleextraheight}
 \newlength{\copyrightoffset}
-\setlength{\copyrightoffset}{-6em}
+\ifthenelse{\equal{\ADOC@titlepage}{small}}{%
+  \setlength{\copyrightoffset}{-7.5em}
+}{%
+  \setlength{\copyrightoffset}{-7.5em}
+}
 \addtolength{\copyrightoffset}{\ADOC@copyrightoffset}
 \newcommand{\AtlasAbstractCopyright}{%
+  \vspace*{\stretch{1}}
+  % \fbox{\begin{minipage}[b][\abstractheight]{\abstractparbox}
   \begin{minipage}[b][\abstractheight]{\abstractparbox}
     % Astract
     \if\AtlasAbstractText\@empty
       \mbox{}
     \else
-      \begin{quote}
+      \begin{quote}\ADOC@abstractsize
       \ifx\ADOC@draftversion\@empty%
         \AtlasAbstractText\par
       \else
@@ -694,6 +749,7 @@
     \vspace*{\stretch{1}}
     \AtlasCopyrightFooter
   \end{minipage}\par
+  % \end{minipage}}\par
   \vspace*{\copyrightoffset}
 }
 

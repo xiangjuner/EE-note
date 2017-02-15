@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{02-00-01}
+\def\ATPackageVersion{03-00-XX}
 
-\ProvidesPackage{latex/atlascover}[2016/10/10 v.02-00-01 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2017/02/16 v.03-00-XX ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -257,107 +257,86 @@
   }
   \parbox{0.5\linewidth}{%
     \centering
-    \fontfamily{phv}\fontseries{b}\fontsize{16}{19.2}\selectfont
-      \ifACOV@atlaspaper%
-        ATLAS Paper Draft
+    \sffamily\bfseries\fontsize{16}{19.2}\selectfont
+    \ifACOV@atlaspaper%
+      ATLAS Paper Draft\par
+    \else
+      \ifACOV@CONF%
+        ATLAS CONF Note Draft\par
       \else
-        \ifACOV@CONF%
-          ATLAS CONF Note Draft
-        \else
-          \ifACOV@PUB%
-            ATLAS PUB Note Draft
-          \fi
+        \ifACOV@PUB%
+          ATLAS PUB Note Draft\par
         \fi
       \fi
+    \fi
+    {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      \ADOC@refcode\par
+    }
+    {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      Version \ADOC@draftversion\par
+    }
+  }\par\noindent
+  \rule{\linewidth}{1.5pt}\par
+  \parbox{\linewidth}{\centering%
+    \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
+     Comments are due by: \ACOV@CommentsDeadline\par
   }
+  \rule{\linewidth}{1.5pt}\par
 }
 
 %-------------------------------------------------------------------------------
-\newcommand{\AtlasCoverBody}{%
+\newcommand{\AtlasCoverSupport}{%
   \parbox{\linewidth}{%
-    \centering
-    \rule{\linewidth}{1.5pt}\par
-    \vspace*{0.8ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
-      \AtlasTitleText\par
-    }
-    \vspace*{0.8ex}
-    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-      \ADOC@refcode\par
-    }
-    \vspace*{0.8ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-      Version:
-    }
-    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-      \ADOC@draftversion\par
-    }
-    \vspace*{0.8ex}
-    \ifACOV@atlaspaper
-      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-        To be submitted to: 
-      }
-      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-        \ADOC@journal\par
-      }
-      \vspace*{0.8ex}
-    \fi
     \ifACOV@support
-      \rule{\linewidth}{1.5pt}\par
-      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-        Supporting internal notes\par
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \flushleft Supporting internal notes\par
       }
       \ifx\ACOV@TwikiURL\@empty
         \relax
       \else
-        {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont
-          %\medskip
+        {\sffamily\mdseries\fontsize{\ACOV@size}{\ACOV@space}\selectfont
           \flushleft\ACOV@TwikiURL\par
         }
       \fi
       \ifx\ACOV@Notes\@empty
         \relax
       \else
-        {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@size}{\ACOV@space}\selectfont
-          %\medskip
-          %\g@addto@macro\ACOV@Notes{\end{tabular}}
-          %\begin{tabular}{ll}
+        {\sffamily\mdseries\fontsize{\ACOV@size}{\ACOV@space}\selectfont
           \flushleft\ACOV@Notes\par
-          %\end{tabular}\par
         }
       \fi
-      \vspace*{0.8ex}
+      \rule{\linewidth}{1.5pt}\par
     \fi
-    \rule{\linewidth}{1.5pt}\par
-    \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
-      Comments are due by:
-    }
-    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
-      \ACOV@CommentsDeadline\par
-    }
-    \vspace*{0.8ex}
   }
-  %\vspace*{6mm}
-  \rule{\linewidth}{1.5pt}\par
-  \vspace*{1ex}
-  {\centering
-    \fontfamily{phv}\fontseries{b}\fontsize{\ACOV@size}{\ACOV@space}\selectfont 
-    Abstract\par
-  }
-  {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
+}
+
+%-------------------------------------------------------------------------------
+\newcommand{\AtlasCoverTitle}{%
+  \parbox{\linewidth}{%
     \centering
-    \begin{quote}
-    %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
-    \AtlasAbstractText
-    \end{quote}
+    {\sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
+      \AtlasTitleText\par
+    }
+    {\sffamily\mdseries\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
+      \centering
+      \begin{quote}
+      %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
+      \AtlasAbstractText
+      \end{quote}
+    }
+    \ifACOV@atlaspaper
+      \vspace*{0.8ex}
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        To be submitted to: \ADOC@journal\par
+      }
+    \fi
   }
 }
 
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverFooter}{%
   \parbox[b]{\linewidth}{%
-    \fontfamily{phv}\fontseries{m}\fontsize{9}{10.8}\selectfont
+    \sffamily\mdseries\fontsize{9}{10.8}\selectfont
     \ifACOV@atlasdoc%
       Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \else
@@ -375,25 +354,25 @@
     \centering
     \rule{\linewidth}{1.5pt}\par
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
+    {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
       Analysis Team\par
     }
     \ifACOV@PUB%
       \relax
     \else
       \vspace*{1ex}
-      %\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
-      [{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      %\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      [{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       email:}
-      \fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       \ACOV@EgroupEditors]\par
     \fi
     \vspace*{1ex}
-    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
       \ACOV@AnalysisTeam\par
     }
 %    \vspace*{1ex}
-%    {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+%    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
 %     (*): Contact Editors\par
 %    }
     \vspace*{1ex}
@@ -402,30 +381,30 @@
     \vspace*{1ex}
     % PUB notes have readers
     \ifACOV@PUB%
-      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
         Readers\par
       }
       \vspace*{1ex}
-      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@ReaderMembers\par
       }
     % Everything else has an EdBoard
     \else
-      {\fontfamily{phv}\fontseries{b}\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
         Editorial Board\par
       }
       \vspace*{1ex}
-      {[{\fontfamily{phv}\fontseries{m}\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      {[{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         email:}
-        \fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@EgroupEdBoard]\par
       }
       \vspace*{1ex}
-      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \ACOV@EdBoardMembers\par
       }
 %      \vspace*{1ex}
-%      {\fontfamily{phv}\fontseries{m}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+%      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
 %        (*): EdBoard Chair\par
 %      }
     \fi
@@ -440,9 +419,11 @@
 \newcommand{\ACOV@PrintAtlasCover}{
   \thispagestyle{empty}
   \noindent{\AtlasCoverHeader}
+  \noindent{\AtlasCoverSupport}
   \vfill
-  \noindent{\AtlasCoverBody}
+  \noindent{\AtlasCoverTitle}
   \vfill
+  %\vfill
   \noindent{\AtlasCoverFooter}
   \clearpage
 }

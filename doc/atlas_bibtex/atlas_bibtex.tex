@@ -5,7 +5,7 @@
 % Specify where ATLAS LaTeX style files can be found.
 \newcommand*{\ATLASLATEXPATH}{../../latex/}
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2013]{\ATLASLATEXPATH atlasdoc}
+\documentclass[UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
 
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
@@ -252,7 +252,7 @@ Note that some of the entry types that \Package{biblatex} has are not part of \B
   You can also use \Option{@booklet} or \Option{@online} instead.
 \item[@online] Use it for things that are only available online,
   e.g.~\cite{lshort}.
-  If you use traditional \BibTeX you have to use \Macro{@misc} instead.
+  If you use traditional \BibTeX you have to use \Option{@misc} instead.
 \item[@thesis] The name says it all.
   \Option{@phdthesis}\index{PhD thesis} and
   \Option{@mastersthesis}
@@ -374,16 +374,18 @@ This option turns off the title for entry types \texttt{@article}, \texttt{@book
 as \texttt{@booklet} should be used as the entry type for CONF and PUB notes.
 A summary of the options is:
 \begin{description}
-\item[\Option{articletitle=true|false}] turn on (default) or off including the article title in the bibliography;
-\item[\Option{titlequote=true|false}] enclose the title in quotes instead of emphasize (default);
-\item[\Option{showdoi=true|false}] make the journal reference a link to the DOI (default) instead of displaying it;
-\item[\Option{eprint=true|false}] print the arXiv reference if available (default).
-\item[\Option{address=true|false}] turn on or off (default) the printing of the address field.
-\item[\Option{location=true|false}] turn on or off (default) the printing of the location field.
-\item[\Option{block=ragged|space|none}] use \Macro{raggedright} (default) for typesetting the references.
-  Alternatives are \Option{block=space} and \Option{block=none}.
+\item[\Option{block=ragged}] specify the option for extra spacing between blocks when making the bibliography with \Package{biblatex}.
+  \Option{ragged} uses \Macro{raggedright}, but tries not to break titles across lines;
+  \Option{none} and \Option{space} print the references in block mode, while \Option{space} includes an extra space between the author and title;
   The default option (\Option{ragged}) tries to fit the title into a single line 
   and so sometimes leads to a new line starting immediately after the author.
+\item[\Option{maxbibnames=5}] specify the maximum number of author names before \enquote{et al.} is used, where the value is an integer;
+\item[\Option{articletitle=true|{\normalfont false}}] turn on or off including the article title in the bibliography;
+\item[\Option{titlequote={\normalfont true}|false}] enclose the title in quotes instead of emphasize;
+\item[\Option{showdoi={\normalfont true}|false}] make the journal reference a link to the DOI instead of displaying it;
+\item[\Option{eprint=true|{\normalfont false}}] print the arXiv reference if available.
+\item[\Option{address={\normalfont true}|false}] turn on or off the printing of the address field.
+\item[\Option{location={\normalfont true}|false}] turn on or off the printing of the location field.
 \item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2009.
   This option is usually set in the document class.
 \end{description}
@@ -519,6 +521,7 @@ or via Homebrew: \verb|brew install bib-tool|.
 \item[2015-03-20: Ian Brock] Add information about standard ATLAS and CMS bibliography databases.
 \item[2016-06-14: Ian Brock] Add information about address and location options.
 \item[2016-07-08: Ian Brock] Add some advice on entry types to use. Reorganise a bit.
+\item[2017-02-14: Ian Brock] Move options \Option{block} and \Option{maxbibnames} to \Package{atlasbiblatex}.
 \end{description}
 
 %-------------------------------------------------------------------------------
