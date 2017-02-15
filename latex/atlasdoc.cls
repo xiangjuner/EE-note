@@ -148,11 +148,11 @@
 %    \newcommand*{\ADOC@abstractsize}{\normalsize}
 %}{%
   \ifthenelse{\equal{\ADOC@titlesize}{small}}{%
-    \newcommand*{\ADOC@titlesize}{\LARGE}
+    \newcommand*{\ADOC@maintitlesize}{\LARGE}
     \newcommand*{\ADOC@authorsize}{\large}
     \newcommand*{\ADOC@abstractsize}{\small}
   }{%
-    \newcommand*{\ADOC@titlesize}{\huge}
+    \newcommand*{\ADOC@maintitlesize}{\huge}
     \newcommand*{\ADOC@authorsize}{\Large}
     \newcommand*{\ADOC@abstractsize}{\normalsize}
   }
@@ -293,13 +293,13 @@
   \ifthenelse{\ADOC@texlive < 2013}{%
     \RequirePackage{etoolbox}
     \tracingpatches
-    \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@titlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
+    \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
     % Remove \@date and spacing following it from \@maketitle
     \expandafter\patchcmd\csname\string\maketitle\endcsname{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{etoolbox: OK! Date removed!}}{\typeout{etoolbox: Oh no! Date is still there!}}
   }{%
     \RequirePackage{xpatch}
     % \xshowcmd\maketitle
-    \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@titlesize \@title \par}}{\typeout{xpatch: OK! Title size changed!}}{\typeout{xpatch: Oh no! Title size is still huge!}}
+    \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@maintitlesize \@title \par}}{\typeout{xpatch: OK! Title size changed!}}{\typeout{xpatch: Oh no! Title size is still huge!}}
     % \xpatchcmd{\@maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\small \@title \par}}{}{}
     % Remove \@date and spacing following it from \@maketitle
     \xpatchcmd{\maketitle}{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{xpatch: OK! Date font adjusted!}}{\typeout{xpatch: Oh no! Date font unchanged!}}
@@ -708,7 +708,7 @@
 \setlength{\abstractheight}{0.50\textheight}
 \addtolength{\abstractheight}{-\ADOC@titleextraheight}
 \newlength{\copyrightoffset}
-\ifthenelse{\equal{\ADOC@titlesize}{small}}{%
+\ifthenelse{\equal{\ADOC@maintitlesize}{small}}{%
   \setlength{\copyrightoffset}{-7.5em}
 }{%
   \setlength{\copyrightoffset}{-7.5em}
