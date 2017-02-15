@@ -295,7 +295,7 @@
     \tracingpatches
     \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
     % Remove \@date and spacing following it from \@maketitle
-    \expandafter\patchcmd\csname\string\maketitle\endcsname{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{etoolbox: OK! Date removed!}}{\typeout{etoolbox: Oh no! Date is still there!}}
+    \expandafter\patchcmd\csname\string\maketitle\endcsname{{\Large \@date \par}\vskip \z@ \@plus 3fill}{}{\typeout{etoolbox: OK! Date removed!}}{\typeout{etoolbox: Oh no! Date is still there!}}
   }{%
     \RequirePackage{xpatch}
     % \xshowcmd\maketitle
