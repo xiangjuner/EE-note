@@ -32,7 +32,7 @@
 \DeclareBoolOption[false]{auxmat}
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
-\DeclareStringOption[normal]{titlepage}
+\DeclareStringOption[normal]{titlesize}
 \DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
@@ -147,7 +147,7 @@
 %    \typeout{*** atlasdoc: reduced font sizes not available for TeX Live < 2013}
 %    \newcommand*{\ADOC@abstractsize}{\normalsize}
 %}{%
-  \ifthenelse{\equal{\ADOC@titlepage}{small}}{%
+  \ifthenelse{\equal{\ADOC@titlesize}{small}}{%
     \newcommand*{\ADOC@titlesize}{\LARGE}
     \newcommand*{\ADOC@authorsize}{\large}
     \newcommand*{\ADOC@abstractsize}{\small}
@@ -708,7 +708,7 @@
 \setlength{\abstractheight}{0.50\textheight}
 \addtolength{\abstractheight}{-\ADOC@titleextraheight}
 \newlength{\copyrightoffset}
-\ifthenelse{\equal{\ADOC@titlepage}{small}}{%
+\ifthenelse{\equal{\ADOC@titlesize}{small}}{%
   \setlength{\copyrightoffset}{-7.5em}
 }{%
   \setlength{\copyrightoffset}{-7.5em}
