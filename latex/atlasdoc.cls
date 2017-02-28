@@ -270,7 +270,7 @@
   % Paragraph spacing is half a line
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
-  \ifthenelse{\ADOC@texlive < 2013}{%
+  \ifthenelse{\ADOC@texlive < 2014}{%
     \relax
   }{%
     \addtokomafont{author}{\ADOC@authorsize}
@@ -290,7 +290,7 @@
   %\expandafter\show\csname\string\maketitle\endcsname
   %\expandafter\show\csname\string\maketitle\space\endcsname
 \ifADOC@datetop
-  \ifthenelse{\ADOC@texlive < 2013}{%
+  \ifthenelse{\ADOC@texlive < 2014}{%
     \RequirePackage{etoolbox}
     \tracingpatches
     \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
