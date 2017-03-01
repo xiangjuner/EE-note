@@ -285,24 +285,28 @@
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
 \fi
 
-  % Some tweaks to remove the date from \maketitle
-  % For recent TeX Live version use xpatch. Have to use etoolbox for older versions.
-  %\expandafter\show\csname\string\maketitle\endcsname
-  %\expandafter\show\csname\string\maketitle\space\endcsname
+% Adjust font size for title
+% For recent TeX Live version use xpatch. Have to use etoolbox for older versions.
+\ifthenelse{\ADOC@texlive < 2013}{%
+  \RequirePackage{etoolbox}
+  \tracingpatches
+  \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{atlasdoc etoolbox: OK! Title size changed!}}{\typeout{atlasdoc etoolbox: Oh no! Title still huge!}}
+}{%
+  \RequirePackage{xpatch}
+  % \xshowcmd\maketitle
+  \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@maintitlesize \@title \par}}{\typeout{atlasdoc xpatch: OK! Title size changed!}}{\typeout{atlasdoc xpatch: Oh no! Title size is still huge!}}
+}
+
+% Some tweaks to remove the date from \maketitle
+%\expandafter\show\csname\string\maketitle\endcsname
+%\expandafter\show\csname\string\maketitle\space\endcsname
 \ifADOC@datetop
   \ifthenelse{\ADOC@texlive < 2013}{%
-    \RequirePackage{etoolbox}
-    \tracingpatches
-    \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{etoolbox: OK! Title size changed!}}{\typeout{etoolbox: Oh no! Title still huge!}}
     % Remove \@date and spacing following it from \@maketitle
-    \expandafter\patchcmd\csname\string\maketitle\endcsname{{\Large \@date \par}\vskip \z@ \@plus 3fill}{}{\typeout{etoolbox: OK! Date removed!}}{\typeout{etoolbox: Oh no! Date is still there!}}
-  }{%
-    \RequirePackage{xpatch}
-    % \xshowcmd\maketitle
-    \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@maintitlesize \@title \par}}{\typeout{xpatch: OK! Title size changed!}}{\typeout{xpatch: Oh no! Title size is still huge!}}
-    % \xpatchcmd{\@maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\small \@title \par}}{}{}
+    \expandafter\patchcmd\csname\string\maketitle\endcsname{{\Large \@date \par}\vskip \z@ \@plus 3fill}{}{\typeout{atlasdoc etoolbox: OK! Date removed!}}{\typeout{atlasdoc etoolbox: Oh no! Date is still there!}}
+  }{% \xshowcmd\maketitle
     % Remove \@date and spacing following it from \@maketitle
-    \xpatchcmd{\maketitle}{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{xpatch: OK! Date font adjusted!}}{\typeout{xpatch: Oh no! Date font unchanged!}}
+    \xpatchcmd{\maketitle}{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{atlasdoc xpatch: OK! Date font adjusted!}}{\typeout{atlasdoc xpatch: Oh no! Date font unchanged!}}
     % \xshowcmd\maketitle
   }
 \fi

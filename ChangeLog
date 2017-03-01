@@ -13,6 +13,7 @@
   * More generic font commands on cover and title pages.
   * Add option to reduce font sizes on title page.
   * Add some more temporary files that come from latexmk and TextMate to the list to clean up.
+  * Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
 
 2016-10-10  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 02-00-01.

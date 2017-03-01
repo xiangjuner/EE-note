@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{02-00-01}
+\def\ATPackageVersion{03-00-XX}
 
-\ProvidesClass{latex/atlasdoc1}[2016/10/10 v.02-00-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc1}[2017/03/01 v.03-00-XX ATLAS document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -458,7 +458,7 @@
           {\Large \ADOC@atlasnote}\par
         \fi
         % \vspace*{1.5ex}
-        % % Date, if any
+        % Date, if any
         % \ifx\@date\@empty
         %   \mbox{}\par
         % \else
@@ -556,7 +556,8 @@
     {\large
      \lineskip .75em
      \begin{tabular}[t]{c}
-       \@author
+       \@author\\[2em]
+       \@date
      \end{tabular}\par}
   }\par
   \vspace{\stretch{0.5}}
