@@ -12,6 +12,7 @@
   * Added option subfig to atlaspackage, so all subfigure packages can be turned off.
   * More generic font commands on cover and title pages.
   * Add option to reduce font sizes on title page.
+  * Add option to include mhchem early for TeX Live 2014.
   * Add some more temporary files that come from latexmk and TextMate to the list to clean up.
   * Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
 

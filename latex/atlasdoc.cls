@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{03-00-XX}
+\def\ATPackageVersion{03-00-00}
 
-\ProvidesClass{latex/atlasdoc}[2017/02/16 v.03-00-XX ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2017/03/02 v.03-00-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -39,6 +39,7 @@
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
+\DeclareBoolOption[false]{mhchem}
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareStringOption[0pt]{titleextraheight}
@@ -292,6 +293,12 @@
   \tracingpatches
   \expandafter\patchcmd\csname\string\maketitle\endcsname{\huge \@title \par}{\ADOC@maintitlesize \@title \par}{\typeout{atlasdoc etoolbox: OK! Title size changed!}}{\typeout{atlasdoc etoolbox: Oh no! Title still huge!}}
 }{%
+  % mhchem has to come before xpatch for TeX Live 2014
+  \ifthenelse{\ADOC@texlive = 2014}{%
+    \ifADOC@mhchem
+      \RequirePackage[version=3]{mhchem}
+    \fi
+  }{}
   \RequirePackage{xpatch}
   % \xshowcmd\maketitle
   \xpatchcmd{\maketitle}{\usekomafont{title}{\huge \@title \par}}{\usekomafont{title}{\ADOC@maintitlesize \@title \par}}{\typeout{atlasdoc xpatch: OK! Title size changed!}}{\typeout{atlasdoc xpatch: Oh no! Title size is still huge!}}
