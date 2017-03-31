@@ -1,0 +1,24 @@
+# Directories to ignore
+tar
+
+# Generic files to ignore
+*.aux
+*.bcf
+*.bbl
+*.blg
+*.log
+*.out
+*.run.xml
+*.spl
+*.toc
+*.lof
+*.lot
+
+# Specific files to ignore
+mydocument*
+acknowledgements/*.pdf
+journal/*.pdf
+journal/atlas-revtexNotes.bib
+doc/*/*.pdf
+doc/mkdoc.py
+doc/atlas_physics/mkphysics.py

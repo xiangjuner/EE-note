@@ -11,7 +11,7 @@ This collection of ATLAS \LaTeX\ templates, style files and documentation
 can be used for papers, preprints and notes, both public and internal. 
 All necessary files are collected in a single package called \texttt{atlaslatex}.
 The package is available from the web pages of the Publication Committee~\cite{pubcom} and from 
-SVN~\cite{pubcom-svn}.
+Git~\cite{pubcom-git}.
 
 The collection replaces and hopefully improves on the previous packages. 
 In particular it supersedes:
@@ -720,15 +720,15 @@ The definitions can be found in a separate document \File{atlas\_physics.pdf}.
 
 
 %-------------------------------------------------------------------------------
-\section{\texttt{atlaslatex} directories and SVN}
-\label{sec:svn}
+\section{\texttt{atlaslatex} directories and Git or SVN}
+\label{sec:gitsvn}
 %-------------------------------------------------------------------------------
 
 There is some flexibility in how you set up your directory structure for using \Package{atlaslatex}.
 By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
 logos are in \File{logos}. This structure assumes that you will make a separate directory tree
-for each document that you create. If you want to include these files in SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bibtex} directories of the \Package{atlaslatex} package to SVN.
+for each document that you create. If you want to include these files in Git or SVN, note that you only need to add the
+\File{latex}, \File{logos} and \File{bibtex} directories of the \Package{atlaslatex} package to Git or SVN.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
 \File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree -- see Section~\ref{sec:texmf}.
@@ -764,24 +764,27 @@ Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do
 \item copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
   to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bib}, respectively.
 \end{itemize}
-You can also checkout the two directory trees from SVN:
-{\small
-\begin{verbatim}
-cd ~/texmf/tex/latex
-svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
-cd ~/texmf
-svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
-\end{verbatim}
-}
-The advantage of using SVN is that you can keep the package up to date, by just giving the command
-\verb|svn update| in the two directories.
-If you already have a \File{bibtex} directory, 
-first move it out of the way, then checkout from SVN
-and then move the contents of the old directory back into the \File{bibtex} tree.
+It is more complicated to checkout part of a Git repository.
+Hence the method described above is the recommended way of installing
+\Package{atlaslatex} in your \File{texmf} tree.
+% You can also checkout the two directory trees from SVN:
+% {\small
+% \begin{verbatim}
+% cd ~/texmf/tex/latex
+% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
+% cd ~/texmf
+% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
+% \end{verbatim}
+% }
+% The advantage of using SVN is that you can keep the package up to date, by just giving the command
+% \verb|svn update| in the two directories.
+% If you already have a \File{bibtex} directory,
+% first move it out of the way, then checkout from SVN
+% and then move the contents of the old directory back into the \File{bibtex} tree.
 
-Under Windows, it appears to be better to use \texttt{https} instead of \texttt{svn+ssh}.
-You should therefore checkout:\\
-\verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
+% Under Windows, it appears to be better to use \texttt{https} instead of \texttt{svn+ssh}.
+% You should therefore checkout:\\
+% \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
 
 In the template files, you have to use the command \texttt{make newtexmf} or change
 \begin{center}

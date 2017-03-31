@@ -1,3 +1,7 @@
+2017-03-31  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 03-00-01.
+  * atlaslatex is now maintained in Git.
+	* February and March 2017 update of publications.
 2017-02-16  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-00-00.
   * Default TeX Live version changed to 2016 to match arXiv.

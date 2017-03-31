@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 ATLAS LaTeX class, style files and templates to typeset notes and papers.
-See ChangeLog or SVN log for history of changes.
+See ChangeLog or Git log for history of changes.
 
 Responsible: Ian Brock (Ian.Brock@cern.ch)
 ------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ You can use the \ATLASLATEXPATH variable to specify an arbitrary directory.
 
 To make a new document give the command:
   make new [BASENAME=mydocument] [TEXLIVE=YYYY]
-The TeX Live version is set to 2013 by default.
+The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live 
 and also for an up-to-date MikTeX 2.9 installation.
   make help
