@@ -7,6 +7,8 @@ See ChangeLog or Git log for history of changes.
 
 --------------------------------------------
 
+### Included files
+
 The following template main files exist:
 
 - `atlas-document.tex`: Generic ATLAS document 
@@ -35,6 +37,8 @@ Documentation can be found in the doc directory.
 More detailed information about the package can be found under:
 
 https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeX  
+
+### How to use
 
 The general idea is that, for each document, this package should be cloned into a new directory.
 It is assumed that all style files are in a directory latex, which is a subdirectory of 
