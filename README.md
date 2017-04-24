@@ -62,7 +62,7 @@ and also for an up-to-date MikTeX 2.9 installation.
 ```
 gives you a bit more assistance on which make targets exist.
 
-
+#### Running on lxplus
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?
 If you are running on lxplus for it to work, you MUST set your PATH correctly:
 ```
