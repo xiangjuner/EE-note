@@ -14,7 +14,7 @@ The following template main files exist:
 - `atlas-draft-cover.tex`: Make a standalone cover for an ATLAS draft
 - `atlas-preprint-cover.tex`: Make a standalone cover for an ATLAS CERN preprint
 - `atlas-auxmat.tex`:	A front page for auxiliary material  
-
+  
 The ATLAS document class (`atlasdoc.cls`) and style files can be found in 
 the latex directory. The following main style files exist:
 - `atlasbiblatex.sty`:		Reference style adjustments for biblatex
