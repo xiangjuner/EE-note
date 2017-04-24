@@ -56,11 +56,7 @@ To make a new document give the command:
 
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live 
-and also for an up-to-date MikTeX 2.9 installation.
-```
-  make help
-```
-gives you a bit more assistance on which make targets exist.
+and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
 
 #### Running on lxplus
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?
