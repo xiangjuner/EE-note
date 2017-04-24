@@ -39,7 +39,9 @@ https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeX
 The general idea is that, for each document, this package should be cloned into a new directory.
 It is assumed that all style files are in a directory latex, which is a subdirectory of 
 the one in which the main document sits.
+
 The latex subdirectory can of course be a link to a central style directory.
+
 You can use the `\ATLASLATEXPATH` variable to specify an arbitrary directory.  
 
 To make a new document give the command:
