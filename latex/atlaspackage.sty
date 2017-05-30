@@ -5,7 +5,7 @@
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latex/atlaspackage}[2017/05/16 v.03-01-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2017/05/30 v.03-02-00 ATLAS LaTeX packages]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -175,7 +175,7 @@
   % Remove dots in table of contents
   \renewcommand{\cftdot}{}
 
-  % Typset anything with units using this package - also has very useful table formatting 
+  % Typset anything with units using this package - also has very useful table formatting
   % Declare a few options and standard units for siunitx that are otherwise missing
   % Before 2011 siunitx Version 1 (to be checked)
   % Before 2012 siunitx Version 2 (arXiv until 10/02/2017)
@@ -275,7 +275,7 @@
 
   % Nicer fractions
   \RequirePackage{xfrac}
-  
+
   % Chemical elements and processes
   \RequirePackage[version=3]{mhchem}
 \fi
@@ -284,7 +284,7 @@
 \ifAPKG@hyperref
   \PassOptionsToPackage{hyphens}{url}
   \usepackage{hyperref}
-  \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}} 
+  \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
   \hypersetup{colorlinks,breaklinks}
   \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
 \fi
