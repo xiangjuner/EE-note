@@ -42,13 +42,20 @@ EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
+# default: run_latexmk
 
-.PHONY: new newtexmf newbook newbooktexmf draftcover preprintcover auxmat \
-	clean cleanpdf help
+.PHONY: run_latexmk
+.PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
+.PHONY: draftcover preprintcover auxmat
+.PHONY: clean cleanpdf help
 
 # Standard pdflatex target
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
+
+# Remove -pdf option to run latex instead of pdflatex
+run_latexmk:
+	latexmk -pdf $(BASENAME)
 
 #-------------------------------------------------------------------------------
 # Specify the tex and bib file dependencies for running pdflatex
@@ -61,53 +68,26 @@ run_pdflatex: $(BASENAME).pdf
 	$(PDFLATEX) $<
 #-------------------------------------------------------------------------------
 
-new:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex | \
-	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-document.tex >$(BASENAME).tex; \
-	fi
-	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	touch $(BASENAME).bib
-	touch $(BASENAME)-defs.sty
+# Default is to make a new paper
+new: newpaper
 
-newtexmf:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex | \
-	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-document-texmf.tex >$(BASENAME).tex; \
-	fi
-	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	touch $(BASENAME).bib
-	touch $(BASENAME)-defs.sty
+newpaper: TEMPLATE=atlas-document
+newpaper: newdocument newfiles newpapermetadata
 
-newbook:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-book.tex | \
-	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-book.tex >$(BASENAME).tex; \
-	fi
-	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	touch $(BASENAME).bib
-	touch $(BASENAME)-defs.sty
+newpapertexmf: TEMPLATE=atlas-document
+newpapertexmf: newdocumenttexmf newfiles newpapermetadata
 
-newbooktexmf:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-book-texmf.tex | \
-	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/atlas-book-texmf.tex >$(BASENAME).tex; \
-	fi
-	cp template/atlas-document-metadata.tex $(BASENAME)-metadata.tex
-	touch $(BASENAME).bib
-	touch $(BASENAME)-defs.sty
+newnote: TEMPLATE=atlas-document
+newnote: newdocument newfiles newnotemetadata
+
+newnotetexmf: TEMPLATE=atlas-document
+newnotetexmf: newdocumenttexmf newfiles newnotemetadata
+
+newbook: TEMPLATE=atlas-book
+newbook: newdocument newfiles newpapermetadata
+
+newbooktexmf: TEMPLATE=atlas-book
+newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
 	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
@@ -119,12 +99,44 @@ draftcover:
 	fi
 
 preprintcover:
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex >$(BASENAME)-preprint-cover.tex
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex \
+	  >$(BASENAME)-preprint-cover.tex
 	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
 
 auxmat:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
+
+newdocument:
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+	fi
+
+newdocumenttexmf:
+	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
+	  sed 's/\\newcommand\*{\\ATLASLATEXPATH}{latex\/}/% \\newcommand\*{\\ATLASLATEXPATH}{latex\/}/' | \
+	  sed 's/% \\newcommand\*{\\ATLASLATEXPATH}{}/\\newcommand\*{\\ATLASLATEXPATH}{}/' \
+	  >$(BASENAME).tex; \
+	else \
+	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+	fi
+
+newpapermetadata:
+	cp template/atlas-paper-metadata.tex $(BASENAME)-metadata.tex
+
+newnotemetadata:
+	cp template/atlas-note-metadata.tex $(BASENAME)-metadata.tex
+
+newfiles:
+	touch $(BASENAME).bib
+	touch $(BASENAME)-defs.sty
 
 run_latex: dvipdf
 
@@ -150,17 +162,23 @@ dvips:	$(BASENAME).dvi
 	$(BIBTEX) $<
 
 help:
-	@echo "To create a new document give the commands:"
-	@echo "make new [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "To create a new paper/CONF Note/PUB Note draft give the command:"
+	@echo "make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "To create a new ATLAS note draft give the command:"
+	@echo "make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "To create a long document (book) like a TDR:"
+	@echo "make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo ""
+	@echo "To compile the paper give the command"
 	@echo "make"
 	@echo "If your bib files are not in the main directory, adjust the %.pdf target accordingly." 
 	@echo ""
-	@echo "If you want to write a long document (book) like a TDR:"
-	@echo "make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "To compile the document using latexmk give the command:"
+	@echo "make latexmk"
+	@echo "You can also adjust the 'default' target."
 	@echo ""
 	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
-	@echo "make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]"
-	@echo "make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo ""
 	@echo "If you need a standalone draft cover give the commands:"
 	@echo "make draftcover [BASENAME=mydocument] [TEXLIVE=YYYY]"

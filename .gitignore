@@ -2,6 +2,7 @@
 tar
 
 # Generic files to ignore
+*.bak
 *.aux
 *.bcf
 *.bbl

@@ -12,7 +12,6 @@ See ChangeLog or Git log for history of changes.
 The following template main files exist:
 
 - `atlas-document.tex`: Generic ATLAS document 
-- `atlas-document-texmf.tex`: Generic ATLAS document for a central atlaslatex installation 
 - `atlas-draft-cover.tex`: Make a standalone cover for an ATLAS draft
 - `atlas-preprint-cover.tex`: Make a standalone cover for an ATLAS CERN preprint
 - `atlas-auxmat.tex`:	A front page for auxiliary material  
@@ -48,11 +47,17 @@ The latex subdirectory can of course be a link to a central style directory.
 
 You can use the `\ATLASLATEXPATH` variable to specify an arbitrary directory.  
 
-To make a new document give the command:
+To make a new paper/CONF note/PUB note draft give the command:
 ```
-  make new [BASENAME=mydocument] [TEXLIVE=YYYY]
+  make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
 ```
 
+To make a new ATLAS note give the command:
+```
+  make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
+```
+
+`make new` is an alias for `make newpaper`.
 
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live 
@@ -82,8 +87,7 @@ or
   pdflatex atlas_latex
 ```
 
-
 Three other make targets are:
-  - `make clean`:				Cleans up intermediate files
-  - `make cleanpdf`:				Remove output pdf file
+  - `make clean`:			Cleans up intermediate files
+  - `make cleanpdf`:			Remove output pdf file
   - `make cleanall`:			Also cleans up output pdf file

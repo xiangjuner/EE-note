@@ -5,7 +5,7 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2017/05/16 v.03-01-00 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2017/05/XX v.03-02-XX ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -51,26 +51,26 @@
     %  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
     %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
   \fi
-  
+
   % Turn off printing of arXiv
   \ifABIB@eprint
     \relax
   \else
     \ExecuteBibliographyOptions{eprint=false}
   \fi
-  
+
   % date=year option works for TeX Live 2014 or so onwards
   \ifthenelse{\ABIB@texlive < 2014}{%
     \relax
   }{%
     \ExecuteBibliographyOptions{date=year}
   }
-  
+
   % Don't want months
   \AtEveryBibitem{%
     \clearfield{month}
   }
-  
+
   % Use consistent format for title for articles and booklets/reports (CONF/PUB notes)
   \ifABIB@articletitle
     % Titles all in italics or in quotes
@@ -93,19 +93,19 @@
       %\ifentrytype{misc}{\clearfield{title}}{}
     }
   \fi
-  
+
   % Journal in upright font
   \DeclareFieldFormat[article]{journaltitle}{#1\isdot}
   \DeclareFieldFormat[article]{journalsubtitle}{#1\isdot}
-  
+
   % Volume in bold font
   \DeclareFieldFormat[article]{volume}{\textbf{#1}\isdot}
-  
+
   % Suppress issue number
   \AtEveryBibitem{
     \ifentrytype{article}{\clearfield{number}}{}
   }
-  
+
   % Do not print out the address
   \ifABIB@address
     \relax
@@ -154,28 +154,28 @@
       %\printfield{pages}%
       \newunit}
   \fi
-  
+
   % Print only first page - only works for TeX Live 2012 onwards I think
   \ifthenelse{\ABIB@texlive < 2012}{%
     \relax
   }{%
     \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
   }
-  
+
   % Change punctuation to comma
   \renewcommand*{\newunitpunct}{\addcomma\space}
-  
+
   % You can include the following line(s) if you want to shorten your
   % bibliography by not including url fields
   % \AtEveryBibitem{\clearfield{url}}
   % \AtEveryCitekey{\clearfield{url}}
-  
+
   % Do not add "In:"
   \renewbibmacro{in:}{}
   % \renewbibmacro{in:}{%
   %   \ifentrytype{article}{}{%
   %   \printtext{\bibstring{in}\intitlepunct}}}
-  
+
   % Remove p. or pp. by pages - this has to be done for every language
   % separately as these strings depend on the language
   \renewcommand{\bibpagespunct}{\space}
@@ -191,7 +191,7 @@
     page = {},
     pages = {}
   }
-  
+
   % Check which version this works for
   % If you get an error here use institution+location+year
   % \renewbibmacro*{institution+location+year}{%

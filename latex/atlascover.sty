@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{03-01-00}
+\def\ATPackageVersion{03-02-XX}
 
-\ProvidesPackage{latex/atlascover}[2017/05/16 v.03-01-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2017/05/XX v.03-02-XX ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -120,7 +120,7 @@
     \def\@title{#1}%
     \renewcommand\AtlasTitleText{#1}%
   }
-  % Draft version 
+  % Draft version
   \def\ADOC@draftversion{}
   \providecommand*{\AtlasVersion}[1]{\def\ADOC@draftversion{#1}}
   % ATLAS reference code - empty by default
@@ -278,7 +278,7 @@
   }\par\noindent
   \rule{\linewidth}{1.5pt}\par
   \parbox{\linewidth}{\centering%
-    \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
+    \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
      Comments are due by: \ACOV@CommentsDeadline\par
   }
   \rule{\linewidth}{1.5pt}\par
@@ -346,7 +346,7 @@
 }
 
 %-------------------------------------------------------------------------------
-% Page Two:  Names of analysis team (editors) and EdBoard 
+% Page Two:  Names of analysis team (editors) and EdBoard
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverPageTwo}{%
   % Analysis team
@@ -354,25 +354,25 @@
     \centering
     \rule{\linewidth}{1.5pt}\par
     \vspace*{1ex}
-    {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont 
+    {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
       Analysis Team\par
     }
     \ifACOV@PUB%
       \relax
     \else
       \vspace*{1ex}
-      %\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
-      [{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      %\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+      [{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
       email:}
-      \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+      \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
       \ACOV@EgroupEditors]\par
     \fi
     \vspace*{1ex}
-    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
       \ACOV@AnalysisTeam\par
     }
 %    \vspace*{1ex}
-%    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont 
+%    {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
 %     (*): Contact Editors\par
 %    }
     \vspace*{1ex}

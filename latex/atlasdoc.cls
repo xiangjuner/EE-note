@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{03-01-00}
+\def\ATPackageVersion{03-02-XX}
 
-\ProvidesClass{latex/atlasdoc}[2017/05/16 v.03-01-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2017/05/XX v.03-02-XX ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -184,7 +184,7 @@
 \def\@author{The ATLAS Collaboration}
 \def\@date{\today}
 
-% Draft version 
+% Draft version
 \def\ADOC@draftversion{}
 \newcommand*{\draftversion}[1]{\def\ADOC@draftversion{#1}}
 \newcommand*{\AtlasVersion}[1]{\def\ADOC@draftversion{#1}}
@@ -407,7 +407,7 @@
 
 % Compute the time in hours and minutes; make new variables \timehh and \timemm
 \newcount\timehh\newcount\timemm
-\timehh=\time 
+\timehh=\time
 \divide\timehh by 60 \timemm=\time
 \count255=\timehh\multiply\count255 by -60 \advance\timemm by \count255
 % Now make a string with date and time
@@ -472,12 +472,12 @@
          \fi
         }
         \vspace*{2ex}
-        % ATLAS note number, if any 
+        % ATLAS note number, if any
         \ifx\ADOC@atlasnote\@empty
           % ATLAS reference code, if any and no note number given
           \ifx\ADOC@refcode\@empty
             \mbox{}%
-          \else 
+          \else
             {\Large \ADOC@refcode}\par
           \fi
         \else
@@ -549,19 +549,19 @@
 \newcommand{\AuxmatTitleHeader}{%
   \parbox[t]{\linewidth}{%
     {\centering
-      \sffamily\mdseries\fontsize{14}{16.8}\selectfont 
+      \sffamily\mdseries\fontsize{14}{16.8}\selectfont
       EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
     }
     \vspace*{2mm}
     \parbox[t]{0.45\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \sffamily\mdseries\fontsize{11}{13.2}\selectfont 
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       arXiv: \AtlasArXivId\ \AtlasArXivCat
     }
     \hspace*{\fill}
     \parbox[t]{0.45\linewidth}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \sffamily\mdseries\fontsize{11}{13.2}\selectfont 
+      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \hspace*{\fill}\ADOC@preprintnumber\par
       \hspace*{\fill}\ADOC@atlasdate\par
     }\par
@@ -618,8 +618,8 @@
 %\newcommand{\CERNPreprintTitleBody}{%
 %  \parbox[t]{\linewidth}{%
 %    {\centering
-%      \bfseries\fontsize{16}{19.2}\selectfont 
-%      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+%      \bfseries\fontsize{16}{19.2}\selectfont
+%      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont
 %      \AtlasTitleText\par
 %    }
 %    \vspace*{6ex}
@@ -649,8 +649,8 @@
 %\newcommand{\AuxmatTitleBody}{%
 %  \parbox[t]{\linewidth}{%
 %    {\centering
-%      \bfseries\fontsize{16}{19.2}\selectfont 
-%      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont 
+%      \bfseries\fontsize{16}{19.2}\selectfont
+%      %\fontfamily{phv}\bfseries\fontsize{16}{19.2}\selectfont
 %      Auxiliary figures and tables related to the paper\\[1.5ex]
 %      \AtlasTitleText\par
 %    }
@@ -788,7 +788,7 @@
     % Add draft heading and line numbers
     \ifx\ADOC@draftversion\@empty%
       \typeout{atlasdoc: this is not an ATLAS draft book}
-    \else 
+    \else
       \typeout{atlasdoc: this is an ATLAS draft book}
       \linenumbers
     \fi
@@ -796,7 +796,7 @@
     % Add draft heading and line numbers
     \ifx\ADOC@draftversion\@empty%
       \typeout{atlasdoc: this is not an ATLAS draft article}
-    \else 
+    \else
       \typeout{atlasdoc: this is an ATLAS draft article}
       \AtlasDraftHeading
       \linenumbers

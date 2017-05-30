@@ -1,29 +1,33 @@
+2017-05-24  Ian Brock  <Ian.Brock@cern.ch>
+	* Reorganise Makefile to use separate metadata files for notes and paper.
+	* Only use one document template and change sed commands for texmf version.
+	* May update of publications.
 2017-05-16  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-01-00.
-  * Small update to detector description.
-  * Include ATLAS bibliography files by default.
+	* Small update to detector description.
+	* Include ATLAS bibliography files by default.
 	* April 2017 update of publications.
 2017-03-31  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-00-01.
-  * atlaslatex is now maintained in Git.
+	* atlaslatex is now maintained in Git.
 	* February and March 2017 update of publications.
 2017-02-16  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-00-00.
-  * Default TeX Live version changed to 2016 to match arXiv.
-  * October 2016 to January 2017 updates of ATLAS publications.
+	* Default TeX Live version changed to 2016 to match arXiv.
+	* October 2016 to January 2017 updates of ATLAS publications.
 	* eVkern option selected by default when using txfonts.
-  * Some options to add more real estate for the abstract on the title page.
-  * Add option datetop to put the date at the top of the title page.
-  * Add option titlepage to select normal or smaller fonts for the title page.
-  * Fix problem when using subcaption with list of figures or tables.
-  * Move maxbibnames and block options to atlasbiblatex.sty.
-  * Set maxbibnames=5 by default to conform with current recommendations.
-  * Added option subfig to atlaspackage, so all subfigure packages can be turned off.
-  * More generic font commands on cover and title pages.
-  * Add option to reduce font sizes on title page.
-  * Add option to include mhchem early for TeX Live 2014.
-  * Add some more temporary files that come from latexmk and TextMate to the list to clean up.
-  * Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
+	* Some options to add more real estate for the abstract on the title page.
+	* Add option datetop to put the date at the top of the title page.
+	* Add option titlepage to select normal or smaller fonts for the title page.
+	* Fix problem when using subcaption with list of figures or tables.
+	* Move maxbibnames and block options to atlasbiblatex.sty.
+	* Set maxbibnames=5 by default to conform with current recommendations.
+	* Added option subfig to atlaspackage, so all subfigure packages can be turned off.
+	* More generic font commands on cover and title pages.
+	* Add option to reduce font sizes on title page.
+	* Add option to include mhchem early for TeX Live 2014.
+	* Add some more temporary files that come from latexmk and TextMate to the list to clean up.
+	* Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
 
 2016-10-10  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 02-00-01.
