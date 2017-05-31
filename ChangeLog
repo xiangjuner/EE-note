@@ -1,7 +1,11 @@
-2017-05-24  Ian Brock  <Ian.Brock@cern.ch>
+2017-06-XX  Ian Brock  <Ian.Brock@cern.ch>
+	* Move bibtex/bib to bib and bibtex/bst to bib/bst.
 	* Reorganise Makefile to use separate metadata files for notes and paper.
-	* Only use one document template and change sed commands for texmf version.
-	* May update of publications.
+	* Separate templates for paper draft and notes.
+	* Use same document template for texmf version.
+2017-05-30  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 03-02-00.
+	* May 2017 update of publications.
 2017-05-16  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-01-00.
 	* Small update to detector description.

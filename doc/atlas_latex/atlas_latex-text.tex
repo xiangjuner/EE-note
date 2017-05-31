@@ -48,37 +48,46 @@ This structure means that it is easier to update the style files if a new versio
 \Package{atlaslatex} is released. 
 Each document can then be independent of the \Package{atlaslatex} release.
 
-To create a new document you can issue the commands:
+To create a new document you can issue one of the commands:
 %
 \begin{verbatim}
-make new [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
+depending on whether you want to write a paper/CONF Note/Pub Note draft or
+an ATLAS not draft.
 %
-This command copies \File{atlas-document.tex} and
-\File{atlas-document-metadata.tex}
+The command copies \File{atlas-document.tex} and
+\File{atlas-paper-metadata.tex} or \File{atlas-note-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
 \footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
   For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
 The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2016.
-The \texttt{make} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
-By default the document will be an ATLAS note.
-If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
+The \texttt{make newpaper|newnote} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
+By default the document will be an ATLAS note draft.
+Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB notes).
+% If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
+You can try the command \texttt{make run\_latexmk} instead,
+which invokes \texttt{latexmk}, a Perl script that is cleverer than the \texttt{Makefile}.
+You can also make this command the default.
 Have a look at \File{Makefile} for other things you can adjust.
 
-If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is:
+If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is one of:
 %
 \begin{verbatim}
-make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpapertexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newnotetexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
 See Section~\ref{sec:texmf} for more details.
 
-In order to make a new document of book form like a TDR, use the command
+In order to make a new document of book form like a TDR, use one of the commands:
 %
 \begin{verbatim}
 make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
 By default, this will pass the option \Option{BOOK} to \Package{atlasdoc}.
@@ -93,7 +102,7 @@ Note that you have to specify the language of your document as an option in the
 
 As mentioned above the default \TeX\ Live version is currently set to 2016.
 This should be the only option you have to adjust if you use different versions of \LaTeX.
-You can always set a version lower than the one you have installed to maintain compatibility with older versions.
+You should be able to always set a version lower than the one you have installed to maintain compatibility with older versions.
 To test compatibility with arXiv, try a setting of 2016.
 %This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 %are using the ATLAS preprint style.
@@ -119,6 +128,9 @@ also need to be specified at some point.
 While all this information can be collected in the main file of the document, 
 it is probably better to put it all in a separate document.
 By default this file is called \texttt{mydocument-metadata.tex}.
+
+As the metadata needed for ATLAS notes and ATLAS papers are somewhat different,
+separate templates are used as of Version 04-00-00.
 
 
 %-------------------------------------------------------------------------------
@@ -753,7 +765,8 @@ As discussed above, the \texttt{atlasdoc} class and the style files can all be f
 If you want to use the centrally installed version,
 you should first copy \File{Makefile} and the \File{template} directory from 
 \File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
-For the main document, you can then use the command \texttt{make newtexmf} to get a template which uses the
+For the main document, you can then use the command 
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} to get a template which uses the
 centrally installed style files.
 
 If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
@@ -786,16 +799,13 @@ Hence the method described above is the recommended way of installing
 % You should therefore checkout:\\
 % \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
 
-In the template files, you have to use the command \texttt{make newtexmf} or change
+In the template files, you have to use the command
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply change
 \begin{center}
   \begin{tabular}{ll}
     From & To \\
     \midrule
-    \verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass[texmf]{atlasdoc}| \\
-    \verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
-    \verb|\usepackage{latex/atlasbiblatex}|   & \verb|\usepackage{atlasbiblatex}| \\
-    \verb|\usepackage{latex/atlascontribute}| & \verb|\usepackage{atlascontribute}| \\
-    \verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage[texmf]{atlasphysics}|
+    \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
   \end{tabular}
 \end{center}
 

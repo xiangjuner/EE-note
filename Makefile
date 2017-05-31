@@ -12,6 +12,8 @@
 # Use "make cleanepstopdf" to rmeove PDF files created automatically from EPS files.
 #   Note that FIGSDIR has to be set properly for this to work.
 
+# Set the default target to run_latexmk instead of run_pdflatex to use latexmk to compile.
+
 # If you have to run latex rather than pdflatex adjust the dependencies of %.dvi target
 #   and use the command "make run_latex" to compile.
 # Specify dvipdf or dvips as the run_latex dependency,
@@ -42,6 +44,7 @@ EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
 # Default target - make mydocument.pdf with pdflatex
 default: run_pdflatex
+# Use latexmk instead to compile
 # default: run_latexmk
 
 .PHONY: run_latexmk
@@ -60,7 +63,7 @@ run_latexmk:
 #-------------------------------------------------------------------------------
 # Specify the tex and bib file dependencies for running pdflatex
 # If your bib files are not in the main directory adjust this target accordingly
-#%.pdf:	%.tex *.tex bibtex/bib/*.bib
+#%.pdf:	%.tex *.tex bib/*.bib
 %.pdf:	%.tex *.tex *.bib
 	$(PDFLATEX) $<
 	-$(BIBTEX)  $(basename $<)
@@ -69,18 +72,18 @@ run_latexmk:
 #-------------------------------------------------------------------------------
 
 # Default is to make a new paper
-new: newpaper
+new: newnote
 
-newpaper: TEMPLATE=atlas-document
+newpaper: TEMPLATE=atlas-paper
 newpaper: newdocument newfiles newpapermetadata
 
-newpapertexmf: TEMPLATE=atlas-document
+newpapertexmf: TEMPLATE=atlas-paper
 newpapertexmf: newdocumenttexmf newfiles newpapermetadata
 
-newnote: TEMPLATE=atlas-document
+newnote: TEMPLATE=atlas-note
 newnote: newdocument newfiles newnotemetadata
 
-newnotetexmf: TEMPLATE=atlas-document
+newnotetexmf: TEMPLATE=atlas-note
 newnotetexmf: newdocumenttexmf newfiles newnotemetadata
 
 newbook: TEMPLATE=atlas-book

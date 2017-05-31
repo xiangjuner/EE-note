@@ -7,10 +7,14 @@ tar
 *.bcf
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
+*.lb
 *.log
 *.out
 *.run.xml
 *.spl
+*.synctex.gz
 *.toc
 *.lof
 *.lot

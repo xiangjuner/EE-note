@@ -5,7 +5,7 @@
 % Specify where ATLAS LaTeX style files can be found.
 \newcommand*{\ATLASLATEXPATH}{../../latex/}
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
 
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
@@ -152,17 +152,19 @@ This will definitely save time in the reviewing process!
 If you use \Package{biblatex}, you should include commands like:
 %
 \begin{verbatim}
-  \addbibresource{bibtex/bib/ATLAS.bib}
+  \addbibresource{bib/ATLAS.bib}
+  \addbibresource{bib/CMS.bib}
   \addbibresource{atlas_biblatex.bib}
 \end{verbatim}
 %
-in the preamble of our document.
+in the preamble of your document.
 
 If you use traditional \BibTeX\ you include the source file(s) at the place where the bibliography should be printed as follows:
 %
 \begin{verbatim}
 {\raggedright
-  \bibliography{bibtex/bib/ATLAS,%
+  \bibliography{bib/ATLAS,%
+  bib/CMS.bib,%
   atlas_biblatex}
 }
 \end{verbatim}
@@ -187,7 +189,7 @@ ATLAS CONF and PUB notes are provided:
 \item[ConfNotes.bib] the citation key is the CONF note number, e.g.\ \texttt{ATLAS-CONF-2014-063};
 \item[PubNotes.bib] the citation key is the PUB note number, e.g.\ \texttt{ATL-PHYS-PUB-2014-021}.
 \end{description}
-These are available in the directory \File{bibtex/bib} of \Package{atlaslatex}.
+These are available in the directory \File{bib} of \Package{atlaslatex}.
 The files are updated once per month and all entries have been checked for correct formatting.
 These files included whenever a new version of \Package{atlaslatex} is released.
 They are also available directly from the PubCom TWiki~\cite{pubcom-refs}.
@@ -355,7 +357,7 @@ To ensure the homogeneity in all ATLAS publications,
 along with an example file that illustrates how different types of bibliographic material should be referenced.
 
 The \Package{biblatex} style file can be found in the directory \File{latex},
-while the traditional \BibTeX\ style files can be found in the directory \File{bibtex/bst} of the \Package{atlaslatex} package.
+while the traditional \BibTeX\ style files can be found in the directory \File{bib/bst} of the \Package{atlaslatex} package.
 
 For the final version of ATLAS notes, both internal and public, a style without the title for papers in journals is recommended.
 For draft versions, it is good to include the title, as it is then clearer what the reference refers to.
@@ -430,7 +432,7 @@ Journals:
 \end{itemize}
 \noindent Include at the end of your \File{.tex} file the following lines:
 \begin{verbatim}
-\bibliographystyle{bibtex/bst/atlasBibStyleWithTitle}
+\bibliographystyle{bib/bst/atlasBibStyleWithTitle}
 \bibliography{atlas-bibtex}
 \end{verbatim}
 
@@ -457,7 +459,7 @@ Journals:
 \end{itemize}
 \noindent Include at the end of your \File{.tex} file the following lines:
 \begin{verbatim}
-\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
+\bibliographystyle{bib/bst/atlasBibStyleWoTitle}
 \bibliography{atlas-bibtex}
 \end{verbatim}
 
@@ -522,6 +524,7 @@ or via Homebrew: \verb|brew install bib-tool|.
 \item[2016-06-14: Ian Brock] Add information about address and location options.
 \item[2016-07-08: Ian Brock] Add some advice on entry types to use. Reorganise a bit.
 \item[2017-02-14: Ian Brock] Move options \Option{block} and \Option{maxbibnames} to \Package{atlasbiblatex}.
+\item[2017-06-01: Ian Brock] Adjust documentation to reflect change of directories for \File{bib} and \File{bst} files.
 \end{description}
 
 %-------------------------------------------------------------------------------
@@ -529,7 +532,7 @@ or via Homebrew: \verb|brew install bib-tool|.
 \printbibliography
 %-------------------------------------------------------------------------------
 % Old style bibtex bibliography
-%\bibliographystyle{../../bibtex/bst/atlasBibStyleWithTitle}
+%\bibliographystyle{../../bib/bst/atlasBibStyleWithTitle}
 %\bibliography{atlas_bibtex,atlas_biblatex,../atlas_latex}
 
 \end{document}
