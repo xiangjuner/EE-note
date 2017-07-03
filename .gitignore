@@ -7,6 +7,9 @@ tar
 *.bcf
 *.bbl
 *.blg
+.*.lb
+*.fdb_latexmk
+*.fls
 *.log
 *.out
 *.run.xml
@@ -14,6 +17,7 @@ tar
 *.toc
 *.lof
 *.lot
+*.synctex.gz
 
 # Specific files to ignore
 mydocument*
