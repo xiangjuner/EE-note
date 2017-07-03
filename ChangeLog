@@ -3,6 +3,7 @@
 	* Reorganise Makefile to use separate metadata files for notes and paper.
 	* Separate templates for paper draft and notes.
 	* Use same document template for texmf version.
+	* Add more version variants to MC generator macros.
 2017-05-30  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-02-00.
 	* May 2017 update of publications.
