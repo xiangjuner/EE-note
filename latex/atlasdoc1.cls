@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{03-00-00}
+\def\ATPackageVersion{04-00-00}
 
-\ProvidesClass{latex/atlasdoc1}[2017/03/02 v.03-00-00 ATLAS deprecated document class]
+\ProvidesClass{latex/atlasdoc1}[2017/07/04 v.04-00-00 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -325,7 +325,7 @@
     \typeout{atlasdoc1: using Libertine fonts}
     \RequirePackage{libertine}
     \RequirePackage[T1]{fontenc}
-    \RequirePackage[libertine]{newtxmath}
+    \RequirePackage[libertine, defaultsups]{newtxmath}
   \else
     \ifADOC@palatino
       \typeout{atlasdoc1: using Palatino fonts}
@@ -338,7 +338,7 @@
       \RequirePackage[T1]{fontenc}
     \else
       \typeout{atlasdoc1: using newtx fonts package}
-      \RequirePackage{newtxtext}
+      \RequirePackage[defaultsups]{newtxtext}
       \ifthenelse{\ADOC@texlive < 2013}{%
         \typeout{*** atlasdoc1: include amsmath before newtxmath}
         \RequirePackage{amsmath}
