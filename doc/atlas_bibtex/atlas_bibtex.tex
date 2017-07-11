@@ -24,6 +24,7 @@
 \addbibresource{atlas_bibtex.bib}
 \addbibresource{atlas_biblatex.bib}
 \addbibresource{../atlas_latex.bib}
+\addbibresource{ATLAS-tmp.bib}
 
 \graphicspath{{../../logos/}}
 
@@ -265,6 +266,44 @@ Note that some of the entry types that \Package{biblatex} has are not part of \B
 
 \Package{biblatex} also knows about multivolume proceedings etc. See
 the manual for more details.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Errata}
+%-------------------------------------------------------------------------------
+
+As of Version 04-00-00 of \Package{atlaslaex} Errata are included.
+\Package{biblatex} offers a nice mechanism for this using the \texttt{related} field.
+For example, Ref~\cite{EXOT-2013-13} has an Erratum.
+This is achieved using the following:
+\begin{verbatim}
+@Article{EXOT-2013-13,
+    author         = "{ATLAS Collaboration}",
+    title          = "{Search for new phenomena in final states with an energetic jet and large missing transverse momentum in $pp$ collisions at $\sqrt{s} = 8\;\mbox{TeV}$ with the ATLAS detector}",
+    journal        = "Eur. Phys. J. C",
+    volume         = "75",
+    year           = "2015",
+    pages          = "299",
+    doi            = "10.1140/epjc/s10052-015-3517-3",
+    reportNumber   = "CERN-PH-EP-2014-299",
+    eprint         = "1502.01518",
+    archivePrefix  = "arXiv",
+    primaryClass   = "hep-ex",
+    related        = "EXOT-2013-13-err",
+    relatedstring  = "Erratum:",
+}
+
+@Article{EXOT-2013-13-err,
+    author         = "{ATLAS Collaboration}",
+    journal        = "Eur. Phys. J. C",
+    volume         = "75",
+    year           = "2015",
+    pages          = "408",
+    doi            = "10.1140/epjc/s10052-015-3639-7",
+    reportNumber   = "CERN-PH-EP-2014-299",
+}
+\end{verbatim}
+
 
 %-------------------------------------------------------------------------------
 \section{Examples}
@@ -525,6 +564,7 @@ or via Homebrew: \verb|brew install bib-tool|.
 \item[2016-07-08: Ian Brock] Add some advice on entry types to use. Reorganise a bit.
 \item[2017-02-14: Ian Brock] Move options \Option{block} and \Option{maxbibnames} to \Package{atlasbiblatex}.
 \item[2017-06-01: Ian Brock] Adjust documentation to reflect change of directories for \File{bib} and \File{bst} files.
+\item[2017-07-11: Ian Brock] Added documentation on how to include Errata.
 \end{description}
 
 %-------------------------------------------------------------------------------

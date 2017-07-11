@@ -1,11 +1,17 @@
-2017-06-XX  Ian Brock  <Ian.Brock@cern.ch>
-	* Move bibtex/bib to bib and bibtex/bst to bib/bst.
+2017-07-17  Ian Brock  <Ian.Brock@cern.ch>
+	* Add Errata to ATLAS.bib. This only works properly with biblatex.
+  * Move bibtex/bib to bib and bibtex/bst to bib/bst.
 	* Reorganise Makefile to use separate metadata files for notes and paper.
+	* Add ability to use latexmk in Makefile.
 	* Separate templates for paper draft and notes.
 	* Use same document template for texmf version.
 	* Add defaultsups option to newtxtext so multiple authors work properly with TeX Live 2017.
 	* Add more version variants to MC generator macros.
 	* Changes to atlasmetadefs,sty so that it works when coverpage is turned off.
+	* Change group-minimum-digits option for siunitx from 4 to 5.
+	* Add some explanation on use of group-minimum-digits to tables documenation.
+	* Start adding some documentation about useful packages to ATLAS LaTeX documentation.
+
 2017-05-30  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-02-00.
 	* May 2017 update of publications.

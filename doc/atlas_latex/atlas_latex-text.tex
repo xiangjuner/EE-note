@@ -363,7 +363,7 @@ In the following the default option is in boldface.
   (default for older \TeX Live versions);
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014;
-\item[\Option{datetop=true|{\normalfont false}}] use normal or smaller fonts on the title page;
+\item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long;
 \item[\Option{copyrightoffset=0em}] adjust the position of the copyright,
@@ -1073,6 +1073,23 @@ option \Option{texlive=2009}.
 You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
 the \Package{atlasphysics} package.
 
+%-------------------------------------------------------------------------------
+\subsection{Useful packages}
+
+A vast number of \LaTeX\ packages are available.
+I list a few here that are not included by \Package{atlaslatex},
+but are well worth considering.
+\begin{description}
+  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
+  consistent way. Optional the symbols cn be upright or italic.
+  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
+  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
+  but is not as systematic.
+  \item[physics] A useful package for differentials, matrices and more.
+  As the name suggests it is geared to physics usage.
+  The \Package{commath}is an alternative, but I find \Package{physics} to be more reliable,
+  when different fonts are used.
+\end{description}
 
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
@@ -1199,6 +1216,19 @@ Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributi
 
 Sven Menke provided the code so that bold math works in titles correctly.
 Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-04-00-00}}
+\label{sec:atlaslatex4}
+%-------------------------------------------------------------------------------
+
+As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex} has been  restructured to reduce duplications and make separate comments for a new paper and a new note.
+Errata are included in the ATLAS bibliography file.
+Metadata for notes and papers are now separate temples to prepare for them being created directly from Glance.
+This is the first version that is designed for the Glance/Git integration,
+hence the jump in the main version number.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Changes in \texttt{atlaslatex-02-00-00}}

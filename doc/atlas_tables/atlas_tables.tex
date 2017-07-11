@@ -212,6 +212,44 @@ The \Package{rotating} package can be used for this.
 In order to shorten commands when doing rounding in tables, it is useful to define a few extra macros.
 Typical definitions can be found in the file \File{atlas\_tables-defs.sty}.
 
+If you use \Package{siunitx} to format your numbers,
+you may have to adjust the option \Option{group-minimum-digits}.
+As of Version 04-00-00 of \Package{atlaslatex} the default value is set to 5.
+Hence \num{1234} will not have a space after the thousands digit,
+whereas \num{12345} will have.
+This is fine in text, but in tables, you probably want to use the option
+\verb|\siteup{group-minimum-digits=4}|, see \Tabs{\ref{tab:minimum-digits1}}{\ref{tab:minimum-digits2}}.
+
+\begin{table}[htbp]
+  \centering
+  \subfloat[Table with \Option{group-minimum-digits=4}.]{%
+  \sisetup{group-minimum-digits=4}
+  \begin{tabular}{lS[table-format=5.2]}
+    Quantity & \multicolumn{1}{c}{Value}\\
+    \midrule
+    Value1 & 1234.56\\
+    Value2 & 98765.43
+  \end{tabular}
+  % \caption{A table with \Option{group-minimum-digits=4}.}
+  \label{tab:minimum-digits1}
+  }
+  \qquad
+  \subfloat[Table with \Option{group-minimum-digits=5}.]{%
+  \sisetup{group-minimum-digits=5}
+  \begin{tabular}{lS[table-format=5.2]}
+    Quantity & \multicolumn{1}{c}{Value}\\
+    \midrule
+    Value1 & 1234.56\\
+    Value2 & 98765.43
+  \end{tabular}
+  % \caption{A table with \Option{group-minimum-digits=5}.}
+  \label{tab:minimum-digits2}
+  }
+  \caption{Tables comparing different \Option{group-minimum-digits} values
+  for the package \Package{siunitx}.}
+  \label{tab:minimum-digits}
+\end{table}
+
 
 %-------------------------------------------------------------------------------
 \section{Tables and rounding}
