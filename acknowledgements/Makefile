@@ -3,7 +3,7 @@
 TEXLIVE  = 2016
 LATEX    = latex
 PDFLATEX = pdflatex
-BIBTEX   = biber
+BIBTEX   = bibtex
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
