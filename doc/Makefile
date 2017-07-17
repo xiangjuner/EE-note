@@ -27,13 +27,13 @@ texlive: $(BASENAME).tex
 	else echo "Invalid value for TEXLIVE: $(TEXLIVE)"; fi; \
 
 # Standard LaTeX targets
-$(BASENAME).pdf: $(BASENAME).tex *.bib
+$(BASENAME).pdf: $(BASENAME).tex
 	$(PDFLATEX) $<
 	-$(BIBTEX)  $(basename $<)
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
-$(BASENAME).dvi: $(BASENAME).tex *.bib
+$(BASENAME).dvi: $(BASENAME).tex
 	$(LATEX)    $<
 	-$(BIBTEX)  $(basename $<)
 	$(LATEX)    $<
