@@ -1,6 +1,6 @@
 2017-07-17  Ian Brock  <Ian.Brock@cern.ch>
-	* Add Errata to ATLAS.bib. This only works properly with biblatex.
   * Move bibtex/bib to bib and bibtex/bst to bib/bst.
+	* Add Errata to ATLAS.bib. This only works properly with biblatex.
 	* Reorganise Makefile to use separate metadata files for notes and paper.
 	* Add ability to use latexmk in Makefile.
 	* Separate templates for paper draft and notes.
