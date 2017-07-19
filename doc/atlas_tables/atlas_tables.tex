@@ -38,7 +38,7 @@
 \AtlasAbstract{%
   This document illustrates the preferred style for tables in ATLAS documents.
   It illustrates what the tables should look like and also provides guidelines on how to achieve this look.
-  
+
   This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
   The \TeX\ Live version is set to \ATTeXLiveVersion.
   It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
@@ -46,7 +46,7 @@
 
 
 %-------------------------------------------------------------------------------
-\begin{document} 
+\begin{document}
 
 \maketitle
 
@@ -99,7 +99,7 @@ An example of a wider and somewhat more complicated table is shown in \Tab{\ref{
   \toprule
   Coupling & \multicolumn{2}{c}{LEP} & \multicolumn{2}{c}{HERA} \\
   \midrule
-  $\BR(t\to q\gamma)$ & \num{2.4E-2} &                       & \num{6.4E-3} & ($tu\gamma$)\\  
+  $\BR(t\to q\gamma)$ & \num{2.4E-2} &                       & \num{6.4E-3} & ($tu\gamma$)\\
   $\BR(t\to qZ)$      & \num{7.8E-2} &                       & \num{49E-2} & ($tuZ$)\\
   $\BR(t\to qg)$      & \num{17E-2}  &                       & \num{13E-2} & \\
   \bottomrule
@@ -113,7 +113,7 @@ An example of a wider and somewhat more complicated table is shown in \Tab{\ref{
                       & \num{5.7E-3} & ($tcg$), $(2 \to 1)$  & \num{2.7E-4} & ($tcg$), $(2 \to 1)$\\
   \bottomrule
   \end{tabular}
-  \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \SI{95}{\%} confidence level 
+  \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \SI{95}{\%} confidence level
     on the branching fractions of the FCNC top quark decay channels established by experiments of the LEP, HERA, Tevatron and LHC accelerators. }
   \label{tab:intro:presentlimits}
 \end{table}
@@ -146,7 +146,7 @@ Table~\ref{tab:example2}, is to use \verb+\phantom+ to put in extra
 space equal to the width of a number if you have different numbers of
 decimal places in the table.
 
-The \texttt{booktabs} package provides the macros 
+The \texttt{booktabs} package provides the macros
 \Macro{toprule}, \Macro{midrule}, \Macro{bottomrule} which are to be preferred over \Macro{hline},
 as, among other things, they introduce some extra spacing around the lines, which is useful.
 
@@ -155,11 +155,11 @@ as, among other things, they introduce some extra spacing around the lines, whic
   \begin{tabular}{l S[table-format=2.1]@{$\;\pm\;$}S[table-format=1.1]@{\,}s
     S[table-format=3.1]@{\,}s}
     \toprule
-    Category            & \multicolumn{3}{c}{$\mu$}&\multicolumn{2}{c}{$e$}\\ 
+    Category            & \multicolumn{3}{c}{$\mu$}&\multicolumn{2}{c}{$e$}\\
     \midrule
     $b \to \ell$        &     65.2 & 0.4 & \%   &  79.3 & \% \\
     $b \to c \to \ell$  &      7.8 & 0.3 & \%   &   5.4 & \% \\
-    Total               &     73.0 & 0.2 & \%   &   9.1 & \% \\ 
+    Total               &     73.0 & 0.2 & \%   &   9.1 & \% \\
     \bottomrule
   \end{tabular}
   \caption[Monte Carlo purities in the single lepton sample]{%
@@ -174,15 +174,15 @@ as, among other things, they introduce some extra spacing around the lines, whic
   \centering
   \begin{tabular}{lcc}
     \toprule
-    Category            & \multicolumn{1}{c}{$\mu$}&\multicolumn{1}{c}{$e$}\\ 
+    Category            & \multicolumn{1}{c}{$\mu$}&\multicolumn{1}{c}{$e$}\\
     \midrule
     $b \to \ell$        & $    65.2 \pm 0.4\,\%$   &     79.3\,\% \\
     $b \to c \to \ell$  & $\pho 7.8 \pm 0.3\,\%$   & \pho 5.4\,\% \\
-    Total               & $    73.0 \pm 0.2\,\%$   & \pho 9.1\,\% \\ 
+    Total               & $    73.0 \pm 0.2\,\%$   & \pho 9.1\,\% \\
     \bottomrule
   \end{tabular}
   \caption{Monte Carlo estimates of the fraction of each process in
-    the single lepton data sample. 
+    the single lepton data sample.
     This table uses \texttt{\textbackslash phantom}.}
   \label{tab:example2}
 \end{table}
@@ -206,7 +206,7 @@ Further packages related to the formatting of tables are:
 \item[dcolumn] can be used as an alternative to \Package{siunitx} to align numbers in tables.
 \end{description}
 \Package{xtab} is included if you load \Package{atlaspackage} with the option \Option{full}.
-You may also need to rotate a big table. 
+You may also need to rotate a big table.
 The \Package{rotating} package can be used for this.
 
 In order to shorten commands when doing rounding in tables, it is useful to define a few extra macros.
@@ -257,7 +257,7 @@ This is fine in text, but in tables, you probably want to use the option
 
 Further examples of tables can be found in the note discussing the ATLAS recommendation on rounding~\cite{atlas-rounding}.
 A selection of those tables are also reproduced here.
-The \LaTeX\ code for the examples given below can be found in 
+The \LaTeX\ code for the examples given below can be found in
 Appendix~\ref{sec:raw-data}.
 
 The tables shown earlier in this document were also created with \textsf{siunitx}.
@@ -267,7 +267,7 @@ to how this can be done  in \textsf{siunitx}, even for asymmetric errors.  Note 
 tables look almost identical, the syntax used to create them is different (see Appendix~\ref{sec:raw-data}).
 While the form may appear to be a bit clumsy at first, it is easy enough to get a
 program to write out the lines. In the left-hand table
-\Macro{numRP} is used in column 3, while the full syntax of \Macro{num} 
+\Macro{numRP} is used in column 3, while the full syntax of \Macro{num}
 in shown in column 4 for illustration purposes only.  The syntax
 to change the precision of a single number is shown in the first line of
 the left-hand part of the table. This is seen to be rather
@@ -326,10 +326,10 @@ in braces to format the row that requires a different precision.
     \bottomrule
   \end{tabular}
   \caption{A selection of cross-section measurements. Note that
-    for numbers with asymmetric errors, the option 
-    \texttt{\Macro{sisetup}{}\{retain-explicit-plus\}} is used to stop 
+    for numbers with asymmetric errors, the option
+    \texttt{\Macro{sisetup}{}\{retain-explicit-plus\}} is used to stop
     \textsf{siunitx} from dropping the plus signs on the positive
-    errors. (although these tables look almost identical, the syntax used to 
+    errors. (although these tables look almost identical, the syntax used to
     create them is different - see Appendix~\ref{sec:raw-data}).}
   \label{tab:rounding:xsect}
 \end{table}
@@ -360,13 +360,13 @@ function of \ET\ or $x$. Tables~\ref{tab:xsect-ET} and
 
 \texttt{round-mode=figures} is in general best for cross-sections and
 their errors. A precision of 2 digits for the uncertainties is a good
-starting point, but will then have to be reduced to 1 digit in some cases. 
+starting point, but will then have to be reduced to 1 digit in some cases.
 For the cross-section values, more digits (typically 3) probably have to
 be specified and the precision of some values will again have to be
-adjusted by hand. In Table~\ref{tab:xsect-ET2} some of the rounding 
+adjusted by hand. In Table~\ref{tab:xsect-ET2} some of the rounding
 is adjusted by hand so that the numbers conform to the
 rules. For the asymmetric errors, \texttt{round-mode=places} is used
-and the precision of each asymmetric uncertainty is then set by hand. 
+and the precision of each asymmetric uncertainty is then set by hand.
 This works well if the cross-sections should all be shown with decimal
 points, but does not work if used to round a number such as
 \num{182}. Hence the first row uses \texttt{round-mode=figures}. Even
@@ -378,7 +378,7 @@ is non-trivial.
   \renewcommand{\arraystretch}{1.4}
   \ifthenelse{\ATTeXLiveVersion < 2012}{%
     \centering\fbox{\parbox{0.8\textwidth}{%
-      \textbf{This table does not appear here, as it uses features that were only 
+      \textbf{This table does not appear here, as it uses features that were only
       properly implemented for \TeX\ Live 2012 and later.}
     }}
   }{%
@@ -429,10 +429,10 @@ correct. Investigations are ongoing to see if this can be improved.
 \section{\LaTeX\ code for tables}
 \label{sec:raw-data}
 
-This appendix gives the \LaTeX\ code including the raw data used for 
-Tables~\ref{tab:rounding:xsect}, 
+This appendix gives the \LaTeX\ code including the raw data used for
+Tables~\ref{tab:rounding:xsect},
 \ref{tab:xsect-ET} and \ref{tab:xsect-x}.
-These files for Tables~\ref{tab:xsect-ET} and \ref{tab:xsect-x} can also be 
+These files for Tables~\ref{tab:xsect-ET} and \ref{tab:xsect-x} can also be
 found in the \texttt{doc/atlas\_tables} directory of the \texttt{atlaslatex} package.
 The options given here correspond to those that are need for \TeX\ Live 2012 and later.
 See the code for the appropriate options for earlier versions.
@@ -452,19 +452,19 @@ r@{\,}@{$\pm$}@{\,}l@{\,}l
 \multicolumn{2}{c}{\etajet} & \multicolumn{3}{c}{\diffetab} \\
 \multicolumn{2}{c}{} & \multicolumn{3}{c}{[\si{\pico\barn}]} \\
 \midrule
-{\num{-1.6}} & -1.1 & \numRP{0.574}{3} & \num[round-precision=3]{0.094} & 
+{\num{-1.6}} & -1.1 & \numRP{0.574}{3} & \num[round-precision=3]{0.094} &
 $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
-{\num{-1.1}} & -0.8 & \numRP{1.213}{2} & \num[round-precision=2]{0.211} & 
+{\num{-1.1}} & -0.8 & \numRP{1.213}{2} & \num[round-precision=2]{0.211} &
 $^{\numRP{+0.162}{2}}_{\numRP{-0.162}{2}}$ \\
-{\num{-0.8}} & -0.5 & \numRP{2.141}{2} & \num[round-precision=2]{0.219} & 
+{\num{-0.8}} & -0.5 & \numRP{2.141}{2} & \num[round-precision=2]{0.219} &
 $^{\numRP{+0.223}{2}}_{\numRP{-0.123}{2}}$ \\
-{\num{-0.5}} & -0.2 & \numRP{2.326}{2} & \num[round-precision=2]{0.210} & 
+{\num{-0.5}} & -0.2 & \numRP{2.326}{2} & \num[round-precision=2]{0.210} &
 $^{\numRP{+0.284}{2}}_{\numRP{-0.214}{2}}$ \\
-{\num{-0.2}} & +0.1 & \numRP{2.641}{2} & \num[round-precision=2]{0.220} & 
+{\num{-0.2}} & +0.1 & \numRP{2.641}{2} & \num[round-precision=2]{0.220} &
 $^{\numRP{+0.283}{2}}_{\numRP{-0.233}{2}}$ \\
-{\num{+0.1}} & +0.5 & \numRP{3.160}{2} & \num[round-precision=2]{0.211} & 
+{\num{+0.1}} & +0.5 & \numRP{3.160}{2} & \num[round-precision=2]{0.211} &
 $^{\numRP{+0.232}{2}}_{\numRP{-0.172}{2}}$ \\
-{\num{+0.5}} & +1.4 & \numRP{2.881}{2} & \num[round-precision=2]{0.154} & 
+{\num{+0.5}} & +1.4 & \numRP{2.881}{2} & \num[round-precision=2]{0.154} &
 $^{\numRP{+0.201}{2}}_{\numRP{-0.301}{2}}$ \\
 \bottomrule
 \end{tabular}
@@ -485,7 +485,7 @@ table-format = 1.3, table-number-alignment = left]
 \multicolumn{2}{c}{\etajet} & \multicolumn{3}{c}{\diffetab} \\
 \multicolumn{2}{c}{} & \multicolumn{3}{c}{[\si{\pico\barn}]} \\
 \midrule
--1.6 & -1.1 & {\numRP{0.574}{3}} & {\numRP{0.094}{3}} & 
+-1.6 & -1.1 & {\numRP{0.574}{3}} & {\numRP{0.094}{3}} &
 $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
 -1.1 & -0.8 & 1.213 & 0.211 & $^{\num{+0.162}}_{\num{-0.162}}$ \\
 -0.8 & -0.5 & 2.141 & 0.219 & $^{\num{+0.223}}_{\num{-0.123}}$ \\
@@ -504,7 +504,7 @@ errors.}
 \end{verbatim}
 
 \subsection{Table~\protect\ref{tab:xsect-ET}}
-The files are: \texttt{cross\_sections\_charm-ET1.tex} and 
+The files are: \texttt{cross\_sections\_charm-ET1.tex} and
 \texttt{cross\_sections\_charm-ET2.tex}:
 {\scriptsize
   \verbatiminput{cross_sections_charm-ET1.tex}
@@ -515,7 +515,7 @@ The files are: \texttt{cross\_sections\_charm-ET1.tex} and
 
 \subsection{Table~\protect\ref{tab:xsect-x}}
 
-The files are: \texttt{cross\_sections\_charm-x1.tex} and 
+The files are: \texttt{cross\_sections\_charm-x1.tex} and
 \texttt{cross\_sections\_charm-x2.tex}:
 {\scriptsize
   \verbatiminput{cross_sections_charm-x1.tex}

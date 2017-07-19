@@ -9,7 +9,7 @@
 
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
-\usepackage[minimal,backend=biber]{\ATLASLATEXPATH atlaspackage}
+\usepackage[minimal, backend=biber]{\ATLASLATEXPATH atlaspackage}
 \usepackage[articletitle=true,showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
 
 \usepackage{authblk}
@@ -53,7 +53,7 @@
   which contain all ATLAS and CMS journal publications as well as ATLAS CONF and PUB notes.
 
   Use of both \Package{biblatex} and the more traditional \BibTeX\ for formatting the references is covered.
-  A \Package{biblatex} style file and two \BibTeX\ (\texttt{.bst}) style files have been created 
+  A \Package{biblatex} style file and two \BibTeX\ (\texttt{.bst}) style files have been created
   that can be used with any of the ATLAS supported journals,
   depending on whether they require the title of the references to be included or not.
 
@@ -64,7 +64,7 @@
 
 
 %-------------------------------------------------------------------------------
-\begin{document} 
+\begin{document}
 
 \maketitle
 
@@ -74,15 +74,15 @@
 \section{Introduction}
 %-------------------------------------------------------------------------------
 
-The ATLAS Collaboration has specific guidelines as to what constitutes a good bibliographic style. 
+The ATLAS Collaboration has specific guidelines as to what constitutes a good bibliographic style.
 For example, a reference to a paper by an LHC Collaboration must not include the first author,
-whereas, if the paper is by any other collaboration it should. 
-Where available, links to the \texttt{arXiv} entries of the papers should be included. 
+whereas, if the paper is by any other collaboration it should.
+Where available, links to the \texttt{arXiv} entries of the papers should be included.
 To help authors with their paper preparations,
-a standard ATLAS bibliographic style has been developed which incorporates all of these requirements, 
-and, at the same time, is largely compatible with those of the journals the papers are being submitted to. 
+a standard ATLAS bibliographic style has been developed which incorporates all of these requirements,
+and, at the same time, is largely compatible with those of the journals the papers are being submitted to.
 
-It is strongly recommended to use \BibTeX{} for the references. 
+It is strongly recommended to use \BibTeX{} for the references.
 Although it often appears harder to use at the beginning, it means that the number of
 typos should be reduced significantly and the format of the references
 will be correct, without you having to worry about formatting it.
@@ -115,7 +115,7 @@ the templates indicate via commented out commands how to use it.
 If you use the \texttt{biber} backend, it is also possible to use UTF-8 encoding in the entries, which means that letters such as
 ä, é, ß can be included directly in the text.
 
-The typical compilation cycle when using \Package{biblatex} with the \texttt{bibtex} backend 
+The typical compilation cycle when using \Package{biblatex} with the \texttt{bibtex} backend
 or the traditional version of \BibTeX{} looks like the following:
 %
 \begin{verbatim}
@@ -129,7 +129,7 @@ replace the command \texttt{biber} with \texttt{bibtex}.
 
 \texttt{biber} and \texttt{bibtex} create a file with the extension \texttt{.bbl}, which
 contains the actual references used, and (pdf)\LaTeX{} then takes care to include them in your document.
-Note that only after the third run of pdf\LaTeX\ will all references be correct. 
+Note that only after the third run of pdf\LaTeX\ will all references be correct.
 Unless you change a reference you do not have to do the \texttt{biber/bibtex} step again.
 The style of the references is governed by the \Package{biblatex} options that you
 use or the \BibTeX\ style file (which has the extension \File{bst}).
@@ -143,7 +143,7 @@ work much more reliably with pdf\LaTeX.
 \section{Bibliography databases}
 %-------------------------------------------------------------------------------
 
-One or more files with the extension \texttt{.bib} should contain all the references. 
+One or more files with the extension \texttt{.bib} should contain all the references.
 The files may also contain references that you do not use, so they act like a library of references.
 See \Sect{\ref{sec:atlascmsrefs}} for details on files which contain ATLAS and CMS journal publications
 as well as ATLAS CONF and PUB notes.
@@ -219,13 +219,13 @@ assuming that the reference is for an LHC collaboration paper:
   \verb|"{ATLAS Collaboration}"|. Note the use of both quotes and curly braces.
 \item Either replace the journal name with the appropriate macro, e.g.\ \verb|"Phys.Lett."| with
   \verb|"\PLB"|; or insert spaces between the parts of the name, i.e.\ \verb|"Phys. Lett."|.
-%  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space, 
+%  Note the use of \verb|\ | (you can also use \verb|{}|) instead of just a space,
 %  as a regular interword space should be inserted and not an end of sentence space.
 \item Remove the journal letter from the volume and include it in the journal,
-  e.g.\ "\EPJC", "\PRD". 
+  e.g.\ "\EPJC", "\PRD".
 \end{enumerate}
 If the reference is for another collaboration, rename the \texttt{collaboration} field to
-\texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the 
+\texttt{xcollaboration} and insert \verb|{NonLHC Collaboration} and| at the beginning of the
 \texttt{author} field.
 
 Instead of renaming the \texttt{author} or \texttt{collaboration} fields, you can of course simply delete them!
@@ -358,7 +358,7 @@ Hence in \Ref{\cite{lhcCollaboration:2012}}, \texttt{collaboration} has been ren
 the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \texttt{collaboration} and omit
 \texttt{author} you will get a warning when you run \texttt{bibtex}.
 
-Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@article} used to be used and the field \texttt{journal} 
+Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@article} used to be used and the field \texttt{journal}
 was abused for the conference note number. This is a result of the traditional \BibTeX\ restrictions on the entry types.
 The current version uses \texttt{@booklet} and includes the CONF note number via the \texttt{howpublished} field.
 In general, \texttt{biblatex} provides a lot more entry types.
@@ -394,11 +394,11 @@ You should specify the journal in the \texttt{journal} field in form:\\
   \texttt{\textbackslash usepackage\{hyperref\}}.
   Note that \Package{hyperref} is included by default if you use \Package{atlasdoc} and/or \Package{atlaspackage}.
 \item Depending on the style that is used,
-  if the DOI is filled and the \texttt{hyperref} package loaded, 
+  if the DOI is filled and the \texttt{hyperref} package loaded,
   the title of the journal can be highlighted in blue and become a hyperlink to the online paper.
 \item When referencing papers from journals like PRD, PLB, etc.,
   one has to be careful not to include the \enquote{D} or \enquote{B} as part of the volume.
-  Instead these belong to the journal name. 
+  Instead these belong to the journal name.
   You can either use the macros that have been added to the \File{.bst} style files for these journals, or
   the macros defined in \Package{atlasjournal}.
   If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
@@ -409,7 +409,7 @@ You should specify the journal in the \texttt{journal} field in form:\\
   If there are fields that you do not want, you have to move them outside the entry.
 \end{itemize}
 
-In earlier versions of this document, it was recommended to include the \Package{cite} package, 
+In earlier versions of this document, it was recommended to include the \Package{cite} package,
 if you use \BibTeX\ and want to cite multiple references in the format [m-n].
 However, the journal style files can do this for you by using the option \Option{sort\&compress} option if \Package{natbib} is used.
 The \texttt{revtex} style also does this for you.
@@ -423,10 +423,10 @@ which is the default in \Package{atlaslatex}.
 %-------------------------------------------------------------------------------
 
 The format of the references in your ATLAS paper depends on the journal to which you are submitting,
-but in general we can classify the journal styles in two categories: 
-those which require the title of the references and those which do not. 
-To ensure the homogeneity in all ATLAS publications, 
-\Package{biblatex} and \BibTeX\ style files are provided for each of these categories 
+but in general we can classify the journal styles in two categories:
+those which require the title of the references and those which do not.
+To ensure the homogeneity in all ATLAS publications,
+\Package{biblatex} and \BibTeX\ style files are provided for each of these categories
 along with an example file that illustrates how different types of bibliographic material should be referenced.
 
 The \Package{biblatex} style settings can be found in the directory \File{latex},
@@ -452,7 +452,7 @@ A summary of the options is:
 \item[\Option{block=ragged}] specify the option for extra spacing between blocks when making the bibliography with \Package{biblatex}.
   \Option{ragged} uses \Macro{raggedright}, but tries not to break titles across lines;
   \Option{none} and \Option{space} print the references in block mode, while \Option{space} includes an extra space between the author and title;
-  The default option (\Option{ragged}) tries to fit the title into a single line 
+  The default option (\Option{ragged}) tries to fit the title into a single line
   and so sometimes leads to a new line starting immediately after the author.
 \item[\Option{maxbibnames=5}] specify the maximum number of author names before \enquote{et al.} is used, where the value is an integer;
 \item[\Option{articletitle=true|{\normalfont false}}] turn on or off including the article title in the bibliography;
@@ -484,9 +484,9 @@ where it should get printed.
 \subsection{Traditional \BibTeX\ style files}
 %-------------------------------------------------------------------------------
 
-If you use traditional \BibTeX, you should choose between the two style files given below, 
+If you use traditional \BibTeX, you should choose between the two style files given below,
 depending on the journal to which they wish to submit their paper.
-These style files have been successfully tested in the framework provided by 
+These style files have been successfully tested in the framework provided by
 the journals listed in the following sections and with the standard ATLAS document template.
 
 Note that use of traditional \BibTeX\ style files is deprecated
@@ -514,7 +514,7 @@ However, note that JHEP only prints the arXiv entry etc.\ if the entry type is \
 In the examples included in this document,
 the entry type \texttt{@booklet} is used for preprints and CONF notes,
 as this works best with other \BibTeX\ styles.
-If you are planning to submit to JHEP/JINST and use \File{JHEP.bst} 
+If you are planning to submit to JHEP/JINST and use \File{JHEP.bst}
 replace all \texttt{@booklet} entry types with \texttt{@article}.
 
 
@@ -550,10 +550,10 @@ It is then also possible to modify the abbreviation if a journal uses a differen
 The abbreviations can be found in the style file \File{latex/atlasjournal.sty},
 which is included by default if you load \Package{atlasphysics}.
 If you use traditional \BibTeX, you should give the journal name in the form
-\verb|journal = "\PLB{}",|. 
+\verb|journal = "\PLB{}",|.
 If you use \Package{biblatex} the form \verb|journal = "\PLB",| works without problems.
 This style file also defines several other abbreviations that can be adjusted to the
-journal style. 
+journal style.
 Standard sets for different journals can be provided by an option in the future.
 
 
@@ -576,7 +576,7 @@ not forget to change \texttt{mydocument.tex}, or whatever your main filename is,
 \texttt{refs.bib} instead of the previous sources.}
 
 For Debian/Ubuntu distributions you should be able to install \File{bibtool} by giving the command\\
-\verb|(sudo) apt-get install bibtool|. 
+\verb|(sudo) apt-get install bibtool|.
 For RPM-based Linux (CentOS, Scientific Linux, Fedora, ...) distributions the equivalent command is \verb|yum install BibTool|.
 On a Mac, you can install it via MacPorts: \verb|(sudo) port install BibTool|,
 or via Homebrew: \verb|brew install bib-tool|.
@@ -589,9 +589,9 @@ or via Homebrew: \verb|brew install bib-tool|.
 \begin{description}
 \item[2013-08-13: Cristina Oropeza Barrera] First version of the document released.
 \item[2014-08-14: Ian Brock] Updated the example references a bit and gave a bit more background information.
-\item[2014-12-03: Ian Brock] Text taken from paper template and merged into this document. 
+\item[2014-12-03: Ian Brock] Text taken from paper template and merged into this document.
   Document adjusted for use of \Package{biblatex} as the default.
-\item[2015-01-30: Ian Brock] Try to clarify the nomenclature and 
+\item[2015-01-30: Ian Brock] Try to clarify the nomenclature and
   the recommended way to use \BibTeX.
 \item[2015-03-20: Ian Brock] Add information about standard ATLAS and CMS bibliography databases.
 \item[2016-06-14: Ian Brock] Add information about address and location options.

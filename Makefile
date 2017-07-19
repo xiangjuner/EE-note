@@ -3,7 +3,7 @@
 # By default makes mydocument.pdf using target run_pdflatex.
 # Replace mydocument with your main filename or add another target set.
 # Adjust TEXLIVE if it is not correct, or pass it to "make new".
-# Replace BIBTEX = bibtex with BIBTEX = biber if you use biber instead of bibtex.
+# Replace BIBTEX = biber with BIBTEX = bibtex if you use bibtex instead of biber.
 # Adjust FIGSDIR for your figures directory tree.
 # Adjust the %.pdf dependencies according to your directory structure.
 # Use "make clean" to cleanup.
@@ -24,14 +24,15 @@
 TEXLIVE  = 2016
 LATEX    = latex
 PDFLATEX = pdflatex
-BIBTEX   = bibtex
-# BIBTEX = biber
+# BIBTEX   = bibtex
+BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
 
 #-------------------------------------------------------------------------------
 # The main document filename
 BASENAME = mydocument
+
 #-------------------------------------------------------------------------------
 # Adjust this according to your top-level figures directory
 # This directory tree is used by the "make cleanepstopdf" command
@@ -138,7 +139,8 @@ newnotemetadata:
 	cp template/atlas-note-metadata.tex $(BASENAME)-metadata.tex
 
 newfiles:
-	touch $(BASENAME).bib
+	echo "% Put you own bibliography entries in this file" > $(BASENAME).bib
+	# touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 run_latex: dvipdf

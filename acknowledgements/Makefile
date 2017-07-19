@@ -1,11 +1,8 @@
 # Makefile for creating ATLAS Acknowledegments
 
 TEXLIVE  = 2016
-LATEX    = latex
 PDFLATEX = pdflatex
-BIBTEX   = bibtex
-DVIPS    = dvips
-DVIPDF   = dvipdf
+BIBTEX   = biber
 
 BASENAME = Acknowledgements-main
 

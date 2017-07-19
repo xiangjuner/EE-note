@@ -41,7 +41,7 @@
   This document gives general guidelines on how an ATLAS paper should be structured
   and what authors should pay attention to.
   It is part of the ATLAS \LaTeX\ package which can be downloaded from
-  Publication Committee TWiki pages. 
+  Publication Committee TWiki pages.
   The technical details about how to use the
   ATLAS \LaTeX\ style files are included in a separate document.
 
@@ -82,7 +82,7 @@ Before we get to the meat of the document, a few remarks about the paper front p
 
 
 %-------------------------------------------------------------------------------
-\subsection{Title} 
+\subsection{Title}
 \label{sec:title}
 %-------------------------------------------------------------------------------
 
@@ -94,12 +94,12 @@ The title should be concise, clear and descriptive, and should include the word 
 \label{sec:author}
 %-------------------------------------------------------------------------------
 
-The author list will be provided by the Authorship Committee and Physics Office. 
-It will be created by the Physics Office at the time of the first draft announcement by PubCom, 
+The author list will be provided by the Authorship Committee and Physics Office.
+It will be created by the Physics Office at the time of the first draft announcement by PubCom,
 and added to the CDS record for the paper as a separate document from the paper itself.
 Requests for exceptional authorship or for removal of names should be made to the Spokesperson and Authorship Committee while the first draft is circulating.
-The author list will be archived when the second draft announcement is made by Publication Committee, 
-and again added to the CDS record as a separate document from the paper. 
+The author list will be archived when the second draft announcement is made by Publication Committee,
+and again added to the CDS record as a separate document from the paper.
 The front page of the paper should name \enquote{The ATLAS Collaboration} as the author.
 
 
@@ -108,21 +108,21 @@ The front page of the paper should name \enquote{The ATLAS Collaboration} as the
 \label{sec:abstract}
 %-------------------------------------------------------------------------------
 
-The abstract should also be clear, descriptive and concise. 
-It should consist of a single paragraph, occupying no more than half a page. 
-It should stand on its own and the main text of the paper should not depend on it. 
+The abstract should also be clear, descriptive and concise.
+It should consist of a single paragraph, occupying no more than half a page.
+It should stand on its own and the main text of the paper should not depend on it.
 The abstract should state what was measured; where the measurement was made and with what dataset / luminosity;
-what method was used; 
-what are the primary results and main conclusions. 
-Citations, footnotes, references etc.\ should be avoided in the abstract. 
-If only Monte Carlo data are used in the publication, this fact should be stated explicitly in the abstract.  
+what method was used;
+what are the primary results and main conclusions.
+Citations, footnotes, references etc.\ should be avoided in the abstract.
+If only Monte Carlo data are used in the publication, this fact should be stated explicitly in the abstract.
 
 
 \subsubsection*{Example of a Search Analysis Abstract}
 
-A search for the Standard Model Higgs boson in the two photon decay channel is reported, 
+A search for the Standard Model Higgs boson in the two photon decay channel is reported,
 using \SI{1.08}{\per\fb} of proton--proton collision data at a centre-of-mass energy of \SI{7}{\TeV} recorded by the ATLAS detector.
-No significant excess is observed in the investigated mass range of \SIrange{110}{150}{\GeV}. 
+No significant excess is observed in the investigated mass range of \SIrange{110}{150}{\GeV}.
 Upper limits on the cross-section times branching ratio of between 2.0 and 5.8 times the Standard Model prediction are derived for this mass range.
 
 \noindent(From \enquote{Search for the Standard Model Higgs boson in the two photon decay channel with the ATLAS detector at the LHC})
@@ -130,13 +130,13 @@ Upper limits on the cross-section times branching ratio of between 2.0 and 5.8 t
 \subsubsection*{Example of a Standard Model Measurement Analysis Abstract}
 
 This Letter presents a measurement of the $WW$ production cross section in $\sqrt{s} = \SI{7}{\TeV}$ $pp$ collisions by the ATLAS experiment, using \SI{34}{\per\pb} of integrated luminosity produced by the Large Hadron Collider at CERN. Selecting events with two isolated leptons, each either an electron or a muon, 8 candidate events are observed with an expected background of $1.7 \pm 0.6$ events.
-The measured cross section is 
+The measured cross section is
 \ifthenelse{\ATTeXLiveVersion < 2011}{%
 $(41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.}))\;\si{\pb}$,
 }{%
 \SI[parse-numbers=false]{(41^{+20}_{-16}(\text{stat.})\pm 5(\text{syst.})\pm 1(\text{lumi.}))}{\pb},
 }
-which is consistent with the standard model prediction of \SI{44(3)}{\pb} calculated at next-to-leading order in QCD. 
+which is consistent with the standard model prediction of \SI{44(3)}{\pb} calculated at next-to-leading order in QCD.
 In fact, the ATLAS convention is to write this as
 \ifthenelse{\ATTeXLiveVersion < 2011}{%
 \SI[trapambigerr=false]{44(3)}{\pb}, i.e.\ without the enclosing parentheses.
@@ -152,7 +152,7 @@ In fact, the ATLAS convention is to write this as
 \label{sec:intro}
 %-------------------------------------------------------------------------------
 
-This should be fairly brief. 
+This should be fairly brief.
 State the measurement being made, motivate its importance experimentally and theoretically.
 It is considered bad form to point out being the first to publish something as a motivation.
 Include a summary of what has already been published on this subject,
@@ -168,15 +168,15 @@ need to follow; Chapter~4 gives information on the style.
 
 At some point during the writing of an ATLAS paper, you should decide what journal it will be submitted to.
 Please keep in mind that each journal makes specific demands on length and style.
-Most journals use regular capitalisation for titles 
-(i.e.\ capitalise the first word and all proper nouns, 
-e.g.\ \enquote{The search for large extra dimensions}). 
+Most journals use regular capitalisation for titles
+(i.e.\ capitalise the first word and all proper nouns,
+e.g.\ \enquote{The search for large extra dimensions}).
 The notable exception is Physical Review Letters, which capitalises the
 first word and all other important words,
 e.g.\ \enquote{The Search for Large Extra Dimensions}.
 
 This document can be found on the web pages of the ATLAS Publication Committee
-and in the \texttt{atlaslatex} package. 
+and in the \texttt{atlaslatex} package.
 The Publication Committee provides standard texts giving examples
 for the description of the ATLAS detector, and the appropriate references,
 as well as other text snippets that may be useful to avoid too much use of ATLAS jargon.
@@ -187,7 +187,7 @@ should be given to the Publication Committee.
 
 The \texttt{atlasphysics.sty} style file contains a set of particles,
 reactions, etc.\ that may be useful. For example, the missing-$E_{\text{T}}$
-symbol (\met{}) is defined there. 
+symbol (\met{}) is defined there.
 A separate document~\cite{atlas-physics}
 contains a list of the commands in \texttt{atlasphysics.sty}.
 
@@ -197,7 +197,7 @@ contains a list of the commands in \texttt{atlasphysics.sty}.
 \label{sec:theory}
 %-------------------------------------------------------------------------------
 
-Sometimes combined with the introduction in shorter papers. 
+Sometimes combined with the introduction in shorter papers.
 This should be a brief overview of the theory relevant for this paper, with proper referencing.
 This is a good place to define important quantities which will be used later.
 State how the measurement of interest is actually performed, and how the parameters are extracted from the data.
@@ -238,7 +238,7 @@ Examples of descriptions can be found in Appendix~\ref{app:atlasdet}.
 
 All Monte Carlo generators and calculators used must be clearly named with the full version number and reference.
 A brief description may be useful if it is a less well known generator.
-It is usually necessary to say to what order it calculates (LO, NLO, NNLO...) 
+It is usually necessary to say to what order it calculates (LO, NLO, NNLO...)
 and to specify any corrections, tunings or special parameter settings.
 The PDF sets used should be listed, also with the full version numbers and references.
 Statistics should be given if the number of simulated events gives rise to a non-negligible uncertainty.
@@ -286,7 +286,7 @@ State the results without interpretations here.
 
 Put the results into the context of the theory or a model.
 If the results lead to exclusion plots, make sure that it is clear which region on the plot is excluded.
-Please also make sure that statistical interpretations and limit setting are done 
+Please also make sure that statistical interpretations and limit setting are done
 following the current ATLAS Statistics Tools and Guidelines
 
 %-------------------------------------------------------------------------------
@@ -312,7 +312,7 @@ This might lead a referee (internal or external) to wonder why it is worth publi
 
 Note that all figures and tables should be output before the start of the
 \enquote{Summary and conclusion}.
-This can be achieved using the macro \Macro{FloatBarrier} that is part of the 
+This can be achieved using the macro \Macro{FloatBarrier} that is part of the
 \Package{placeins} package.
 
 
@@ -323,7 +323,7 @@ This can be achieved using the macro \Macro{FloatBarrier} that is part of the
 
 A standard template for the acknowledgements is available on the
 web pages of the Publication Committee.
-See reference~\cite{publication-policy} for the URL. 
+See reference~\cite{publication-policy} for the URL.
 
 The acknowledgements should be in an unnumbered section.
 
@@ -337,7 +337,7 @@ The acknowledgements should be in an unnumbered section.
 
 In a paper, an appendix is used for technical details that would otherwise disturb the flow of the paper.
 Such an appendix should be printed before the Bibliography.
-In an ATLAS paper, auxiliary plots and tables that are supposed to be made public 
+In an ATLAS paper, auxiliary plots and tables that are supposed to be made public
 should be collected in an appendix that has the title \enquote{Auxiliary material}.
 This appendix should be printed after the Bibliography.
 
@@ -353,7 +353,7 @@ Use the following commands to start the Appendices section:
 \end{verbatim}
 
 In this document the appendices contain some general remarks on the style to use in ATLAS papers.
-More technical details on how to use the ATLAS \LaTeX\ templates to help you follow 
+More technical details on how to use the ATLAS \LaTeX\ templates to help you follow
 these recommendations can be found in other documents:
 \begin{itemize}
 \item ATLAS style guide~\cite{atlas-style}.
@@ -380,7 +380,7 @@ However, arXiv currently uses an older version of \TeX\ Live (2011) that does no
 We recommend the use of British English. However, whatever you decide
 to choose, be consistent throughout the paper. For much more detailed
 information on writing, spelling and typographic style, etc. please
-see the ATLAS Style Guide~\cite{atlas-style}. 
+see the ATLAS Style Guide~\cite{atlas-style}.
 The ATLAS Glossary~\cite{atlas-glossary} contains a list of ATLAS detector acronyms.
 
 Use italics for emphasis sparingly: too many italicised words defeat
@@ -402,7 +402,7 @@ tables should appear in the same order as mentioned in the text. Do
 not abbreviate the word \enquote{Table}. Capitalise the first word of any
 row or column heading. Label all rows/columns, including units if
 appropriate. Units are given in brackets, e.g.\ \enquote{Energy [\si{\GeV}]}.
-Horizontal and vertical lines should be kept to a minimum and only used 
+Horizontal and vertical lines should be kept to a minimum and only used
 as necessary to make the table entries clear.
 The table caption appears below the table.
 Any symbols/variables used in the table must be defined in the
@@ -464,7 +464,7 @@ avoided. Caution should be used when referring to ATLAS notes.
 Only reference approved notes. Do not reference COM or INT notes,
 as these are not available outside ATLAS.
 
-Whenever possible, cite the article's journal rather than its preprint number. 
+Whenever possible, cite the article's journal rather than its preprint number.
 If possible, the arXiv number should be given in addition.
 Always double check references when copying them from another source.
 
@@ -472,7 +472,7 @@ Referencing styles are journal-dependent.
 This is not a problem if the ATLAS preprint style is used,
 as the journals will adapt the document to their style.
 
-For further information on \BibTeX\ and on the standard ATLAS style for referencing, 
+For further information on \BibTeX\ and on the standard ATLAS style for referencing,
 see the \enquote{ATLAS \BibTeX\ Guide}~\cite{atlas-bibtex}.
 More details on what to pay attention to can be found in Section~3.6 of the \enquote{ATLAS Style Guide}~\cite{atlas-style}.
 
@@ -489,7 +489,7 @@ which is based on \texttt{SIunits}.
 
 If you use a units package, it automatically set SI units in an upright font
 and leaves a small space between
-the value and the units (e.g.\ \SI{12}{\mm}). 
+the value and the units (e.g.\ \SI{12}{\mm}).
 In addition, it makes sure the value and unit end up on the same line: \verb|\SI{12}{\mm}|.
 Natural units, where $c=\hbar=1$, should be used for all
 ATLAS publications.
@@ -498,11 +498,11 @@ Masses are therefore in \si{\GeV}, not \si[per=slash]{\GeV\per\clight}.
 }{%
 Masses are therefore in \si{\GeV}, not \si[per-mode=symbol]{\GeV\per\clight}.
 }
-Use math mode for all symbols (e.g. use $c$ (\verb|$c$|) rather than simply c). 
-Momentum should be in lower case \verb+$p$+. 
-Transverse momentum is a lower case $p$ with an upper case roman $\text{T}$ subscript: 
+Use math mode for all symbols (e.g. use $c$ (\verb|$c$|) rather than simply c).
+Momentum should be in lower case \verb+$p$+.
+Transverse momentum is a lower case $p$ with an upper case roman $\text{T}$ subscript:
 \verb|\pT| produces \pT.
-Energy is an upper case \verb+$E$+, \verb+\ET+ produces \ET.  
+Energy is an upper case \verb+$E$+, \verb+\ET+ produces \ET.
 Use \verb|\mathcal| mode for luminosity $\mathcal{L}$ or aplanarity
 $\mathcal{A}$.
 %Use \verb|\mathscr| mode for luminosity $\mathscr{L}$ $\mathcal{L}$ or aplanarity
@@ -528,12 +528,12 @@ Particle Data Book. Intermediate vector bosons should be called
 the word boson attached may be used in \emph{W pair production}, and
 similar phrases.  Other particle names should be spelled out when used
 in a sentence: muon(s), electron(s), tau lepton(s). \emph{Top quark}
-should be used instead of \emph{top} in most places: 
+should be used instead of \emph{top} in most places:
 say \enquote{top-quark mass} instead of \enquote{top mass}.
-Top quark and bottom quark may be shortened to $t$ quark and $b$ quark. 
+Top quark and bottom quark may be shortened to $t$ quark and $b$ quark.
 The neutrino symbol $\nu$ should not have any subscripts, unless necessary for
 understanding.
-For the \Jpsi{} use the command \verb+\Jpsi+ from 
+For the \Jpsi{} use the command \verb+\Jpsi+ from
 \texttt{atlasphysics.sty}: it will produce a lower case $\psi$.
 
 When in doubt, use the PDG style.
