@@ -1226,11 +1226,13 @@ Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes thing
 \label{sec:atlaslatex4}
 %-------------------------------------------------------------------------------
 
-As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex} has been  restructured to reduce duplications and make separate comments for a new paper and a new note.
+As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex} has been  restructured to reduce duplications and make separate commands for a new paper and a new note.
+\texttt{biber} is now the default backend for \Package{biblatex},
+as this allows the use of the \enquote{related} field for Errata.
 Errata are included in the ATLAS bibliography file.
-Metadata for notes and papers are now separate temples to prepare for them being created directly from Glance.
-This is the first version that is designed for the Glance/Git integration,
-hence the jump in the main version number.
+Metadata for notes and papers are now separate templates to prepare for them being created directly from Glance.
+This is the first version that is designed for the Glance/Git integration.
+As the above changes are quite major, there is a jump in the main version number.
 
 
 %-------------------------------------------------------------------------------
