@@ -24,6 +24,7 @@
 \addbibresource{atlas_bibtex.bib}
 \addbibresource{../atlas_latex.bib}
 \addbibresource{../../bib/ATLAS.bib}
+\addbibresource{../../bib/ATLAS-errata.bib}
 
 \graphicspath{{../../logos/}}
 
@@ -98,17 +99,19 @@ It is possible to take a base style and then just apply changes to it rather tha
 having to learn the details of how \texttt{bst} files are constructed.
 
 The nomenclature is rather confusing as the package \Package{biblatex} can use
-either \texttt{biber} or \texttt{bibtex} to process your \texttt{.bib} files.
+either \texttt{biber} or \texttt{bibtex} as a backend to process your \texttt{.bib} files.
 There are 3 possible cases that will be considered here:
 \begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
   \item \texttt{biblatex} + \texttt{biber};
   \item \texttt{biblatex} + \texttt{bibtex};
   \item Traditional \BibTeX with \texttt{bibtex};
 \end{enumerate}
-2. is the default for ATLAS. You can change to the \texttt{biber} backend (alternative 1.) by passing the option
-\Option{backend=biber} to \Package{atlaspackage}. 
-Use of traditional \BibTeX\ (alternative 3.) is deprecated.
-However, the templates indicate via commented out commands how to use it.
+As of Version 04-00-00 of \Package{atlaslatex}, 1. is the default for ATLAS.
+You can change to the \texttt{bibtex} backend (alternative 2.) by passing the option
+\Option{backend=bibtex} to \Package{atlaspackage}.
+However, see Section~\ref{sec:erratum} for some of the drawbacks of the \texttt{bibtex} backend.
+While the use of traditional \BibTeX\ (alternative 3.) is deprecated,
+the templates indicate via commented out commands how to use it.
 If you use the \texttt{biber} backend, it is also possible to use UTF-8 encoding in the entries, which means that letters such as
 ä, é, ß can be included directly in the text.
 
@@ -117,17 +120,17 @@ or the traditional version of \BibTeX{} looks like the following:
 %
 \begin{verbatim}
   pdflatex mydocument
-  bibtex mydocument
+  biber mydocument
   pdflatex mydocument
   pdflatex mydocument
 \end{verbatim}
-If you use \Package{biblatex} with the backend \Package{biber} rather than \Package{bibtex}, replace the command
-\texttt{bibtex} with \texttt{biber}.
+If you use \Package{biblatex} with the backend \Package{bibtex} rather than \Package{biber},
+replace the command \texttt{biber} with \texttt{bibtex}.
 
 \texttt{biber} and \texttt{bibtex} create a file with the extension \texttt{.bbl}, which
-contains the actual references used, and (pdf)\LaTeX{} then takes care to include them in your document. 
+contains the actual references used, and (pdf)\LaTeX{} then takes care to include them in your document.
 Note that only after the third run of pdf\LaTeX\ will all references be correct. 
-Unless you change a reference you do not have to do the \texttt{bibtex/biber} step again.
+Unless you change a reference you do not have to do the \texttt{biber/bibtex} step again.
 The style of the references is governed by the \Package{biblatex} options that you
 use or the \BibTeX\ style file (which has the extension \File{bst}).
 
@@ -169,11 +172,12 @@ If you use traditional \BibTeX\ you include the source file(s) at the place wher
 }
 \end{verbatim}
 
-If you use \Package{atlaspackage}, then \Package{biblatex} is used with the \texttt{bibtex} backend by default.
+If you use \Package{atlaspackage}, then \Package{biblatex} is used with the \texttt{biber} backend by default.
 Turn off the use with the option \Option{biblatex=false}.
 
-If you want to use the \Package{biber} backend, include \Package{atlaspackage} with the option \Option{backend=biber} and
-use the command \texttt{biber} instead of \texttt{bibtex} to process the \texttt{.bib} files.
+If you want to use the \Package{bibtex} backend,
+include \Package{atlaspackage} with the option \Option{backend=bibtex} and
+use the command \texttt{bibtex} instead of \texttt{biber} to process the \texttt{.bib} files.
 Note that \texttt{biber} returns an error if it encounters an empty \texttt{.bib} file.
 
 
@@ -191,7 +195,7 @@ ATLAS CONF and PUB notes are provided:
 \end{description}
 These are available in the directory \File{bib} of \Package{atlaslatex}.
 The files are updated once per month and all entries have been checked for correct formatting.
-These files included whenever a new version of \Package{atlaslatex} is released.
+These files are included whenever a new version of \Package{atlaslatex} is released.
 They are also available directly from the PubCom TWiki~\cite{pubcom-refs}.
 You are strongly encouraged to use these files and not try to maintain your own copies of
 such publications.
@@ -263,22 +267,23 @@ Note that some of the entry types that \Package{biblatex} has are not part of \B
   PhD thesis~\cite{tlodd:2012}.
 \end{description}
 
-\Package{biblatex} also knows about multivolume proceedings etc. See
-the manual for more details.
+\Package{biblatex} also knows about multivolume proceedings etc.
+See the manual for more details.
 
 
 %-------------------------------------------------------------------------------
 \subsection{Errata}
+\label{sec:erratum}
 %-------------------------------------------------------------------------------
 
-As of Version 04-00-00 of \Package{atlaslaex} Errata are included.
+As of Version 04-00-00 of \Package{atlaslaex} Errata for ATLAS publications are included.
 \Package{biblatex} offers a nice mechanism for this using the \texttt{related} field.
 For example, Ref~\cite{EXOT-2013-13} has an Erratum.
 This is achieved using the following:
 \begin{verbatim}
 @Article{EXOT-2013-13,
     author         = "{ATLAS Collaboration}",
-    title          = "{Search for new phenomena in final states with an energetic jet and large missing transverse momentum in $pp$ collisions at $\sqrt{s} = 8\;\mbox{TeV}$ with the ATLAS detector}",
+    title          = "{Search for new phenomena in final states ...}",
     journal        = "Eur. Phys. J. C",
     volume         = "75",
     year           = "2015",
@@ -303,9 +308,37 @@ This is achieved using the following:
 }
 \end{verbatim}
 
+This mechanism is used in \texttt{ATLAS.bib} and will be extended to \texttt{CMS.bib} once
+I have a list of the CMS Errata.
+
+The mechanism only works if the \texttt{biber} backend is used.
+Using the standard files with the \texttt{bibtex} backend and/or traditional \BibTeX\ does not cause errors when compiling.
+However, the Errata are simply ignored.
+Instead, you also should use the files \texttt{ATLAS-errata.bib} etc.
+(with the appropriate key, e.g.~\texttt{EXOT-2013-13-witherratum}~\cite{EXOT-2013-13-witherratum}).
+An example entry looks like:
+\begin{verbatim}
+@Article{EXOT-2013-13-witherratum,
+    author         = "{ATLAS Collaboration}",
+    title          = "{Search for new phenomena in final states ...}",
+    journal        = "Eur. Phys. J. C",
+    volume         = "75",
+    year           = "2015",
+    pages          = "299",
+    doi            = "10.1140/epjc/s10052-015-3517-3",
+    reportNumber   = "CERN-PH-EP-2014-299",
+    eprint         = "1502.01518",
+    archivePrefix  = "arXiv",
+    primaryClass   = "hep-ex",
+    addendum       = "Erratum: \href{http://dx.doi.org/10.1140/epjc/s10052-015-3639-7}{Eur. Phys. J. C \textbf{75} (2015) 408}",
+}
+\end{verbatim}
+With traditional \BibTeX, you have to replace the field name \enquote{addendum} with \enquote{note},
+as the \enquote{addendum} field was introduced with \Package{biblatex}.
 
 %-------------------------------------------------------------------------------
 \section{Examples}
+\label{sec:example}
 %-------------------------------------------------------------------------------
 
 The examples given above and in this section can be found in the file \File{doc/atlas\_bibtex/atlas\_bibtex.bib}
@@ -331,7 +364,8 @@ The current version uses \texttt{@booklet} and includes the CONF note number via
 In general, \texttt{biblatex} provides a lot more entry types.
 This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
 All \Package{atlaslatex} documentation uses \Package{biblatex} with the backend \Package{biber}.
-The default for ATLAS documents is to use \Package{biblatex} with the backend \Package{bibtex}.
+As of Version 04-00-00 of \Package{atlaslatex}, this is also the default for ATLAS documents.
+% is to use \Package{biblatex} with the backend \Package{bibtex}.
 
 For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@article}.
 You should specify the journal in the \texttt{journal} field in form:\\
@@ -369,6 +403,7 @@ You should specify the journal in the \texttt{journal} field in form:\\
   the macros defined in \Package{atlasjournal}.
   If you want to use \Package{biblatex} or other \File{bst} files, it is probably better to use the
   \Package{atlasjournal} definitions.
+\item See the Section~{\ref{sec:erratum}} on Errata for hints on how best to include Errata.
 \item Comments are not part of the bibliography database format. Text outside entries will be ignored.
   Do not try to comment out fields inside an entry!
   If there are fields that you do not want, you have to move them outside the entry.
@@ -383,7 +418,7 @@ which is the default in \Package{atlaslatex}.
 
 
 %-------------------------------------------------------------------------------
-\section{ATLAS bibliography style files}
+\section{ATLAS bibliography style}
 \label{sec:atlasbst}
 %-------------------------------------------------------------------------------
 
@@ -394,7 +429,7 @@ To ensure the homogeneity in all ATLAS publications,
 \Package{biblatex} and \BibTeX\ style files are provided for each of these categories 
 along with an example file that illustrates how different types of bibliographic material should be referenced.
 
-The \Package{biblatex} style file can be found in the directory \File{latex},
+The \Package{biblatex} style settings can be found in the directory \File{latex},
 while the traditional \BibTeX\ style files can be found in the directory \File{bib/bst} of the \Package{atlaslatex} package.
 
 For the final version of ATLAS notes, both internal and public, a style without the title for papers in journals is recommended.

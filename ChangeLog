@@ -1,4 +1,5 @@
 2017-07-17  Ian Brock  <Ian.Brock@cern.ch>
+	* Switch from bibtex to biber as the standard biblatex backend.
   * Move bibtex/bib to bib and bibtex/bst to bib/bst.
 	* Add Errata to ATLAS.bib. This only works properly with biblatex.
 	* Reorganise Makefile to use separate metadata files for notes and paper.
