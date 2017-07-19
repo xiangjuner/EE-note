@@ -482,8 +482,8 @@ Finally the full set includes further packages that may be useful:
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item[\Option{biblatex=true|{\normalfont false}}] turn on/off use of \Package{biblatex} and \Package{biber/bibtex};
-\item[\Option{backend=bibtex|{\normalfont biber}}] specify the backend to use with \Package{biblatex}.
-  Specify \Option{backend=biber} to use \Package{biber} instead;
+\item[\Option{backend={\normalfont bibtex}|biber}] specify the backend to use with \Package{biblatex}.
+  Specify \Option{backend=bibtex} to use \Package{bibtex} instead;
 \item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|{\normalfont false}}] do not include the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
@@ -740,7 +740,8 @@ There is some flexibility in how you set up your directory structure for using \
 By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
 logos are in \File{logos}. This structure assumes that you will make a separate directory tree
 for each document that you create. If you want to include these files in Git or SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bibtex} directories of the \Package{atlaslatex} package to Git or SVN.
+\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git or SVN.
+In order to create a new document, you also need the \File{template} directory.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
 \File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree -- see Section~\ref{sec:texmf}.
@@ -774,8 +775,8 @@ Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do
 \begin{itemize}
 \item unpack the tarball;
 \item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
-\item copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
-  to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bib}, respectively.
+\item copy the contents of the \File{bib} directories 
+  to \texttt{\$\{HOME\}/texmf/bib}.
 \end{itemize}
 It is more complicated to checkout part of a Git repository.
 Hence the method described above is the recommended way of installing
@@ -810,7 +811,7 @@ In the template files, you have to use the command
 \end{center}
 
 If you are using traditional \BibTeX\ you also have to change\\
-\verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
+\verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
 The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
@@ -828,18 +829,20 @@ I recommend to use pdf\LaTeX\ and this is the default.
 I would expect everything to work with \TeX\ Live 2009 or later.
 You should just set the option \Option{texlive} appropriately.
 This is best done in the document class, as the option is then passed to all other packages.
-Examples of changes include some option names for \Package{siunitx},
-and \Package{biblatex} and \Package{biber} were not really stable in earlier years.
+Examples of changes include some option names for \Package{siunitx}.
 
 If for example you have \TeX\ Live 2009, add the option \Option{texlive=2009} to the document class.
 This will then include \Package{siunitx} with the correct options for Version 1.
 It will also switch to \Option{unit=false} to \Package{atlasphysics}
 and use option \Option{txfonts} in \Package{atlasdoc}.
-If you want to use \Package{biblatex},
-the current default for all years is to use the \Package{bibtex} backend rather than \Package{biber}.
-You can use \Package{biber} instead by passing the option \Option{backend=biber} to \Package{atlaspackage}.
 
-The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
+If you use the \Package{biblatex} package,
+the default is to use the \texttt{biber} backend.
+This was changed as of Version 04-00-00 of \Package{atlaslatex}.
+For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
+To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
+
+The \Package{atlaslatex} package should work under Linux, MacOS(X) and Windows.
 Details on the installations that I use for testing things
 and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
 
@@ -1122,9 +1125,9 @@ the document language.
 If you use the package \Macro{csquotes}, quotation symbols are also consistently and properly set
 when you use \Macro{enquote}.
 
-All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of traditional \BibTeX.
+All the documentation uses \texttt{biblatex} and \texttt{biber} instead of traditional \BibTeX.
 The templates provide information on how to make the change in your own document.
-The default document settings use \texttt{biblatex} and \texttt{bibtex}.
+The default document settings also use \texttt{biblatex} and \texttt{biber}.
 
 As of \File{atlaslatex-01-00-00} the same macro names are used in both \Package{atlasdoc} and
 \Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
