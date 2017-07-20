@@ -8,8 +8,10 @@ TEXLIVE = 2016
 
 .PHONY: clean cleanpdf
 
-all:
+atlas_physics:
 	make -f ../Makefile BASENAME=$(BASENAME1)
+
+atlas_hepphysics:
 	if [ $(TEXLIVE) -ge 2013 ]; then \
 		make -f ../Makefile BASENAME=$(BASENAME2); \
 	fi

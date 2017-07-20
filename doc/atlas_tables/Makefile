@@ -7,7 +7,7 @@ TEXLIVE = 2016
 
 .PHONY: clean cleanpdf
 
-all:
+atlas_tables:
 	make -f ../Makefile BASENAME=$(BASENAME)
 
 texlive:
