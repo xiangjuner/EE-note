@@ -10,7 +10,9 @@ TEXLIVE = 2016
 
 all:
 	make -f ../Makefile BASENAME=$(BASENAME1)
-	make -f ../Makefile BASENAME=$(BASENAME2)
+	if [ $(TEXLIVE) -ge 2013 ]; then \
+		make -f ../Makefile BASENAME=$(BASENAME2); \
+	fi
 
 texlive:
 	make -f ../Makefile texlive BASENAME=$(BASENAME1) TEXLIVE=$(TEXLIVE)
