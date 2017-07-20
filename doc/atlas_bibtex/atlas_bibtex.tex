@@ -350,7 +350,7 @@ Here are some typical reference types needed in ATLAS documents:
 \item Individual authors~\cite{authors:2008}
 \item arXiv only~\cite{arxivOnly:2009}
 \item arXiv only submitted to a journal~\cite{arxivSub:2011}
-\item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058}
+\item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058-test}
 \end{itemize}
 
 While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
@@ -358,7 +358,7 @@ Hence in \Ref{\cite{lhcCollaboration:2012}}, \texttt{collaboration} has been ren
 the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \texttt{collaboration} and omit
 \texttt{author} you will get a warning when you run \texttt{bibtex}.
 
-Note that in \Ref{\cite{ATLAS-CONF-2012-058}} the entry type \texttt{@article} used to be used and the field \texttt{journal}
+Note that in \Ref{\cite{ATLAS-CONF-2012-058-test}} the entry type \texttt{@article} used to be used and the field \texttt{journal}
 was abused for the conference note number. This is a result of the traditional \BibTeX\ restrictions on the entry types.
 The current version uses \texttt{@booklet} and includes the CONF note number via the \texttt{howpublished} field.
 In general, \texttt{biblatex} provides a lot more entry types.
