@@ -8,7 +8,9 @@ TEXLIVE = 2016
 .PHONY: clean cleanpdf
 
 atlas_tables:
-	make -f ../Makefile BASENAME=$(BASENAME)
+	if [ $(TEXLIVE) -ge 2011 ]; then \
+		make -f ../Makefile BASENAME=$(BASENAME); \
+	fi
 
 texlive:
 	make -f ../Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
