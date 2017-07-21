@@ -223,7 +223,15 @@ This is fine in text, but in tables, you probably want to use the option
 \begin{table}[htbp]
   \centering
   \subfloat[Table with \Option{group-minimum-digits=4}.]{%
-  \sisetup{group-minimum-digits=4}
+  \ifthenelse{\ATTeXLiveVersion < 2012}{%
+    \ifthenelse{\ATTeXLiveVersion < 2011}{%
+      \sisetup{sepfour}
+    }{
+      \sisetup{group-digits=true, group-four-digits=true}
+    }
+  }{
+    \sisetup{group-minimum-digits=4}
+  }
   \begin{tabular}{lS[table-format=5.2]}
     Quantity & \multicolumn{1}{c}{Value}\\
     \midrule
@@ -235,7 +243,15 @@ This is fine in text, but in tables, you probably want to use the option
   }
   \qquad
   \subfloat[Table with \Option{group-minimum-digits=5}.]{%
-  \sisetup{group-minimum-digits=5}
+  \ifthenelse{\ATTeXLiveVersion < 2012}{%
+    \ifthenelse{\ATTeXLiveVersion < 2011}{%
+      \sisetup{group-digits=true}
+    }{
+      \sisetup{group-digits=true}
+    }
+  }{
+    \sisetup{group-minimum-digits=5}
+  }
   \begin{tabular}{lS[table-format=5.2]}
     Quantity & \multicolumn{1}{c}{Value}\\
     \midrule
