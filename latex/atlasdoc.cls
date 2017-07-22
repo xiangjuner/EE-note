@@ -371,11 +371,12 @@
       \RequirePackage[T1]{fontenc}
     \else
       \typeout{atlasdoc: using newtx fonts package}
-      \RequirePackage[defaultsups]{newtxtext}
       \ifthenelse{\ADOC@texlive < 2013}{%
+        \RequirePackage{newtxtext}
         \typeout{*** atlasdoc: include amsmath before newtxmath}
         \RequirePackage{amsmath}
       }{%
+        \RequirePackage[defaultsups]{newtxtext}
       }
       \RequirePackage{newtxmath}
     \fi

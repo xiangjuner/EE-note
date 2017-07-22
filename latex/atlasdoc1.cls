@@ -6,7 +6,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{04-00-00}
 
-\ProvidesClass{latex/atlasdoc1}[2017/07/04 v.04-00-00 ATLAS deprecated document class]
+\ProvidesClass{latex/atlasdoc1}[2017/07/22 v.04-00-00 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -338,11 +338,12 @@
       \RequirePackage[T1]{fontenc}
     \else
       \typeout{atlasdoc1: using newtx fonts package}
-      \RequirePackage[defaultsups]{newtxtext}
       \ifthenelse{\ADOC@texlive < 2013}{%
+        \RequirePackage{newtxtext}
         \typeout{*** atlasdoc1: include amsmath before newtxmath}
         \RequirePackage{amsmath}
       }{%
+        \RequirePackage[defaultsups]{newtxtext}
       }
       \RequirePackage{newtxmath}
     \fi

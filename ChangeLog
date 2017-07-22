@@ -1,4 +1,4 @@
-2017-07-17  Ian Brock  <Ian.Brock@cern.ch>
+2017-07-21  Ian Brock  <Ian.Brock@cern.ch>
 	* Switch from bibtex to biber as the standard biblatex backend.
   * Move bibtex/bib to bib and bibtex/bst to bib/bst.
 	* Add Errata to ATLAS.bib. This only works properly with biblatex.
@@ -10,7 +10,7 @@
 	* Add more version variants to MC generator macros.
 	* Changes to atlasmetadefs,sty so that it works when coverpage is turned off.
 	* Change group-minimum-digits option for siunitx from 4 to 5.
-	* Add some explanation on use of group-minimum-digits to tables documenation.
+	* Add some explanation on use of group-minimum-digits to tables documentation.
 	* Start adding some documentation about useful packages to ATLAS LaTeX documentation.
 
 2017-05-30  Ian Brock  <Ian.Brock@cern.ch>
