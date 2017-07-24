@@ -7,7 +7,7 @@ TEXLIVE = 2016
 
 .PHONY: clean cleanpdf
 
-all:
+atlas_bibtex:
 	make -f ../Makefile BASENAME=$(BASENAME)
 
 texlive:

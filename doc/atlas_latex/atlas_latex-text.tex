@@ -48,37 +48,46 @@ This structure means that it is easier to update the style files if a new versio
 \Package{atlaslatex} is released. 
 Each document can then be independent of the \Package{atlaslatex} release.
 
-To create a new document you can issue the commands:
+To create a new document you can issue one of the commands:
 %
 \begin{verbatim}
-make new [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
+depending on whether you want to write a paper/CONF Note/Pub Note draft or
+an ATLAS not draft.
 %
-This command copies \File{atlas-document.tex} and
-\File{atlas-document-metadata.tex}
+The command copies \File{atlas-document.tex} and
+\File{atlas-paper-metadata.tex} or \File{atlas-note-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
 \footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
   For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
 The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2016.
-The \texttt{make} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
-By default the document will be an ATLAS note.
-If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
+The \texttt{make newpaper|newnote} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
+By default the document will be an ATLAS note draft.
+Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB notes).
+% If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
+You can try the command \texttt{make run\_latexmk} instead,
+which invokes \texttt{latexmk}, a Perl script that is cleverer than the \texttt{Makefile}.
+You can also make this command the default.
 Have a look at \File{Makefile} for other things you can adjust.
 
-If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is:
+If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is one of:
 %
 \begin{verbatim}
-make newtexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpapertexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newnotetexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
 See Section~\ref{sec:texmf} for more details.
 
-In order to make a new document of book form like a TDR, use the command
+In order to make a new document of book form like a TDR, use one of the commands:
 %
 \begin{verbatim}
 make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{verbatim}
 %
 By default, this will pass the option \Option{BOOK} to \Package{atlasdoc}.
@@ -93,7 +102,7 @@ Note that you have to specify the language of your document as an option in the
 
 As mentioned above the default \TeX\ Live version is currently set to 2016.
 This should be the only option you have to adjust if you use different versions of \LaTeX.
-You can always set a version lower than the one you have installed to maintain compatibility with older versions.
+You should be able to always set a version lower than the one you have installed to maintain compatibility with older versions.
 To test compatibility with arXiv, try a setting of 2016.
 %This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 %are using the ATLAS preprint style.
@@ -119,6 +128,9 @@ also need to be specified at some point.
 While all this information can be collected in the main file of the document, 
 it is probably better to put it all in a separate document.
 By default this file is called \texttt{mydocument-metadata.tex}.
+
+As the metadata needed for ATLAS notes and ATLAS papers are somewhat different,
+separate templates are used as of Version 04-00-00.
 
 
 %-------------------------------------------------------------------------------
@@ -351,7 +363,7 @@ In the following the default option is in boldface.
   (default for older \TeX Live versions);
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014;
-\item[\Option{datetop=true|{\normalfont false}}] use normal or smaller fonts on the title page;
+\item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long;
 \item[\Option{copyrightoffset=0em}] adjust the position of the copyright,
@@ -470,8 +482,8 @@ Finally the full set includes further packages that may be useful:
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item[\Option{biblatex=true|{\normalfont false}}] turn on/off use of \Package{biblatex} and \Package{biber/bibtex};
-\item[\Option{backend=bibtex|{\normalfont biber}}] specify the backend to use with \Package{biblatex}.
-  Specify \Option{backend=biber} to use \Package{biber} instead;
+\item[\Option{backend={\normalfont bibtex}|biber}] specify the backend to use with \Package{biblatex}.
+  Specify \Option{backend=bibtex} to use \Package{bibtex} instead;
 \item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of \Package{hyperref};
 \item[\Option{siunitx=true|{\normalfont false}}] do not include the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
@@ -646,7 +658,7 @@ you need to add the option \Option{texmf} to the \Macro{documentclass}.
 
 You can test whether your document compiles with \TeX\ Live 2016 by setting your \texttt{PATH} on \texttt{lxplus} to
 \begin{verbatim}
-export PATH=/afs/cern.ch/sw/XML/texlive/2016/bin/x86_64-linux:$PATH
+export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
 \end{verbatim}
 
 Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
@@ -728,7 +740,8 @@ There is some flexibility in how you set up your directory structure for using \
 By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
 logos are in \File{logos}. This structure assumes that you will make a separate directory tree
 for each document that you create. If you want to include these files in Git or SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bibtex} directories of the \Package{atlaslatex} package to Git or SVN.
+\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git or SVN.
+In order to create a new document, you also need the \File{template} directory.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
 \File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree -- see Section~\ref{sec:texmf}.
@@ -753,7 +766,8 @@ As discussed above, the \texttt{atlasdoc} class and the style files can all be f
 If you want to use the centrally installed version,
 you should first copy \File{Makefile} and the \File{template} directory from 
 \File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
-For the main document, you can then use the command \texttt{make newtexmf} to get a template which uses the
+For the main document, you can then use the command 
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} to get a template which uses the
 centrally installed style files.
 
 If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
@@ -761,8 +775,8 @@ Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do
 \begin{itemize}
 \item unpack the tarball;
 \item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
-\item copy the contents of the \File{bibtex/bst} and \File{bibtex/bib} directories 
-  to \texttt{\$\{HOME\}/texmf/bibtex/bst} and \texttt{\$\{HOME\}/texmf/bibtex/bib}, respectively.
+\item copy the contents of the \File{bib} directories 
+  to \texttt{\$\{HOME\}/texmf/bib}.
 \end{itemize}
 It is more complicated to checkout part of a Git repository.
 Hence the method described above is the recommended way of installing
@@ -786,21 +800,18 @@ Hence the method described above is the recommended way of installing
 % You should therefore checkout:\\
 % \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
 
-In the template files, you have to use the command \texttt{make newtexmf} or change
+In the template files, you have to use the command
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply change
 \begin{center}
   \begin{tabular}{ll}
     From & To \\
     \midrule
-    \verb|\documentclass{latex/atlasdoc}|    & \verb|\documentclass[texmf]{atlasdoc}| \\
-    \verb|\usepackage{latex/atlaspackage}|   & \verb|\usepackage{atlaspackage}| \\
-    \verb|\usepackage{latex/atlasbiblatex}|   & \verb|\usepackage{atlasbiblatex}| \\
-    \verb|\usepackage{latex/atlascontribute}| & \verb|\usepackage{atlascontribute}| \\
-    \verb|\usepackage{latex/atlasphysics}|   & \verb|\usepackage[texmf]{atlasphysics}|
+    \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
   \end{tabular}
 \end{center}
 
 If you are using traditional \BibTeX\ you also have to change\\
-\verb|\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}| to\\
+\verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
 The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
@@ -818,18 +829,20 @@ I recommend to use pdf\LaTeX\ and this is the default.
 I would expect everything to work with \TeX\ Live 2009 or later.
 You should just set the option \Option{texlive} appropriately.
 This is best done in the document class, as the option is then passed to all other packages.
-Examples of changes include some option names for \Package{siunitx},
-and \Package{biblatex} and \Package{biber} were not really stable in earlier years.
+Examples of changes include some option names for \Package{siunitx}.
 
 If for example you have \TeX\ Live 2009, add the option \Option{texlive=2009} to the document class.
 This will then include \Package{siunitx} with the correct options for Version 1.
 It will also switch to \Option{unit=false} to \Package{atlasphysics}
 and use option \Option{txfonts} in \Package{atlasdoc}.
-If you want to use \Package{biblatex},
-the current default for all years is to use the \Package{bibtex} backend rather than \Package{biber}.
-You can use \Package{biber} instead by passing the option \Option{backend=biber} to \Package{atlaspackage}.
 
-The \Package{atlaslatex} package should work under Linux, MacOSX and Windows.
+If you use the \Package{biblatex} package,
+the default is to use the \texttt{biber} backend.
+This was changed as of Version 04-00-00 of \Package{atlaslatex}.
+For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
+To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
+
+The \Package{atlaslatex} package should work under Linux, MacOS(X) and Windows.
 Details on the installations that I use for testing things
 and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
 
@@ -1063,6 +1076,23 @@ option \Option{texlive=2009}.
 You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
 the \Package{atlasphysics} package.
 
+%-------------------------------------------------------------------------------
+\subsection{Useful packages}
+
+A vast number of \LaTeX\ packages are available.
+I list a few here that are not included by \Package{atlaslatex},
+but are well worth considering.
+\begin{description}
+  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
+  consistent way. Optional the symbols cn be upright or italic.
+  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
+  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
+  but is not as systematic.
+  \item[physics] A useful package for differentials, matrices and more.
+  As the name suggests it is geared to physics usage.
+  The \Package{commath}is an alternative, but I find \Package{physics} to be more reliable,
+  when different fonts are used.
+\end{description}
 
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
@@ -1095,9 +1125,9 @@ the document language.
 If you use the package \Macro{csquotes}, quotation symbols are also consistently and properly set
 when you use \Macro{enquote}.
 
-All the documentation now uses \texttt{biblatex} and \texttt{biber} instead of traditional \BibTeX.
+All the documentation uses \texttt{biblatex} and \texttt{biber} instead of traditional \BibTeX.
 The templates provide information on how to make the change in your own document.
-The default document settings use \texttt{biblatex} and \texttt{bibtex}.
+The default document settings also use \texttt{biblatex} and \texttt{biber}.
 
 As of \File{atlaslatex-01-00-00} the same macro names are used in both \Package{atlasdoc} and
 \Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
@@ -1189,6 +1219,21 @@ Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributi
 
 Sven Menke provided the code so that bold math works in titles correctly.
 Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-04-00-00}}
+\label{sec:atlaslatex4}
+%-------------------------------------------------------------------------------
+
+As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex} has been  restructured to reduce duplications and make separate commands for a new paper and a new note.
+\texttt{biber} is now the default backend for \Package{biblatex},
+as this allows the use of the \enquote{related} field for Errata.
+Errata are included in the ATLAS bibliography file.
+Metadata for notes and papers are now separate templates to prepare for them being created directly from Glance.
+This is the first version that is designed for the Glance/Git integration.
+As the above changes are quite major, there is a jump in the main version number.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Changes in \texttt{atlaslatex-02-00-00}}

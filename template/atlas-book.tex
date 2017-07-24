@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-% This file provides a skeleton ATLAS boook for things like TDRs.
+% This file provides a skeleton ATLAS book for things like TDRs.
 %-------------------------------------------------------------------------------
 % \pdfoutput=1
 % The \pdfoutput command is needed by arXiv/JHEP/JINST to ensure use of pdflatex.
@@ -10,7 +10,7 @@
 % Use this variant if the files are in a central location, e.g. $HOME/texmf.
 % \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[BOOK,UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[BOOK, UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -20,11 +20,12 @@
 %                        See atlas-draft-cover.tex for a list of variables that should be defined.
 %  cernpreprint          Create front page for a CERN preprint.
 %                        See atlas-preprint-cover.tex for a list of variables that should be defined.
+%  NOTE                  The document is an ATLAS note (draft).
 %  PAPER                 The document is an ATLAS paper (draft).
 %  CONF                  The document is a CONF note (draft).
 %  PUB                   The document is a PUB note (draft).
 %  BOOK                  The document is of book form, like an LOI or TDR (draft)
-%  txfonts=true|false    Use txfonts rather than the default newtx - needed for arXiv submission.
+%  txfonts=true|false    Use txfonts rather than the default newtx
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 %-------------------------------------------------------------------------------
@@ -32,7 +33,7 @@
 \usepackage{\ATLASLATEXPATH atlaspackage}
 % Commonly used options:
 %  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography.
-%  backend=biber         Use the biber backend rather than bibtex.
+%  backend=bibtex        Use the bibtex backend rather than biber.
 %  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
 %  minimal               Minimal set of packages.
 %  default               Standard set of packages.
@@ -40,9 +41,6 @@
 %-------------------------------------------------------------------------------
 % Style file with biblatex options for ATLAS documents.
 \usepackage{\ATLASLATEXPATH atlasbiblatex}
-
-% Package for creating list of authors and contributors to the analysis.
-\usepackage{\ATLASLATEXPATH atlascontribute}
 
 % Useful macros
 \usepackage{\ATLASLATEXPATH atlasphysics}
@@ -54,11 +52,11 @@
 
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.
-\addbibresource{atlas-document.bib}
-\addbibresource{bibtex/bib/ATLAS.bib}
-\addbibresource{bibtex/bib/CMS.bib}
-\addbibresource{bibtex/bib/ConfNotes.bib}
-\addbibresource{bibtex/bib/PubNotes.bib}
+% \addbibresource{atlas-document.bib}
+\addbibresource{bib/ATLAS.bib}
+\addbibresource{bib/CMS.bib}
+\addbibresource{bib/ConfNotes.bib}
+\addbibresource{bib/PubNotes.bib}
 
 % Paths for figures - do not forget the / at the end of the directory name.
 \graphicspath{{logos/}{figures/}}
@@ -97,6 +95,9 @@
 %===============================================================================
 
 Put the motivation here ...
+
+The ATLAS detector~\cite{PERF-2007-01} should be upgraded.
+
 
 %===============================================================================
 \chapter{Physics}
@@ -149,23 +150,15 @@ Such an appendix should be printed before the Bibliography.
 % just say \printbibliography here
 \printbibliography
 % If you want to use the traditional BibTeX you need to use the syntax below.
-%\bibliographystyle{bibtex/bst/atlasBibStyleWoTitle}
-%\bibliography{atlas-document,bibtex/bib/ATLAS}
+%\bibliographystyle{bib/bst/atlasBibStyleWoTitle}
+%\bibliography{atlas-document,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}
 %-------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
 \backmatter
 
-% Lists of figures and tables
+% Lists of figures and tables - useful at the draft stage
 \listoffigures
 \listoftables
-
-
-%-------------------------------------------------------------------------------
-% Print the list of contributors to the analysis
-% The argument gives the fraction of the text width used for the names
-%-------------------------------------------------------------------------------
-\clearpage
-\PrintAtlasContribute{0.30}
 
 \end{document}

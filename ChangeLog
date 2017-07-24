@@ -1,3 +1,18 @@
+2017-07-21  Ian Brock  <Ian.Brock@cern.ch>
+	* Switch from bibtex to biber as the standard biblatex backend.
+  * Move bibtex/bib to bib and bibtex/bst to bib/bst.
+	* Add Errata to ATLAS.bib. This only works properly with biblatex.
+	* Reorganise Makefile to use separate metadata files for notes and paper.
+	* Add ability to use latexmk in Makefile.
+	* Separate templates for paper draft and notes.
+	* Use same document template for texmf version.
+	* Add defaultsups option to newtxtext so multiple authors work properly with TeX Live 2017.
+	* Add more version variants to MC generator macros.
+	* Changes to atlasmetadefs,sty so that it works when coverpage is turned off.
+	* Change group-minimum-digits option for siunitx from 4 to 5.
+	* Add some explanation on use of group-minimum-digits to tables documentation.
+	* Start adding some documentation about useful packages to ATLAS LaTeX documentation.
+
 2017-07-03  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 03-03-00.
 	* June 2017 update of publications.
@@ -29,7 +44,7 @@
 	* Add option to reduce font sizes on title page.
 	* Add option to include mhchem early for TeX Live 2014.
 	* Add some more temporary files that come from latexmk and TextMate to the list to clean up.
-  * Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
+	* Small change to atlasdoc1.cls to get date printed when KOMA-Script is not used.
 
 2016-10-10  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 02-00-01.
@@ -142,11 +157,11 @@
 2015-03-17  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-07-01.
 	* Line numbers turned off by mistake in version 01-07-00.
-        * Added preliminary version of ATLAS.bib.
+	* Added preliminary version of ATLAS.bib.
 	* Add block option to atlaspackage.
 2015-03-13  Ian Brock  <Ian.Brock@cern.ch>
-        * Updated PUB and CONF note bib files. ATLASbib comes a bit later.
-        * Improve instructions for arXiv and CERN preprint.
+	* Updated PUB and CONF note bib files. ATLASbib comes a bit later.
+	* Improve instructions for arXiv and CERN preprint.
 2015-03-09  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-07-00.
 	* ATLAS CONF and PUB notes bib files included. Journal	publications to come.
