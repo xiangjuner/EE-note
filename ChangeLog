@@ -1,3 +1,7 @@
+2017-08-23  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 04-01-00.
+	* July 2017 update of publications.
+  * Add command to make sur e\ell is shown using PDF figures.
 2017-07-21  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 04-00-00.
 	* Switch from bibtex to biber as the standard biblatex backend.
