@@ -863,6 +863,7 @@
     \else
       \typeout{atlasdoc: this is the final version of an ATLAS book}
     \fi
+  \else
     % Add draft heading and line numbers
     \ifADOC@atlasdraft
       \ifx\ADOC@draftversion\@empty%
@@ -875,6 +876,7 @@
     \else
       \typeout{atlasdoc: this is the final version of an ATLAS document}
     \fi
+  \fi
 }
 
 \endinput
