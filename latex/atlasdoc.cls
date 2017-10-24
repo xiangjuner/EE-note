@@ -21,6 +21,7 @@
   prefix=ADOC@
 }
 \DeclareBoolOption[true]{atlasstyle}
+\DeclareBoolOption[true]{atlasdraft}
 \DeclareBoolOption[false]{coverpage}
 \DeclareBoolOption[false]{cernpreprint}
 \DeclareBoolOption[false]{preprint}
@@ -175,6 +176,7 @@
 \ADOC@skipbeforetitle=60\p@
 \newcommand{\skipbeforetitle}[1]{\ADOC@skipbeforetitle=#1}
 
+% Any additions here that affect the cover page should also be added to atlascover.sty
 \def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitleText}{Dummy AtlasTitleText in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitle}[1]{%
@@ -242,6 +244,60 @@
 \def\AtlasAbstractText{}
 \newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
+
+% Extra macros needs for the cover page - define them here to avoid need for atlasmetadefs.sty
+% This also avoids problems wth automatically generated metadata files
+\def\ACOV@CommentsDeadline{Comments deadline}
+\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
+
+\def\ACOV@AnalysisTeam{Analysis team}
+\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
+
+\def\ACOV@EgroupEditors{Editor egroup}
+\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
+
+\def\ACOV@EgroupEdBoard{EdBoard egroup}
+\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
+
+% Multiple corresponding editors
+\def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
+\newcommand{\AtlasCoverEditor}[2]{%
+  \g@addto@macro\ACOV@Editors{%
+    #1 & (\texttt{#2}) \\
+  }%
+}
+
+\def\ACOV@EdBoardMembers{}
+\newcommand{\AtlasCoverEdBoardMember}[1]{%
+  \g@addto@macro\ACOV@EdBoardMembers{%
+    #1 \\
+  }%
+}
+
+\def\ACOV@ReaderMembers{}
+\newcommand{\AtlasCoverReaderMember}[1]{%
+  \g@addto@macro\ACOV@ReaderMembers{%
+    #1 \\
+  }%
+}
+
+\newif\ifACOV@support
+\ACOV@supportfalse
+\def\ACOV@TwikiURL{}
+%\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
+\newcommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\def\ACOV@TwikiURL{\url{#1}}}
+
+% Supporting note list
+\def\ACOV@Notes{}
+\newcommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
+%  \ifx\ACOV@Notes\@empty
+%    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
+%  \fi
+  \g@addto@macro\ACOV@Notes{%
+    #1: \url{#2} \\
+  }%
+}
+
 
 %-------------------------------------------------------------------------------
 % Invoke main class
@@ -438,11 +494,13 @@
 % BOOK, i.e. book heading/footer code
 \newcommand{\AtlasBookHeading}{%
   \RequirePackage[headsepline]{scrpage2}
-  \ifx\ADOC@draftversion\@empty%
-    \relax
-  \else
-    \ihead{DRAFT}
-    \ifoot{\dateandtime}
+  \ifADOC@atlasdraft
+    \ifx\ADOC@draftversion\@empty%
+      \relax
+    \else
+      \ihead{DRAFT}
+      \ifoot{\dateandtime}
+    \fi
   \fi
   \pagestyle{scrheadings}
 }
@@ -497,10 +555,12 @@
     \hspace*{\fill}
     \parbox[b][35mm][t]{0.24\titlepageparbox}{%
       \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \ifx\ADOC@draftversion\@empty
-        \relax
-      \else
-        \normalsize\hspace*{\fill}Draft version \ADOC@draftversion
+      \ifADOC@atlasdraft
+        \ifx\ADOC@draftversion\@empty
+          \relax
+        \else
+          \normalsize\hspace*{\fill}Draft version \ADOC@draftversion
+        \fi
       \fi
     }
   }\par
@@ -735,12 +795,16 @@
       \mbox{}
     \else
       \begin{quote}\ADOC@abstractsize
-      \ifx\ADOC@draftversion\@empty%
-        \AtlasAbstractText\par
+      \ifADOC@atlasdraft
+        \ifx\ADOC@draftversion\@empty%
+          \AtlasAbstractText\par
+        \else
+          \begin{internallinenumbers}
+            \AtlasAbstractText
+          \end{internallinenumbers}\par
+        \fi
       \else
-        \begin{internallinenumbers}
-          \AtlasAbstractText
-        \end{internallinenumbers}\par
+        \AtlasAbstractText\par
       \fi
       \end{quote}
     \fi
@@ -776,10 +840,12 @@
       \ACOV@PrintAtlasCover
       \ACOV@PrintAtlasCoverPageTwo
       % Turn line numbers back on
-      \ifx\ADOC@draftversion\@empty%
-        \relax
-      \else
-        \linenumbers
+      \ifADOC@atlasdraft
+        \ifx\ADOC@draftversion\@empty%
+          \relax
+        \else
+          \linenumbers
+        \fi
       \fi
     }
   \fi
@@ -787,22 +853,28 @@
   \ifADOC@BOOK
     \AtlasBookHeading
     % Add draft heading and line numbers
-    \ifx\ADOC@draftversion\@empty%
-      \typeout{atlasdoc: this is not an ATLAS draft book}
+    \ifADOC@atlasdraft
+      \ifx\ADOC@draftversion\@empty%
+        \typeout{atlasdoc: this is not an ATLAS draft book}
+      \else
+        \typeout{atlasdoc: this is an ATLAS draft book}
+        \linenumbers
+      \fi
     \else
-      \typeout{atlasdoc: this is an ATLAS draft book}
-      \linenumbers
+      \typeout{atlasdoc: this is the final version of an ATLAS book}
     \fi
-  \else
     % Add draft heading and line numbers
-    \ifx\ADOC@draftversion\@empty%
-      \typeout{atlasdoc: this is not an ATLAS draft article}
+    \ifADOC@atlasdraft
+      \ifx\ADOC@draftversion\@empty%
+        \typeout{atlasdoc: this is not an ATLAS draft document}
+      \else
+        \typeout{atlasdoc: this is an ATLAS draft document}
+        \AtlasDraftHeading
+        \linenumbers
+      \fi
     \else
-      \typeout{atlasdoc: this is an ATLAS draft article}
-      \AtlasDraftHeading
-      \linenumbers
+      \typeout{atlasdoc: this is the final version of an ATLAS document}
     \fi
-  \fi
 }
 
 \endinput

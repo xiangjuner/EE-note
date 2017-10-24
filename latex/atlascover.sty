@@ -113,6 +113,8 @@
   \typeout{atlascover: ATLAS cover called standalone}
 \fi
 
+% All definitions should also be in atlasdoc.cls
+% They are needed here for a standalone cover that does not use atlasdoc.cls
 \@ifundefined{AtlasTitle}{%
   \typeout{atlascover: AtlasTitle etc. not yet defined}
   \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
@@ -159,59 +161,58 @@
   % Abstract
   \def\AtlasAbstractText{}
   \providecommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
+  \def\ACOV@CommentsDeadline{Comments deadline}
+  \providecommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
+
+  \def\ACOV@AnalysisTeam{Analysis team}
+  \providecommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
+
+  \def\ACOV@EgroupEditors{Editor egroup}
+  \providecommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
+
+  % Multiple corresponding editors
+  \def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
+  \providecommand{\AtlasCoverEditor}[2]{%
+    \g@addto@macro\ACOV@Editors{%
+      #1 & (\texttt{#2}) \\
+    }%
+  }
+
+  \def\ACOV@EgroupEdBoard{EdBoard egroup}
+  \providecommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
+
+  \def\ACOV@EdBoardMembers{}
+  \providecommand{\AtlasCoverEdBoardMember}[1]{%
+    \g@addto@macro\ACOV@EdBoardMembers{%
+      #1 \\
+    }%
+  }
+
+  \def\ACOV@ReaderMembers{}
+  \providecommand{\AtlasCoverReaderMember}[1]{%
+    \g@addto@macro\ACOV@ReaderMembers{%
+      #1 \\
+    }%
+  }
+
+  \newif\ifACOV@support
+  \ACOV@supportfalse
+  \def\ACOV@TwikiURL{}
+  %\providecommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
+  \providecommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\def\ACOV@TwikiURL{\url{#1}}}
+
+  % Supporting note list
+  \def\ACOV@Notes{}
+  \providecommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
+  %  \ifx\ACOV@Notes\@empty
+  %    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
+  %  \fi
+    \g@addto@macro\ACOV@Notes{%
+      #1: \url{#2} \\
+    }%
+  }
 }{}
-%\fi
 
-% Multiple corresponding editors
-\def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
-\newcommand{\AtlasCoverEditor}[2]{%
-  \g@addto@macro\ACOV@Editors{%
-    #1 & (\texttt{#2}) \\
-  }%
-}
-
-\def\ACOV@CommentsDeadline{Comments deadline}
-\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
-
-\def\ACOV@AnalysisTeam{Analysis team}
-\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
-
-\def\ACOV@EgroupEditors{Editor egroup}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
-
-\def\ACOV@EgroupEdBoard{EdBoard egroup}
-\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
-
-\def\ACOV@EdBoardMembers{}
-\newcommand{\AtlasCoverEdBoardMember}[1]{%
-  \g@addto@macro\ACOV@EdBoardMembers{%
-    #1 \\
-  }%
-}
-
-\def\ACOV@ReaderMembers{}
-\newcommand{\AtlasCoverReaderMember}[1]{%
-  \g@addto@macro\ACOV@ReaderMembers{%
-    #1 \\
-  }%
-}
-
-\newif\ifACOV@support
-\ACOV@supportfalse
-\def\ACOV@TwikiURL{}
-%\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
-\newcommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\def\ACOV@TwikiURL{\url{#1}}}
-
-% Supporting note list
-\def\ACOV@Notes{}
-\newcommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
-%  \ifx\ACOV@Notes\@empty
-%    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
-%  \fi
-  \g@addto@macro\ACOV@Notes{%
-    #1: \url{#2} \\
-  }%
-}
 
 % It seemed as if hyperref has to included here if you include a cover page from within atlasdoc
 \RequirePackage{hyperref}

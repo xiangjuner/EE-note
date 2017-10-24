@@ -22,6 +22,7 @@
 \DeclareBoolOption[true]{biblatex}
 \DeclareBoolOption[true]{siunitx}
 \DeclareBoolOption[false]{eVkern}
+\DeclareBoolOption[true]{percentspace}
 \DeclareBoolOption[true]{csquotes}
 \DeclareBoolOption[true]{subfig}
 \DeclareBoolOption[false]{subfigure}
@@ -238,6 +239,12 @@
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}
       \DeclareSIUnit\degr{\degree}
+      \ifAPKG@percentspace
+        \relax
+      \else
+        \DeclareSIUnit[number-unit-product={}]\percent{\char`\%}
+        \DeclareSIUnit[number-unit-product={}]\%{\char`\%}
+      \fi
       \DeclareSIUnit\nb{\nano\barn}
       \DeclareSIUnit\pb{\pico\barn}
       \DeclareSIUnit\fb{\femto\barn}

@@ -488,7 +488,7 @@ The full list of options is:
 \item[\Option{siunitx=true|{\normalfont false}}] do not include the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
   This option is set by default if you use the \Option{txfonts} fonts;
-\item[\Option{csquotes=true|{\normalfont false}}] do not include the \Package{csquotes} package;
+\item[\Option{percentspace=true|{\normalfont false}}] include or not the default space between a number and the \% sign;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
   \Package{subfigure}.
@@ -517,6 +517,14 @@ This is the amount used in the \File{atlasunit.sty} for \Macro{gev} etc.
 which is included by passing the option \Option{unit=true} to \Package{atlasphysics}.
 If you use \Package{siunitx}, I recommend setting \Option{unit=false},
 so that you use one consistent set of definitions throughout your document.
+
+The \Package{siunitx}~\cite{siunitx} package puts a (non-breaking) space between a number and the \% sign,
+as for any other unit.
+It says that this is as required by the SI system of units~\cite{SI}.
+However, conventions between publishers appear to differ~\cite{percentspace}.
+Many people are used to there being no space.
+Pass the option \Option{percentspace=false} to suppress the space.
+This option only works for \TeX\ Live versions 2011 and later.
 
 There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
 With \Package{atlasdoc} this problem seems to have gone away.
