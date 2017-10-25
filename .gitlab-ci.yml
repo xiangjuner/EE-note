@@ -1,9 +1,6 @@
 stages:
     - Docker
     - Trigger
-variables:
-  FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
-  TO: $FROM 
 
 # Buil jobs for manual and automatic
 # -------------------------------------
