@@ -1,0 +1,26 @@
+stages:
+    - Docker
+# Buil jobs for manual and automatic
+# -------------------------------------
+pogitlab:
+  variables:
+    FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
+  stage: Docker
+  only:
+  - master
+  tags:
+    - docker-image-build
+  script:
+    - echo "Preparing docker image"
+
+pogitlab-manual:
+  variables:
+    FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
+  stage: Docker
+  when: manual
+  except:
+  - master
+  tags:
+    - docker-image-build
+  script:
+    - echo "Preparing docker image"
