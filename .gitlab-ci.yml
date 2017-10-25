@@ -7,7 +7,9 @@ variables:
 
 # Buil jobs for manual and automatic
 # -------------------------------------
-pogitlab:
+# These jobs will run the docker image creation for atlaslatex
+# automatically for the master branch and manual for the rest
+al-docker:
   stage: Docker
   only:
   - master
@@ -16,18 +18,29 @@ pogitlab:
   script:
     - echo "Preparing docker image"
 
-pogitlab-manual:
+al-dockr-manual:
   stage: Docker
   when: manual
   except:
-  - master
+    - master
   tags:
     - docker-image-build
   script:
     - echo "Preparing docker image"
 
-# This job will trigger the pipeline in gitlab-integration to update the docker image accordingly
-build_docs:
+# These jobs will trigger the docker image creation for pogitlab in the gitlab-integration project
+# automatically for the master branch and manual for the rest
+trigger-pogitlab:
   stage: Trigger
+  only:
+    - master
+  script:
+    - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=makebib https://gitlab.cern.ch/api/v4/projects/19489/trigger/pipeline
+
+trigger-pogitlab-manual:
+  stage: Trigger
+  when: manual
+  except:
+    - master
   script:
     - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=makebib https://gitlab.cern.ch/api/v4/projects/19489/trigger/pipeline
