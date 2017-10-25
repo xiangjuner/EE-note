@@ -5,6 +5,7 @@ stages:
 pogitlab:
   variables:
     FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
+    TO: $FROM
   stage: Docker
   only:
   - master
