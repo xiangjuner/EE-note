@@ -14,8 +14,6 @@ pogitlab:
     - echo "Preparing docker image"
 
 pogitlab-manual:
-  variables:
-    FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
   stage: Docker
   when: manual
   except:

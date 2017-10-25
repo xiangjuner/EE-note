@@ -2,6 +2,6 @@
 FROM gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab
 
 # nstall PyYaml
-COPY . /user/share/atlaslatex
+COPY . /usr/share/atlaslatex
 
 MAINTAINER J. P. Araque <jp.araque@cern.ch>
