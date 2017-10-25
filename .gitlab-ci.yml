@@ -1,10 +1,12 @@
 stages:
     - Docker
+variables:
+  FROM: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
+  TO: $FROM 
+
 # Buil jobs for manual and automatic
 # -------------------------------------
 pogitlab:
-  variables:
-    TO: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/pogitlab 
   stage: Docker
   only:
   - master
