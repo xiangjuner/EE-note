@@ -32,7 +32,5 @@ al-dockr-manual:
 # automatically for the master branch and manual for the rest
 trigger-pogitlab:
   stage: Trigger
-  only:
-    - master
   script:
     - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.cern.ch/api/v4/projects/19489/trigger/pipeline
