@@ -13,7 +13,7 @@ All necessary files are collected in a single package called \texttt{atlaslatex}
 The package is available from the web pages of the Publication Committee~\cite{pubcom} and from 
 Git~\cite{pubcom-git}.
 
-The collection replaces and hopefully improves on the previous packages. 
+The collection replaces and improves on the previous packages. 
 In particular it supersedes:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{atlasnote-00-04-05}
@@ -48,6 +48,10 @@ This structure means that it is easier to update the style files if a new versio
 \Package{atlaslatex} is released. 
 Each document can then be independent of the \Package{atlaslatex} release.
 
+%------------------------------------------------------------------------------
+\section{Getting started}
+%------------------------------------------------------------------------------
+
 To create a new document you can issue one of the commands:
 %
 \begin{verbatim}
@@ -61,12 +65,14 @@ The command copies \File{atlas-document.tex} and
 \File{atlas-paper-metadata.tex} or \File{atlas-note-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
 \footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
-  For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
+For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
 The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2016.
 The \texttt{make newpaper|newnote} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
 By default the document will be an ATLAS note draft.
 Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB notes).
 % If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
+Replace the option \Option{PAPER} with \Option{CONF} or \Option{} as appropriate.
+
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
 You can try the command \texttt{make run\_latexmk} instead,
@@ -112,6 +118,30 @@ As of Version 01-07-00 of \Package{atlaslatex} you should include the command \M
 
 Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
 
+%------------------------------------------------------------------------------
+\section{ATLAS \LaTeX\ and the Physics Office GitLab project}
+%------------------------------------------------------------------------------
+
+With the move of ATLAS software and documents to Git,
+new opportunities are available to streamline the production of documents
+and smooth the process of submitting them to arXiv and journals.
+This project is called PO-GitLab in the following~\cite{atlas-PO-gitlab}.
+
+In order for the new tools to work smoothly some file-naming conventions should be followed.
+If the Physics Office set up the Git repository, the files should already have the correct names.
+The conventions are documented on
+\url{https://gitlab.cern.ch/atlas-physics-office/gitlab-integration/wikis/newproject}.
+For paper drafts, in short:
+\begin{itemize}
+  \item the main file should have the name GROUP-YEAR-NUM-PAPER.tex;
+  \item the metadata file should have the name GROUP-YEAR-NUM-PAPER-metadata.tex
+  \item the auxiliary material should be included in a file with the name GROUP-YEAR-NUM-PAPER-auxmat.tex
+\end{itemize}
+
+In addition:
+\begin{itemize}
+  \item figures must be included using the \Macro{includegraphics} command;
+\end{itemize}
 
 %-------------------------------------------------------------------------------
 \section{Title, author and document numbers}
@@ -250,6 +280,11 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     reviewing.
     Should be included when paper draft is circulated to ATLAS.
     Highly recommended for all documents in the draft stage.
+    In the future, the steering of whether the document is a draft or not will be done
+    using the option \Option{atlasdraft}.
+    At present (\Package{atlaslatex} 04-03-00 onwards),
+    if \Option{atlasdraft=true} or \Macro{AtlasVersion} is not empty,
+    the document is declared as a draft.
 
   \item {\verb|\AtlasJournal{<Journal Name>}|} displays the phrase \emph{to
     be submitted to Journal Name} at the bottom of the front page and
@@ -338,6 +373,7 @@ Several more options can be set.
 In the following the default option is in boldface.
 \begin{description}
 \item[\Option{atlasstyle=true|{\normalfont false}}] turn on (default) or off the use of the ATLAS style for the document;
+\item[\Option{atlasdraft={\normalfont true}|false}] this is a draft version of the document;
 \item[\Option{coverpage}] include an ATLAS draft cover page;
 \item[\Option{cernpreprint}] make the front page for a CERN preprint.
   The option \Option{preprint} works as well, but is deprecated;
@@ -346,7 +382,7 @@ In the following the default option is in boldface.
 \item[\Option{CONF}] the document is a CONF note;
 \item[\Option{PUB}] the document is an PUB note;
 \item[\Option{BOOK}] the document is book form like an LOI or TDR;
-\item[\Option{auxmat}] the document contains auxiliary material for a preprint;
+\item[\Option{HEPDATA}] a separate document with detailed tables etc.\ for HepData;
 \item[\Option{texlive=2016}] adjust if you use an older version of \TeX\ Live like 2011.
   A value less than 2013 adjusts a few \Package{biblatex} options.
   A value less than 2012 uses \Package{txfonts}.
@@ -369,6 +405,11 @@ In the following the default option is in boldface.
 \item[\Option{copyrightoffset=0em}] adjust the position of the copyright,
   if it is not completely correct.
 \end{description}
+
+The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00.
+It is intended to replace to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
+In a later version the default value will be set to \Option{false},
+so that this option simply has to be removed when a document is final.
 
 The following options were removed in \Package{atlasdoc} in \Package{atlaslatex 02-00-00}.
 They are mostly still available in \Package{atlasdoc1}.
@@ -419,10 +460,8 @@ The \Package{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{babel}: become language aware;
-\item \Package{fancyhdr} or \Package{scrpage2}: defines the header for draft mode
+\item \Package{scrpage2}: defines the header for draft mode
   and for auxiliary material documents.
-  \Package{fancyhdr} is used for the standard \LaTeX\ classes and
-  \Package{scrpage2} for \KOMAScript;
 \item \Package{fontenc}: output font encoding;
 \item \Package{hyperref}: add hyperlinks and ability to click on cross-references;
 \item \Package{graphicx}: include graphics in the document;
@@ -547,7 +586,7 @@ Other packages that have been used at some point include:
 
 The package also provides cover pages for the circulations of ATLAS drafts and 
 for the front page for the CERN preprint version of an ATLAS paper.
-A further cover page is provided for a document containing auxiliary material associated with a preprint/paper.
+A further cover page is provided for a document containing detailed tables associated with a preprint/paper.
 The style file can be found in \texttt{latex/atlascover.sty}.
 
 If you wish to use the \texttt{atlascover} package with the 
@@ -643,20 +682,28 @@ you can switch to \Package{txfonts} by including the option \Option{txfonts} wit
 
 
 %-------------------------------------------------------------------------------
-\section{CERN preprint and arXiv}
+\section{CERN preprints and arXiv}
 \label{sec:preprint}
 %-------------------------------------------------------------------------------
 
 If you are writing an ATLAS paper and it has been approved by the collaboration,
-you have to make a version with the CERN preprint title page before submitting the paper to arXiv.
-You do this by replacing the option \Option{PAPER} by \Option{cernpreprint} in \Package{atlasdoc}.
+you have to make a version with the CERN preprint title page and prepare the 
+paper for submission to arXiv.
+
+If your paper draft is within the PO-GitLab project, the following steps will be
+performed by the Physics Office using the GitLab Continuous Integration tools.
+Before asking the Physics Office to do this,
+you should check that your paper draft follows the ATLAS conventions.
+
+In order to turn the paper into a CERN preprint,
+you should replace the option \Option{PAPER} by \Option{cernpreprint} in \Package{atlasdoc}.
 The CERN preprint number is given via the macro \Macro{PreprintIdNumber}.
 At the same time you should pass the option \Option{texlive=2016} to
 \Package{atlasdoc}.
 This is because arXiv contains a 2016 \TeX\ Live installation.
 Summarising, a typical \Macro{documentclass} command would be:
 \begin{verbatim}
-\documentclass[cernpreprint,texlive=2016,UKenglish]{latex/atlasdoc}
+\documentclass[cernpreprint, texlive=2016, UKenglish]{latex/atlasdoc}
 \pdfoutput=1
 \end{verbatim}
 The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
@@ -708,14 +755,25 @@ This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
 
 
 %-------------------------------------------------------------------------------
-\section{Auxiliary material}
+\section{Auxiliary and HepData material}
 \label{sec:auxmat}
 %-------------------------------------------------------------------------------
 
+Many papers have extra plots and tables that should be made public,
+but are not submitted to arXiv and the journal.
+These should be collected in a file \File{mydocument-hepdata.tex},
+which is included in the draft document during its circlation within ATLAS,
+This is transparent for editors if they use use PO-GitLab system,
+but has to be done manually for other papers.
+
 Some papers have many pages of extra tables and plots that are mainly of use to theorists
 who need extra information.
-Such material can be collected in a separate document.
-The front page for this document is formatted using the \Option{auxmat} option.
+Such material should usually included in the paper draft until it is ready for
+submission to arXiv and to the journal.
+The default name for the file containing the information is \File{mydocument-hepdata.tex}.
+At the submission stage it should be moved into a separate document.
+A skeleton document created using the command \verb|make newdata BASENAME=|.
+The front page for this document is formatted using the \Option{HEPDATA} option.
 If you use this option you should specify the arXiv preprint identifier
 using the macro \Macro{arXivId} and the HepData record using the macro
 \Macro{HepDataRecord}.
@@ -725,7 +783,7 @@ Use of this option also adds the arXiv preprint identifier to the top of every p
 of the document.
 
 If you want to create an auxiliary material document with an older \TeX\ Live version such as 2009, 
-use the command \texttt{make auxmat TEXLIVE=2009}.
+use the command \texttt{make newdata TEXLIVE=2009}.
 
 
 %-------------------------------------------------------------------------------
@@ -865,10 +923,12 @@ and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite
 
 Line numbers can be printed using the \Package{lineno} package, 
 which is included by default.
-Line numbers are automatically turned on if you set \Macro{AtlasVersion} (or \Macro{draftversion}).
+Line numbers are automatically turned on if you set \Macro{AtlasVersion} (or \Macro{draftversion})
+or you pass the option \Option{atlasdraft=true} to \Package{atlasdoc}.
 In general, you can turn them on and off in a document by using the \Macro{linenumbers} or \Macro{nolinenumbers} commands.
-Note that if \Macro{AtlasVersion} is set, you will always get line numbers on the standard title page.
-Hence, for CONF and PUB notes it is important to comment out \Macro{AtlasVersion} in order to suppress the line numbers for the final version.
+Note that if \Macro{AtlasVersion} or option \Option{atlasdraft=true} are set,
+you will always get line numbers on the standard title page.
+Hence, for papers, CONF and PUB notes it is important to comment out \Macro{AtlasVersion} in order to suppress the line numbers for the final version.
 
 In order to avoid line numbers going slightly wrong around figures and tables,
 separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
@@ -1228,13 +1288,32 @@ Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributi
 Sven Menke provided the code so that bold math works in titles correctly.
 Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
 
+Juan Pedro Araque has one most of the work setting up the PO-GitLab project.
+This resulted in a much smoother submission process for papers and
+an improved handling of auxiliary material.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-05-00-00}}
+\label{sec:atlaslatex5}
+%-------------------------------------------------------------------------------
+
+Version 05-00-00 of \Package{atlaslatex} is the first version set up
+to be fully compatible with the PO-GitLab scheme for papers.
+
+Separate (dummy) files for auxiliary material and HepData tables are created for new papers.
+The \verb|make auxmat| command has been renamed to \verb|make newdata|,
+as the auxilary material for the webpage is now separated
+from a separate file for tables etc.\ for HepData.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Changes in \texttt{atlaslatex-04-00-00}}
 \label{sec:atlaslatex4}
 %-------------------------------------------------------------------------------
 
-As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex} has been  restructured to reduce duplications and make separate commands for a new paper and a new note.
+As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex}
+has been restructured to reduce duplications and make separate commands for a new paper and a new note.
 \texttt{biber} is now the default backend for \Package{biblatex},
 as this allows the use of the \enquote{related} field for Errata.
 Errata are included in the ATLAS bibliography file.

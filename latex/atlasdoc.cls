@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{04-02-00}
+\def\ATPackageVersion{05-00-XX}
 
-\ProvidesClass{latex/atlasdoc}[2017/09/29 v.04-02-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2017/11/03 v.05-00-XX ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -30,7 +30,7 @@
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
-\DeclareBoolOption[false]{auxmat}
+\DeclareBoolOption[false]{HEPDATA}
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
@@ -60,15 +60,14 @@
 
 % CERN preprint or auxiliary material
 \ifADOC@cernpreprint
-  \ADOC@auxmatfalse
+  \ADOC@HEPDATAfalse
 \else
   \ifADOC@preprint
     \ADOC@cernpreprinttrue
-    \ADOC@auxmatfalse
+    \ADOC@HEPDATAfalse
   \else
-    \ifADOC@auxmat
+    \ifADOC@HEPDATA
       \ADOC@cernpreprintfalse
-      \ADOC@auxmattrue
     \fi
   \fi
 \fi
@@ -180,7 +179,8 @@
 \def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitleText}{Dummy AtlasTitleText in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitle}[1]{%
-  \def\@title{#1}%
+  % \def\@title{#1}%
+  \title{#1}%
   \renewcommand{\AtlasTitleText}{#1}%
 }
 \def\@author{The ATLAS Collaboration}
@@ -474,9 +474,13 @@
 
 % Draft heading/footer code
 \newcommand{\AtlasDraftHeading}{%
-  \RequirePackage[headsepline]{scrpage2}
+  \ifthenelse{\ADOC@texlive < 2015}{%
+    \RequirePackage[headsepline]{scrpage2}
+  }{%
+  \RequirePackage[headsepline]{scrlayer-scrpage}
+  }
   \ihead{}
-  \chead[]{\fbox{\textsf\bfseries DRAFT}}
+  \chead[]{\fbox{\textsf\bfseries ATLAS DRAFT}}
   \ohead{}
   \ifoot{\dateandtime}
   \cfoot{}
@@ -484,21 +488,29 @@
   \pagestyle{scrheadings}
 }
 
-% Include fancier header and footer for auxiliary material document
-\ifADOC@auxmat
-  \RequirePackage[headsepline]{scrpage2}
+% Include fancier header and footer for HepData material document
+\ifADOC@HEPDATA
+  \ifthenelse{\ADOC@texlive < 2015}{%
+    \RequirePackage[headsepline]{scrpage2}
+  }{%
+    \RequirePackage[headsepline]{scrlayer-scrpage}
+  }
   \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
   \pagestyle{scrheadings}
 \fi
 
 % BOOK, i.e. book heading/footer code
 \newcommand{\AtlasBookHeading}{%
-  \RequirePackage[headsepline]{scrpage2}
+  \ifthenelse{\ADOC@texlive < 2015}{%
+    \RequirePackage[headsepline]{scrpage2}
+  }{%
+    \RequirePackage[headsepline]{scrlayer-scrpage}
+  }
   \ifADOC@atlasdraft
     \ifx\ADOC@draftversion\@empty%
       \relax
     \else
-      \ihead{DRAFT}
+      \ihead{ATLAS DRAFT}
       \ifoot{\dateandtime}
     \fi
   \fi
@@ -607,7 +619,7 @@
 
 %-------------------------------------------------------------------------------
 % Auxiliary material title header
-\newcommand{\AuxmatTitleHeader}{%
+\newcommand{\HepDataTitleHeader}{%
   \parbox[t]{\linewidth}{%
     {\centering
       \sffamily\mdseries\fontsize{14}{16.8}\selectfont
@@ -707,7 +719,7 @@
 
 %-------------------------------------------------------------------------------
 % Auxiliary material title body
-%\newcommand{\AuxmatTitleBody}{%
+%\newcommand{\HepDataTitleBody}{%
 %  \parbox[t]{\linewidth}{%
 %    {\centering
 %      \bfseries\fontsize{16}{19.2}\selectfont
@@ -761,9 +773,9 @@
   \titlehead{\CERNPreprintTitleHeader}
   \date{}%\vspace*{-5ex}}
 \else
-  \ifADOC@auxmat
-    \typeout{atlasdoc: defining Auxiliary Material title page}
-    \titlehead{\AuxmatTitleHeader}
+  \ifADOC@HEPDATA
+    \typeout{atlasdoc: defining HepData Material title page}
+    \titlehead{\HepDataTitleHeader}
     \date{}%\vspace*{-5ex}}
   \else
     \typeout{atlasdoc: defining ATLAS document title page}
@@ -855,7 +867,7 @@
     % Add draft heading and line numbers
     \ifADOC@atlasdraft
       \ifx\ADOC@draftversion\@empty%
-        \typeout{atlasdoc: this is not an ATLAS draft book}
+        \typeout{*** atlasdoc: this ATLAS draft book does not have a version number}
       \else
         \typeout{atlasdoc: this is an ATLAS draft book}
         \linenumbers
@@ -867,7 +879,7 @@
     % Add draft heading and line numbers
     \ifADOC@atlasdraft
       \ifx\ADOC@draftversion\@empty%
-        \typeout{atlasdoc: this is not an ATLAS draft document}
+        \typeout{*** atlasdoc: this ATLAS draft document does not have a version number!}
       \else
         \typeout{atlasdoc: this is an ATLAS draft document}
         \AtlasDraftHeading

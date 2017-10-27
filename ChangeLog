@@ -1,6 +1,13 @@
-2017-10-10  Ian Brock  <Ian.Brock@cern.ch>
+2017-11-03  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 05-00-XX.
+	* Add atlasdraft option to indicate if the document is a draft.
+	* September and October updates of publications.
+	* A skeleton Auxiliary Material file is included by default for papers.
+	* The auxmat option has been renamed to HEPDATA to reflect its usage.
 	* Add percentspace option to atlaspackage so space between number and percent can be turned off.
- 	* Add \MADGRAPHV and \MGMCatNLOV to atlasmisc.sty.
+	* Add \MADGRAPHV and \MGMCatNLOV to atlasmisc.sty.
+	* Move from scrpage2 to scrlayer-scrpage package for TeX Live > 2014.
+
 2017-09-29  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 04-02-00.
 	* August 2017 update of publications.

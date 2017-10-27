@@ -166,17 +166,14 @@ Such an appendix should be printed before the Bibliography.
 %\bibliography{atlas-document,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}
 %-------------------------------------------------------------------------------
 
-
 %-------------------------------------------------------------------------------
-\clearpage
-\part*{Auxiliary material}
-\addcontentsline{toc}{part}{Auxiliary material}
+% Auxiliary material - comment out the following line if you do not have any
+\include{atlas-document-auxmat}
 %-------------------------------------------------------------------------------
 
-In an ATLAS paper, auxiliary plots and tables that are supposed to be made public 
-should be collected in an appendix that has the title \enquote{Auxiliary material}.
-This appendix should be printed after the Bibliography.
-At the end of the paper approval procedure,
-this information should be split into a separate document -- see \texttt{atlas-auxmat.tex}.
+%-------------------------------------------------------------------------------
+% Extra tables etc. for HepData - comment in the following line if you have any
+% \include{atlas-document-hepdata}
+%-------------------------------------------------------------------------------
 
 \end{document}

@@ -50,7 +50,7 @@ default: run_pdflatex
 
 .PHONY: run_latexmk
 .PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
-.PHONY: draftcover preprintcover auxmat
+.PHONY: draftcover preprintcover newdata
 .PHONY: clean cleanpdf help
 
 # Standard pdflatex target
@@ -76,10 +76,10 @@ run_latexmk:
 new: newnote
 
 newpaper: TEMPLATE=atlas-paper
-newpaper: newdocument newfiles newpapermetadata
+newpaper: newdocument newfiles newpapermetadata newauxmat
 
 newpapertexmf: TEMPLATE=atlas-paper
-newpapertexmf: newdocumenttexmf newfiles newpapermetadata
+newpapertexmf: newdocumenttexmf newfiles newpapermetadata newauxmat
 
 newnote: TEMPLATE=atlas-note
 newnote: newdocument newfiles newnotemetadata
@@ -107,9 +107,9 @@ preprintcover:
 	  >$(BASENAME)-preprint-cover.tex
 	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
 
-auxmat:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-auxmat.tex | \
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-auxmat.tex
+newdata:
+	sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex | \
+	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-hepdata-main.tex
 
 newdocument:
 	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
@@ -142,6 +142,10 @@ newfiles:
 	echo "% Put you own bibliography entries in this file" > $(BASENAME).bib
 	# touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
+
+newauxmat:
+	cp template/atlas-auxmat.tex $(BASENAME)-auxmat.tex
+	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
 
 run_latex: dvipdf
 
@@ -193,9 +197,9 @@ help:
 	@echo "make preprintcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "pdflatex mydocument-preprint-cover"
 	@echo ""
-	@echo "If you need a document for auxiliary material give the commands:"
-	@echo "make auxmat [BASENAME=mydocument] [TEXLIVE=YYYY]"
-	@echo "pdflatex mydocument-auxmat"
+	@echo "If you need a document for HepData material give the commands:"
+	@echo "make newdata [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "pdflatex mydocument-hepdata-main"
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
 	@echo "make cleanpdf to clean output PDF files"
@@ -213,12 +217,12 @@ clean:
 cleanpdf:
 	-rm $(BASENAME).pdf 
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
-	-rm $(BASENAME)-auxmat.pdf
+	-rm $(BASENAME)-hepdata-main.pdf
 
 cleanps:
 	-rm $(BASENAME).ps 
 	-rm $(BASENAME)-draft-cover.ps $(BASENAME)-preprint-cover.ps
-	-rm $(BASENAME)-auxmat.ps
+	-rm $(BASENAME)-hepdata-main.ps
 
 cleanall: clean cleanpdf cleanps
 
