@@ -8,12 +8,12 @@
 % Use this variant if the files are in a central location, e.g. $HOME/texmf
 % \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[atlasstyle,cernpreprint,txfonts,UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[cernpreprint, atlasdraft=true, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish
 % british and american also work!
 % Relevant options:
+%  atlasdraft=true|false This document is an ATLAS draft.
 %  texlive=YYYY          Specify TeX Live version (2016 is default)
-%  atlasstyle=true|false Use ATLAS style for document
 %  txfonts=true|false    Use txfonts rather than the default newtx
 %  paper=a4|letter       Set paper size to A4 (default) or letter
 
@@ -41,7 +41,7 @@
 \AtlasTitle{A standalone cover for CERN preprints}
 
 % CERN preprint number ---> can be found in CDS entry for Draft 2!
-\PreprintIdNumber{CERN-PH-EP-2016-XXX}
+\PreprintIdNumber{CERN-PH-EP-2017-XXX}
 
 % Submission journal
 \AtlasJournal{Physical Review Letters}

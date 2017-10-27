@@ -9,10 +9,11 @@
 % Use this variant if the files are in a central location, e.g. $HOME/texmf.
 % \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[NOTE, atlasdraft=true, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
 %  texlive=YYYY          Specify TeX Live version (2016 is default).
 %  coverpage             Create ATLAS draft cover page for collaboration circulation.
 %                        See atlas-draft-cover.tex for a list of variables that should be defined.
