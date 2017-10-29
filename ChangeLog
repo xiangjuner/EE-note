@@ -1,5 +1,5 @@
 2017-11-03  Ian Brock  <Ian.Brock@cern.ch>
-	* Tag as version 05-00-XX.
+	* Tag as version 05-00-99.
 	* Add atlasdraft option to indicate if the document is a draft.
 	* September and October updates of publications.
 	* A skeleton Auxiliary Material file is included by default for papers.
