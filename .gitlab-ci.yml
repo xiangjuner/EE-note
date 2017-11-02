@@ -7,6 +7,8 @@ stages:
 # These jobs will run the docker image creation for atlaslatex
 # automatically for the master branch and manual for the rest
 al-docker:
+  variables:
+    DOCKER_FILE: ".config/Dockerfile"
   stage: Docker
   only:
   - master
@@ -16,6 +18,8 @@ al-docker:
     - echo "Preparing docker image"
 
 al-dockr-manual:
+  variables:
+    DOCKER_FILE: ".config/Dockerfile"
   stage: Docker
   when: manual
   allow_failure: false
