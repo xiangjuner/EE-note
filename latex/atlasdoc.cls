@@ -414,8 +414,9 @@
     \typeout{atlasdoc: using Libertine fonts}
     \RequirePackage{libertine}
     \RequirePackage[T1]{fontenc}
-    \RequirePackage[libertine, defaultsups]{newtxmath}
-  \else
+    % \RequirePackage[libertine, defaultsups]{newtxmath}
+    \RequirePackage[libertine]{newtxmath}
+    \else
     \ifADOC@palatino
       \typeout{atlasdoc: using Palatino fonts}
       % Palatino for rm and math | Helvetica for ss | Courier for tt
@@ -432,7 +433,8 @@
         \typeout{*** atlasdoc: include amsmath before newtxmath}
         \RequirePackage{amsmath}
       }{%
-        \RequirePackage[defaultsups]{newtxtext}
+      % \RequirePackage[defaultsups]{newtxtext}
+      \RequirePackage{newtxtext}
       }
       \RequirePackage{newtxmath}
     \fi
