@@ -1,6 +1,6 @@
 stages:
   - Docker
-    - Trigger
+  - Trigger
 
 # Buil jobs for manual and automatic
 # -------------------------------------
