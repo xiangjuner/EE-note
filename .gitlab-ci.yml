@@ -20,6 +20,7 @@ al-docker:
 # These jobs will trigger the docker image creation for pogitlab in the gitlab-integration project
 # automatically for the master branch and manual for the rest
 trigger-pogitlab:
+  stage: Trigger
   only: 
     - master@atlas-physics-office/atlaslatex
   stage: trigger
