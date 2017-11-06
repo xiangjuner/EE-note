@@ -1,5 +1,7 @@
-# Directories to ignore
-# tar
+# PDF files in top-level directory
+/*.pdf
+# PDF files produced by epstopdf
+*-eps-converted-to.pdf
 
 # Generic files to ignore
 *.aux
@@ -17,12 +19,3 @@
 *.spl
 *.synctex.gz
 *.toc
-
-# Specific files to ignore
-# mydocument*
-# acknowledgements/*.pdf
-# journal/*.pdf
-# journal/atlas-revtexNotes.bib
-# doc/*/*.pdf
-# doc/mkdoc.py
-# doc/atlas_physics/mkphysics.py
