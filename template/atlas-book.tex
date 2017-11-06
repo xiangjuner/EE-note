@@ -76,7 +76,7 @@
 % Title, abstract and document 
 \input{atlas-document-metadata}
 % Author and title for the PDF file
-\hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
+\hypersetup{pdftitle={ATLAS document}, pdfauthor={The ATLAS Collaboration}}
 
 %-------------------------------------------------------------------------------
 % Content
@@ -89,12 +89,12 @@
 \frontmatter
 \maketitle
 
-\pagenumbering{roman}
+% \pagenumbering{roman}
 \tableofcontents
 
 \clearpage
 \mainmatter
-\pagenumbering{arabic}
+% \pagenumbering{arabic}
 %===============================================================================
 \chapter{Executive summary}
 %===============================================================================
@@ -172,6 +172,7 @@ Such an appendix should be printed before the Bibliography.
 
 % Add a back cover image here - make sure it is on the back side of a new sheet
 % \cleardoublepage
+% \pagestyle{empty}
 % \mbox{}
 % \newpage
 % \includepdf{file2.pdf}

@@ -184,8 +184,8 @@
   \title{#1}%
   \renewcommand{\AtlasTitleText}{#1}%
 }
-\def\@author{The ATLAS Collaboration}
-\def\@date{\today}
+\author{The ATLAS Collaboration}
+\date{\today}
 
 % Draft version
 \def\ADOC@draftversion{}
