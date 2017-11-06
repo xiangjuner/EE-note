@@ -18,13 +18,11 @@
 *.synctex.gz
 *.toc
 
-*.bak
-
 # Specific files to ignore
-mydocument*
-acknowledgements/*.pdf
-journal/*.pdf
-journal/atlas-revtexNotes.bib
-doc/*/*.pdf
-doc/mkdoc.py
-doc/atlas_physics/mkphysics.py
+# mydocument*
+# acknowledgements/*.pdf
+# journal/*.pdf
+# journal/atlas-revtexNotes.bib
+# doc/*/*.pdf
+# doc/mkdoc.py
+# doc/atlas_physics/mkphysics.py
