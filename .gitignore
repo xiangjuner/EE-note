@@ -2,7 +2,6 @@
 # tar
 
 # Generic files to ignore
-*.bak
 *.aux
 *.bcf
 *.bbl
@@ -10,15 +9,16 @@
 .*.lb
 *.fdb_latexmk
 *.fls
+*.lof
 *.log
+*.lot
 *.out
 *.run.xml
 *.spl
 *.synctex.gz
 *.toc
-*.lof
-*.lot
-*.synctex.gz
+
+*.bak
 
 # Specific files to ignore
 mydocument*

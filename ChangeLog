@@ -1,12 +1,16 @@
 2017-11-03  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 05-00-99.
-	* Add atlasdraft option to indicate if the document is a draft.
 	* September and October updates of publications.
+	* Add a proper title page for the BOOK option.
+	* Book abstract is put on a separate page.
+	* Add atlasdraft option to indicate if the document is a draft.
+	* Add option abstract, which should be set to false for books without an abstract.
 	* A skeleton Auxiliary Material file is included by default for papers.
 	* The auxmat option has been renamed to HEPDATA to reflect its usage.
 	* Add percentspace option to atlaspackage so space between number and percent can be turned off.
 	* Add \MADGRAPHV and \MGMCatNLOV to atlasmisc.sty.
 	* Move from scrpage2 to scrlayer-scrpage package for TeX Live > 2014.
+	* Titles for report and misc bibliography entries by default in italics.
 
 2017-09-29  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 04-02-00.

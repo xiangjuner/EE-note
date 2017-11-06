@@ -399,6 +399,9 @@ In the following the default option is in boldface.
   (default for older \TeX Live versions);
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014;
+\item[\Option{abstract=true|\normalfont{false}}] the document contains an abstract.
+  This option is only needed together wth the \Option{BOOK} option,
+  if the book does not have an abstract;
 \item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long;
@@ -742,6 +745,34 @@ The metadata commands that are needed in addition to the title, author and abstr
 
 More details on arXiv recommendations can be found at
 \url{https://arxiv.org/help/submit_tex}.
+
+
+%-------------------------------------------------------------------------------
+\section{ATLAS TDR and LOI documents}
+\label{sec:book}
+%-------------------------------------------------------------------------------
+
+If you include the option \Option{BOOK}, \Package{atlasdoc} uses the \Package{scrbook}
+as the document class.
+This option is geared to long documents such as TDRs and LOIs.
+Such a document has various numbers which can be set as follows:
+\begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+  \item \Macro{AtlasRefCode}: ATLAS reference code, e.g.\ ATLAS-TDR-099.
+  \item \Macro{PreprintIdCode}: LHCC reference code, e.g.\ CERN-LHCC-2017-099.
+  \item \Macro{AtlasDate}: Official date of the document.
+\end{itemize}
+The title will be typeset flushleft, rather than the usual centering.
+A typical title would be:
+\begin{verbatim}
+  \AtlasTitle{Technical Design Report\\
+  for the ATLAS Detector Upgrade}
+\end{verbatim}
+
+If you want to add images to the front and back covers,
+the template contains commented out commands that allow you to do this.
+The \Package{pdfpages} package seems to work very well for such things.
+The images can be in \texttt{pdf}, \texttt{png} or \texttt{jpg} format.
+Unlike \macro{includegrpahics} you should include the filename extension.
 
 
 %-------------------------------------------------------------------------------

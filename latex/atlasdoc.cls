@@ -41,6 +41,7 @@
 \DeclareBoolOption[false]{libertine}
 \DeclareBoolOption[false]{palatino}
 \DeclareBoolOption[false]{mhchem}
+\DeclareBoolOption[true]{abstract}
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareStringOption[0pt]{titleextraheight}
@@ -241,9 +242,13 @@
 \newcommand*{\subprepend}[1]{\def\ADOC@subprepend{#1}}
 
 % Abstract text
+% \newif\ifADOC@abstract
+% \ADOC@abstractfalse
 \def\AtlasAbstractText{}
 \newcommand{\AtlasAbstract}[1]{\def\AtlasAbstractText{#1}}
 \newcommand{\abstracttext}[1]{\def\AtlasAbstractText{#1}}
+% \newcommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\def\AtlasAbstractText{#1}}
+% \newcommand{\abstracttext}[1]{\ADOC@abstracttrue\def\AtlasAbstractText{#1}}
 
 % Extra macros needs for the cover page - define them here to avoid need for atlasmetadefs.sty
 % This also avoids problems wth automatically generated metadata files
@@ -370,6 +375,19 @@
   }{% \xshowcmd\maketitle
     % Remove \@date and spacing following it from \@maketitle
     \xpatchcmd{\maketitle}{{\usekomafont{date}{\@date \par}}\vskip \z@ \@plus 3fill}{}{\typeout{atlasdoc xpatch: OK! Date font adjusted!}}{\typeout{atlasdoc xpatch: Oh no! Date font unchanged!}}
+    % \xshowcmd\maketitle
+  }
+\fi
+
+% Make the title flush left for the BOOK option
+\ifADOC@BOOK
+  \ifthenelse{\ADOC@texlive < 2013}{%
+    \relax
+  }{%
+    % \xshowcmd\maketitle
+    \xpatchcmd{\maketitle}{\begin{center}}{\begin{flushleft}}{\typeout{atlasdoc xpatch: OK! title flushleft!}}{\typeout{atlasdoc xpatch: Oh no! title position unchanged!}}
+    \xpatchcmd{\maketitle}{\end{center}}{\end{flushleft}}{\typeout{atlasdoc xpatch: OK! title flushleft!}}{\typeout{atlasdoc xpatch: Oh no! title position unchanged!}}
+    % \xpatchcmd{\maketitle}{\begin{tabular}[t]{c}}{\begin{tabular}[t]{@{}l@{}}}{}{}
     % \xshowcmd\maketitle
   }
 \fi
@@ -622,26 +640,35 @@
 %-------------------------------------------------------------------------------
 % Auxiliary material title header
 \newcommand{\HepDataTitleHeader}{%
+\parbox[t]{\linewidth}{%
+  {\centering
+    \sffamily\mdseries\fontsize{14}{16.8}\selectfont
+    EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
+  }
+  \vspace*{2mm}
+  \parbox[t]{0.45\linewidth}{%
+    \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+    \sffamily\mdseries\fontsize{11}{13.2}\selectfont
+    arXiv: \AtlasArXivId\ \AtlasArXivCat
+  }
+  \hspace*{\fill}
+  \parbox[t]{0.45\linewidth}{%
+    \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
+    \sffamily\mdseries\fontsize{11}{13.2}\selectfont
+    \hspace*{\fill}\ADOC@preprintnumber\par
+    \hspace*{\fill}\ADOC@atlasdate\par
+  }\par
+  \vspace*{2mm}
+  \rule{\linewidth}{1pt}\par
+}
+}
+
+%-------------------------------------------------------------------------------
+% Book title header - only ATLAS logo
+\newcommand{\AtlasBookTitleHeader}{%
   \parbox[t]{\linewidth}{%
-    {\centering
-      \sffamily\mdseries\fontsize{14}{16.8}\selectfont
-      EUROPEAN ORGANISATION FOR NUCLEAR RESEARCH (CERN)\par
-    }
-    \vspace*{2mm}
-    \parbox[t]{0.45\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
-      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
-      arXiv: \AtlasArXivId\ \AtlasArXivCat
-    }
+    \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
     \hspace*{\fill}
-    \parbox[t]{0.45\linewidth}{%
-      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
-      \sffamily\mdseries\fontsize{11}{13.2}\selectfont
-      \hspace*{\fill}\ADOC@preprintnumber\par
-      \hspace*{\fill}\ADOC@atlasdate\par
-    }\par
-    \vspace*{2mm}
-    \rule{\linewidth}{1pt}\par
   }
 }
 
@@ -778,10 +805,15 @@
   \ifADOC@HEPDATA
     \typeout{atlasdoc: defining HepData Material title page}
     \titlehead{\HepDataTitleHeader}
-    \date{}%\vspace*{-5ex}}
+    \date{}%\vspace*{-5ex}
   \else
-    \typeout{atlasdoc: defining ATLAS document title page}
-    \titlehead{\AtlasTitleHeader}
+    \ifADOC@BOOK
+      \typeout{atlasdoc: defining ATLAS book title page}
+      \titlehead{\AtlasBookTitleHeader}
+    \else
+      \typeout{atlasdoc: defining ATLAS document title page}
+      \titlehead{\AtlasTitleHeader}
+    \fi
   \fi
 \fi
 
@@ -843,7 +875,56 @@
   \vspace*{\copyrightoffset}
 }
 
-\publishers{\normalsize\rmfamily\AtlasAbstractCopyright}
+% Tweaks for ATLAS Books, i.e. TDR
+\ifADOC@BOOK
+  % Add a line under the title
+  \subtitle{\rule{\linewidth}{1.5pt}}
+  % Dummy author, as it is put in "publishers"
+  \author{}
+  % Add reference numbers, dates and author to "publishers"
+  \publishers{%
+    \begin{minipage}[b][0.4\textheight]{\textwidth}
+      \vspace*{\stretch{1}}
+      \large\rmfamily\flushleft
+      \begin{tabbing}
+        Set first column \= Set second column \kill
+        \ifADOC@atlasdraft
+          \ifx\ADOC@draftversion\@empty
+            Reference: \> \ADOC@preprintnumber\\
+              \> \ADOC@refcode\\
+            Created:   \> \ADOC@atlasdate \\
+            Last modified: \> \today \\
+          \else
+            Draft version: \> \ADOC@draftversion\\
+            Created: \> \dateandtime\\
+          \fi
+        \else
+          Reference: \> \ADOC@preprintnumber\\
+            \> \ADOC@refcode\\
+          Created:   \> \ADOC@atlasdate \\
+          Last modified: \> \today \\
+        \fi
+        \textbf{Prepared by:} \> \textbf{The ATLAS Collaboration}
+      \end{tabbing}\par
+      \vspace*{\stretch{1}}
+      \AtlasCopyrightFooter
+    \end{minipage}
+  }
+  % Use abstract option to decide if there is an abstract or not
+  \ifADOC@abstract
+    \dedication{\normalsize\rmfamily%
+      \begin{quote}\ADOC@abstractsize
+        \flushleft\textbf{Abstract}\\
+        \AtlasAbstractText
+      \end{quote}
+    }
+  \else
+    \typeout{atlasdoc: no abstract for this ATLAS book}
+    \relax
+  \fi
+\else
+  \publishers{\vspace*{\fill}\normalsize\rmfamily\AtlasAbstractCopyright}
+\fi
 
 \AtBeginDocument{%
   % Cover pages - add here, so atlascover options work

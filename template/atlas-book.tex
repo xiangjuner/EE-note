@@ -21,8 +21,6 @@
 %  texlive=YYYY          Specify TeX Live version (2016 is default).
 %  coverpage             Create ATLAS draft cover page for collaboration circulation.
 %                        See atlas-draft-cover.tex for a list of variables that should be defined.
-%  cernpreprint          Create front page for a CERN preprint.
-%                        See atlas-preprint-cover.tex for a list of variables that should be defined.
 %  NOTE                  The document is an ATLAS note (draft).
 %  PAPER                 The document is an ATLAS paper (draft).
 %  CONF                  The document is a CONF note (draft).
@@ -44,6 +42,10 @@
 %-------------------------------------------------------------------------------
 % Style file with biblatex options for ATLAS documents.
 \usepackage{\ATLASLATEXPATH atlasbiblatex}
+
+%-------------------------------------------------------------------------------
+% Package to include front and back cover images
+% \usepackage{pdfpages}
 
 % Useful macros
 \usepackage{\ATLASLATEXPATH atlasphysics}
@@ -80,6 +82,10 @@
 % Content
 %-------------------------------------------------------------------------------
 \begin{document}
+
+% Add a front cover image here
+% \includepdf{file1.pdf}
+
 \frontmatter
 \maketitle
 
@@ -163,5 +169,11 @@ Such an appendix should be printed before the Bibliography.
 % Lists of figures and tables - useful at the draft stage
 \listoffigures
 \listoftables
+
+% Add a back cover image here - make sure it is on the back side of a new sheet
+% \cleardoublepage
+% \mbox{}
+% \newpage
+% \includepdf{file2.pdf}
 
 \end{document}

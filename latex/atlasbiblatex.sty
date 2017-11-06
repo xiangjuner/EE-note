@@ -49,7 +49,7 @@
       \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
     %\newbibmacro{string+doi}[1]{%
     %  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
-    %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+    %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibtextit{#1}}}
   \fi
 
   % Turn off printing of arXiv
@@ -80,10 +80,10 @@
       \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
     \else
-      \DeclareFieldFormat[article]{title}{\emph{#1}\isdot}
-      \DeclareFieldFormat[booklet]{title}{\emph{#1}\isdot}
-      \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
-      \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[article]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[booklet]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[report]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[misc]{title}{\textit{#1}\isdot}
     \fi
   \else
     \AtEveryBibitem{
