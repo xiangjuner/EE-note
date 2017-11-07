@@ -11,6 +11,7 @@
 	* Add \MADGRAPHV and \MGMCatNLOV to atlasmisc.sty.
 	* Move from scrpage2 to scrlayer-scrpage package for TeX Live > 2014.
 	* Titles for report and misc bibliography entries by default in italics.
+	* Pages abbreviation removed also for "english" as language.
 
 2017-09-29  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 04-02-00.

@@ -179,6 +179,10 @@
   % Remove p. or pp. by pages - this has to be done for every language
   % separately as these strings depend on the language
   \renewcommand{\bibpagespunct}{\space}
+  \DefineBibliographyStrings{english}{%
+    page = {},
+    pages = {}
+  }
   \DefineBibliographyStrings{UKenglish}{%
     page = {},
     pages = {}

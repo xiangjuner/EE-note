@@ -110,6 +110,7 @@ preprintcover:
 newdata:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex | \
 	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-hepdata-main.tex
+	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
 
 newdocument:
 	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
