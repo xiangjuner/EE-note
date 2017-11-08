@@ -1,0 +1,5 @@
+This new version contains several updates:
+ - Separate Auxiliary Material file.
+ - New options "abstract" and "percentspace".
+ - September and October 2017 updates of publications.
+ - Improvements to the title pages for long documents like TDRs.
