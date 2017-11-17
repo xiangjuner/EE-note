@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % Template class for ATLAS documents
 %
-% See ChangeLog or Git log for history of changes.
+% See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{05-00-00}

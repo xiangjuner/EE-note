@@ -1,8 +1,3 @@
-2017-11-14  Ian Brock  <Ian.Brock@cern.ch>
-	* Abstract in BOOK now properly justified.
-	* Add atlascomment package for language editors.
-	* Add option LANGEDIT to atlasdoc to turn on display of comments.
-	* The atlasmetadefs.sty style file should no longer be necessary when using atlasdoc.
 2017-11-07  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 05-00-01.
 	* September and October updates of publications.
