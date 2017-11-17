@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % Template class for ATLAS documents
 %
-% See ChangeLog or SVN log for history of changes.
+% See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{05-00-01}
@@ -31,6 +31,7 @@
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
 \DeclareBoolOption[false]{HEPDATA}
+\DeclareBoolOption[false]{LANGEDIT}
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
@@ -537,6 +538,14 @@
   \pagestyle{scrheadings}
 }
 
+% Pass comment option to atlascomment.sty
+\ifADOC@LANGEDIT
+\typeout{atlasdoc: turn on display of language editor comments}
+% \RequirePackage[comment=true]{\ATLASLATEXPATH atlascomment}
+\RequirePackage{\ATLASLATEXPATH atlascomment}
+\PassOptionsToPackage{comment}{\ATLASLATEXPATH atlascomment}
+\fi
+
 % Length needed for parbox/minipage in title page
 \newlength{\titlepageparbox}
 \setlength{\titlepageparbox}{\textwidth}
@@ -914,7 +923,7 @@
   \ifADOC@abstract
     \dedication{\normalsize\rmfamily%
       \begin{quote}\ADOC@abstractsize
-        \flushleft\textbf{Abstract}\\
+        {\flushleft\textbf{Abstract}}\\
         \AtlasAbstractText
       \end{quote}
     }
