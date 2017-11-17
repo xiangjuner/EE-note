@@ -69,7 +69,7 @@ and also for an up-to-date MikTeX 2.9 installation. The command `make help` give
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?
 If you are running on lxplus for it to work, you MUST set your PATH correctly:
 
-	export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
+	export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
 
 A users guide to the templates can be found in `doc/atlas_latex.pdf`. You can produce
 this document yourself (and thus test that your LaTeX setup is working)
