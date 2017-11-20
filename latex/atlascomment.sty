@@ -4,7 +4,7 @@
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaslanguage}[2017/11/14 v.05-00-01 ATLAS language editing style]
+\ProvidesPackage{latex/atlascomment}[2017/11/20 v.05-01-99 ATLAS language editing style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -19,19 +19,22 @@
 \DeclareBoolOption[true]{comment}
 \ProcessKeyvalOptions*
 
+\RequirePackage{xspace}
+
 \ifACOMM@comment
   \typeout{atlascomment: showing comments}
   \KOMAoptions{BCOR=-1cm}
   \addtolength{\marginparwidth}{1.5cm}
   \addtolength{\textwidth}{-1.5cm}
   \RequirePackage{todonotes}
-\else
+  \newcommand{\LEcomment}[2]{\textcolor{magenta}{#1}\todo[color=pink, linecolor=magenta]{#2}\xspace}
+  \else
   \typeout{atlascomment: not showing comments}
   \RequirePackage[disable]{todonotes}
-\fi
+  \newcommand{\LEcomment}[2]{#1\todo{#2}\xspace}
+  \fi
 
 % \presetkeys{todonotes}{fancyline, color=blue!30}{}
 \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
 % \newcommand{\LEsuggest}[2]{\textcolor{orange!90}{#1}\todo[color=orange!40]{#2}\xspace}
 % \newcommand{\LEexplain}[2]{\textcolor{darkgreen!90}{#1}\todo[color=green!40]{#2}\xspace}
-\newcommand{\LEcomment}[2]{\textcolor{magenta}{#1}\todo[color=pink, linecolor=magenta]{#2}\xspace}

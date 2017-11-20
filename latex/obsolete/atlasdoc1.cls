@@ -289,7 +289,7 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH atlascover1}
+\def\ADOC@atlascover{\ATLASLATEXPATH obsolete/atlascover1}
 \ifADOC@coverpage
   \typeout{atlasdoc1: load atlascover1 package}
   \ifADOC@CONFnote
