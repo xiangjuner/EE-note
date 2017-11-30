@@ -382,7 +382,7 @@ In the following the default option is in boldface.
 \item[\Option{CONF}] the document is a CONF note;
 \item[\Option{PUB}] the document is an PUB note;
 \item[\Option{BOOK}] the document is book form like an LOI or TDR;
-\item[\Option{HEPDATA}] a separate document with detailed tables etc.\ for HepData;
+\item[\Option{HEPDATA}] a separate document with detailed tables etc.\ for HEPData;
 \item[\Option{texlive=2016}] adjust if you use an older version of \TeX\ Live like 2011.
   A value less than 2013 adjusts a few \Package{biblatex} options.
   A value less than 2012 uses \Package{txfonts}.
@@ -789,14 +789,14 @@ This can be used for any sort of ATLAS note, including CONF, PUB and INT notes.
 
 
 %-------------------------------------------------------------------------------
-\section{Auxiliary and HepData material}
+\section{Auxiliary and HEPData material}
 \label{sec:auxmat}
 %-------------------------------------------------------------------------------
 
 Many papers have extra plots and tables that should be made public,
 but are not submitted to arXiv and the journal.
-These should be collected in a file \File{mydocument-hepdata.tex},
-which is included in the draft document during its circlation within ATLAS,
+These should be collected in a file \File{mydocument-auxmat.tex},
+which is included in the draft document during its circulation within ATLAS,
 This is transparent for editors if they use use PO-GitLab system,
 but has to be done manually for other papers.
 
@@ -806,17 +806,17 @@ Such material should usually included in the paper draft until it is ready for
 submission to arXiv and to the journal.
 The default name for the file containing the information is \File{mydocument-hepdata.tex}.
 At the submission stage it should be moved into a separate document.
-A skeleton document created using the command \verb|make newdata BASENAME=|.
+A skeleton document created using the command \verb|make newdata BASENAME=...|.
 The front page for this document is formatted using the \Option{HEPDATA} option.
 If you use this option you should specify the arXiv preprint identifier
-using the macro \Macro{arXivId} and the HepData record using the macro
+using the macro \Macro{arXivId} and the HEPData record using the macro
 \Macro{HepDataRecord}.
 This information is then included on the cover page in the form of clickable links.
 
-Use of this option also adds the arXiv preprint identifier to the top of every page
-of the document.
+Use of this option also adds the arXiv preprint identifier to the top
+of every page of the document.
 
-If you want to create an auxiliary material document with an older \TeX\ Live version such as 2009, 
+If you want to create an HEPData document with an older \TeX\ Live version such as 2009, 
 use the command \texttt{make newdata TEXLIVE=2009}.
 
 
@@ -854,6 +854,25 @@ For example, you give the command\\
 to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
 \File{../atlaslatex-01-08-00}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
+
+
+%-------------------------------------------------------------------------------
+\section{Language editor commands}
+\label{sec:langedit}
+%-------------------------------------------------------------------------------
+
+The \Package{todonotes} has been used to add a few macros that should be of use
+for language editors. The commands are in the \Package{atlascomment} style file.
+This file is included if the \Option{LANGEDIT} is passed to \Package{atlasdoc}.
+The commands added are:
+\begin{description}
+  \item[\Macro{LEecomment}] adds a comment about a change, or suggested change.
+\end{description}
+The commands takes two arguments: the relevant text and the explanation/suggestion.
+
+Such comments are probably also useful for paper editors.
+Have a look at this style file and the \Package{todonotes} documentation on how
+you can set up your own macros.
 
 
 %-------------------------------------------------------------------------------
@@ -991,6 +1010,39 @@ as then you can use the definitions without having to terminate them with
 \enquote{\textbackslash\textvisiblespace} or \enquote{\{\}}.
 
 
+%------------------------------------------------------------------------------
+\subsection{Useful packages}
+
+A vast number of \LaTeX\ packages are available.
+In this section I collect a few useful packages that are not loaded
+by \Package{atlaspackage}, but are well worth considering.
+
+\begin{description}
+  \item[cleveref] Means that constructs like \verb|Fig.~\ref{fig:one}| or
+  \verb|\Fig{\ref{fig:one}}| are no longer necessary.
+  Instead just use \verb|\cref{fig:one}|.
+  The package decides if it is a figure, table or equation and
+  adds the appropriate text.
+  At the beginning of sentences use \Macro{Cref}.
+  Use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc.
+  Use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
+
+  \item[todonotes] Very nice package for adding notes.
+  See \File{atlscomment.sty} for an example.
+
+  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
+  consistent way. Optionally the symbols can be upright or italic.
+  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
+  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
+  but is not as systematic.
+
+  \item[physics] A useful package for differentials, matrices and more.
+  As the name suggests it is geared to physics usage.
+  The \Package{commath} is an alternative, but I find \Package{physics} to be more reliable,
+  when different fonts are used.
+\end{description}
+
+
 %-------------------------------------------------------------------------------
 \subsection{Figures}
 
@@ -1012,9 +1064,10 @@ both \File{figure.eps} and \File{figure.pdf} in your working directory,
 and the proper one will be picked up according to the processing method
 you choose.
 
-Figures should be in general be made available in both \texttt{eps} (or \texttt{pdf}) and 
-\texttt{png} format. Additionally, a \texttt{pdf} version of the plots can be
-useful in case \verb|pdflatex| is used to produce a publication.
+Figures should be in general be made available in either \texttt{eps} (or \texttt{pdf}) format.
+\texttt{png} format can be used for event displays.
+% Additionally, a \texttt{pdf} version of the plots can be
+% useful in case \verb|pdflatex| is used to produce a publication.
 %Colour versions are appropriate for talks, and black-and-white
 %versions are necessary for the publication itself.
 
@@ -1179,24 +1232,6 @@ You also have to turn off the inclusion of \File{atlasunits.sty} by including th
 the \Package{atlasphysics} package.
 
 %-------------------------------------------------------------------------------
-\subsection{Useful packages}
-
-A vast number of \LaTeX\ packages are available.
-I list a few here that are not included by \Package{atlaslatex},
-but are well worth considering.
-\begin{description}
-  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
-  consistent way. Optional the symbols cn be upright or italic.
-  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
-  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
-  but is not as systematic.
-  \item[physics] A useful package for differentials, matrices and more.
-  As the name suggests it is geared to physics usage.
-  The \Package{commath}is an alternative, but I find \Package{physics} to be more reliable,
-  when different fonts are used.
-\end{description}
-
-%-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
 \label{sec:oldnote}
 %-------------------------------------------------------------------------------
@@ -1322,7 +1357,7 @@ Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributi
 Sven Menke provided the code so that bold math works in titles correctly.
 Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
 
-Juan Pedro Araque has one most of the work setting up the PO-GitLab project.
+Juan Pedro Araque has done most of the work setting up the PO-GitLab project.
 This resulted in a much smoother submission process for papers and
 an improved handling of auxiliary material.
 
@@ -1335,10 +1370,10 @@ an improved handling of auxiliary material.
 Version 05-00-00 of \Package{atlaslatex} is the first version set up
 to be fully compatible with the PO-GitLab scheme for papers.
 
-Separate (dummy) files for auxiliary material and HepData tables are created for new papers.
+Separate (dummy) files for auxiliary material and HEPData tables are created for new papers.
 The \verb|make auxmat| command has been renamed to \verb|make newdata|,
 as the auxiliary material for the webpage is now separated
-from a separate file for tables etc.\ for HepData.
+from a separate file for tables etc.\ for HEPData.
 
 
 %-------------------------------------------------------------------------------
@@ -1415,5 +1450,3 @@ The following changes are needed for the macros:
 \begin{itemize}
 \item The macro \Macro{AtlasCoverEdBoardMember} only has one argument, as a generic email list now exists for every EdBoard.
 \end{itemize}
-
-

@@ -16,7 +16,7 @@ The following template main files exist:
   - `atlas-book.tex`: Long ATLAS document,  such as a TDR
   - `atlas-draft-cover.tex`: Make a standalone cover for an ATLAS draft
   - `atlas-preprint-cover.tex`: Make a standalone cover for an ATLAS CERN preprint
-  - `atlas-auxmat.tex`:	A front page for auxiliary material  
+  - `atlas-hepdata-main.tex`:	A front page for material destined for HEPData
   
 The ATLAS document class (`atlasdoc.cls`) and style files can be found in 
 the latex directory. The following main style files exist:
@@ -64,6 +64,12 @@ To make a new ATLAS note give the command:
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live 
 and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
+
+If you want to use the templates for documents that are stored in CERN GitLab,
+but are not inside PO-GitLab and hence should not make use of the PO-GitLab CI tools,
+you should delete the file: `.gitlab-ci.yml`.
+For PO-GitLab documents, the Git repository is in a subdirectory of: https://gitlab.cern.ch/groups/atlas-physics-office/subgroups.
+
 
 ### Running on lxplus
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?

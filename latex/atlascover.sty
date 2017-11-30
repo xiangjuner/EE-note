@@ -5,9 +5,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{05-00-01}
+\def\ATPackageVersion{05-01-00}
 
-\ProvidesPackage{latex/atlascover}[2017/11/08 v.05-00-01 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2017/11/30 v.05-01-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -28,6 +28,7 @@
 \DeclareBoolOption[false]{coverpage}
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
+\DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[false]{twocolumn}
 \DeclareBoolOption[false]{atlasdoc}
 \DeclareStringOption[11pt]{coverfontsize}
@@ -195,7 +196,10 @@
     }%
   }
 
-  \newif\ifACOV@support
+  \def\ACOV@LangEditor{language editor contact}
+  \providecommand{\LEcontact}[1]{\def\ACOV@LangEditor{#1}}
+
+\newif\ifACOV@support
   \ACOV@supportfalse
   \def\ACOV@TwikiURL{}
   %\providecommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
@@ -347,7 +351,7 @@
 }
 
 %-------------------------------------------------------------------------------
-% Page Two:  Names of analysis team (editors) and EdBoard
+% Page Two:  Names of analysis team (editors), EdBoard and Language Editor
 %-------------------------------------------------------------------------------
 \newcommand{\AtlasCoverPageTwo}{%
   % Analysis team
@@ -411,6 +415,15 @@
     \fi
     \vspace*{1ex}
     \rule{\linewidth}{1.5pt}\par
+    \ifACOV@LANGEDIT
+      \vspace*{1ex}
+      {\sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+        Language editor:
+      }
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        \ACOV@LangEditor\par
+      }
+    \fi
   }
 }
 

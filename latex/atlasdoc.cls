@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{05-00-01}
+\def\ATPackageVersion{05-01-00}
 
-\ProvidesClass{latex/atlasdoc}[2017/11/08 v.05-00-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2017/11/30 v.05-01-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -31,6 +31,8 @@
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
 \DeclareBoolOption[false]{HEPDATA}
+\DeclareBoolOption[false]{LANGEDIT}
+\DeclareBoolOption[true]{LANGSHOW}
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
@@ -286,6 +288,9 @@
   }%
 }
 
+\def\ACOV@LangEditor{language editor contact}
+\newcommand{\LEcontact}[1]{\def\ACOV@LangEditor{#1}}
+
 \newif\ifACOV@support
 \ACOV@supportfalse
 \def\ACOV@TwikiURL{}
@@ -404,6 +409,10 @@
     \else
       \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
     \fi
+  \fi
+  % Pass language editor option to cover pages
+  \ifADOC@LANGEDIT
+    \PassOptionsToPackage{LANGEDIT}{\ADOC@atlascover}
   \fi
   \RequirePackage{\ADOC@atlascover}
 \fi
@@ -536,6 +545,18 @@
   \fi
   \pagestyle{scrheadings}
 }
+
+% Pass comment option to atlascomment.sty
+\ifADOC@LANGEDIT
+  \ifADOC@LANGSHOW
+    \typeout{atlasdoc: turn on display of language editor comments}
+    \PassOptionsToPackage{comment=true}{\ATLASLATEXPATH atlascomment}
+  \else
+    \typeout{atlasdoc: turn off display of language editor comments}
+    \PassOptionsToPackage{comment=false}{\ATLASLATEXPATH atlascomment}
+  \fi
+  \RequirePackage{\ATLASLATEXPATH atlascomment}
+\fi
 
 % Length needed for parbox/minipage in title page
 \newlength{\titlepageparbox}

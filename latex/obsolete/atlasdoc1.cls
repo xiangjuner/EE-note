@@ -4,9 +4,9 @@
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{05-00-00}
+\def\ATPackageVersion{05-01-00}
 
-\ProvidesClass{latex/atlasdoc1}[2017/11/08 v.05-00-00 ATLAS deprecated document class]
+\ProvidesClass{latex/atlasdoc1}[2017/11/30 v.05-01-00 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -289,7 +289,7 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH atlascover1}
+\def\ADOC@atlascover{\ATLASLATEXPATH obsolete/atlascover1}
 \ifADOC@coverpage
   \typeout{atlasdoc1: load atlascover1 package}
   \ifADOC@CONFnote

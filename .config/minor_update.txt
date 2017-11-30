@@ -1,0 +1,2 @@
+This new version contains a few updates:
+ - Add macros for Language Editors.
