@@ -1,0 +1,2 @@
+This new version contains a bugfix:
+ - Example CERN preprint name corrected.
