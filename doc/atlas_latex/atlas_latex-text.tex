@@ -611,10 +611,11 @@ The following options can be passed on to the \Package{atlascover} package:
 \item[\Option{coverpage}] outputs the standard ATLAS paper draft cover page;
 \item[\Option{CONF}] the document is a CONF note;
 \item[\Option{PUB}] the document is an PUB note;
-\item[\Option{cernpreprint}] the title page should be in the form of a CERN preprint;
-  The option \Option{preprint} works as well, but is deprecated;
+\item[\Option{LANGEDIT}] prints the language editor's name and email address;
+% \item[\Option{cernpreprint}] the title page should be in the form of a CERN preprint;
+%   The option \Option{preprint} works as well, but is deprecated;
 %\item[\Option{preprint}] the title page should be in the form of a CERN preprint;
-\item[\Option{auxmat}] the title page for a document containing auxiliary material from a paper;
+% \item[\Option{auxmat}] the title page for a document containing auxiliary material from a paper;
 \item[\Option{coverfontsize}] the base font size used for the cover (default is 11pt). Adjust this for long abstracts;
 \item[\Option{twocolumn}] use this option if your document is formatted in two columns;
 \item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
@@ -650,8 +651,8 @@ The option \Option{clearpage}, which used to exist, has no effect.
 This style should be used for the preparation of paper drafts,
 as well as for the submission of papers to the arXiv and journals.
 The journals will then convert the documents to the style appropriate for the journal.
-As some experience has to be gained with this package,
-feedback on any problems that occur with the style are very welcome.
+% As some experience has to be gained with this package,
+% feedback on any problems that occur with the style are very welcome.
 
 Documents are typeset by default in the standard ATLAS preprint style.
 The use of this style can be turned off by using the option
@@ -660,8 +661,8 @@ This style uses \KOMAScript\ as the base class.
 Further settings include:
 \begin{description}
 \item[Layout:] \Option{DIV=14} and an extra \SI{5}{\mm} for the binding;
-\item[Paragraph:] The paragraph indentation is set to zero and 
-  there is a half-line separation between paragraphs.
+\item[Paragraph:] the paragraph indentation is set to zero and 
+  there is a half-line separation between paragraphs;
 \item[Figures and tables:] a small font size is used for the captions.
   Captions are not indented.
   They should be below both figures and tables;
@@ -1231,6 +1232,91 @@ option \Option{texlive=2009}.
 You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
 the \Package{atlasphysics} package.
 
+
+\appendix
+\clearpage
+%-------------------------------------------------------------------------------
+\section{Makefile}
+%-------------------------------------------------------------------------------
+\label{sec:makefile}
+
+This section documents what the \File{Makefile} does when it creates a new document
+or compiles one.
+
+When a new paper draft is created using the command\\
+\texttt{make newpaper BASENAME=GROUP-YYYY-XX-PAPER}\\
+the following files are created in the main directory.
+If a template filename is given in the table
+it is taken from the \texttt{template} directory,
+otherwise empty files are created.
+\begin{center}
+  \begin{tabular}{ll}
+    \mcc{\texttt{template}} & \mcc{\texttt{main}} \\
+    \midrule
+    \texttt{atlas-paper.tex} & \texttt{GROUP-YYYY-XX-PAPER.tex} \\
+    \texttt{atlas-paper-metadata.tex} & \texttt{GROUP-YYYY-XX-PAPER-metadata.tex} \\
+    \texttt{atlas-auxmat.tex} & \texttt{GROUP-YYYY-XX-PAPER-auxmat.tex} \\
+    \texttt{atlas-hepdata.tex} & \texttt{GROUP-YYYY-XX-PAPER-hepdata.tex} \\
+    & \texttt{GROUP-YYYY-XX-PAPER-defs.sty} \\
+    & \texttt{GROUP-YYYY-XX-PAPER.bib}
+  \end{tabular}
+\end{center}
+The following string substitutions are made in \texttt{GROUP-YYYY-XX-PAPER.tex}:
+\begin{center}
+  \begin{tabular}{ll}
+    \mcc{Old string} & \mcc{New string} \\
+    \midrule
+    \texttt{atlas-document} & \texttt{GROUP-YYYY-XX-PAPER} \\
+    \texttt{texlive=2016} & \texttt{texlive=YYYY} \\
+  \end{tabular}
+\end{center}
+The \TeX\ Live version is changed to \texttt{YYYY} (if given). Otherwise it is set to 2016.
+
+The same thing is done for an ATLAS supporting note made with the command\\
+\texttt{make newnote BASENAME=GROUP-YYYY-XX-INT1},\\
+except that the main file template is taken from
+\texttt{atlas-note.tex},
+the metadata template is taken from \texttt{atlas-note-metadata.tex},
+and the auxiliary material and HEPData files are not created.
+
+The standard sequence of commands to compile a document is
+\texttt{pdflatex, biber, pdflatex, pdflatex}.
+You can change the \texttt{\%.pdf} target if necessary.
+Better is to use \texttt{latexmk} via the target \texttt{run\_latexmk}.
+I recommend you set this as the default command.
+
+%-------------------------------------------------------------------------------
+\section{Journal templates}
+%-------------------------------------------------------------------------------
+\label{sec:journal}
+
+This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
+However, with the advent of the ATLAS preprint style, 
+it should no longer be necessary to format papers in the style used by the journals.
+This section has therefore been moved to an appendix.
+
+The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
+So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
+You should turn off the use of \Package{biblatex} if you use a journal template.
+Add the option \Option{biblatex=false} to \Package{atlaspackage}.
+
+\begin{description}
+\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
+  \TeX\ Live distribution. 
+  It can also be found at \url{http://www.elsevier.com/locate/latex}.
+  
+\item[APS]APS journals use REV\TeX. This is also usually installed.
+  It can also be found at \url{https://journals.aps.org/revtex}.
+  Note that you have to specify the author after \verb|\begin{document}| with this class.
+  Hence you should comment out the definition in your metadata file,\\
+  e.g.\ \File{mydocument-metadata.tex}.
+  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
+  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
+  
+\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+\end{description}
+
+
 %-------------------------------------------------------------------------------
 \section{From \texttt{atlasnote} to \texttt{atlasdoc}}
 \label{sec:oldnote}
@@ -1310,40 +1396,6 @@ It can be given, but will be ignored.
 %authors or a lengthy abstract you can use this command to buy
 %some extra space. Note that \verb|<length>| can also be negative
 %(use it at your own risk!).
-
-
-\appendix
-%-------------------------------------------------------------------------------
-\section{Journal templates}
-%-------------------------------------------------------------------------------
-\label{sec:journal}
-
-This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
-However, with the advent of the ATLAS preprint style, 
-it should no longer be necessary to format papers in the style used by the journals.
-This section has therefore been moved to an appendix.
-
-The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
-So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
-You should turn off the use of \Package{biblatex} if you use a journal template.
-Add the option \Option{biblatex=false} to \Package{atlaspackage}.
-
-\begin{description}
-\item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
-  \TeX\ Live distribution. 
-  It can also be found at \url{http://www.elsevier.com/locate/latex}.
-  
-\item[APS]APS journals use REV\TeX. This is also usually installed.
-  It can also be found at \url{https://journals.aps.org/revtex}.
-  Note that you have to specify the author after \verb|\begin{document}| with this class.
-  Hence you should comment out the definition in your metadata file,\\
-  e.g.\ \File{mydocument-metadata.tex}.
-  If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
-  In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
-  
-\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
-\end{description}
-
 
 %-------------------------------------------------------------------------------
 \section{History}

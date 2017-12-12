@@ -17,14 +17,14 @@
 \newcommand*{\MET}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
 \newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
 \newcommand*{\sumET}{\ensuremath{\sum \ET}\xspace}
-\newcommand{\EjetRec}{\ensuremath{E_{\text{rec}}}}
-\newcommand{\PjetRec}{\ensuremath{p_{\text{rec}}}}
-\newcommand{\EjetTru}{\ensuremath{E_{\text{truth}}}}
-\newcommand{\PjetTru}{\ensuremath{p_{\text{truth}}}}
-\newcommand{\EjetDM}{\ensuremath{E_{\text{DM}}}}
-\newcommand{\Rcone}{\ensuremath{R_{\text{cone}}}}
+\newcommand*{\EjetRec}{\ensuremath{E_{\text{rec}}}\xspace}
+\newcommand*{\PjetRec}{\ensuremath{p_{\text{rec}}}\xspace}
+\newcommand*{\EjetTru}{\ensuremath{E_{\text{true}}}\xspace}
+\newcommand*{\PjetTru}{\ensuremath{p_{\text{true}}}\xspace}
+\newcommand*{\EjetDM}{\ensuremath{E_{\text{DM}}}\xspace}
+\newcommand*{\Rcone}{\ensuremath{R_{\text{cone}}}\xspace}
 \newcommand*{\abseta}{\ensuremath{|\eta|}\xspace}
-\newcommand*{\Ecm}{\ensuremath{E_{\text{cm}}}}
+\newcommand*{\Ecm}{\ensuremath{E_{\text{cm}}}\xspace}
 \newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
 \newcommand*{\sqs}{\ensuremath{\sqrt{s}}\xspace}
 \newcommand*{\Nevt}{\ensuremath{N_{\mathrm{evt}}}\xspace}
@@ -41,6 +41,14 @@
 \newcommand*{\kt}{\ensuremath{k_{t}}\xspace}
 \newcommand*{\antikt}{anti-\kt}
 \newcommand*{\Antikt}{Anti-\kt}
+% Differennt hyphenation for pile-up in UK and US English
+\iflanguage{USenglish}{%
+    \newcommand*{\pileup}{pileup\xspace}
+    \newcommand*{\Pileup}{Pileup\xspace}
+}{%
+    \newcommand*{\pileup}{pile-up\xspace}
+    \newcommand*{\Pileup}{Pile-up\xspace}
+}
 
 % b-tagging standard terms
 \newcommand*{\btag}{\ensuremath{b\text{-tagging}}\xspace}
@@ -143,7 +151,7 @@
 \newcommand*{\TF}{\ensuremath{T_{\text{F}}}\xspace}
 \newcommand*{\Lms}{\ensuremath{\Lambda_{\overline{\text{MS}}}}\xspace}
 \newcommand*{\Lmsfive}{\ensuremath{\Lambda^{(5)}_{\overline{\text{MS}}}}\xspace}
-\newcommand*{\KT}{\ensuremath{k_{\perp}}\xspace}
+\newcommand*{\kperp}{\ensuremath{k_{\perp}}\xspace}
 
 % +--------------------------------------------------------------------+
 % |  CKM matrix                                                        |

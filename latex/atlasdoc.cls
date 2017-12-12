@@ -880,13 +880,17 @@
     \ifx\ADOC@journal\@empty
       \relax
     \else
-      \ifADOC@PAPER
-        \vskip 2em
-        \parbox[c]{\linewidth}{
-          \centering
-          \ADOC@subprepend\ \textit{\ADOC@journal}
-        }\par
-        \vskip 2em
+      \ifADOC@cernpreprint
+        \relax
+      \else
+        \ifADOC@PAPER
+          \vskip 2em
+          \parbox[c]{\linewidth}{
+            \centering
+            \ADOC@subprepend\ \textit{\ADOC@journal}
+          }\par
+          \vskip 2em
+        \fi
       \fi
     \fi
     \vspace*{\stretch{1}}

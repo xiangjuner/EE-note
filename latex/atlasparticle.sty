@@ -5,9 +5,7 @@
 %\let\sst=\scriptscriptstyle
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  Particle-antiparticle pair notations                              |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\pp}{\ensuremath{pp}\xspace}
 \newcommand*{\antibar}[1]{\ensuremath{#1\bar{#1}}\xspace}
@@ -38,9 +36,7 @@
 \newcommand*{\nnbar}{\antibar{\nu}}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  e+e-, etc.                                                        |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\ee}{\ensuremath{e^{+} e^{-}}\xspace}
 \newcommand*{\epm}{\ensuremath{e^{\pm}}\xspace}
@@ -54,9 +50,15 @@
 \newcommand*{\lnu}{\ensuremath{\ell \nu}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
+% |  Tau leptons                                                       |
+% +--------------------------------------------------------------------+
+\newcommand*{\taulep}{\ensuremath{\tau_{\text{lep}}}\xspace}
+\newcommand*{\tauhad}{\ensuremath{\tau_{\text{had}}}\xspace}
+\newcommand*{\tauhadvis}{\ensuremath{\tau_{\text{had-vis}}}\xspace}
+\newcommand*{\taup}[1]{\ensuremath{\tau_{\text{#1-prong}}}\xspace}
+
+% +--------------------------------------------------------------------+
 % |  Vector bosons                                                     |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\Zzero}{\ensuremath{Z}\xspace}
 \newcommand*{\Zboson}{\ensuremath{Z}\xspace}
@@ -67,9 +69,7 @@
 \newcommand*{\Wmp}{\ensuremath{W^{\mp}}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  pi, pi0, pi+, pi-, pi+-, eta, eta1, etc.                          |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 %\let\pii=\pi
 %\renewcommand*{\pi}{\ensuremath{\pii}\xspace}
@@ -83,9 +83,7 @@
 \newcommand*{\etaprime}{\ensuremath{\eta^{\scriptscriptstyle\prime}}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  K0, K+, K-, K0L, K0S                                              |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\Kzero}{\ensuremath{K^{0}}\xspace}
 \newcommand*{\Kzerobar}{\ensuremath{\overline{K}\vphantom{K}^{0}}\xspace}
@@ -101,9 +99,7 @@
 \newcommand*{\Kstar}{\ensuremath{K^{*}}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  J/psi, psi prime, etc.                                            |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 %\let\psii=\psi  %  Save normal "\psi" definition, since I redefine it.
 %\renewcommand*{\psi}{\ensuremath{\psii}\xspace}
@@ -128,17 +124,13 @@
 \newcommand*{\chib}{\ensuremath{\raise.4ex\hbox{$\chi$}_{{b}}}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  C physics                                                         |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\Dstar}{\ensuremath{D^{*}}\xspace}
 %\newcommand*{\Dsstar}{\ensuremath{D^{**}}\xspace}
 
 % +--------------------------------------------------------------------+
-% |                                                                    |
 % |  B physics                                                         |
-% |                                                                    |
 % +--------------------------------------------------------------------+
 \newcommand*{\Bd}{\ensuremath{B_{d}^{0}}\xspace}
 \newcommand*{\Bs}{\ensuremath{B_{s}^{0}}\xspace}
