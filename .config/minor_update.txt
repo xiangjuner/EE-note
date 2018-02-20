@@ -1,4 +1,4 @@
 This new version contains a few updates:
- - Adjust some definitions to agree with ATLAS style guide.
- - Add some definition for tau leptons.
- - December 2017 update of publications.
+ - January updates of publications.
+ - Updated acknowledgements.
+ 

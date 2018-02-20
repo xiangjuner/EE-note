@@ -64,6 +64,14 @@ from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
   \sisetup{retain-explicit-plus=true}
 }
 \begin{table}[htbp]
+  \ifthenelse{\ATTeXLiveVersion < 2011}{%
+    \sisetup{sepfour}
+  }{
+    \sisetup{group-minimum-digits=4}
+  }
+  \caption{Example event yields spread over several orders of
+    magnitude.}
+  \label{tab:yield:2dig}
   \centering
   \begin{tabular}{%
       l
@@ -86,58 +94,55 @@ from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
     Data                       & \multicolumn{2}{l}{\num{73062}} \\
     \bottomrule
   \end{tabular}
-  \caption{Example event yields spread over several orders of
-    magnitude.}
-  \label{tab:yield:2dig}
 \end{table}
 
 An example of a wider and somewhat more complicated table is shown in \Tab{\ref{tab:intro:presentlimits}}.
 
 \begin{table}[htbp]
-  \centering
-  \begin{tabular}{lllll}
-  \toprule
-  Coupling & \multicolumn{2}{c}{LEP} & \multicolumn{2}{c}{HERA} \\
-  \midrule
-  $\BR(t\to q\gamma)$ & \num{2.4E-2} &                       & \num{6.4E-3} & ($tu\gamma$)\\
-  $\BR(t\to qZ)$      & \num{7.8E-2} &                       & \num{49E-2} & ($tuZ$)\\
-  $\BR(t\to qg)$      & \num{17E-2}  &                       & \num{13E-2} & \\
-  \bottomrule
-  Coupling & \multicolumn{2}{c}{Tevatron}                    & \multicolumn{2}{c}{LHC} \\
-  \midrule
-  $\BR(t\to q\gamma)$ & \num{3.2E-2} &                       & \multicolumn{1}{c}{---} \\
-  $\BR(t\to qZ)$      & \num{3.2E-2} &                       & \num{7.0E-4}\\
-  $\BR(t\to qg)$      & \num{2.0E-4} & ($tug$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
-                      & \num{3.9E-3} & ($tcg$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
-                      & \num{3.9E-4} & ($tug$), $(2 \to 1)$  & \num{5.7E-5} & ($tug$), $(2 \to 1)$\\
-                      & \num{5.7E-3} & ($tcg$), $(2 \to 1)$  & \num{2.7E-4} & ($tcg$), $(2 \to 1)$\\
-  \bottomrule
-  \end{tabular}
   \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \SI{95}{\%} confidence level
     on the branching fractions of the FCNC top quark decay channels established by experiments of the LEP, HERA, Tevatron and LHC accelerators. }
   \label{tab:intro:presentlimits}
+  \centering
+  \begin{tabular}{lllll}
+    \toprule
+    Coupling & \multicolumn{2}{c}{LEP} & \multicolumn{2}{c}{HERA} \\
+    \midrule
+    $\BR(t\to q\gamma)$ & \num{2.4E-2} &                       & \num{6.4E-3} & ($tu\gamma$)\\
+    $\BR(t\to qZ)$      & \num{7.8E-2} &                       & \num{49E-2} & ($tuZ$)\\
+    $\BR(t\to qg)$      & \num{17E-2}  &                       & \num{13E-2} & \\
+    \bottomrule
+    Coupling & \multicolumn{2}{c}{Tevatron}                    & \multicolumn{2}{c}{LHC} \\
+    \midrule
+    $\BR(t\to q\gamma)$ & \num{3.2E-2} &                       & \multicolumn{1}{c}{---} \\
+    $\BR(t\to qZ)$      & \num{3.2E-2} &                       & \num{7.0E-4}\\
+    $\BR(t\to qg)$      & \num{2.0E-4} & ($tug$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
+                        & \num{3.9E-3} & ($tcg$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
+                        & \num{3.9E-4} & ($tug$), $(2 \to 1)$  & \num{5.7E-5} & ($tug$), $(2 \to 1)$\\
+                        & \num{5.7E-3} & ($tcg$), $(2 \to 1)$  & \num{2.7E-4} & ($tcg$), $(2 \to 1)$\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 A typical table containing Monte Carlo samples is given in \Tab{\ref{tab:mcsamples}}.
 
 \begin{table}[htbp]
-\centering
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{lSlS[table-format=9.0]SS[table-format=6.0]}
-\toprule
-  & {$\sigma$ [\si{\pb}]} & Generator
-  & \multicolumn{1}{c}{$N_{MC}$} & \multicolumn{1}{c}{$k$-factor} & \multicolumn{1}{c}{Dataset ID}\\
-\midrule
-$Wt$ all decays                         &  22           & \POWHEG + \PYTHIA        &   1000000  & 1.09 & 110140\\
-$t$-channel (lepton+jets) top           &  18           & \POWHEG + \PYTHIA        &   5000000  & 1.05 & 110090\\
-$s$-channel (lepton+jets) antitop       &  1.8          & \POWHEG + \PYTHIA        &   5000000  & 1.06 & 110091\\
-$t\bar{t}$ no fully hadronic            & 114           & \POWHEG + \PYTHIA        & 100000000  & 1.12 & 117050\\
-\bottomrule
-\end{tabular}
-\caption{Top quark event MC samples used for this analysis. The cross-section column includes $k$-factors and branching ratios. }
-%The ATLAS geometry tag {\it ATLAS-GEO-16-00-00} is used and the reconstruction software was based on {\it release 16.6.3.5.1}.}
-%(WARNING: update geo tag and software version)
-\label{tab:mcsamples}
+  \caption{Top quark event MC samples used for this analysis. The cross-section column includes $k$-factors and branching ratios. }
+  %The ATLAS geometry tag {\it ATLAS-GEO-16-00-00} is used and the reconstruction software was based on {\it release 16.6.3.5.1}.}
+  %(WARNING: update geo tag and software version)
+  \label{tab:mcsamples}
+  \centering
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{lSlS[table-format=9.0]SS[table-format=6.0]}
+    \toprule
+      & {$\sigma$ [\si{\pb}]} & Generator
+      & \multicolumn{1}{c}{$N_{MC}$} & \multicolumn{1}{c}{$k$-factor} & \multicolumn{1}{c}{Dataset ID}\\
+    \midrule
+    $Wt$ all decays                         &  22           & \POWHEG + \PYTHIA        &   1000000  & 1.09 & 110140\\
+    $t$-channel (lepton+jets) top           &  18           & \POWHEG + \PYTHIA        &   5000000  & 1.05 & 110090\\
+    $s$-channel (lepton+jets) antitop       &  1.8          & \POWHEG + \PYTHIA        &   5000000  & 1.06 & 110091\\
+    $t\bar{t}$ no fully hadronic            & 114           & \POWHEG + \PYTHIA        & 100000000  & 1.12 & 117050\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 Table~\ref{tab:example1} shows the use of $\pm$ as the intercolumn
@@ -151,6 +156,11 @@ The \texttt{booktabs} package provides the macros
 as, among other things, they introduce some extra spacing around the lines, which is useful.
 
 \begin{table}[htbp]
+  \caption[Monte Carlo purities in the single lepton sample]{%
+    Monte Carlo estimates of the fraction of each process in the single
+    lepton data sample. This table uses ``S'' format from \texttt{siunitx} and
+    ``\texttt{$\,\pm\,$}'' as the intercolumn separator.}
+  \label{tab:example1}
   \centering
   \begin{tabular}{l S[table-format=2.1]@{$\;\pm\;$}S[table-format=1.1]@{\,}s
     S[table-format=3.1]@{\,}s}
@@ -162,15 +172,14 @@ as, among other things, they introduce some extra spacing around the lines, whic
     Total               &     73.0 & 0.2 & \%   &   9.1 & \% \\
     \bottomrule
   \end{tabular}
-  \caption[Monte Carlo purities in the single lepton sample]{%
-    Monte Carlo estimates of the fraction of each process in the single
-    lepton data sample. This table uses ``S'' format from \texttt{siunitx} and
-    ``\texttt{$\,\pm\,$}'' as the intercolumn separator.}
-  \label{tab:example1}
 \end{table}
 
 
 \begin{table}[htbp]
+  \caption{Monte Carlo estimates of the fraction of each process in
+    the single lepton data sample.
+    This table uses \texttt{\textbackslash phantom}.}
+  \label{tab:example2}
   \centering
   \begin{tabular}{lcc}
     \toprule
@@ -181,10 +190,6 @@ as, among other things, they introduce some extra spacing around the lines, whic
     Total               & $    73.0 \pm 0.2\,\%$   & \pho 9.1\,\% \\
     \bottomrule
   \end{tabular}
-  \caption{Monte Carlo estimates of the fraction of each process in
-    the single lepton data sample.
-    This table uses \texttt{\textbackslash phantom}.}
-  \label{tab:example2}
 \end{table}
 
 %-------------------------------------------------------------------------------
@@ -221,6 +226,9 @@ This is fine in text, but in tables, you probably want to use the option
 \verb|\siseteup{group-minimum-digits=4}|, see \Tabs{\ref{tab:minimum-digits1}}{\ref{tab:minimum-digits2}}.
 
 \begin{table}[htbp]
+  \caption{Tables comparing different \Option{group-minimum-digits} values
+  for the package \Package{siunitx}.}
+  \label{tab:minimum-digits}
   \centering
   \subfloat[Table with \Option{group-minimum-digits=4}.]{%
   \ifthenelse{\ATTeXLiveVersion < 2012}{%
@@ -261,9 +269,6 @@ This is fine in text, but in tables, you probably want to use the option
   % \caption{A table with \Option{group-minimum-digits=5}.}
   \label{tab:minimum-digits2}
   }
-  \caption{Tables comparing different \Option{group-minimum-digits} values
-  for the package \Package{siunitx}.}
-  \label{tab:minimum-digits}
 \end{table}
 
 
@@ -296,6 +301,13 @@ use of options for the \textsf{S} format and the use of \Macro{num} enclosed
 in braces to format the row that requires a different precision.
 
 \begin{table}[htbp]
+  \caption{A selection of cross-section measurements. Note that
+    for numbers with asymmetric errors, the option
+    \texttt{\Macro{sisetup}{}\{retain-explicit-plus\}} is used to stop
+    \textsf{siunitx} from dropping the plus signs on the positive
+    errors. (although these tables look almost identical, the syntax used to
+    create them is different - see Appendix~\ref{sec:raw-data}).}
+  \label{tab:rounding:xsect}
   \centering
   \renewcommand{\arraystretch}{1.4}
   \sisetup{retain-explicit-plus}
@@ -341,13 +353,6 @@ in braces to format the row that requires a different precision.
     +0.5 & +1.4 & 2.881 & 0.154 & $^{\num{+0.201}}_{\num{-0.301}}$ \\
     \bottomrule
   \end{tabular}
-  \caption{A selection of cross-section measurements. Note that
-    for numbers with asymmetric errors, the option
-    \texttt{\Macro{sisetup}{}\{retain-explicit-plus\}} is used to stop
-    \textsf{siunitx} from dropping the plus signs on the positive
-    errors. (although these tables look almost identical, the syntax used to
-    create them is different - see Appendix~\ref{sec:raw-data}).}
-  \label{tab:rounding:xsect}
 \end{table}
 
 Cross-sections vs.\ $\eta$ are usually not so difficult to
@@ -357,6 +362,8 @@ function of \ET\ or $x$. Tables~\ref{tab:xsect-ET} and
 \ref{tab:xsect-x} show examples of such tables.
 
 \begin{table}[htbp]
+  \caption{Cross-section vs.\ $E_{T}$.}
+  \label{tab:xsect-ET}
   \centering
   \renewcommand{\arraystretch}{1.4}
   \subfloat[No special formatting and
@@ -370,8 +377,6 @@ function of \ET\ or $x$. Tables~\ref{tab:xsect-ET} and
   use of \Macro{phantom} is applied to get improved, but not yet perfect, alignment.]{%
     \input{cross_sections_charm-ET2}
     \label{tab:xsect-ET2}}
-  \caption{Cross-section vs.\ $E_{T}$.}
-  \label{tab:xsect-ET}
 \end{table}
 
 \texttt{round-mode=figures} is in general best for cross-sections and
@@ -390,6 +395,8 @@ with the tools offered by \Macro{siunitx} getting things exactly right
 is non-trivial.
 
 \begin{table}[htb]
+  \caption{Cross-section vs.\ $x$.}
+  \label{tab:xsect-x}
   \centering
   \renewcommand{\arraystretch}{1.4}
   \ifthenelse{\ATTeXLiveVersion < 2012}{%
@@ -410,8 +417,6 @@ is non-trivial.
       \input{cross_sections_charm-x2}
     }
   }
-  \caption{Cross-section vs.\ $x$.}
-  \label{tab:xsect-x}
 \end{table}
 
 Table~\ref{tab:xsect-x} is probably the most challenging to format
@@ -431,6 +436,7 @@ correct. Investigations are ongoing to see if this can be improved.
 
 \begin{description}
 \item[2014-11-25: Ian Brock] First version of the document released.
+\item[2018-02-15: Ian Brock] Moved table captions above tables to follow common convention.
 \end{description}
 
 %-------------------------------------------------------------------------------
@@ -456,10 +462,15 @@ See the code for the appropriate options for earlier versions.
 \subsection{Table~\protect\ref{tab:rounding:xsect}}
 \begin{verbatim}
 \begin{table}[htbp]
-\centering
-\renewcommand{\arraystretch}{1.4}
-\sisetup{retain-explicit-plus}
-\sisetup{round-mode = places}
+  %
+  \caption{A selection of cross-section measurements! Note the
+  use of \Macro{sisetup} to keep the plus signs on the positive
+  errors.}
+  \label{tab:rounding:xsect}
+  \centering
+  \renewcommand{\arraystretch}{1.4}
+  \sisetup{retain-explicit-plus}
+  \sisetup{round-mode = places}
 \begin{tabular}{%
 S@{\,:\,}S
 r@{\,}@{$\pm$}@{\,}l@{\,}l
@@ -511,11 +522,6 @@ $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
 +0.5 & +1.4 & 2.881 & 0.154 & $^{\num{+0.201}}_{\num{-0.301}}$ \\
 \bottomrule
 \end{tabular}
-%
-\caption{A selection of cross-section measurements! Note the
-use of \Macro{sisetup} to keep the plus signs on the positive
-errors.}
-\label{tab:rounding:xsect}
 \end{table}
 \end{verbatim}
 

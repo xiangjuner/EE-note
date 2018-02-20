@@ -4,7 +4,7 @@
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlascomment}[2018/01/10 v.05-02-02 ATLAS language editing style]
+\ProvidesPackage{latex/atlascomment}[2018/01/10 v.05-03-00 ATLAS language editing style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -27,12 +27,16 @@
   \addtolength{\marginparwidth}{1.5cm}
   \addtolength{\textwidth}{-1.5cm}
   \RequirePackage{todonotes}
-  \newcommand{\LEcomment}[2]{\textcolor{magenta}{#1}\todo[color=pink, linecolor=magenta]{#2}\xspace}
-  \else
+  \newcommand{\LEcomment}[3][]{%
+    \ifthenelse{ \equal{#1}{} }
+      {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta]{#3}\xspace}
+      {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta, #1]{#3}\xspace}
+  }
+\else
   \typeout{atlascomment: not showing comments}
   \RequirePackage[disable]{todonotes}
-  \newcommand{\LEcomment}[2]{#1\todo{#2}\xspace}
-  \fi
+  \newcommand{\LEcomment}[3][]{\todo[#1]{#2}\xspace}
+\fi
 
 % \presetkeys{todonotes}{fancyline, color=blue!30}{}
 \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
