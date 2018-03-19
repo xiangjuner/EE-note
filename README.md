@@ -77,7 +77,7 @@ If you are running on lxplus for it to work, you MUST set your PATH correctly as
 Note that this will export the texlive 2016 version, which is the same as used in the
 Physics Office Continuous Integration :
 
-	export PATH=/afs/cern.ch/sw/XML/texlive/latestt/bin/x86_64-linux:$PATH
+	export PATH=/afs/cern.ch/sw/XML/texlive/2016/bin/x86_64-linux:$PATH
 
 A users guide to the templates can be found in `doc/atlas_latex.pdf`. You can produce
 this document yourself (and thus test that your LaTeX setup is working)
