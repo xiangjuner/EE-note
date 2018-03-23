@@ -73,9 +73,11 @@ For PO-GitLab documents, the Git repository is in a subdirectory of: https://git
 
 ### Running on lxplus
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?
-If you are running on lxplus for it to work, you MUST set your PATH correctly:
+If you are running on lxplus for it to work, you MUST set your PATH correctly as follows.
+Note that this will export the texlive 2016 version, which is the same as used in the
+Physics Office Continuous Integration :
 
-	export PATH=/afs/cern.ch/sw/XML/texlive/latest/bin/x86_64-linux:$PATH
+	export PATH=/afs/cern.ch/sw/XML/texlive/2016/bin/x86_64-linux:$PATH
 
 A users guide to the templates can be found in `doc/atlas_latex.pdf`. You can produce
 this document yourself (and thus test that your LaTeX setup is working)
