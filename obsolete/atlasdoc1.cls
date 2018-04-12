@@ -1,6 +1,8 @@
 %-------------------------------------------------------------------------------
 % Template class for ATLAS documents
 %
+% Copy to the latex directory if you want to use this style file.
+%
 % See ChangeLog or SVN log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
@@ -289,7 +291,7 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH obsolete/atlascover1}
+\def\ADOC@atlascover{\ATLASLATEXPATH atlascover1}
 \ifADOC@coverpage
   \typeout{atlasdoc1: load atlascover1 package}
   \ifADOC@CONFnote
