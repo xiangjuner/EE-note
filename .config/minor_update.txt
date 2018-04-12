@@ -1,4 +1,4 @@
 This new version contains a few updates:
- - January updates of publications.
- - Updated acknowledgements.
- 
+ - February updates of publications.
+ - Add bookmarks to PDF file via hyperref.
+ - Add a script atlaslatex_update.sh to be able to update your atlaslatex version.
