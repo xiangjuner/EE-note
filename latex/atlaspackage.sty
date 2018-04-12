@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % List of packages that can or should be used in ATLAS documents
 %
-% See ChangeLog or SVN log for history of changes.
+% See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
@@ -115,6 +115,7 @@
   \savesymbol{iiiint}
   \savesymbol{idotsint}
 \fi
+
 % Extra and very useful maths macros from AMS
 \RequirePackage{amsmath}
 % The AMS \iint etc. is now defined as \AMSiint
@@ -291,7 +292,8 @@
 % hyperref is usually included as late as possible
 \ifAPKG@hyperref
   \PassOptionsToPackage{hyphens}{url}
-  \usepackage{hyperref}
+  \RequirePackage{hyperref}
+  \hypersetup{bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=0}
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
   \hypersetup{colorlinks,breaklinks}
   \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}

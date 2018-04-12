@@ -31,7 +31,6 @@ Options can be used to specify which should be included.
 
 Documentation can be found in the doc directory.
 
-  - `atlas-paper.pdf`:		Guide to the content and style of ATLAS papers
   - `atlas-latex.pdf`:		Guide to the use of the ATLAS document templates and styles
   - `atlas-bibtex.pdf`:		Guide to references and BibTeX in ATLAS
   - `atlas-physics.pdf`:	Symbols defined in atlasphysics.sty
@@ -73,11 +72,12 @@ For PO-GitLab documents, the Git repository is in a subdirectory of: https://git
 
 ### Running on lxplus
 The most common FAQ I get is why atlaslatex does not just compile "out of the box"?
-If you are running on lxplus for it to work, you MUST set your PATH correctly as follows.
-Note that this will export the texlive 2016 version, which is the same as used in the
-Physics Office Continuous Integration :
+If you are running on `lxplus` for it to work, you MUST set your PATH correctly as follows:
 
-	export PATH=/afs/cern.ch/sw/XML/texlive/2016/bin/x86_64-linux:$PATH
+	export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
+
+in order to use TeX Live 2016.
+TeX Live 2016 is the current version used in the Physics Office Continuous Integration.
 
 A users guide to the templates can be found in `doc/atlas_latex.pdf`. You can produce
 this document yourself (and thus test that your LaTeX setup is working)
