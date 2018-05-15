@@ -5,6 +5,10 @@
 % Also needs atlasmisc.sty (option misc).
 % Compiled by Sasha Milov.
 % Adapted for atlaslatex by Ian Brock.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
 
 % Package used for chemical elements
@@ -89,7 +93,12 @@
 
 \newcommand*{\RpPb}{\ensuremath{R_{p\ce{Pb}}}\xspace}
 
-\newcommand*{\dif}{\ensuremath{\text{d}}}
+% Different differential symbols in American and British English
+\iflanguage{USenglish}{%
+  \providecommand*{\dif}{\ensuremath{d}}
+}{%
+  \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
+}
 \newcommand*{\dNchdeta}{\ensuremath{\dif N_{\text{ch}}/\dif \eta}\xspace}
 \newcommand*{\dNevtdET}{\ensuremath{\dif N_{\text{evt}}/\dif \ET}\xspace}
 

@@ -1,6 +1,10 @@
 %-------------------------------------------------------------------------------
 % Miscellaneous useful definitions for ATLAS documents.
 % Include with misc option in atlasphysics.sty.
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
 
 % +--------------------------------------------------------------------+
@@ -139,6 +143,14 @@
 \newcommand*{\syst}{\mbox{$\;$(syst.)}\xspace}
 \newcommand*{\radlength}{\ensuremath{X_0}}
 \newcommand*{\StoB}{\ensuremath{S/B}\xspace}
+
+% Different differential symbols in American and British English
+\iflanguage{USenglish}{%
+  \providecommand*{\dif}{\ensuremath{d}}
+}{%
+  \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
+}
+
 
 % +--------------------------------------------------------------------+
 % |  QCD                                                               |

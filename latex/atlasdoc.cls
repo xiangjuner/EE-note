@@ -3,10 +3,14 @@
 %
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{05-05-00}
+\def\ATPackageVersion{05-06-00}
 
-\ProvidesClass{latex/atlasdoc}[2018/01/10 v.05-05-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2018/01/10 v.05-06-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -506,7 +510,7 @@
   \ifthenelse{\ADOC@texlive < 2015}{%
     \RequirePackage[headsepline]{scrpage2}
   }{%
-  \RequirePackage[headsepline]{scrlayer-scrpage}
+    \RequirePackage[headsepline]{scrlayer-scrpage}
   }
   \ihead{}
   \chead[]{\fbox{\textsf\bfseries ATLAS DRAFT}}
@@ -524,7 +528,7 @@
   }{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
   }
-  \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
+  \chead{ATLAS Collaboration --- arXiv:\AtlasArXivId\ \AtlasArXivCat}
   \pagestyle{scrheadings}
 \fi
 

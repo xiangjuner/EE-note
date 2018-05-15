@@ -5,6 +5,8 @@ See ChangeLog or Git log for history of changes.
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
+Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+
 ------
 
 ## Included files
@@ -63,6 +65,9 @@ To make a new ATLAS note give the command:
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live 
 and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
+
+To add the cover pages for a paper/CONF note/PUB note when circulating it
+to the ATLAS collaboration, add the option `coverpage` to the `\documentclass`.
 
 If you want to use the templates for documents that are stored in CERN GitLab,
 but are not inside PO-GitLab and hence should not make use of the PO-GitLab CI tools,
