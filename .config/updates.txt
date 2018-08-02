@@ -1,3 +1,2 @@
 This new version contains a few updates:
- - April updates of publications.
- - Make \dif language sensitive.
+ - May and June updates of publications.
