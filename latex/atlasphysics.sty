@@ -37,6 +37,7 @@
 \DeclareBoolOption[false]{hepprocess}
 \DeclareBoolOption[true]{particle}
 \DeclareBoolOption[false]{process}
+\DeclareBoolOption[false]{snippets}
 \DeclareBoolOption[true]{unit}
 \DeclareBoolOption[true]{xref}
 \DeclareStringOption[2016]{texlive}
@@ -79,6 +80,9 @@
 
 % Other maybe useful definitions
 \ifAPHY@other    \RequirePackage{\APHY@atlasdir atlasother} \fi
+
+% Text snippets
+\ifAPHY@snippets \RequirePackage{\APHY@atlasdir atlassnippets} \fi
 
 % Particles
 % Load either atlasparticle or atlashepparticle, but not both.
