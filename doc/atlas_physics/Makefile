@@ -9,7 +9,7 @@ TEXLIVE = 2016
 .PHONY: clean cleanpdf
 
 atlas_physics:
-	make -f ../Makefile BASENAME=$(BASENAME1)
+	make -f ../Makefile run_latexmk BASENAME=$(BASENAME1)
 
 atlas_hepphysics:
 	if [ $(TEXLIVE) -ge 2013 ]; then \

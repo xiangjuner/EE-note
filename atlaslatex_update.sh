@@ -3,6 +3,9 @@
 
 # Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 
+# Changes:
+# 2018-08-14: BASENAME should be set correctly if Makefile is overwritten.
+
 # Remove temporary directory if it exists
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
@@ -66,8 +69,11 @@ done
 
 # Makefile
 for lfile in Makefile; do
+    BASENAME=$(grep '^BASENAME.*=' ${lfile})
+    echo "BASENAME is $BASENAME"
     afile=tmp-atlaslatex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"
+    sed -i '.bak' "s/BASENAME.*=.*/${BASENAME}/" ${lfile}
 done
 
 # Acknowledgements

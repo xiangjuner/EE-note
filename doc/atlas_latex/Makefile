@@ -8,7 +8,7 @@ TEXLIVE = 2016
 .PHONY: clean cleanpdf
 
 atlas_latex:
-	make -f ../Makefile BASENAME=$(BASENAME)
+	make -f ../Makefile run_latexmk BASENAME=$(BASENAME)
 
 texlive:
 	make -f ../Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
