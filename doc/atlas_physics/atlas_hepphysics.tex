@@ -5,7 +5,7 @@
 % Specify where ATLAS LaTeX style files can be found.
 \newcommand*{\ATLASLATEXPATH}{../../latex/}
 %-------------------------------------------------------------------------------
-\documentclass[mhchem,USenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[mhchem, USenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 \usepackage[default, backend=biber]{\ATLASLATEXPATH atlaspackage}
@@ -16,7 +16,7 @@
 % Include all style files
 \usepackage[BSM, hion, jetetmiss,
   journal, math, misc, other, hepparticle=true, hepitalic=true, particle,
-  hepprocess=true, process, unit, xref]{\ATLASLATEXPATH atlasphysics}
+  hepprocess=true, process, snippets, unit, xref]{\ATLASLATEXPATH atlasphysics}
 %\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
 
 \input{atlas_physics_defs}
@@ -33,8 +33,8 @@
 \input{atlas_physics_body}
 
 
-\twocolumn
 %-------------------------------------------------------------------------------
+\twocolumn
 \section{\File{atlasparticle.sty}}
 
 Turn on including these definitions with the option \Option{particle=true} and off with the option \Option{particle=false}.

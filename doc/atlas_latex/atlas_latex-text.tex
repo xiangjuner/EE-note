@@ -234,6 +234,9 @@ Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
 This is the default as of Version 01-07-00 of \Package{atlaslatex}.
 
+In order that the footnote and the copyright statement do not overlap,
+you may need to pass the option \Option{copyrightoffset=1em} to the \Package{atlasdoc} class.
+
 
 %-------------------------------------------------------------------------------
 \subsection{Metadata commands}
@@ -400,7 +403,7 @@ In the following the default option is in boldface.
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014;
 \item[\Option{abstract=true|\normalfont{false}}] the document contains an abstract.
-  This option is only needed together wth the \Option{BOOK} option,
+  This option is only needed together with the \Option{BOOK} option,
   if the book does not have an abstract;
 \item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
@@ -447,7 +450,7 @@ The default value is set to \Option{true}.
 
 As of \Package{atlasdoc} Version 02-00-00,
 the \KOMAScript elements are used to create the title pages.
-In particular, \Macro{publishers} is used for the abtract and copyright.
+In particular, \Macro{publishers} is used for the abstract and copyright.
 The space and position for this may need to be adjusted,
 if you have a very long title. Use the options
 \Option{titleextraheight} and \Option{copyrightoffset} to make adjustments.
@@ -834,6 +837,23 @@ The definitions can be found in a separate document \File{atlas\_physics.pdf}.
 
 
 %-------------------------------------------------------------------------------
+\section{Snippets for standard text}
+\label{sec:atlassnippets}
+%-------------------------------------------------------------------------------
+
+The Publication Committee provides standard texts giving examples
+for the description of the ATLAS detector, and the appropriate references,
+as well as other text snippets that may be useful to avoid too much use of ATLAS jargon.
+For example, the ATLAS detector description can be found in \File{template/atlas-detector.tex}
+
+You can find some text snippets that can be used in papers in \File{latex/atlassnippets.sty}.
+To use them, provide the \Option{snippets} option to \Package{atlasphysics}.
+Text snippets can also be found on the web pages~\cite{pubcom-snippet}.
+Comments and/or suggestions on improvements are very welcome and
+should be given to the Publication Committee.
+
+
+%-------------------------------------------------------------------------------
 \section{\texttt{atlaslatex} directories and Git or SVN}
 \label{sec:gitsvn}
 %-------------------------------------------------------------------------------
@@ -841,8 +861,9 @@ The definitions can be found in a separate document \File{atlas\_physics.pdf}.
 There is some flexibility in how you set up your directory structure for using \Package{atlaslatex}.
 By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
 logos are in \File{logos}. This structure assumes that you will make a separate directory tree
-for each document that you create. If you want to include these files in Git or SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git or SVN.
+for each document that you create.
+If you want to include these files in Git or SVN, note that you only need to add the
+\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git or SVN\@.
 In order to create a new document, you also need the \File{template} directory.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\

@@ -15,6 +15,10 @@ BASENAME = dummy
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
 
+# Remove -pdf option to run latex instead of pdflatex
+run_latexmk:
+	latexmk -pdf $(BASENAME)
+
 run_latex: $(BASENAME).dvi
 	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress $<
 	@echo "Made $< and $(basename $<).pdf"

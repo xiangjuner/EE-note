@@ -9,7 +9,7 @@ TEXLIVE = 2016
 
 atlas_tables:
 	if [ $(TEXLIVE) -ge 2011 ]; then \
-		make -f ../Makefile BASENAME=$(BASENAME); \
+		make -f ../Makefile run_latexmk BASENAME=$(BASENAME); \
 	fi
 
 texlive:

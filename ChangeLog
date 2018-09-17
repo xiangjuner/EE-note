@@ -1,3 +1,9 @@
+2018-09-17  Ian Brock  <Ian.Brock@cern.ch>
+	* A few tweaks to box sizes to get the copyright more often in the right place.
+	* BASENAME should be set correctly if Makefile is overwritten via atlaslatex_update.sh.
+	* Added bib files ATLAS-useful.bib and ATLAS-SUSY.bib.
+	* Start adding text snippets to new atlassnippets.sty style file.
+	* Use latexmk to make documentation.
 2018-08-02  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 05-07-00.
 	* May and June updates of publications.
