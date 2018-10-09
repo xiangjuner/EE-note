@@ -4,7 +4,7 @@
 % While it is possible to use the collaboration field, this only works with a few styles
 % and so is discouraged.
 
-% How to cite a paper from an LHC Collaboration 
+% How to cite a paper from an LHC collaboration 
 % The name of the first author must NOT appear, hence the use of xauthor instead of author in this example.
 @article{lhcCollaboration:2012,
   author = "{ATLAS Collaboration}",
@@ -23,7 +23,26 @@
   primaryClass = "hep-ex",
 } 
 
-% How to cite a paper from any other Collaboration
+% How to cite a paper from other big collaborations
+% The name of the first author must NOT appear.
+@article{tevatronCollaboration:1995,
+      author         = "{CDF Collaboration}",
+      title          = "{Observation of top quark production in $\bar{p}p$ collisions}",
+      xcollaboration  = "CDF",
+      journal        = "Phys. Rev. Lett.",
+      volume         = "74",
+      year           = "1995",
+      pages          = "2626-2631",
+      doi            = "10.1103/PhysRevLett.74.2626",
+      eprint         = "hep-ex/9503002",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ex",
+      reportNumber   = "FERMILAB-PUB-95-022-E, CDF-PUB-TOP-PUBLIC-3040,
+                        ANL-HEP-PR-95-44",
+      SLACcitation   = "%%CITATION = HEP-EX/9503002;%%"
+}
+
+% How to cite a paper from any other collaboration
 % The name of the first author MUST appear.
 @article{otherCollaboration:2007,
   author = "{PHOBOS Collaboration} and Alver, B. and others",
@@ -39,6 +58,7 @@
   eprint = "0704.0966",
   primaryClass = "hep-ex",
 }
+
 
 % How to cite a paper from individual authors
 @article{authors:2008,
