@@ -56,7 +56,7 @@
 
 Tables should only contain as many lines as are needed for clarity.
 Table~\ref{tab:yield:2dig} shows a good example that has been taken
-from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
+from \enquote{Rounding --- ATLAS Recommendations}~\cite{atlas-rounding}.
 
 \ifthenelse{\ATTeXLiveVersion < 2011}{%
   \sisetup{retainplus=true}
@@ -64,8 +64,12 @@ from \enquote{Rounding -- ATLAS Recommendations}~\cite{atlas-rounding}.
   \sisetup{retain-explicit-plus=true}
 }
 \begin{table}[htbp]
-  \ifthenelse{\ATTeXLiveVersion < 2011}{%
-    \sisetup{sepfour}
+  \ifthenelse{\ATTeXLiveVersion < 2012}{%
+    \ifthenelse{\ATTeXLiveVersion < 2011}{%
+      \sisetup{sepfour}
+    }{
+      \sisetup{group-digits=true, group-four-digits=true}
+    }
   }{
     \sisetup{group-minimum-digits=4}
   }
