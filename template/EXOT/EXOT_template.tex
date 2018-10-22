@@ -1,0 +1,94 @@
+%-------------------------------------------------------------------------------
+% This file provides template EXOT group object descriptions and cuts.
+% \pdfinclusioncopyfonts=1
+% This command may be needed in order to get \ell in PDF plots to appear. Found in
+% https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
+%-------------------------------------------------------------------------------
+% Specify where ATLAS LaTeX style files can be found.
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+% Use this variant if the files are in a central location, e.g. $HOME/texmf.
+% \newcommand*{\ATLASLATEXPATH}{}
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, atlasdraft=true, texlive=2016, USenglish]{\ATLASLATEXPATH atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
+% british and american also work!
+% Commonly used options:
+%  atlasdraft=true|false This document is an ATLAS draft.
+%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
+
+%-------------------------------------------------------------------------------
+% Extra packages:
+\usepackage{\ATLASLATEXPATH atlaspackage}
+% Commonly used options:
+%  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
+%-------------------------------------------------------------------------------
+\usepackage{multirow}
+
+% Useful macros
+\usepackage{\ATLASLATEXPATH atlasphysics}
+% See doc/atlas_physics.pdf for a list of the defined symbols.
+% Default options are:
+%   true:  journal, misc, particle, unit, xref
+%   false: BSM, heppparticle, hepprocess, hion, jetetmiss, math, process,
+%          other, snippets, texmf
+% See the package for details on the options.
+
+% Add you own definitions here (file atlas-document-defs.sty).
+% \usepackage{atlas-document-defs}
+
+% Paths for figures - do not forget the / at the end of the directory name.
+\graphicspath{{\ATLASLATEXPATH ../logos/}{figures/}}
+
+%-------------------------------------------------------------------------------
+% Generic document information
+%-------------------------------------------------------------------------------
+
+\AtlasTitle{EXOT group text snippets for INT notes}
+\AtlasVersion{0.1}
+\author{ATLAS EXOT Group}
+\AtlasRefCode{EXOT-2018-XX}
+\AtlasAbstract{%
+  This note contains text snippets and tables that shoudl be included in supporting notes
+  from the EXOT group.
+
+  \emph{2018-10-22: This file is very much a work in progress (WIP) and is expected to be updated regularly.
+  Bachwards incompatible changes may be made as the examples develop.}
+}
+% Author and title for the PDF file
+\hypersetup{pdftitle={ATLAS EXOT supporting note},pdfauthor={ATLAS EXOT group}}
+
+%-------------------------------------------------------------------------------
+% Main document
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\include{executive_summary}
+
+\section{Object selection}
+The supporting notes should now include the following standardized tables of properties: each analysis should simply fill them
+in by writing / replacing the value with the appropriate number or by choosing the appropriate option.
+The idea of these tables is to harmonize some sections of the supporting notes as to make review and analysis comparisons simpler.
+
+If you use non-standard selections which do not fit in these tables, this should of course be noted and discussed in more detail in the text.
+ 
+\include{object_selection/egamma_selection}
+\include{object_selection/muon_selection}
+\include{object_selection/tau_selection}
+\include{object_selection/jet_selection}
+\include{object_selection/btagging_selection}
+\include{object_selection/tracks_selection}
+\include{object_selection/overlap_removal}
+
+
+\section{Event selection}
+The following items should also be filled in for the event selection.
+
+\include{event_selection/event_cleaning}
+
+\end{document}

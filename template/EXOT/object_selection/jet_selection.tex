@@ -1,0 +1,120 @@
+\subsection{Small-R jet selection}
+
+
+\begin{table}[ht]
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|}
+\hline
+%\large
+\multicolumn{2}{|c|}{Jet reconstruction parameters} \\
+%\normalsize
+\hline
+Parameter & Value \\ 
+\hline
+algorithm & anti-k$_{T}$  \\
+R-parameter & 0.4 \\
+input constituent & EMTopo \\
+Analysis Release Number & 21.2.10 \\
+%Calibration tag & JetCalibTools-00-04-76 \\
+CalibArea tag & 00-04-81 \\
+Calibration configuration & JES\_data2017\_2016\_2015\_Recommendation\_Feb2018\_rel21.config \\
+Calibration sequence (Data) & JetArea\_Residual\_EtaJES\_GSC\_Insitu \\
+Calibration sequence (MC) & JetArea\_Residual\_EtaJES\_GSC \\
+%Calibration sequence (AFII) & JetArea\_Residual\_EtaJES\_GSC \\
+\hline
+%\large
+\multicolumn{2}{|c|}{Selection requirements} \\
+%\normalsize
+\hline
+Observable & Requirement \\
+\hline
+Jet cleaning & LooseBad \\
+BatMan cleaning & No \\
+pT  & $>$XX GeV \\
+\textbar$\eta$\textbar & $<$X \\
+JVT & (update if needed) $>$0.59 for $p_{T}<$60 GeV , \textbar$\eta$\textbar$<$2.4\\
+\hline
+\end{tabular}}
+\end{table}
+
+
+\clearpage
+\subsection{Large-R jet selection}
+
+\begin{table}[ht]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|}
+\hline
+%\large
+\multicolumn{2}{|c|}{Jet reconstruction parameters} \\
+\hline
+%\normalsize
+Parameter & Value \\ 
+\hline
+algorithm & anti-k$_{T}$  \\
+R-parameter & 1.0 \\
+input constituent & LCTopo \\
+grooming algorithm & Trimming \\ 
+$f_{cut}$ & 0.05 \\
+$R_{trim}$ & 0.2 \\
+Analysis Release Number & 21.2.10 \\
+%Calibration tag & JetCalibTools-00-04-76 \\
+CalibArea tag & 00-04-81 \\
+Calibration configuration & JES\_MC16recommendation\_FatJet\_JMS\_comb\_19Jan2018.config \\
+Calibration sequence (Data) & EtaJES\_JMS\_Insitu \\
+Calibration sequence (MC) & EtaJES\_JMS \\
+\hline
+%\large
+\multicolumn{2}{|c|}{Selection requirements} \\
+%\normalsize
+\hline
+Observable & Requirement \\
+\hline
+pT  & $>$X GeV \\
+\textbar$\eta$\textbar & $<$X \\
+mass & $>$ X GeV \\
+\hline
+\multicolumn{2}{|c|}{Boosted Object Tagger} \\\hline
+Object  & Working point \\\hline
+$W$ / $Z$ / Top & 50\% / 80\% \\
+$X\rightarrow bb$ & single/double b-tag with/without loose/tight mass \\\hline
+
+\end{tabular}}
+\end{table}
+
+\subsection{MET selection}
+
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+%\large
+\multicolumn{2}{|c|}{MET reconstruction parameters} \\
+\hline
+%\normalsize
+Parameter & Value \\ 
+\hline
+Algorithm & Calo-based \\
+Soft term & Track-based (TST) \\ 
+MET operating point & Tight \\
+Analysis release & 21.2.16 \\
+Calibration tag & METUtilities-00-02-46 \\
+\hline
+%\large
+\multicolumn{2}{|c|}{Selection requirements} \\
+%\normalsize
+\hline
+Observable & Requirement \\
+\hline
+$E_{T}^{miss}$  & $>$X GeV \\
+$\frac{\sum{E_{T}}}{E_{T}^{miss}}$  & $<$X \\
+Object-based $E_{T}^{miss}$ significance & $>$ X \\
+
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
