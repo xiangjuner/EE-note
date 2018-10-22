@@ -1,41 +1,40 @@
-\subsection{Small-R jet selection}
+\subsection{Small-\(R\) jet selection}
 
-\emph{Note: these tables still have to be adapted to normal ATLAS conventions.}
+If you want to use variables such as \verb|\fcut| you need to add the option
+\texttt{jetetmiss} to \texttt{atlaspackage}.
 
 \begin{table}[ht]
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|c|c|}
-\hline
-%\large
-\multicolumn{2}{|c|}{Jet reconstruction parameters} \\
-%\normalsize
-\hline
-Parameter & Value \\ 
-\hline
-algorithm & anti-k$_{T}$  \\
-R-parameter & 0.4 \\
-input constituent & EMTopo \\
-Analysis Release Number & 21.2.10 \\
-%Calibration tag & JetCalibTools-00-04-76 \\
-CalibArea tag & 00-04-81 \\
-Calibration configuration & JES\_data2017\_2016\_2015\_Recommendation\_Feb2018\_rel21.config \\
-Calibration sequence (Data) & JetArea\_Residual\_EtaJES\_GSC\_Insitu \\
-Calibration sequence (MC) & JetArea\_Residual\_EtaJES\_GSC \\
-%Calibration sequence (AFII) & JetArea\_Residual\_EtaJES\_GSC \\
-\hline
-%\large
-\multicolumn{2}{|c|}{Selection requirements} \\
-%\normalsize
-\hline
-Observable & Requirement \\
-\hline
-Jet cleaning & LooseBad \\
-BatMan cleaning & No \\
-pT  & $>$XX GeV \\
-\textbar$\eta$\textbar & $<$X \\
-JVT & (update if needed) $>$0.59 for $p_{T}<$60 GeV , \textbar$\eta$\textbar$<$2.4\\
-\hline
-\end{tabular}}
+  \caption{Jet reconstruction criteria.}%
+  \label{tab:object:muon}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+  \toprule
+  Feature & Criterion \\
+  \midrule
+  Algorithm & \antikt  \\
+  \(R\)-parameter & 0.4 \\
+  Input constituent & EMTopo \\
+  Analysis release number & 21.2.10 \\
+  %Calibration tag & JetCalibTools-00-04-76 \\
+  \texttt{CalibArea} tag & 00-04-81 \\
+  Calibration configuration & \texttt{JES\_data2017\_2016\_2015\_Recommendation\_Feb2018\_rel21.config} \\
+  Calibration sequence (Data) & \texttt{JetArea\_Residual\_EtaJES\_GSC\_Insitu} \\
+  Calibration sequence (MC) & \texttt{JetArea\_Residual\_EtaJES\_GSC} \\
+  %Calibration sequence (AFII) & \texttt{JetArea\_Residual\_EtaJES\_GSC} \\
+  \midrule
+  \multicolumn{2}{c}{Selection requirements} \\
+  \midrule
+  Observable & Requirement \\
+  \midrule
+  Jet cleaning & \texttt{LooseBad} \\
+  BatMan cleaning & No \\
+  \pT & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+  \(|\eta|\) & \(< X\) \\
+  JVT & (update if needed) \(>0.59\) for \(\pT < \SI{60}{\GeV}\), \(|\eta| < 0.4\)\\
+  \bottomrule
+  \end{tabular}
+  % }
 \end{table}
 
 
@@ -43,78 +42,72 @@ JVT & (update if needed) $>$0.59 for $p_{T}<$60 GeV , \textbar$\eta$\textbar$<$2
 \subsection{Large-R jet selection}
 
 \begin{table}[ht]
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|c|c|}
-\hline
-%\large
-\multicolumn{2}{|c|}{Jet reconstruction parameters} \\
-\hline
-%\normalsize
-Parameter & Value \\ 
-\hline
-algorithm & anti-k$_{T}$  \\
-R-parameter & 1.0 \\
-input constituent & LCTopo \\
-grooming algorithm & Trimming \\ 
-$f_{cut}$ & 0.05 \\
-$R_{trim}$ & 0.2 \\
-Analysis Release Number & 21.2.10 \\
-%Calibration tag & JetCalibTools-00-04-76 \\
-CalibArea tag & 00-04-81 \\
-Calibration configuration & JES\_MC16recommendation\_FatJet\_JMS\_comb\_19Jan2018.config \\
-Calibration sequence (Data) & EtaJES\_JMS\_Insitu \\
-Calibration sequence (MC) & EtaJES\_JMS \\
-\hline
-%\large
-\multicolumn{2}{|c|}{Selection requirements} \\
-%\normalsize
-\hline
-Observable & Requirement \\
-\hline
-pT  & $>$X GeV \\
-\textbar$\eta$\textbar & $<$X \\
-mass & $>$ X GeV \\
-\hline
-\multicolumn{2}{|c|}{Boosted Object Tagger} \\\hline
-Object  & Working point \\\hline
-$W$ / $Z$ / Top & 50\% / 80\% \\
-$X\rightarrow bb$ & single/double b-tag with/without loose/tight mass \\\hline
-
-\end{tabular}}
+  \caption{Large-R jet reconstruction criteria.}%
+  \label{tab:object:muon}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Feature & Criterion \\ 
+    \midrule
+    algorithm & \antikt  \\
+    R-parameter & 1.0 \\
+    Input constituent & \texttt{LCTopo} \\
+    Grooming algorithm & Trimming \\ 
+    \fcut & 0.05 \\
+    \(R_{\text{trim}}\) & 0.2 \\
+    Analysis release number & 21.2.10 \\
+    %Calibration tag & JetCalibTools-00-04-76 \\
+    \texttt{CalibArea} tag & 00-04-81 \\
+    Calibration configuration & \texttt{JES\_MC16recommendation\_FatJet\_JMS\_comb\_19Jan2018.config} \\
+    Calibration sequence (Data) & \texttt{EtaJES\_JMS\_Insitu} \\
+    Calibration sequence (MC) & \texttt{EtaJES\_JMS} \\
+    \bottomrule
+    \multicolumn{2}{c}{Selection requirements} \\
+    \midrule
+    Observable & Requirement \\
+    \midrule
+    \pT  & \(> \SI[parse-numbers=false]{X}{\GeV}\) \\
+    \(|\eta|\) & \(< X\) \\
+    Mass & \(> \SI[parse-numbers=false]{X}{\GeV}\) \\
+    \bottomrule
+    \multicolumn{2}{c}{Boosted object tagger} \\
+    \midrule
+    Object  & Working point \\
+    \midrule
+    \(W\) / \(Z\) / top & 50\% / 80\% \\
+    \(X\rightarrow bb\) & single/double \btag with/without loose/tight mass \\
+    \bottomrule
+  \end{tabular}
+  % }
 \end{table}
 
-\subsection{MET selection}
 
+\subsection{\MET selection}
 
 \begin{table}[ht]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-%\large
-\multicolumn{2}{|c|}{MET reconstruction parameters} \\
-\hline
-%\normalsize
-Parameter & Value \\ 
-\hline
-Algorithm & Calo-based \\
-Soft term & Track-based (TST) \\ 
-MET operating point & Tight \\
-Analysis release & 21.2.16 \\
-Calibration tag & METUtilities-00-02-46 \\
-\hline
-%\large
-\multicolumn{2}{|c|}{Selection requirements} \\
-%\normalsize
-\hline
-Observable & Requirement \\
-\hline
-$E_{T}^{miss}$  & $>$X GeV \\
-$\frac{\sum{E_{T}}}{E_{T}^{miss}}$  & $<$X \\
-Object-based $E_{T}^{miss}$ significance & $>$ X \\
-
-\hline
-\end{tabular}
-\end{center}
+  \caption{\MET reconstruction criteria.}%
+  \label{tab:object:muon}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Parameter & Value \\ 
+    \midrule
+    Algorithm & Calo-based \\
+    Soft term & Track-based (TST) \\ 
+    MET operating point & \texttt{Tight} \\
+    Analysis release & 21.2.16 \\
+    Calibration tag & \texttt{METUtilities-00-02-46} \\
+    \bottomrule
+    \multicolumn{2}{c}{Selection requirements} \\
+    \midrule
+    Observable & Requirement \\
+    \midrule
+    \MET & \(> \SI[parse-numbers=false]{X}{\GeV}\) \\
+    \(\sum{\ET} / \MET\)  & \(< X\) \\
+    Object-based \MET significance & \(> X\) \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 
