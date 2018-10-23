@@ -11,6 +11,10 @@ The files are included in the `atlaslatex` repository in the directory `template
 For now they should be copied into the main directory of a supporting note and adapted accordingly.
 In the future it is planned that they will be copied into the main directory when a skeleton note is created.
 
+All tables except the `event cleaning` are maintained by EXOT group. The `event cleaning` is maintained by the community.
+If you see something out-of-date or wrong, please contact the corresponding liaison and the EXOT group conveners.
+They should in turn submit a merge request for the `atlaslatex` Git repository.
+
 ## Executive summary
 This section, ideally 2-pages (max), should be placed at the beginning of the supporting note.
 It should give a high-level overview of the analysis including (but not limited to):
@@ -24,8 +28,6 @@ It should give a high-level overview of the analysis including (but not limited 
 ## Object selection
 These tables are to harmonize the relevant sections of the supporting notes to make writing, reviewing, and comparing of them **_simpler_**.
 These tables are maintained by the [Exotics CP Liaison](https://twiki.cern.ch/twiki/bin/view/AtlasProtected/ExoticsWorkingGroup#Contacts_to_ATLAS_Groups).
-If you see something out-of-date or wrong, please contact the corresponding liaison with the EXOT conveners in cc.
-They should in turn submit a merge request for the `atlaslatex` Git repository.
 
 If you use non-standard selections which do not fit in these tables, please note that and discussed in detail. 
 Also, if your analysis depends on details of the object reconstruction or selection not described, please add the necessary details.
@@ -41,7 +43,5 @@ Also, if your analysis depends on details of the object reconstruction or select
 
 ## Event-level selection
 Each analysis must apply event level selection to follow the [checklist recommended by DataPrep](https://twiki.cern.ch/twiki/bin/viewauth/Atlas/DataPreparationCheckListForPhysicsAnalysis).
-These tables are maintained by the community. If you see something out-of-date or wrong, please contact the EXOT conveners.
-They should in turn submit a merge request for the `atlaslatex` Git repository.
 
 - _DataPrep Checklist_: `\include{event_cleaning}`

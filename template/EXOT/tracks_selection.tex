@@ -1,22 +1,21 @@
-\subsection{Tracks selection}
-
-\emph{Note: this table still have to be adapted to normal ATLAS conventions.}
+\subsection{Track selection}
 
 If you use tracks as particular objects on which you cut in your analysis.
 
-\begin{table}[h!]
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|l|c|}
-\hline
-  \multicolumn{2}{|c|}{TrackParticle object selection} \\\hline
-
-Tracking Algorithm								    & Primary/Large Radius Tracking/Custom \\
-Track Quality Selection (official)      & Loose/Tight                          \\
-Additional Selections                    &                                      \\
-\ $|\eta|$                                          & $<$X                           		 \\
-\ $p_{T}$                                        & $>$X~GeV                           \\
-Track-Vertex-Association Criteria        & Loose/Tight                          \\
-Track-to-Jet Association Method         & Ghost Matched/dR                     \\       \hline  
-\end{tabular}}
+\begin{table}[ht]
+  \caption{\texttt{TrackParticle} object selection criteria.}%
+  \label{tab:object:track}
+  \centering
+  % \resizebox{\textwidth}{!}{
+  \begin{tabular}{ll}
+    \toprule
+    Tracking algorithm								    & Primary / Large Radius Tracking / Custom \\
+    Track quality selection (official)    & \texttt{Loose/Tight} \\
+    \pT                                   & \(> \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    \(|\eta|\)                            & \(< X\) \\
+    Track-vertex association criteria     & \texttt{Loose/Tight} \\
+    Track-to-tet association method       & Ghost Matched / \(\Delta R\) \\
+    \bottomrule
+  \end{tabular}
+  % }
 \end{table}
