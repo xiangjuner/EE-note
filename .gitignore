@@ -4,9 +4,6 @@
 /*.pdf
 # PDF files produced by epstopdf
 *-eps-converted-to.pdf
-# PDF files in subdirectories of doc and in template
-doc/*/*.pdf
-template/*/*.pdf
 
 # Generic files to ignore
 *.aux
