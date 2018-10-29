@@ -9,7 +9,7 @@
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latex/atlaspackage}[2018/01/10 v.05-08-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2018/10/29 v.05-09-00 ATLAS LaTeX packages]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -333,8 +333,13 @@
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ATLASLATEXPATH atlasbiblatex}
   \fi
-  \RequirePackage[backend=\APKG@backend,
-    style=numeric-comp, sorting=none, firstinits=true]{biblatex}
+  \ifthenelse{\APKG@texlive < 2015}{%
+    \RequirePackage[backend=\APKG@backend,
+      style=numeric-comp, sorting=none, firstinits=true]{biblatex}
+  }{%
+    \RequirePackage[backend=\APKG@backend,
+      style=numeric-comp, sorting=none, giveninits=true]{biblatex}
+  }
 \fi
 
 \endinput

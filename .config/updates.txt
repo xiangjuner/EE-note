@@ -1,5 +1,5 @@
 This new version contains a few updates:
- - July and August updates of publications.
- - Add extra bib files (ATLAS-useful.bib and ATLAS-SUSY.bib)
- - Start adding more text snippets.
- - microtype package now included by default in atlaspackage.sty.
+ - September updates of publications.
+ - Add INT note templates for EXOT group. These are a WIP and subject to further change.
+ - Updated acknowledgements (2018-10-24).
+
