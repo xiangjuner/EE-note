@@ -837,7 +837,7 @@ The definitions can be found in a separate document \File{atlas\_physics.pdf}.
 
 
 %-------------------------------------------------------------------------------
-\section{Snippets for standard text}
+\section{Snippets and templates for standard text}
 \label{sec:atlassnippets}
 %-------------------------------------------------------------------------------
 
@@ -851,6 +851,10 @@ To use them, provide the \Option{snippets} option to \Package{atlasphysics}.
 Text snippets can also be found on the web pages~\cite{pubcom-snippet}.
 Comments and/or suggestions on improvements are very welcome and
 should be given to the Publication Committee.
+
+In addition, CP and analysis groups have started providing templates for supporting (INT) notes.
+These are included in a subdirectory of the \File{template} directory.
+For now (2018-10-29) there are some templates from the EXOT group.
 
 
 %-------------------------------------------------------------------------------
@@ -880,7 +884,7 @@ Such a structure makes it very easy to switch between \Package{atlaslatex} versi
 
 
 %-------------------------------------------------------------------------------
-\section{Language editor commands}
+\section{Language editor commands}%
 \label{sec:langedit}
 %-------------------------------------------------------------------------------
 
@@ -899,9 +903,22 @@ you can set up your own macros.
 
 
 %-------------------------------------------------------------------------------
-\section{Installation of \Package{atlaslatex} in \File{texmf} tree}
+\section{Math mode macros}%
+\label{sec:math}
 %-------------------------------------------------------------------------------
+
+The correct \LaTeX\ macros for math mode are \(\textbackslash(\ldots\textbackslash)\)
+and not \(\$\ldots\$\) (which are \TeX\ primitives),
+even though the \TeX\ primitives are used by most people.
+As of Version 06-00-00 of \Package{atlaslatex}
+the standard ATLAS bibliography and template files use the correct \LaTeX\ macros and
+the documentation, example files will also be adjusted to use them.
+
+
+%-------------------------------------------------------------------------------
+\section{Installation of \Package{atlaslatex} in \File{texmf} tree}%
 \label{sec:texmf}
+%-------------------------------------------------------------------------------
 
 As discussed above, the \texttt{atlasdoc} class and the style files can all be found in the 
 \File{latex} subdirectory. The template documents are usually set up to pick up the style files from there.
