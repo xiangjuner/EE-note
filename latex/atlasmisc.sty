@@ -94,8 +94,8 @@
 \newcommand*{\MADSPIN}{\textsc{MadSpin}\xspace}
 \newcommand*{\MADGRAPH}{\textsc{MadGraph}\xspace}
 \newcommand*{\MADGRAPHV}[1]{\textsc{MadGraph}~#1\xspace}
-\newcommand*{\MGMCatNLO}{\textsc{MadGraph5}\_aMC@NLO\xspace} 
-\newcommand*{\MGMCatNLOV}[1]{\textsc{MadGraph5}\_aMC@NLO~#1\xspace} 
+\newcommand*{\MGMCatNLO}{\textsc{MadGraph5}\_aMC@NLO\xspace}
+\newcommand*{\MGMCatNLOV}[1]{\textsc{MadGraph5}\_aMC@NLO~#1\xspace}
 \newcommand*{\MCatNLO}{MC@NLO\xspace}
 \newcommand*{\MCatNLOV}[1]{MC@NLO~#1\xspace}
 \newcommand*{\AMCatNLO}{aMC@NLO\xspace}
@@ -136,11 +136,11 @@
 \newcommand*{\larrow}{\ensuremath{\leftarrow}\xspace}
 %\let\rarrow=\ra
 %\let\larrow=\la
-\newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$<$}}\xspace}%  Or use \lsim
-\newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{$>$}}\xspace}%  and \rsim.
+\newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(<\)}}\xspace}%  Or use \lsim
+\newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(>\)}}\xspace}%  and \rsim.
 \newcommand*{\gam}{\ensuremath{\gamma}\xspace}
-\newcommand*{\stat}{\mbox{$\;$(stat.)}\xspace}
-\newcommand*{\syst}{\mbox{$\;$(syst.)}\xspace}
+\newcommand*{\stat}{\mbox{\(\;\)(stat.)}\xspace}
+\newcommand*{\syst}{\mbox{\(\;\)(syst.)}\xspace}
 \newcommand*{\radlength}{\ensuremath{X_0}}
 \newcommand*{\StoB}{\ensuremath{S/B}\xspace}
 
@@ -225,8 +225,8 @@
    \vcenter{%
       \openup\jot\m@th
       \ialign{%
-         \strut\hfil$\displaystyle{##}$&&$%
-         \displaystyle{{}##}$\hfil\crcr#1\crcr%
+         \strut\hfil\(\displaystyle{##}\)&&\(%
+         \displaystyle{{}##}\)\hfil\crcr#1\crcr%
       }
    }
    \,
