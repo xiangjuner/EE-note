@@ -333,7 +333,7 @@
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ATLASLATEXPATH atlasbiblatex}
   \fi
-  \ifthenelse{\APKG@texlive < 2015}{%
+  \ifthenelse{\APKG@texlive < 2016}{%
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, firstinits=true]{biblatex}
   }{%

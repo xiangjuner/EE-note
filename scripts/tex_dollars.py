@@ -4,7 +4,7 @@
 # Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 
 # Changes:
-# 2018-08-14: BASENAME should be set correctly if Makefile is overwritten.
+# 2018-10-30 Ian Brock (ian.brock@cern.ch): First version of script.
 
 from __future__ import print_function
 

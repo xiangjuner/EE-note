@@ -1,5 +1,6 @@
 This new version contains a few updates:
- - September updates of publications.
- - Add INT note templates for EXOT group. These are a WIP and subject to further change.
- - Updated acknowledgements (2018-10-24).
+ - October updates of publications.
+ - Number and unit spacing in bib files changed to ~ instead of \;.
+ - Use \text instead of \mbox, \textrm, \mathrm in bib files.
+ - Use \(...\) instead of $...$ in template and bib files.
 
