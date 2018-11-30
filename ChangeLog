@@ -4,6 +4,8 @@
 	* Use \text instead of \mbox, \textrm, \mathrm in bib files.
 	* Use \(...\) instead of $...$ in template and bib files.
 	* Use firstinits instead of giveninits as biblatex option for TeX Live < 2016 instead of 2015.
+	* Moved atlaslatex_update.sh script to scripts subdirectory.
+	* Added a script tex_dollars.py to convert $...$ to \(...\).
 
 2018-10-29  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 05-09-00.

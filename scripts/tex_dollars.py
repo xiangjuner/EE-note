@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # Script to replace $...$ and $$...$$ with \(...\) and \[...\]
+# Note that this only works if $...$ is on one line.
 
 # Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 
@@ -78,7 +79,6 @@ def main(args):
 
             # substitute $.*$ with \(.*\) 
             # note: this should not match $$.*$$
-            # print(inNosubs)
             if not inNosubs:
                 p = re.compile(r'\$(.+?)\$')
                 m = p.search(text)
