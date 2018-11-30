@@ -1,4 +1,4 @@
-2018-11-28  Ian Brock  <Ian.Brock@cern.ch>
+2018-11-30  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 06-00-00.
 	* Number and unit spacing in bib files changed to ~ instead of \;.
 	* Use \text instead of \mbox, \textrm, \mathrm in bib files.
