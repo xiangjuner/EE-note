@@ -9,9 +9,9 @@
 %
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{07-00-00}
+\def\ATPackageVersion{06-00-00}
 
-\ProvidesPackage{latex/atlascover}[2018/12/21 v.07-00-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover}[2018/11/30 v.06-00-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -251,70 +251,51 @@
 \addtolength{\ACOV@sizeh}{+5pt}
 \setlength{\ACOV@spaceh}{1.2\ACOV@sizeh}
 \typeout{Value of font sizes and spacing are:}
-\typeout{Default: \the\ACOV@size and \the\ACOV@space}
-\typeout{small:   \the\ACOV@sizes and \the\ACOV@spaces}
-\typeout{large:   \the\ACOV@sizel and \the\ACOV@spacel}
-\typeout{Large:   \the\ACOV@sizeL and \the\ACOV@spaceL}
-\typeout{huge:    \the\ACOV@sizeh and \the\ACOV@spaceh}
-% \newlength{\ACOV@linewidth}
-% \setlength{\ACOV@linewidth}{\textwidth}
-% \addtolength{\ACOV@linewidth}{-12pt}
+\typeout{Default: \the\ACOV@size\ and \the\ACOV@space}
+\typeout{small:   \the\ACOV@sizes\ and \the\ACOV@spaces}
+\typeout{large:   \the\ACOV@sizel\ and \the\ACOV@spacel}
+\typeout{Large:   \the\ACOV@sizeL\ and \the\ACOV@spaceL}
+\typeout{huge:    \the\ACOV@sizeh\ and \the\ACOV@spaceh}
 
-\typeout{Line width \the\linewidth, text width \the\textwidth}
 %-------------------------------------------------------------------------------
 % Page One: Header/Body/Footer
 %-------------------------------------------------------------------------------
-\newcommand{\ATLAS@CoverHeader}{%
-  \newlength{\coverpageparbox}%
-  \setlength{\coverpageparbox}{\linewidth}%
-  \addtolength{\coverpageparbox}{-11pt}%
-  \typeout{coverpageparbox is \the\coverpageparbox}%
-  \typeout{Line width \the\linewidth, text width \the\textwidth}%
-  \parbox{\coverpageparbox}{%
-    \parbox{0.23\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}
-    }
-    \parbox{0.47\linewidth}{%
-      \centering
-      \sffamily\bfseries\fontsize{16}{19.2}\selectfont
-      \ifACOV@atlaspaper%
-        ATLAS Paper Draft\par
+\newcommand{\AtlasCoverHeader}{%
+  \parbox{0.25\linewidth}{%
+    \includegraphics[height=25mm]{AT_atlaslogo_2015}
+  }
+  \parbox{0.5\linewidth}{%
+    \centering
+    \sffamily\bfseries\fontsize{16}{19.2}\selectfont
+    \ifACOV@atlaspaper%
+      ATLAS Paper Draft\par
+    \else
+      \ifACOV@CONF%
+        ATLAS CONF Note Draft\par
       \else
-        \ifACOV@CONF%
-          ATLAS CONF Note Draft\par
-        \else
-          \ifACOV@PUB%
-            ATLAS PUB Note Draft\par
-          \fi
+        \ifACOV@PUB%
+          ATLAS PUB Note Draft\par
         \fi
       \fi
-      {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-        \ADOC@refcode\par
-      }
-      {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-        Version \ADOC@draftversion\par
-      }
-      \ifACOV@atlaspaper
-        {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-          Target journal: \ADOC@journal\par
-        }
-      \fi
-    }\par%
-    {\rule{\coverpageparbox}{1.5pt}\par
-    \parbox{\coverpageparbox}{\centering%
-      \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
-      Comments are due by: \ACOV@CommentsDeadline\par
-    }\par%
-    \rule{\coverpageparbox}{1.5pt}
-    }\par
+    \fi
+    {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      \ADOC@refcode\par
+    }
+    {\sffamily\mdseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+      Version \ADOC@draftversion\par
+    }
+  }\par\noindent
+  \rule{\linewidth}{1.5pt}\par
+  \parbox{\linewidth}{\centering%
+    \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
+     Comments are due by: \ACOV@CommentsDeadline\par
   }
+  \rule{\linewidth}{1.5pt}\par
 }
 
 %-------------------------------------------------------------------------------
-\newcommand{\ATLAS@CoverSupport}{%
-  \setlength{\coverpageparbox}{\linewidth}%
-  \addtolength{\coverpageparbox}{-11pt}%
-  \parbox{\coverpageparbox}{%
+\newcommand{\AtlasCoverSupport}{%
+  \parbox{\linewidth}{%
     \ifACOV@support
       {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
         \flushleft Supporting internal notes\par
@@ -333,16 +314,14 @@
           \flushleft\ACOV@Notes\par
         }
       \fi
-      \rule{\textwidth}{1.5pt}\par
+      \rule{\linewidth}{1.5pt}\par
     \fi
   }
 }
 
 %-------------------------------------------------------------------------------
-\newcommand{\ATLAS@CoverTitle}{%
-  \setlength{\coverpageparbox}{\linewidth}%
-  \addtolength{\coverpageparbox}{-11pt}%
-  \parbox{\coverpageparbox}{%
+\newcommand{\AtlasCoverTitle}{%
+  \parbox{\linewidth}{%
     \centering
     {\sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
       \AtlasTitleText\par
@@ -350,30 +329,35 @@
     {\sffamily\mdseries\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
       \centering
       \begin{quote}
-        \AtlasAbstractText
+      %\setlength{\parindent}{0pt}\setlength{\parskip}{0.5ex}\noindent\AtlasAbstractText
+      \AtlasAbstractText
       \end{quote}
     }
+    \ifACOV@atlaspaper
+      \vspace*{0.8ex}
+      {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
+        To be submitted to: \ADOC@journal\par
+      }
+    \fi
   }
 }
 
 %-------------------------------------------------------------------------------
-\newcommand{\ATLAS@CoverFooter}{%
-  \setlength{\coverpageparbox}{\linewidth}%
-  \addtolength{\coverpageparbox}{-11pt}%
-  \parbox{\coverpageparbox}{%
+\newcommand{\AtlasCoverFooter}{%
+  \parbox[b]{\linewidth}{%
     \sffamily\mdseries\fontsize{9}{10.8}\selectfont
     \ifACOV@atlasdoc%
       Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \else
       Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \fi
-  }
+  }\par
 }
 
 %-------------------------------------------------------------------------------
 % Page Two:  Names of analysis team (editors), EdBoard and Language Editor
 %-------------------------------------------------------------------------------
-\newcommand{\ATLAS@CoverPageTwo}{%
+\newcommand{\AtlasCoverPageTwo}{%
   % Analysis team
   \parbox{\linewidth}{%
     \centering
@@ -450,24 +434,23 @@
 %-------------------------------------------------------------------------------
 % Main printout phase
 %-------------------------------------------------------------------------------
-\newcommand{\ACOV@PrintAtlasCover}{%
-  \thispagestyle{empty}%
-  \setlength{\parindent}{\z@}%
-  \setlength{\parskip}{\z@}%
-  \ATLAS@CoverHeader\par
-  \ATLAS@CoverSupport\par
+\newcommand{\ACOV@PrintAtlasCover}{
+  \thispagestyle{empty}
+  \noindent{\AtlasCoverHeader}
+  \noindent{\AtlasCoverSupport}
   \vfill
-  \ATLAS@CoverTitle\par
+  \noindent{\AtlasCoverTitle}
   \vfill
-  \ATLAS@CoverFooter\par
+  %\vfill
+  \noindent{\AtlasCoverFooter}
   \clearpage
 }
 
-\newcommand{\ACOV@PrintAtlasCoverPageTwo}{%
+\newcommand{\ACOV@PrintAtlasCoverPageTwo}{
   \thispagestyle{empty}
   \vspace*{\fill}
-  \ATLAS@CoverPageTwo
-  \vspace*{\fill}
+  \noindent{\AtlasCoverPageTwo}
+  \vfill
   \clearpage
 }
 
