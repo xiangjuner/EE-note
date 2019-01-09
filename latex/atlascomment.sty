@@ -27,9 +27,16 @@
 
 \ifACOMM@comment
   \typeout{atlascomment: showing comments}
+  \typeout{text height and width \the\textheight, \the\textwidth}
+  \typeout{line width \the\linewidth}
+  \typeout{margin width and sep \the\marginparwidth, \the\marginparsep}
   \KOMAoptions{BCOR=-1.0cm}
   \addtolength{\marginparwidth}{1.0cm}
-  \addtolength{\textwidth}{-1.0cm}
+  % \addtolength{\textwidth}{-1.0cm}
+  \KOMAoptions{DIV=last}
+  \typeout{text height and width \the\textheight, \the\textwidth}
+  \typeout{line width \the\linewidth}
+  \typeout{margin width and sep \the\marginparwidth, \the\marginparsep}
   \RequirePackage{todonotes}
   \newcommand{\LEcomment}[3][]{%
     \ifthenelse{ \equal{#1}{} }

@@ -402,9 +402,9 @@
 \fi
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
+\def\ADOC@atlascover{\ATLASLATEXPATH atlascover2}
 \ifADOC@coverpage
-  \typeout{atlasdoc: load atlascover package}
+  \typeout{atlasdoc: load atlascover2 package}
   \ifADOC@CONFnote
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}
   \else
