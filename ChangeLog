@@ -8,6 +8,7 @@
 	Previous version available as atlasdoc2.cls and atlascover2.sty.
 	* Add \JHEP as a journal.
 	* Always use paper=letter option for US paper size.
+	* Some tweaks so turning on language editor comments should not change text width.
 
 2018-11-30  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 06-00-00.
