@@ -5,6 +5,7 @@
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %
 % Note that this file can be overwritten when atlaslatex is updated.
+% if TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
 %
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
