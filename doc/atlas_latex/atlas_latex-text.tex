@@ -234,7 +234,8 @@ Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
 This is the default as of Version 01-07-00 of \Package{atlaslatex}.
 
-In order that the footnote and the copyright statement do not overlap,
+For versions before Versions 07-00-00,
+in order that the footnote and the copyright statement do not overlap,
 you may need to pass the option \Option{copyrightoffset=1em} to the \Package{atlasdoc} class.
 
 
@@ -407,9 +408,10 @@ In the following the default option is in boldface.
   if the book does not have an abstract;
 \item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
-\item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long;
-\item[\Option{copyrightoffset=0em}] adjust the position of the copyright,
-  if it is not completely correct.
+\item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long.
+  \emph{This option has no effect as of \Package{atlaslatex} 07-00-00};
+\item[\Option{copyrightoffset=0em}] adjust the position of the copyright, if it is not completely correct.
+  \emph{This option has no effect as of \Package{atlaslatex} 07-00-00}.
 \end{description}
 
 The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00.
@@ -428,12 +430,14 @@ They are mostly still available in \Package{atlasdoc1}.
   This option has no effect as of \Package{atlaslatex} 01-07-00 of \Package{atlaslatex};
 \item[koma=true|{\normalfont false}] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
 \item[\Option{letterpaper}] set the paper size to letter.
+  \emph{This option does not work as of \Package{atlaslatex} 07-00-00
+  --- use \Option{paper=letter} instead};
 \item[\Option{a4paper}] set the paper size to A4;
   \emph{This option was removed in \Package{atlaslatex} 02-00-00
-  -- use \Option{paper=a4} instead};
+  --- use \Option{paper=a4} instead};
 \item[\Option{letter}] set the paper size to letter.
   \emph{This option was removed in \Package{atlaslatex} 02-00-00
-  -- use \Option{paper=letter} instead};
+  --- use \Option{paper=letter} instead};
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
@@ -715,7 +719,7 @@ Summarising, a typical \Macro{documentclass} command would be:
 \pdfoutput=1
 \end{verbatim}
 The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
-You should also turn off ATLAS draft cover page -- remove the option \Option{coverpage=true}.
+You should also turn off ATLAS draft cover page --- remove the option \Option{coverpage=true}.
 If you move the class and style files to the same directory as the main file,
 you need to add the option \Option{texmf} to the \Macro{documentclass}.
 
@@ -726,7 +730,7 @@ export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
 
 Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
 Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
-Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} -- see
+Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} --- see
 the Section on \enquote{Guidelines for paper submission}.
 APS journals have special requirements on the directory structure and the filenames for figures.
 %JINST uses a very old version of \LaTeX\ (2004).
@@ -871,7 +875,7 @@ If you want to include these files in Git or SVN, note that you only need to add
 In order to create a new document, you also need the \File{template} directory.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
-\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree -- see Section~\ref{sec:texmf}.
+\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see Section~\ref{sec:texmf}.
 
 If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
 at the beginning of your document. This would enable you to maintain a single copy of each 
@@ -1228,7 +1232,7 @@ This helps the line numbers. The standard options to use for the placement are \
 
 
 %-------------------------------------------------------------------------------
-\subsection{\pT or \ET\ -- that is the question}
+\subsection{\pT or \ET, that is the question}
 
 Bold math should be automatically invoked in titles.
 This short section tests whether that works properly.
@@ -1240,7 +1244,7 @@ However, if you just use the option \Option{koma}, which then typesets titles us
 the $p$ and $E$ are typeset with a serif font and \textsf{T} is typeset with a sans serif font,
 which is probably not what one wants!
 Work is still ongoing to find the optimal set of options
--- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
+--- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
 This is not a problem for the ATLAS preprint style as it uses a serif font for the section titles.
 
 

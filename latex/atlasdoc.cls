@@ -10,7 +10,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{07-00-00}
 
-\ProvidesClass{latex/atlasdoc}[2018/12/21 v.07-00-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2019/01/11 v.07-00-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 

@@ -1,0 +1,1 @@
+../../atlaslatex-admin/mkdoc.py

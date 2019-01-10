@@ -9,16 +9,16 @@
 %
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{06-00-00}
+\def\ATPackageVersion{07-00-00}
 
-\ProvidesPackage{latex/atlascover}[2018/11/30 v.06-00-00 ATLAS cover pages]
+\ProvidesPackage{latex/atlascover2}[2019/01/11 v.07-00-00 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
 %\def\@getclass{\expandafter\@getcl@ss\@filelist\relax}
 %
 %\@getclass
-%\typeout{atlascover: this document uses \@currentclass\space class}
+%\typeout{atlascover2: this document uses \@currentclass\space class}
 
 %\typeout{ATLAS cover page v.\ATPackageVersion}
 
@@ -45,15 +45,15 @@
 \newif\ifACOV@atlaspaper
 \ACOV@atlaspapertrue
 \ifACOV@CONF
-  \typeout{atlascover: Cover page for CONF note will be made}
+  \typeout{atlascover2: Cover page for CONF note will be made}
   \ACOV@atlaspaperfalse
 \fi
 \ifACOV@PUB
-  \typeout{atlascover: Cover page for PUB note will be made}
+  \typeout{atlascover2: Cover page for PUB note will be made}
   \ACOV@atlaspaperfalse
 \fi
 %\ifACOV@preprint
-%  \typeout{atlascover: Front page for a CERN preprint will be made}
+%  \typeout{atlascover2: Front page for a CERN preprint will be made}
 %  \ACOV@cernpreprinttrue
 %\fi
 
@@ -62,45 +62,45 @@
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
-% See if atlascover is called from atlasdoc
+% See if atlascover2 is called from atlasdoc2
 %\def\@atlasdocref{atlasdoc}
 %\def\@atlasdoclatexref{latex/atlasdoc}
 \ifACOV@atlasdoc
-  \typeout{atlascover: loaded from atlasdoc}
+  \typeout{atlascover2: loaded from atlasdoc}
   \relax
 \else
 %  \ifx\@currentclass\@atlasdoclatexref
-%    \typeout{atlascover: current class loaded is latex/atlasdoc}
+%    \typeout{atlascover2: current class loaded is latex/atlasdoc}
 %    \ACOV@atlasdoctrue
 %  \else
 %    \ifx\@currentclass\@atlasdocref
-%      \typeout{atlascover: current class loaded is atlasdoc}
+%      \typeout{atlascover2: current class loaded is atlasdoc}
 %      \ACOV@atlasdoctrue
 %    \else
-%      \typeout{atlascover: current class loaded does not appear to be atlasdoc}
+%      \typeout{atlascover2: current class loaded does not appear to be atlasdoc}
 %      \ACOV@atlasdocfalse
 %    \fi
 %  \fi
-  \@ifclassloaded{latex/atlasdoc}{%
-    \typeout{atlascover: class loaded is latex/atlasdoc}
+  \@ifclassloaded{latex/atlasdoc2}{%
+    \typeout{atlascover2: class loaded is latex/atlasdoc2}
     \ACOV@atlasdoctrue
   }{%
-    \@ifclassloaded{atlasdoc}{%
-      \typeout{atlascover: class loaded is atlasdoc}
+    \@ifclassloaded{atlasdoc2}{%
+      \typeout{atlascover2: class loaded is atlasdoc}
       \ACOV@atlasdoctrue
     }{%
-      \typeout{atlascover: class loaded does not appear to be atlasdoc}
+      \typeout{atlascover2: class loaded does not appear to be atlasdoc}
       \ACOV@atlasdocfalse
     }
   }
 \fi
 
-% If atlascover called from atlasdoc, do not need to do much
+% If atlascover2 called from atlasdoc2, do not need to do much
 \ifACOV@atlasdoc%
-  \typeout{atlascover: ATLAS cover called from atlasdoc}
+  \typeout{atlascover2: ATLAS cover called from atlasdoc}
   % Let atlasdoc know we want a cover page
   \ifACOV@coverpage
-    \typeout{atlascover: telling atlasdoc we want a cover page}
+    \typeout{atlascover2: telling atlasdoc we want a cover page}
     \ADOC@coverpagetrue
   \fi
   % Let atlasdoc know we want a CERN preprint front page
@@ -115,14 +115,14 @@
   \relax%
 \else
   % Define macros that are needed here and usually defined in atlasdoc
-  \typeout{atlascover: ATLAS cover called standalone}
+  \typeout{atlascover2: ATLAS cover called standalone}
 \fi
 
 % All definitions should also be in atlasdoc.cls
 % They are needed here for a standalone cover that does not use atlasdoc.cls
 \@ifundefined{AtlasTitle}{%
-  \typeout{atlascover: AtlasTitle etc. not yet defined}
-  \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover\\ Use \textbackslash AtlasTitle to set it}
+  \typeout{atlascover2: AtlasTitle etc. not yet defined}
+  \providecommand\AtlasTitleText{Dummy AtlasTitleText in atlascover2\\ Use \textbackslash AtlasTitle to set it}
   \providecommand{\AtlasTitle}[1]{%
     \def\@title{#1}%
     \renewcommand\AtlasTitleText{#1}%
@@ -461,7 +461,7 @@
   \ifACOV@atlasdoc
     \relax
   \else
-    \typeout{atlascover: producing the cover pages}
+    \typeout{atlascover2: producing the cover pages}
     \ifACOV@twocolumn \onecolumn \fi
     \ifACOV@coverpage
       \ACOV@PrintAtlasCover

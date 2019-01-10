@@ -3,12 +3,12 @@
 %
 % Copy to the latex directory if you want to use this style file.
 %
-% See ChangeLog or SVN log for history of changes.
+% See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{05-01-00}
+\def\ATPackageVersion{07-00-00}
 
-\ProvidesClass{latex/atlasdoc1}[2017/11/30 v.05-01-00 ATLAS deprecated document class]
+\ProvidesClass{latex/atlasdoc1}[2019/01/11 v.07-00-00 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
