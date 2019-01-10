@@ -326,7 +326,6 @@
     \KOMAoptions{DIV=12, BCOR=5mm, twoside}
   \else
     \KOMAoptions{DIV=14, BCOR=5mm}
-    % \KOMAoptions{DIV=14}
   \fi
   \KOMAoptions{pagesize}
   % Do not put a dot after Section/Chapter, nor in the figure caption.
@@ -370,7 +369,7 @@
 \fi
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
-%\setcounter{secnumdepth}{-1}
+% \setcounter{secnumdepth}{-1}
 
 % Required packages
 \RequirePackage{graphicx}
@@ -530,7 +529,6 @@
   \setlength{\titlepageparbox}{\textwidth}%
   % \addtolength{\titlepageparbox}{-11pt}%
   % \typeout{ATLAS title titlepageparbox is \the\titlepageparbox, text width \the\textwidth, line width \the\linewidth}%
-  % \hspace*{\fill}%
   \parbox[t][35mm]{\titlepageparbox}{%
     \parbox[b][35mm][t]{0.23\linewidth}{%
       \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
@@ -584,8 +582,7 @@
         \fi
       \fi
     }
-  }%
-  % \hspace*{\fill}%
+  }
 }
 
 %-------------------------------------------------------------------------------
@@ -594,7 +591,6 @@
   \setlength{\titlepageparbox}{\textwidth}%
   % \addtolength{\titlepageparbox}{-11pt}%
   % \typeout{CERN preprint titlepageparbox is \the\titlepageparbox, text width \the\textwidth, line width \the\linewidth}%
-  % \hspace*{\fill}%
   \parbox[t]{\titlepageparbox}{%
     \makebox[\linewidth]{\centering%
       \sffamily\mdseries\fontsize{14}{16.8}\selectfont%
@@ -630,7 +626,6 @@
     \vspace*{2mm}
     \rule{\linewidth}{1pt}\par
   }%
-  % \hspace*{\fill}
 }
 
 %-------------------------------------------------------------------------------
@@ -677,7 +672,8 @@
   \setlength{\titlepageparbox}{\textwidth}
   \addtolength{\titlepageparbox}{-11pt}
   % \typeout{Copyright titlepageparbox is \the\titlepageparbox, text width \the\textwidth, line width \the\linewidth}
-  \parbox[b]{\titlepageparbox}{%
+  % \parbox[b]{\titlepageparbox}{%
+  {%
     \rmfamily\mdseries\fontsize{10}{12}\selectfont
     \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
     Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
@@ -746,18 +742,18 @@
     % Header
     \ifADOC@cernpreprint
       \typeout{atlasdoc: using CERN preprint title page}
-      \ATLAS@CERNPreprintTitleHeader%
+      \ATLAS@CERNPreprintTitleHeader
     \else
       \ifADOC@HEPDATA
         \typeout{atlasdoc: using HepData Material title page}
-        \ATLAS@HepDataTitleHeader%
+        \ATLAS@HepDataTitleHeader
       \else
         \ifADOC@BOOK
           \typeout{atlasdoc: using ATLAS book title page}
-          \ATLAS@BookTitleHeader%
+          \ATLAS@BookTitleHeader
         \else
           \typeout{atlasdoc: using ATLAS document title page}
-          \ATLAS@TitleHeader%
+          \ATLAS@TitleHeader
         \fi
       \fi
     \fi

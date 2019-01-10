@@ -249,7 +249,7 @@
     }
     \parbox{0.50\linewidth}{%
       \centering
-      \sffamily\bfseries\fontsize{16}{19.2}\selectfont
+      \sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
       \ifACOV@atlaspaper%
         ATLAS Paper Draft\par
       \else
@@ -273,9 +273,10 @@
         }
       \fi
     }\par%
-    \rule{\linewidth}{1.5pt}\par%
-    \parbox{\coverpageparbox}{\centering%
-      \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont%
+    \rule{\linewidth}{1.5pt}\par
+    \vspace*{0.5em}
+    \parbox{\coverpageparbox}{\centering
+      \sffamily\bfseries\fontsize{\ACOV@sizeL}{\ACOV@spaceL}\selectfont
       Comments are due by: \ACOV@CommentsDeadline%
     }\par%
     \rule{\linewidth}{1.5pt}
@@ -314,13 +315,12 @@
 \newcommand{\ATLAS@CoverTitle}{%
   \setlength{\coverpageparbox}{\textwidth}%
   % \addtolength{\coverpageparbox}{-11pt}%
-  \parbox{\coverpageparbox}{%
-    \centering
+  % \parbox{\coverpageparbox}{%
+  {\centering
     {\sffamily\bfseries\fontsize{\ACOV@sizeh}{\ACOV@spaceh}\selectfont
       \AtlasTitleText\par
     }
     {\sffamily\mdseries\fontsize{\ACOV@sizes}{\ACOV@spaces}\selectfont
-      \centering
       \begin{quote}
         \AtlasAbstractText
       \end{quote}
@@ -332,14 +332,15 @@
 \newcommand{\ATLAS@CoverFooter}{%
   \setlength{\coverpageparbox}{\textwidth}%
   \addtolength{\coverpageparbox}{-11pt}%
-  \parbox{\coverpageparbox}{%
-    \sffamily\mdseries\fontsize{9}{10.8}\selectfont
+  % \parbox{\coverpageparbox}{%
+  {\sffamily\mdseries\fontsize{9}{10.8}\selectfont
     \ifACOV@atlasdoc%
       Document created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \else
       Cover created on \today\ using ATLAS \LaTeX\ Version \ATPackageVersion.
     \fi
   }
+  % }
 }
 
 %-------------------------------------------------------------------------------
@@ -426,9 +427,9 @@
   \ATLAS@CoverHeader
   \ATLAS@CoverSupport{\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
   \vspace*{\stretch{1}}
-  \ATLAS@CoverTitle{\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
+  \ATLAS@CoverTitle%{\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
   \vspace*{\stretch{1}}
-  \ATLAS@CoverFooter\par
+  \ATLAS@CoverFooter
 }
 
 \newcommand{\ACOV@PrintAtlasCoverPageTwo}{%
