@@ -1,5 +1,6 @@
 2019-01-11  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-00-00.
+	* November update of publications.
 	* Rewrite macros for creating cover and title pages.
 	Copyright notice should now always be correctly positioned.
 	Less space used for title etc.
