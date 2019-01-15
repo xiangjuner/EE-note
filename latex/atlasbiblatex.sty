@@ -29,6 +29,7 @@
 \DeclareBoolOption[true]{eprint}
 \DeclareBoolOption[false]{address}
 \DeclareBoolOption[false]{location}
+\DeclareBoolOption[true]{backref}
 \DeclareStringOption[2016]{texlive}
 \ProcessKeyvalOptions*
 
@@ -40,9 +41,16 @@
   % Set block mode
   \typeout{atlasbiblatex: block set to \ABIB@block}
   \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
-  \ExecuteBibliographyOptions{block=\ABIB@block}
   % Set maxbibnames
   \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
+  % backref=true adds page numbers of citations to bibliography
+  \ifABIB@backref
+    \typeout{atlasbiblatex: turning backref on}
+    \ExecuteBibliographyOptions{backref=true}
+  \else
+    \typeout{atlasbiblatex: backref is off}
+    % \ExecuteBibliographyOptions{backref=true}
+  \fi
   % Include the DOI as a hyerlink with the journal.
   \ifABIB@showdoi
     \relax

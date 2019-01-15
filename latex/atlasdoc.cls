@@ -843,6 +843,18 @@
 }
 
 \AtBeginDocument{%
+  % Make sure backref option is turned off for final version of document
+  % Final version means atlasdraft=false or version number is empty
+  \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+  \ifADOC@atlasdraft
+    \ifx\ADOC@draftversion\@empty%
+      \typeout{atlasdoc: turning off backref, as no version number set}
+      \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
+    \fi
+  \else
+    \typeout{atlasdoc: turning off backref, as atlasdraft=false}
+    \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
+  \fi
   % Turn on line numbers for draft documents
   \ifADOC@atlasdraft
     \ifx\ADOC@draftversion\@empty%
