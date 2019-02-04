@@ -1,6 +1,6 @@
 # SUSY group support note templates
 
-This directory templates to be used for support (INT) notes of SUSY analyses.
+This directory contains templates to be used for support (INT) notes of SUSY analyses.
 
 SUSY INT notes should include:
 - an executive summary: `executive summary`
