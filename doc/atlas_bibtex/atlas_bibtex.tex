@@ -460,12 +460,13 @@ A summary of the options is:
   \Option{ragged} uses \Macro{raggedright}, but tries not to break titles across lines;
   \Option{none} and \Option{space} print the references in block mode, while \Option{space} includes an extra space between the author and title;
   The default option (\Option{ragged}) tries to fit the title into a single line
-  and so sometimes leads to a new line starting immediately after the author.
+  and so sometimes leads to a new line starting immediately after the author;
 \item[\Option{maxbibnames=5}] specify the maximum number of author names before \enquote{et al.} is used, where the value is an integer;
 \item[\Option{articletitle=true|{\normalfont false}}] turn on or off including the article title in the bibliography;
 \item[\Option{titlequote={\normalfont true}|false}] enclose the title in quotes instead of emphasize;
 \item[\Option{showdoi={\normalfont true}|false}] make the journal reference a link to the DOI instead of displaying it;
-\item[\Option{eprint=true|{\normalfont false}}] print the arXiv reference if available.
+\item[\Option{eprint=true|{\normalfont false}}] print the arXiv reference if available;
+\item[\Option{backref=true|{\normalfont false}}] give page number of \Macro{cite} command in bibliography;
 \item[\Option{address={\normalfont true}|false}] turn on or off the printing of the address field.
 \item[\Option{location={\normalfont true}|false}] turn on or off the printing of the location field.
 \item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2009.
@@ -473,13 +474,18 @@ A summary of the options is:
 \end{description}
 
 With \Package{biblatex}, notes are printed after the journal reference and before the arXiv or URL.
-If you want the note to be printed after the arXiv or URL, use the \texttt{adddendum} rather than the \texttt{note} field.
+If you want the note to be printed after the arXiv or URL, use the \texttt{addendum} rather than the \texttt{note} field.
 The \texttt{addendum} field is ignored by traditional \BibTeX.
 The field \texttt{address} is an alias for \texttt{location} in \Package{biblatex}.
 The \texttt{month} field is ignored when using \Package{biblatex}.
 If you include the month, it should be a number and not text,
 i.e. \verb|"11"| and not \verb|"Nov"|,
 as a number is not language dependent.
+
+The \Option{backref} option prints the page number(s) of the corresponding \Macro{cite} command(s)
+in the bibliography.
+It is turned on by default for draft documents, as this is probably useful information.
+For the final version it is turned off.
 
 To print the bibliography include the command:
 %

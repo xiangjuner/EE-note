@@ -1,3 +1,8 @@
+2019-02-14  Ian Brock  <Ian.Brock@cern.ch>
+	* January update of publications.
+	* Add option backref to atlasbiblatex.
+	* Add commented out authorlist to paper template.
+	* Number and unit spacing in bib files changed to \, instead of ~.
 2019-01-11  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-00-00.
 	* November update of publications.
