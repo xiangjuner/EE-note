@@ -1,8 +1,9 @@
-2019-02-14  Ian Brock  <Ian.Brock@cern.ch>
+2019-02-22  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-01-00.
 	* January update of publications.
 	* Add option backref to atlasbiblatex.
 	* Add commented out authorlist to paper template.
-	* Number and unit spacing in bib files changed to \, instead of ~.
+	* Add INT note templates for SUSY group. These are a WIP and subject to further change.
 2019-01-11  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-00-00.
 	* November update of publications.

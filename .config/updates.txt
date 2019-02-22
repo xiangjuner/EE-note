@@ -1,6 +1,4 @@
 This new version contains a few updates:
- - October updates of publications.
- - Number and unit spacing in bib files changed to ~ instead of \;.
- - Use \text instead of \mbox, \textrm, \mathrm in bib files.
- - Use \(...\) instead of $...$ in template and bib files.
+ - January updates of publications.
+ - Add option backref to atlasbiblatex.
 
