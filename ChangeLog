@@ -1,3 +1,6 @@
+2019-02-28  Ian Brock  <Ian.Brock@cern.ch>
+	* February update of publications.
+	* Number and unit spacing in bib files changed to \, instead of ~.
 2019-02-22  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-01-00.
 	* January update of publications.
