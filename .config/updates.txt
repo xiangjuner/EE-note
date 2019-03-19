@@ -1,4 +1,5 @@
 This new version contains a few updates:
- - January updates of publications.
- - Add option backref to atlasbiblatex.
+ - February update of publications.
+ - Run 2 detector description added.
+ - Update ATLAS-SUSY.bib and ATLAS-useful.bib.
 

@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# Makefile to make SUSY templates document
+# Makefile to make EXOT templates document
 #------------------------------------------------------------------------------
 
 BASENAME = SUSY_template
