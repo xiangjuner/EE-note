@@ -1,5 +1,5 @@
 This new version contains a few updates:
- - February update of publications.
- - Run 2 detector description added.
- - Update ATLAS-SUSY.bib and ATLAS-useful.bib.
+- April update of publications.
+- Tweak atlaslatex_update.sh to not overwrite help text with BASENAME.
+- A few fixes to references and detector description.
 

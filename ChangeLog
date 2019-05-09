@@ -1,4 +1,6 @@
-2019-04-20  Ian Brock  <Ian.Brock@cern.ch>
+2019-05-09  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-03-00.
+	* April update of publications.
 	* Tweak atlaslatex_update.sh to not overwrite help text with BASENAME.
 	* A few fixes to references and detector description.
 2019-03-19  Ian Brock  <Ian.Brock@cern.ch>
