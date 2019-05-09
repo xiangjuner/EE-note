@@ -5,6 +5,7 @@
 
 # Changes:
 # 2018-08-14: BASENAME should be set correctly if Makefile is overwritten.
+# 2019-04-16: Only overwrite "BASENAME = ..." and not occurences without a space (in help)
 
 # Remove temporary directory if it exists
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
@@ -73,7 +74,10 @@ for lfile in Makefile; do
     echo "BASENAME is $BASENAME"
     afile=tmp-atlaslatex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"
-    sed -i '.bak' "s/BASENAME.*=.*/${BASENAME}/" ${lfile}
+    # Assume definition of BASENAME is of the form BASENAME =
+    sed -i '.bak' -e "s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
+    # The folllowing should only change the first occurence of BASENAME =..., but has not been tested everywhere
+    # sed -i '.bak' -e "0,/${BASENAME}/ s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
 done
 
 # Acknowledgements
