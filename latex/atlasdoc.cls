@@ -359,8 +359,14 @@
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
   \setkomafont{pagehead}{\normalsize\rmfamily}
   %\setkomafont{publishers}{\normalsize\rmfamily}
-  % Set table of contents style
-  \DeclareTOCStyleEntries[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection,subsubsection}
+  % Set table of contents style to have no dotted lines for subsections
+  \ifthenelse{\ADOC@texlive < 2019}{%
+    \RequirePackage{tocstyle}
+    \usetocstyle{noonewithdot}
+  }{%
+    \DeclareTOCStyleEntries[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection,subsubsection}
+
+  }
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
