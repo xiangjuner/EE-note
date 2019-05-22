@@ -41,6 +41,7 @@
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
+\DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
@@ -372,6 +373,9 @@
     \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
     \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
   }
+  % Table of contents down to \ADOC@tocdepth which is 1 by default
+  \setcounter{tocdepth}{\ADOC@tocdepth}
+  % Figure and table captions
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }

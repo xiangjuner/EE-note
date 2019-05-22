@@ -392,6 +392,7 @@ In the following the default option is in boldface.
   A value less than 2012 uses \Package{txfonts}.
 \item[\Option{paper=a4|{\normalfont letter}}] set the paper size;
 \item[\Option{titlesize=normal|{\normalfont small}}] use normal or reduced size fonts for the title page;
+\item[\Option{tocdepth=2}] depth of table of contents. The default is to include subsections (2);
 \item[\Option{floatopt=true|{\normalfont false}}] adjust the options (default) governing number and placement of floats on a page;
 \item[\Option{texmf}] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
@@ -428,7 +429,7 @@ They are mostly still available in \Package{atlasdoc1}.
   \verb|\begin{document}|.
   This is the recommended way of proceeding;
 \item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
-  This option has no effect as of \Package{atlaslatex} 01-07-00 of \Package{atlaslatex};
+  \emph{This option has no effect as of \Package{atlaslatex} 01-07-00 of \Package{atlaslatex}};
 \item[koma=true|{\normalfont false}] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
 \item[\Option{letterpaper}] set the paper size to letter.
   \emph{This option does not work as of \Package{atlaslatex} 07-00-00
@@ -454,7 +455,7 @@ they can be turned on or off in \Package{atlasdoc} via the option \Option{floato
 The default value is set to \Option{true}.
 
 As of \Package{atlasdoc} Version 02-00-00,
-the \KOMAScript elements are used to create the title pages.
+the \KOMAScript\ elements are used to create the title pages.
 In particular, \Macro{publishers} is used for the abstract and copyright.
 The space and position for this may need to be adjusted,
 if you have a very long title. Use the options
