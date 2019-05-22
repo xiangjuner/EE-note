@@ -359,6 +359,8 @@
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
   \setkomafont{pagehead}{\normalsize\rmfamily}
   %\setkomafont{publishers}{\normalsize\rmfamily}
+  % Set table of contents style
+  \DeclareTOCStyleEntries[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection,subsubsection}
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }

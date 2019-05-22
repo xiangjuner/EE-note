@@ -153,7 +153,7 @@
   \ifAPKG@subfigure%
     \RequirePackage[TABBOTCAP]{subfigure}
     % subfigure option needed if subfig(ure) is also used
-    \RequirePackage[subfigure]{tocloft}
+    % \RequirePackage[subfigure]{tocloft}
   \else
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
     % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
@@ -166,22 +166,22 @@
       \renewcommand\thesubfigure{(\alph{subfigure})}
       \renewcommand\thesubtable{(\alph{subtable})}
       % subfigure option needed if subfig(ure) is also used
-      \RequirePackage{tocloft}
+      % \RequirePackage{tocloft}
     \else
       \ifAPKG@subfig%
         \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
         \renewcommand\thesubfigure{(\alph{subfigure})}
         \renewcommand\thesubtable{(\alph{subtable})}
         % subfigure option needed if subfig(ure) is also used
-        \RequirePackage[subfigure]{tocloft}
-      \else
-        \RequirePackage{tocloft}
+        % \RequirePackage[subfigure]{tocloft}
+      % \else
+      %   \RequirePackage{tocloft}
       \fi
     \fi
   \fi
 
   % Remove dots in table of contents
-  \renewcommand{\cftdot}{}
+  % \renewcommand{\cftdot}{}
 
   % Typset anything with units using this package - also has very useful table formatting
   % Declare a few options and standard units for siunitx that are otherwise missing
