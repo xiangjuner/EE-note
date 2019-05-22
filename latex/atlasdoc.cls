@@ -360,12 +360,12 @@
   \setkomafont{pagehead}{\normalsize\rmfamily}
   %\setkomafont{publishers}{\normalsize\rmfamily}
   % Set table of contents style to have no dotted lines for subsections
-  \ifthenelse{\ADOC@texlive < 2019}{%
+  \ifthenelse{\ADOC@texlive < 2016}{%
     \RequirePackage{tocstyle}
     \usetocstyle{noonewithdot}
   }{%
-    \DeclareTOCStyleEntries[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection,subsubsection}
-
+    \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
+    \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
   }
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
