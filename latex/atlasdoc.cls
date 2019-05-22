@@ -331,6 +331,11 @@
   \LoadClass[titlepage,11pt]{scrartcl}
 \fi
 
+% Required packages
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{babel}
+
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
@@ -395,10 +400,6 @@
 % Remove the numbers from all the headings (\section, \subsection, etc.)
 % \setcounter{secnumdepth}{-1}
 
-% Required packages
-\RequirePackage{graphicx}
-\RequirePackage{xcolor}
-\RequirePackage{babel}
 % hyperref is needed in many places, so include it here
 \RequirePackage{hyperref}
 
