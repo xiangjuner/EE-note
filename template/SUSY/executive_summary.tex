@@ -23,8 +23,8 @@ For a PAR (ed board request), the SUSY group looks for:
 \item Any signal region definitions that are available, with some preliminary optimization in place and some description of the optimization procedure
 \item Plans for further optimization (e.g.\ optimization for different model space regions, or use of an MVA or multi-bin fit)
 \item An outline of the plans to get from here to a paper (plan of work, noting if person power is insufficient for any of the areas), as a part of this summary
-\item An explicit list of differences in object definitions from the recommendations of the Combination Team, with justification.
-\item The location of the analysis code in GIT and demonstration that you have set up containers (Step 1 and Step 2 towards analysis preservation are complete).
+\item An explicit list of differences in object definitions from the recommendations of the \href{https://gitlab.cern.ch/atlas-phys-susy-wg/Combinations/readme/wikis/home}{Combination Team}, with justification.
+\item The location of the analysis code in GIT and demonstration that you have set up containers (\href{https://recast-docs.web.cern.ch/recast-docs/building_images_on_ci/}{described here}).
 \end{itemize}
 
 If you are using SUSYTools, please include the current configuration file in the \href{http://gitlab.cern.ch/atlas-phys-susy-wg/AnalysisSUSYToolsConfigurations}{archive}.
@@ -37,12 +37,13 @@ For a FAR, the SUSY group looks for:
 \item Outline of background estimation strategies, including validation and closure tests for data-driven estimations. Statistical uncertainties for transfer-factor (TF) estimated and data-driven estimated backgrounds.
 \item Comparison of data and MC with the relevant dataset in CR and VR\@. Strategy for mitigation of mis-modelling wherever needed with proof of feasibility.
 \item Estimate of the detector level systematic uncertainties through propagation of CP recommendations.
-\item A clear statement on how all others systematic uncertainties will be evaluated: all the procedures need to be defined before unblinding.
+\item A clear statement on how all others systematic uncertainties will be evaluated, including theory uncertainties on both backgrounds and signal: all the procedures need to be defined before unblinding.
 \item A clear plan for ``discovery regions'' as well as the statistical treatment of the signal regions.
 \item Background only fit with pull plot for the nuisance parameters.
 \item Estimated exclusion, including depth of exclusion within the normal exclusion contour, with Asimov fit.
 \item To-do list for achieving final result and possible bottlenecks (can the rest of the SUSY WG help with anything?)
 \item For analyses using machine learning methods, additional diagnostics are required, which are explained \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/SusyMachineLearning}{here}.
+\item The location in GIT where your code is using containers and the first implementation of workflows towards recast (\href{https://recast-docs.web.cern.ch/recast-docs/workflowauthoring/intro/}{described here}).
 \end{itemize}
 
 The background forum recommends the following diagnostic plots:

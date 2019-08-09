@@ -9,7 +9,7 @@
 %
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2019/02/26 v.07-01-01 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2019/05/21 v.07-04-00 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -49,9 +49,9 @@
     \ExecuteBibliographyOptions{backref=true}
   \else
     \typeout{atlasbiblatex: backref is off}
-    % \ExecuteBibliographyOptions{backref=true}
+    \ExecuteBibliographyOptions{backref=false}
   \fi
-  % Include the DOI as a hyerlink with the journal.
+  % Include the DOI as a hyperlink with the journal.
   \ifABIB@showdoi
     \relax
   \else

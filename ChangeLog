@@ -1,3 +1,17 @@
+2019-05-21  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-04-00.
+	* Tweak the logic of the backref option.
+	Now off by default, except for draft documents.
+2019-05-09  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-03-00.
+	* April update of publications.
+	* Tweak atlaslatex_update.sh to not overwrite help text with BASENAME.
+	* A few fixes to references and detector description.
+2019-03-19  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-02-00.
+	* February update of publications.
+	* Run 2 detector description added.
+	* Update ATLAS-SUSY.bib and ATLAS-useful.bib.
 2019-02-28  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-01-01.
 	* Update ATLAS-SUSY.bib with correct Errata format and other fixes.

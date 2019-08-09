@@ -10,7 +10,7 @@
 % Use biblatex and biber for the bibliography
 %\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
 \usepackage[minimal, backend=biber]{\ATLASLATEXPATH atlaspackage}
-\usepackage[articletitle=true,showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
+\usepackage[articletitle=true, showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
 \usepackage[autostyle=true]{csquotes}
 
 \usepackage{authblk}
@@ -469,7 +469,7 @@ A summary of the options is:
 \item[\Option{backref=true|{\normalfont false}}] give page number of \Macro{cite} command in bibliography;
 \item[\Option{address={\normalfont true}|false}] turn on or off the printing of the address field.
 \item[\Option{location={\normalfont true}|false}] turn on or off the printing of the location field.
-\item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2009.
+\item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2013.
   This option is usually set in the document class.
 \end{description}
 
@@ -484,8 +484,11 @@ as a number is not language dependent.
 
 The \Option{backref} option prints the page number(s) of the corresponding \Macro{cite} command(s)
 in the bibliography.
-It is turned on by default for draft documents, as this is probably useful information.
-For the final version it is turned off.
+It is turned on by default, as this is probably useful information
+when you are writing a document.
+For the the CERN preprint version of papers it is turned off explicitly.
+If you want to turn off the back references for the final version of ATLAS notes,
+CONF notes or PUB notes, pass the option \Option{backref=false} to \Package{atlasbiblatex}.
 
 To print the bibliography include the command:
 %

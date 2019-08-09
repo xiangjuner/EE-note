@@ -9,9 +9,9 @@
 %
 % Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{07-01-01}
+\def\ATPackageVersion{07-04-00}
 
-\ProvidesClass{latex/atlasdoc}[2019/02/26 v.07-01-01 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2019/05/21 v.07-04-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -69,6 +69,7 @@
 % CERN preprint or auxiliary material
 \ifADOC@cernpreprint
   \ADOC@HEPDATAfalse
+  \ADOC@atlasdraftfalse
 \else
   \ifADOC@preprint
     \ADOC@cernpreprinttrue
@@ -89,43 +90,57 @@
 
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
-\ifADOC@PAPER
-  \typeout{atlasdoc: ATLAS paper}
+% Turn off backref in atlasbiblatex for CERN preprint
+\def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+\ifADOC@cernpreprint
+  \typeout{atlasdoc: ATLAS CERN preprint}
   \renewcommand*{\ADOC@docheadingdefault}{ATLAS Paper}
   \ADOC@PAPERtrue
   \ADOC@NOTEfalse
   \ADOC@CONFnotefalse
   \ADOC@PUBnotefalse
   \ADOC@BOOKfalse
+  \typeout{atlasdoc: turning off backref for a CERN preprint}
+  \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
 \else
-  \ifADOC@CONF
-    \typeout{atlasdoc: ATLAS CONF note}
-    \renewcommand*{\ADOC@docheadingdefault}{ATLAS CONF Note}
-    \ADOC@PAPERfalse
+  \ifADOC@PAPER
+    \typeout{atlasdoc: ATLAS paper}
+    \renewcommand*{\ADOC@docheadingdefault}{ATLAS Paper}
+    \ADOC@PAPERtrue
     \ADOC@NOTEfalse
-    \ADOC@CONFnotetrue
+    \ADOC@CONFnotefalse
     \ADOC@PUBnotefalse
     \ADOC@BOOKfalse
   \else
-    \ifADOC@PUB
-      \typeout{atlasdoc: ATLAS PUB note}
-      \renewcommand*{\ADOC@docheadingdefault}{ATLAS PUB Note}
+    \ifADOC@CONF
+      \typeout{atlasdoc: ATLAS CONF note}
+      \renewcommand*{\ADOC@docheadingdefault}{ATLAS CONF Note}
       \ADOC@PAPERfalse
       \ADOC@NOTEfalse
-      \ADOC@CONFnotefalse
-      \ADOC@PUBnotetrue
+      \ADOC@CONFnotetrue
+      \ADOC@PUBnotefalse
       \ADOC@BOOKfalse
     \else
-      \ifADOC@BOOK
-        \typeout{atlasdoc: ATLAS BOOK}
+      \ifADOC@PUB
+        \typeout{atlasdoc: ATLAS PUB note}
+        \renewcommand*{\ADOC@docheadingdefault}{ATLAS PUB Note}
         \ADOC@PAPERfalse
         \ADOC@NOTEfalse
         \ADOC@CONFnotefalse
-        \ADOC@PUBnotefalse
-        \ADOC@BOOKtrue
+        \ADOC@PUBnotetrue
+        \ADOC@BOOKfalse
       \else
-        \typeout{atlasdoc: ATLAS Note}
-        \renewcommand*{\ADOC@docheadingdefault}{ATLAS Note}
+        \ifADOC@BOOK
+          \typeout{atlasdoc: ATLAS BOOK}
+          \ADOC@PAPERfalse
+          \ADOC@NOTEfalse
+          \ADOC@CONFnotefalse
+          \ADOC@PUBnotefalse
+          \ADOC@BOOKtrue
+        \else
+          \typeout{atlasdoc: ATLAS Note}
+          \renewcommand*{\ADOC@docheadingdefault}{ATLAS Note}
+        \fi
       \fi
     \fi
   \fi
@@ -845,17 +860,17 @@
 \AtBeginDocument{%
   % Make sure backref option is turned off for final version of document
   % Final version means atlasdraft=false or version number is empty
-  \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
-  \ifADOC@atlasdraft
-    \ifx\ADOC@draftversion\@empty%
-      \typeout{atlasdoc: turning off backref, as no version number set}
-      \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
-    \fi
-  \else
-    \typeout{atlasdoc: turning off backref, as atlasdraft=false}
-    \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
-  \fi
-  % Turn on line numbers for draft documents
+  % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+  % \ifADOC@atlasdraft
+  %   \ifx\ADOC@draftversion\@empty%
+  %     \typeout{atlasdoc: turning off backref, as no version number set}
+  %     \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
+  %   \fi
+  % \else
+  %   \typeout{atlasdoc: turning off backref, as atlasdraft=false}
+  %   \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
+  % \fi
+  % Turn on line numbers and back references for draft documents
   \ifADOC@atlasdraft
     \ifx\ADOC@draftversion\@empty%
       \typeout{*** atlasdoc: this ATLAS draft document does not have a version number}
@@ -863,6 +878,11 @@
       \typeout{atlasdoc: this is an ATLAS draft document}
       \AtlasDraftHeading
       \linenumbers
+      % \@ifpackageloaded{biblatex}{%
+      %   % backref=true adds page numbers of citations to bibliography
+      %   \typeout{atlasdoc: turning backref on}
+      %   \ExecuteBibliographyOptions{backref=true}
+      % }{}
     \fi
   \else
     \typeout{atlasdoc: this is the final version of an ATLAS document}
