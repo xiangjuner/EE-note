@@ -1,6 +1,11 @@
-2019-05-23  Ian Brock  <Ian.Brock@cern.ch>
+2019-09-10  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-05-00.
 	* Remove usage of tocloft package, as it can conflict with KOMA-Script.
 	* Set default table of contents depth to section and add tocdepth option.
+	* July update of publications (except CMS).
+	* Fix up a number of references in ATLAS-useful.bib and add a few new ones.
+	* Add some, but not all, of the ATLAS TDRs to ATLAS.bib.
+	* Small updates to SUSY templates.
 2019-05-21  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 07-04-00.
 	* Tweak the logic of the backref option.

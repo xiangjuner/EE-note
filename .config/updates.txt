@@ -1,6 +1,4 @@
 This new version contains a few updates:
-- April update of publications.
-- Tweak the logic of the backref option.
-- Tweak atlaslatex_update.sh to not overwrite help text with BASENAME.
-- A few fixes to references and detector description.
-
+- July update of publications (except CMS).
+- A number of small updates to other bib files.
+- Remove usage of tocloft package, as it can conflict with KOMA-Script.
