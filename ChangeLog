@@ -1,5 +1,5 @@
-2019-09-10  Ian Brock  <Ian.Brock@cern.ch>
-	* Tag as version 07-05-00.
+2019-09-13  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 07-05-01.
 	* Remove usage of tocloft package, as it can conflict with KOMA-Script.
 	* Set default table of contents depth to section and add tocdepth option.
 	* July update of publications (except CMS).
