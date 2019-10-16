@@ -2,7 +2,6 @@ stages:
   - Docker
   - Trigger
   - Build
-  - Transfer
 
 # Buil jobs for manual and automatic
 # -------------------------------------
