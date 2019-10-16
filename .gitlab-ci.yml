@@ -30,7 +30,7 @@ trigger-pogitlab:
 
 # this automatically builds the exotics template and sends it to a publicly accessible spac
 build:
-  image: janstuemmel/latex:latest
+  image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
