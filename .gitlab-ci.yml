@@ -40,16 +40,4 @@ build:
   artifacts:
     paths:
       - template/EXOT/EXOT_template.pdf
-    expire_in: 1 week
-      
-# transfer to web-viewable space
-transfer:
-  image: atlas/analysisbase:21.2.75
-  stage: Transfer
-  dependencies: 
-    - build
-  script:
-    - source /home/atlas/release_setup.sh
-    - echo $SERVICE_PASS | kinit $CERN_USER@CERN.CH
-    - xrdcp EXOT_template.pdf root://eoshome.cern.ch//eos/user/m/meehan/www/EXOT_template.pdf
-    
+    expire_in: 1 year
