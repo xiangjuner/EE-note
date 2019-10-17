@@ -28,7 +28,7 @@ trigger-pogitlab:
 # this automatically builds the exotics template and sends it to a publicly accessible spac
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_NOTE
 build_NOTE:
-  image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -43,7 +43,7 @@ build_NOTE:
 # this automatically builds the PAPER template
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_PAPER
 build_PAPER:
-  image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -58,7 +58,7 @@ build_PAPER:
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/EXOT/EXOT_template.pdf?job=build_EXOT
 build_EXOT:
-  image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -73,7 +73,7 @@ build_EXOT:
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/SUSY/SUSY_template.pdf?job=build_SUSY
 build_SUSY:
-  image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
