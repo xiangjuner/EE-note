@@ -71,7 +71,7 @@ build_EXOT:
     expire_in: 1 year
     
 # this automatically builds the exotics template and sends it to a publicly accessible space
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/EXOT/EXOT_template.pdf?job=build_EXOT
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/SUSY/SUSY_template.pdf?job=build_SUSY
 build_SUSY:
   image: gitlab-registry.cern.ch/meehan/atlaslatex-image:master
   stage: Build
