@@ -7,16 +7,14 @@ stages:
 # -------------------------------------
 # These jobs will run the docker image creation for atlaslatex
 # automatically for the master branch and manual for the rest
-al-docker:
+build_image:
+  stage: package
   variables:
-    DOCKER_FILE: ".config/Dockerfile"
-  stage: Docker
-  only:
-    - master@atlas-physics-office/atlaslatex
+    TO: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   tags:
     - docker-image-build
   script:
-    - echo "Preparing docker image"
+  - echo building image
 
 # These jobs will trigger the docker image creation for pogitlab in the gitlab-integration project
 # automatically for the master branch and manual for the rest
