@@ -33,11 +33,11 @@ build_NOTE:
   except:
     - master@atlas-physics-office/atlaslatex
   script:
-    - make newnote BASENAME=mydocument
-    - make 
+    - make newpaper BASENAME=myExample_CONF
+    - make BASENAME=myExample_CONF
   artifacts:
     paths:
-      - mydocument.pdf
+      - myExample_CONF.pdf
     expire_in: 1 year
 
 # this automatically builds the PAPER template
@@ -48,11 +48,11 @@ build_PAPER:
   except:
     - master@atlas-physics-office/atlaslatex
   script:
-    - make newpaper BASENAME=mydocument
-    - make 
+    - make newpaper BASENAME=myExample_PAPER
+    - make BASENAME=myExample_PAPER
   artifacts:
     paths:
-      - mydocument.pdf
+      - myExample_PAPER.pdf
     expire_in: 1 year
 
 # this automatically builds the exotics template and sends it to a publicly accessible space
