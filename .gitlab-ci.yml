@@ -5,16 +5,6 @@ stages:
 
 # Buil jobs for manual and automatic
 # -------------------------------------
-# These jobs will run the docker image creation for atlaslatex
-# automatically for the master branch and manual for the rest
-build_image:
-  stage: Docker
-  variables:
-    TO: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  tags:
-    - docker-image-build
-  script:
-  - echo building image
 
 # These jobs will trigger the docker image creation for pogitlab in the gitlab-integration project
 # automatically for the master branch and manual for the rest
@@ -28,7 +18,7 @@ trigger-pogitlab:
 # this automatically builds the exotics template and sends it to a publicly accessible spac
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_NOTE
 build_NOTE:
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -43,7 +33,7 @@ build_NOTE:
 # this automatically builds the PAPER template
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_PAPER
 build_PAPER:
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -58,7 +48,7 @@ build_PAPER:
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/EXOT/EXOT_template.pdf?job=build_EXOT
 build_EXOT:
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
@@ -73,7 +63,7 @@ build_EXOT:
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/SUSY/SUSY_template.pdf?job=build_SUSY
 build_SUSY:
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
   except:
     - master@atlas-physics-office/atlaslatex
