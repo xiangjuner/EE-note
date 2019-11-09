@@ -62,6 +62,12 @@ To make a new ATLAS note give the command:
 
 `make new` is an alias for `make newpaper`.
 
+Subsequently, you will have to specify which note to build like
+
+    make [BASENAME=mydocument] [TEXLIVE=YYYY]
+    
+using the same name you generated previously.
+
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live
 and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
