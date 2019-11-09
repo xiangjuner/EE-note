@@ -272,6 +272,14 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     \end{verbatim}
     See also Section~\ref{sec:contribute} if you want to combine the creation of a list of authors and contributors.
 
+    If you do not each institute on a separate line, uncomment the lines in the metadata file:
+    \begin{verbatim}
+\makeatletter
+\renewcommand\AB@affilsepx{, \protect\Affilfont}
+\makeatother
+    \end{verbatim}
+
+
   \item {\verb|\AtlasAbstract{<The abstract text>}|} typesets the
     abstract on the front page and cover page.
 
@@ -573,6 +581,13 @@ so that you use one consistent set of definitions throughout your document.
 The \Package{siunitx}~\cite{siunitx} package puts a (non-breaking) space between a number and the \% sign,
 as for any other unit.
 It says that this is as required by the SI system of units~\cite{SI}.
+In Section~5.4.7 of the brochure one can find:
+\begin{quotation}
+  The internationally recognized symbol \% (percent) may be used with the SI.
+  When it is used, a space separates the number and the symbol \%.
+  The symbol \% should be used rather than the name \enquote{percent}.
+  In written text, however, the symbol \% generally takes the meaning of “parts per hundred”.
+\end{quotation}
 However, conventions between publishers appear to differ~\cite{percentspace}.
 Many people are used to there being no space.
 Pass the option \Option{percentspace=false} to suppress the space.
