@@ -1,4 +1,4 @@
 This new version contains a few updates:
-- July update of publications (except CMS).
-- A number of small updates to other bib files.
-- Remove usage of tocloft package, as it can conflict with KOMA-Script.
+- August and September updates of publications + a few fixes.
+- Rename macro \Ref to \Refn and \Refs to \Refns, as hyperref defines \Ref in TeX Live 2019.
+- Updated acknowledgements.

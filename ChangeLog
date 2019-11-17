@@ -1,5 +1,6 @@
-2019-10-29  Ian Brock  <Ian.Brock@cern.ch>
-	* Partial August and September updates of publications + a few fixes.
+2019-11-17  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-00-00.
+	* August and September updates of publications + a few fixes.
 	* Rename macro \Ref to \Refn and \Refs to \Refns, as hyperref defines \Ref in TeX Live 2019.
 	* Add a first CI for atlaslatex.
 	* Updated acknowledgements.
