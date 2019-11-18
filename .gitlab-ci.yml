@@ -20,8 +20,6 @@ trigger-pogitlab:
 build_NOTE:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
-  except:
-    - master@atlas-physics-office/atlaslatex
   script:
     - make newpaper BASENAME=myExample_CONF
     - make BASENAME=myExample_CONF
@@ -35,8 +33,6 @@ build_NOTE:
 build_PAPER:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
-  except:
-    - master@atlas-physics-office/atlaslatex
   script:
     - make newpaper BASENAME=myExample_PAPER
     - make BASENAME=myExample_PAPER
@@ -50,8 +46,6 @@ build_PAPER:
 build_EXOT:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
-  except:
-    - master@atlas-physics-office/atlaslatex
   script:
     - cd template/EXOT
     - make
@@ -65,8 +59,6 @@ build_EXOT:
 build_SUSY:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2017
   stage: Build
-  except:
-    - master@atlas-physics-office/atlaslatex
   script:
     - cd template/SUSY
     - make
