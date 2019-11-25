@@ -1,4 +1,5 @@
 This new version contains a few updates:
 - August and September updates of publications + a few fixes.
 - Rename macro \Ref to \Refn and \Refs to \Refns, as hyperref defines \Ref in TeX Live 2019.
+- Default percentspace option now set to false for siunitx package.
 - Updated acknowledgements.
