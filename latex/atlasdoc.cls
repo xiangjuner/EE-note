@@ -50,6 +50,8 @@
 \DeclareBoolOption[false]{palatino}
 \DeclareBoolOption[false]{mhchem}
 \DeclareBoolOption[true]{abstract}
+\DeclareBoolOption[true]{atlaslogo}
+\DeclareBoolOption[true]{cernlogo}
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareStringOption[0pt]{titleextraheight}
@@ -485,6 +487,7 @@
 % \RequirePackage{scrdate,scrtime}
 
 % Draft heading/footer code
+\newcommand*{\AtlasDraftHeadingText}{ATLAS DRAFT}
 \newcommand{\AtlasDraftHeading}{%
   \ifthenelse{\ADOC@texlive < 2015}{%
     \RequirePackage[headsepline]{scrpage2}
@@ -492,7 +495,7 @@
     \RequirePackage[headsepline]{scrlayer-scrpage}
   }
   \ihead{}
-  \chead[]{\fbox{\textsf\bfseries ATLAS DRAFT}}
+  \chead[]{\fbox{\normalfont\AtlasDraftHeadingText}}
   \ohead{}
   \ifoot{\dateandtime}
   \cfoot{}
@@ -560,7 +563,11 @@
   % \typeout{ATLAS title titlepageparbox is \the\titlepageparbox, text width \the\textwidth, line width \the\linewidth}%
   \parbox[t][35mm]{\titlepageparbox}{%
     \parbox[b][35mm][t]{0.23\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+      \ifADOC@atlaslogo
+        \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+      \else
+        \rule{0pt}{25mm}\par
+      \fi
       \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \ifx\ADOC@journal\@empty
         \relax
@@ -602,7 +609,12 @@
     }%
     \hspace*{\fill}%
     \parbox[b][35mm][t]{0.23\linewidth}{%
-      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
+      \hspace*{\fill}
+      \ifADOC@cernlogo%
+        \includegraphics[height=25mm]{AT_cernlogo}\par
+      \else
+        \rule{0pt}{25mm}\par
+      \fi
       \ifADOC@atlasdraft
         \ifx\ADOC@draftversion\@empty
           \relax
@@ -627,7 +639,11 @@
     }\par
     \vspace*{2mm}%
     \parbox[t]{0.45\linewidth}{%
-      \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+      \ifADOC@atlaslogo%
+        \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+      \else
+        \rule{0pt}{25mm}\par
+      \fi
       \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \ifx\ADOC@journalref\@empty
         \ifx\ADOC@journal\@empty
@@ -646,7 +662,12 @@
     }%
     \hspace*{\fill}%
     \parbox[t]{0.45\linewidth}{%
-      \hspace*{\fill}\includegraphics[height=25mm]{AT_cernlogo}\par
+      \hspace*{\fill}
+      \ifADOC@cernlogo%
+        \includegraphics[height=25mm]{AT_cernlogo}\par
+      \else
+        \rule{0pt}{25mm}\par
+      \fi
       \sffamily\mdseries\fontsize{11}{13.2}\selectfont
       \hspace*{\fill}\ADOC@preprintnumber\par
       \hspace*{\fill}\ADOC@atlasdate\par
@@ -704,8 +725,13 @@
   % \parbox[b]{\titlepageparbox}{%
   {%
     \rmfamily\mdseries\fontsize{10}{12}\selectfont
-    \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
-    Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+    \ifADOC@atlaslogo%
+      \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+      Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+    \else
+      \copyright\ \the\year \ CERN\newline
+      Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+    \fi
   }
 }
 

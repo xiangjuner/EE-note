@@ -1,3 +1,8 @@
+2019-11-26  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-01-00.
+	* Updated acknowledgements.
+	* Add atlaslogo and cernlogo options to turn on/off showing the ATLAS and CERN logos.
+	* Change default percentspace option in atlaspackage.sty to false.
 2019-11-17  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 08-00-00.
 	* August and September updates of publications + a few fixes.

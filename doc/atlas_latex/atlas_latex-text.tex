@@ -413,6 +413,8 @@ In the following the default option is in boldface.
 \item[\Option{abstract=true|\normalfont{false}}] the document contains an abstract.
   This option is only needed together with the \Option{BOOK} option,
   if the book does not have an abstract;
+\item[\Option{atlaslogo=true|{\normalfont false}}] show the ATLAS logo on the title page;
+\item[\Option{cernlogo=true|{\normalfont false}}] show the CERN logo on the title page;
 \item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
@@ -428,6 +430,20 @@ The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00
 It is intended to replace to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
 so that this option simply has to be removed when a document is final.
+
+The \Option{atlaslogo} and \Option{cernlogo} options are for cases where a paper has a limited set of authors
+and so should not necessarily include these logos.
+In this case you may want to tweak the \Package{hyperref} document information,
+the title page and also the draft label using the following commands:
+\begin{verbatim}
+% Author and title for the PDF file
+\hypersetup{pdftitle={Limited author document},pdfauthor={J.~Smith et al.}}
+% Tweak the title page
+\makeatletter
+\renewcommand*{\ADOC@docheadingdefault}{System Paper}
+\renewcommand*{\AtlasDraftHeadingText}{DRAFT}
+\makeatother
+\end{verbatim}
 
 The following options were removed in \Package{atlasdoc} in \Package{atlaslatex 02-00-00}.
 They are mostly still available in \Package{atlasdoc1}.
@@ -547,7 +563,7 @@ The full list of options is:
 \item[\Option{siunitx=true|{\normalfont false}}] do not include the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
   This option is set by default if you use the \Option{txfonts} fonts;
-\item[\Option{percentspace=true|{\normalfont false}}] include or not the default space between a number and the \% sign;
+\item[\Option{percentspace={\normalfont true}|false}] include or not the default space between a number and the \% sign;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
   \Package{subfigure}.
@@ -589,8 +605,8 @@ In Section~5.4.7 of the brochure one can find:
   In written text, however, the symbol \% generally takes the meaning of “parts per hundred”.
 \end{quotation}
 However, conventions between publishers appear to differ~\cite{percentspace}.
-Many people are used to there being no space.
-Pass the option \Option{percentspace=false} to suppress the space.
+Many people are used to there being no space and this is also the ATLAS convention.
+Pass the option \Option{percentspace=true} to include the space.
 This option only works for \TeX\ Live versions 2011 and later.
 
 There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
