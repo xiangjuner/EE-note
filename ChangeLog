@@ -1,3 +1,7 @@
+2019-12-10  Ian Brock  <Ian.Brock@cern.ch>
+	* October and November updates of publications.
+	* Add cleveref package as a default package to atlaspackage.
+	* Add physics package when passing option full to atlaspackage.
 2019-11-26  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 08-01-00.
 	* Updated acknowledgements.
