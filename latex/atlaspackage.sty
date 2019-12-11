@@ -32,6 +32,10 @@
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[false]{subcaption}
 \DeclareBoolOption[true]{hyperref}
+\DeclareBoolOption[true]{cleveref}
+\DeclareBoolOption[true]{capsref}
+\DeclareBoolOption[true]{abbrevref}
+\DeclareBoolOption[true]{physics}
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2016]{texlive}
@@ -291,6 +295,11 @@
   % Nicer fractions
   \RequirePackage{xfrac}
 
+  % Macros for mathematics in physics
+  \ifAPKG@physics
+    \RequirePackage{physics}
+  \fi
+
   % Chemical elements and processes
   \RequirePackage[version=3]{mhchem}
 \fi
@@ -303,6 +312,26 @@
   \hypersetup{pdftitle={ATLAS Document},pdfauthor={ATLAS Collaboration}}
   \hypersetup{colorlinks,breaklinks}
   \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
+\fi
+
+% cleveref should be included late
+\ifAPKG@standard
+  % Smart referencing
+  \ifAPKG@cleveref
+    \ifAPKG@capsref
+      \ifAPKG@abbrevref
+        \RequirePackage[capitalise]{cleveref}
+      \else
+        \RequirePackage[noabbrev,capitalise]{cleveref}
+      \fi
+    \else
+      \ifAPKG@abbrevref
+        \RequirePackage{cleveref}
+      \else
+        \RequirePackage[noabbrev]{cleveref}
+      \fi
+    \fi
+  \fi
 \fi
 
 % Use biblatex and biber for the bibliography

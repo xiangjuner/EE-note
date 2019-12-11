@@ -16,6 +16,7 @@
 
 \usepackage{\ATLASLATEXPATH atlasphysics}
 
+\usepackage{../atlas_doc-defs}
 \usepackage{atlas_tables-defs}
 
 % Files with references in BibTeX format
@@ -130,9 +131,7 @@ An example of a wider and somewhat more complicated table is shown in \Tab{\ref{
 A typical table containing Monte Carlo samples is given in \Tab{\ref{tab:mcsamples}}.
 
 \begin{table}[htbp]
-  \caption{Top quark event MC samples used for this analysis. The cross-section column includes $k$-factors and branching ratios. }
-  %The ATLAS geometry tag {\it ATLAS-GEO-16-00-00} is used and the reconstruction software was based on {\it release 16.6.3.5.1}.}
-  %(WARNING: update geo tag and software version)
+  \caption{Top quark event MC samples used for this analysis. The cross-section column includes $k$-factors and branching ratios.}
   \label{tab:mcsamples}
   \centering
   \renewcommand{\arraystretch}{1.2}
@@ -149,9 +148,9 @@ A typical table containing Monte Carlo samples is given in \Tab{\ref{tab:mcsampl
   \end{tabular}
 \end{table}
 
-Table~\ref{tab:example1} shows the use of $\pm$ as the intercolumn
+\Cref{tab:example1} shows the use of $\pm$ as the intercolumn
 character for alignment. An alternative, as shown in
-Table~\ref{tab:example2}, is to use \verb+\phantom+ to put in extra
+\cref{tab:example2}, is to use \verb+\phantom+ to put in extra
 space equal to the width of a number if you have different numbers of
 decimal places in the table.
 
@@ -177,7 +176,6 @@ as, among other things, they introduce some extra spacing around the lines, whic
     \bottomrule
   \end{tabular}
 \end{table}
-
 
 \begin{table}[htbp]
   \caption{Monte Carlo estimates of the fraction of each process in
@@ -219,7 +217,7 @@ You may also need to rotate a big table.
 The \Package{rotating} package can be used for this.
 
 In order to shorten commands when doing rounding in tables, it is useful to define a few extra macros.
-Typical definitions can be found in the file \File{atlas\_tables-defs.sty}.
+Typical definitions can be found in the file \File{../atlas\_doc-defs.sty}.
 
 If you use \Package{siunitx} to format your numbers,
 you may have to adjust the option \Option{group-minimum-digits}.
@@ -283,7 +281,7 @@ This is fine in text, but in tables, you probably want to use the option
 Further examples of tables can be found in the note discussing the ATLAS recommendation on rounding~\cite{atlas-rounding}.
 A selection of those tables are also reproduced here.
 The \LaTeX\ code for the examples given below can be found in
-Appendix~\ref{sec:raw-data}.
+Appendix~\cref{sec:raw-data}.
 
 The tables shown earlier in this document were also created with \textsf{siunitx}.
 A few more examples of how to steer the formatting are given here.

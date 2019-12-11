@@ -544,10 +544,12 @@ The default set adds in addition:
 \item \texttt{siunitx}: units package with extra functionality for tables;
 \item \texttt{subfig}: more than one plot in a figure;
 \item \texttt{tocloft}: extra options for typesetting table of contents etc.
+\item \texttt{cleveref}: automatically include \enquote{Fig.}, \enquote{Section} etc. when cross-referencing;
 \end{itemize}
 
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
+\item \texttt{physics}: mathematics for physics;
 \item \texttt{mhchem}: chemical elements and molecules;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
@@ -559,11 +561,15 @@ The full list of options is:
 \item[\Option{biblatex=true|{\normalfont false}}] turn on/off use of \Package{biblatex} and \Package{biber/bibtex};
 \item[\Option{backend={\normalfont bibtex}|biber}] specify the backend to use with \Package{biblatex}.
   Specify \Option{backend=bibtex} to use \Package{bibtex} instead;
-\item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of \Package{hyperref};
-\item[\Option{siunitx=true|{\normalfont false}}] do not include the \Package{siunitx} package;
+\item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of the \Package{hyperref} package;
+\item[\Option{siunitx=true|{\normalfont false}}] turn on/off use of the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
   This option is set by default if you use the \Option{txfonts} fonts;
 \item[\Option{percentspace={\normalfont true}|false}] include or not the default space between a number and the \% sign;
+\item[\Option{cleveref=true|{\normalfont false}}] turn on/off use of the \Package{cleverref} package;
+\item[\Option{capsref=true|{\normalfont false}}] capitalise Section, Fig.\ etc.\ when using \Package{cleverref};
+\item[\Option{abbrevref=true|{\normalfont false}}] abbreviate Fig.\ etc.\ when using \Package{cleverref};
+\item[\Option{physics=true|{\normalfont false}}] turn on/off use of the \Package{physics} package;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
   \Package{subfigure}.
