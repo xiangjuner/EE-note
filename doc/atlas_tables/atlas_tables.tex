@@ -8,8 +8,7 @@
 \documentclass[UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-% Use biblatex and biber for the bibliography
-\usepackage[backend=biber]{\ATLASLATEXPATH atlaspackage}
+\usepackage{\ATLASLATEXPATH atlaspackage}
 \usepackage{\ATLASLATEXPATH atlasbiblatex}
 \usepackage{authblk}
 \usepackage{verbatim}
@@ -308,7 +307,7 @@ in braces to format the row that requires a different precision.
     \texttt{\Macro{sisetup}{}\{retain-explicit-plus\}} is used to stop
     \textsf{siunitx} from dropping the plus signs on the positive
     errors. (although these tables look almost identical, the syntax used to
-    create them is different - see Appendix~\ref{sec:raw-data}).}
+    create them is different --- see Appendix~\ref{sec:raw-data}).}
   \label{tab:rounding:xsect}
   \centering
   \renewcommand{\arraystretch}{1.4}

@@ -7,9 +7,8 @@
 %-------------------------------------------------------------------------------
 \documentclass[UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
 
-% Use biblatex and biber for the bibliography
-%\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
-\usepackage[minimal, backend=biber]{\ATLASLATEXPATH atlaspackage}
+% Standard packages that can and should be used in ATLAS papers
+\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
 \usepackage[articletitle=true, showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
 \usepackage[autostyle=true]{csquotes}
 \usepackage[capitalise]{cleveref}
@@ -256,24 +255,24 @@ The capitalisation of the entry types is irrelevant.
 \item[@Article] This is easy --- use it for articles\index{article} published in
   journals, e.g.~\cite{lhcCollaboration:2012}.
 \item[@Book] Just as easy --- use it for books,\index{book} e.g.~\cite{kopka04}.
-\item[@Proceedings, @inproceedings] The name says it all. Use
+\item[@Proceedings, @Inproceedings] The name says it all. Use
   \Option{@Inproceedings} for a paper in the proceedings and
   \Option{@Proceedings} for the whole volume.
 \item[@Collection] Use it for things such as the ATLAS Technical Design
   Report~\cite{lhc:vol1a}\index{report!technical} where the names that you find are the
-  editors. Use \Option{@incollection} for a single article in a
+  editors. Use \Option{@Incollection} for a single article in a
   collection.
-  If you use traditional \BibTeX, you have to use \Option{@booklet} as in Ref.~\cite{lhc:vol1b}.
+  If you use traditional \BibTeX, you have to use \Option{@Booklet} as in Ref.~\cite{lhc:vol1b}.
 \item[@Report] Use it for conference and
   internal\index{internal note}\index{note!internal} notes. This is
   probably also the best type to use for preprints if you use \Package{biblatex}.
-  You can also use \Option{@booklet} or \Option{@online} instead.
+  You can also use \Option{@Booklet} or \Option{@Online} instead.
 \item[@Online] Use it for things that are only available online,
   e.g.~\cite{lshort}.
-  If you use traditional \BibTeX you have to use \Option{@misc} instead.
+  If you use traditional \BibTeX you have to use \Option{@Misc} instead.
 \item[@Thesis] The name says it all.
-  \Option{@phdthesis}\index{PhD thesis} and
-  \Option{@mastersthesis}
+  \Option{@Phdthesis}\index{PhD thesis} and
+  \Option{@Mastersthesis}
   also exist. If you are using \Package{biblatex} you can and should specify
   the thesis type, e.g.\ \texttt{type = \{PhD\}}, see for example a
   PhD thesis~\cite{tlodd:2012}.
@@ -380,10 +379,11 @@ the \texttt{author} field has been renamed as \texttt{xauthor}. If you use \text
 For CONF notes etc., \texttt{@Booklet} is used for the entry type.
 The CONF note number is included via the \texttt{howpublished} field.
 
-For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@article}.
-You should specify the journal in the \texttt{journal} field in form:\\
+For papers that have been submitted to a journal, but not yet published, use the entry type \texttt{@Article}.
+It is possible to specify the journal in the \texttt{journal} field in form:\\
 \texttt{journal = "submitted to \Macro{PLB}{}\{\}"} or\\
 \texttt{journal = "accepted by \Macro{PLB}{}\{\}"}.
+However, the ATLAS Style Guide~\cite{atlas-style} says that this should not be done for ATLAS papers.
 
 In general, \texttt{biblatex} provides many different entry types.
 This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.
@@ -458,8 +458,8 @@ A few adjustments are made in the style file \Package{latex/atlasbiblatex.sty},
 which you should include with a normal \Macro{usepackage} command.
 By default, this style includes the document title.
 The title can be turned off by including the option \Option{articletitle=false}.
-This option turns off the title for entry types \texttt{@article}, \texttt{@booklet} and \texttt{@report},
-as \texttt{@booklet} should be used as the entry type for CONF and PUB notes.
+This option turns off the title for entry types \texttt{@Article}, \texttt{@Booklet} and \texttt{@Report},
+as \texttt{@Booklet} should be used as the entry type for CONF and PUB notes.
 A summary of the options is:
 \begin{description}
 \item[\Option{block=ragged}] specify the option for extra spacing between blocks when making the bibliography with \Package{biblatex}.
@@ -622,12 +622,12 @@ Journals:
 \end{verbatim}
 
 You can use the \BibTeX\ style \File{JHEP.bst} for papers that are supposed to be submitted to JHEP.
-However, note that JHEP only prints the arXiv entry etc.\ if the entry type is \texttt{@article}.
+However, note that JHEP only prints the arXiv entry etc.\ if the entry type is \texttt{@Article}.
 In the examples included in this document,
-the entry type \texttt{@booklet} is used for preprints and CONF notes,
+the entry type \texttt{@Booklet} is used for preprints and CONF notes,
 as this works best with other \BibTeX\ styles.
 If you are planning to submit to JHEP/JINST and use \File{JHEP.bst}
-replace all \texttt{@booklet} entry types with \texttt{@article}.
+replace all \texttt{@Booklet} entry types with \texttt{@Article}.
 
 
 %-------------------------------------------------------------------------------
