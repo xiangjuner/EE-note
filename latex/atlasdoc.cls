@@ -41,6 +41,7 @@
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
+\DeclareStringOption[Draft]{drafttext}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[false]{texmf}
@@ -65,6 +66,7 @@
 %\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpaperfalse} %\def\ADOC@paperstring{letterpaper}}
 %\ProcessOptions\relax
 \newcommand*{\ATTeXLiveVersion}{\ADOC@texlive}
+\newcommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
 
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
@@ -245,7 +247,7 @@
 
 % ATLAS document heading
 \def\ADOC@docheading{}
-\newcommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}}
+\newcommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}\typeout{ADOC heading #1}}
 
 % arXiv
 \def\AtlasArXivId{}
@@ -357,10 +359,11 @@
   % Paragraph spacing is half a line
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
+  % Set font size for author. URLs in authors (such as orcid) will be black.
   \ifthenelse{\ADOC@texlive < 2013}{%
     \relax
   }{%
-    \addtokomafont{author}{\ADOC@authorsize}
+    \addtokomafont{author}{\ADOC@authorsize\hypersetup{urlcolor=black}}
   }
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
@@ -580,8 +583,10 @@
       \centering
         {\sffamily\bfseries\fontsize{20}{24}\selectfont
          \ifx\ADOC@docheading\@empty
-           \textsf{\ADOC@docheadingdefault}\par
+          \typeout{atlasdoc: using default heading}
+          \textsf{\ADOC@docheadingdefault}\par
          \else
+           \typeout{atlasdoc: using special heading: \ADOC@docheading}
            \textsf{\ADOC@docheading}\par
          \fi
         }

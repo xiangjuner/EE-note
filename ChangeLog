@@ -1,3 +1,6 @@
+2020-03-12  Ian Brock  <Ian.Brock@cern.ch>
+	* Add unicode and psdextra options for hyperref.
+	* Links in authors will be black. This is used for ORCID links.
 2019-12-10  Ian Brock  <Ian.Brock@cern.ch>
 	* October and November updates of publications.
 	* Add cleveref package as a default package to atlaspackage.

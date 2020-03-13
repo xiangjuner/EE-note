@@ -40,7 +40,7 @@ function cf_files {
     cmp --silent "$1" "$2"
     cmpStatus=$?
     # echo "cmp status is $cmpStatus" 
-    if [ $cmpStatus == 0 ]; then
+    if [ $cmpStatus -eq 0 ]; then
         echo "No change to file $1"
     else
         echo "Running diff on $2 vs $1"
@@ -50,7 +50,7 @@ function cf_files {
     fi
 }
 
-# Class and styler files
+# Class and style files
 for lfile in latex/*.cls latex/*.sty; do
     afile=tmp-atlaslatex/latex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"

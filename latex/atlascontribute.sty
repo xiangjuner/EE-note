@@ -1,5 +1,6 @@
 %-------------------------------------------------------------------------------
-% List of contributions to an ATLAS analysis
+% List of contributions to an ATLAS analysis.
+% This package requires hyperref to be loaded.
 %
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
@@ -20,6 +21,11 @@
 \DeclareBoolOption[false]{xtab}
 \DeclareBoolOption[true]{authblk}
 \ProcessKeyvalOptions*
+
+% Use package xparse to process optional arguments.
+\RequirePackage{xparse}
+
+\providecommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
 
 %\let\ifACTR@xtab\iffalse
 %\DeclareOption{xtab}{\let\ifACTR@xtab\iftrue}
@@ -50,11 +56,26 @@
     #1 & #2 \tabularnewline
   }
 }
-\newcommand{\AtlasAuthorContributor}[3]{%
-  \g@addto@macro\ACTR@Contributors{%
-    #1 & #3 \tabularnewline
-  }
-  \author[#2]{#1}
+% \newcommand{\AtlasAuthorContributor}[3]{%
+%   \g@addto@macro\ACTR@Contributors{%
+%     #1 & #3 \tabularnewline
+%   }
+%   \author[#2]{#1}
+% }
+
+% Use xparse to process optional argument is ORCID 
+\DeclareDocumentCommand \AtlasAuthorContributor { o m m m } {%
+  \IfNoValueTF {#1} {%
+    \g@addto@macro\ACTR@Contributors{%
+      #2 & #4 \tabularnewline
+    }%
+    \author[#3]{#2}
+  }{%
+    \g@addto@macro\ACTR@Contributors{%
+      #2 & #4 \tabularnewline
+    }%
+    \author[#3]{\AtlasOrcid{#2}{#1}}
+  }%
 }
 
 \newcommand*{\AtlasContributionsTitle}{List of contributions}
