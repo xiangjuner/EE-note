@@ -439,10 +439,8 @@ the title page and also the draft label using the following commands:
 % Author and title for the PDF file
 \hypersetup{pdftitle={Limited author document},pdfauthor={J.~Smith et al.}}
 % Tweak the title page
-\makeatletter
-\renewcommand*{\ADOC@docheadingdefault}{System Paper}
-\renewcommand*{\AtlasDraftHeadingText}{DRAFT}
-\makeatother
+\AtlasHeading{System Paper}
+\AtlasDraftHeading{DRAFT}
 \end{verbatim}
 
 The following options were removed in \Package{atlasdoc} in \Package{atlaslatex 02-00-00}.

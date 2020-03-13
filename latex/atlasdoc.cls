@@ -41,7 +41,6 @@
 \DeclareStringOption[2016]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
-\DeclareStringOption[Draft]{drafttext}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[false]{texmf}
@@ -182,6 +181,10 @@
   \newcommand*{\ADOC@abstractsize}{\normalsize}
 }
 
+% ATLAS draft heading text
+\def\ADOC@draftheading{ATLAS DRAFT}
+\newcommand*{\AtlasDraftHeading}[1]{\def\ADOC@draftheading{#1}}
+
 % Switch to txfonts for TeX Live <= 2012
 % Need to pass this option to atlaspackage as well
 \ifthenelse{\ADOC@texlive < 2012 \AND \boolean{ADOC@newtx}}{%
@@ -247,7 +250,7 @@
 
 % ATLAS document heading
 \def\ADOC@docheading{}
-\newcommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}\typeout{ADOC heading #1}}
+\newcommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}}
 
 % arXiv
 \def\AtlasArXivId{}
@@ -490,15 +493,14 @@
 % \RequirePackage{scrdate,scrtime}
 
 % Draft heading/footer code
-\newcommand*{\AtlasDraftHeadingText}{ATLAS DRAFT}
-\newcommand{\AtlasDraftHeading}{%
+\newcommand{\ADOC@DraftHeading}{%
   \ifthenelse{\ADOC@texlive < 2015}{%
     \RequirePackage[headsepline]{scrpage2}
   }{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
   }
   \ihead{}
-  \chead[]{\fbox{\normalfont\AtlasDraftHeadingText}}
+  \chead[]{\fbox{\normalfont\ADOC@draftheading}}
   \ohead{}
   \ifoot{\dateandtime}
   \cfoot{}
@@ -518,22 +520,22 @@
 \fi
 
 % BOOK, i.e. book heading/footer code
-\newcommand{\AtlasBookHeading}{%
-  \ifthenelse{\ADOC@texlive < 2015}{%
-    \RequirePackage[headsepline]{scrpage2}
-  }{%
-    \RequirePackage[headsepline]{scrlayer-scrpage}
-  }
-  \ifADOC@atlasdraft
-    \ifx\ADOC@draftversion\@empty%
-      \relax
-    \else
-      \ihead{ATLAS DRAFT}
-      \ifoot{\dateandtime}
-    \fi
-  \fi
-  \pagestyle{scrheadings}
-}
+% \newcommand{\AtlasBookHeading}{%
+%   \ifthenelse{\ADOC@texlive < 2015}{%
+%     \RequirePackage[headsepline]{scrpage2}
+%   }{%
+%     \RequirePackage[headsepline]{scrlayer-scrpage}
+%   }
+%   \ifADOC@atlasdraft
+%     \ifx\ADOC@draftversion\@empty%
+%       \relax
+%     \else
+%       \ihead{\ADOC@draftheading}
+%       \ifoot{\dateandtime}
+%     \fi
+%   \fi
+%   \pagestyle{scrheadings}
+% }
 
 % Pass comment option to atlascomment.sty
 \ifADOC@LANGEDIT
@@ -920,7 +922,7 @@
       \typeout{*** atlasdoc: this ATLAS draft document does not have a version number}
     \else
       \typeout{atlasdoc: this is an ATLAS draft document}
-      \AtlasDraftHeading
+      \ADOC@DraftHeading
       \linenumbers
       % \@ifpackageloaded{biblatex}{%
       %   % backref=true adds page numbers of citations to bibliography
