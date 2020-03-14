@@ -25,7 +25,15 @@
 % Use package xparse to process optional arguments.
 \RequirePackage{xparse}
 
-\providecommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
+% \providecommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
+% Set up command for authors and ORCID
+\ProvideDocumentCommand \AtlasOrcid { o m } {%
+  \IfNoValueTF {#1} {%
+    #2%
+  }{%
+    \href{https://orcid.org/#1}{#2}%
+  }%
+}
 
 %\let\ifACTR@xtab\iffalse
 %\DeclareOption{xtab}{\let\ifACTR@xtab\iftrue}
@@ -64,17 +72,17 @@
 % }
 
 % Use xparse to process optional argument is ORCID 
-\DeclareDocumentCommand \AtlasAuthorContributor { o m m m } {%
+\NewDocumentCommand \AtlasAuthorContributor { o m m m } {%
   \IfNoValueTF {#1} {%
     \g@addto@macro\ACTR@Contributors{%
       #2 & #4 \tabularnewline
     }%
-    \author[#3]{#2}
+    \author[#3]{#2}%
   }{%
     \g@addto@macro\ACTR@Contributors{%
       #2 & #4 \tabularnewline
     }%
-    \author[#3]{\AtlasOrcid{#2}{#1}}
+    \author[#3]{\AtlasOrcid[#1]{#2}}%
   }%
 }
 

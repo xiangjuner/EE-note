@@ -18,6 +18,8 @@
 %-------------------------------------------------------------------------------
 % More advanced if syntax
 \RequirePackage{ifthen}
+% More advanced command definition
+\RequirePackage{xparse}
 % Process options. Use kvoptions package.
 \RequirePackage{kvoptions}
 %\RequirePackage[debugshow]{kvoptions}
@@ -65,7 +67,6 @@
 %\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpaperfalse} %\def\ADOC@paperstring{letterpaper}}
 %\ProcessOptions\relax
 \newcommand*{\ATTeXLiveVersion}{\ADOC@texlive}
-\newcommand{\AtlasOrcid}[2]{\href{https://orcid.org/#2}{#1}}
 
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
@@ -184,6 +185,15 @@
 % ATLAS draft heading text
 \def\ADOC@draftheading{ATLAS DRAFT}
 \newcommand*{\AtlasDraftHeading}[1]{\def\ADOC@draftheading{#1}}
+
+% Set up command for authors and ORCID
+\NewDocumentCommand \AtlasOrcid { o m } {%
+  \IfNoValueTF {#1} {%
+    #2%
+  }{%
+    \href{https://orcid.org/#1}{#2}%
+  }%
+}
 
 % Switch to txfonts for TeX Live <= 2012
 % Need to pass this option to atlaspackage as well
