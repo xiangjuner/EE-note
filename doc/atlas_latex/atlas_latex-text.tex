@@ -168,6 +168,10 @@ separate templates are used as of Version 04-00-00.
 \label{sec:contribute}
 %-------------------------------------------------------------------------------
 
+You can include an author's ORCID using the \Macro{AtlasOrcid} macro:\\
+\verb+\AtlasOrcid[0000-0002-03-9876]{John Postdoc}+.
+This command will be used in the ATLAS Collaboration author lists.
+
 The supporting documentation for an ATLAS note (not the paper draft) should contain a list of the contributors to the analysis.
 A style file \Package{atlascontribute.sty} has been written to help with the creation of such a list.
 The macros in the style file can also build the author list at the same time.
@@ -175,11 +179,13 @@ Two basic macros are used to add names to the author list and list of contributi
 \Macro{AtlasContributor} and \Macro{AtlasAuthorContributor}. 
 The first macro adds a person to the list of contributors, while the second one also adds the person
 to the author list. I assume that in almost all cases you will want to use \Macro{AtlasAuthorContributor}.
+An optional argument can be added to \Macro{AtlasAuthorContributor}, which contains the author's ORCID.
+The author's name becomes a link to the ORCID.
 Typical commands are:
 \begin{verbatim}
 \AtlasAuthorContributor{Joe Student}{a}{fake background estimate.}
 \AtlasAuthorContributor{Jane Student}{b}{top background estimate.}
-\AtlasAuthorContributor{John Postdoc}{a}{editor of internal note.}
+\AtlasAuthorContributor[0000-0002-03-9876]{John Postdoc}{a}{editor of internal note.}
 \AtlasContributor{Jo Helper}{useful contributions in a few places.}
 \affil[a]{University of Nowhere}
 \affil[b]{University of Somewhere}
