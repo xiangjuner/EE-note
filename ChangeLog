@@ -1,12 +1,12 @@
-2020-03-12  Ian Brock  <Ian.Brock@cern.ch>
-	* Add unicode and psdextra options for hyperref.
-	* Links in authors will be black. This is used for ORCID links.
-	* New macro \AtlaOrcid for ORCID.
-	* ORCID can be included as an optional argument in \AtlasAuthorContributor.
-2019-12-10  Ian Brock  <Ian.Brock@cern.ch>
+2020-03-15  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-02-00.
 	* October and November updates of publications.
 	* Add cleveref package as a default package to atlaspackage.
 	* Add physics package when passing option full to atlaspackage.
+	* Add unicode and psdextra options for hyperref.
+	* New macro \AtlaOrcid for ORCID.
+	* ORCID can be included as an optional argument in \AtlasAuthorContributor.
+	* Links in authors will be black. This is used for ORCID links.
 2019-11-26  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 08-01-00.
 	* Updated acknowledgements.
