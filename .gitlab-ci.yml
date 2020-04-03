@@ -21,6 +21,7 @@ build_image:
   stage: Docker
   variables:
     TO: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    DOCKER_FILE: .config/Dockerfile
   tags:
     - docker-image-build
   script:
