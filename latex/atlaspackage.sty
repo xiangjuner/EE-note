@@ -32,6 +32,7 @@
 \DeclareBoolOption[false]{subfigure}
 \DeclareBoolOption[false]{subcaption}
 \DeclareBoolOption[true]{hyperref}
+\DeclareBoolOption[true]{bookmark}
 \DeclareBoolOption[true]{cleveref}
 \DeclareBoolOption[true]{capsref}
 \DeclareBoolOption[true]{abbrevref}
@@ -182,6 +183,12 @@
       %   \RequirePackage{tocloft}
       \fi
     \fi
+  \fi
+
+  % Fixes appendices displaying in pdf viewer index/outline under first appendix
+  % instead of under Appendix heading
+  \ifAPKG@bookmark
+    \RequirePackage{bookmark}
   \fi
 
   % Remove dots in table of contents

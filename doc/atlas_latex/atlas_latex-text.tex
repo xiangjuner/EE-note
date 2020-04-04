@@ -547,8 +547,9 @@ The default set adds in addition:
 \item \texttt{csquotes}: smart quotes that incorporate language dependence;
 \item \texttt{siunitx}: units package with extra functionality for tables;
 \item \texttt{subfig}: more than one plot in a figure;
-\item \texttt{tocloft}: extra options for typesetting table of contents etc.
+% \item \texttt{tocloft}: extra options for typesetting table of contents etc.;
 \item \texttt{cleveref}: automatically include \enquote{Fig.}, \enquote{Section} etc. when cross-referencing;
+\item \texttt{bookmark}: better construction of index or outline in PDF viewers.
 \end{itemize}
 
 Finally the full set includes further packages that may be useful:
@@ -566,6 +567,7 @@ The full list of options is:
 \item[\Option{backend={\normalfont bibtex}|biber}] specify the backend to use with \Package{biblatex}.
   Specify \Option{backend=bibtex} to use \Package{bibtex} instead;
 \item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of the \Package{hyperref} package;
+\item[\Option{bookmark=true|{\normalfont false}}] turn on/off use of the \Package{bookmark} package;
 \item[\Option{siunitx=true|{\normalfont false}}] turn on/off use of the \Package{siunitx} package;
 \item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
   This option is set by default if you use the \Option{txfonts} fonts;

@@ -1,10 +1,14 @@
+2020-04-03  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-03-00.
+	* December 2019 update of publications.
+	* Add bookmark package by default.
 2020-03-15  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 08-02-00.
 	* October and November updates of publications.
 	* Add cleveref package as a default package to atlaspackage.
 	* Add physics package when passing option full to atlaspackage.
 	* Add unicode and psdextra options for hyperref.
-	* New macro \AtlaOrcid for ORCID.
+	* New macro \AtlasOrcid for ORCID.
 	* ORCID can be included as an optional argument in \AtlasAuthorContributor.
 	* Links in authors will be black. This is used for ORCID links.
 2019-11-26  Ian Brock  <Ian.Brock@cern.ch>
