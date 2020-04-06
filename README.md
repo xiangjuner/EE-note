@@ -68,6 +68,10 @@ Subsequently, you will have to specify which note to build like
     
 using the same name you generated previously.
 
+Although it is not the default, I strongly recommend that you use `latexmk` to compile your document.
+It works out for itself what has to be run and generally works very well.
+In order to use `latexmk`, change the default target in the `Makefile` from `run_pdflatex` to `run_latexmk`.
+
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live
 and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
@@ -85,7 +89,7 @@ For PO-GitLab documents, the Git repository is in a subdirectory of: https://git
 The most common FAQ I get is why `atlaslatex` does not just compile "out of the box"?
 If you are running on `lxplus` for it to work, you MUST set your PATH correctly as follows:
 
-    export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
+    export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:$PATH
 
 in order to use TeX Live 2016.
 TeX Live 2016 is the current version used in the Physics Office Continuous Integration.
