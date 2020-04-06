@@ -1,4 +1,4 @@
 This new version contains a few updates:
-- October and November updates of publications.
-- Add cleveref and physics packages to atlaspackage.
+- October to December updates of publications.
+- Add bookmark, cleveref, physics packages to atlaspackage.
 - Integrate use of ORCID.
