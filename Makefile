@@ -30,6 +30,9 @@ PDFLATEX = pdflatex
 BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
+TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9]*')
+TLOKAY   = $(shell [[ $(TLVERS) -ge $(TEXLIVE) ]] && echo true)
+TWIKI    = https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeXFAQ
 
 #-------------------------------------------------------------------------------
 # The main document filename
@@ -46,7 +49,7 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
 # Default target - make mydocument.pdf with pdflatex
-default: run_pdflatex
+default: version run_pdflatex
 # Use latexmk instead to compile
 # default: run_latexmk
 
@@ -54,6 +57,12 @@ default: run_pdflatex
 .PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
 .PHONY: draftcover preprintcover newdata
 .PHONY: clean cleanpdf help
+
+# Check TeX Live version
+version:
+ifeq ($(findstring true,$(TLOKAY)),)
+	$(error Your TeX Live version ($(TLVERS)) is too old. Please consult $(TWIKI))
+endif
 
 # Standard pdflatex target
 run_pdflatex: $(BASENAME).pdf
