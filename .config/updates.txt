@@ -1,4 +1,4 @@
 This new version contains a few updates:
-- October to December updates of publications.
-- Add bookmark, cleveref, physics packages to atlaspackage.
-- Integrate use of ORCID.
+- March 2019 update of publications including CMS backlog.
+- Updated acknowledgements citation.
+- Add fix for line numbering around AMS Math LaTeX environments.

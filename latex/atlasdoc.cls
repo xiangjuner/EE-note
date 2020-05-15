@@ -45,6 +45,8 @@
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
+\DeclareBoolOption[true]{mathlines}
+\DeclareBoolOption[true]{linenofix}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
@@ -484,12 +486,33 @@
 \KOMAoptions{DIV=last}
 
 % Add ability to include line numbers
-\RequirePackage{lineno}
+\ifADOC@mathlines
+  \RequirePackage[mathlines]{lineno}
+\else
+  \RequirePackage{lineno}
+\fi
 % If you have an old lineno or do not have it, you can get it from the latex/other directory
 % \RequirePackage{latex/other/lineno}
 % \nolinenumbers
 \ifADOC@showframe
   \RequirePackage{showframe}
+\fi
+
+% Try to avoid adding linenomath around unknown environments
+% Code adapted from https://tex.stackexchange.com/questions/436011/linenomath-printing-extra-numbers-on-last-line-of-multline-align-flalign-envir
+\ifADOC@linenofix
+  \newcommand*\linenomathpatchAMS[1]{%
+    \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
+    \expandafter\pretocmd\csname #1*\endcsname{\linenomathAMS}{}{}%
+    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\apptocmd\csname end#1*\endcsname{\endlinenomath}{}{}%
+  }
+  \expandafter\ifx\linenomath\linenomathWithnumbers
+    \let\linenomathAMS\linenomathWithnumbers
+    \patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+  \else
+    \let\linenomathAMS\linenomathNonumbers
+  \fi
 \fi
 
 % Compute the time in hours and minutes; make new variables \timehh and \timemm
@@ -942,6 +965,15 @@
     \fi
   \else
     \typeout{atlasdoc: this is the final version of an ATLAS document}
+  \fi
+  \ifADOC@linenofix
+    \typeout{+++ atlasdoc: using lineno package fix}
+    \linenomathpatchAMS{align}
+    \linenomathpatchAMS{alignat}
+    \linenomathpatchAMS{equation}
+    \linenomathpatchAMS{flalign}
+    \linenomathpatchAMS{gather}
+    \linenomathpatchAMS{multline}
   \fi
   % \typeout{atlasdoc sizes:}
   % \typeout{paper height and width \the\paperheight, \the\paperwidth}
