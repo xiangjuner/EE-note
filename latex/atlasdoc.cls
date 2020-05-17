@@ -7,11 +7,11 @@
 % Note that this file can be overwritten when atlaslatex is updated.
 % if TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
 %
-% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+% Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{08-03-00}
+\def\ATPackageVersion{08-04-00}
 
-\ProvidesClass{latex/atlasdoc}[2020/04/06 v.08-03-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2020/05/17 v.08-04-00 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -45,7 +45,7 @@
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[true]{mathlines}
+\DeclareBoolOption[false]{mathlines}
 \DeclareBoolOption[true]{linenofix}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
@@ -482,7 +482,7 @@
   \setcounter{totalnumber}{20}
 \fi
 
-% Make sure page sizes etc are calculaetd after font selection
+% Make sure page sizes etc are calculated after font selection
 \KOMAoptions{DIV=last}
 
 % Add ability to include line numbers
@@ -494,6 +494,8 @@
 % If you have an old lineno or do not have it, you can get it from the latex/other directory
 % \RequirePackage{latex/other/lineno}
 % \nolinenumbers
+
+% Show frame for checking dimensions etc.
 \ifADOC@showframe
   \RequirePackage{showframe}
 \fi

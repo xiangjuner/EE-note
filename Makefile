@@ -1,6 +1,6 @@
 # Makefile for creating an ATLAS LaTeX document
 
-# Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 #------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex.
 # Replace mydocument with your main filename or add another target set.
@@ -11,10 +11,12 @@
 # Use "make clean" to cleanup.
 # Use "make cleanpdf" to delete $(BASENAME).pdf.
 # "make cleanall" also deletes the PDF file $(BASENAME).pdf.
-# Use "make cleanepstopdf" to rmeove PDF files created automatically from EPS files.
+# Use "make cleanepstopdf" to remove PDF files created automatically from EPS files.
 #   Note that FIGSDIR has to be set properly for this to work.
 
 # Set the default target to run_latexmk instead of run_pdflatex to use latexmk to compile.
+
+# You can use the target version to check your TeX Live version.
 
 # If you have to run latex rather than pdflatex adjust the dependencies of %.dvi target
 #   and use the command "make run_latex" to compile.
@@ -30,8 +32,8 @@ PDFLATEX = pdflatex
 BIBTEX   = biber
 DVIPS    = dvips
 DVIPDF   = dvipdf
-TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9]*')
-TLOKAY   = $(shell [[ $(TLVERS) -ge $(TEXLIVE) ]] && echo true)
+TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9].*')
+# TLOKAY   = $(shell test $(TLVERS) -ge $(TEXLIVE) && echo true)
 TWIKI    = https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeXFAQ
 
 #-------------------------------------------------------------------------------
@@ -49,20 +51,22 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
 # Default target - make mydocument.pdf with pdflatex
-default: version run_pdflatex
+default: run_pdflatex
 # Use latexmk instead to compile
 # default: run_latexmk
 
 .PHONY: run_latexmk
 .PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
 .PHONY: draftcover preprintcover newdata
-.PHONY: clean cleanpdf help
+.PHONY: version clean cleanpdf help
 
 # Check TeX Live version
 version:
-ifeq ($(findstring true,$(TLOKAY)),)
-	$(error Your TeX Live version ($(TLVERS)) is too old. Please consult $(TWIKI))
-endif
+	@echo "Checking version"
+	@echo "TLVERS $(TLVERS), TEXLIVE $(TEXLIVE)"
+	if [ $(TLVERS) -lt $(TEXLIVE) ]; then \
+		echo "Your TeX Live version ($(TLVERS)) is older than $(TEXLIVE). Please consult $(TWIKI)"; \
+	fi
 
 # Standard pdflatex target
 run_pdflatex: $(BASENAME).pdf
@@ -218,6 +222,7 @@ help:
 	@echo "make cleanps  to clean output PS files"
 	@echo "make cleanall to clean all files"
 	@echo "make cleanepstopdf to clean PDF files automatically made from EPS"
+	@echo "make version to check your TeX Live version"
 	@echo ""
 
 clean:

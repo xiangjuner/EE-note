@@ -408,7 +408,7 @@ In the following the default option is in boldface.
 \item[\Option{titlesize=normal|{\normalfont small}}] use normal or reduced size fonts for the title page;
 \item[\Option{tocdepth=2}] depth of table of contents. The default is to include subsections (2);
 \item[\Option{floatopt=true|{\normalfont false}}] adjust the options (default) governing number and placement of floats on a page;
-\item[\Option{mathlines=true|{\normalfont false}}] put line numbers on equations;
+\item[\Option{mathlines={\normalfont true}|false}] put line numbers on equations;
 \item[\Option{linenofix=true|{\normalfont false}}] fix line numbers around AMS math environments with using the \Package{linenomath} environment;
 \item[\Option{texmf}] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
@@ -1099,8 +1099,11 @@ separate the \Package{figure} and \Package{table} environment from the rest of t
 As of Version 08-04-00 of \Package{atlaslatex} line numbering around AMS Math \LaTeX\ environments such as \Package{align}
 should just work.
 The code that does this is inside \File{atlasdoc.cls}.
-If this causes problem, pass the option \Option{linenofix=false} to \Package{atlasdoc}.
-For older versions,
+If this causes problems, pass the option \Option{linenofix=false} to \Package{atlasdoc}.
+You can set the option \Option{mathlines=true} to also number the lines in equations.
+Some debugging of this option is still ongoing, so it is currently set to \Option{false}.
+
+For older versions of \Package{atlaslatex},
 if you use AMS Math \LaTeX\ environments line numbering may be interrupted around the environment.
 Enclose the environment in a \Package{linenomath} environment to fix this problem:
 \begin{verbatim}
@@ -1110,7 +1113,7 @@ Enclose the environment in a \Package{linenomath} environment to fix this proble
 \end{equation*}
 \end{linenomath}
 \end{verbatim}
-If you are using \Package{linnomath} you may have to set the option \Option{mathlines=false}to avoid spurious line numbers.
+If you are using the environment \Package{linenomath} you may have to set the option \Option{mathlines=false}to avoid spurious line numbers.
 
 
 %-------------------------------------------------------------------------------

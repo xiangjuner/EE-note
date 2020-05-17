@@ -5,7 +5,7 @@ See ChangeLog or Git log for history of changes.
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 
 ------
 
@@ -109,8 +109,9 @@ or
     pdflatex atlas_latex
     pdflatex atlas_latex
 
-Three other make targets are:
+Four other make targets are:
 
-- `make clean`: Cleans up intermediate files
-- `make cleanpdf`: Remove output pdf file
-- `make cleanall`: Also cleans up output pdf file
+- `make clean`: cleans up intermediate files
+- `make cleanpdf`: remove output pdf file
+- `make cleanall`: also cleans up output pdf file
+= `make verson`: check your TeX Live version
