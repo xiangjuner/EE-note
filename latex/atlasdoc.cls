@@ -503,16 +503,19 @@
 % Try to avoid adding linenomath around unknown environments
 % Code adapted from https://tex.stackexchange.com/questions/436011/linenomath-printing-extra-numbers-on-last-line-of-multline-align-flalign-envir
 \ifADOC@linenofix
+  \RequirePackage{xpatch}
   \newcommand*\linenomathpatchAMS[1]{%
-    \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
-    \expandafter\pretocmd\csname #1*\endcsname{\linenomathAMS}{}{}%
-    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
-    \expandafter\apptocmd\csname end#1*\endcsname{\endlinenomath}{}{}%
+    \expandafter\xpretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
+    \expandafter\xpretocmd\csname #1*\endcsname{\linenomathAMS}{}{}%
+    \expandafter\xapptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\xapptocmd\csname end#1*\endcsname{\endlinenomath}{}{}%
   }
   \expandafter\ifx\linenomath\linenomathWithnumbers
+    \typeout{atlasdoc: add line numbers to equations}
     \let\linenomathAMS\linenomathWithnumbers
-    \patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+    \xpatchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{\typeout{atlasdoc xpatch: Extra linenumber patch worked}}{\typeout{*** atlasdoc xpatch: Extra linenumber patch failed}}
   \else
+    \typeout{atlasdoc: do not add line numbers to equations}
     \let\linenomathAMS\linenomathNonumbers
   \fi
 \fi
