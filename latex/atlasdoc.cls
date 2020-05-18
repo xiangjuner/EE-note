@@ -45,7 +45,7 @@
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[false]{mathlines}
+\DeclareBoolOption[true]{mathlines}
 \DeclareBoolOption[true]{linenofix}
 \DeclareBoolOption[false]{texmf}
 \DeclareBoolOption[true]{newtx}
