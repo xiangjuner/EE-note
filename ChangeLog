@@ -1,6 +1,9 @@
+2020-06-26  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-05-00.
+	* April and May 2020 update of publications.
 2020-05-17  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 08-04-00.
-	* March 2019 update of publications including CMS backlog.
+	* March 2020 update of publications including CMS backlog.
 	* Updated acknowledgements citation.
 	* Add fix for line numbering around AMS Math LaTeX environments.
 	* Number lines inside equations by default (mathlines option).
