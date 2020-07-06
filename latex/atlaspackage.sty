@@ -36,7 +36,13 @@
 \DeclareBoolOption[true]{cleveref}
 \DeclareBoolOption[true]{capsref}
 \DeclareBoolOption[true]{abbrevref}
-\DeclareBoolOption[true]{physics}
+% Packages included with full
+\DeclareBoolOption[false]{mhchem}
+\DeclareBoolOption[false]{physics}
+\DeclareBoolOption[false]{rotating}
+\DeclareBoolOption[false]{xfrac}
+\DeclareBoolOption[false]{xtab}
+% Miscellaneous packages and options
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2016]{texlive}
@@ -71,19 +77,29 @@
   \fi
 \fi
 
+% Steer packages that are included with the full option
+% Turned on full option and off by default otherwise
+\ifthenelse{\boolean{APKG@more}}{%
+  \APKG@mhchemtrue
+  \APKG@physicstrue
+  \APKG@rotatingtrue
+  \APKG@xfractrue
+  \APKG@xtabtrue
+}{}
+
 % Packages that did not exist for TeX Live < 2009
-\ifthenelse{\APKG@texlive < 2009}{%
-  \APKG@siunitxfalse
-  \APKG@biblatexfalse
-}{%
-}
+% \ifthenelse{\APKG@texlive < 2009}{%
+%   \APKG@siunitxfalse
+%   \APKG@biblatexfalse
+% }{%
+% }
 
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
 % Graphics
 \RequirePackage{graphicx}
 % Colour
-\RequirePackage{xcolor}
+\RequirePackage[svgnames]{xcolor}
 % Document language control
 \RequirePackage{babel}
 % Add line numbers
@@ -144,11 +160,11 @@
 \ifAPKG@standard
   \ifAPKG@csquotes
     % Language-sensitive quotes
-    \ifthenelse{\APKG@texlive < 2010}{%
-      \RequirePackage[babel=true]{csquotes}
-    }{%
+    % \ifthenelse{\APKG@texlive < 2010}{%
+    %   \RequirePackage[babel=true]{csquotes}
+    % }{%
       \RequirePackage[autostyle=true]{csquotes}
-    }
+    % }
   \fi
   % Extra options for footnotes
   % \RequirePackage[bottom]{footmisc}
@@ -200,31 +216,31 @@
   % Before 2012 siunitx Version 2 (arXiv until 10/02/2017)
   % Otherwise   siunitx Version 3
   \ifAPKG@siunitx
-    \ifthenelse{\APKG@texlive < 2012}{
-      \ifthenelse{\APKG@texlive < 2011}{
-        \typeout{atlaspackage: Loading siunitx definitions for TeX Live < 2011}
-        \RequirePackage[noload=addn]{siunitx}
-        \sisetup{alsoload=hep}
-        \sisetup{seperr}
-        \sisetup{repeatunits=false}
-        \sisetup{obeyall}
-        % \sisetup{sepfour}
-        \newunit{\m}{m}
-        % \newunit\micron{\micro\metre}
-        \newunit{\um}{\micro\meter}
-      }{
-        \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
-        \RequirePackage{siunitx}
-        \sisetup{load-configurations=abbreviations}
-        \sisetup{separate-uncertainty}
-        \sisetup{range-units=single, list-units=single}
-        % \sisetup{group-digits=true, group-four-digits=true}
-        \sisetup{group-digits=true}
-        \sisetup{detect-all}
-        %\sisetup{detect-mode=false, mode=text}
-        \DeclareSIUnit\barn{b}
-      }
-    }{%
+    % \ifthenelse{\APKG@texlive < 2012}{
+    %   \ifthenelse{\APKG@texlive < 2011}{
+    %     \typeout{atlaspackage: Loading siunitx definitions for TeX Live < 2011}
+    %     \RequirePackage[noload=addn]{siunitx}
+    %     \sisetup{alsoload=hep}
+    %     \sisetup{seperr}
+    %     \sisetup{repeatunits=false}
+    %     \sisetup{obeyall}
+    %     % \sisetup{sepfour}
+    %     \newunit{\m}{m}
+    %     % \newunit\micron{\micro\metre}
+    %     \newunit{\um}{\micro\meter}
+    %   }{
+    %     \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
+    %     \RequirePackage{siunitx}
+    %     \sisetup{load-configurations=abbreviations}
+    %     \sisetup{separate-uncertainty}
+    %     \sisetup{range-units=single, list-units=single}
+    %     % \sisetup{group-digits=true, group-four-digits=true}
+    %     \sisetup{group-digits=true}
+    %     \sisetup{detect-all}
+    %     %\sisetup{detect-mode=false, mode=text}
+    %     \DeclareSIUnit\barn{b}
+    %   }
+    % }{%
       \typeout{atlaspackage: Loading siunitx definitions for TeX Live > 2011}
       \RequirePackage{siunitx}
       \sisetup{separate-uncertainty}
@@ -232,28 +248,28 @@
       \sisetup{group-digits=integer, group-minimum-digits=5}
       \sisetup{detect-all}
       %\sisetup{detect-mode=false, mode=text}
-    }
+    % }
     % Units
-    \ifthenelse{\APKG@texlive < 2011}{
-      \renewunit{\mrad}{\milli\radian}
-      \newunit{\degr}{\degree}
-      \newunit{\barn}{b}
-      \newunit{\inb}{\per\nano\barn}
-      \newunit{\ipb}{\per\pico\barn}
-      \newunit{\ifb}{\per\femto\barn}
-      \renewunit{\clight}{\text{\ensuremath{c}}}
-      \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
-      \newunit[per=slash]{\TeVc}{\tera\eVperc}
-      \newunit[per=slash]{\GeVc}{\giga\eVperc}
-      \newunit[per=slash]{\MeVc}{\mega\eVperc}
-      \newunit[per=slash]{\keVc}{\kilo\eVperc}
-      \newunit[per=slash]{\eVc}{\eVperc}
-      \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
-      \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
-      \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
-      \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
-      \newunit[per=slash]{\eVcc}{\eVperc\squared}
-    }{%
+    % \ifthenelse{\APKG@texlive < 2011}{
+    %   \renewunit{\mrad}{\milli\radian}
+    %   \newunit{\degr}{\degree}
+    %   \newunit{\barn}{b}
+    %   \newunit{\inb}{\per\nano\barn}
+    %   \newunit{\ipb}{\per\pico\barn}
+    %   \newunit{\ifb}{\per\femto\barn}
+    %   \renewunit{\clight}{\text{\ensuremath{c}}}
+    %   \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
+    %   \newunit[per=slash]{\TeVc}{\tera\eVperc}
+    %   \newunit[per=slash]{\GeVc}{\giga\eVperc}
+    %   \newunit[per=slash]{\MeVc}{\mega\eVperc}
+    %   \newunit[per=slash]{\keVc}{\kilo\eVperc}
+    %   \newunit[per=slash]{\eVc}{\eVperc}
+    %   \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
+    %   \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
+    %   \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
+    %   \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
+    %   \newunit[per=slash]{\eVcc}{\eVperc\squared}
+    % }{%
       \DeclareSIUnit\micron{\micro\metre}
       \DeclareSIUnit\mrad{\milli\radian}
       \DeclareSIUnit\degr{\degree}
@@ -285,31 +301,39 @@
       \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
       \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
       \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
-    }
+    % }
   \fi
 \fi
 
+%------------------------------------------------------------------------------
+% Packages included with the full option (or explicitly)
 
-\ifAPKG@more
-  % Tables that go over more than one page
-  \RequirePackage{xtab}
-  % \RequirePackage{longtable}
-  % \RequirePackage{supertable}
-
-  % Easy rotation of tables and figures
-  \RequirePackage{rotating}
-
-  % Nicer fractions
-  \RequirePackage{xfrac}
-
-  % Macros for mathematics in physics
-  \ifAPKG@physics
-    \RequirePackage{physics}
-  \fi
-
-  % Chemical elements and processes
+% Chemical elements and processes
+\ifthenelse{\boolean{APKG@mhchem}}{%
   \RequirePackage[version=3]{mhchem}
-\fi
+}{}
+
+% Macros for mathematics in physics
+\ifthenelse{\boolean{APKG@physics}}{%
+  \RequirePackage{physics}
+}{}
+
+% Easy rotation of tables and figures
+\ifthenelse{\boolean{APKG@rotating}}{%
+  \RequirePackage{rotating}
+}{}
+
+% Nicer fractions
+\ifthenelse{\boolean{APKG@xfrac}}{%
+  \RequirePackage{xfrac}
+}{}
+
+% Tables that go over more than one page
+\ifthenelse{\boolean{APKG@xtab}}{%
+  \RequirePackage{xtab}
+}{}
+% \RequirePackage{longtable}
+% \RequirePackage{supertable}
 
 % hyperref is usually included as late as possible
 \ifAPKG@hyperref
