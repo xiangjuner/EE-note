@@ -9,9 +9,11 @@
 
 This collection of ATLAS \LaTeX\ templates, style files and documentation
 can be used for papers, preprints and notes, both public and internal. 
-All necessary files are collected in a single package called \texttt{atlaslatex}.
+All necessary files are collected in a single package called \Package{atlaslatex}.
 The package is available from the web pages of the Publication Committee~\cite{pubcom} and from 
 Git~\cite{pubcom-git}.
+
+The package should work for \TeX\ Live versions from 2013 onwards\ADOCnew{09-00-00}.
 
 The collection replaces and improves on the previous packages. 
 In particular it supersedes:
@@ -21,9 +23,9 @@ In particular it supersedes:
 \item \texttt{atlaspreprint-00-00-05}
 \item \texttt{atlasbib-00-00-04}
 \end{itemize}
-Section~\ref{sec:oldnote} summarises the changes that have been made and
+\Cref{sec:oldnote} summarises the changes that have been made and
 how you can adapt your documents to use the new package.
-Section~\ref{sec:oldcover} summarises the changes to the cover macros.
+\Cref{sec:oldcover} summarises the changes to the cover macros.
 
 The package includes the \Package{atlasdoc} class, useful style files
 and documentation of the package.
@@ -38,7 +40,7 @@ The design principle is that you have a main document and
 the style files and \Package{atlasdoc} class are in a subdirectory \File{latex}.
 The logos that are needed are kept in a \File{logos} directory.
 This subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
-See below and Section~\ref{sec:texmf} for how to proceed if you want to use and/or install
+See below and \cref{sec:texmf} for how to proceed if you want to use and/or install
 the package in a central place.
 
 The usual procedure is that for each document that you create,
@@ -54,10 +56,10 @@ Each document can then be independent of the \Package{atlaslatex} release.
 
 To create a new document you can issue one of the commands:
 %
-\begin{verbatim}
+\begin{bashlisting}
 make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
 make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
-\end{verbatim}
+\end{bashlisting}
 depending on whether you want to write a paper/CONF Note/Pub Note draft or
 an ATLAS not draft.
 %
@@ -82,19 +84,19 @@ Have a look at \File{Makefile} for other things you can adjust.
 
 If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is one of:
 %
-\begin{verbatim}
+\begin{bashlisting}
 make newpapertexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 make newnotetexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
-\end{verbatim}
+\end{bashlisting}
 %
-See Section~\ref{sec:texmf} for more details.
+See \cref{sec:texmf} for more details.
 
 In order to make a new document of book form like a TDR, use one of the commands:
 %
-\begin{verbatim}
+\begin{bashlisting}
 make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
 make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
-\end{verbatim}
+\end{bashlisting}
 %
 By default, this will pass the option \Option{BOOK} to \Package{atlasdoc}.
 Use \verb|make newbooktexmf| for a book with \Package{atlaslatex} in a central directory.
@@ -182,14 +184,14 @@ to the author list. I assume that in almost all cases you will want to use \Macr
 An optional argument can be added to \Macro{AtlasAuthorContributor}, which contains the author's ORCID.
 The author's name becomes a link to the ORCID.
 Typical commands are:
-\begin{verbatim}
+\begin{tcblisting}{listing only}
 \AtlasAuthorContributor{Joe Student}{a}{fake background estimate.}
 \AtlasAuthorContributor{Jane Student}{b}{top background estimate.}
 \AtlasAuthorContributor[0000-0002-03-9876]{John Postdoc}{a}{editor of internal note.}
 \AtlasContributor{Jo Helper}{useful contributions in a few places.}
 \affil[a]{University of Nowhere}
 \affil[b]{University of Somewhere}
-\end{verbatim}
+\end{tcblisting}
 If a person should be added to the author list, you also need to add an appropriate affiliation using the macro \Macro{affil}.
 The optional argument is a letter or number that should also be given as the second argument to
 \Macro{AtlasAuthorContributor}.
@@ -225,7 +227,7 @@ This option of course also requires that the package \Package{xtab} is installed
 Sometimes a PUB note has a special author list.
 Hence a link to this list should be added to the front page.
 This can be achieved with the following code snippet that should be used for the author:
-\begin{verbatim}
+\begin{tcblisting}{listing only}
 % \usepackage[marginal,hang]{footmisc}
 % \setlength{\footnotemargin}{0.5em}
 \usepackage{authblk}
@@ -233,7 +235,7 @@ This can be achieved with the following code snippet that should be used for the
 \thanks{The full author list can be found at:\\
   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2014-YYY/authorlist.pdf}}
 }
-\end{verbatim}
+\end{tcblisting}
 
 The first two lines are needed if you do not use the standard ATLAS preprint style.
 Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=false}
@@ -276,7 +278,7 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
 \affil[a]{One Institution}
 \affil[b]{Another Institution}
     \end{verbatim}
-    See also Section~\ref{sec:contribute} if you want to combine the creation of a list of authors and contributors.
+    See also \cref{sec:contribute} if you want to combine the creation of a list of authors and contributors.
 
     If you do not want each institute on a separate line, uncomment the lines in the metadata file:
     \begin{verbatim}
@@ -360,15 +362,15 @@ as its basis or the \KOMAScript\ \texttt{sctartcl} class.
 All the usual commands and options you usually use
 with \texttt{article}  or \texttt{scrartcl} should work with it. 
 You turn on the use of \KOMAScript\ with the option \texttt{koma}.
-For instance, this document has
-been produced using this very simple preamble:
+For instance, a standard document can be produced using this simple preamble:
 %
-\begin{verbatim}
-  \documentclass[UKenglish]{latex/atlasdoc}
-  \usepackage{latex/atlaspackage}
-  \usepackage{latex/atlasphysics}
-  \graphicspath{{../../logos/}{figures/}}
-\end{verbatim}
+\begin{tcblisting}{listing only}
+  \newcommand*{\ATLASLATEXPATH}{latex/}
+  \documentclass[UKenglish]{\ATLASLATEXPATH atlasdoc}
+  \usepackage{\ATLASLATEXPATH atlaspackage}
+  \usepackage{\ATLASLATEXPATH atlasphysics}
+  \graphicspath{{logos/}{figs/}}
+\end{tcblisting}
 %
 Note that the document language must be specified, otherwise \texttt{babel} will complain.
 
@@ -434,8 +436,8 @@ In the following the default option is in boldface.
   \emph{This option has no effect as of \Package{atlaslatex} 07-00-00}.
 \end{description}
 
-The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00.
-It is intended to replace to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
+The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00\ADOCnew{04-03-00}.
+It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
 so that this option simply has to be removed when a document is final.
 
@@ -473,7 +475,7 @@ They are mostly still available in \Package{atlasdoc1}.
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
-%The option \Option{BOOK} uses book intead of article as the base class.
+%The option \Option{BOOK} uses book instead of article as the base class.
 
 The
 \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}
@@ -494,7 +496,7 @@ It is very helpful to turn on the \Option{showframe} option when doing this.
 
 
 %-------------------------------------------------------------------------------
-\subsection{Dependencies and \Package{atlaspackage}}
+\subsection{Packages, dependencies and \Package{atlaspackage}}
 \label{sec:atlaspackage}
 %-------------------------------------------------------------------------------
 
@@ -502,8 +504,9 @@ The \Package{atlasdoc} class depends on these packages, whose presence in
 your system is required:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \Package{babel}: become language aware;
-\item \Package{scrpage2}: defines the header for draft mode
+\item \Package{scrlayer-scrpage}: defines the header for draft mode
   and for auxiliary material documents.
+  For \TeX\ Live 2014 and earlier \Package{scrpage2} is used instead.
 \item \Package{fontenc}: output font encoding;
 \item \Package{hyperref}: add hyperlinks and ability to click on cross-references;
 \item \Package{graphicx}: include graphics in the document;
@@ -511,7 +514,8 @@ your system is required:
 \item \Package{newtxtext} and \Package{newtxmath}: the standard ATLAS document font.
   If this is not available, you can fall back to \Package{txfonts};
 \item \Package{xcolor}: add colours to \LaTeX;
-\item \Package{ifthen}: improved handling of conditionals.
+\item \Package{ifthen}: improved handling of conditionals;
+\item \Package{kvoptions}: process options passed to packages.
 %\item \Package{scrdate, scrtime}: Current date and time for use in the header.
 \end{itemize}
 These should be installed in any modern \LaTeX\ installation.
@@ -520,13 +524,13 @@ for your operating system.
 
 Note that under Ubuntu versions 12.04 and 14.04, \Package{lineno} can be found in the
 \Package{texlive-humanities} package!
-If you cannot find it, it is also included in \File{latex/other}.
+If you cannot find it, it is also included in the \File{obsolete} directory.
 Copy it to your main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
 it centrally available.
 
 Both the class \Package{atlasdoc} and all style files:
-\Package{atlasbiblatex}, \Package{atlascontribute}, \Package{atlascover}, \Package{atlaspackage} and \Package{atlasphysics},
-need the package \Package{kvoptions} 
+\Package{atlasbiblatex}, \Package{atlascontribute}, \Package{atlascover}, \Package{atlaspackage}, \Package{atlasphysics}
+and \Package{atlastodo} need the package \Package{kvoptions} 
 so that they can process options where a value for an option should be set.
 
 \Package{atlasdoc} and \Package{atlascover} both need \texttt{hyperref}. 
@@ -556,12 +560,14 @@ The default set adds in addition:
 
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{physics}: mathematics for physics;
 \item \texttt{mhchem}: chemical elements and molecules;
+\item \texttt{physics}: mathematics for physics;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
 \item \texttt{xtab} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
 \end{itemize}
+The above packages are all included if you turn on the full set.
+You can turn them on individually if you use the minimal or standard set.
 
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
@@ -575,23 +581,27 @@ The full list of options is:
   This option is set by default if you use the \Option{txfonts} fonts;
 \item[\Option{percentspace={\normalfont true}|false}] include or not the default space between a number and the \% sign;
 \item[\Option{cleveref=true|{\normalfont false}}] turn on/off use of the \Package{cleverref} package;
-\item[\Option{capsref=true|{\normalfont false}}] capitalise Section, Fig.\ etc.\ when using \Package{cleverref};
+\item[\Option{capsref=true|{\normalfont false}}] capitalise Section, Figure etc.\ when using \Package{cleverref};
 \item[\Option{abbrevref=true|{\normalfont false}}] abbreviate Fig.\ etc.\ when using \Package{cleverref};
-\item[\Option{physics=true|{\normalfont false}}] turn on/off use of the \Package{physics} package;
+\item[\Option{mhchem={\normalfont true}|false}] turn on/off use of the \Package{mhchem} package;
+\item[\Option{physics={\normalfont true}|false}] turn on/off use of the \Package{physics} package;
+\item[\Option{rotating={\normalfont true}|false}] turn on/off use of the \Package{rotating} package;
+\item[\Option{xfrac={\normalfont true}|false}] turn on/off use of the \Package{xfrac} package;
+\item[\Option{xtab={\normalfont true}|false}] turn on/off use of the \Package{xtab} package;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or
-  \Package{subfigure}.
-  It is probably best to only use it with \TeX\ Live 2012 or later;
+  \Package{subfigure};
+  % It is probably best to only use it with \TeX\ Live 2012 or later;
 \item[\Option{subfigure={\normalfont true}|false}] use the deprecated package \Package{subfigure} 
   instead of \Package{subfig};
 \item[\Option{subfig=true|{\normalfont false}}] use the somewhat deprecated package \Package{subfig};
-\item[\Option{texlive=2016}] set if you use an older version of \TeX\ Live like 2011.
-  A value less than 2013 adjusts a few \Package{biblatex} options.
-  A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
-  A value less than 2010 uses the old option names for \Package{csquotes}.
+\item[\Option{texlive=2016}] set if you use an older version of \TeX\ Live like 2013.
+  % A value less than 2013 adjusts a few \Package{biblatex} options.
+  % A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
+  % A value less than 2010 uses the old option names for \Package{csquotes}.
   Use \Option{texlive=2016} to test options for arXiv submissions;
 \item[\Option{txfonts={\normalfont true}|false}] load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
-\item[\Option{lineno={\normalfont true}|false}] load the \Package{lineno} package.
+\item[\Option{lineno=true|{\normalfont false}}] load the \Package{lineno} package.
 \end{description}
 
 \File{lineno.sty} and \File{authblk.sty} are also provided in \File{obsolete},
@@ -608,7 +618,7 @@ which is included by passing the option \Option{unit=true} to \Package{atlasphys
 If you use \Package{siunitx}, I recommend setting \Option{unit=false},
 so that you use one consistent set of definitions throughout your document.
 
-The \Package{siunitx}~\cite{siunitx} package puts a (non-breaking) space between a number and the \% sign,
+The \Package{siunitx}~\cite{siunitx} package puts a (non-breaking) small space between a number and the \% sign,
 as for any other unit.
 It says that this is as required by the SI system of units~\cite{SI}.
 In Section~5.4.7 of the brochure one can find:
@@ -621,7 +631,7 @@ In Section~5.4.7 of the brochure one can find:
 However, conventions between publishers appear to differ~\cite{percentspace}.
 Many people are used to there being no space and this is also the ATLAS convention.
 Pass the option \Option{percentspace=true} to include the space.
-This option only works for \TeX\ Live versions 2011 and later.
+% This option only works for \TeX\ Live versions 2011 and later.
 
 There used to be a problem using the \Package{tikz} package with \Package{atlasnote}.
 With \Package{atlasdoc} this problem seems to have gone away.
@@ -699,7 +709,7 @@ The option \Option{clearpage}, which used to exist, has no effect.
 
 
 %-------------------------------------------------------------------------------
-\section{The ATLAS preprint style}
+\section{ATLAS preprint style}
 \label{sec:atlasstyle}
 %-------------------------------------------------------------------------------
 
@@ -774,6 +784,7 @@ You can test whether your document compiles with \TeX\ Live 2016 by setting your
 \begin{verbatim}
 export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
 \end{verbatim}
+\IBnote{}{This has to be fixed!}
 
 Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
 Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
@@ -909,7 +920,7 @@ For now (2018-10-29) there are some templates from the EXOT group.
 
 
 %-------------------------------------------------------------------------------
-\section{\texttt{atlaslatex} directories and Git or SVN}
+\section{\texttt{atlaslatex} directories and Git}
 \label{sec:gitsvn}
 %-------------------------------------------------------------------------------
 
@@ -918,11 +929,12 @@ By default the \Package{atlaslatex} style files are in the \File{latex} subdirec
 logos are in \File{logos}. This structure assumes that you will make a separate directory tree
 for each document that you create.
 If you want to include these files in Git or SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git or SVN\@.
+\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git.
 In order to create a new document, you also need the \File{template} directory.
+For a paper, you also need the \File{acknowledgements} directory.
 
 If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
-\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see Section~\ref{sec:texmf}.
+\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
 
 If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
 at the beginning of your document. This would enable you to maintain a single copy of each 
@@ -933,6 +945,33 @@ to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpa
 \File{../atlaslatex-01-08-00}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
 
+
+%-------------------------------------------------------------------------------
+\section{Adding notes}
+\label{sec:todo}
+%-------------------------------------------------------------------------------
+
+When writing a paper, you or others often want to add notes so that things are not forgotten.
+
+The \Package{atlastodo} package provides a macro \Macro{ATLnote} that can be used to define notes with separate colours for each author.
+This macro uses the \Package{todonotes} package,
+which is also used for language editor comments.
+For example:
+\begin{tcblisting}{listing only}
+\ATLnote{JS}{Jane}\ATLnote{JS}{Jane}{magenta!20}{magenta}
+\end{tcblisting}
+adds macros \Macro{JSnote} and \Macro{JSinote} for notes in the margin and inline.
+Note that you must use the inline variant for notes inside captions and other floating objects.
+Turn off the output of any notes by passing the option \Option{output=false}
+to the \Package{atlastodo} package.
+
+Here is an \JSnote{example paragpraph}{Illustration of macro}
+that shows how to use the macro.It you want a comment,
+without it being associated with text the first argument should be left empty.
+\JSnote{}{This is a comment without associated text}.If you prefer your comments to be inline use the \Macro{JSinote} macro.
+\JSinote{}{Here is an inline comment.}
+If you want a list of all the notes,
+add \Macro{listtodonotes} somewhere in your document.
 
 %-------------------------------------------------------------------------------
 \section{Language editor commands}%
@@ -1106,13 +1145,13 @@ You can set the option \Option{mathlines=false} to turn off numbering the lines 
 For older versions of \Package{atlaslatex},
 if you use AMS Math \LaTeX\ environments line numbering may be interrupted around the environment.
 Enclose the environment in a \Package{linenomath} environment to fix this problem:
-\begin{verbatim}
+\begin{tcblisting}{listing only}
 \begin{linenomath}
 \begin{equation*}
   E = m c^{2}
 \end{equation*}
 \end{linenomath}
-\end{verbatim}
+\end{tcblisting}
 If you are using the environment \Package{linenomath} you may have to set the option \Option{mathlines=false}to avoid spurious line numbers.
 
 
@@ -1133,8 +1172,9 @@ as then you can use the definitions without having to terminate them with
 \subsection{Useful packages}
 
 A vast number of \LaTeX\ packages are available.
-In this section I collect a few useful packages that are not loaded
-by \Package{atlaspackage}, but are well worth considering.
+In this section I collect a few useful packages that I recommend using.
+% are not loaded
+% by \Package{atlaspackage}, but are well worth considering.
 
 \begin{description}
   \item[cleveref] Means that constructs like \verb|Fig.~\ref{fig:one}| or
@@ -1143,11 +1183,14 @@ by \Package{atlaspackage}, but are well worth considering.
   The package decides if it is a figure, table or equation and
   adds the appropriate text.
   At the beginning of sentences use \Macro{Cref}.
-  Use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc.
-  Use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
+  This package is included by default if you use \Package{atlaspackage}.
+  You can customise its use with the \Option{capsref} and \Option{abbrevref} options.
+  If you include the package yourself, use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc. and
+  use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
 
   \item[todonotes] Very nice package for adding notes.
-  See \File{atlscomment.sty} for an example.
+  It is used by the \File{atlastodo.sty} style file.
+  See \File{atlascomment.sty} for a further example.
 
   \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
   consistent way. Optionally the symbols can be upright or italic.
@@ -1157,6 +1200,8 @@ by \Package{atlaspackage}, but are well worth considering.
 
   \item[physics] A useful package for differentials, matrices and more.
   As the name suggests it is geared to physics usage.
+  The package is included if you pass the \Option{full} to \Package{atlaspackage}.
+  
   The \Package{commath} is an alternative, but I find \Package{physics} to be more reliable,
   when different fonts are used.
 \end{description}
@@ -1305,7 +1350,9 @@ This is not a problem for the ATLAS preprint style as it uses a serif font for t
 
 
 %-------------------------------------------------------------------------------
-\section{Remarks on units and symbols}
+\section{Remarks on units and symbols}%
+\label{sec:siunitx}
+%-------------------------------------------------------------------------------
 
 It is highly recommended to use a units package to format your units properly.
 The package \Package{siunitx} works very well and is the package of choice.

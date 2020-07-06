@@ -74,7 +74,9 @@ In order to use `latexmk`, change the default target in the `Makefile` from `run
 
 The TeX Live version is set to 2016 by default.
 This version number should be fine for newer versions of TeX Live
-and also for an up-to-date MikTeX 2.9 installation. The command `make help` gives you a bit more assistance on which make targets exist.
+and also for an up-to-date MikTeX 2.9 installation.
+TeX Live versions older than 2013 are not supported.
+The command `make help` gives you a bit more assistance on which make targets exist.
 
 To add the cover pages for a paper/CONF note/PUB note when circulating it
 to the ATLAS collaboration, add the option `coverpage` to the `\documentclass`.
