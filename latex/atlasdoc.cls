@@ -12,8 +12,8 @@
 \def\ATPackageVersion{08-05-00}
 
 \ProvidesClass{latex/atlasdoc}[2020/06/26 v.08-05-00 ATLAS document class]
-% Needs 2009 TeX Live or later
-\NeedsTeXFormat{LaTeX2e}[2009/01/01]
+% Needs 2013 TeX Live or later
+\NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -353,7 +353,7 @@
 
 % Required packages
 \RequirePackage{graphicx}
-\RequirePackage{xcolor}
+\RequirePackage[svgnames]{xcolor}
 \RequirePackage{babel}
 
 % Turn on bold math when using \bfseries

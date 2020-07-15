@@ -311,7 +311,7 @@
 
 % Required packages
 \RequirePackage{graphicx}
-\RequirePackage{xcolor}
+\RequirePackage[svgnames]{xcolor}
 \RequirePackage{babel}
 % hyperref is needed in many places, so include it here
 \RequirePackage{hyperref}
