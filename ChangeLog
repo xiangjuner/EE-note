@@ -1,5 +1,8 @@
-2020-07-10  Ian Brock  <Ian.Brock@cern.ch>
-	* June 2020 update of publications.
+2020-07-15  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 08-06-00.
+	* Only TeX Live 2013 and later now supported.
+	* Major additions to ATLAS-useful.bib from PMG group.
+	* Several generators added to atlasmisc.sty.
 	* Add atlastodo.sty for to-do notes.
 	* Add to-do notes package to templates.
 	* Add option svgnames to xcolor.

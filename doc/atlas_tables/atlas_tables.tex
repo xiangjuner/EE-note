@@ -55,99 +55,106 @@
 %-------------------------------------------------------------------------------
 
 Tables should only contain as many lines as are needed for clarity.
-Table~\ref{tab:yield:2dig} shows a good example that has been taken
+\Cref{tab:yield:2dig} shows a good example that has been taken
 from \enquote{Rounding --- ATLAS Recommendations}~\cite{atlas-rounding}.
 
-\ifthenelse{\ATTeXLiveVersion < 2011}{%
-  \sisetup{retainplus=true}
-}{
+% \ifthenelse{\ATTeXLiveVersion < 2011}{%
+%   \sisetup{retainplus=true}
+% }{
   \sisetup{retain-explicit-plus=true}
-}
+% }
 \begin{table}[htbp]
-  \ifthenelse{\ATTeXLiveVersion < 2012}{%
-    \ifthenelse{\ATTeXLiveVersion < 2011}{%
-      \sisetup{sepfour}
-    }{
-      \sisetup{group-digits=true, group-four-digits=true}
-    }
-  }{
-    \sisetup{group-minimum-digits=4}
-  }
-  \caption{Example event yields spread over several orders of
-    magnitude.}
+  % \ifthenelse{\ATTeXLiveVersion < 2012}{%
+  %   \ifthenelse{\ATTeXLiveVersion < 2011}{%
+  %     \sisetup{sepfour}
+  %   }{
+  %     \sisetup{group-digits=true, group-four-digits=true}
+  %   }
+  % }{
+  %   \sisetup{group-minimum-digits=4}
+  % }
+\begin{tcblisting}{}
+  \sisetup{group-minimum-digits=4}
+  \caption{Example event yields spread over several orders of magnitude.}%
   \label{tab:yield:2dig}
   \centering
-  \begin{tabular}{%
+    \begin{tabular}{%
       l
-      r@{$\,\pm\,$}r
+      r@{\(\,\pm\,\)}r
     }
     \toprule
     {Channel} & \multicolumn{2}{c}{Selected events} \\
     \midrule
-    $WW, WZ, ZZ$               & \numRF{943.045}{3}  & \numRF{94.3045}{2} \\
-    QCD multijets              & \numRF{2838.39}{2}  & \numRF{1419.19}{2} \\
-    $Wc\bar{c}, Wb\bar{b}, Wc$ & \numRF{31178  }{2}  & \numRF{13094.8}{2} \\
-    $W$ + jets                 & \numRF{10584.5}{3}  & \numRF{4445.49}{2} \\
-    Single top $Wt$            & \numRF{1699.75}{3}  & \numRF{152.977}{2} \\
-    $Z$ + jets                 & \numRF{2378.42}{2}  & \numRF{998.934}{2} \\
-    Single top $s$             & \numRF{297.591}{3}  & \numRF{12.4988}{2} \\
-    Single top $t$             & \numRF{3936.98}{3}  & \numRF{165.353}{2} \\
-    $t\bar{t}$                 & \numRF{9386.28}{3}  & \numRF{901.083}{2} \\
+    \(WW, WZ, ZZ\)               & \numRF{943.045}{3}  & \numRF{94.3045}{2} \\
+    QCD multijets                & \numRF{2838.39}{2}  & \numRF{1419.19}{2} \\
+    \(Wc\bar{c}, Wb\bar{b}, Wc\) & \numRF{31178  }{2}  & \numRF{13094.8}{2} \\
+    \(W\) + jets                 & \numRF{10584.5}{3}  & \numRF{4445.49}{2} \\
+    Single top \(Wt\)            & \numRF{1699.75}{3}  & \numRF{152.977}{2} \\
+    \(Z\) + jets                 & \numRF{2378.42}{2}  & \numRF{998.934}{2} \\
+    Single top \(s\)             & \numRF{297.591}{3}  & \numRF{12.4988}{2} \\
+    Single top \(t\)             & \numRF{3936.98}{3}  & \numRF{165.353}{2} \\
+    \(t\bar{t}\)                 & \numRF{9386.28}{3}  & \numRF{901.083}{2} \\
     \midrule
-    Expected                   & \numRF{63243}{2}    & \numRF{13968.5}{2} \\
-    Data                       & \multicolumn{2}{l}{\num{73062}} \\
+    Expected                     & \numRF{63243}{2}    & \numRF{13968.5}{2} \\
+    Data                         & \multicolumn{2}{l}{\num{73062}} \\
     \bottomrule
   \end{tabular}
+\end{tcblisting}
 \end{table}
 
-An example of a wider and somewhat more complicated table is shown in \Tab{\ref{tab:intro:presentlimits}}.
+An example of a wider and somewhat more complicated table is shown in \cref{tab:intro:presentlimits}.
 
 \begin{table}[htbp]
+\begin{tcblisting}{}
   \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \SI{95}{\%} confidence level
-    on the branching fractions of the FCNC top quark decay channels established by experiments of the LEP, HERA, Tevatron and LHC accelerators. }
+  on the branching fractions of the FCNC top quark decay channels established by experiments of the LEP, HERA, Tevatron and LHC accelerators.}%
   \label{tab:intro:presentlimits}
   \centering
   \begin{tabular}{lllll}
     \toprule
     Coupling & \multicolumn{2}{c}{LEP} & \multicolumn{2}{c}{HERA} \\
     \midrule
-    $\BR(t\to q\gamma)$ & \num{2.4E-2} &                       & \num{6.4E-3} & ($tu\gamma$)\\
-    $\BR(t\to qZ)$      & \num{7.8E-2} &                       & \num{49E-2} & ($tuZ$)\\
-    $\BR(t\to qg)$      & \num{17E-2}  &                       & \num{13E-2} & \\
+    \(\BR(t\to q\gamma)\) & \num{2.4E-2} &                       & \num{6.4E-3} & (\(tu\gamma\))\\
+    \(\BR(t\to qZ)\)      & \num{7.8E-2} &                       & \num{49E-2} & (\(tuZ\))\\
+    \(\BR(t\to qg)\)      & \num{17E-2}  &                       & \num{13E-2} & \\
     \bottomrule
     Coupling & \multicolumn{2}{c}{Tevatron}                    & \multicolumn{2}{c}{LHC} \\
     \midrule
-    $\BR(t\to q\gamma)$ & \num{3.2E-2} &                       & \multicolumn{1}{c}{---} \\
-    $\BR(t\to qZ)$      & \num{3.2E-2} &                       & \num{7.0E-4}\\
-    $\BR(t\to qg)$      & \num{2.0E-4} & ($tug$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
-                        & \num{3.9E-3} & ($tcg$), $(2 \to 2)$  & \multicolumn{1}{c}{---} \\
-                        & \num{3.9E-4} & ($tug$), $(2 \to 1)$  & \num{5.7E-5} & ($tug$), $(2 \to 1)$\\
-                        & \num{5.7E-3} & ($tcg$), $(2 \to 1)$  & \num{2.7E-4} & ($tcg$), $(2 \to 1)$\\
+    \(\BR(t\to q\gamma)\) & \num{3.2E-2} &                       & \multicolumn{1}{c}{---} \\
+    \(\BR(t\to qZ)\)      & \num{3.2E-2} &                       & \num{7.0E-4}\\
+    \(\BR(t\to qg)\)      & \num{2.0E-4} & (\(tug\)), \((2 \to 2)\)  & \multicolumn{1}{c}{---} \\
+                        & \num{3.9E-3} & (\(tcg\)), \((2 \to 2)\)  & \multicolumn{1}{c}{---} \\
+                        & \num{3.9E-4} & (\(tug\)), \((2 \to 1)\)  & \num{5.7E-5} & (\(tug\)), \((2 \to 1)\)\\
+                        & \num{5.7E-3} & (\(tcg\)), \((2 \to 1)\)  & \num{2.7E-4} & (\(tcg\)), \((2 \to 1)\)\\
     \bottomrule
   \end{tabular}
+\end{tcblisting}
 \end{table}
 
-A typical table containing Monte Carlo samples is given in \Tab{\ref{tab:mcsamples}}.
+A typical table containing Monte Carlo samples is given in \cref{tab:mcsamples}.
 
 \begin{table}[htbp]
-  \caption{Top quark event MC samples used for this analysis. The cross-section column includes $k$-factors and branching ratios.}
+\begin{tcblisting}{}
+  \caption{Top quark event MC samples used for this analysis. The cross-section column includes \(k\)-factors and branching ratios.}%
   \label{tab:mcsamples}
   \centering
   \renewcommand{\arraystretch}{1.2}
+  \scriptsize
   \begin{tabular}{lSlS[table-format=9.0]SS[table-format=6.0]}
     \toprule
-      & {$\sigma$ [\si{\pb}]} & Generator
-      & \multicolumn{1}{c}{$N_{MC}$} & \multicolumn{1}{c}{$k$-factor} & \multicolumn{1}{c}{Dataset ID}\\
+      & {\(\sigma\) [\si{\pb}]} & Generator
+      & \multicolumn{1}{c}{\(N_{MC}\)} & \multicolumn{1}{c}{\(k\)-factor} & \multicolumn{1}{c}{Dataset ID}\\
     \midrule
-    $Wt$ all decays                         &  22           & \POWHEG + \PYTHIA        &   1000000  & 1.09 & 110140\\
-    $t$-channel (lepton+jets) top           &  18           & \POWHEG + \PYTHIA        &   5000000  & 1.05 & 110090\\
-    $s$-channel (lepton+jets) antitop       &  1.8          & \POWHEG + \PYTHIA        &   5000000  & 1.06 & 110091\\
-    $t\bar{t}$ no fully hadronic            & 114           & \POWHEG + \PYTHIA        & 100000000  & 1.12 & 117050\\
+    \(Wt\) all decays                         &  22           & \POWHEG + \PYTHIA        &   1000000  & 1.09 & 110140\\
+    \(t\)-channel (lepton+jets) top           &  18           & \POWHEG + \PYTHIA        &   5000000  & 1.05 & 110090\\
+    \(s\)-channel (lepton+jets) antitop       &  1.8          & \POWHEG + \PYTHIA        &   5000000  & 1.06 & 110091\\
+    \(t\bar{t}\) no fully hadronic            & 114           & \POWHEG + \PYTHIA        & 100000000  & 1.12 & 117050\\
     \bottomrule
   \end{tabular}
+\end{tcblisting}
 \end{table}
 
-\Cref{tab:example1} shows the use of $\pm$ as the intercolumn
+\Cref{tab:example1} shows the use of \(\pm\) as the intercolumn
 character for alignment. An alternative, as shown in
 \cref{tab:example2}, is to use \verb+\phantom+ to put in extra
 space equal to the width of a number if you have different numbers of
@@ -158,43 +165,47 @@ The \texttt{booktabs} package provides the macros
 as, among other things, they introduce some extra spacing around the lines, which is useful.
 
 \begin{table}[htbp]
+\begin{tcblisting}{}
   \caption[Monte Carlo purities in the single lepton sample]{%
     Monte Carlo estimates of the fraction of each process in the single
     lepton data sample. This table uses ``S'' format from \texttt{siunitx} and
-    ``\texttt{$\,\pm\,$}'' as the intercolumn separator.}
+    ``\texttt{\(\,\pm\,\)}'' as the intercolumn separator.}%
   \label{tab:example1}
   \centering
-  \begin{tabular}{l S[table-format=2.1]@{$\;\pm\;$}S[table-format=1.1]@{\,}s
+  \begin{tabular}{l S[table-format=2.1]@{\(\;\pm\;\)}S[table-format=1.1]@{\,}s
     S[table-format=3.1]@{\,}s}
     \toprule
-    Category            & \multicolumn{3}{c}{$\mu$}&\multicolumn{2}{c}{$e$}\\
+    Category            & \multicolumn{3}{c}{\(\mu\)}&\multicolumn{2}{c}{\(e\)}\\
     \midrule
-    $b \to \ell$        &     65.2 & 0.4 & \%   &  79.3 & \% \\
-    $b \to c \to \ell$  &      7.8 & 0.3 & \%   &   5.4 & \% \\
+    \(b \to \ell\)        &     65.2 & 0.4 & \%   &  79.3 & \% \\
+    \(b \to c \to \ell\)  &      7.8 & 0.3 & \%   &   5.4 & \% \\
     Total               &     73.0 & 0.2 & \%   &   9.1 & \% \\
     \bottomrule
   \end{tabular}
+\end{tcblisting}
 \end{table}
 
 \begin{table}[htbp]
+\begin{tcblisting}{}
   \caption{Monte Carlo estimates of the fraction of each process in
-    the single lepton data sample.
-    This table uses \texttt{\textbackslash phantom}.}
+  the single lepton data sample.
+  This table uses \texttt{\textbackslash phantom}.}%
   \label{tab:example2}
   \centering
   \begin{tabular}{lcc}
     \toprule
-    Category            & \multicolumn{1}{c}{$\mu$}&\multicolumn{1}{c}{$e$}\\
+    Category            & \multicolumn{1}{c}{\(\mu\)}&\multicolumn{1}{c}{\(e\)}\\
     \midrule
-    $b \to \ell$        & $    65.2 \pm 0.4\,\%$   &     79.3\,\% \\
-    $b \to c \to \ell$  & $\pho 7.8 \pm 0.3\,\%$   & \pho 5.4\,\% \\
-    Total               & $    73.0 \pm 0.2\,\%$   & \pho 9.1\,\% \\
+    \(b \to \ell\)        & \(    65.2 \pm 0.4\,\%\)   &     79.3\,\% \\
+    \(b \to c \to \ell\)  & \(\pho 7.8 \pm 0.3\,\%\)   & \pho 5.4\,\% \\
+    Total               & \(    73.0 \pm 0.2\,\%\)   & \pho 9.1\,\% \\
     \bottomrule
   \end{tabular}
+\end{tcblisting}
 \end{table}
 
 %-------------------------------------------------------------------------------
-\section{\LaTeX\ packages for table}
+\section{\LaTeX\ packages for tables}
 %-------------------------------------------------------------------------------
 
 The \LaTeX\ package \Package{booktabs} gives a number of guidelines on how tables should be formatted.
@@ -226,50 +237,43 @@ whereas \num{12345} will have.
 This is fine in text, but in tables, you probably want to use the option
 \verb|\siseteup{group-minimum-digits=4}|, see \Tabs{\ref{tab:minimum-digits1}}{\ref{tab:minimum-digits2}}.
 
+  % \ifthenelse{\ATTeXLiveVersion < 2012}{%
+  %   \ifthenelse{\ATTeXLiveVersion < 2011}{%
+  %     \sisetup{sepfour}
+  %   }{
+  %     \sisetup{group-digits=true, group-four-digits=true}
+  %   }
+  % }{
+  %   \sisetup{group-minimum-digits=4}
+  % }
 \begin{table}[htbp]
+\begin{tcblisting}{}
   \caption{Tables comparing different \Option{group-minimum-digits} values
   for the package \Package{siunitx}.}
   \label{tab:minimum-digits}
   \centering
   \subfloat[Table with \Option{group-minimum-digits=4}.]{%
-  \ifthenelse{\ATTeXLiveVersion < 2012}{%
-    \ifthenelse{\ATTeXLiveVersion < 2011}{%
-      \sisetup{sepfour}
-    }{
-      \sisetup{group-digits=true, group-four-digits=true}
-    }
-  }{
-    \sisetup{group-minimum-digits=4}
-  }
+  \sisetup{group-minimum-digits=4}
   \begin{tabular}{lS[table-format=5.2]}
     Quantity & \multicolumn{1}{c}{Value}\\
     \midrule
     Value1 & 1234.56\\
     Value2 & 98765.43
   \end{tabular}
-  % \caption{A table with \Option{group-minimum-digits=4}.}
   \label{tab:minimum-digits1}
   }
   \qquad
   \subfloat[Table with \Option{group-minimum-digits=5}.]{%
-  \ifthenelse{\ATTeXLiveVersion < 2012}{%
-    \ifthenelse{\ATTeXLiveVersion < 2011}{%
-      \sisetup{group-digits=true}
-    }{
-      \sisetup{group-digits=true}
-    }
-  }{
-    \sisetup{group-minimum-digits=5}
-  }
+  \sisetup{group-minimum-digits=5}
   \begin{tabular}{lS[table-format=5.2]}
     Quantity & \multicolumn{1}{c}{Value}\\
     \midrule
     Value1 & 1234.56\\
     Value2 & 98765.43
   \end{tabular}
-  % \caption{A table with \Option{group-minimum-digits=5}.}
   \label{tab:minimum-digits2}
   }
+\end{tcblisting}
 \end{table}
 
 
@@ -315,19 +319,19 @@ in braces to format the row that requires a different precision.
   \sisetup{round-mode = places}
   \begin{tabular}{%
       S@{\,:\,}S
-      r@{\,}@{$\pm$}@{\,}l@{\,}l
+      r@{\,}@{\(\pm\)}@{\,}l@{\,}l
        }
     \toprule
     \multicolumn{2}{c}{\etajet} & \multicolumn{3}{c}{\diffetab} \\
     \multicolumn{2}{c}{} & \multicolumn{3}{c}{[\si{\pico\barn}]} \\
     \midrule
-    {\num{-1.6}} & -1.1 & \numRP{0.574}{3} & \num[round-precision=3]{0.094} & $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
-    {\num{-1.1}} & -0.8 & \numRP{1.213}{2} & \num[round-precision=2]{0.211} & $^{\numRP{+0.162}{2}}_{\numRP{-0.162}{2}}$ \\
-    {\num{-0.8}} & -0.5 & \numRP{2.141}{2} & \num[round-precision=2]{0.219} & $^{\numRP{+0.223}{2}}_{\numRP{-0.123}{2}}$ \\
-    {\num{-0.5}} & -0.2 & \numRP{2.326}{2} & \num[round-precision=2]{0.210} & $^{\numRP{+0.284}{2}}_{\numRP{-0.214}{2}}$ \\
-    {\num{-0.2}} & +0.1 & \numRP{2.641}{2} & \num[round-precision=2]{0.220} & $^{\numRP{+0.283}{2}}_{\numRP{-0.233}{2}}$ \\
-    {\num{+0.1}} & +0.5 & \numRP{3.160}{2} & \num[round-precision=2]{0.211} & $^{\numRP{+0.232}{2}}_{\numRP{-0.172}{2}}$ \\
-    {\num{+0.5}} & +1.4 & \numRP{2.881}{2} & \num[round-precision=2]{0.154} & $^{\numRP{+0.201}{2}}_{\numRP{-0.301}{2}}$ \\
+    {\num{-1.6}} & -1.1 & \numRP{0.574}{3} & \num[round-precision=3]{0.094} & \(^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}\) \\
+    {\num{-1.1}} & -0.8 & \numRP{1.213}{2} & \num[round-precision=2]{0.211} & \(^{\numRP{+0.162}{2}}_{\numRP{-0.162}{2}}\) \\
+    {\num{-0.8}} & -0.5 & \numRP{2.141}{2} & \num[round-precision=2]{0.219} & \(^{\numRP{+0.223}{2}}_{\numRP{-0.123}{2}}\) \\
+    {\num{-0.5}} & -0.2 & \numRP{2.326}{2} & \num[round-precision=2]{0.210} & \(^{\numRP{+0.284}{2}}_{\numRP{-0.214}{2}}\) \\
+    {\num{-0.2}} & +0.1 & \numRP{2.641}{2} & \num[round-precision=2]{0.220} & \(^{\numRP{+0.283}{2}}_{\numRP{-0.233}{2}}\) \\
+    {\num{+0.1}} & +0.5 & \numRP{3.160}{2} & \num[round-precision=2]{0.211} & \(^{\numRP{+0.232}{2}}_{\numRP{-0.172}{2}}\) \\
+    {\num{+0.5}} & +1.4 & \numRP{2.881}{2} & \num[round-precision=2]{0.154} & \(^{\numRP{+0.201}{2}}_{\numRP{-0.301}{2}}\) \\
     \bottomrule
   \end{tabular}
   \quad
@@ -336,7 +340,7 @@ in braces to format the row that requires a different precision.
       S[table-format=3.2, table-number-alignment = right]@{\,:\,}S
       S[round-mode = places, round-precision = 2,
       table-format = 1.3, table-number-alignment = right]
-      @{$\,\pm\,$}
+      @{\(\,\pm\,\)}
       S[round-mode = places, round-precision = 2,
       table-format = 1.3, table-number-alignment = left]
       @{\,}l
@@ -345,25 +349,25 @@ in braces to format the row that requires a different precision.
     \multicolumn{2}{c}{\etajet} & \multicolumn{3}{c}{\diffetab} \\
     \multicolumn{2}{c}{} & \multicolumn{3}{c}{[\si{\pico\barn}]} \\
     \midrule
-    -1.6 & -1.1 & {\numRP{0.574}{3}} & {\numRP{0.094}{3}} & $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
-    -1.1 & -0.8 & 1.213 & 0.211 & $^{\num{+0.162}}_{\num{-0.162}}$ \\
-    -0.8 & -0.5 & 2.141 & 0.219 & $^{\num{+0.223}}_{\num{-0.123}}$ \\
-    -0.5 & -0.2 & 2.326 & 0.210 & $^{\num{+0.284}}_{\num{-0.214}}$ \\
-    -0.2 & +0.1 & 2.641 & 0.220 & $^{\num{+0.283}}_{\num{-0.233}}$ \\
-    +0.1 & +0.5 & 3.160 & 0.211 & $^{\num{+0.232}}_{\num{-0.172}}$ \\
-    +0.5 & +1.4 & 2.881 & 0.154 & $^{\num{+0.201}}_{\num{-0.301}}$ \\
+    -1.6 & -1.1 & {\numRP{0.574}{3}} & {\numRP{0.094}{3}} & \(^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}\) \\
+    -1.1 & -0.8 & 1.213 & 0.211 & \(^{\num{+0.162}}_{\num{-0.162}}\) \\
+    -0.8 & -0.5 & 2.141 & 0.219 & \(^{\num{+0.223}}_{\num{-0.123}}\) \\
+    -0.5 & -0.2 & 2.326 & 0.210 & \(^{\num{+0.284}}_{\num{-0.214}}\) \\
+    -0.2 & +0.1 & 2.641 & 0.220 & \(^{\num{+0.283}}_{\num{-0.233}}\) \\
+    +0.1 & +0.5 & 3.160 & 0.211 & \(^{\num{+0.232}}_{\num{-0.172}}\) \\
+    +0.5 & +1.4 & 2.881 & 0.154 & \(^{\num{+0.201}}_{\num{-0.301}}\) \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-Cross-sections vs.\ $\eta$ are usually not so difficult to
+Cross-sections vs.\ \(\eta\) are usually not so difficult to
 format, as the magnitudes of the numbers do not change much from one
 bin to the next. The situation is different for cross-sections as a
-function of \ET\ or $x$. Tables~\ref{tab:xsect-ET} and
+function of \ET\ or \(x\). Tables~\ref{tab:xsect-ET} and
 \ref{tab:xsect-x} show examples of such tables.
 
 \begin{table}[htbp]
-  \caption{Cross-section vs.\ $E_{T}$.}
+  \caption{Cross-section vs.\ \(E_{T}\).}
   \label{tab:xsect-ET}
   \centering
   \renewcommand{\arraystretch}{1.4}
@@ -396,16 +400,16 @@ with the tools offered by \Macro{siunitx} getting things exactly right
 is non-trivial.
 
 \begin{table}[htb]
-  \caption{Cross-section vs.\ $x$.}
+  \caption{Cross-section vs.\ \(x\).}
   \label{tab:xsect-x}
   \centering
   \renewcommand{\arraystretch}{1.4}
-  \ifthenelse{\ATTeXLiveVersion < 2012}{%
-    \centering\fbox{\parbox{0.8\textwidth}{%
-      \textbf{This table does not appear here, as it uses features that were only
-      properly implemented for \TeX\ Live 2012 and later.}
-    }}
-  }{%
+  % \ifthenelse{\ATTeXLiveVersion < 2012}{%
+  %   \centering\fbox{\parbox{0.8\textwidth}{%
+  %     \textbf{This table does not appear here, as it uses features that were only
+  %     properly implemented for \TeX\ Live 2012 and later.}
+  %   }}
+  % }{%
     \subfloat[No special formatting or rounding. Option
       \textsf{scientific-notation=fixed} used.]{%
       \label{tab:xsect-x1}%
@@ -417,7 +421,7 @@ is non-trivial.
       \label{tab:xsect-x2}%
       \input{cross_sections_charm-x2}
     }
-  }
+  % }
 \end{table}
 
 Table~\ref{tab:xsect-x} is probably the most challenging to format
@@ -461,17 +465,18 @@ The options given here correspond to those that are need for \TeX\ Live 2012 and
 See the code for the appropriate options for earlier versions.
 
 \subsection{Table~\protect\ref{tab:rounding:xsect}}
-\begin{verbatim}
+% \begin{verbatim}
+\begin{tcblisting}{listing only, breakable}
 \begin{table}[htbp]
-  %
-  \caption{A selection of cross-section measurements! Note the
-  use of \Macro{sisetup} to keep the plus signs on the positive
-  errors.}
-  \label{tab:rounding:xsect}
-  \centering
-  \renewcommand{\arraystretch}{1.4}
-  \sisetup{retain-explicit-plus}
-  \sisetup{round-mode = places}
+%
+\caption{A selection of cross-section measurements! Note the
+use of \Macro{sisetup} to keep the plus signs on the positive
+errors.}
+\label{tab:rounding:xsect}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\sisetup{retain-explicit-plus}
+\sisetup{round-mode = places}
 \begin{tabular}{%
 S@{\,:\,}S
 r@{\,}@{$\pm$}@{\,}l@{\,}l
@@ -524,7 +529,8 @@ $^{\numRP{+0.035}{3}}_{\numRP{-0.031}{3}}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
-\end{verbatim}
+\end{tcblisting}
+% \end{verbatim}
 
 \subsection{Table~\protect\ref{tab:xsect-ET}}
 The files are: \texttt{cross\_sections\_charm-ET1.tex} and

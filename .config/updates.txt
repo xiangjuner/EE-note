@@ -1,2 +1,5 @@
 This new version contains a few updates:
-- April and May 2020 update of publications.
+- Only TeX Live 2013 and later now supported.
+- Major additions to ATLAS-useful.bib from PMG group.
+- Several generators added to atlasmisc.sty.
+- Add atlastodo.sty for to-do notes. Add to-do notes package to templates.

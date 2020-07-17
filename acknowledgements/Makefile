@@ -13,7 +13,7 @@ run_pdflatex: $(BASENAME).pdf
 
 # Change TeX Live version
 texlive: $(BASENAME).tex
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	  echo "Changing texlive value in $<"; \
 	  sed -i'.bak' 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' $<; \
 	else echo "Invalid value for TEXLIVE: $(TEXLIVE)"; fi; \

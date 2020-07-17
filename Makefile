@@ -109,7 +109,7 @@ newbooktexmf: TEMPLATE=atlas-book
 newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
 	    >$(BASENAME)-draft-cover.tex; \
 	else \
@@ -128,7 +128,7 @@ newdata:
 	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
 
 newdocument:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
 	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
 	else \
@@ -137,7 +137,7 @@ newdocument:
 	fi
 
 newdocumenttexmf:
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
 	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
 	  sed 's/\\newcommand\*{\\ATLASLATEXPATH}{latex\/}/% \\newcommand\*{\\ATLASLATEXPATH}{latex\/}/' | \

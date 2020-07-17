@@ -13,9 +13,11 @@ All necessary files are collected in a single package called \Package{atlaslatex
 The package is available from the web pages of the Publication Committee~\cite{pubcom} and from 
 Git~\cite{pubcom-git}.
 
-The package should work for \TeX\ Live versions from 2013 onwards\ADOCnew{09-00-00}.
+\ADOCnew{09-00-00} The package should work for \TeX\ Live versions from 2013 onwards.
+\ADOCnew{II-JJ-KK} indicates the version number of ATLAS \LaTeX\ when new features are added.
+\ADOCold{II-J-KK} indicates the version number when a feature is removed or made obsolete.
 
-The collection replaces and improves on the previous packages. 
+The collection replaces and improves on the previous packages.
 In particular it supersedes:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{atlasnote-00-04-05}
@@ -115,7 +117,7 @@ To test compatibility with arXiv, try a setting of 2016.
 %This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 %are using the ATLAS preprint style.
 
-As of Version 01-07-00 of \Package{atlaslatex} you should include the command \Macro{maketitle} after your\\
+\ADOCnew{01-07-00} You should include the command \Macro{maketitle} after your\\
 \verb|\begin{document}| if you want the document title to be printed.
 
 Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
@@ -161,8 +163,8 @@ While all this information can be collected in the main file of the document,
 it is probably better to put it all in a separate document.
 By default this file is called \texttt{mydocument-metadata.tex}.
 
-As the metadata needed for ATLAS notes and ATLAS papers are somewhat different,
-separate templates are used as of Version 04-00-00.
+\ADOCnew{04-00-00} As the metadata needed for ATLAS notes and ATLAS papers are somewhat different,
+separate templates are used.
 
 
 %-------------------------------------------------------------------------------
@@ -237,13 +239,11 @@ This can be achieved with the following code snippet that should be used for the
 }
 \end{tcblisting}
 
-The first two lines are needed if you do not use the standard ATLAS preprint style.
+\ADOCnew{01-07-00} The first two lines are needed if you do not use the standard ATLAS preprint style.
 Note that \Package{atlasdoc} has to be loaded with the option \Option{maketitle=false}
 and \Macro{maketitle} should be added after \verb|\begin{document}|.
-This is the default as of Version 01-07-00 of \Package{atlaslatex}.
 
-For versions before Versions 07-00-00,
-in order that the footnote and the copyright statement do not overlap,
+\ADOCold{07-00-00} In order that the footnote and the copyright statement do not overlap,
 you may need to pass the option \Option{copyrightoffset=1em} to the \Package{atlasdoc} class.
 
 
@@ -302,8 +302,7 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     Highly recommended for all documents in the draft stage.
     In the future, the steering of whether the document is a draft or not will be done
     using the option \Option{atlasdraft}.
-    At present (\Package{atlaslatex} 04-03-00 onwards),
-    if \Option{atlasdraft=true} or \Macro{AtlasVersion} is not empty,
+    \ADOCnew{04-03-00} If \Option{atlasdraft=true} or \Macro{AtlasVersion} is not empty,
     the document is declared as a draft.
 
   \item {\verb|\AtlasJournal{<Journal Name>}|} displays the phrase \emph{to
@@ -403,7 +402,7 @@ In the following the default option is in boldface.
 \item[\Option{PUB}] the document is an PUB note;
 \item[\Option{BOOK}] the document is book form like an LOI or TDR;
 \item[\Option{HEPDATA}] a separate document with detailed tables etc.\ for HEPData;
-\item[\Option{texlive=2016}] adjust if you use an older version of \TeX\ Live like 2011.
+\item[\Option{texlive=2016}] adjust if you use an older version of \TeX\ Live like 2013.
   A value less than 2013 adjusts a few \Package{biblatex} options.
   A value less than 2012 uses \Package{txfonts}.
 \item[\Option{paper=a4|{\normalfont letter}}] set the paper size;
@@ -436,8 +435,7 @@ In the following the default option is in boldface.
   \emph{This option has no effect as of \Package{atlaslatex} 07-00-00}.
 \end{description}
 
-The option \Option{atlasdraft} was introduced with \Package{atlaslatex} 04-03-00\ADOCnew{04-03-00}.
-It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
+\ADOCnew{04-03-00} It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
 so that this option simply has to be removed when a document is final.
 
@@ -453,25 +451,26 @@ the title page and also the draft label using the following commands:
 \AtlasDraftHeading{DRAFT}
 \end{verbatim}
 
-The following options were removed in \Package{atlasdoc} in \Package{atlaslatex 02-00-00}.
+The following options were removed.
 They are mostly still available in \Package{atlasdoc1}.
 \begin{description}
 \item[maketitle={\normalfont true}|false] turn on or off the creation of a title page within \Macro{AtBeginDocument}.
-  If the option is false, but you still want a title, give the command \Macro{maketitle} after
+  \ADOCold{02-00-00} If the option is false, but you still want a title, give the command \Macro{maketitle} after
   \verb|\begin{document}|.
   This is the recommended way of proceeding;
-\item[nomaketitle] do not create a title page; equivalent to \Option{maketitle=false}.
-  \emph{This option has no effect as of \Package{atlaslatex} 01-07-00 of \Package{atlaslatex}};
+\item[nomaketitle]\mbox{}
+  \ADOCold{01-07-00}  do not create a title page; equivalent to \Option{maketitle=false};
 \item[koma=true|{\normalfont false}] use the \KOMAScript\ base class \Package{scrartcl} instead of \Package{article};
+  \ADOCold{02-00-00} No longer an option.
 \item[\Option{letterpaper}] set the paper size to letter.
-  \emph{This option does not work as of \Package{atlaslatex} 07-00-00
-  --- use \Option{paper=letter} instead};
+  \ADOCold{07-00-00} This option does not work anymore
+  --- use \Option{paper=letter} instead;
 \item[\Option{a4paper}] set the paper size to A4;
-  \emph{This option was removed in \Package{atlaslatex} 02-00-00
-  --- use \Option{paper=a4} instead};
+  \ADOCold{07-00-00} This option does not work anymore
+  --- use \Option{paper=a4} instead;
 \item[\Option{letter}] set the paper size to letter.
-  \emph{This option was removed in \Package{atlaslatex} 02-00-00
-  --- use \Option{paper=letter} instead};
+  \ADOCold{02-00-00} This option does not work anymore
+  --- use \Option{paper=letter} instead;
 \end{description}
 Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
 as they only influence the cover pages.
@@ -486,13 +485,13 @@ As it is very hard to really test how well these options work
 they can be turned on or off in \Package{atlasdoc} via the option \Option{floatopt=true|false}.
 The default value is set to \Option{true}.
 
-As of \Package{atlasdoc} Version 02-00-00,
-the \KOMAScript\ elements are used to create the title pages.
+\ADOCnew{02-00-00} \KOMAScript\ elements are used to create the title pages.
 In particular, \Macro{publishers} is used for the abstract and copyright.
 The space and position for this may need to be adjusted,
-if you have a very long title. Use the options
+if you have a very long title. 
+It is very helpful to turn on the \Option{showframe} option when doing such adjustments.
+\ADOCold{07-00-00} Use the options
 \Option{titleextraheight} and \Option{copyrightoffset} to make adjustments.
-It is very helpful to turn on the \Option{showframe} option when doing this.
 
 
 %-------------------------------------------------------------------------------
@@ -522,9 +521,9 @@ These should be installed in any modern \LaTeX\ installation.
 See \cite{latex-faq} for details on which collections are needed to get these packages
 for your operating system.
 
-Note that under Ubuntu versions 12.04 and 14.04, \Package{lineno} can be found in the
-\Package{texlive-humanities} package!
-If you cannot find it, it is also included in the \File{obsolete} directory.
+% Note that under Ubuntu versions 12.04 and 14.04, \Package{lineno} can be found in the
+% \Package{texlive-humanities} package!
+If you cannot find the \Package{lineno} package, it is also included in the \File{obsolete} directory.
 Copy it to your main directory, or to \verb|${HOME}/texmf/tex/latex| in order to make
 it centrally available.
 
@@ -665,11 +664,9 @@ If you wish to use the \texttt{atlascover} package with the
 instead of the the usual \texttt{usepackage} command: this will ensure
 that the cover page is produced before the title page of the document.
 
-You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
-In this case you need the option \texttt{maketitle=false}
-(which is the default as of Version 01-07-00 of \Package{atlaslatex}) in the \texttt{atlasdoc} class
-(if you are using it)
-and you include the \Macro{maketitle} command after \verb|\begin{document}|.
+\ADOCnew{01-07-00} You can include \texttt{atlascover} with \Macro{usepackage} if you prefer.
+\ADOCold{01-07-00} You need the option \texttt{maketitle=false}
+and you should include the \Macro{maketitle} command after \verb|\begin{document}|.
 
 The following options can be passed on to the \Package{atlascover} package:
 \begin{description}
@@ -686,11 +683,11 @@ The following options can be passed on to the \Package{atlascover} package:
 \item[\Option{atlasdoc}] this option is set by \Package{atlasdoc} and is not usually needed by the user.
 \end{description}
 
-If you use \Package{atlascover} standalone, use the option \Option{coverpage=true} to
+\ADOCnew{01-04-00} If you use \Package{atlascover} standalone, use the option \Option{coverpage=true} to
 actually output a cover page. 
-This is necessary as of Version 01-04-00 of \Package{atlaslatex} to make the use of options more consistent.
-As of Version 02-00-00, the options \Option{cernpreprint}, \Option{preprint} and \Option{auxmat} are no longer available
-in \Package{atlascover}.
+This makes the use of options more consistent.
+\ADOCnew{02-00-00} The options \Option{cernpreprint}, \Option{preprint}
+and \Option{auxmat} are no longer available in \Package{atlascover}.
 You should pass these to \Package{atlasdoc} instead, as the title pages are now part of the main class.
 
 Some papers have a very long abstract, such that it does not fit on the cover page.
@@ -702,7 +699,7 @@ produced an ATLAS draft cover page that was offset.
 You could use the options \Option{hoffset} and \Option{voffset} to move the text around.\\
 JHEP needed \verb|hoffset=1in, voffset=1in|.\\
 revtex (APS journals) looked better with  \verb|hoffset=-0.25in, voffset=-0.25in|.\\
-These offsets are ignored, as of Version 01-04-00 of \Package{atlaslatex},
+\ADOCnew{01-04-00} These offsets are ignored,
 as the problems with spurious offsets have been eliminated.
 
 The option \Option{clearpage}, which used to exist, has no effect.
@@ -771,30 +768,33 @@ At the same time you should pass the option \Option{texlive=2016} to
 \Package{atlasdoc}.
 This is because arXiv contains a 2016 \TeX\ Live installation.
 Summarising, a typical \Macro{documentclass} command would be:
-\begin{verbatim}
-\documentclass[cernpreprint, texlive=2016, UKenglish]{latex/atlasdoc}
+\begin{tcblisting}{listing only}
 \pdfoutput=1
-\end{verbatim}
+\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\documentclass[cernpreprint, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
+\end{tcblisting}
 The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
 You should also turn off ATLAS draft cover page --- remove the option \Option{coverpage=true}.
-If you move the class and style files to the same directory as the main file,
-you need to add the option \Option{texmf} to the \Macro{documentclass}.
+% If you move the class and style files to the same directory as the main file,
+% you need to add the option \Option{texmf} to the \Macro{documentclass}.
 
 You can test whether your document compiles with \TeX\ Live 2016 by setting your \texttt{PATH} on \texttt{lxplus} to
+{\small
 \begin{verbatim}
-export PATH=/afs/cern.ch/sw/XML/TL2016/bin/x86_64-linux:$PATH
+export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:${PATH}
 \end{verbatim}
-\IBnote{}{This has to be fixed!}
+}
 
 Note that you should submit the \File{bbl} file and not the \File{bib} to arXiv.
 Depending on which journal you submit to, you should turn on or off the printing of the titles in the bibliography.
 Further details on how to proceed can be found on the Physics Office TWiki~\cite{atlas-physicsoffice} --- see
 the Section on \enquote{Guidelines for paper submission}.
 APS journals have special requirements on the directory structure and the filenames for figures.
+This is handled by the PO-GitLab tools.
 %JINST uses a very old version of \LaTeX\ (2004).
-Neither \Package{biblatex} nor \Package{siunitx} are available
-and \KOMAScript\ does not contain the \Macro{KOMAoptions} command.
-See the Physics Office TWiki~\cite{atlas-physicsoffice} for more information.
+% Neither \Package{biblatex} nor \Package{siunitx} are available
+% and \KOMAScript\ does not contain the \Macro{KOMAoptions} command.
+% See the Physics Office TWiki~\cite{atlas-physicsoffice} for more information.
 
 It also makes sense to clean up the metadata file at this point.
 You get rid of line numbering by making sure that neither \Macro{AtlasVersion} nor \Macro{draftversion} are defined.
@@ -883,8 +883,8 @@ This information is then included on the cover page in the form of clickable lin
 Use of this option also adds the arXiv preprint identifier to the top
 of every page of the document.
 
-If you want to create an HEPData document with an older \TeX\ Live version such as 2009, 
-use the command \texttt{make newdata TEXLIVE=2009}.
+If you want to create an HEPData document with an older \TeX\ Live version such as 2013, 
+use the command \texttt{make newdata TEXLIVE=2013}.
 
 
 %-------------------------------------------------------------------------------
@@ -965,13 +965,24 @@ Note that you must use the inline variant for notes inside captions and other fl
 Turn off the output of any notes by passing the option \Option{output=false}
 to the \Package{atlastodo} package.
 
-Here is an \JSnote{example paragpraph}{Illustration of macro}
-that shows how to use the macro.It you want a comment,
+If you want a list of all the notes,
+add \Macro{listtodonotes} somewhere in your document.
+The \Package{todonotes} package also include a macro \Macro{missingfigure}
+that is very useful if you want to include a figure, but do not yet have the plot.
+
+The following code produces the paragraph below.
+\begin{tcblisting}{listing only}
+Here is an \JSnote{example paragraph}{Illustration of macro}
+that shows how to use the macro. If you want a comment
 without it being associated with text the first argument should be left empty.
 \JSnote{}{This is a comment without associated text}.If you prefer your comments to be inline use the \Macro{JSinote} macro.
 \JSinote{}{Here is an inline comment.}
-If you want a list of all the notes,
-add \Macro{listtodonotes} somewhere in your document.
+\end{tcblisting}
+Here is an \JSnote{example paragraph}{Illustration of macro}
+that shows how to use the macro. If you want a comment
+without it being associated with text the first argument should be left empty.
+\JSnote{}{This is a comment without associated text}.If you prefer your comments to be inline use the \Macro{JSinote} macro.
+\JSinote{}{Here is an inline comment.}
 
 %-------------------------------------------------------------------------------
 \section{Language editor commands}%
@@ -997,11 +1008,10 @@ you can set up your own macros.
 \label{sec:math}
 %-------------------------------------------------------------------------------
 
-The correct \LaTeX\ macros for math mode are \(\textbackslash(\ldots\textbackslash)\)
+The correct \LaTeX\ macros for math mode are \textbackslash(\ldots\textbackslash)
 and not \(\$\ldots\$\) (which are \TeX\ primitives),
 even though the \TeX\ primitives are used by most people.
-As of Version 06-00-00 of \Package{atlaslatex}
-the standard ATLAS bibliography and template files use the correct \LaTeX\ macros and
+\ADOCnew{06-00-00} The standard ATLAS bibliography and template files use the correct \LaTeX\ macros and
 the documentation, example files will also be adjusted to use them.
 
 If you are using a version of \LaTeX\ from before 2015, you may have problems
@@ -1091,26 +1101,26 @@ but it does not do any harm.
 \label{sec:version}
 %-------------------------------------------------------------------------------
 
-The \Package{atlasdoc} class works both with \LaTeX{} and pdf\LaTeX{}.
-I recommend to use pdf\LaTeX\ and this is the default.
+The \Package{atlasdoc} class should in principle work both with \LaTeX{} and pdf\LaTeX{}.
+However, the collection is no longer tested with \LaTeX,
+so I strongly recommend to use pdf\LaTeX, which is the default.
 
-I would expect everything to work with \TeX\ Live 2009 or later.
+I would expect everything to work with \TeX\ Live 2013 or later.
 You should just set the option \Option{texlive} appropriately.
 This is best done in the document class, as the option is then passed to all other packages.
 Examples of changes include some option names for \Package{siunitx}.
 
-If for example you have \TeX\ Live 2009, add the option \Option{texlive=2009} to the document class.
-This will then include \Package{siunitx} with the correct options for Version 1.
-It will also switch to \Option{unit=false} to \Package{atlasphysics}
-and use option \Option{txfonts} in \Package{atlasdoc}.
+% If for example you have \TeX\ Live 2013, add the option \Option{texlive=2013} to the document class.
+% This will then include \Package{siunitx} with the correct options for Version 1.
+% It will also switch to \Option{unit=false} to \Package{atlasphysics}
+% and use option \Option{txfonts} in \Package{atlasdoc}.
 
-If you use the \Package{biblatex} package,
+\ADOCnew{04-00-00} If you use the \Package{biblatex} package,
 the default is to use the \texttt{biber} backend.
-This was changed as of Version 04-00-00 of \Package{atlaslatex}.
-For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
-To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
+% For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
+% To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
 
-The \Package{atlaslatex} package should work under Linux, MacOS(X) and Windows.
+The \Package{atlaslatex} package should work under Linux, macOS and Windows.
 Details on the installations that I use for testing things
 and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
 
@@ -1135,7 +1145,7 @@ Hence, for papers, CONF and PUB notes it is important to comment out \Macro{Atla
 In order to avoid line numbers going slightly wrong around figures and tables,
 separate the \Package{figure} and \Package{table} environment from the rest of the text using blank lines.
 
-As of Version 08-04-00 of \Package{atlaslatex} line numbering around AMS Math \LaTeX\ environments such as \Package{align}
+\ADOCnew{08-04-00} Line numbering around AMS Math \LaTeX\ environments such as \Package{align}
 should just work.
 The code that does this is inside \File{atlasdoc.cls}.
 If this causes problems, pass the option \Option{linenofix=false} to \Package{atlasdoc}.
@@ -1188,10 +1198,6 @@ In this section I collect a few useful packages that I recommend using.
   If you include the package yourself, use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc. and
   use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
 
-  \item[todonotes] Very nice package for adding notes.
-  It is used by the \File{atlastodo.sty} style file.
-  See \File{atlascomment.sty} for a further example.
-
   \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
   consistent way. Optionally the symbols can be upright or italic.
   The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
@@ -1202,8 +1208,12 @@ In this section I collect a few useful packages that I recommend using.
   As the name suggests it is geared to physics usage.
   The package is included if you pass the \Option{full} to \Package{atlaspackage}.
   
-  The \Package{commath} is an alternative, but I find \Package{physics} to be more reliable,
-  when different fonts are used.
+  The \Package{commath} package is an alternative,
+  but I find \Package{physics} to be more reliable when different fonts are used.
+
+  \item[todonotes] Very nice package for adding notes.
+  It is used by the \File{atlastodo.sty} style file.
+  See \File{atlascomment.sty} for a further example.
 \end{description}
 
 
@@ -1230,6 +1240,8 @@ you choose.
 
 Figures should be in general be made available in either \texttt{eps} (or \texttt{pdf}) format.
 \texttt{png} format can be used for event displays.
+However, ATLAS papers should only include \texttt{pdf} figures (and \texttt{png}).
+This also implies that pdf\LaTeX{} should be used for compilation.
 % Additionally, a \texttt{pdf} version of the plots can be
 % useful in case \verb|pdflatex| is used to produce a publication.
 %Colour versions are appropriate for talks, and black-and-white
@@ -1389,12 +1401,12 @@ Some things to note about using \Package{siunitx}:
   which are extremely useful for formatting tables properly.
 \end{itemize}
 
-The option names are somewhat different for \TeX\ Live 2009,
-as this contained \Package{siunitx} Version 1.
-You can use the older options by including \Package{atlaspackage} with the 
-option \Option{texlive=2009}.
-You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
-the \Package{atlasphysics} package.
+% The option names are somewhat different for \TeX\ Live 2009,
+% as this contained \Package{siunitx} Version 1.
+% You can use the older options by including \Package{atlaspackage} with the 
+% option \Option{texlive=2009}.
+% You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
+% the \Package{atlasphysics} package.
 
 
 \appendix
@@ -1457,12 +1469,13 @@ I recommend you set this as the default command.
 This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
 However, with the advent of the ATLAS preprint style, 
 it should no longer be necessary to format papers in the style used by the journals.
-This section has therefore been moved to an appendix.
+This section is therefore in an appendix.
 
 The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
 So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
-You should turn off the use of \Package{biblatex} if you use a journal template.
-Add the option \Option{biblatex=false} to \Package{atlaspackage}.
+The journal templates turn off the use of \Package{biblatex}
+by adding the option \Option{biblatex=false} to \Package{atlaspackage}.
+I have not tested if it is possible to use \Package{biblatex}.
 
 \begin{description}
 \item[Elsevier]Elsevier uses the \texttt{elsarticle} class which should be already installed if you have a standard 
@@ -1516,7 +1529,7 @@ All the documentation uses \texttt{biblatex} and \texttt{biber} instead of tradi
 The templates provide information on how to make the change in your own document.
 The default document settings also use \texttt{biblatex} and \texttt{biber}.
 
-As of \File{atlaslatex-01-00-00} the same macro names are used in both \Package{atlasdoc} and
+\ADOCnew{01-00-00} The same macro names are used in both \Package{atlasdoc} and
 \Package{atlascover} so that title, journal, version number and abstract only need to be specified once.
 This means that if you start from an old preamble the following changes should be made:
 \begin{center}
@@ -1585,7 +1598,7 @@ Knut Zoch provided the code that fixed the line numbering problems with AMS Math
 \label{sec:atlaslatex5}
 %-------------------------------------------------------------------------------
 
-Version 05-00-00 of \Package{atlaslatex} is the first version set up
+\ADOCnew{05-00-00} is the first version set up
 to be fully compatible with the PO-GitLab scheme for papers.
 
 Separate (dummy) files for auxiliary material and HEPData tables are created for new papers.
@@ -1599,7 +1612,7 @@ from a separate file for tables etc.\ for HEPData.
 \label{sec:atlaslatex4}
 %-------------------------------------------------------------------------------
 
-As of Version 04-00-00 of \Package{atlaslatex}, the \File{Makefile} for \Package{atlaslatex}
+\ADOCnew{04-00-00} The \File{Makefile} for \Package{atlaslatex}
 has been restructured to reduce duplications and make separate commands for a new paper and a new note.
 \texttt{biber} is now the default backend for \Package{biblatex},
 as this allows the use of the \enquote{related} field for Errata.
@@ -1614,7 +1627,7 @@ As the above changes are quite major, there is a jump in the main version number
 \label{sec:atlaslatex2}
 %-------------------------------------------------------------------------------
 
-As of Version 02-00-00 of \Package{atlaslatex}, only the \KOMAScript\ classes are supported.
+\ADOCnew{02-00-00} Only the \KOMAScript\ classes are supported.
 At the same time, the option BOOK was introduced, which uses \Package{scrbook} as the base class.
 This is more suitable for long documents such as a TDR.
 
@@ -1637,7 +1650,7 @@ You should pass these to \Package{atlasdoc} instead, as the title pages are now 
 \label{sec:oldcover}
 %-------------------------------------------------------------------------------
 
-As of \Package{atlascover-01-00-00} the same macro names are used in both \Package{atlasdoc} and
+\ADOCnew{01-00-00} The same macro names are used in both \Package{atlasdoc} and
 \Package{atlascover} so that title, journal and version number only need to be specified once.
 This means that if you start from an old cover page the following changes have to be made:
 \begin{center}

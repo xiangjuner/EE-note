@@ -9,9 +9,9 @@
 %
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{08-05-00}
+\def\ATPackageVersion{08-06-00}
 
-\ProvidesClass{latex/atlasdoc}[2020/06/26 v.08-05-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2020/07/15 v.08-06-00 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -199,13 +199,13 @@
 
 % Switch to txfonts for TeX Live <= 2012
 % Need to pass this option to atlaspackage as well
-\ifthenelse{\ADOC@texlive < 2012 \AND \boolean{ADOC@newtx}}{%
-  \typeout{*** atlasdoc: use txfonts instead of newtx}
-  \ADOC@newtxfalse
-  \ADOC@txfontstrue
-  \PassOptionsToPackage{txfonts}{\ATLASLATEXPATH atlaspackage}
-}{%
-}
+% \ifthenelse{\ADOC@texlive < 2012 \AND \boolean{ADOC@newtx}}{%
+%   \typeout{*** atlasdoc: use txfonts instead of newtx}
+%   \ADOC@newtxfalse
+%   \ADOC@txfontstrue
+%   \PassOptionsToPackage{txfonts}{\ATLASLATEXPATH atlaspackage}
+% }{%
+% }
 
 %-------------------------------------------------------------------------------
 % Defaults for title page
@@ -375,11 +375,11 @@
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
   % Set font size for author. URLs in authors (such as orcid) will be black.
-  \ifthenelse{\ADOC@texlive < 2013}{%
-    \relax
-  }{%
+  % \ifthenelse{\ADOC@texlive < 2013}{%
+  %   \relax
+  % }{%
     \addtokomafont{author}{\ADOC@authorsize\hypersetup{urlcolor=black}}
-  }
+  % }
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
@@ -455,14 +455,14 @@
       \RequirePackage[T1]{fontenc}
     \else
       \typeout{atlasdoc: using newtx fonts package}
-      \ifthenelse{\ADOC@texlive < 2013}{%
-        \RequirePackage{newtxtext}
-        \typeout{*** atlasdoc: include amsmath before newtxmath}
-        \RequirePackage{amsmath}
-      }{%
+      % \ifthenelse{\ADOC@texlive < 2013}{%
+      %   \RequirePackage{newtxtext}
+      %   \typeout{*** atlasdoc: include amsmath before newtxmath}
+      %   \RequirePackage{amsmath}
+      % }{%
       % \RequirePackage[defaultsups]{newtxtext}
         \RequirePackage{newtxtext}
-      }
+      % }
       \RequirePackage{newtxmath}
     \fi
   \fi

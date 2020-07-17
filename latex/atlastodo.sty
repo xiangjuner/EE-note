@@ -21,15 +21,18 @@
   prefix=ANOTE@
 }
 \DeclareBoolOption[true]{output}
+\DeclareBoolOption[true]{shift}
 \ProcessKeyvalOptions*
 
 % Print the notes
 \ifANOTE@output
   \typeout{ATLAS document: showing notes}
-  \KOMAoptions{BCOR=-5mm}
-  \KOMAoptions{DIV=last}
-  \addtolength{\marginparwidth}{10mm}
-  \addtolength{\textwidth}{-7.86mm}
+  \ifANOTE@shift
+    \KOMAoptions{BCOR=-5mm}
+    \KOMAoptions{DIV=last}
+    \addtolength{\marginparwidth}{10mm}
+    \addtolength{\textwidth}{-7.86mm}
+  \fi
   \RequirePackage[colorinlistoftodos]{todonotes}
   % \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
   % \typeout{ATLnote: 1=#1; 2=#2; 3=#3; 4=#4; 5=#5}

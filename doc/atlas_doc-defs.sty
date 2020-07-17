@@ -19,7 +19,7 @@
 \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3]{#1}}_{\num[round-mode=places, round-precision=#3]{#2}}}}
 
 % Use tcolorbox for listings
-\RequirePackage[listings]{tcolorbox}
+\RequirePackage[listings, breakable]{tcolorbox}
 \tcbset{colframe=Blue, colback=Azure}
 \newtcblisting{bashlisting}{%
   colback=Honeydew, colframe=Green,
@@ -28,9 +28,17 @@
 }
 
 % Boxes to indicate changes
-\RequirePackage{marginnote}
-\newtcolorbox{ADOC@new}{size=tight, sharp corners, colback=red!5!white, colframe=red!75!black}
-\newcommand{\ADOCnew}[1]{\marginnote[\begin{ADOC@new}\scriptsize N: #1\end{ADOC@new}]{}}
+% \RequirePackage{marginnote}
+\newtcbox{ADOC@new}{on line, size=minimal, sharp corners,
+  colback=LightPink, colframe=DarkOliveGreen,
+  boxrule=0pt, toprule=1pt, bottomrule=1pt}
+\newtcbox{ADOC@old}{on line, size=minimal, sharp corners,
+  colback=Gainsboro, colframe=DarkSlateGrey,
+  boxrule=0pt, toprule=1pt, bottomrule=1pt}
+\newcommand{\ADOCnew}[1]{\par\noindent\hspace*{-2em}\ADOC@new{\normalsize N: #1}}
+\newcommand{\ADOCold}[1]{\par\noindent\hspace*{-2em}\ADOC@old{\normalsize O: #1}}
+% \newcommand{\ADOCnew}[1]{\marginnote[\flushright\begin{ADOC@new}\scriptsize N: #1\end{ADOC@new}]{RIGHT}}
+% \newcommand{\ADOCnew}[1]{\reversemarginpar\marginpar{\flushright\scriptsize N: #1}\normalmarginpar}
 
 % Listing and result of listing
 % \RequirePackage{showexpl}

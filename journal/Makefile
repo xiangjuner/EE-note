@@ -16,7 +16,7 @@ all: atlas-elsevier atlas-jhep atlas-revtex
 
 texlive:
 	for file in $(TEXFILES); do \
-	  if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
+	  if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	    echo "Changing texlive value in $$file"; \
 	    sed -i'.bak' 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' $$file; \
 	  else echo "Invalid value for TEXLIVE: $(TEXLIVE)"; fi; \

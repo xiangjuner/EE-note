@@ -9,7 +9,7 @@
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latex/atlaspackage}[2020/06/26 v.08-05-00 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2020/07/15 v.08-06-00 ATLAS LaTeX packages]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -179,10 +179,10 @@
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
     % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
     \ifAPKG@subcaption%
-      \ifthenelse{\APKG@texlive < 2012}{%
-        \RequirePackage{caption}
-      }{%
-      }
+      % \ifthenelse{\APKG@texlive < 2012}{%
+      %   \RequirePackage{caption}
+      % }{%
+      % }
       \RequirePackage[labelformat=simple]{subcaption}
       \renewcommand\thesubfigure{(\alph{subfigure})}
       \renewcommand\thesubtable{(\alph{subtable})}
