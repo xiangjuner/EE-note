@@ -6,9 +6,9 @@
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{07-00-00}
+\def\ATPackageVersion{09-00-00}
 
-\ProvidesClass{latex/atlasdoc1}[2019/01/11 v.07-00-00 ATLAS deprecated document class]
+\ProvidesClass{latex/atlasdoc1}[2020/07/17 v.09-00-00 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -390,7 +390,12 @@
 % Draft heading/footer code
 \newcommand{\AtlasDraftHeading}{%
   \ifADOC@koma
-    \RequirePackage[headsepline]{scrpage2}
+    \ifthenelse{\ADOC@texlive < 2015}{%
+      \RequirePackage[headsepline]{scrpage2}
+    }{%
+      \RequirePackage[headsepline]{scrlayer-scrpage}
+    }
+    % \RequirePackage[headsepline]{scrpage2}
     \ihead{}
     \chead[]{\fbox{\textsf\bfseries DRAFT}}
     \ohead{}
@@ -415,7 +420,12 @@
 % Include fancier header and footer for auxiliary material document
 \ifADOC@auxmat
   \ifADOC@koma
+    \ifthenelse{\ADOC@texlive < 2015}{%
     \RequirePackage[headsepline]{scrpage2}
+    }{%
+      \RequirePackage[headsepline]{scrlayer-scrpage}
+    }
+    % \RequirePackage[headsepline]{scrpage2}
     \chead{ATLAS Collaboration -- arXiv:\AtlasArXivId\ \AtlasArXivCat}
   \else
     \RequirePackage{fancyhdr}
