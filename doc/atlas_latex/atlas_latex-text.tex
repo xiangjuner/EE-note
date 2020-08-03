@@ -41,7 +41,7 @@ good \LaTeX.
 The design principle is that you have a main document and 
 the style files and \Package{atlasdoc} class are in a subdirectory \File{latex}.
 The logos that are needed are kept in a \File{logos} directory.
-This subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
+These subdirectories can of course be links to a centrally maintained \texttt{latex} directory.
 See below and \cref{sec:texmf} for how to proceed if you want to use and/or install
 the package in a central place.
 
@@ -75,7 +75,7 @@ The \texttt{make newpaper|newnote} command also creates empty files \File{mydocu
 By default the document will be an ATLAS note draft.
 Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB notes).
 % If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
-Replace the option \Option{PAPER} with \Option{CONF} or \Option{} as appropriate.
+Replace the option \Option{PAPER} with \Option{CONF} or \Option{PUB} as appropriate.
 
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
@@ -428,11 +428,11 @@ In the following the default option is in boldface.
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014.
-  \emph{This option has no effect as of \Package{atlaslatex} 07-00-00};
+  \emph{\ADOCold{07-00-00} This option has no effect};
 \item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long.
-  \emph{This option has no effect as of \Package{atlaslatex} 07-00-00};
+  \emph{\ADOCold{07-00-00} This option has no effect};
 \item[\Option{copyrightoffset=0em}] adjust the position of the copyright, if it is not completely correct.
-  \emph{This option has no effect as of \Package{atlaslatex} 07-00-00}.
+  \emph{\ADOCold{07-00-00} This option has no effect};
 \end{description}
 
 \ADOCnew{04-03-00} It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
@@ -920,33 +920,6 @@ For now (2018-10-29) there are some templates from the EXOT group.
 
 
 %-------------------------------------------------------------------------------
-\section{\texttt{atlaslatex} directories and Git}
-\label{sec:gitsvn}
-%-------------------------------------------------------------------------------
-
-There is some flexibility in how you set up your directory structure for using \Package{atlaslatex}.
-By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
-logos are in \File{logos}. This structure assumes that you will make a separate directory tree
-for each document that you create.
-If you want to include these files in Git or SVN, note that you only need to add the
-\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git.
-In order to create a new document, you also need the \File{template} directory.
-For a paper, you also need the \File{acknowledgements} directory.
-
-If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
-\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
-
-If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
-at the beginning of your document. This would enable you to maintain a single copy of each 
-\Package{atlaslatex} version and easily switch between versions.
-For example, you give the command\\
-\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-08-00/}|
-to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
-\File{../atlaslatex-01-08-00}.
-Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
-
-
-%-------------------------------------------------------------------------------
 \section{Adding notes}
 \label{sec:todo}
 %-------------------------------------------------------------------------------
@@ -1004,22 +977,6 @@ you can set up your own macros.
 
 
 %-------------------------------------------------------------------------------
-\section{Math mode macros}%
-\label{sec:math}
-%-------------------------------------------------------------------------------
-
-The correct \LaTeX\ macros for math mode are \textbackslash(\ldots\textbackslash)
-and not \(\$\ldots\$\) (which are \TeX\ primitives),
-even though the \TeX\ primitives are used by most people.
-\ADOCnew{06-00-00} The standard ATLAS bibliography and template files use the correct \LaTeX\ macros and
-the documentation, example files will also be adjusted to use them.
-
-If you are using a version of \LaTeX\ from before 2015, you may have problems
-if you use the \LaTeX\ delimiters in captions and want to make as list of tables or figures.
-If this is the case, just switch to \TeX\ primitives in the caption (or subcaption).
-
-
-%-------------------------------------------------------------------------------
 \section{Scripts}%
 \label{sec:script}
 %-------------------------------------------------------------------------------
@@ -1032,97 +989,6 @@ Two scripts are provided in the \File{scripts} directory to help updating existi
     to the \LaTeX\ macro \verb|\(...\)|.
 \end{description}
 Have a look at the scripts for the available options.
-
-
-%-------------------------------------------------------------------------------
-\section{Installation of \Package{atlaslatex} in \File{texmf} tree}%
-\label{sec:texmf}
-%-------------------------------------------------------------------------------
-
-As discussed above, the \texttt{atlasdoc} class and the style files can all be found in the 
-\File{latex} subdirectory. The template documents are usually set up to pick up the style files from there.
-If you want to use the centrally installed version,
-you should first copy \File{Makefile} and the \File{template} directory from 
-\File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
-For the main document, you can then use the command 
-\texttt{make newpapertexmf} or \texttt{make newnotetexmf} to get a template which uses the
-centrally installed style files.
-
-If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
-Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do it by hand you can do:
-\begin{itemize}
-\item unpack the tarball;
-\item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
-\item copy the contents of the \File{bib} directories 
-  to \texttt{\$\{HOME\}/texmf/bib}.
-\end{itemize}
-It is more complicated to checkout part of a Git repository.
-Hence the method described above is the recommended way of installing
-\Package{atlaslatex} in your \File{texmf} tree.
-% You can also checkout the two directory trees from SVN:
-% {\small
-% \begin{verbatim}
-% cd ~/texmf/tex/latex
-% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
-% cd ~/texmf
-% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
-% \end{verbatim}
-% }
-% The advantage of using SVN is that you can keep the package up to date, by just giving the command
-% \verb|svn update| in the two directories.
-% If you already have a \File{bibtex} directory,
-% first move it out of the way, then checkout from SVN
-% and then move the contents of the old directory back into the \File{bibtex} tree.
-
-% Under Windows, it appears to be better to use \texttt{https} instead of \texttt{svn+ssh}.
-% You should therefore checkout:\\
-% \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
-
-In the template files, you have to use the command
-\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply change
-\begin{center}
-  \begin{tabular}{ll}
-    From & To \\
-    \midrule
-    \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
-  \end{tabular}
-\end{center}
-
-If you are using traditional \BibTeX\ you also have to change\\
-\verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
-\verb|\bibliographystyle{atlasBibStyleWoTitle}|
-
-The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
-but it does not do any harm.
-
-
-%-------------------------------------------------------------------------------
-\section{Platforms and \LaTeX\ versions}
-\label{sec:version}
-%-------------------------------------------------------------------------------
-
-The \Package{atlasdoc} class should in principle work both with \LaTeX{} and pdf\LaTeX{}.
-However, the collection is no longer tested with \LaTeX,
-so I strongly recommend to use pdf\LaTeX, which is the default.
-
-I would expect everything to work with \TeX\ Live 2013 or later.
-You should just set the option \Option{texlive} appropriately.
-This is best done in the document class, as the option is then passed to all other packages.
-Examples of changes include some option names for \Package{siunitx}.
-
-% If for example you have \TeX\ Live 2013, add the option \Option{texlive=2013} to the document class.
-% This will then include \Package{siunitx} with the correct options for Version 1.
-% It will also switch to \Option{unit=false} to \Package{atlasphysics}
-% and use option \Option{txfonts} in \Package{atlasdoc}.
-
-\ADOCnew{04-00-00} If you use the \Package{biblatex} package,
-the default is to use the \texttt{biber} backend.
-% For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
-% To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
-
-The \Package{atlaslatex} package should work under Linux, macOS and Windows.
-Details on the installations that I use for testing things
-and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
 
 
 %-------------------------------------------------------------------------------
@@ -1176,45 +1042,6 @@ in both text mode and math mode, e.g.\
 I highly recommend that you also terminate every definition with \Macro{xspace},
 as then you can use the definitions without having to terminate them with
 \enquote{\textbackslash\textvisiblespace} or \enquote{\{\}}.
-
-
-%------------------------------------------------------------------------------
-\subsection{Useful packages}
-
-A vast number of \LaTeX\ packages are available.
-In this section I collect a few useful packages that I recommend using.
-% are not loaded
-% by \Package{atlaspackage}, but are well worth considering.
-
-\begin{description}
-  \item[cleveref] Means that constructs like \verb|Fig.~\ref{fig:one}| or
-  \verb|\Fig{\ref{fig:one}}| are no longer necessary.
-  Instead just use \verb|\cref{fig:one}|.
-  The package decides if it is a figure, table or equation and
-  adds the appropriate text.
-  At the beginning of sentences use \Macro{Cref}.
-  This package is included by default if you use \Package{atlaspackage}.
-  You can customise its use with the \Option{capsref} and \Option{abbrevref} options.
-  If you include the package yourself, use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc. and
-  use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
-
-  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
-  consistent way. Optionally the symbols can be upright or italic.
-  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
-  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
-  but is not as systematic.
-
-  \item[physics] A useful package for differentials, matrices and more.
-  As the name suggests it is geared to physics usage.
-  The package is included if you pass the \Option{full} to \Package{atlaspackage}.
-  
-  The \Package{commath} package is an alternative,
-  but I find \Package{physics} to be more reliable when different fonts are used.
-
-  \item[todonotes] Very nice package for adding notes.
-  It is used by the \File{atlastodo.sty} style file.
-  See \File{atlascomment.sty} for a further example.
-\end{description}
 
 
 %-------------------------------------------------------------------------------
@@ -1345,6 +1172,22 @@ This helps the line numbers. The standard options to use for the placement are \
 
 
 %-------------------------------------------------------------------------------
+\subsection{Math mode macros}%
+\label{sec:math}
+%-------------------------------------------------------------------------------
+
+The correct \LaTeX\ macros for math mode are \textbackslash(\ldots\textbackslash)
+and not \(\$\ldots\$\) (which are \TeX\ primitives),
+even though the \TeX\ primitives are used by most people.
+\ADOCnew{06-00-00} The standard ATLAS bibliography and template files use the correct \LaTeX\ macros and
+the documentation, example files will also be adjusted to use them.
+
+If you are using a version of \LaTeX\ from before 2015, you may have problems
+if you use the \LaTeX\ delimiters in captions and want to make as list of tables or figures.
+If this is the case, just switch to \TeX\ primitives in the caption (or subcaption).
+
+
+%-------------------------------------------------------------------------------
 \subsection{\pT or \ET, that is the question}
 
 Bold math should be automatically invoked in titles.
@@ -1359,6 +1202,69 @@ which is probably not what one wants!
 Work is still ongoing to find the optimal set of options
 --- search for \texttt{detect} in the \Package{siunitx} manual, to see the complete set of possibilities.
 This is not a problem for the ATLAS preprint style as it uses a serif font for the section titles.
+
+
+%------------------------------------------------------------------------------
+\section{Recommended packages}
+
+A vast number of \LaTeX\ packages are available.
+In this section I collect a few useful packages that I recommend using.
+
+\begin{description}
+  \item[cleveref] Means that constructs like \verb|Fig.~\ref{fig:one}| or
+  \verb|\Fig{\ref{fig:one}}| are no longer necessary.
+  Instead just use \verb|\cref{fig:one}|.
+  The package decides if it is a figure, table or equation and
+  adds the appropriate text.
+  At the beginning of sentences use \Macro{Cref}.
+  This package is included by default if you use \Package{atlaspackage}.
+  You can customise its use with the \Option{capsref} and \Option{abbrevref} options.
+  If you include the package yourself, use \Macro{usepackage\{cleveref\}} to get \enquote{fig.} etc. and
+  use \Macro{usepackage[capitalize]\{cleveref\}} to get \enquote{Fig.} etc.
+
+  \item[heppennames] A package that defines most elementary particle, mesons and baryons in a
+  consistent way. Optionally the symbols can be upright or italic.
+  The package is included if you pass the option \Option{hepparticle} to \Package{atlasphysics}.
+  You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
+  but is not as systematic.
+
+  \item[physics] A useful package for differentials, matrices and more.
+  As the name suggests it is geared to physics usage.
+  The package is included if you pass the \Option{full} to \Package{atlaspackage}.
+  
+  The \Package{commath} package is an alternative,
+  but I find \Package{physics} to be more reliable when different fonts are used.
+
+  \item[todonotes] Very nice package for adding notes.
+  It is used by the \File{atlastodo.sty} style file.
+  See \File{atlascomment.sty} for a further example.
+\end{description}
+
+
+%------------------------------------------------------------------------------
+\subsection{Other (useful) packages}
+
+In this section I collect a few useful packages that may be useful when preparing a document.
+Note that I have only had a cursory read of their documentation,
+so some work amy be needed to get them working as they are supposed to.
+\begin{description}
+  \item[snapshot] As the first paragraph of the documentation quotes:
+    \begin{quotation}
+      The \Package{snapshot} package helps the owner of a \LaTeX\ document obtain a list of the external dependencies of the document,
+      in a form that can be embedded at the top of the document.
+      To put it another way, it provides a snapshot of the current processing context of the document,
+      insofar as it can be determined from inside \LaTeX.
+  \end{quotation}
+  It can also be used to arrange that the document is processed with the same versions of everything.
+  I tried the package once, and it gave an error compiling.
+  However, even if the compilation gives and error
+  you can look at the resulting \File{.dep} file to get a list of all packages and versions used in a document.
+  This may be helpful for debugging problems.
+
+  \item[changes] The \Package{changes} package is another way of recording changes and adding comments.
+    The \Package{todonotes} package is used to do some of this and is integrated into the \Package{atlastodo} style file.
+    The \Package{changes} is supposed to work much like change markup in LibreOffice, Microsoft Office etc.
+\end{description}
 
 
 %-------------------------------------------------------------------------------
@@ -1407,6 +1313,124 @@ Some things to note about using \Package{siunitx}:
 % option \Option{texlive=2009}.
 % You also have to turn off the inclusion of \File{atlasunits.sty} by including the option \Option{units=false} with
 % the \Package{atlasphysics} package.
+
+
+%-------------------------------------------------------------------------------
+\section{\texttt{atlaslatex} directories and Git}
+\label{sec:gitsvn}
+%-------------------------------------------------------------------------------
+
+There is some flexibility in how you set up your directory structure for using \Package{atlaslatex}.
+By default the \Package{atlaslatex} style files are in the \File{latex} subdirectory and the
+logos are in \File{logos}. This structure assumes that you will make a separate directory tree
+for each document that you create.
+If you want to include these files in Git or SVN, note that you only need to add the
+\File{latex}, \File{logos} and \File{bib} directories of the \Package{atlaslatex} package to Git.
+In order to create a new document, you also need the \File{template} directory.
+For a paper, you also need the \File{acknowledgements} directory.
+
+If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
+\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
+
+If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
+at the beginning of your document. This would enable you to maintain a single copy of each 
+\Package{atlaslatex} version and easily switch between versions.
+For example, you give the command\\
+\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-08-00/}|
+to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
+\File{../atlaslatex-01-08-00}.
+Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
+
+
+%-------------------------------------------------------------------------------
+\section{Platforms and \LaTeX\ versions}
+\label{sec:version}
+%-------------------------------------------------------------------------------
+
+The \Package{atlasdoc} class should in principle work both with \LaTeX{} and pdf\LaTeX{}.
+However, the collection is no longer tested with \LaTeX,
+so I strongly recommend to use pdf\LaTeX, which is the default.
+
+I would expect everything to work with \TeX\ Live 2013 or later.
+You should just set the option \Option{texlive} appropriately.
+This is best done in the document class, as the option is then passed to all other packages.
+Examples of changes include some option names for \Package{siunitx}.
+
+% If for example you have \TeX\ Live 2013, add the option \Option{texlive=2013} to the document class.
+% This will then include \Package{siunitx} with the correct options for Version 1.
+% It will also switch to \Option{unit=false} to \Package{atlasphysics}
+% and use option \Option{txfonts} in \Package{atlasdoc}.
+
+\ADOCnew{04-00-00} If you use the \Package{biblatex} package,
+the default is to use the \texttt{biber} backend.
+% For \TeX\ Live versions earlier than 2013, it may be better to use \texttt{bibtex}.
+% To do this, pass the option \Option{backend=bibtex} to \Package{atlaspackage}.
+
+The \Package{atlaslatex} package should work under Linux, macOS and Windows.
+Details on the installations that I use for testing things
+and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite{latex-faq}.
+
+
+%-------------------------------------------------------------------------------
+\section{Installation of \Package{atlaslatex} in \File{texmf} tree}%
+\label{sec:texmf}
+%-------------------------------------------------------------------------------
+
+As discussed above, the \texttt{atlasdoc} class and the style files can all be found in the 
+\File{latex} subdirectory. The template documents are usually set up to pick up the style files from there.
+If you want to use the centrally installed version,
+you should first copy \File{Makefile} and the \File{template} directory from 
+\File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
+For the main document, you can then use the command 
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} to get a template which uses the
+centrally installed style files.
+
+If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
+Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do it by hand you can do:
+\begin{itemize}
+\item unpack the tarball;
+\item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
+\item copy the contents of the \File{bib} directories 
+  to \texttt{\$\{HOME\}/texmf/bib}.
+\end{itemize}
+It is more complicated to checkout part of a Git repository.
+Hence the method described above is the recommended way of installing
+\Package{atlaslatex} in your \File{texmf} tree.
+% You can also checkout the two directory trees from SVN:
+% {\small
+% \begin{verbatim}
+% cd ~/texmf/tex/latex
+% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/latex atlaslatex
+% cd ~/texmf
+% svn co svn+ssh://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk/bibtex
+% \end{verbatim}
+% }
+% The advantage of using SVN is that you can keep the package up to date, by just giving the command
+% \verb|svn update| in the two directories.
+% If you already have a \File{bibtex} directory,
+% first move it out of the way, then checkout from SVN
+% and then move the contents of the old directory back into the \File{bibtex} tree.
+
+% Under Windows, it appears to be better to use \texttt{https} instead of \texttt{svn+ssh}.
+% You should therefore checkout:\\
+% \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
+
+In the template files, you have to use the command
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply change
+\begin{center}
+  \begin{tabular}{ll}
+    From & To \\
+    \midrule
+    \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
+  \end{tabular}
+\end{center}
+
+If you are using traditional \BibTeX\ you also have to change\\
+\verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
+\verb|\bibliographystyle{atlasBibStyleWoTitle}|
+
+The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
+but it does not do any harm.
 
 
 \appendix
@@ -1590,7 +1614,7 @@ Juan Pedro Araque has done most of the work setting up the PO-GitLab project.
 This resulted in a much smoother submission process for papers and
 an improved handling of auxiliary material.
 
-Knut Zoch provided the code that fixed the line numbering problems with AMS Math \LaTeX\ envinments.
+Knut Zoch provided the code that fixed the line numbering problems with AMS Math \LaTeX\ environments.
 
 
 %-------------------------------------------------------------------------------

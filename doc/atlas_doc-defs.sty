@@ -40,6 +40,14 @@
 % \newcommand{\ADOCnew}[1]{\marginnote[\flushright\begin{ADOC@new}\scriptsize N: #1\end{ADOC@new}]{RIGHT}}
 % \newcommand{\ADOCnew}[1]{\reversemarginpar\marginpar{\flushright\scriptsize N: #1}\normalmarginpar}
 
+% Listings package cannot handle UTF-8 directly.
+% his is a fix from https://tex.stackexchange.com/questions/317289/tcolorbox-and-vietnamese/317448
+% \lstset{literate=%
+%   {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+%   {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+%   {ß}{{\ss}}1
+% }
+
 % Listing and result of listing
 % \RequirePackage{showexpl}
 
