@@ -1,5 +1,6 @@
 2020-08-07  Ian Brock  <Ian.Brock@cern.ch>
 	* June update of publications.
+	* Complete set of TDRs now included. Changed citation ATLAS-TDR-2010-19 to ATLAS-TDR-19.
 	* A number of small updates to the default detector description from David Stoker.
 	* Add usage of \tablenum for tables.
 	* Use only \AtlasTitle macro and not \title macro when using elsarticle class.
