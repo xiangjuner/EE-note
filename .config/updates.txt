@@ -1,5 +1,6 @@
 This new version contains a few updates:
 - Only TeX Live 2013 and later now supported.
+- Complete set of TDRs now included. Changed citation ATLAS-TDR-2010-19 to ATLAS-TDR-19.
+- A number of small updates to the default detector description from David Stoker.
 - Major additions to ATLAS-useful.bib from PMG group.
-- Several generators added to atlasmisc.sty.
 - Add atlastodo.sty for to-do notes. Add to-do notes package to templates.
