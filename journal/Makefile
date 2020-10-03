@@ -12,7 +12,7 @@ TEXFILES = $(wildcard *.tex)
 
 .PHONY: texlive clean
 
-all: atlas-elsevier atlas-jhep atlas-revtex
+all: atlas-elsevier atlas-jhep atlas-jinst atlas-revtex
 
 texlive:
 	for file in $(TEXFILES); do \
@@ -27,6 +27,10 @@ atlas-elsevier: atlas-elsevier.pdf
 	# $(OPEN) $<
 
 atlas-jhep: atlas-jhep.pdf
+	@echo "Made $<"
+	# $(OPEN) $<
+
+atlas-jinst: atlas-jinst.pdf
 	@echo "Made $<"
 	# $(OPEN) $<
 
@@ -51,7 +55,7 @@ run_latex: $(BASENAME).dvi
 
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf \
-	 *.spl *-revtexNotes.bib *.run.xml *.synctex.gz *~
+	 *.fdb_latexmk *.spl *-revtexNotes.bib *.run.xml *.synctex.gz *~
 
 cleanall: clean
 	-rm *.pdf

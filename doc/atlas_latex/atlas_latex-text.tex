@@ -932,7 +932,7 @@ This macro uses the \Package{todonotes} package,
 which is also used for language editor comments.
 For example:
 \begin{tcblisting}{listing only}
-\ATLnote{JS}{Jane}\ATLnote{JS}{Jane}{magenta!20}{magenta}
+\ATLnote{JS}{Jane}{magenta!20}{magenta}
 \end{tcblisting}
 adds macros \Macro{JSnote} and \Macro{JSinote} for notes in the margin and inline.
 Note that you must use the inline variant for notes inside captions and other floating objects.
@@ -1492,9 +1492,10 @@ I recommend you set this as the default command.
 \label{sec:journal}
 
 This section contains some information on where the \LaTeX\ templates for the different journals can be found and how to use them.
-However, with the advent of the ATLAS preprint style, 
+With the advent of the ATLAS preprint style and its use for ATLAS publications, 
 it should no longer be necessary to format papers in the style used by the journals.
-This section is therefore in an appendix.
+However, for papers that are written by a limited number of authors
+the journal may require that the paper be submitted using its style.
 
 The directory \File{journal} contains a very basic paper outline with the preamble needed for different journals.
 So far the \Package{atlaslatex} package has been tested with the classes for Elsevier and APS journals and the style file used for JHEP and JINST.
@@ -1515,7 +1516,15 @@ I have not tested if it is possible to use \Package{biblatex}.
   If you want line numbers in a document typeset using REV\TeX, it is best to use the class option \Option{linenumbers}.
   In addition you should include \Package{atlaspackage} with the option \Option{lineno=false}.
   
-\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}. It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+\item[JHEP]The package can be downloaded from \url{http://jhep.sissa.it/jhep/help/JHEP_TeXclass.jsp}.
+  It contains a style file \File{jheppub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}. 
+  If the author of the paper is not the the ATLAS Collaboration,
+  you should use the macros \Macro{author} and \Macro{affiliation} to specify the names and their instiutions (see the documentation)
+  and should NOT include the \Package{authblk} package.
+
+\item[JINST]The package can be downloaded from \url{https://jinst.sissa.it/jinst/help/helpLoader.jsp?pgType=author}.
+  It contains a style file \File{jinstpub.sty} as well as a \BibTeX\ style file \File{JHEP.bst}.
+  The information on authors is the same as for JHEP.
 \end{description}
 
 
