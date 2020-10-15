@@ -1,5 +1,6 @@
 This new version contains a few updates:
 - Only TeX Live 2013 and later now supported.
+- Add JINST as a journal template.
 - Complete set of TDRs now included. Changed citation ATLAS-TDR-2010-19 to ATLAS-TDR-19.
 - A number of small updates to the default detector description from David Stoker.
 - Major additions to ATLAS-useful.bib from PMG group.
