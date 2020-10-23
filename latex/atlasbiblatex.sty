@@ -40,8 +40,9 @@
 \@ifpackageloaded{biblatex}{%
   % Set block mode
   \typeout{atlasbiblatex: block set to \ABIB@block}
-  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
+  \ExecuteBibliographyOptions{block=\ABIB@block}
   % Set maxbibnames
+  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
   \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
   % backref=true adds page numbers of citations to bibliography
   \ifABIB@backref

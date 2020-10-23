@@ -1,4 +1,5 @@
 2020-10-31  Ian Brock  <Ian.Brock@cern.ch>
+	* Block option was being ignored in atlasbiblatex.sty.
 	* Remove a duplicate reference from ATAS-SUSY.bib.
 2020-10-15  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 09-02-00.
