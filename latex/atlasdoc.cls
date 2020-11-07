@@ -11,7 +11,7 @@
 %-------------------------------------------------------------------------------
 \def\ATPackageVersion{09-02-00}
 
-\ProvidesClass{latex/atlasdoc}[2020/10/15 v.09-02-00 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2020/10/15 v09-02-00 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
