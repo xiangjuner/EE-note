@@ -8,9 +8,6 @@
 # 2019-04-16 Ian Brock (ian.brock@cern.ch): Only overwrite "BASENAME = ..." and not occurences without a space (in help)
 # 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2002.sh should be run
 
-# Remove temporary directory if it exists
-# test -d tmp-atlaslatex && rm -r tmp-atlaslatex
-
 # Decide how to clone atlaslatex - ssh is default
 ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
 BRANCH=''
@@ -49,7 +46,11 @@ else
     exit 1
 fi
 
-# git clone ${ATLASLATEXGIT} tmp-atlaslatex
+# Remove temporary directory if it exists
+test -d tmp-atlaslatex && rm -r tmp-atlaslatex
+
+# Clone the ATLAS LaTeX Git repository.
+git clone ${ATLASLATEXGIT} tmp-atlaslatex
 # Switch to devel branch for testing
 if [ -n "${BRANCH}" ]; then
     cd tmp-atlaslatex 
