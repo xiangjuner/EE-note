@@ -1,9 +1,8 @@
 \documentclass[a4paper]{article}
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
 %-----------------------------------------------------------------------
 % Creates a standard ATLAS cover page for use during ATLAS circulation.
 % During the ATLAS editorial process you usually add the atlascover package
@@ -15,13 +14,13 @@
 
 \usepackage[centering,scale=0.75]{geometry}
 % Either use atlaspackage or specify packages explicitly.
-% \usepackage[minimal, biblatex=false]{\ATLASLATEXPATH atlaspackage}
+% \usepackage[minimal, biblatex=false]{atlaspackage}
 \usepackage{graphicx}
 
 % Need option coverpage to produce a cover.
 % Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft.
-\usepackage[coverpage]{\ATLASLATEXPATH atlascover}
-% \usepackage[CONF,coverpage]{\ATLASLATEXPATH atlascover}
+\usepackage[coverpage]{atlascover}
+% \usepackage[CONF,coverpage]{atlascover}
 
 % hyperref is included in atlascover. Set options here if atlaspackage is not included.
 \hypersetup{colorlinks,breaklinks}
@@ -30,7 +29,7 @@
 
 % Package for creating list of authors and contributors to the analysis.
 % The file atlas-document-metadata.tex includes atlascontribute also.
-\usepackage{\ATLASLATEXPATH atlascontribute}
+\usepackage{atlascontribute}
 
 % Paths for figures.
 \graphicspath{{logos/}}

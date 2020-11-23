@@ -2,11 +2,10 @@
 % An absolute minimal ATLAS document for material to be submitted to HepData etc.
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
 %-------------------------------------------------------------------------------
-\documentclass[HEPDATA, atlasdraft=true, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
+\documentclass[HEPDATA, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
 % Relevant options:
 %  atlasdraft=true|false This document is an ATLAS draft.
 %  texlive=YYYY          Specify TeX Live version (2016 is default)
@@ -14,10 +13,10 @@
 %  paper=a4|letter       Set paper size to A4 (default) or letter
 
 % Extra packages
-\usepackage{\ATLASLATEXPATH atlaspackage}
+\usepackage{atlaspackage}
 
 % Useful macros
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
 
 % Paths for figures
 \graphicspath{{logos/}{figures/}}

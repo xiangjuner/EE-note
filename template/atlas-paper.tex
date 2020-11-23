@@ -9,11 +9,10 @@
 % https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
 %-------------------------------------------------------------------------------
-\documentclass[PAPER, atlasdraft=true, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
+\documentclass[PAPER, atlasdraft=true, texlive=2016, UKenglish]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -33,7 +32,7 @@
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{\ATLASLATEXPATH atlaspackage}
+\usepackage{atlaspackage}
 % Commonly used options:
 %  biblatex=true|false   Use biblatex (default) or bibtex for the bibliography.
 %  backend=bibtex        Use the bibtex backend rather than biber.
@@ -43,10 +42,10 @@
 %  full                  Full set of packages.
 %-------------------------------------------------------------------------------
 % Style file with biblatex options for ATLAS documents.
-\usepackage{\ATLASLATEXPATH atlasbiblatex}
+\usepackage{atlasbiblatex}
 
 % Useful macros
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -59,7 +58,7 @@
 % add macros \JSnote and \JSinote for notes in the margin and inline.
 % Set output=false in order not to print out the notes.
 % Comment this out for the final version of the paper.
-\usepackage[output=true]{\ATLASLATEXPATH atlastodo}
+\usepackage[output=true]{atlastodo}
 
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.

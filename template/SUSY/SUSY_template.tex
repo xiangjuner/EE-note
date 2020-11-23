@@ -5,11 +5,11 @@
 % https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, atlasdraft=true, texlive=2016, USenglish]{\ATLASLATEXPATH atlasdoc}
+\documentclass[NOTE, atlasdraft=true, texlive=2016, USenglish]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -20,14 +20,14 @@
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{\ATLASLATEXPATH atlaspackage}
+\usepackage{atlaspackage}
 % Commonly used options:
 %  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
 %-------------------------------------------------------------------------------
 \usepackage{multirow}
 
 % Useful macros
-\usepackage[jetetmiss]{\ATLASLATEXPATH atlasphysics}
+\usepackage[jetetmiss]{atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -36,13 +36,13 @@
 % See the package for details on the options.
 
 % Package for creating list of authors and contributors to the analysis.
-\usepackage{\ATLASLATEXPATH atlascontribute}
+\usepackage{atlascontribute}
 
 % Add you own definitions here (file atlas-document-defs.sty).
 % \usepackage{atlas-document-defs}
 
 % Paths for figures - do not forget the / at the end of the directory name.
-\graphicspath{{\ATLASLATEXPATH ../logos/}{figures/}}
+\graphicspath{{../../logos/}{figures/}}
 
 %-------------------------------------------------------------------------------
 % Generic document information
