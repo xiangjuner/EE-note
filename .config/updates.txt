@@ -1,7 +1,8 @@
-This new version contains a few updates:
-- Only TeX Live 2013 and later now supported.
-- Add JINST as a journal template.
-- Complete set of TDRs now included. Changed citation ATLAS-TDR-2010-19 to ATLAS-TDR-19.
-- A number of small updates to the default detector description from David Stoker.
-- Major additions to ATLAS-useful.bib from PMG group.
-- Add atlastodo.sty for to-do notes. Add to-do notes package to templates.
+This new version contains a number ofupdates:
+The October 2020 LaTeX update led to options being ignored when passed to a document class or a style file if the filename contained a directory.
+Hence a new style file `atlaslatexpath.sty` has been introduced and should be loaded using
+
+- New style file atlaslatexpath.sty to set search path for style files and document class.
+- New script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
+- The macro \ATLASLATEXPATH should no longer be necessary or be used.
+- Block option was being ignored in atlasbiblatex.sty as of version 07-01-00.
