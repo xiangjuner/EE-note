@@ -56,7 +56,7 @@ default: run_pdflatex
 # default: run_latexmk
 
 .PHONY: run_latexmk
-.PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
+.PHONY: newdocument newnotemetadata newpapermetadata newfiles
 .PHONY: draftcover preprintcover newdata
 .PHONY: version clean cleanpdf help
 
@@ -93,20 +93,20 @@ new: newnote
 newpaper: TEMPLATE=atlas-paper
 newpaper: newdocument newfiles newpapermetadata newauxmat
 
-newpapertexmf: TEMPLATE=atlas-paper
-newpapertexmf: newdocumenttexmf newfiles newpapermetadata newauxmat
+# newpapertexmf: TEMPLATE=atlas-paper
+# newpapertexmf: newdocumenttexmf newfiles newpapermetadata newauxmat
 
 newnote: TEMPLATE=atlas-note
 newnote: newdocument newfiles newnotemetadata
 
-newnotetexmf: TEMPLATE=atlas-note
-newnotetexmf: newdocumenttexmf newfiles newnotemetadata
+# newnotetexmf: TEMPLATE=atlas-note
+# newnotetexmf: newdocumenttexmf newfiles newnotemetadata
 
 newbook: TEMPLATE=atlas-book
 newbook: newdocument newfiles newpapermetadata
 
-newbooktexmf: TEMPLATE=atlas-book
-newbooktexmf: newdocumenttexmf newfiles newpapermetadata
+# newbooktexmf: TEMPLATE=atlas-book
+# newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
 	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
@@ -136,17 +136,17 @@ newdocument:
 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
 	fi
 
-newdocumenttexmf:
-	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
-	  sed 's/\\newcommand\*{\\ATLASLATEXPATH}{latex\/}/% \\newcommand\*{\\ATLASLATEXPATH}{latex\/}/' | \
-	  sed 's/% \\newcommand\*{\\ATLASLATEXPATH}{}/\\newcommand\*{\\ATLASLATEXPATH}{}/' \
-	  >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	fi
+# newdocumenttexmf:
+# 	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
+# 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+# 	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
+# 	  sed 's/\\newcommand\*{\\ATLASLATEXPATH}{latex\/}/% \\newcommand\*{\\ATLASLATEXPATH}{latex\/}/' | \
+# 	  sed 's/% \\newcommand\*{\\ATLASLATEXPATH}{}/\\newcommand\*{\\ATLASLATEXPATH}{}/' \
+# 	  >$(BASENAME).tex; \
+# 	else \
+# 	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+# 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+# 	fi
 
 newpapermetadata:
 	cp template/atlas-paper-metadata.tex $(BASENAME)-metadata.tex
@@ -202,9 +202,9 @@ help:
 	@echo "make latexmk"
 	@echo "You can also adjust the 'default' target."
 	@echo ""
-	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
-	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument] [TEXLIVE=YYYY]"
-	@echo ""
+	# @echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
+	# @echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	# @echo ""
 	@echo "If you need a standalone draft cover give the commands:"
 	@echo "make draftcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
 	@echo "pdflatex mydocument-draft-cover"
