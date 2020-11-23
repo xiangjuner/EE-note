@@ -6,9 +6,9 @@
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{09-00-00}
+\def\ATPackageVersion{10.0.0}
 
-\ProvidesClass{latex/atlasdoc1}[2020/07/17 v.09-00-00 ATLAS deprecated document class]
+\ProvidesClass{atlasdoc1}[2020/11/23 v10.0.0 ATLAS deprecated document class]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -33,7 +33,7 @@
 \DeclareStringOption[2013]{texlive}
 \DeclareStringOption{paper}
 \DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[false]{texmf}
+\DeclareBoolOption[true]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}

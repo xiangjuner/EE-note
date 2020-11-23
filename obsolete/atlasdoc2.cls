@@ -8,9 +8,9 @@
 %
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{07-00-00}
+\def\ATPackageVersion{10.0.0}
 
-\ProvidesClass{latex/atlasdoc}[2019/01/11 v.07-00-00 ATLAS document class]
+\ProvidesClass{atlasdoc2}[2020/11/23 v10.0.0 ATLAS document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -41,7 +41,7 @@
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
 \DeclareBoolOption[true]{floatopt}
-\DeclareBoolOption[false]{texmf}
+\DeclareBoolOption[true]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
