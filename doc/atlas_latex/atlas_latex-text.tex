@@ -364,10 +364,10 @@ You turn on the use of \KOMAScript\ with the option \texttt{koma}.
 For instance, a standard document can be produced using this simple preamble:
 %
 \begin{tcblisting}{listing only}
-  \newcommand*{\ATLASLATEXPATH}{latex/}
-  \documentclass[UKenglish]{\ATLASLATEXPATH atlasdoc}
-  \usepackage{\ATLASLATEXPATH atlaspackage}
-  \usepackage{\ATLASLATEXPATH atlasphysics}
+  \RequirePackage{latex/atlaslatexpath}
+  \documentclass[UKenglish]{atlasdoc}
+  \usepackage{atlaspackage}
+  \usepackage{atlasphysics}
   \graphicspath{{logos/}{figs/}}
 \end{tcblisting}
 %
@@ -771,8 +771,8 @@ This is because arXiv contains a 2016 \TeX\ Live installation.
 Summarising, a typical \Macro{documentclass} command would be:
 \begin{tcblisting}{listing only}
 \pdfoutput=1
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
-\documentclass[cernpreprint, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
+\RequirePackage{latex/atlaslatexpath}
+\documentclass[cernpreprint, texlive=2016, UKenglish]{atlasdoc}
 \end{tcblisting}
 The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
 You should also turn off ATLAS draft cover page --- remove the option \Option{coverpage=true}.
@@ -1330,17 +1330,26 @@ If you want to include these files in Git or SVN, note that you only need to add
 In order to create a new document, you also need the \File{template} directory.
 For a paper, you also need the \File{acknowledgements} directory.
 
-If you want use a centrally installed \texttt{atlaslatex} package, then you would usually unpack the\\
+If you want use a centrally installed \Package{atlaslatex} package, then you would usually unpack the\\
 \File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
 
-If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
-at the beginning of your document. This would enable you to maintain a single copy of each 
-\Package{atlaslatex} version and easily switch between versions.
-For example, you give the command\\
-\verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-08-00/}|
+If you want to use another setup, you should adjust the directory in \File{latex/atlaslatexpath.sty} appropriately.
+This would enable you to maintain a single copy of each \Package{atlaslatex} version and easily switch between versions.
+For example, you specify:
+\verb|\def\input@path{{../atlaslatex-01-08-00/latex/}}|
+in \File{latex/atlaslatexpath.sty}
 to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
 \File{../atlaslatex-01-08-00}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
+
+% If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
+% at the beginning of your document. This would enable you to maintain a single copy of each 
+% \Package{atlaslatex} version and easily switch between versions.
+% For example, you give the command\\
+% \verb|\newcommand*{\ATLASLATEXPATH}{../atlaslatex-01-08-00/}|
+% to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
+% \File{../atlaslatex-01-08-00}.
+% Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
 
 
 %-------------------------------------------------------------------------------
@@ -1417,14 +1426,15 @@ Hence the method described above is the recommended way of installing
 % \verb|https://svn.cern.ch/reps/atlasgroups/pubcom/latex/atlaslatex/trunk|
 
 In the template files, you have to use the command
-\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply change
-\begin{center}
-  \begin{tabular}{ll}
-    From & To \\
-    \midrule
-    \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
-  \end{tabular}
-\end{center}
+\texttt{make newpapertexmf} or \texttt{make newnotetexmf} or simply comment out the line
+\verb|\RequirePackage{latex/atlaslatexpath}|
+% \begin{center}
+%   \begin{tabular}{ll}
+%     From & To \\
+%     \midrule
+%     \verb|\newcommand*{\ATLASLATEXPATH}{latex/}|    & \verb|\newcommand*{\ATLASLATEXPATH}{}| \\
+%   \end{tabular}
+% \end{center}
 
 If you are using traditional \BibTeX\ you also have to change\\
 \verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
@@ -1619,12 +1629,38 @@ Cristina Oropeza, Vasia Mitsou, Chris Hays and Mike Vetterli all made contributi
 
 Sven Menke provided the code so that bold math works in titles correctly.
 Thorsten Kuhl had the idea of defining \Macro{ATLASLATEXPATH}, which makes things much more flexible.
+Some problems occurred with this scheme \TeX{} Live 2020.
+As a result the use of \Macro{ATLASLATEXPATH} was replaced with the \File{atlaslatexpath.sty} style file.
 
 Juan Pedro Araque has done most of the work setting up the PO-GitLab project.
 This resulted in a much smoother submission process for papers and
 an improved handling of auxiliary material.
 
 Knut Zoch provided the code that fixed the line numbering problems with AMS Math \LaTeX\ environments.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-10.0.0}}
+\label{sec:atlaslatex10}
+%-------------------------------------------------------------------------------
+
+\ADOCnew{10.0.0} switches to Semantic Versioning.
+
+The major change in this version is in the way that the class and style files are included.
+This had to be changed as the result of a bug introduced in the October 2020 update of \LaTeX.
+The \LaTeX{} update led to options being ignored when passed to a document class or a style file,
+if the filename contained a directory.
+While this bug will probably be fixed at some point,
+it in general appears to be better to adjust the macro \Macro{input@path}
+to specify the directory that should be searched for the ATLAS \LaTeX{} packages.
+Hence a new style file \File{atlaslatexpath.sty} has been introduced and should be loaded using
+\begin{tcblisting}{listing only}
+\RequirePackage{latex/atlaslatexpath}
+\end{tcblisting}
+before the \Macro{documentclass}.
+
+This change implies that all main files have to be updated.
+A script \File{scripts/atlaslatex\_2020.sh} is provided that should make the necessary changes.
 
 
 %-------------------------------------------------------------------------------

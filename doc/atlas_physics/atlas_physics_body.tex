@@ -11,9 +11,9 @@ Options are parsed with the \Package{kvoptions} package, which is included by de
 The style file can included in the preamble of your paper with the usual
 syntax:
 %
-\begin{verbatim}
-  \usepackage{\ATLASLATEXPATH atlasphysics}
-\end{verbatim}
+\begin{tcblisting}{listing only}
+\usepackage{atlasphysics}
+\end{tcblisting}
 %
 The file is actually split into smaller files,
 which can be included or not using options.
@@ -40,17 +40,19 @@ The following options are available, where the default setting is given in paren
 \item[unit](true) Units that used to be defined -- not needed if you use \Package{siunitx} or \Package{hepunits}.
 \item[xref](true) Useful abbreviations for cross-references.
 \item[texlive=YYYY](2016) Set if you use an older version of \TeX\ Live like 2013.
-\item[texmf] Use the syntax \Macro{usepackage\{package\}}
+\item[texmf](true) Use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{\textbackslash ATLASLATEXPATH package\}} to include packages.
   This is needed if you install \Package{atlaslatex} centrally,
   rather than in a \File{latex} subdirectory.
 \end{description}
 Note that \Option{BSM} and \Option{BSM=true} are equivalent.
 Use the syntax \Option{option=false} to turn off an option.
+\ADOCnew{10.0.0} \Macro{ATLASLATEXPATH} is no longer used,
+so the option \Option{texmf} has been set to \Option{true}.
 
 If the  option \Option{texmf} is included, the subfiles are included using the command:
 \verb|\RequirePackage{atlasparticle}| etc. instead of \verb|\RequirePackage{\ATLASLATEXPATH atlasparticle}|.
-This is useful if you install the ATLAS \LaTeX\ package in a central directory such as \File{\$\{HOME\}/texmf/tex/latex}.
+\ADOCnew{10.0.0} This is now the default option.
 
 All definitions are done in a consistent way using \verb|\newcommand*|.
 All definitions use \verb|\ensuremath| where appropriate and are terminated with
