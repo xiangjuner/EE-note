@@ -45,12 +45,12 @@ More detailed information about the package can be found under:
 ## How to use
 
 The general idea is that, for each document, this package should be cloned into a new directory.
-It is assumed that all style files are in a directory latex, which is a subdirectory of 
-the one in which the main document sits.
+It is assumed that all style files are in a directory `latex`,
+which is a subdirectory of the one in which the main document sits.
+The `latex` subdirectory can of course be a link to a central style directory.
 
-The latex subdirectory can of course be a link to a central style directory.
-
-You can use the `\ATLASLATEXPATH` variable to specify an arbitrary directory.  
+The directory search path (`TEXINPUTS`) is supplemented by the `latex` directory in `atlaslatexpath.sty`.
+This replaced the use of `\ATLASSLATEXPATH` in Version 10.0.
 
 To make a new paper/CONF note/PUB note draft give the command:
 

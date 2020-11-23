@@ -2,7 +2,7 @@
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
+Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 
 All notable changes to the ATLAS LaTeX package are documented in this file.
 
@@ -12,16 +12,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
-## [Unreleased] - 2020-10-XX
+## [10.0.0] - 2020-11-23
+
+The October 2020 LaTeX update led to options being ignored when passed to a document class or a style file if the filename contained a directory.
+While this bug will probably be fixed at some point,
+it in general appears to be better to adjust the macro `\input@path`
+to specify the directory that should be searched for the ATLAS LaTeX packages.
+Hence a new style file `atlaslatexpath.sty` has been introduced and should be loaded using
+
+```
+\RequirePackage{latex/atlaslatexpath}
+```
+
+before the `\documentclass`.
+
 ### Added
+- New style file `atlaslatexpath.sty` to set search path for style files and document class.
+- New script `atlaslatex_2020.sh` to make adjustments to main files for TeX Live 2020.
 ### Changed
-- Changed version numbering from 09-04-00 to 9.4.0 (follows Semantic Versioning).
+- Changed version numbering from 09-03-00 to 10.0.0 (follows Semantic Versioning).
+- Templates and documentation switched to use of `atlaslatexpath.sty`.
+- `atlaslatex_update.sh` script can self update and checks for use of `\ATLASLATEXPATH` macro.
 ### Deprecated
+- The macro `\ATLASLATEXPATH` should no longer be necessary or be used.
 ### Removed
+- Use of the `\ATLASLATEXPATH` macro in templates and documentation.
+- Removed `texmf` targets in `Makefile`, as regular targets work in the same way.
 ### Fixed
 - Block option was being ignored in `atlasbiblatex.sty` as of version 07-01-00.
 - Remove a duplicate reference from ATAS-SUSY.bib.
-### Security
 
 ## [09-03-00] - 2020-10-15
 ### Added
@@ -93,8 +112,73 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Changed
 - Rename macro `\Ref` to `\Refn` and `\Refs` to `\Refns`, as `hyperref` defines `\Ref` in TeX Live 2019.
 ### Removed
-- `\Ref` macro removed due to conflict with hyperref in TeX Live 2019.
+- `\Ref` macro removed due to conflict with `hyperref` in TeX Live 2019.
 
+## [07-05-01] - 2019-09-13
+### Added
+- Set default table of contents depth to section and add `tocdepth` option.
+- July update of publications (except CMS).
+- Add some, but not all, of the ATLAS TDRs to ATLAS.bib.
+- Small updates to SUSY templates.
+- Fix up a number of references in `ATLAS-useful.bib` and add a few new ones.
+### Removed
+- Remove usage of `tocloft` package, as it can conflict with KOMA-Script.
+
+## [07-04-00] - 2019-05-21
+### Changed
+- Tweak the logic of the `backref` option. Now off by default, except for draft documents.
+
+## [07-03-00] - 2019-05-09
+### Added
+- April update of publications.
+### Changed
+- Tweak `atlaslatex_update.sh` to not overwrite help text with `BASENAME`.
+- A few fixes to references and detector description.
+
+## [07-02-00] - 2019-03-19
+### Added
+- February update of publications.
+- Run 2 detector description added.
+- Update ATLAS-SUSY.bib and ATLAS-useful.bib.
+
+## [07-01-01.] - 2019-02-28
+### Changed
+- Update ATLAS-SUSY.bib with correct Errata format and other fixes.
+
+## [07-01-00] - 2019-02-22
+### Added
+- January update of publications.
+- Add option `backref` to `atlasbiblatex`.
+- Add commented out authorlist to paper template.
+- Add INT note templates for SUSY group. These are a WIP and subject to further change.
+
+## [07-00-00] - 2019-01-11
+### Added
+- November update of publications.
+- Add `\JHEP` as a journal.
+### Changed
+- Rewrite macros for creating cover and title pages.
+    - Copyright notice should now always be correctly positioned.
+    - Less space used for title etc.
+    - Tweaking of offsets should no longer be necessary.
+    - Warnings about overfull hboxes fixed.
+    - Previous version available as `atlasdoc2.cls` and `atlascover2.sty`.
+- Always use paper=letter option for US paper size.
+- Some tweaks so turning on language editor comments should not change text width.
+
+
+## [06-00-00] - 2018-11-30
+### Added
+- October update of publications.
+- Added a script `tex_dollars.py` to convert `$...$` to `\(...\)`.
+### Changed
+- Number and unit spacing in bib files changed to `~` instead of `\;`.
+- Use `\text` instead of `\mbox`, `\textrm`, `\mathrm` in bib files.
+- Use `\(...\)` instead of `$...$` in template and bib files.
+- Use `firstinits` instead of `giveninits` as `biblatex` option for TeX Live < 2016 instead of 2015.
+- Moved `atlaslatex_update.sh` script to scripts subdirectory.
+
+## [Unreleased] - 2020-11-XX
 ## [0.0] - 2019-XX-YY
 ### Added
 ### Changed

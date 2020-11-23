@@ -1,6 +1,15 @@
-2020-10-31  Ian Brock  <Ian.Brock@cern.ch>
+2020-11-23  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 10.0.0
+	* New style file atlaslatexpath.sty to set search path for style files and document class.
+	* New script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
+	* Changed version numbering from 09-03-00 to 10.0.0 (follows Semantic Versioning).
+	* Templates and documentation switched to use of atlaslatexpath.sty.
+	* atlaslatex_update.sh script can self update and checks for use of \ATLASLATEXPATH macro.
+	* The macro \ATLASLATEXPATH should no longer be necessary or be used.
+	* Removed texmf targets in Makefile, as regular targets work in the same way.
 	* Block option was being ignored in atlasbiblatex.sty as of version 07-01-00.
 	* Remove a duplicate reference from ATAS-SUSY.bib.
+
 2020-10-15  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 09-02-00.
 	* August update of publications.
@@ -296,7 +305,7 @@
 	* Small fix to link from journal information to DOI.
 	* Small updates to documentaton on ATLAS LaTeX.
 	* Add xspace to aMC@NLO.
-	* Adjusted journal examples and documentation to use	\ATLASLATEXPATH.
+	* Adjusted journal examples and documentation to use \ATLASLATEXPATH.
 	This makes compilation with Windows easier, as links are no longer needed.
 2016-01-29  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 01-07-09.
