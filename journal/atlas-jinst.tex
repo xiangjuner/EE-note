@@ -2,20 +2,21 @@
 % Standard ATLAS paper template with JINST style
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../latex/}
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
 %-------------------------------------------------------------------------------
 \documentclass[11pt,a4paper,UKenglish,texlive=2016]{article}
 
 \usepackage{jinstpub}
 
 % ATLAS packages
-\usepackage[biblatex=false]{\ATLASLATEXPATH atlaspackage}
+\usepackage[biblatex=false]{atlaspackage}
 
 % Extra packages
 % \usepackage{showframe}
 
 % Useful macros
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
 
 % Paths for figures
 \graphicspath{{../logos/}{figures/}}
@@ -24,10 +25,10 @@
 \hypersetup{pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}}
 
 % Either include atlascover or atlasmetadefs
-\usepackage[coverpage=true]{\ATLASLATEXPATH atlascover}
+\usepackage[coverpage=true]{atlascover}
 
 % Use the atlasmetadefs package so that you can use atlas-document-metadata.tex without changes
-% \usepackage{\ATLASLATEXPATH atlasmetadefs}
+% \usepackage{atlasmetadefs}
 \newcommand*{\DocumentStyle}{\texttt{jinstpub} style}
 
 % Title, abstract and document 
