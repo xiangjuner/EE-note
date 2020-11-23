@@ -3,20 +3,20 @@
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[datetop=true, UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[datetop=true, UKenglish, texlive=2016, texmf]{atlasdoc}
 % \KOMAoptions{DIV=8}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage{\ATLASLATEXPATH atlaspackage}
-\usepackage{\ATLASLATEXPATH atlasbiblatex}
+\usepackage{atlaspackage}
+\usepackage{atlasbiblatex}
 
 \usepackage{authblk}
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
 
 % Macro to add to-do notes (for several authors). Uses the todonotes package.
-\usepackage{\ATLASLATEXPATH atlastodo}
+\usepackage{atlastodo}
 \ATLnote{JS}{Jane}{magenta!20}{magenta}
 \ATLnote{IB}{Ian}{green!20}{green!50!black!60}
 

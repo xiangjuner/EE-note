@@ -3,22 +3,22 @@
 % This variant uses the hepparticle and hepprocess options.
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[mhchem, USenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[mhchem, USenglish, texlive=2016]{atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[default]{\ATLASLATEXPATH atlaspackage}
-\usepackage[backref=false]{\ATLASLATEXPATH atlasbiblatex}
+\usepackage[default]{atlaspackage}
+\usepackage[backref=false]{atlasbiblatex}
 \usepackage{xtab}
 \usepackage{authblk}
 
 % Include all style files
 \usepackage[BSM, hion, jetetmiss,
   journal, math, misc, other, hepparticle=true, hepitalic=true, particle,
-  hepprocess=true, process, snippets, unit, xref]{\ATLASLATEXPATH atlasphysics}
-%\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
+  hepprocess=true, process, snippets, unit, xref]{atlasphysics}
 
+\usepackage{../atlas_doc-defs}
 \input{atlas_physics_defs}
 
 %-------------------------------------------------------------------------------

@@ -3,18 +3,18 @@
 % Responsible: Ian Brock (Ian.Brock@cern.ch)
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[UKenglish, texlive=2016]{atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[minimal]{\ATLASLATEXPATH atlaspackage}
-\usepackage[articletitle=true, showdoi=false]{\ATLASLATEXPATH atlasbiblatex}
+\usepackage[minimal]{atlaspackage}
+\usepackage[articletitle=true, showdoi=false]{atlasbiblatex}
 \usepackage[autostyle=true]{csquotes}
 \usepackage[capitalise]{cleveref}
 
 \usepackage{authblk}
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
 \usepackage{../atlas_doc-defs}
 \lstset{
   basicstyle=\ttfamily,
