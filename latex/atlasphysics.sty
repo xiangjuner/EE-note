@@ -8,7 +8,7 @@
 %
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasphysics}[2020/10/15 v09-02-00 ATLAS physics macros]
+\ProvidesPackage{atlasphysics}[2020/11/23 v10.0.0 ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 \DeclareBoolOption[true]{unit}
 \DeclareBoolOption[true]{xref}
 \DeclareStringOption[2016]{texlive}
-\DeclareBoolOption[false]{texmf}
+\DeclareBoolOption[true]{texmf}
 \ProcessKeyvalOptions*
 
 \typeout{atlasphysics: APHY@texlive is [\APHY@texlive]}

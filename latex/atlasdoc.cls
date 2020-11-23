@@ -9,9 +9,8 @@
 %
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{09-02-00}
-
-\ProvidesClass{latex/atlasdoc}[2020/10/15 v09-02-00 ATLAS document class]
+\def\ATPackageVersion{10.0.0}
+\ProvidesClass{atlasdoc}[2020/11/23 v10.0.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -47,7 +46,7 @@
 \DeclareBoolOption[true]{floatopt}
 \DeclareBoolOption[true]{mathlines}
 \DeclareBoolOption[true]{linenofix}
-\DeclareBoolOption[false]{texmf}
+\DeclareBoolOption[true]{texmf}
 \DeclareBoolOption[true]{newtx}
 \DeclareBoolOption[false]{txfonts}
 \DeclareBoolOption[false]{libertine}
@@ -577,14 +576,15 @@
 
 % Pass comment option to atlascomment.sty
 \ifADOC@LANGEDIT
+  \def\ADOC@atlascomment{\ATLASLATEXPATH atlascomment}
   \ifADOC@LANGSHOW
     \typeout{atlasdoc: turn on display of language editor comments}
-    \PassOptionsToPackage{comment=true}{\ATLASLATEXPATH atlascomment}
+    \PassOptionsToPackage{comment=true}{\ADOC@atlascomment}
   \else
     \typeout{atlasdoc: turn off display of language editor comments}
-    \PassOptionsToPackage{comment=false}{\ATLASLATEXPATH atlascomment}
+    \PassOptionsToPackage{comment=false}{\ADOC@atlascomment}
   \fi
-  \RequirePackage{\ATLASLATEXPATH atlascomment}
+  \RequirePackage{\ADOC@atlascomment}
 \fi
 
 % Length needed for parbox/minipage in title page

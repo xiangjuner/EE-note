@@ -8,8 +8,8 @@
 %
 % Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
+\ProvidesPackage{atlaspackage}[2020/11/23 v10.0.0 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latex/atlaspackage}[2020/10/15 v09-02-00 ATLAS LaTeX packages]
 
 %-------------------------------------------------------------------------------
 % More advanced if syntax
@@ -382,17 +382,18 @@
 \ifAPKG@biblatex
   % \typeout{atlaspackage: block set to \APKG@block}
   % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
+  \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
   \ifx\APKG@block\@empty%
     \relax
   \else
     \typeout{atlaspackage: passing block option to biblatex}
-    \PassOptionsToPackage{block=\APKG@block}{\ATLASLATEXPATH atlasbiblatex}
+    \PassOptionsToPackage{block=\APKG@block}{\ADOC@atlasbiblatex}
   \fi
   \ifx\APKG@maxbibnames\@empty%
     \relax
   \else
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
-    \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ATLASLATEXPATH atlasbiblatex}
+    \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
   \fi
   \ifthenelse{\APKG@texlive < 2016}{%
     \RequirePackage[backend=\APKG@backend,
