@@ -1,7 +1,7 @@
 #! /bin/bash
-# Script to update atlaslatex version from the Git master
+# Script to update atlaslatex version from the Git master.
 
-# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 
 # Changes:
 # 2018-08-14 Ian Brock (ian.brock@cern.ch): BASENAME should be set correctly if Makefile is overwritten.

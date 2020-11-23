@@ -1,10 +1,10 @@
 #! /bin/bash
-# Script to adjust atlaslatex documets to use atlaslatexpath style file
+# Script to adjust atlaslatex documents to use atlaslatexpath style file.
 
-# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
 
 # Changes:
-# 2020-11-21: First version to get round TeX Live 202 problem with directories in \usepackage etc.
+# 2020-11-23 Ian Brock (ian.brock@cern.ch): First version to get round TeX Live 2020 problem with directories in \usepackage etc.
 
 function cf_files {
     # echo "Compare ${afile} with ${lfile}"
@@ -21,7 +21,7 @@ function cf_files {
     fi
 }
 
-DIR=`basename $(PWD)`
+DIR=`basename ${PWD}`
 echo $DIR
 
 # Check we are in the right directory
@@ -63,3 +63,4 @@ done
 
 # Clean up temporary files
 test -e ${lfile}.tmp1 && rm ${lfile}.tmp1
+test -e ${lfile}.tmp2 && rm ${lfile}.tmp2
