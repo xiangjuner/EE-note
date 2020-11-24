@@ -139,7 +139,7 @@ for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
 done
 
 # Remove temporary directory
-# rm -rf tmp-atlaslatex
+rm -rf tmp-atlaslatex
 
 # 2020-11-21 ATLASLATEXPATH should no longer be used
 mfile=${DIR}.tex
