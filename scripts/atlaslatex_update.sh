@@ -79,17 +79,21 @@ for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
     if [ -e ${lfile} ]; then
         cmp --silent ${lfile} ${afile}; cmpStatus=$?
         echo "Comparing ${lfile} with ${afile}"
-        echo "Status is ${cmpStatus}"
+        # echo "Status is ${cmpStatus}"
         if [ $cmpStatus -eq 0 ]; then
             echo "No change to file ${lfile}"
         else
             cf_files "${lfile}" "${afile}"
             echo "+++ ${lfile} updated. You should now run ${lfile}"
+            # Remove temporary directory
+            rm -rf tmp-atlaslatex
             exit 1
         fi
     else
         cp ${afile} ${lfile}
         echo "+++ ${lfile} updated. You should now run ${lfile}"
+        # Remove temporary directory
+        rm -rf tmp-atlaslatex
         exit 1
     fi
 done
