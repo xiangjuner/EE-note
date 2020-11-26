@@ -77,18 +77,20 @@ function cf_files {
 for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
     afile=tmp-atlaslatex/scripts/$(basename $lfile)
     if [ -e ${lfile} ]; then
-        cmp --silent ${lfile} ${afile}
-        cmpStatus=$?
+        cmp --silent ${lfile} ${afile}; cmpStatus=$?
+        echo "Comparing ${lfile} with ${afile}"
+        echo "Status is ${cmpStatus}"
         if [ $cmpStatus -eq 0 ]; then
-            echo "No change to file $1"
+            echo "No change to file ${lfile}"
         else
             cf_files "${lfile}" "${afile}"
-            echo "\n +++ ${lfile} updated. Rerun this script"
+            echo "+++ ${lfile} updated. You should now run ${lfile}"
             exit 1
         fi
     else
         cp ${afile} ${lfile}
-        echo "\n +++ ${lfile} updated. Rerun this script"
+        echo "+++ ${lfile} updated. You should now run ${lfile}"
+        exit 1
     fi
 done
 
