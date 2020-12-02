@@ -89,6 +89,7 @@ If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOM
 \begin{bashlisting}
 make newpapertexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 make newnotetexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
 \end{bashlisting}
 %
 See \cref{sec:texmf} for more details.
@@ -1331,15 +1332,15 @@ In order to create a new document, you also need the \File{template} directory.
 For a paper, you also need the \File{acknowledgements} directory.
 
 If you want use a centrally installed \Package{atlaslatex} package, then you would usually unpack the\\
-\File{atlaslatex-XX-YY-ZZ.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
+\File{atlaslatex-X.Y.Z.tds.zip} file into your \File{texmf} tree --- see \cref{sec:texmf}.
 
 If you want to use another setup, you should adjust the directory in \File{latex/atlaslatexpath.sty} appropriately.
 This would enable you to maintain a single copy of each \Package{atlaslatex} version and easily switch between versions.
 For example, you specify:
-\verb|\def\input@path{{../atlaslatex-01-08-00/latex/}}|
+\verb|\def\input@path{{../atlaslatex-10.0.0/latex/}}|
 in \File{latex/atlaslatexpath.sty}
-to use version 01-08-00 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
-\File{../atlaslatex-01-08-00}.
+to use version 10.0.0 of the \Package{atlaslatex} package, which you have unpacked into the directory tree
+\File{../atlaslatex-10.0.0}.
 Such a structure makes it very easy to switch between \Package{atlaslatex} versions without breaking anything!
 
 % If you want to use another setup, you should set the variable \Macro{ATLASLATEXPATH} appropriately
@@ -1389,23 +1390,24 @@ and how you should set up your system can be found on the PubCom LaTEX FAQ~\cite
 As discussed above, the \texttt{atlasdoc} class and the style files can all be found in the 
 \File{latex} subdirectory. The template documents are usually set up to pick up the style files from there.
 If you want to use the centrally installed version,
-you should first copy \File{Makefile} and the \File{template} directory from 
+you should first copy \File{Makefile}, the \File{template} directory and the \File{bib} directory from 
 \File{\$\{HOME\}/texmf/source/atlaslatex} to the directory where you want to create your document.
 For the main document, you can then use the command 
-\texttt{make newpapertexmf} or \texttt{make newnotetexmf} to get a template which uses the
+\texttt{make newpapertexmf}, \texttt{make newnotetexmf} or \texttt{make newbooktemmf} to get a template which uses the
 centrally installed style files.
 
-If you want to install the package in a central area, use the \File{atlaslatex-XX-YY-ZZ.tds.zip} file.
-Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there. To do it by hand you can do:
-\begin{itemize}
-\item unpack the tarball;
-\item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
-\item copy the contents of the \File{bib} directories 
-  to \texttt{\$\{HOME\}/texmf/bib}.
-\end{itemize}
-It is more complicated to checkout part of a Git repository.
-Hence the method described above is the recommended way of installing
-\Package{atlaslatex} in your \File{texmf} tree.
+If you want to install the package in a central area, use the \File{atlaslatex-X.Y.Z.tds.zip} file.
+Change your directory to \File{\$\{HOME\}/texmf} and unzip the file there.
+% To do it by hand you can do:
+% \begin{itemize}
+% \item unpack the tarball;
+% \item copy the \texttt{latex} directory to \File{\$\{HOME\}/texmf/tex/latex/atlaslatex};
+% \item copy the contents of the \File{bib} directories 
+%   to \texttt{\$\{HOME\}/texmf/bib}.
+% \end{itemize}
+% It is more complicated to checkout part of a Git repository.
+% Hence the method described above is the recommended way of installing
+% \Package{atlaslatex} in your \File{texmf} tree.
 % You can also checkout the two directory trees from SVN:
 % {\small
 % \begin{verbatim}
