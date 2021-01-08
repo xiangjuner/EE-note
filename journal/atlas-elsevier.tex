@@ -1,8 +1,10 @@
 %-------------------------------------------------------------------------------
 % Standard ATLAS paper template with Elsevier class
 %-------------------------------------------------------------------------------
-% Specify where ATLAS LaTeX style files can be found.
-\RequirePackage{latex/atlaslatexpath}
+% Specify where ATLAS LaTeX style files can be found - adjust if necessary
+\makeatletter
+\def\input@path{{../latex/}}
+\makeatother
 %-------------------------------------------------------------------------------
 \documentclass[UKenglish,texlive=2016]{elsarticle}
 

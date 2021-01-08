@@ -2,8 +2,10 @@
 % Standard ATLAS paper template with revtex class
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-% Specify where ATLAS LaTeX style files can be found.
-\RequirePackage{latex/atlaslatexpath}
+% Specify where ATLAS LaTeX style files can be found - adjust if necessary
+\makeatletter
+\def\input@path{{../latex/}}
+\makeatother
 %-------------------------------------------------------------------------------
 % Add option linenumbers to create line numbers
 \documentclass[aps,prd,reprint,USenglish,texlive=2016]{revtex4-1}
