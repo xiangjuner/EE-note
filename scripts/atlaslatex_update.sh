@@ -1,12 +1,12 @@
 #! /bin/bash
 # Script to update atlaslatex version from the Git master.
 
-# Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
+# Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 
 # Changes:
 # 2018-08-14 Ian Brock (ian.brock@cern.ch): BASENAME should be set correctly if Makefile is overwritten.
 # 2019-04-16 Ian Brock (ian.brock@cern.ch): Only overwrite "BASENAME = ..." and not occurences without a space (in help)
-# 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2002.sh should be run
+# 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2020.sh should be run
 
 # Decide how to clone atlaslatex - ssh is default
 ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
@@ -74,6 +74,8 @@ function cf_files {
 }
 
 # Self-update scripts first
+test -d scripts || mkdir scripts
+scriptupdate=0
 for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
     afile=tmp-atlaslatex/scripts/$(basename $lfile)
     if [ -e ${lfile} ]; then
@@ -83,20 +85,21 @@ for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
         if [ $cmpStatus -eq 0 ]; then
             echo "No change to file ${lfile}"
         else
+            scriptupdate=1
             cf_files "${lfile}" "${afile}"
             echo "+++ ${lfile} updated. You should now run ${lfile}"
-            # Remove temporary directory
-            rm -rf tmp-atlaslatex
-            exit 1
         fi
     else
+        scriptupdate=1
         cp ${afile} ${lfile}
         echo "+++ ${lfile} updated. You should now run ${lfile}"
-        # Remove temporary directory
-        rm -rf tmp-atlaslatex
-        exit 1
     fi
 done
+if [ $scriptupdate -eq 1 ]; then
+    # Remove temporary directory
+    rm -rf tmp-atlaslatex
+    exit 1
+fi
 
 # Class and style files
 for lfile in latex/*.cls latex/*.sty; do
