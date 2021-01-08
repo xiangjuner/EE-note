@@ -7,10 +7,9 @@
 % Note that this file can be overwritten when atlaslatex is updated.
 % if TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
 %
-% Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
+% Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{10.0.0}
-\ProvidesClass{atlasdoc}[2020/11/23 v10.0.0 ATLAS document class]
+\def\ATPackageVersion{10.1.0}\ProvidesClass{atlasdoc}[2021/01/08 v10.1.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -393,7 +392,11 @@
     \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
   }
   % Table of contents down to \ADOC@tocdepth which is 1 by default
-  \setcounter{tocdepth}{\ADOC@tocdepth}
+  \ifthenelse{\ADOC@texlive < 2014}{%
+    \setcounter{tocdepth}{2}
+  }{%
+    \setcounter{tocdepth}{\ADOC@tocdepth}
+  }
   % Figure and table captions
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
