@@ -5,7 +5,7 @@ See ChangeLog or Git log for history of changes.
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration
+Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration
 
 ------
 

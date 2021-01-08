@@ -2,7 +2,7 @@
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2020 CERN for the benefit of the ATLAS collaboration.
+Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 
 All notable changes to the ATLAS LaTeX package are documented in this file.
 
@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
+
+## [10.1.0] - 2021-01-08
+### Added
+- November update of publications.
+### Removed
+- Get rid of `latex` link in journal directory.
+### Fixed
+- Fixed =atlaslatex-update.py= self-update to only have to be run once.
+- =tocdepth= fixed for TeX Live 2013 (option does not work).
+### Security
 
 ## [10.0.0] - 2020-11-23
 

@@ -1,3 +1,9 @@
+2021-01-08  Ian Brock  <Ian.Brock@cern.ch>
+	* Tag as version 10.1.0
+	* November update of publications.
+	* Fixed atlaslatex-update.py self-update to only have to be run once.
+	* tocdepth fixed for TeX Live 2013 (option does not work).
+	* Get rid of latex link in journal directory.
 2020-11-23  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 10.0.0
 	* New style file atlaslatexpath.sty to set search path for style files and document class.

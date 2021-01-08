@@ -1,7 +1,7 @@
-This new version contains a number ofupdates:
+This new version contains a number of updates:
 The October 2020 LaTeX update led to options being ignored when passed to a document class or a style file if the filename contained a directory.
-Hence a new style file `atlaslatexpath.sty` has been introduced and should be loaded using
 
+- November update of publications.
 - New style file atlaslatexpath.sty to set search path for style files and document class.
 - New script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.
