@@ -8,6 +8,7 @@
 
 # Generic files to ignore
 *.aux
+*.bak
 *.bcf
 *.bbl
 *-blx.bib
