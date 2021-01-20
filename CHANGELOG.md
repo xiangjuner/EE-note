@@ -12,14 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
+## [Unreleased] - 2021-01-XX
+### Added
+- `longtable` is now an option for `atlaspackage.sty` and `atlascontribute.sty`.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
 ## [10.1.0] - 2021-01-08
 ### Added
 - November update of publications.
 ### Removed
 - Get rid of `latex` link in journal directory.
 ### Fixed
-- Fixed =atlaslatex-update.py= self-update to only have to be run once.
-- =tocdepth= fixed for TeX Live 2013 (option does not work).
+- Fixed `atlaslatex-update.py` self-update to only have to be run once.
+- `tocdepth` fixed for TeX Live 2013 (option does not work).
 ### Security
 
 ## [10.0.0] - 2020-11-23
@@ -188,12 +197,125 @@ before the `\documentclass`.
 - Use `firstinits` instead of `giveninits` as `biblatex` option for TeX Live < 2016 instead of 2015.
 - Moved `atlaslatex_update.sh` script to scripts subdirectory.
 
-## [Unreleased] - 2020-11-XX
-## [0.0] - 2019-XX-YY
+
+## [05-09-00] - 2018-10-29
+### Added
+-  September update of publications.
+-  Add INT note templates for EXOT group. These are a WIP and subject to further change.
+### Changed
+-  Updated acknowledgements.
+
+## [05-08-00] - 2018-10-11
+### Added
+-  July and August updates of publications.
+-  Added bib files `ATLAS-useful.bib` and `ATLAS-SUSY.bib`.
+-  Start adding text snippets to new `atlassnippets.sty` style file.
+-  Add microtype package to standard packages that are included.
+### Changed
+-  A few tweaks to box sizes to get the copyright more often in the right place.
+-  Use `latexmk` to make documentation.
+-  Changed instructions for references for big collaborations (only collaboration name).
+### Removed
+-  Moved `atlas_paper` to `atlaslatex-admin`, as the ATLAS Style Guide should contain everything.
+### Fixed
+-  `BASENAME` should be set correctly if Makefile is overwritten via `atlaslatex_update.sh`.
+
+## [05-07-00] - 2018-08-02
+### Added
+-  May and June updates of publications.
+
+## [05-06-00] - 2018-05-15
+### Added
+-  April updates of publications.
+-  Start adding copyright statements and LICENSE so code can be made public.
+### Changed
+-  `atlas_physics` has a UK and a US version.
+-  Make `\dif` language sensitive.
+
+## [05-05-00] - 2018-05-04
+### Added
+-  March update of publications.
+-  Added `\NIMA` as a journal.
+### Deprecated
+-  Moved all old/obsolete style files to an obsolete directory.
+-  Move `bst` directory with traditional BibTeX style files to obsolete.
+
+## [05-04-00] - 2018-03-16
+### Added
+-  February updates of publications.
+-  Add bookmarks to PDF file via `hyperref`.
+-  Add a script `atlaslatex_update.sh` to be able to update your atlaslatex version.
+### Deprecated
+-  Move old logos to an obsolete directory.
+-  Move obsolete style files to same directory.
+-  Move `lineno.sty` and `authblk.sty` to same directory.
+
+## [05-03-00] - 2018-02-20
+### Added
+-  January updates of publications.
+### Changed
+-  Updated acknowledgements.
+-  Tables document has captions above table.
+### Fixed
+-  Fix language editor comments so that they also work in captions etc.
+
+## [05-02-02] - 2018-01-11
+### Added
+-  December updates of publications.
+-  Added `\tauhad, \taulep, \tauhadvis` and `\taup` definitions.
+-  Added `\xspace` to journal names in `atlasjournal.sty`.
+### Changed
+-  Allow both `cernpreprint` and `PAPER` options.
+-  Adjust some definitions to follow ATLAS Style Guide.
+-  Move `\pileup` to `atlasmisc.sty`.
+-  `\KT` from `atlasmisc.sty` now `\kperp`.
+-  `\RcaloM` now `\Rcalom`
+
+## [05-01-03] - 2017-12-12
+### Fixed
+-  CERN preprint ID corrected.
+
+## [05-01-02] - 2017-11-30
+### Added
+-  November update of publications.
+-  Add `atlascomment` package for language editors.
+-  Add option `LANGEDIT` (and `LANGSHOW`) to `atlasdoc` to turn on display of comments.
+### Changed
+-  Abstract in `BOOK` now properly justified.
+-  The `atlasmetadefs.sty` style file should no longer be necessary when using `atlasdoc`.
+### Deprecated
+-  Moved `atlasdoc1.cls` and `atlascover1.sty` to obsolete directory.
+### Removed
+### Fixed
+
+## [05-00-01] - 2017-11-07
+### Added
+-  September and October updates of publications.
+-  Add a proper title page for the `BOOK` option.
+-  Add `atlasdraft` option to indicate if the document is a draft.
+-  Add option abstract, which should be set to false for books without an abstract.
+-  A skeleton Auxiliary Material file is included by default for papers.
+-  Add `percentspace` option to `atlaspackage` so space between number and percent can be turned off.
+-  Add `\MADGRAPHV` and `\MGMCatNLOV` to `atlasmisc.sty`.
+### Changed
+-  Book abstract is put on a separate page.
+-  The `auxmat` option has been renamed to `HEPDATA` to reflect its usage.
+-  Move from `scrpage2` to `scrlayer-scrpage` package for TeX Live > 2014.
+-  Titles for `report` and `misc` bibliography entries by default in italics.
+-  Pages abbreviation removed also for "english" as language.
+
+## [Unreleased] - 2021-11-XX
 ### Added
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [05-0X-YY] - 2018-XX-YY
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
 
