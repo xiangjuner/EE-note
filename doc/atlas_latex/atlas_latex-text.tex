@@ -219,8 +219,9 @@ Note that the \Package{atlascontribute} package requires that the packages
 \Package{array} and \Package{booktabs} be installed.
 If the list of contributors is very long, it may spread over more than one page.
 The \Package{tabular} environment does not like this.
-Add the option \Option{xtab} to use \Package{xtab} instead.
-This option of course also requires that the package \Package{xtab} is installed.
+Add the option \Option{longtable} to use \Package{longtable},
+the option \Option{xtab} to use \Package{xtab} instead.
+This option of course also requires that the \Package{xtab} or \Package{longtable} package is installed.
 
 
 %-------------------------------------------------------------------------------
@@ -565,7 +566,8 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{physics}: mathematics for physics;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
-\item \texttt{xtab} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
+\item \texttt{longtable} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
+  As an alternative you can include the use the option \Option{xtab} to use the \Package{xtab} package instead.
 \end{itemize}
 The above packages are all included if you turn on the full set.
 You can turn them on individually if you use the minimal or standard set.
@@ -588,6 +590,7 @@ The full list of options is:
 \item[\Option{physics={\normalfont true}|false}] turn on/off use of the \Package{physics} package;
 \item[\Option{rotating={\normalfont true}|false}] turn on/off use of the \Package{rotating} package;
 \item[\Option{xfrac={\normalfont true}|false}] turn on/off use of the \Package{xfrac} package;
+\item[\Option{longtable={\normalfont true}|false}] turn on/off use of the \Package{longtable} package;
 \item[\Option{xtab={\normalfont true}|false}] turn on/off use of the \Package{xtab} package;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};
   \Package{subcaption} is supposed to be a newer, better and more general package than \Package{subfig} or

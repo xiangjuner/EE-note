@@ -9,7 +9,7 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{atlascontribute}[2021/01/08 v10.1.0 ATLAS analysis contributions]
+\ProvidesPackage{latex/atlascontribute}[2021/01/20 v10.2.0-alpha ATLAS analysis contributions]
 \NeedsTeXFormat{LaTeX2e}
 
 % Use kvoptions package to set options
@@ -19,6 +19,7 @@
   prefix=ACTR@
 }
 \DeclareBoolOption[false]{xtab}
+\DeclareBoolOption[false]{longtable}
 \DeclareBoolOption[true]{authblk}
 \ProcessKeyvalOptions*
 
@@ -47,8 +48,9 @@
 % Include booktabs package to get a nicer table
 \RequirePackage{booktabs}
 
-% Include xtab package if necessary
-\ifACTR@xtab \RequirePackage{xtab} \fi
+% Include longtable or xtab package if necessary
+\ifACTR@longtable\RequirePackage{longtable}\fi
+\ifACTR@xtab\RequirePackage{xtab}\fi
 
 % If multiple authors/affiliations are needed, use the authblk package
 \ifACTR@authblk
@@ -97,18 +99,26 @@
   \addtolength{\ACTR@linewidth}{-4\tabcolsep}
   \section*{\AtlasContributionsTitle}
   {\raggedright
-    \ifACTR@xtab%
-      \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+    \ifACTR@longtable%
+      \begin{longtable}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
         \toprule
         \ACTR@Contributors
         \bottomrule
-      \end{xtabular}
-    \else %
-      \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
-        \toprule
-        \ACTR@Contributors
-        \bottomrule
-      \end{tabular}
+      \end{longtable}
+    \else%
+      \ifACTR@xtab%
+        \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+          \toprule
+          \ACTR@Contributors
+          \bottomrule
+        \end{xtabular}
+      \else%
+        \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+          \toprule
+          \ACTR@Contributors
+          \bottomrule
+        \end{tabular}
+      \fi
     \fi
   }
 }

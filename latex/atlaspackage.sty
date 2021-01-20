@@ -8,7 +8,7 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{atlaspackage}[2021/01/08 v10.1.0 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2021/01/20 v10.2.0-alpha ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -41,6 +41,7 @@
 \DeclareBoolOption[false]{physics}
 \DeclareBoolOption[false]{rotating}
 \DeclareBoolOption[false]{xfrac}
+\DeclareBoolOption[false]{longtable}
 \DeclareBoolOption[false]{xtab}
 % Miscellaneous packages and options
 \DeclareBoolOption[true]{lineno}
@@ -329,10 +330,13 @@
 }{}
 
 % Tables that go over more than one page
-\ifthenelse{\boolean{APKG@xtab}}{%
-  \RequirePackage{xtab}
-}{}
-% \RequirePackage{longtable}
+\ifthenelse{\boolean{APKG@longtable}}{%
+  \RequirePackage{longtable}
+}{%
+  \ifthenelse{\boolean{APKG@xtab}}{%
+    \RequirePackage{xtab}
+  }{}%
+}
 % \RequirePackage{supertable}
 
 % hyperref is usually included as late as possible
