@@ -15,6 +15,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ## [Unreleased] - 2021-01-XX
 ### Added
 - `longtable` is now an option for `atlaspackage.sty` and `atlascontribute.sty`.
+- All history now included in this file.
 ### Changed
 ### Deprecated
 ### Removed
