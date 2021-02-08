@@ -1,3 +1,8 @@
+2021-02-08  Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 10.2.0
+	* December update of publications.
+	* longtable is now an option for atlaspackage.sty and atlascontribute.sty.
+	* All history now included in CHANGELOG.md.
 2021-01-08  Ian Brock  <Ian.Brock@cern.ch>
 	* Tag as version 10.1.0
 	* November update of publications.

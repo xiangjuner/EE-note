@@ -12,15 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
-## [Unreleased] - 2021-01-XX
+## [10.2.0] - 2021-02-08
 ### Added
+- December update of publications.
 - `longtable` is now an option for `atlaspackage.sty` and `atlascontribute.sty`.
 - All history now included in this file.
-### Changed
-### Deprecated
-### Removed
-### Fixed
-### Security
 
 ## [10.1.0] - 2021-01-08
 ### Added
