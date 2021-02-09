@@ -9,7 +9,7 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2021/02/08 v10.2.0 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2021/02/09 v10.3.0 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -119,7 +119,7 @@
     \ifentrytype{article}{\clearfield{number}}{}
   }
 
-  % Do not print out the address
+  % Do not print out the address, except for proceedings
   \ifABIB@address
     \relax
   \else
@@ -127,7 +127,10 @@
       \relax
     \else
       \AtEveryBibitem{%
-        \clearlist{location}
+        \ifentrytype{article}{\clearlist{location}}{}
+        \ifentrytype{booklet}{\clearlist{location}}{}
+        \ifentrytype{report}{\clearlist{location}}{}
+        % \clearlist{location}
       }
     \fi
   \fi

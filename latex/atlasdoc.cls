@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{10.2.0}
-\ProvidesClass{latex/atlasdoc}[2021/02/08 v10.2.0 ATLAS document class]
+\def\ATPackageVersion{10.3.0}
+\ProvidesClass{latex/atlasdoc}[2021/02/09 v10.3.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 

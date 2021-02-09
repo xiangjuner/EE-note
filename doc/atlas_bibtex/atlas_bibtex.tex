@@ -366,23 +366,27 @@ Here are some typical reference types needed in ATLAS documents:
 \item Other collaboration~\cite{otherCollaboration:2007}:
   % \lstinputlisting[linerange=48-62]{atlas_bibtex.bib}
   \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
-    listing options={basicstyle=\ttfamily\footnotesize, linerange=48-62}}
-\item Individual authors~\cite{authors:2008}:
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=47-61}}
+\item Individual authors~\cite{author:2008}:
   % \lstinputlisting[linerange=65-76]{atlas_bibtex.bib}
   \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
-    listing options={basicstyle=\ttfamily\footnotesize, linerange=65-76}}
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=64-75}}
 \item arXiv only~\cite{arxivOnly:2009}:
   % \lstinputlisting[linerange=79-86]{atlas_bibtex.bib}
   \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
-    listing options={basicstyle=\ttfamily\footnotesize, linerange=79-86}}
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=78-85}}
 \item arXiv only submitted to a journal~\cite{arxivSub:2011}:
   % \lstinputlisting[linerange=89-97]{atlas_bibtex.bib}
   \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
-    listing options={basicstyle=\ttfamily\footnotesize, linerange=89-97}}
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=88-96}}
 \item ATLAS CONF Note~\cite{ATLAS-CONF-2012-058-test}:
   % \lstinputlisting[linerange=101-108]{atlas_bibtex.bib}
   \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
-    listing options={basicstyle=\ttfamily\footnotesize, linerange=101-108}}
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=100-108}}
+\item Conference proceedings~\cite{Cacciari:2006sm}:
+  % \lstinputlisting[linerange=101-108]{atlas_bibtex.bib}
+  \tcbinputlisting{listing file=atlas_bibtex.bib, listing only,
+    listing options={basicstyle=\ttfamily\footnotesize, linerange=111-124}}
 \end{itemize}
 
 While the \texttt{collaboration} field is a nice idea, it is not supported by many \BibTeX\ styles.
@@ -398,6 +402,11 @@ It is possible to specify the journal in the \texttt{journal} field in form:\\
 \texttt{journal = "submitted to \Macro{PLB}{}\{\}"} or\\
 \texttt{journal = "accepted by \Macro{PLB}{}\{\}"}.
 However, the ATLAS Style Guide~\cite{atlas-style} says that this should not be done for ATLAS papers.
+
+For conference proceedings, note the use of the \texttt{eventdate} and \texttt{venue}
+fields to set when and where the conference took place.
+The dates should be given in the form indicated,
+as they are then formatted correctly depending on the language and dialect of the document.
 
 In general, \texttt{biblatex} provides many different entry types.
 This is one of the reasons for the  move to \texttt{biblatex} as the default for the ATLAS templates.

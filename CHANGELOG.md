@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
+## [10.3.0] - 2021-02-09
+### Changed
+- Updated conference entries to follow fixed scheme with use of `eventdate` and `venue` fields.
+- Documented this in `atlas_bibtex.pdf`.
+
 ## [10.2.0] - 2021-02-08
 ### Added
 - December update of publications.
@@ -725,7 +730,7 @@ before the `\documentclass`.
 - Titles should invoke `boldmath` automatically.
 - Merge `biblatex` into `atlaspackage` and add `biblatex` option.
 
-## [Unreleased] - 2021-11-XX
+## [Unreleased] - 2021-02-XX
 ### Added
 ### Changed
 ### Deprecated
