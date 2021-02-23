@@ -94,10 +94,10 @@ build_user:
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX physics macros documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics.pdf?job=build_Physics
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_hepphysics.pdf?job=build_Physics
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics.pdf?job=build_physics
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_hepphysics.pdf?job=build_physics
 # This happens automatically for the master branch and manual for the rest
-build_Physics:
+build_physics:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
@@ -113,9 +113,9 @@ build_Physics:
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX tables documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables.pdf?job=build_Tables
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables.pdf?job=build_tables
 # This happens automatically for the master branch and manual for the rest
-build_Tables:
+build_tables:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
