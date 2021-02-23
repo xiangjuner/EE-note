@@ -29,7 +29,7 @@ build_image:
   script:
     - echo building image
 
-# this automatically builds the INT note template and sends it to a publicly accessible space
+# This automatically builds the INT note template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_NOTE
 # This happens automatically for the master branch and manual for the rest
 build_NOTE:
@@ -62,9 +62,9 @@ build_PAPER:
     expire_in: 1 year
 
 # this automatically builds the ATLAS LaTeX bibliography documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex.pdf?job=build_BibTeX
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_biblatex/atlas_bibtex.pdf?job=build_bibtex
 # This happens automatically for the master branch and manual for the rest
-build_BibTeX:
+build_bibtex:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
@@ -74,13 +74,13 @@ build_BibTeX:
     - make
   artifacts:
     paths:
-      - doc/atlas_bibtex.pdf
+      - doc/atlas_bibtex/atlas_bibtex.pdf
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX user documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex.pdf?job=build_User
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex/atlas_latex.pdf?job=build_user
 # This happens automatically for the master branch and manual for the rest
-build_User:
+build_user:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
@@ -90,7 +90,7 @@ build_User:
     - make
   artifacts:
     paths:
-      - doc/atlas_latex.pdf
+      - doc/atlas_latex/atlas_latex.pdf
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX physics macros documentation
@@ -125,7 +125,7 @@ build_Tables:
     - make
   artifacts:
     paths:
-      - doc/atlas_tables.pdf
+      - doc/atlas_tables/atlas_tables.pdf
     expire_in: 1 year
     
 # this automatically builds the exotics template and sends it to a publicly accessible space
