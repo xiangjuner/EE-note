@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
+## [Unreleased] - 2021-02-XX
+### Added
+### Changed
+- Fixed a couple of references in `ATLAS-useful.bib`.
+### Deprecated
+### Removed
+### Fixed
+### Security
+
 ## [10.3.0] - 2021-02-09
 ### Changed
 - Updated conference entries to follow fixed scheme with use of `eventdate` and `venue` fields.
