@@ -31,11 +31,12 @@ build_image:
 
 # this automatically builds the INT note template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_NOTE
+# This happens automatically for the master branch and manual for the rest
 build_NOTE:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - make newnote BASENAME=myExample_INT
     - make BASENAME=myExample_INT
@@ -46,6 +47,7 @@ build_NOTE:
 
 # this automatically builds the PAPER template
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_PAPER
+# This happens automatically for the master branch and manual for the rest
 build_PAPER:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
@@ -61,6 +63,7 @@ build_PAPER:
 
 # this automatically builds the ATLAS LaTeX bibliography documentation
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex.pdf?job=build_BibTeX
+# This happens automatically for the master branch and manual for the rest
 build_BibTeX:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
@@ -76,6 +79,7 @@ build_BibTeX:
     
 # this automatically builds the ATLAS LaTeX user documentation
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex.pdf?job=build_User
+# This happens automatically for the master branch and manual for the rest
 build_User:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
@@ -92,7 +96,8 @@ build_User:
 # this automatically builds the ATLAS LaTeX physics macros documentation
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics.pdf?job=build_Physics
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_hepphysics.pdf?job=build_Physics
-build_physics:
+# This happens automatically for the master branch and manual for the rest
+build_Physics:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
@@ -107,22 +112,24 @@ build_physics:
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX tables documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex.pdf?job=build_User
-build_User:
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables.pdf?job=build_Tables
+# This happens automatically for the master branch and manual for the rest
+build_Tables:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
     - devel@atlas-physics-office/atlaslatex
   script:
-    - cd doc/atlas_latex
+    - cd doc/atlas_tables
     - make
   artifacts:
     paths:
-      - doc/atlas_latex.pdf
+      - doc/atlas_tables.pdf
     expire_in: 1 year
     
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/EXOT/EXOT_template.pdf?job=build_EXOT
+# This happens automatically for the master branch and manual for the rest
 build_EXOT:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
@@ -138,6 +145,7 @@ build_EXOT:
     
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/SUSY/SUSY_template.pdf?job=build_SUSY
+# This happens automatically for the master branch and manual for the rest
 build_SUSY:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
