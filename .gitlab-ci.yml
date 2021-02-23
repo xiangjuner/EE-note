@@ -105,10 +105,11 @@ build_Physics:
   script:
     - cd doc/atlas_physics
     - make atlas_physics
-    - make atlas_physics
+    - make atlas_hepphysics
   artifacts:
     paths:
-      - doc/atlas_bibtex/atlas_bibtex.pdf
+      - doc/atlas_physics/atlas_physics.pdf
+      - doc/atlas_physics/atlas_hepphysics.pdf
     expire_in: 1 year
     
 # this automatically builds the ATLAS LaTeX tables documentation
