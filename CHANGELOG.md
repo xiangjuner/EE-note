@@ -13,11 +13,19 @@ Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ## [Unreleased] - 2021-02-XX
+
+Merge MC generators in `atlasmisc.sty` with those in PMG documemt. Remove macros with version number,
+as this is now an optional argument for the default macro names.
+
 ### Added
+- Add PMG MC snippets and document.
 ### Changed
+- Revamp MC stuff in `atlasmisc.sty`. Synchronise with PMG snippets and document.
 - Fixed a couple of references in `ATLAS-useful.bib`.
 ### Deprecated
 ### Removed
+- MC macros with version number, as this is now an optional argument:
+    `\ACERMCV, \ALPGENV, \HerwigV, \HERWIGV, \JIMMYV, \MADGRAPHV, \MGMCatNLOV, \MCatNLOV, \AMCatNLOV, \MCFMV, \METOPV, \OPENLOOPSV, \POWHEGV, \POWHEGBOXV, \PYTHIAV, \SHERPAV`
 ### Fixed
 ### Security
 
