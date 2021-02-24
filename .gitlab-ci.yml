@@ -62,13 +62,13 @@ build_PAPER:
     expire_in: 1 year
 
 # this automatically builds the ATLAS LaTeX bibliography documentation
-# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_biblatex/atlas_bibtex.pdf?job=build_bibtex
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex/atlas_bibtex.pdf?job=build_bibtex
 # This happens automatically for the master branch and manual for the rest
 build_bibtex:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - cd doc/atlas_bibtex
     - make
@@ -84,7 +84,7 @@ build_user:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - cd doc/atlas_latex
     - make
@@ -101,7 +101,7 @@ build_physics:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - cd doc/atlas_physics
     - make atlas_physics
@@ -119,7 +119,7 @@ build_tables:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - cd doc/atlas_tables
     - make
