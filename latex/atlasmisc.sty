@@ -78,61 +78,98 @@
 % +--------------------------------------------------------------------+
 % |  Monte Carlo generators                                            |
 % +--------------------------------------------------------------------+
-\newcommand*{\ACERMC}{\textsc{AcerMC}\xspace}
-\newcommand*{\ACERMCV}[1]{\textsc{AcerMC}~#1\xspace}
-\newcommand*{\ALPGEN}{\textsc{Alpgen}\xspace}
-\newcommand*{\ALPGENV}[1]{\textsc{Alpgen}~#1\xspace}
-\newcommand*{\COLLIER}{\textsc{Collier}\xspace}
-\newcommand*{\EVTGEN}{\textsc{EvtGen}\xspace}
-\newcommand*{\GEANT}{\textsc{Geant}\xspace}
-\newcommand*{\GGTOVV}{\textsc{gg2VV}\xspace}
-\newcommand*{\GOSAM}{\textsc{GoSam}\xspace}
-\newcommand*{\Herwigpp}{Herwig++\xspace}
-\newcommand*{\HERWIGpp}{Herwig++\xspace}
-\newcommand*{\Herwig}{Herwig\xspace}
-\newcommand*{\HerwigV}[1]{Herwig~#1\xspace}
-\newcommand*{\HATHOR}{\textsc{Hathor}\xspace}
-\newcommand*{\HERWIG}{\textsc{Herwig}\xspace}
-\newcommand*{\HERWIGV}[1]{\textsc{Herwig}~#1\xspace}
-\newcommand*{\JIMMY}{\textsc{Jimmy}\xspace}
-\newcommand*{\JIMMYV}[1]{\textsc{Jimmy}~#1\xspace}
-\newcommand*{\MADSPIN}{\textsc{MadSpin}\xspace}
-\newcommand*{\MADGRAPH}{\textsc{MadGraph}\xspace}
-\newcommand*{\MADGRAPHV}[1]{\textsc{MadGraph}~#1\xspace}
-\newcommand*{\MEPSatLO}{\textsc{MEPS@LO}\xspace}
-\newcommand*{\MEPSatNLO}{\textsc{MEPS@NLO}\xspace}
-\newcommand*{\MGMCatNLO}{\textsc{MadGraph5}\_aMC@NLO\xspace}
-\newcommand*{\MGMCatNLOV}[1]{\textsc{MadGraph5}\_aMC@NLO~#1\xspace}
-\newcommand*{\MCatNLO}{MC@NLO\xspace}
-\newcommand*{\MCatNLOV}[1]{MC@NLO~#1\xspace}
-\newcommand*{\MINLO}{MiNLO\xspace}
-\newcommand*{\AMCatNLO}{aMC@NLO\xspace}
-\newcommand*{\AMCatNLOV}[1]{aMC@NLO~#1\xspace}
-\newcommand*{\MCFM}{MCFM\xspace}
-\newcommand*{\MCFMV}[1]{MCFM~#1\xspace}
-\newcommand*{\METOP}{\textsc{MEtop}\xspace}
-\newcommand*{\METOPV}[1]{\textsc{MEtop}~#1\xspace}
-\newcommand*{\OPENLOOPSV}[1]{\textsc{OpenLoops}~#1\xspace}
-\newcommand*{\POWHEG}{\textsc{Powheg}\xspace}
-\newcommand*{\POWHEGV}[1]{\textsc{Powheg}~#1\xspace}
-\newcommand*{\POWHEGBOX}{\textsc{Powheg-Box}\xspace}
-\newcommand*{\POWHEGBOXV}[1]{\textsc{Powheg-Box}~#1\xspace}
-\newcommand*{\POWPYTHIA}{\POWHEG{}+\PYTHIA}
-\newcommand*{\PHOTOSPP}{\textsc{Photos}++\xspace}
-\newcommand*{\PROTOS}{\textsc{Protos}\xspace}
-\newcommand*{\PYTHIA}{\textsc{Pythia}\xspace}
-\newcommand*{\PYTHIAV}[1]{\textsc{Pythia}~#1\xspace}
-\newcommand*{\SHERPA}{\textsc{Sherpa}\xspace}
-\newcommand*{\SHERPAV}[1]{\textsc{Sherpa}~#1\xspace}
-\newcommand*{\VBFNLO}{\textsc{VBFNLO}\xspace}
+% Set up generic command for MC with optional version number
+%%% e.g. \PYTHIA[8] -> Pythia 8
+\NewDocumentCommand {\AtlasMC} { o m } {%
+  \IfNoValueTF {#1} {%
+    \textsc{#2}\xspace%
+  }{%
+    \textsc{#2}\,#1\xspace%
+  }%
+}
+\NewDocumentCommand {\ACERMC} { o } {\AtlasMC[#1]{AcerMC}}
+\NewDocumentCommand {\ALPGEN} { o } {\AtlasMC[#1]{Alpgen}}
+\NewDocumentCommand {\AMCatNLO} { o } {\AtlasMC[#1]{\textup{a}MC@NLO}}
+\NewDocumentCommand {\BLACKHAT} { o } {\AtlasMC[#1]{BlackHat}}
+\NewDocumentCommand {\CALCHEP} { o } {\AtlasMC[#1]{CalcHEP}}
+\NewDocumentCommand {\COLLIER} { o } {\AtlasMC[#1]{Collier}}
+\NewDocumentCommand {\COMPHEP} { o } {\AtlasMC[#1]{CompHEP}}
+\NewDocumentCommand {\EVTGEN} { o } {\AtlasMC[#1]{EvtGen}}
+\NewDocumentCommand {\FEYNRULES} { o } {\AtlasMC[#1]{FeynRules}}
+\NewDocumentCommand {\GGTOVV} { o } {\AtlasMC[#1]{gg2VV}}
+\NewDocumentCommand {\GOSAM} { o } {\AtlasMC[#1]{GoSam}}
+\NewDocumentCommand {\HATHOR} { o } {\AtlasMC[#1]{Hathor}}
+\NewDocumentCommand {\Herwig} { o } {\AtlasMC[#1]{Herwig}}
+\NewDocumentCommand {\HERWIG} { o } {\AtlasMC[#1]{Herwig}}
+\NewDocumentCommand {\HERWIGpp} { o } {\AtlasMC[#1]{Herwig++}}
+\NewDocumentCommand {\HRES} { o } {\AtlasMC[#1]{Hres}}
+\NewDocumentCommand {\JIMMY} { o } {\AtlasMC[#1]{Jimmy}}
+\NewDocumentCommand {\MADSPIN} { o } {\AtlasMC[#1]{MadSpin}}
+\NewDocumentCommand {\MADGRAPH} { o } {\AtlasMC[#1]{MadGraph}}
+\NewDocumentCommand {\MGNLO} { o } {\AtlasMC[#1]{MadGraph5\_\textup{a}MC@NLO}} %short-hand
+\NewDocumentCommand {\MCatNLO} { o } {\AtlasMC[#1]{MC@NLO}}
+\NewDocumentCommand {\MCFM} { o } {\AtlasMC[#1]{MCFM}}
+\NewDocumentCommand {\METOP} { o } {\AtlasMC[#1]{METOP}}
+\NewDocumentCommand {\OPENLOOPS} { o } {\AtlasMC[#1]{OpenLoops}}
+\NewDocumentCommand {\POWHEG} { o } {\AtlasMC[#1]{Powheg}}
+\NewDocumentCommand {\POWHEGBOX} { o } {\AtlasMC[#1]{Powheg\,Box}}
+\NewDocumentCommand {\POWHEGBOXRES} { o } {\AtlasMC[#1]{Powheg\,Box\,Res}}
+\NewDocumentCommand {\PHOTOS} { o } {\AtlasMC[#1]{Photos}}
+\NewDocumentCommand {\PHOTOSpp} { o } {\AtlasMC[#1]{Photos++}}
+\NewDocumentCommand {\PROPHECY} { o } {\AtlasMC[#1]{Prophecy4f}}
+\NewDocumentCommand {\PROTOS} { o } {\AtlasMC[#1]{Protos}}
+\NewDocumentCommand {\Pythia} { o } {\AtlasMC[#1]{Pythia}}
+\NewDocumentCommand {\PYTHIA} { o } {\AtlasMC[#1]{Pythia}}
+\NewDocumentCommand {\RECOLA} { o } {\AtlasMC[#1]{Recola}}
+\NewDocumentCommand {\Sherpa} { o } {\AtlasMC[#1]{Sherpa}}
+\NewDocumentCommand {\SHERPA} { o } {\AtlasMC[#1]{Sherpa}}
+\NewDocumentCommand {\TOPpp} { o } {\AtlasMC[#1]{Top++}}
+\NewDocumentCommand {\VBFNLO} { o } {\AtlasMC[#1]{VBFNLO}}
+
+% common ME+PS combinations
+\NewDocumentCommand {\MGNLOHER} { o } {\AtlasMC[#1]{MadGraph5\_\textup{a}MC@NLO+Herwig}}
+\NewDocumentCommand {\MGNLOPY} { o } {\AtlasMC[#1]{MadGraph5\_\textup{a}MC@NLO+Pythia}}
+\NewDocumentCommand {\MGHER} { o } {\AtlasMC[#1]{MadGraph5+Herwig}}
+\NewDocumentCommand {\MGPY} { o } {\AtlasMC[#1]{MadGraph5+Pythia}}
+\NewDocumentCommand {\POWHER} { o } {\AtlasMC[#1]{Powheg+Herwig}}
+\NewDocumentCommand {\POWPY} { o } {\AtlasMC[#1]{Powheg+Pythia}}
+\NewDocumentCommand {\SHERPABH} { o } {\AtlasMC[#1]{Sherpa+BlackHat}}
+\NewDocumentCommand {\SHERPAOL} { o } {\AtlasMC[#1]{Sherpa+OpenLoops}}
+
+
+%%% Set up generic command for common PDFs with optional 
+%%% version number/perturbative order (but no space)
+%%% e.g. \NNPDF[3.0nnlo] -> NNPDF3.0nnlo
+\NewDocumentCommand {\AtlasPDF} { o m } {%
+  \IfNoValueTF {#1} {%
+    \textsc{#2}\xspace%
+  }{%
+    \textsc{#2#1}\xspace%
+  }%
+}
+\NewDocumentCommand {\ABM} { o } {\AtlasPDF[#1]{ABM}}
+\NewDocumentCommand {\ABKM} { o } {\AtlasPDF[#1]{ABKM}}
+\NewDocumentCommand {\CT} { o } {\AtlasPDF[#1]{CT}}
+\NewDocumentCommand {\CTEQ} { o } {\AtlasPDF[#1]{CTEQ}}
+\NewDocumentCommand {\GJR} { o } {\AtlasPDF[#1]{GJR}}
+\NewDocumentCommand {\HERAPDF} { o } {\AtlasPDF[#1]{HERAPDF}}
+\NewDocumentCommand {\LUXQED} { o } {\AtlasPDF[#1]{LUXqed}}
+\NewDocumentCommand {\MSTW} { o } {\AtlasPDF[#1]{MSTW2008}}
+\NewDocumentCommand {\MMHT} { o } {\AtlasPDF[#1]{MMHT2014}}
+\NewDocumentCommand {\MSHT} { o } {\AtlasPDF[#1]{MSHT2020}}
+\NewDocumentCommand {\NNPDF} { o } {\AtlasPDF[#1]{NNPDF}}
+\NewDocumentCommand {\PDFforLHC} { o } {\AtlasPDF[#1]{PDF4LHC}}
 
 %%% Event generator extras
 \newcommand*{\AUET}{AUET2\xspace}
 \newcommand*{\AZNLO}{AZNLO\xspace}
-\newcommand*{\Comphep}{CompHEP\xspace}
 \newcommand*{\FXFX}{\textsc{FxFx}\xspace}
+\newcommand*{\GEANT}{\textsc{Geant4}\xspace}
+\newcommand*{\MENLOPS}{\textsc{MENLOPS}\xspace}
+\newcommand*{\MEPSatLO}{\textsc{MEPS@LO}\xspace}
+\newcommand*{\MEPSatNLO}{\textsc{MEPS@NLO}\xspace}
+\newcommand*{\MINLO}{\textsc{MiNLO}\xspace}
 \newcommand*{\Monash}{Monash\xspace}
-\newcommand*{\NLOEWvirt}{NLO~\ensuremath{\text{EW}_\text{virt}}\xspace}
 \newcommand*{\Perugia}{Perugia\xspace}
 \newcommand*{\Prospino}{Prospino\xspace}
 \newcommand*{\UEEE}{UE-EE-5\xspace}
@@ -145,6 +182,7 @@
 \newcommand*{\muQ}{\ensuremath{\mu_\mathrm{q}}\xspace}
 \newcommand*{\muR}{\ensuremath{\mu_\mathrm{r}}\xspace}
 \newcommand*{\hdamp}{\ensuremath{h_\mathrm{damp}}\xspace}
+\newcommand*{\NLOEWvirt}{NLO~\ensuremath{\text{EW}_\text{virt}}\xspace}
 
 % +--------------------------------------------------------------------+
 % |  Useful symbols for use in or out of math mode                     |
@@ -174,7 +212,7 @@
 % +--------------------------------------------------------------------+
 % |  QCD                                                               |
 % +--------------------------------------------------------------------+
-\newcommand*{\alphas}{\ensuremath{\alpha_{\text{S}}}\xspace}
+\newcommand*{\alphas}{\ensuremath{\alpha_{\text{s}}}\xspace}
 \newcommand*{\NF}{\ensuremath{N_{\text{F}}}\xspace}
 \newcommand*{\NC}{\ensuremath{N_{\text{C}}}\xspace}
 \newcommand*{\CF}{\ensuremath{C_{\text{F}}}\xspace}
