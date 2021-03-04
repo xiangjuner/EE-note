@@ -150,11 +150,13 @@ for lfile in Makefile; do
     # sed -i '.bak' -e "0,/${BASENAME}/ s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
 done
 
-# Acknowledgements
-for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
-    afile=tmp-atlaslatex/acknowledgements/$(basename $lfile)
-    cf_files "${lfile}" "${afile}"
-done
+# Acknowledgements - if the directory exists
+if [ -d acknowldegements ]; then
+    for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
+        afile=tmp-atlaslatex/acknowledgements/$(basename $lfile)
+        cf_files "${lfile}" "${afile}"
+    done
+fi
 
 # Remove temporary directory
 rm -rf tmp-atlaslatex
