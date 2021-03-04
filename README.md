@@ -1,7 +1,7 @@
 # ATLAS LaTeX
 
 ATLAS LaTeX class, style files and templates to typeset notes and papers.
-See ChangeLog or Git log for history of changes.
+See CHANGELOG.md or Git log for history of changes.
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 

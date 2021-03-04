@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{10.4.0-alpha}
-\ProvidesClass{latex/atlasdoc}[2021/02/10 v10.4.0-alpha ATLAS document class]
+\def\ATPackageVersion{11.0.0-alpha}
+\ProvidesClass{latex/atlasdoc}[2021/03/04 v11.0.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -635,18 +635,25 @@
          \fi
         }
         \vspace*{2ex}
-        % ATLAS note number, if any
-        \ifx\ADOC@atlasnote\@empty
-          % ATLAS reference code, if any and no note number given
-          \ifx\ADOC@refcode\@empty
-            \mbox{}%
-          \else
-            {\Large \ADOC@refcode}\par
-          \fi
-        \else
-          {\Large \ADOC@atlasnote}\par
-        \fi
-        \vspace*{1.5ex}
+        % Do not include reference code for final version of PUB note
+        \ifthenelse{\boolean{ADOC@PUBnote} \AND \NOT \boolean{ADOC@atlasdraft}}{%
+          \typeout{Final verison of PUB note}
+          \par\vspace{1.4\baselineskip}
+        }{%
+          % ATLAS note number, if any
+          \ifthenelse{\equal{\ADOC@atlasnote}{}}{%
+            % ATLAS reference code, if any and no note number given
+            \ifthenelse{\equal{\ADOC@refcode}{}}{%
+              \mbox{}%
+            }{%
+              % Do not include reference code for final version of PUB note
+              {\Large \ADOC@refcode}\par
+            }
+          }{%
+            {\Large \ADOC@atlasnote}\par
+          }
+          \vspace*{1.5ex}
+        }
         % Date, if any
         \ifADOC@datetop
           \ifx\@date\@empty
