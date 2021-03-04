@@ -50,7 +50,7 @@ fi
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
 # Clone the ATLAS LaTeX Git repository.
-git clone ${ATLASLATEXGIT} tmp-atlaslatex
+git clone --depth 1 ${ATLASLATEXGIT} tmp-atlaslatex
 # Switch to devel branch for testing
 if [ -n "${BRANCH}" ]; then
     cd tmp-atlaslatex 
@@ -70,6 +70,11 @@ function cf_files {
         diff "$1" "$2"
         echo "Will try to copy $2 to $1"
         cp -i "$2" "$1"
+        # Make sure file is executable
+        if [ ${1: -3} == ".sh" ]; then
+            echo "Making $1 executable"
+            chmod u+x $1
+        fi
     fi
 }
 
@@ -92,6 +97,8 @@ for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
     else
         scriptupdate=1
         cp ${afile} ${lfile}
+        # Make sure file is exectuable
+        chmod u+x ${lfile}
         echo "+++ ${lfile} updated. You should now run ${lfile}"
     fi
 done
