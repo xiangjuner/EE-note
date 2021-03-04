@@ -50,12 +50,14 @@ fi
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
 # Clone the ATLAS LaTeX Git repository.
-git clone --depth 1 ${ATLASLATEXGIT} tmp-atlaslatex
 # Switch to devel branch for testing
 if [ -n "${BRANCH}" ]; then
+    git clone ${ATLASLATEXGIT} tmp-atlaslatex
     cd tmp-atlaslatex 
     git checkout devel
     cd ..
+else
+    git clone --depth 1 ${ATLASLATEXGIT} tmp-atlaslatex
 fi
 
 function cf_files {
