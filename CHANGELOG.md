@@ -24,6 +24,7 @@ as this is now an optional argument for the default macro names.
 - Revamp MC stuff in `atlasmisc.sty`. Synchronise with PMG snippets and document.
 - Fixed a couple of references in `ATLAS-useful.bib`.
 - Use `https` for DOI.
+- Small updates to `atlaslatex_update.sh`.
 ### Deprecated
 ### Removed
 - MC macros with version number, as this is now an optional argument:

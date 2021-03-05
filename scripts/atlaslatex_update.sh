@@ -11,7 +11,8 @@
 # Decide how to clone atlaslatex - ssh is default
 ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
 BRANCH=''
-while getopts shkd opt; do
+CLONE=1
+while getopts shkcd opt; do
     case $opt in
         s)
             ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
@@ -21,6 +22,9 @@ while getopts shkd opt; do
             ;;
         k)
             ATLASLATEXGIT=https://:@gitlab.cern.ch:8443/atlas-physics-office/atlaslatex.git
+            ;;
+        c)
+            CLONE=0
             ;;
         d)
             BRANCH=devel
@@ -49,22 +53,27 @@ fi
 # Remove temporary directory if it exists
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
-# Clone the ATLAS LaTeX Git repository.
-# Switch to devel branch for testing
-if [ -n "${BRANCH}" ]; then
-    git clone ${ATLASLATEXGIT} tmp-atlaslatex
-    cd tmp-atlaslatex 
-    git checkout devel
-    cd ..
+# Clone OR copythe ATLAS LaTeX Git repository.
+if [ ${CLONE} == 1 ]; then
+    # Switch to devel branch for testing
+    if [ -n "${BRANCH}" ]; then
+        git clone ${ATLASLATEXGIT} tmp-atlaslatex
+        cd tmp-atlaslatex 
+        git checkout devel
+        cd ..
+    else
+        git clone --depth 1 ${ATLASLATEXGIT} tmp-atlaslatex
+    fi
 else
-    git clone --depth 1 ${ATLASLATEXGIT} tmp-atlaslatex
+    cp -r ${HOME}/atlas/LaTeX/atlaslatex tmp-atlaslatex
 fi
-
 function cf_files {
     # echo "Compare ${afile} with ${lfile}"
     cmp --silent "$1" "$2"
     cmpStatus=$?
     # echo "cmp status is $cmpStatus" 
+    extension="${1##*.}"
+    # echo "File $1, Extension $extension"
     if [ $cmpStatus -eq 0 ]; then
         echo "No change to file $1"
     else
@@ -73,7 +82,7 @@ function cf_files {
         echo "Will try to copy $2 to $1"
         cp -i "$2" "$1"
         # Make sure file is executable
-        if [ ${1: -3} == ".sh" ]; then
+        if [ ${extension} == "sh" ]; then
             echo "Making $1 executable"
             chmod u+x $1
         fi
@@ -141,17 +150,18 @@ done
 # Makefile
 for lfile in Makefile; do
     BASENAME=$(grep '^BASENAME.*=' ${lfile})
-    echo "BASENAME is $BASENAME"
+    echo "BASENAME definition is: <$BASENAME>"
     afile=tmp-atlaslatex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"
     # Assume definition of BASENAME is of the form BASENAME =
-    sed -i '.bak' -e "s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
+    echo "Replacing BASENAME definition with <${BASENAME}> in ${lfile}"
+    sed -i '.bak' -e "s/^BASENAME =.*/${BASENAME}/" ${lfile}
     # The folllowing should only change the first occurence of BASENAME =..., but has not been tested everywhere
     # sed -i '.bak' -e "0,/${BASENAME}/ s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
 done
 
 # Acknowledgements - if the directory exists
-if [ -d acknowldegements ]; then
+if [ -d acknowledgements ]; then
     for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
         afile=tmp-atlaslatex/acknowledgements/$(basename $lfile)
         cf_files "${lfile}" "${afile}"
