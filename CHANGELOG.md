@@ -12,12 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 
-## [Unreleased] - 2021-02-XX
+## [Unreleased] - 2021-03-XX
 
 Merge MC generators in `atlasmisc.sty` with those in PMG document. Remove macros with version number,
 as this is now an optional argument for the default macro names.
 
 ### Added
+- February update of publications.
 - Add PMG MC snippets and document.
 - Updated ATLAS Errata.
 ### Changed
@@ -30,6 +31,7 @@ as this is now an optional argument for the default macro names.
 - MC macros with version number, as this is now an optional argument:
     `\ACERMCV, \ALPGENV, \HerwigV, \HERWIGV, \JIMMYV, \MADGRAPHV, \MGMCatNLOV, \MCatNLOV, \AMCatNLOV, \MCFMV, \METOPV, \OPENLOOPSV, \POWHEGV, \POWHEGBOXV, \PYTHIAV, \SHERPAV`
 ### Fixed
+- Wrong command documented for listing ToDo notes - should be \listoftodos
 ### Security
 
 ## [10.3.0] - 2021-02-09
@@ -750,7 +752,7 @@ before the `\documentclass`.
 - Titles should invoke `boldmath` automatically.
 - Merge `biblatex` into `atlaspackage` and add `biblatex` option.
 
-## [Unreleased] - 2021-02-XX
+## [Unreleased] - 2021-03-XX
 ### Added
 ### Changed
 ### Deprecated

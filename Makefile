@@ -227,7 +227,7 @@ help:
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out \
 		*.bbl *.blg *.brf *.bcf *-blx.bib *.run.xml \
-		*.cb *.ind *.idx *.ilg *.inx \
+		*.cb *.ind *.idx *.ilg *.inx *.tdo \
 		*.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp 
 
 cleanpdf:
