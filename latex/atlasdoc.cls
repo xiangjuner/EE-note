@@ -57,6 +57,7 @@
 \DeclareBoolOption[true]{cernlogo}
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
+\DeclareBoolOption[false]{shownote}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
 \ProcessKeyvalOptions{ADOC}
@@ -71,6 +72,7 @@
 
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
+\newif\ifADOC@notenumber
 
 % CERN preprint or auxiliary material
 \ifADOC@cernpreprint
@@ -194,6 +196,18 @@
   }{%
     \href{https://orcid.org/#1}{#2}%
   }%
+}
+
+% For final version of PUB notes turn off the note number by default
+\ifthenelse{\boolean{ADOC@PUBnote}}{%
+  \ifthenelse{\boolean{ADOC@atlasdraft} \OR \boolean{ADOC@shownote}}{%
+    \ADOC@notenumbertrue
+  }{%
+    \typeout{atlasdoc: turning off note number of final version of PUB note}
+    \ADOC@notenumberfalse
+  }
+}{%
+  \ADOC@notenumbertrue
 }
 
 % Switch to txfonts for TeX Live <= 2012
@@ -625,36 +639,36 @@
     \hspace*{\fill}%
     \parbox[b][35mm][c]{0.47\linewidth}{%
       \centering
-        {\sffamily\bfseries\fontsize{20}{24}\selectfont
-         \ifx\ADOC@docheading\@empty
-          \typeout{atlasdoc: using default heading}
-          \textsf{\ADOC@docheadingdefault}\par
-         \else
-           \typeout{atlasdoc: using special heading: \ADOC@docheading}
-           \textsf{\ADOC@docheading}\par
-         \fi
-        }
-        \vspace*{2ex}
-        % Do not include reference code for final version of PUB note
-        \ifthenelse{\boolean{ADOC@PUBnote} \AND \NOT \boolean{ADOC@atlasdraft}}{%
-          \typeout{Final verison of PUB note}
-          \par\vspace{1.4\baselineskip}
-        }{%
-          % ATLAS note number, if any
-          \ifthenelse{\equal{\ADOC@atlasnote}{}}{%
-            % ATLAS reference code, if any and no note number given
-            \ifthenelse{\equal{\ADOC@refcode}{}}{%
-              \mbox{}%
-            }{%
-              % Do not include reference code for final version of PUB note
-              {\Large \ADOC@refcode}\par
-            }
+      {\sffamily\bfseries\fontsize{20}{24}\selectfont
+        \ifx\ADOC@docheading\@empty
+        \typeout{atlasdoc: using default heading}
+        \textsf{\ADOC@docheadingdefault}\par
+        \else
+          \typeout{atlasdoc: using special heading: \ADOC@docheading}
+          \textsf{\ADOC@docheading}\par
+        \fi
+      }
+      \vspace*{2ex}
+      % Do not include reference code for final version of PUB note
+      \ifthenelse{\boolean{ADOC@notenumber}}{%
+        % ATLAS note number, if any
+        \ifthenelse{\equal{\ADOC@atlasnote}{}}{%
+          % ATLAS reference code, if any and no note number given
+          \ifthenelse{\equal{\ADOC@refcode}{}}{%
+            \mbox{}%
           }{%
-            {\Large \ADOC@atlasnote}\par
+            % Do not include reference code for final version of PUB note
+            {\Large \ADOC@refcode}\par
           }
-          \vspace*{1.5ex}
+        }{%
+          {\Large \ADOC@atlasnote}\par
         }
-        % Date, if any
+        \vspace*{1.5ex}
+      }{%
+        \typeout{atlasdoc: note number turned off}
+        \par\vspace{1.4\baselineskip}
+      }
+      % Date, if any
         \ifADOC@datetop
           \ifx\@date\@empty
             \mbox{}\par
