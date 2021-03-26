@@ -14,15 +14,17 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-03-XX
+## [11.0.0-beta] - 2021-03-26
 
-Merge MC generators in `atlasmisc.sty` with those in PMG document. Remove macros with version number,
-as this is now an optional argument for the default macro names.
+Merge MC generators in `atlasmisc.sty` with those in PMG document.
+Add PMG document to the templates directory.
+Remove macros with version number, as this is now an optional argument for the default macro names.
 
 ### Added
 
 - February and March updates of publications.
 - Add PMG MC snippets and document.
+- Add a  macro `\Hll` to `atlasprocess.sty` and `atlashepprocess.sty`
 - Updated ATLAS Errata.
 - `shownote` option for `atlasdoc.cls`. Normally the note number is turned off for the final version of PUB notes, as it should be added by CDS.
 
@@ -33,8 +35,6 @@ as this is now an optional argument for the default macro names.
 - Use `https` for DOI.
 - Small updates to `atlaslatex_update.sh`.
 
-### Deprecated
-
 ### Removed
 
 - MC macros with version number, as this is now an optional argument:
@@ -43,8 +43,6 @@ as this is now an optional argument for the default macro names.
 ### Fixed
 
 - Wrong command was documented for listing ToDo notes - should be `\listoftodos`.
-
-### Security
 
 ---
 
