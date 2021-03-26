@@ -17,10 +17,10 @@ Turn on including these definitions with the option \Option{misc=true} and off w
 
 \noindent A length \Macro{figwidth} is defined that is \SI{2}{\cm} smaller than \Macro{textwidth}.
 
-\noindent Most Monte Carlo generators also have a form with a suffix \enquote{V}
-that allows you to include the version, e.g.
-\verb|\PYTHIAV{8}| to produce \PYTHIAV{8} or
-\verb|\PYTHIAV{8 (v8.160)}| to produce \PYTHIAV{8 (v8.160)}.
+\noindent Monte Carlo generators and PDFs have an optional argument
+that allows you to include the version, e.g.\
+\verb|\PYTHIA[8]| to produce \PYTHIA[8] or\\
+\verb|\PYTHIA[(v8.160)]| to produce \PYTHIA[(v8.160)].
 
 \noindent A generic macro \verb|\twomass| is defined, so that for example
 \verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.

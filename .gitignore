@@ -23,4 +23,5 @@
 *.run.xml
 *.spl
 *.synctex.gz
+*.tdo
 *.toc

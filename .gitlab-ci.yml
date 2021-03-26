@@ -128,6 +128,22 @@ build_tables:
       - doc/atlas_tables/atlas_tables.pdf
     expire_in: 1 year
     
+# this automatically builds the PMG MC snippets documet and sends it to a publicly accessible space
+# https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/MC_snippets/MC_snippets.pdf?job=build_MC_snippets
+# This happens automatically for the master branch and manual for the rest
+build_MCsnippet:
+  image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
+  stage: Build
+  only: 
+    - master@atlas-physics-office/atlaslatex
+  script:
+    - cd template/MC_snippets
+    - make
+  artifacts:
+    paths:
+      - template/MC_snippets/MC_snippets.pdf
+    expire_in: 1 year
+    
 # this automatically builds the exotics template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/EXOT/EXOT_template.pdf?job=build_EXOT
 # This happens automatically for the master branch and manual for the rest
@@ -144,7 +160,7 @@ build_EXOT:
       - template/EXOT/EXOT_template.pdf
     expire_in: 1 year
     
-# this automatically builds the exotics template and sends it to a publicly accessible space
+# this automatically builds the SUSY template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/SUSY/SUSY_template.pdf?job=build_SUSY
 # This happens automatically for the master branch and manual for the rest
 build_SUSY:

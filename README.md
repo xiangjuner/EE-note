@@ -1,7 +1,7 @@
 # ATLAS LaTeX
 
 ATLAS LaTeX class, style files and templates to typeset notes and papers.
-See ChangeLog or Git log for history of changes.
+See CHANGELOG.md or Git log for history of changes.
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
@@ -32,15 +32,17 @@ the latex directory. The following main style files exist:
 
 Options can be used to specify which should be included.
 
-Documentation can be found in the doc directory.
-
-- `atlas-latex.pdf`:    Guide to the use of the ATLAS document templates and styles
-- `atlas-bibtex.pdf`:   Guide to references and BibTeX in ATLAS
-- `atlas-physics.pdf`:  Symbols defined in `atlasphysics.sty`
-- `atlas-tables.pdf`:   Some guidelines and help for tables  
-
-More detailed information about the package can be found under:
+Documentation can be found via the ATLAS TWiki page:
 <https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeX>
+
+The following documents are available in subdirectories of the `doc` and `template` directories or as artifacts in the GitLab repository:
+* [Users guide to the ATLAS LaTeX package](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex/atlas_latex.pdf?job=build_user) - also in `doc/atlas_latex`
+* [Guide to references and BibTeX in ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex/atlas_bibtex.pdf?job=build_bibtex) - also in `doc/atlas_bibtex`
+* [ATLAS physics symbols](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_physics.pdf?job=build_physics) - also in `doc/atlas_physics`
+* [ATLAS physics symbols with hepparticle](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_hepphysics.pdf?job=build_physics) - also in `doc/atlas_physics`
+* [Guide to formatting tables for ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables/atlas_tables.pdf?job=build_tables) - also in `doc/atlas_tables`
+
+
 
 ## How to use
 
@@ -94,22 +96,13 @@ If you are running on `lxplus` for it to work, you MUST set your PATH correctly 
     export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:$PATH
 
 in order to use TeX Live 2016.
-TeX Live 2016 is the current version used in the Physics Office Continuous Integration.
+Physics Office Continuous Integration has images for TeX Live 2016, 2017 and 2020.
 
-A users guide to the templates can be found in `doc/atlas_latex.pdf`. You can produce
-this document yourself (and thus test that your LaTeX setup is working)
+You can produce the users guide to the templates (and thus test that your LaTeX setup is working)
 by giving the commands:
 
     cd doc/atlas_latex
     make
-
-or  
-
-    cd doc/atlas_latex
-    pdflatex atlas_latex
-    biber    atlas_latex
-    pdflatex atlas_latex
-    pdflatex atlas_latex
 
 Four other make targets are:
 

@@ -427,6 +427,9 @@ In the following the default option is in boldface.
 \item[\Option{atlaslogo=true|{\normalfont false}}] show the ATLAS logo on the title page;
 \item[\Option{cernlogo=true|{\normalfont false}}] show the CERN logo on the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
+\item[\Option{shownote={\normalfont true}|false}] show the PUB note number.
+  This is turned off by default for the final version of PUB notes.
+  It does not affect other document types.
 \item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
   an error with \TeX\ Live 2014.
   \emph{\ADOCold{07-00-00} This option has no effect};
@@ -944,7 +947,7 @@ Turn off the output of any notes by passing the option \Option{output=false}
 to the \Package{atlastodo} package.
 
 If you want a list of all the notes,
-add \Macro{listtodonotes} somewhere in your document.
+add \Macro{listoftodos} somewhere in your document.
 The \Package{todonotes} package also include a macro \Macro{missingfigure}
 that is very useful if you want to include a figure, but do not yet have the plot.
 

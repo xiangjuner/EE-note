@@ -1,8 +1,11 @@
+2021-03-26  Ian Brock <Ian.Brock@cern.ch>
+	* Tag as version 11.0.0
+	* Use of ChangeLog is discontinued. This file will be deleted in version 11.1.0.
+
 2021-02-09  Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 10.3.0
 	* Updated conference entries to follow fixed scheme with use of eventdate and venue fields.
 	* Documented this in atlas_bibtex.pdf.
-
 2021-02-08  Ian Brock <Ian.Brock@cern.ch>
 	* Tag as version 10.2.0
 	* December update of publications.
