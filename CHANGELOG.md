@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.0.0-beta] - 2021-03-26
+## [11.0.0] - 2021-03-26
 
 Merge MC generators in `atlasmisc.sty` with those in PMG document.
 Add PMG document to the templates directory.
