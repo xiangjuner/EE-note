@@ -137,7 +137,7 @@ build_MCsnippet:
   only: 
     - devel@atlas-physics-office/atlaslatex
   script:
-    - cd template/MC-snippets
+    - cd template/MC_snippets
     - make
   artifacts:
     paths:
