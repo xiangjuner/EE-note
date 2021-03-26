@@ -10,7 +10,7 @@
 \def\input@path{{../../latex/}}
 \makeatother
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, UKenglish, texlive=2016]{atlasdoc}
+\documentclass[NOTE, atlasdraft=false, UKenglish, texlive=2016]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -37,7 +37,7 @@
 \usepackage{atlascontribute}
 
 % Useful macros
-\usepackage{atlasphysics}
+\usepackage[process]{atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -54,7 +54,7 @@
 \addbibresource{../../bib/CMS.bib}
 \addbibresource{../../bib/ConfNotes.bib}
 \addbibresource{../../bib/PubNotes.bib}
-
+ 
 % Paths for figures - do not forget the / at the end of the directory name.
 \graphicspath{{../../logos/}{figures/}}
 
@@ -66,7 +66,26 @@
 %-------------------------------------------------------------------------------
 
 % Title, abstract and document 
-\input{MC_snippets-metadata}
+% \input{MC_snippets-metadata}
+% Title
+\AtlasTitle{References and set-up descriptions for the MC16 campaign}
+
+% Author - this does not work with revtex (add it after \begin{document})
+\author{The ATLAS Collaboration}
+
+% Comment or remove in final version.
+\AtlasRefCode{Version 2.0}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+This document is intended as a template for referencing ATLAS Monte Carlo
+set-ups for Standard Model processes produced in the MC16
+campaign. It includes descriptions of the generator configurations and
+the appropriate references.
+
+This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+}
+
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
 
@@ -101,9 +120,10 @@ A change in the third digit typically indicates some sort of technical bug fix t
 does not affect the physics modelling otherwise. 
 In order to save CPU time, samples are often regenerated only when they are affected 
 by a (sufficiently severe) bug and so even within a set of final states 
-of any given process, the generator version may differ. 
+of any given process, the generator version may differ.
 
-This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
+You may have to add the \texttt{process} or \texttt{hepprocess} option to the \texttt{atlasphysics} package for some generators.
+
 
 %-------------------------------------------------------------------------------
 % Common generator details
