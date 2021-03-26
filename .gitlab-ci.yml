@@ -131,7 +131,7 @@ build_tables:
 # this automatically builds the PMG MC snippets documet and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/template/MC_snippets/MC_snippets.pdf?job=build_MC_snippets
 # This happens automatically for the master branch and manual for the rest
-build_EXOT:
+build_MCsnippet:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
