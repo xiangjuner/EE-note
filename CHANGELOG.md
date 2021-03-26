@@ -42,7 +42,7 @@ as this is now an optional argument for the default macro names.
 
 ### Fixed
 
-- Wrong command was documented for listing ToDo notes - should be \listoftodos
+- Wrong command was documented for listing ToDo notes - should be `\listoftodos`.
 
 ### Security
 
@@ -310,7 +310,7 @@ before the `\documentclass`.
 
 - January update of publications.
 - Add option `backref` to `atlasbiblatex`.
-- Add commented out authorlist to paper template.
+- Add commented out author list to paper template.
 - Add INT note templates for SUSY group. These are a WIP and subject to further change.
 
 ---
@@ -328,7 +328,7 @@ before the `\documentclass`.
   - Copyright notice should now always be correctly positioned.
   - Less space used for title etc.
   - Tweaking of offsets should no longer be necessary.
-  - Warnings about overfull hboxes fixed.
+  - Warnings about `overfull hboxes` fixed.
   - Previous version available as `atlasdoc2.cls` and `atlascover2.sty`.
 - Always use `paper=letter` option for US paper size.
 - Some tweaks so turning on language editor comments should not change text width.
@@ -682,7 +682,7 @@ Hopefully this will be fixed in the next release.
 - New style file `atlasjetetmiss.sty` with definitions from the Jet/Etmiss group.
 - A number of definitions from the Jet/Etmiss group were added to `atlasmisc.sty`, `atlasparticle,sty` and `atlasprocess.sty`.
 - Add option `eVkern` to `atlaspackage` to move 'e' and 'V' closer together in eV and its variants, e.g. GeV.
-- Add options `hepparticle` and `hepprocess` to `atlasphysics`,	which use particle names from the `hepparticle` package.
+- Add options `hepparticle` and `hepprocess` to `atlasphysics`, which use particle names from the `hepparticle` package.
 - Add some discussion about `\it, \rm, \tt` etc. errors in TeX Live 2016.
 
 ### Changed
@@ -737,7 +737,7 @@ Hopefully this will be fixed in the next release.
 
 - Small fix to link from journal information to DOI.
 - Small updates to documentation on ATLAS LaTeX.
-- Adjusted journal examples and documentation to use `\ATLASLATEXPATH`.	This makes compilation with Windows easier, as links are no longer needed.
+- Adjusted journal examples and documentation to use `\ATLASLATEXPATH`. This makes compilation with Windows easier, as links are no longer needed.
 
 ---
 
@@ -877,7 +877,7 @@ Hopefully this will be fixed in the next release.
 
 ### Added
 
-- ATLAS CONF and PUB notes bib files included. Journal	publications to come.
+- ATLAS CONF and PUB notes bib files included. Journal publications to come.
 - Added a few instructions on CERN preprint preparation.
 - Add option `detect-all` to `siunitx`.
 - Added a new command `make cleanepstopdf` to delete PDF files made automatically from EPS files.
@@ -903,12 +903,12 @@ Hopefully this will be fixed in the next release.
 ### Added
 
 - Add a variable `\ATLASLATEXPATH` which contains the directory for style files. This can be used instead of the `texmf` option and is more flexible.
-- Add `biblatex` option to turn off eprint.
+- Add `biblatex` option to turn off `eprint`.
 - Add some documentation on different directory options.
 
 ### Changed
 
-- Print note after URL and eprint.
+- Print note after URL and `eprint`.
 
 ---
 
@@ -1129,7 +1129,7 @@ Hopefully this will be fixed in the next release.
 
 ### Removed
 
-- Do not include atlascontribute in metadata file.
+- Do not include `atlascontribute` in metadata file.
 
 ---
 
@@ -1206,7 +1206,7 @@ Hopefully this will be fixed in the next release.
 ### Added
 
 - First alpha release of `atlaslatex`.
-- Add `inputenc` and `fontenc` to atlasphysics.sty. In fact, these (and `txfonts`) should probably move to `atlasdoc.cls`.
+- Add `inputenc` and `fontenc` to `atlasphysics.sty`. In fact, these (and `txfonts`) should probably move to `atlasdoc.cls`.
 - Add `koma` option to `atlasdoc.cls`.
 
 ### Changed
