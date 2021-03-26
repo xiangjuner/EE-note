@@ -7,8 +7,8 @@ TEXLIVE = 2016
 
 .PHONY: clean cleanpdf
 
-EXOT_template:
-	make -f ../../doc/Makefile run_latexmk BASENAME=$(BASENAME); \
+MC_snippets:
+	make -f ../../doc/Makefile run_latexmk BASENAME=$(BASENAME)
 
 texlive:
 	make -f ../../doc/Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
