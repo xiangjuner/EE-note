@@ -1,10 +1,7 @@
 This new version contains a number of updates:
 The October 2020 LaTeX update led to options being ignored when passed to a document class or a style file if the filename contained a directory.
-- New script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
+- The script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.
 
-- Merge MC generators in atlasmisc.sty with those in PMG document.
-- Add PMG document to the templates directory.
-- Remove macros with version number, as this is now an optional argument for the default macro names.
-- February and March updates of publications.
+- April update of publications.
 - Updated ATLAS Errata.

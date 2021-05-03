@@ -14,19 +14,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-03-XX
+## [11.1.0] - 2021-05-03
 
 ### Added
 
-### Changed
-
-### Deprecated
+- April update of publications.
 
 ### Removed
 
-### Fixed
-
-### Security
+- `ChangeLog` as it has been superseded by `CHANGELOG.md`.
 
 ---
 
