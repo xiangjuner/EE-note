@@ -60,7 +60,8 @@ of \PYTHIA[8]~\cite{Sjostrand:2014zea} were used.
 The gluon--gluon fusion prediction from the Monte Carlo samples was normalised to the 
 next-to-next-to-next-to-leading-order cross-section in QCD plus electroweak corrections 
 at next-to-leading order 
-(NLO)~\cite{deFlorian:2016spz,Anastasiou:2016cez,Anastasiou:2015ema,Dulat:2018rbf,Harlander:2009mq,Harlander:2009bw,Harlander:2009my,Pak:2009dg,Actis:2008ug,Actis:2008ts,Bonetti:2018ukf,Bonetti:2018ukf}. 
+(NLO)~\cite{deFlorian:2016spz,Anastasiou:2016cez,Anastasiou:2015ema,Dulat:2018rbf,Harlander:2009mq,Harlander:2009bw,Harlander:2009my,Pak:2009dg,Actis:2008ug,Actis:2008ts,Bonetti:2018ukf,Bonetti:2018ukf}. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.
 The normalisation of all Higgs boson
 samples accounts for the decay branching ratio calculated with HDECAY~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz}
 and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
@@ -79,7 +80,8 @@ Top- and bottom-quark mass effects were included up to next-to-leading order (NL
 
 The renormalisation and factorisation scales were set to half of the Higgs boson mass and the \PDFforLHC[15nnlo] PDF
 set~\cite{Butterworth:2015oua} was used. The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea}
-which uses the AZNLO tune~\cite{STDM-2012-23}. 
+which uses the AZNLO tune~\cite{STDM-2012-23}. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.
 
 The QCD scale uncertainties were obtained by a three-point scale variation of $\muR=\muF$ by a factor of two about 
 the central value for the NNLO part, and using a nine-point variation for the \POWHEG scale. 
@@ -139,12 +141,13 @@ Higgs boson production via vector-boson fusion was simulated with
 \POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw} 
 and interfaced with \PYTHIA[8]~\cite{Sjostrand:2014zea} for parton shower and non-perturbative effects,
 with parameters set according to the \AZNLO tune~\cite{STDM-2012-23}.
-The \POWHEG prediction is accurate to next-to-leading order (NLO) and uses
+The \POWHEGBOX prediction is accurate to next-to-leading order (NLO) and uses
 the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua}. 
-It was tuned to match calculations with effects due to finite heavy-quark masses 
-and soft-gluon resummation up to NNLL.
-The Monte Carlo prediction was normalised to an approximate-NNLO QCD cross-section 
-with NLO electroweak corrections~\cite{Ciccolini:2007jr,Ciccolini:2007ec,Bolzoni:2010xr}. 
+%It was tuned to match calculations with effects due to finite heavy-quark masses 
+%and soft-gluon resummation up to NNLL.
+It was normalised to an approximate-NNLO QCD cross-section 
+with NLO electroweak corrections~\cite{Ciccolini:2007jr,Ciccolini:2007ec,Bolzoni:2010xr}.
+The decays of bottom and charm hadrons were performed by \EVTGEN~\cite{Lange:2001uf}.
 The normalisation of all Higgs boson samples accounts for the decay branching ratio calculated 
 with \textsc{HDECAY}~\cite{Djouadi:1997yw,Spira:1997dg,Djouadi:2006bz} 
 and \PROPHECY~\cite{Bredenstein:2006ha,Bredenstein:2006rh,Bredenstein:2006nk}.
@@ -162,14 +165,15 @@ between $t$- and $u$-channel contributions were disregarded.
 
 The renormalisation and factorisation scales were set to the $W$ boson mass and the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua}
 was used. The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea} which uses the \AZNLO
-tune~\cite{STDM-2012-23}. A dipole-recoil strategy was used for the parton shower.%, which provides a better agreement than other recoil schemes with the NNLO predictions of proVBFH (not included in the HiggsReference twiki). % cite https://arxiv.org/pdf/1710.00391.pdf ?,
+tune~\cite{STDM-2012-23}. A dipole-recoil strategy was used for the parton shower.The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}.%, which provides a better agreement than other recoil schemes with the NNLO predictions of proVBFH (not included in the HiggsReference twiki). % cite https://arxiv.org/pdf/1710.00391.pdf ?,
 
 
 %The samples include weight variations evaluated on-the-fly for the estimation of QCD scale, PDF- and \alphas-induced uncertainties. 
 The QCD scales \muR and \muF were varied independently by factors of 0.5 and 2.0, both in the matrix element 
 and in the parton shower.
 
-The prediction from the \POWHEG sample was normalised to the next-to-next-to-leading-order cross-section in QCD 
+The prediction from the \POWHEGBOX sample was normalised to the next-to-next-to-leading-order cross-section in QCD 
 using the VBF approximation~\cite{Ciccolini:2007jr,Ciccolini:2007ec,Bolzoni:2010xr}. Relative 
 next-to-leading-order electroweak corrections were also taken into account for the $t$- and $u$-channel contribution 
 considered in the VBF approximation. The normalisation of all Higgs boson samples accounts for the decay branching 
@@ -324,7 +328,8 @@ Higgs boson production in association with a vector boson was simulated using
 \POWHEGBOX[v2]~\cite{Nason:2009ai,Alioli:2010xd,Nason:2004rx,Frixione:2007vw} and interfaced with \PYTHIA[8]~\cite{Sjostrand:2014zea} for
 parton shower and non-perturbative effects. The \POWHEG prediction is accurate to next-to-leading order for $VH$ boson plus one-jet production. 
 The loop-induced $gg\to ZH$ process was generated separately at leading order. The \PDFforLHC[15nlo] PDF
-set~\cite{Butterworth:2015oua} and the \AZNLO tune~\cite{STDM-2012-23} of \PYTHIA[8]~\cite{Sjostrand:2014zea} were used. The Monte Carlo
+set~\cite{Butterworth:2015oua} and the \AZNLO tune~\cite{STDM-2012-23} of \PYTHIA[8]~\cite{Sjostrand:2014zea} were used. The decays of bottom and charm hadrons
+were performed by \EVTGEN~\cite{Lange:2001uf}. The Monte Carlo
 prediction was normalised to cross-sections calculated at NNLO in QCD with NLO electroweak corrections for $q\bar{q}/qg \to VH$ and at NLO
 and next-to-leading-logarithm accuracy in QCD for $gg \to
 ZH$~\cite{Ciccolini:2003jy,Brein:2003wg,Brein:2011vx,Altenkamp:2012sx,Denner:2014cla,Brein:2012ne,Harlander:2014wda}. The
@@ -342,7 +347,7 @@ through the interface to the \GOSAM package~\cite{Cullen:2011ac}. The loop-induc
 leading order with \POWHEG. In all cases, the \PDFforLHC[15nlo] PDF set~\cite{Butterworth:2015oua} was used.
 
 The matrix elements were matched to the parton shower of \PYTHIA[8]~\cite{Sjostrand:2014zea} which uses the \AZNLO
-tune~\cite{STDM-2012-23}.
+tune~\cite{STDM-2012-23}. The decays of bottom and charm hadrons were performed by \EVTGEN~\cite{Lange:2001uf}.
 %The samples include weight variations evaluated on-the-fly for the estimation of QCD scale, PDF- and \alphas-induced uncertainties. 
 The QCD scales \muR and \muF were varied independently by factors of 0.5 and 2.0 to account for their uncertainties.
 
