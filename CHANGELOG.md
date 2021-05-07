@@ -14,11 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-05-XX
+## [11.2.0] - 2021-05-07
 
 ### Added
 
 ### Changed
+
+- Small updates to Higgs MC snippets.
+- A cuple of fixes connected to Errata/Addendum in `ATLAS.bib`.
 
 ### Deprecated
 
