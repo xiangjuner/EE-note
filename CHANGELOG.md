@@ -14,6 +14,24 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [Unreleased] - 2021-05-XX
+
+### Added
+
+### Changed
+
+- Switched to revtex4-2 by default for APS journals.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [11.2.0] - 2021-05-07
 
 ### Changed
