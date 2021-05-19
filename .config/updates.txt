@@ -3,5 +3,5 @@ The October 2020 LaTeX update led to options being ignored when passed to a docu
 - The script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.
 
-- April update of publications.
-- Updated ATLAS Errata and fixed some Addendums.
+- May update of publications.
+- Small updates to Higgs MC snippets.

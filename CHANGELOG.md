@@ -14,21 +14,17 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-05-XX
+## [11.3.0] - 2021-05-19
 
 ### Added
 
+- May update of publications.
+
 ### Changed
 
-- Switched to revtex4-2 by default for APS journals.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- Switch to revtex4-2 by default for APS journals.
+- Further small updates to Higgs MC snippets.
+- Update acknowledgements.
 
 ---
 
