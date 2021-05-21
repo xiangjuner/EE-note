@@ -171,13 +171,9 @@
       \newunit}
   \fi
 
-  % Print only first page - only works for TeX Live 2012 onwards I think
-  % \ifthenelse{\ABIB@texlive < 2012}{%
-  %   \relax
-  % }{%
-    \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
-  % }
-
+  % Print only first page
+  \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
+  
   % Change punctuation to comma
   \renewcommand*{\newunitpunct}{\addcomma\space}
 

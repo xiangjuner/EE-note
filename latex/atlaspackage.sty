@@ -59,24 +59,24 @@
 \newif\ifAPKG@less
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
-\ifAPKG@minimal
+\ifthenelse{\boolean{APKG@minimal}}{%
   \typeout{atlaspackage: Using minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
-\else
-  \ifAPKG@full
+}{%
+  \ifthenelse{\boolean{APKG@full}}{%
     \typeout{atlaspackage: Using full settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@moretrue
-  \else
+  }{%
     \typeout{atlaspackage: Using default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
-  \fi
-\fi
+  }
+}
 
 % Steer packages that are included with the full option
 % Turned on full option and off by default otherwise
@@ -88,13 +88,6 @@
   \APKG@xtabtrue
 }{}
 
-% Packages that did not exist for TeX Live < 2009
-% \ifthenelse{\APKG@texlive < 2009}{%
-%   \APKG@siunitxfalse
-%   \APKG@biblatexfalse
-% }{%
-% }
-
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc
 % Graphics
@@ -104,11 +97,11 @@
 % Document language control
 \RequirePackage{babel}
 % Add line numbers
-\ifAPKG@lineno%
+\ifthenelse{\boolean{APKG@lineno}}{%
   \RequirePackage{lineno}
   % If you have an old lineno or do not have it, you can get it from the latex/other directory
-  % \RequirePackage{latex/other/lineno}
-\fi
+  % \RequirePackage{obsolete/lineno}
+}{}
 
 %-------------------------------------------------------------------------------
 % Minimal set of packages
@@ -127,7 +120,7 @@
 %\usepackage[T1]{fontenc}
 
 % Font
-\ifAPKG@txfonts
+\ifthenelse{\boolean{APKG@txfonts}}{%
   \typeout{atlaspackage: Using txfonts and savesym}
   \RequirePackage[varg]{txfonts}
   % Encoding used for printout
@@ -140,17 +133,17 @@
   \savesymbol{iiint}
   \savesymbol{iiiint}
   \savesymbol{idotsint}
-\fi
+}{}
 
 % Extra and very useful maths macros from AMS
 \RequirePackage{amsmath}
 % The AMS \iint etc. is now defined as \AMSiint
-\ifAPKG@txfonts
+\ifthenelse{\boolean{APKG@txfonts}}{%
   \restoresymbol{AMS}{iint}
   \restoresymbol{AMS}{iiint}
   \restoresymbol{AMS}{iiiint}
   \restoresymbol{AMS}{idotsint}
-\fi
+}{}
 
 % microtype to improve spacing
 \RequirePackage[babel=true]{microtype}
@@ -158,153 +151,93 @@
 % Add command that can force all figures and tables (floats) to appear before a certain point
 \RequirePackage{placeins}
 
-\ifAPKG@standard
-  \ifAPKG@csquotes
-    % Language-sensitive quotes
-    % \ifthenelse{\APKG@texlive < 2010}{%
-    %   \RequirePackage[babel=true]{csquotes}
-    % }{%
-      \RequirePackage[autostyle=true]{csquotes}
-    % }
-  \fi
+\ifthenelse{\boolean{APKG@standard}}{%
+  \ifthenelse{\boolean{APKG@csquotes}}{\RequirePackage[autostyle=true]{csquotes}}{}
   % Extra options for footnotes
   % \RequirePackage[bottom]{footmisc}
   % Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
   \RequirePackage{booktabs}
   % Several plots in a single figure
-  \ifAPKG@subfigure%
+  \ifthenelse{\boolean{APKG@subfigure}}{%
     \RequirePackage[TABBOTCAP]{subfigure}
     % subfigure option needed if subfig(ure) is also used
     % \RequirePackage[subfigure]{tocloft}
-  \else
+  }{%
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
     % \ref{fig:mainlabel} + \subref{fig:sublabel} should work in the same way.
-    \ifAPKG@subcaption%
-      % \ifthenelse{\APKG@texlive < 2012}{%
-      %   \RequirePackage{caption}
-      % }{%
-      % }
+    \ifthenelse{\boolean{APKG@subcaption}}{%
       \RequirePackage[labelformat=simple]{subcaption}
       \renewcommand\thesubfigure{(\alph{subfigure})}
       \renewcommand\thesubtable{(\alph{subtable})}
-      % subfigure option needed if subfig(ure) is also used
       % \RequirePackage{tocloft}
-    \else
-      \ifAPKG@subfig%
+    }{%
+      \ifthenelse{\boolean{APKG@subfig}}{%
         \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
         \renewcommand\thesubfigure{(\alph{subfigure})}
         \renewcommand\thesubtable{(\alph{subtable})}
         % subfigure option needed if subfig(ure) is also used
         % \RequirePackage[subfigure]{tocloft}
-      % \else
-      %   \RequirePackage{tocloft}
-      \fi
-    \fi
-  \fi
+      }{}
+    }
+  }{}
 
   % Fixes appendices displaying in pdf viewer index/outline under first appendix
   % instead of under Appendix heading
-  \ifAPKG@bookmark
-    \RequirePackage{bookmark}
-  \fi
-
+  \ifthenelse{\boolean{APKG@bookmark}}{\RequirePackage{bookmark}}{}
+  
   % Remove dots in table of contents
   % \renewcommand{\cftdot}{}
 
   % Typset anything with units using this package - also has very useful table formatting
   % Declare a few options and standard units for siunitx that are otherwise missing
-  % Before 2011 siunitx Version 1 (to be checked)
-  % Before 2012 siunitx Version 2 (arXiv until 10/02/2017)
-  % Otherwise   siunitx Version 3
-  \ifAPKG@siunitx
-    % \ifthenelse{\APKG@texlive < 2012}{
-    %   \ifthenelse{\APKG@texlive < 2011}{
-    %     \typeout{atlaspackage: Loading siunitx definitions for TeX Live < 2011}
-    %     \RequirePackage[noload=addn]{siunitx}
-    %     \sisetup{alsoload=hep}
-    %     \sisetup{seperr}
-    %     \sisetup{repeatunits=false}
-    %     \sisetup{obeyall}
-    %     % \sisetup{sepfour}
-    %     \newunit{\m}{m}
-    %     % \newunit\micron{\micro\metre}
-    %     \newunit{\um}{\micro\meter}
-    %   }{
-    %     \typeout{atlaspackage: Loading siunitx definitions for TeX Live = 2011}
-    %     \RequirePackage{siunitx}
-    %     \sisetup{load-configurations=abbreviations}
-    %     \sisetup{separate-uncertainty}
-    %     \sisetup{range-units=single, list-units=single}
-    %     % \sisetup{group-digits=true, group-four-digits=true}
-    %     \sisetup{group-digits=true}
-    %     \sisetup{detect-all}
-    %     %\sisetup{detect-mode=false, mode=text}
-    %     \DeclareSIUnit\barn{b}
-    %   }
-    % }{%
-      \typeout{atlaspackage: Loading siunitx definitions for TeX Live > 2011}
-      \RequirePackage{siunitx}
-      \sisetup{separate-uncertainty}
-      \sisetup{range-units=single, list-units=single}
-      \sisetup{group-digits=integer, group-minimum-digits=5}
-      \sisetup{detect-all}
-      %\sisetup{detect-mode=false, mode=text}
-    % }
-    % Units
-    % \ifthenelse{\APKG@texlive < 2011}{
-    %   \renewunit{\mrad}{\milli\radian}
-    %   \newunit{\degr}{\degree}
-    %   \newunit{\barn}{b}
-    %   \newunit{\inb}{\per\nano\barn}
-    %   \newunit{\ipb}{\per\pico\barn}
-    %   \newunit{\ifb}{\per\femto\barn}
-    %   \renewunit{\clight}{\text{\ensuremath{c}}}
-    %   \renewunit[per=slash]{\eVperc}{\electronvolt\per\clight}
-    %   \newunit[per=slash]{\TeVc}{\tera\eVperc}
-    %   \newunit[per=slash]{\GeVc}{\giga\eVperc}
-    %   \newunit[per=slash]{\MeVc}{\mega\eVperc}
-    %   \newunit[per=slash]{\keVc}{\kilo\eVperc}
-    %   \newunit[per=slash]{\eVc}{\eVperc}
-    %   \newunit[per=slash]{\TeVcc}{\tera\eVperc\squared}
-    %   \newunit[per=slash]{\GeVcc}{\giga\eVperc\squared}
-    %   \newunit[per=slash]{\MeVcc}{\mega\eVperc\squared}
-    %   \newunit[per=slash]{\keVcc}{\kilo\eVperc\squared}
-    %   \newunit[per=slash]{\eVcc}{\eVperc\squared}
-    % }{%
-      \DeclareSIUnit\micron{\micro\metre}
-      \DeclareSIUnit\mrad{\milli\radian}
-      \DeclareSIUnit\degr{\degree}
-      \ifAPKG@percentspace
-        \relax
-      \else
-        \DeclareSIUnit[number-unit-product={}]\percent{\char`\%}
-        \DeclareSIUnit[number-unit-product={}]\%{\char`\%}
-      \fi
-      \DeclareSIUnit\nb{\nano\barn}
-      \DeclareSIUnit\pb{\pico\barn}
-      \DeclareSIUnit\fb{\femto\barn}
-      \DeclareSIUnit\inb{\per\nano\barn}
-      \DeclareSIUnit\ipb{\per\pico\barn}
-      \DeclareSIUnit\ifb{\per\femto\barn}
-      \DeclareSIUnit\clight{\text{\ensuremath{c}}}
-      \ifAPKG@eVkern
-        \typeout{atlaspackage: Applying kern to eV}
-        \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
-      \fi
-      \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
-      \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
-      \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
-      \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
-      \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
-      \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
-      \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
-      \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
-      \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
-      \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
-      \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
-    % }
-  \fi
-\fi
+  \ifthenelse{\boolean{APKG@siunitx}}{%
+    \typeout{atlaspackage: Loading siunitx definitions}
+    \RequirePackage{siunitx}
+    \sisetup{separate-uncertainty}
+    \sisetup{range-units=single, list-units=single}
+    \sisetup{group-digits=integer, group-minimum-digits=5}
+    \sisetup{detect-all}
+    %\sisetup{detect-mode=false, mode=text}
+    \DeclareSIUnit\micron{\micro\metre}
+    \DeclareSIUnit\mrad{\milli\radian}
+    \DeclareSIUnit\degr{\degree}
+    \ifthenelse{\boolean{APKG@percentspace}}{}{%
+      \DeclareSIUnit[number-unit-product={}]\percent{\char`\%}
+      \DeclareSIUnit[number-unit-product={}]\%{\char`\%}
+    }
+    % Barn needed for TeX Live 2021.
+    \DeclareSIUnit\barn{b}
+    \DeclareSIUnit\nb{\nano\barn}
+    \DeclareSIUnit\pb{\pico\barn}
+    \DeclareSIUnit\fb{\femto\barn}
+    \DeclareSIUnit\inb{\per\nano\barn}
+    \DeclareSIUnit\ipb{\per\pico\barn}
+    \DeclareSIUnit\ifb{\per\femto\barn}
+    \DeclareSIUnit\clight{\text{\ensuremath{c}}}
+    \ifthenelse{\boolean{APKG@eVkern}}{%
+      \typeout{atlaspackage: Applying kern to eV}
+      \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
+    }{}
+    \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
+    \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\MeVc{\mega\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\keVc{\kilo\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\eVc{\eVperc}
+    \DeclareSIUnit[per-mode=symbol]\TeVcc{\tera\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\GeVcc{\giga\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\MeVcc{\mega\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\keVcc{\kilo\eVperc\squared}
+    \DeclareSIUnit[per-mode=symbol]\eVcc{\eVperc\squared}
+  }{}
+}{}
+
+% Pass eVkern option to atlasphysics
+\ifthenelse{\boolean{APKG@eVkern}}{%
+  \typeout{atlaspackage: passing eVkern option to atlasphysics}
+  \PassOptionsToPackage{eVkern}{\ADOC@atlasphysics}
+}{}
+
 
 %------------------------------------------------------------------------------
 % Packages included with the full option (or explicitly)
@@ -339,8 +272,8 @@
 }
 % \RequirePackage{supertable}
 
-% hyperref is usually included as late as possible
-\ifAPKG@hyperref
+% hyperref is usually included as late as possible.
+\ifthenelse{\boolean{APKG@hyperref}}{%
   \PassOptionsToPackage{hyphens}{url}
   \RequirePackage{hyperref}
   \hypersetup{bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=0}
@@ -348,27 +281,26 @@
   \hypersetup{colorlinks,breaklinks}
   \hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue}
   \hypersetup{unicode,psdextra}
-\fi
+}{}
 
-% cleveref should be included late
-\ifAPKG@standard
-  % Smart referencing
-  \ifAPKG@cleveref
-    \ifAPKG@capsref
-      \ifAPKG@abbrevref
+% Smart referencing - cleveref should be included late.
+\ifthenelse{\boolean{APKG@standard}}{%
+  \ifthenelse{\boolean{APKG@cleveref}}{%
+    \ifthenelse{\boolean{APKG@capsref}}{%
+      \ifthenelse{\boolean{APKG@abbrevref}}{%
         \RequirePackage[capitalise]{cleveref}
-      \else
+      }{%
         \RequirePackage[noabbrev,capitalise]{cleveref}
-      \fi
-    \else
-      \ifAPKG@abbrevref
+      }
+    }{%
+      \ifthenelse{\boolean{APKG@abbrevref}}{%
         \RequirePackage{cleveref}
-      \else
+      }{%
         \RequirePackage[noabbrev]{cleveref}
-      \fi
-    \fi
-  \fi
-\fi
+      }
+    }
+  }{}
+}{}
 
 % Use biblatex and biber for the bibliography
 % backend=biber|bibtex to select backend to use (biber is default)
@@ -383,10 +315,11 @@
 % maxbibnames=5   is maximum number of authors before et al. is used.
 % Some more tweaks should be made to the appearance,
 % see/include bibtex/bst/atlas-biblatex.sty
-\ifAPKG@biblatex
+\ifthenelse{\boolean{APKG@biblatex}}{%
   % \typeout{atlaspackage: block set to \APKG@block}
   % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
-  \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+  % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+  \def\ADOC@atlasbiblatex{atlasbiblatex}
   \ifx\APKG@block\@empty%
     \relax
   \else
@@ -406,6 +339,6 @@
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, giveninits=true]{biblatex}
   }
-\fi
+}{}
 
 \endinput

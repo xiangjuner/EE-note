@@ -15,91 +15,50 @@
   family=AUNIT,
   prefix=AUNIT@
 }
-\DeclareStringOption[2016]{texlive}
+% \DeclareStringOption[2016]{texlive}
+\DeclareBoolOption[false]{eVkern}
 \ProcessKeyvalOptions*
 
-\typeout{atlasphysics: AUNIT@texlive is [\AUNIT@texlive]}
+% \typeout{atlasunit: AUNIT@texlive is [\AUNIT@texlive]}
+\ifthenelse{\boolean{AUNIT@eVkern}}{%
+  \typeout{atlasunit: AUNIT@eVkern is true}
+}{%
+  \typeout{atlasunit: AUNIT@eVkern is false}
+}
+
+% Adjust eV spacing if eVkern option set.
+\ifthenelse{\boolean{AUNIT@eVkern}}{%
+  \typeout{atlasunit: applying kern to eV}
+  \newcommand*{\electronvolt}{\text{e\kern-0.1em V}}
+}{%
+  \typeout{atlasunit: not applying kern to eV}
+  \newcommand*{\electronvolt}{eV}
+}
 
 % Turn off units if siunitx is included and TeX Live is between 2009 and 2010
-\@ifpackageloaded{siunitx}{%
-  % \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
-  %   \typeout{*** atlasunit: do not define siunitx units}
-  % }{
-    \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
-    \newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
-    \newcommand*{\MeV}{\ensuremath{\text{Me\kern -0.1em V}}}
-    \newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
-    \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
-  % }
-}{\typeout{*** atlasunit: siunitx is not loaded}
-  \newcommand*{\TeV}{\ensuremath{\text{Te\kern -0.1em V}}}
-  \newcommand*{\GeV}{\ensuremath{\text{Ge\kern -0.1em V}}}
-  \newcommand*{\MeV}{\ensuremath{\text{Me\kern -0.1em V}}}
-  \newcommand*{\keV}{\ensuremath{\text{ke\kern -0.1em V}}}
-  \newcommand*{\eV}{\ensuremath{\text{e\kern -0.1em V}}}
-}
+\newcommand*{\TeV}{\ensuremath{\text{T\electronvolt}}}
+\newcommand*{\GeV}{\ensuremath{\text{G\electronvolt}}}
+\newcommand*{\MeV}{\ensuremath{\text{M\electronvolt}}}
+\newcommand*{\keV}{\ensuremath{\text{k\electronvolt}}}
+\newcommand*{\eV}{\ensuremath{\text{\electronvolt}}}
 
-\@ifundefined{APKG@texlive}{
-  \typeout{*** atlasunit: atlaspackage TeX Live is not defined}
-}{
-  \typeout{*** atlasunit: atlaspackage TeX Live is defined}
-}
+\newcommand*{\TeVc}{\ensuremath{\text{T\electronvolt/}c}}
+\newcommand*{\GeVc}{\ensuremath{\text{G\electronvolt/}c}}
+\newcommand*{\MeVc}{\ensuremath{\text{M\electronvolt/}c}}
+\newcommand*{\keVc}{\ensuremath{\text{k\electronvolt/}c}}
+\newcommand*{\eVc}{\ensuremath{\text{\electronvolt/}c}}
 
-% Complicated logic to cope with TeVc etc. being defined in atlaspackage
-% and siunitx units are not isolated from other units iun siunitx Version 1.
-\@ifpackageloaded{siunitx}{%
-  % \ifthenelse {\AUNIT@texlive > 2008 \AND \AUNIT@texlive < 2011}{%
-  %   \@ifundefined{APKG@texlive}{%
-  %     \typeout{*** atlasunit: defining TeVc, TeVcc as atlaspackage not loaded}
-  %     \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
-  %     \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
-  %     \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
-  %     \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
-  %     \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
-  %     \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
-  %     \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
-  %     \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
-  %     \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
-  %     \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
-  %     \newcommand*{\ifb}{\mbox{fb\(^{-1}\)}}
-  %     \newcommand*{\ipb}{\mbox{pb\(^{-1}\)}}
-  %     \newcommand*{\inb}{\mbox{nb\(^{-1}\)}}
-  %     \newcommand*{\degr}{\ensuremath{^\circ}}
-  %   }{\typeout{*** atlasunit: do not define TeVc, TeVcc etc.}
-  %   }
-  % }{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx > 2010}
-    \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
-  \typeout{*** atlasunit: defining TeVc, TeVcc for siunitx}
-  \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
-    \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
-    \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
-    \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
-    \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
-    \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
-    \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
-    \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
-    \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
-    \newcommand*{\ifb}{\mbox{fb\(^{-1}\)}}
-    \newcommand*{\ipb}{\mbox{pb\(^{-1}\)}}
-    \newcommand*{\inb}{\mbox{nb\(^{-1}\)}}
-    \newcommand*{\degr}{\ensuremath{^\circ}}
-  % }
-}{\typeout{*** atlasunit: defining TeVc, TeVcc as siunitx is not loaded}
-  \newcommand*{\TeVc}{\ensuremath{\text{Te\kern -0.1em V/}c}}
-  \newcommand*{\GeVc}{\ensuremath{\text{Ge\kern -0.1em V/}c}}
-  \newcommand*{\MeVc}{\ensuremath{\text{Me\kern -0.1em V/}c}}
-  \newcommand*{\keVc}{\ensuremath{\text{ke\kern -0.1em V/}c}}
-  \newcommand*{\eVc}{\ensuremath{\text{e\kern -0.1em V/}c}}
-  \newcommand*{\TeVcc}{\ensuremath{\text{Te\kern -0.1em V/}c^{2}}}
-  \newcommand*{\GeVcc}{\ensuremath{\text{Ge\kern -0.1em V/}c^{2}}}
-  \newcommand*{\MeVcc}{\ensuremath{\text{Me\kern -0.1em V/}c^{2}}}
-  \newcommand*{\keVcc}{\ensuremath{\text{ke\kern -0.1em V/}c^{2}}}
-  \newcommand*{\eVcc}{\ensuremath{\text{e\kern -0.1em V/}c^{2}}}
-  \newcommand*{\ifb}{\mbox{fb\(^{-1}\)}}
-  \newcommand*{\ipb}{\mbox{pb\(^{-1}\)}}
-  \newcommand*{\inb}{\mbox{nb\(^{-1}\)}}
-  \newcommand*{\degr}{\ensuremath{^\circ}}
-}
+\newcommand*{\TeVcc}{\ensuremath{\text{T\electronvolt/}c^{2}}}
+\newcommand*{\GeVcc}{\ensuremath{\text{G\electronvolt/}c^{2}}}
+\newcommand*{\MeVcc}{\ensuremath{\text{M\electronvolt/}c^{2}}}
+\newcommand*{\keVcc}{\ensuremath{\text{k\electronvolt/}c^{2}}}
+\newcommand*{\eVcc}{\ensuremath{\text{\electronvolt/}c^{2}}}
+
+\newcommand*{\ifb}{\mbox{fb\(^{-1}\)}}
+\newcommand*{\ipb}{\mbox{pb\(^{-1}\)}}
+\newcommand*{\inb}{\mbox{nb\(^{-1}\)}}
+
+\newcommand*{\degr}{\ensuremath{^\circ}}
 
 \let\tev=\TeV
 \let\gev=\GeV
@@ -118,9 +77,3 @@
 \let\mevcc=\MeVcc
 \let\kevcc=\keVcc
 \let\evcc=\eVcc
-
-%\def\cm{\ifmmode  {\mathrm{\ cm}}\else
-%                   \textrm{~cm}\fi}%
-
-
-

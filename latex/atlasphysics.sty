@@ -39,69 +39,70 @@
 \DeclareBoolOption[true]{unit}
 \DeclareBoolOption[true]{xref}
 \DeclareStringOption[2016]{texlive}
+\DeclareBoolOption[false]{eVkern}
 \DeclareBoolOption[true]{texmf}
 \ProcessKeyvalOptions*
 
 \typeout{atlasphysics: APHY@texlive is [\APHY@texlive]}
-
-%\APKG@siunitxtrue
-
-% Use texmf option if ATLAS LaTeX package is centrally installed, e.g. in texmf/tex/latex
-\ifthenelse{\isundefined{\ATLASLATEXPATH}}{%
-  \ifAPHY@texmf
-    \newcommand*{\APHY@atlasdir}{}
-  \else
-    \newcommand*{\APHY@atlasdir}{latex/}
-  \fi
+\ifthenelse{\boolean{APHY@eVkern}}{%
+  \typeout{atlasphysics: APHY@eVkern is true}
 }{%
-  \newcommand*{\APHY@atlasdir}{\ATLASLATEXPATH}
+  \typeout{atlasphysics: APHY@eVkern is false}
 }
 
 % BSM particles including SUSY - also allow option bsm!
-\ifAPHY@BSM      \RequirePackage{\APHY@atlasdir atlasbsm} \fi
-\ifAPHY@bsm      \RequirePackage{\APHY@atlasdir atlasbsm} \fi
+\ifthenelse{\boolean{APHY@BSM}}{\RequirePackage{atlasbsm}}{}
+\ifthenelse{\boolean{APHY@bsm}}{\RequirePackage{atlasbsm}}{}
 
 % Heavy ion physics
-\ifAPHY@hion     \RequirePackage{\APHY@atlasdir atlasheavyion} \fi
+\ifthenelse{\boolean{APHY@hion}}{\RequirePackage{atlasheavyion}}{}
 
 % Jet/ETmiss group abbreviations
-\ifAPHY@jetetmiss \RequirePackage{\APHY@atlasdir atlasjetetmiss} \fi
+\ifthenelse{\boolean{APHY@jetetmiss}}{\RequirePackage{atlasjetetmiss}}{}
 
 % Journal abbreviations
-\ifAPHY@journal  \RequirePackage{\APHY@atlasdir atlasjournal} \fi
+\ifthenelse{\boolean{APHY@journal}}{\RequirePackage{atlasjournal}}{}
 
 % Useful math related definitions
-\ifAPHY@math     \RequirePackage{\APHY@atlasdir atlasmath} \fi
+\ifthenelse{\boolean{APHY@math}}{\RequirePackage{atlasmath}}{}
 
 % Miscellaneous useful definitions
-\ifAPHY@misc     \RequirePackage{\APHY@atlasdir atlasmisc} \fi
+\ifthenelse{\boolean{APHY@misc}}{\RequirePackage{atlasmisc}}{}
 
 % Other maybe useful definitions
-\ifAPHY@other    \RequirePackage{\APHY@atlasdir atlasother} \fi
+\ifthenelse{\boolean{APHY@other}}{\RequirePackage{atlasother}}{}
 
 % Text snippets
-\ifAPHY@snippets \RequirePackage{\APHY@atlasdir atlassnippets} \fi
+\ifthenelse{\boolean{APHY@snippets}}{\RequirePackage{atlassnippets}}{}
 
 % Particles
 % Load either atlasparticle or atlashepparticle, but not both.
 % Priority given to atlashepparticle.
-\ifAPHY@hepparticle \RequirePackage{\APHY@atlasdir atlashepparticle}
-\else
-  \ifAPHY@particle \RequirePackage{\APHY@atlasdir atlasparticle} \fi
-\fi
+\ifthenelse{\boolean{APHY@hepparticle}}{%
+  \RequirePackage{atlashepparticle}
+}{%
+  \ifthenelse{\boolean{APHY@particle}}{\RequirePackage{atlasparticle}}{}
+}
 
 % Processes
 % Load either atlasprocess or atlashepprocess, but not both.
 % Priority given to atlashepprocess.
-\ifAPHY@hepprocess \RequirePackage{\APHY@atlasdir atlashepprocess}
-\else
-  \ifAPHY@process \RequirePackage{\APHY@atlasdir atlasprocess} \fi
-\fi
+\ifthenelse{\boolean{APHY@hepprocess}}{%
+  \RequirePackage{atlashepprocess}
+}{%
+  \ifthenelse{\boolean{APHY@process}}{\RequirePackage{atlasprocess}}{}
+}
 
 % Units
-\ifAPHY@unit     \RequirePackage{\APHY@atlasdir atlasunit} \fi
+\ifthenelse{\boolean{APHY@unit}}{%
+  \ifthenelse{\boolean{APHY@eVkern}}{%
+    \RequirePackage[eVkern]{atlasunit}
+  }{%
+    \RequirePackage{atlasunit}
+  }
+}{}
 
 % Abbreviations when cross referencing
-\ifAPHY@xref     \RequirePackage{\APHY@atlasdir atlasxref} \fi
+\ifthenelse{\boolean{APHY@xref}}{\RequirePackage{atlasxref}}{}
 
 \endinput

@@ -20,9 +20,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Changed
 
+- Wider use of `\ifthenelse` instead of simple `\if`.
+- Simplify logic in `atlasunit.sty`.
+
 ### Deprecated
 
 ### Removed
+
+- Lots of commented out code for TeX Live versions older than 2013 removed.
+- Remove any use of directory names in `\usepackage` etc., e.g. `\ATLASLATEXPATH`.
 
 ### Fixed
 

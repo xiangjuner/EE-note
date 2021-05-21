@@ -1,11 +1,11 @@
 %-------------------------------------------------------------------------------
 % Template class for ATLAS documents.
 %
-% See ChangeLog or Git log for history of changes.
+% See CHANGELOG.md or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %
 % Note that this file can be overwritten when atlaslatex is updated.
-% if TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
+% If TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
@@ -63,11 +63,6 @@
 \ProcessKeyvalOptions{ADOC}
 
 % Standard LaTeX options for paper size
-%\newif\ifADOC@aivpaper
-%\ADOC@aivpapertrue
-%\DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpapertrue} %\def\ADOC@paperstring{a4paper}}
-%\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{\ADOC@mainclass}} % \ADOC@aivpaperfalse} %\def\ADOC@paperstring{letterpaper}}
-%\ProcessOptions\relax
 \newcommand*{\ATTeXLiveVersion}{\ADOC@texlive}
 
 \newif\ifADOC@CONFnote
@@ -75,32 +70,33 @@
 \newif\ifADOC@notenumber
 
 % CERN preprint or auxiliary material
-\ifADOC@cernpreprint
+\ifthenelse{\boolean{ADOC@cernpreprint}}{%
   \ADOC@HEPDATAfalse
   \ADOC@atlasdraftfalse
-\else
-  \ifADOC@preprint
+}{%
+  \ifthenelse{\boolean{ADOC@preprint}}{%
     \ADOC@cernpreprinttrue
     \ADOC@HEPDATAfalse
-  \else
-    \ifADOC@HEPDATA
-      \ADOC@cernpreprintfalse
-    \fi
-  \fi
-\fi
+  }{%
+    \ifthenelse{\boolean{ADOC@HEPDATA}}{\ADOC@cernpreprintfalse}{}
+  }
+}
 
 % Directory for style files
-\ifADOC@texmf
-  \providecommand*{\ATLASLATEXPATH}{}
-\else
-  \providecommand*{\ATLASLATEXPATH}{latex/}
-\fi
+% \ifADOC@texmf
+%   \providecommand*{\ATLASLATEXPATH}{}
+% \else
+%   \providecommand*{\ATLASLATEXPATH}{latex/}
+% \fi
 
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
 % Turn off backref in atlasbiblatex for CERN preprint
-\def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
-\ifADOC@cernpreprint
+% \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
+\def\ADOC@atlasbiblatex{atlasbiblatex}
+\def\ADOC@atlasphysics{atlasphysics}
+% CERN preprint
+\ifthenelse{\boolean{ADOC@cernpreprint}}{%
   \typeout{atlasdoc: ATLAS CERN preprint}
   \renewcommand*{\ADOC@docheadingdefault}{ATLAS Paper}
   \ADOC@PAPERtrue
@@ -110,8 +106,9 @@
   \ADOC@BOOKfalse
   \typeout{atlasdoc: turning off backref for a CERN preprint}
   \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
-\else
-  \ifADOC@PAPER
+}{%
+  % ATLAS paper
+  \ifthenelse{\boolean{ADOC@PAPER}}{%
     \typeout{atlasdoc: ATLAS paper}
     \renewcommand*{\ADOC@docheadingdefault}{ATLAS Paper}
     \ADOC@PAPERtrue
@@ -119,8 +116,9 @@
     \ADOC@CONFnotefalse
     \ADOC@PUBnotefalse
     \ADOC@BOOKfalse
-  \else
-    \ifADOC@CONF
+  }{%
+    % ATLAS CONF note
+    \ifthenelse{\boolean{ADOC@CONF}}{%
       \typeout{atlasdoc: ATLAS CONF note}
       \renewcommand*{\ADOC@docheadingdefault}{ATLAS CONF Note}
       \ADOC@PAPERfalse
@@ -128,8 +126,9 @@
       \ADOC@CONFnotetrue
       \ADOC@PUBnotefalse
       \ADOC@BOOKfalse
-    \else
-      \ifADOC@PUB
+    }{%
+      % ATLAS PUB note
+      \ifthenelse{\boolean{ADOC@PUB}}{%
         \typeout{atlasdoc: ATLAS PUB note}
         \renewcommand*{\ADOC@docheadingdefault}{ATLAS PUB Note}
         \ADOC@PAPERfalse
@@ -137,22 +136,23 @@
         \ADOC@CONFnotefalse
         \ADOC@PUBnotetrue
         \ADOC@BOOKfalse
-      \else
-        \ifADOC@BOOK
+      }{%
+        % ATLAS TDR etc.
+        \ifthenelse{\boolean{ADOC@BOOK}}{%
           \typeout{atlasdoc: ATLAS BOOK}
           \ADOC@PAPERfalse
           \ADOC@NOTEfalse
           \ADOC@CONFnotefalse
           \ADOC@PUBnotefalse
           \ADOC@BOOKtrue
-        \else
+        }{%
           \typeout{atlasdoc: ATLAS Note}
           \renewcommand*{\ADOC@docheadingdefault}{ATLAS Note}
-        \fi
-      \fi
-    \fi
-  \fi
-\fi
+        }
+      }
+    }
+  }
+}
 
 % Decide on the main class
 \ifADOC@BOOK
@@ -210,21 +210,8 @@
   \ADOC@notenumbertrue
 }
 
-% Switch to txfonts for TeX Live <= 2012
-% Need to pass this option to atlaspackage as well
-% \ifthenelse{\ADOC@texlive < 2012 \AND \boolean{ADOC@newtx}}{%
-%   \typeout{*** atlasdoc: use txfonts instead of newtx}
-%   \ADOC@newtxfalse
-%   \ADOC@txfontstrue
-%   \PassOptionsToPackage{txfonts}{\ATLASLATEXPATH atlaspackage}
-% }{%
-% }
-
 %-------------------------------------------------------------------------------
 % Defaults for title page
-% \newdimen\ADOC@skipbeforetitle
-% \ADOC@skipbeforetitle=60\p@
-% \newcommand{\skipbeforetitle}[1]{\ADOC@skipbeforetitle=#1}
 
 % Any additions here that affect the cover page should also be added to atlascover.sty
 \def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
@@ -358,11 +345,11 @@
 %-------------------------------------------------------------------------------
 % Invoke main class
 % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
-\ifADOC@BOOK
+\ifthenelse{\boolean{ADOC@BOOK}}{%
   \LoadClass[titlepage,11pt]{scrbook}
-\else
+}{%
   \LoadClass[titlepage,11pt]{scrartcl}
-\fi
+}
 
 % Required packages
 \RequirePackage{graphicx}
@@ -373,7 +360,7 @@
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
 % Set KOMA-Script options for ATLAS style
-\ifADOC@atlasstyle
+\ifthenelse{\boolean{ADOC@atlasstyle}}{%
   \KOMAoptions{headinclude=true, footinclude=false}
   % Put less text on the pages of BOOKs etc.
   \ifADOC@BOOK
@@ -388,11 +375,7 @@
   \KOMAoptions{parskip=half}
   \addtokomafont{disposition}{\rmfamily}
   % Set font size for author. URLs in authors (such as orcid) will be black.
-  % \ifthenelse{\ADOC@texlive < 2013}{%
-  %   \relax
-  % }{%
-    \addtokomafont{author}{\ADOC@authorsize\hypersetup{urlcolor=black}}
-  % }
+  \addtokomafont{author}{\ADOC@authorsize\hypersetup{urlcolor=black}}
   \addtokomafont{part}{\LARGE}
   \addtokomafont{descriptionlabel}{\rmfamily}
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
@@ -416,27 +399,28 @@
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
-\fi
+}{}
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-\def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
-\ifADOC@coverpage
+% \def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
+\def\ADOC@atlascover{atlascover}
+\ifthenelse{\boolean{ADOC@coverpage}}{%
   \typeout{atlasdoc: load atlascover package}
-  \ifADOC@CONFnote
+  \ifthenelse{\boolean{ADOC@CONFnote}}{%
     \PassOptionsToPackage{CONF,atlasdoc}{\ADOC@atlascover}
-  \else
-    \ifADOC@PUBnote
+  }{%
+    \ifthenelse{\boolean{ADOC@PUBnote}}{%
       \PassOptionsToPackage{PUB,atlasdoc}{\ADOC@atlascover}
-    \else
+    }{%
       \PassOptionsToPackage{atlasdoc}{\ADOC@atlascover}
-    \fi
-  \fi
+    }
+  }
   % Pass language editor option to cover pages
-  \ifADOC@LANGEDIT
+  \ifthenelse{\boolean{ADOC@LANGEDIT}}{%
     \PassOptionsToPackage{LANGEDIT}{\ADOC@atlascover}
-  \fi
+  }{}
   \RequirePackage{\ADOC@atlascover}
-\fi
+}{}
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
 % \setcounter{secnumdepth}{-1}
@@ -445,23 +429,24 @@
 \RequirePackage{hyperref}
 
 % Font(s)
-\ifADOC@txfonts
+\ifthenelse{\boolean{ADOC@txfonts}}{%
   % Needs special amsmath code in atlaspackage
   \typeout{atlasdoc: using txfonts}
   \RequirePackage[varg]{txfonts}
   \RequirePackage[T1]{fontenc}
   % Pass eVkern option to atlaspackage for siunitx
-  \def\ADOC@atlaspackage{\ATLASLATEXPATH atlaspackage}
+  % \def\ADOC@atlaspackage{\ATLASLATEXPATH atlaspackage}
+  \def\ADOC@atlaspackage{atlaspackage}
   \PassOptionsToPackage{eVkern}{\ADOC@atlaspackage}
-\else
-  \ifADOC@libertine
+}{%
+  \ifthenelse{\boolean{ADOC@libertine}}{%
     \typeout{atlasdoc: using Libertine fonts}
     \RequirePackage{libertine}
     \RequirePackage[T1]{fontenc}
     % \RequirePackage[libertine, defaultsups]{newtxmath}
     \RequirePackage[libertine]{newtxmath}
-    \else
-    \ifADOC@palatino
+  }{%
+    \ifthenelse{\boolean{ADOC@palatino}}{%
       \typeout{atlasdoc: using Palatino fonts}
       % Palatino for rm and math | Helvetica for ss | Courier for tt
       \RequirePackage{mathpazo} % math & rm
@@ -470,24 +455,17 @@
       \RequirePackage{courier} % tt
       \normalfont
       \RequirePackage[T1]{fontenc}
-    \else
+    }{%
       \typeout{atlasdoc: using newtx fonts package}
-      % \ifthenelse{\ADOC@texlive < 2013}{%
-      %   \RequirePackage{newtxtext}
-      %   \typeout{*** atlasdoc: include amsmath before newtxmath}
-      %   \RequirePackage{amsmath}
-      % }{%
-      % \RequirePackage[defaultsups]{newtxtext}
-        \RequirePackage{newtxtext}
-      % }
+      \RequirePackage{newtxtext}
       \RequirePackage{newtxmath}
-    \fi
-  \fi
-\fi
+    }
+  }
+}
 
 % Adjust float settings to try to avoid problems.
 % These follow the UK FAQ - see also P.199-200 of the LaTeX Book
-\ifADOC@floatopt
+\ifthenelse{\boolean{ADOC@floatopt}}{%
   \renewcommand{\topfraction}{0.85}
   \renewcommand{\bottomfraction}{0.70}
   \renewcommand{\textfraction}{0.15}
@@ -497,29 +475,29 @@
   \setcounter{topnumber}{9}
   \setcounter{bottomnumber}{9}
   \setcounter{totalnumber}{20}
-\fi
+}{}
 
 % Make sure page sizes etc are calculated after font selection
 \KOMAoptions{DIV=last}
 
 % Add ability to include line numbers
-\ifADOC@mathlines
+\ifthenelse{\boolean{ADOC@mathlines}}{%
   \RequirePackage[mathlines]{lineno}
-\else
+}{%
   \RequirePackage{lineno}
-\fi
+}
 % If you have an old lineno or do not have it, you can get it from the latex/other directory
 % \RequirePackage{latex/other/lineno}
 % \nolinenumbers
 
 % Show frame for checking dimensions etc.
-\ifADOC@showframe
+\ifthenelse{\boolean{ADOC@showframe}}{%
   \RequirePackage{showframe}
-\fi
+}
 
 % Try to avoid adding linenomath around unknown environments
 % Code adapted from https://tex.stackexchange.com/questions/436011/linenomath-printing-extra-numbers-on-last-line-of-multline-align-flalign-envir
-\ifADOC@linenofix
+\ifthenelse{\boolean{ADOC@linenofix}}{%
   \RequirePackage{xpatch}
   \newcommand*\linenomathpatchAMS[1]{%
     \expandafter\xpretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
@@ -535,7 +513,7 @@
     \typeout{atlasdoc: do not add line numbers to equations}
     \let\linenomathAMS\linenomathNonumbers
   \fi
-\fi
+}{}
 
 % Compute the time in hours and minutes; make new variables \timehh and \timemm
 \newcount\timehh\newcount\timemm
@@ -564,7 +542,7 @@
 }
 
 % Include fancier header and footer for HepData material document
-\ifADOC@HEPDATA
+\ifthenelse{\boolean{ADOC@HEPDATA}}{%
   \ifthenelse{\ADOC@texlive < 2015}{%
     \RequirePackage[headsepline]{scrpage2}
   }{%
@@ -572,38 +550,21 @@
   }
   \chead{ATLAS Collaboration --- arXiv:\AtlasArXivId\ \AtlasArXivCat}
   \pagestyle{scrheadings}
-\fi
-
-% BOOK, i.e. book heading/footer code
-% \newcommand{\AtlasBookHeading}{%
-%   \ifthenelse{\ADOC@texlive < 2015}{%
-%     \RequirePackage[headsepline]{scrpage2}
-%   }{%
-%     \RequirePackage[headsepline]{scrlayer-scrpage}
-%   }
-%   \ifADOC@atlasdraft
-%     \ifx\ADOC@draftversion\@empty%
-%       \relax
-%     \else
-%       \ihead{\ADOC@draftheading}
-%       \ifoot{\dateandtime}
-%     \fi
-%   \fi
-%   \pagestyle{scrheadings}
-% }
+}{}
 
 % Pass comment option to atlascomment.sty
-\ifADOC@LANGEDIT
-  \def\ADOC@atlascomment{\ATLASLATEXPATH atlascomment}
-  \ifADOC@LANGSHOW
+\ifthenelse{\boolean{ADOC@LANGEDIT}}{%
+  % \def\ADOC@atlascomment{\ATLASLATEXPATH atlascomment}
+  \def\ADOC@atlascomment{atlascomment}
+  \ifthenelse{\boolean{ADOC@LANGSHOW}}{%
     \typeout{atlasdoc: turn on display of language editor comments}
     \PassOptionsToPackage{comment=true}{\ADOC@atlascomment}
-  \else
+  }{%
     \typeout{atlasdoc: turn off display of language editor comments}
     \PassOptionsToPackage{comment=false}{\ADOC@atlascomment}
-  \fi
+  }
   \RequirePackage{\ADOC@atlascomment}
-\fi
+}{}
 
 % Length needed for parbox/minipage in title page
 % \setlength{\titlepageparbox}{\linewidth}
@@ -916,24 +877,6 @@
           \fi
         \end{quote}
       \fi
-      %\vspace*{\stretch{1}}
-      % Submission details
-      % \ifx\ADOC@journal\@empty
-      %   \relax
-      % \else
-      %   \ifADOC@cernpreprint
-      %     \relax
-      %   \else
-      %     \ifADOC@PAPER
-      %       \vskip 2em
-      %       \parbox[c]{\linewidth}{
-      %         \centering
-      %         \ADOC@subprepend\ \textit{\ADOC@journal}
-      %       }\par
-      %       \vskip 2em
-      %     \fi
-      %   \fi
-      % \fi
     \fi
     \par\vspace*{\stretch{1}}%
     % Copyright
@@ -967,36 +910,19 @@
 }
 
 \AtBeginDocument{%
-  % Make sure backref option is turned off for final version of document
-  % Final version means atlasdraft=false or version number is empty
-  % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
-  % \ifADOC@atlasdraft
-  %   \ifx\ADOC@draftversion\@empty%
-  %     \typeout{atlasdoc: turning off backref, as no version number set}
-  %     \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
-  %   \fi
-  % \else
-  %   \typeout{atlasdoc: turning off backref, as atlasdraft=false}
-  %   \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
-  % \fi
   % Turn on line numbers and back references for draft documents
-  \ifADOC@atlasdraft
+  \ifthenelse{\boolean{ADOC@atlasdraft}}{%
     \ifx\ADOC@draftversion\@empty%
       \typeout{*** atlasdoc: this ATLAS draft document does not have a version number}
     \else
       \typeout{atlasdoc: this is an ATLAS draft document}
       \ADOC@DraftHeading
       \linenumbers
-      % \@ifpackageloaded{biblatex}{%
-      %   % backref=true adds page numbers of citations to bibliography
-      %   \typeout{atlasdoc: turning backref on}
-      %   \ExecuteBibliographyOptions{backref=true}
-      % }{}
     \fi
-  \else
+  }{%
     \typeout{atlasdoc: this is the final version of an ATLAS document}
-  \fi
-  \ifADOC@linenofix
+  }
+  \ifthenelse{\boolean{ADOC@linenofix}}{%
     \typeout{+++ atlasdoc: using lineno package fix}
     \linenomathpatchAMS{align}
     \linenomathpatchAMS{alignat}
@@ -1004,7 +930,7 @@
     \linenomathpatchAMS{flalign}
     \linenomathpatchAMS{gather}
     \linenomathpatchAMS{multline}
-  \fi
+  }{}
   % \typeout{atlasdoc sizes:}
   % \typeout{paper height and width \the\paperheight, \the\paperwidth}
   % \typeout{PDF page height and width \the\pdfpageheight, \the\pdfpagewidth}
