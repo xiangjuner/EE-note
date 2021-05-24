@@ -25,14 +25,14 @@
 \ProcessKeyvalOptions*
 
 % Print the notes
-\ifANOTE@output
+\ifthenelse{\boolean{ANOTE@output}}{%
   \typeout{ATLAS document: showing notes}
-  \ifANOTE@shift
+  \ifthenelse{\boolean{ANOTE@shift}}{%
     \KOMAoptions{BCOR=-5mm}
     \KOMAoptions{DIV=last}
     \addtolength{\marginparwidth}{10mm}
     \addtolength{\textwidth}{-7.86mm}
-  \fi
+  }{}
   \RequirePackage[colorinlistoftodos]{todonotes}
   % \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}
   % \typeout{ATLnote: 1=#1; 2=#2; 3=#3; 4=#4; 5=#5}
@@ -42,7 +42,7 @@
   \newcommand{\ATL@note}[5]{%
     \textcolor{#5}{#2}\todo[author=#1, color=#4, linecolor=#5]{#3}\xspace%
   }
-\else
+}{%
   \typeout{ATLAS document: not showing notes}
   \RequirePackage[disable]{todonotes}
   % \typeout{ATLnote: 1:#1; 2:#2; 3:#3; 4=#4; 5=#5}
@@ -52,7 +52,7 @@
   \newcommand{\ATL@note}[5]{%
     #2\xspace%
   }
-\fi
+}
 
 % Macro to set up a note command
 \newcommand{\ATLnote}[4]{%

@@ -11,11 +11,11 @@
 %\let\sst=\scriptscriptstyle
 
 % Make sure heppennames is loaded.
-\ifAPHY@hepitalic
+\ifthenelse{\boolean{APHY@hepitalic}}{%
   \RequirePackage[italic]{heppennames}
-\else
+}{%
   \RequirePackage{heppennames}
-\fi
+}
 
 % Adjust the kerning for bar over particles with narrow glyphs (from Andy Buckley)
 \def\@shiftlen@anti@gen@bar{0mu}

@@ -12,6 +12,9 @@
 \ProvidesPackage{latex/atlascontribute}[2021/05/19 v11.4.0-alpha ATLAS analysis contributions]
 \NeedsTeXFormat{LaTeX2e}
 
+%-------------------------------------------------------------------------------
+% More advanced if syntax
+\RequirePackage{ifthen}
 % Use kvoptions package to set options
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -49,15 +52,15 @@
 \RequirePackage{booktabs}
 
 % Include longtable or xtab package if necessary
-\ifACTR@longtable\RequirePackage{longtable}\fi
-\ifACTR@xtab\RequirePackage{xtab}\fi
+\ifthenelse{\boolean{ACTR@longtable}}{\RequirePackage{longtable}}{}
+\ifthenelse{\boolean{ACTR@xtab}}{\RequirePackage{xtab}}{}
 
 % If multiple authors/affiliations are needed, use the authblk package
-\ifACTR@authblk
+\ifthenelse{\boolean{ACTR@authblk}}{%
   \RequirePackage{authblk}
   \renewcommand\Authands{, } % avoid ``. and'' for last author
   \renewcommand\Affilfont{\itshape\small} % affiliation formatting
-\fi
+}{}
 
 % Analysis contributors: Name, Contributions
 \def\ACTR@Contributors{}
@@ -99,27 +102,27 @@
   \addtolength{\ACTR@linewidth}{-4\tabcolsep}
   \section*{\AtlasContributionsTitle}
   {\raggedright
-    \ifACTR@longtable%
+    \ifthenelse{\boolean{ACTR@longtable}}{%
       \begin{longtable}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
         \toprule
         \ACTR@Contributors
         \bottomrule
       \end{longtable}
-    \else%
-      \ifACTR@xtab%
+    }{%
+      \ifthenelse{\boolean{ACTR@xtab}}{%
         \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
           \toprule
           \ACTR@Contributors
           \bottomrule
         \end{xtabular}
-      \else%
+      }{%
         \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
           \toprule
           \ACTR@Contributors
           \bottomrule
         \end{tabular}
-      \fi
-    \fi
+      }
+    }
   }
 }
 

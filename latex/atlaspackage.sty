@@ -320,18 +320,14 @@
   % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
   % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
   \def\ADOC@atlasbiblatex{atlasbiblatex}
-  \ifx\APKG@block\@empty%
-    \relax
-  \else
+  \ifthenelse{\equal{\APKG@block}{}}{}{%
     \typeout{atlaspackage: passing block option to biblatex}
     \PassOptionsToPackage{block=\APKG@block}{\ADOC@atlasbiblatex}
-  \fi
-  \ifx\APKG@maxbibnames\@empty%
-    \relax
-  \else
+  }
+  \ifthenelse{\equal{\APKG@maxbibnames}{}}{}{%
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
-  \fi
+  }
   \ifthenelse{\APKG@texlive < 2016}{%
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, firstinits=true]{biblatex}
