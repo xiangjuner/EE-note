@@ -363,16 +363,18 @@
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
 
+% Page setup - independnet of ATLAS style.
+\KOMAoptions{headinclude=true, footinclude=false}
+% Put less text on the pages of BOOKs etc.
+\ifthenelse{\boolean{ADOC@BOOK}}{%
+  \KOMAoptions{DIV=12, BCOR=5mm, twoside}
+}{%
+  \KOMAoptions{DIV=14, BCOR=5mm}
+}
+\KOMAoptions{pagesize}
+
 % Set KOMA-Script options for ATLAS style
 \ifthenelse{\boolean{ADOC@atlasstyle}}{%
-  \KOMAoptions{headinclude=true, footinclude=false}
-  % Put less text on the pages of BOOKs etc.
-  \ifthenelse{\boolean{ADOC@BOOK}}{%
-    \KOMAoptions{DIV=12, BCOR=5mm, twoside}
-  }{%
-    \KOMAoptions{DIV=14, BCOR=5mm}
-  }
-  \KOMAoptions{pagesize}
   % Do not put a dot after Section/Chapter, nor in the figure caption.
   \KOMAoptions{numbers=noendperiod}
   % Paragraph spacing is half a line

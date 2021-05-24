@@ -18,10 +18,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Add software description and reference to template ATLAS detector text.
+- Add a macro `\AtlasMaketitle` which can be used instead of `\maketitle`.
+
 ### Changed
 
-- Wider use of `\ifthenelse` instead of simple `\if`.
+- Switch almost everywhere to `\ifthenelse` instead of simple `\if`.
 - Simplify logic in `atlasunit.sty`.
+- Page size set, even if ATLAS style is not used in `atlasdoc.cls`.
 
 ### Deprecated
 
