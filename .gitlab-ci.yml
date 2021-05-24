@@ -68,7 +68,7 @@ build_bibtex:
   image: gitlab-registry.cern.ch/atlas-physics-office/gitlab-integration/texlive:2020
   stage: Build
   only: 
-    - devel@atlas-physics-office/atlaslatex
+    - master@atlas-physics-office/atlaslatex
   script:
     - cd doc/atlas_bibtex
     - make
