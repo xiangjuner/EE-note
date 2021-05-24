@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-% The following macros are usually used atlas-documemnt-metadata.tex.
+% The following macros are usually used in atlas-documemnt-metadata.tex.
 % They are defined here so that this file does not have to be changed 
 % when adapting an ATLAS document for journal submission
 %
@@ -23,21 +23,26 @@
 % ATLAS reference code - empty by default
 \def\@refcode{}
 \providecommand*{\AtlasRefCode}[1]{\def\@refcode{#1}}
+\providecommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
 
 % ATLAS note number
 \def\@atlasnote{}
 \providecommand*{\AtlasNote}[1]{\def\@atlasnote{#1}}
 
-% Submission details
-\def\@journal{}
-\providecommand*{\AtlasJournal}[1]{\def\@journal{#1}}
-%\newcommand*{\journal}[1]{\def\@journal{#1}}
+% ATLAS date - arXiv submission; to be filled in by the Physics Office
+\def\ADOC@atlasdate{\today}
+\providecommand*{\AtlasDate}[1]{\def\ADOC@atlasdate{#1}}
+
+% Journal
+\def\ADOC@journal{}
+\providecommand*{\journal}[1]{\def\ADOC@journal{#1}}
+\providecommand*{\AtlasJournal}[1]{\def\ADOC@journal{#1}}
 
 % Preprint
 \def\ADOC@preprintnumber{}
 \providecommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
 
-% Journal
+% Journal reference
 \def\ADOC@journalref{}
 \providecommand*{\AtlasJournalRef}[1]{\def\ADOC@journalref{#1}}
 
@@ -62,20 +67,20 @@
 
 % Multiple corresponding editors
 \def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
-\newcommand{\AtlasCoverEditor}[2]{%
+\providecommand{\AtlasCoverEditor}[2]{%
   \g@addto@macro\ACOV@Editors{%
     #1 & (\texttt{#2}) \\
   }%
 }
 
-\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
-\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
-\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
+\providecommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
+\providecommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
+\providecommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
+\providecommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
 
 % EdBoard members
 \def\ACOV@EdBoardMembers{}
-\newcommand{\AtlasCoverEdBoardMember}[1]{%
+\providecommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\ACOV@EdBoardMembers{%
     #1 \\
   }
@@ -83,17 +88,17 @@
 
 % Readers (for PUB notes)
 \def\ACOV@ReaderMembers{}
-\newcommand{\AtlasCoverReaderMember}[1]{%
+\providecommand{\AtlasCoverReaderMember}[1]{%
   \g@addto@macro\ACOV@ReaderMembers{%
     #1 \\
   }
 }
 
-\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{#1}}
+\providecommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{#1}}
 
 % Supporting note list
 \def\ACOV@Notes{}
-\newcommand{\AtlasCoverSupportingNote}[2]{%
+\providecommand{\AtlasCoverSupportingNote}[2]{%
   \g@addto@macro\ACOV@Notes{%
     #1 & \url{#2} \\
   }
