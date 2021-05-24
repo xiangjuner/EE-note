@@ -26,9 +26,8 @@
 
 % Either include atlascover or atlasmetadefs
 \usepackage[coverpage=true]{atlascover}
-
-% Use the atlasmetadefs package so that you can use atlas-document-metadata.tex without changes
 % \usepackage{atlasmetadefs}
+
 \newcommand*{\DocumentStyle}{\texttt{revtex} class}
 
 % Title, abstract and document
@@ -45,6 +44,8 @@
 % Take the abstract from \AtlasAbstract
 \begin{abstract}
   \AtlasAbstractText
+
+  Cover page using \texttt{atlascover}.
 \end{abstract}
 
 \maketitle

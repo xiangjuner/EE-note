@@ -26,10 +26,9 @@
 \hypersetup{pdftitle={ATLAS draft},pdfauthor={The ATLAS Collaboration}}
 
 % Either include atlascover or atlasmetadefs
-\usepackage[coverpage=true]{atlascover}
-
-% Use the atlasmetadefs package so that you can use atlas-document-metadata.tex without changes
+\usepackage[coverpage=false]{atlascover}
 % \usepackage{atlasmetadefs}
+
 \newcommand*{\DocumentStyle}{\texttt{elsarticle} class}
 
 % Title, abstract and document 
@@ -45,6 +44,8 @@
 % Take the abstract from \AtlasAbstract
 \begin{abstract}
   \AtlasAbstractText
+
+  No cover page. Use \texttt{atlascover}.
 \end{abstract}
 
 \maketitle
