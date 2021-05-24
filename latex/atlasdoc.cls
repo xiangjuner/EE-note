@@ -897,6 +897,13 @@
   % \end{titlepage}
 }
 
+% Macro to replace \maketitle
+\newcommand{\AtlasMaketitle}{%
+  \begin{titlepage}
+    \AtlasTitlePage
+  \end{titlepage}
+}
+
 % Redefine \maketitle to use KOMA-Script titlepage environment
 \renewcommand{\maketitle}{%
   \begin{titlepage}
