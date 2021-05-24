@@ -18,6 +18,10 @@
 \usepackage{atlas_doc-defs}
 \usepackage{atlas_tables-defs}
 
+% New definition of s column type (removed in TeX Live 2021 siunitx)
+\usepackage{collcell} 
+\newcolumntype{s}{>{\collectcell\si}c<{\endcollectcell}}
+
 % Files with references in BibTeX format
 \addbibresource{../atlas_latex.bib}
 
@@ -165,7 +169,7 @@ and is highly recommended.
   \begin{tabular}{l S[table-format=2.1]@{\(\;\pm\;\)}S[table-format=1.1]@{\,}s
     S[table-format=3.1]@{\,}s}
     \toprule
-    Category             & \multicolumn{3}{c}{\(\mu\)}&\multicolumn{2}{c}{\(e\)}\\
+    Category             & \multicolumn{3}{c}{\(\mu\)} & \multicolumn{2}{c}{\(e\)}\\
     \midrule
     \(b \to \ell\)       &     65.2 & 0.4 & \%   &  79.3 & \% \\
     \(b \to c \to \ell\) &      7.8 & 0.3 & \%   &   5.4 & \% \\
@@ -184,7 +188,7 @@ and is highly recommended.
   \centering
   \begin{tabular}{lcc}
     \toprule
-    Category             & \multicolumn{1}{c}{\(\mu\)}&\multicolumn{1}{c}{\(e\)}\\
+    Category             & \multicolumn{1}{c}{\(\mu\)} & \multicolumn{1}{c}{\(e\)}\\
     \midrule
     \(b \to \ell\)       & \(    65.2 \pm 0.4\,\%\)   &     79.3\,\% \\
     \(b \to c \to \ell\) & \(\pho 7.8 \pm 0.3\,\%\)   & \pho 5.4\,\% \\
