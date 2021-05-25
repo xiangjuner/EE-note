@@ -245,13 +245,13 @@
 \newcommand*{\AtlasDate}[1]{\renewcommand*{\ADOC@atlasdate}{#1}}
 
 % Journal
-\def\ADOC@journal{}
-\newcommand*{\journal}[1]{\def\ADOC@journal{#1}}
-\newcommand*{\AtlasJournal}[1]{\def\ADOC@journal{#1}}
+\newcommand*{\ADOC@journal}{}
+\newcommand*{\AtlasJournal}[1]{\renewcommand*{\ADOC@journal}{#1}}
+\newcommand*{\journal}[1]{\renewcommand*{\ADOC@journal}{#1}}
 
 % Preprint
-\def\ADOC@preprintnumber{}
-\newcommand*{\PreprintIdNumber}[1]{\def\ADOC@preprintnumber{#1}}
+\newcommand*{\ADOC@preprintnumber}{}
+\newcommand*{\PreprintIdNumber}[1]{\renewcommand*{\ADOC@preprintnumber}{#1}}
 
 % Journal reference
 \def\ADOC@journalref{}
@@ -280,9 +280,10 @@
 \newcommand*{\subprepend}[1]{\def\ADOC@subprepend{#1}}
 
 % Abstract text
+\newif\ifADOC@abstract
 \newcommand{\AtlasAbstractText}{}
-\newcommand{\AtlasAbstract}[1]{\renewcommand{\AtlasAbstractText}{#1}}
-\newcommand{\abstracttext}[1]{\renewcommand{\AtlasAbstractText}{#1}}
+\newcommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
+\newcommand{\abstracttext}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
 
 % Extra macros needs for the cover page - define them here to avoid need for atlasmetadefs.sty
 % This also avoids problems wth automatically generated metadata files
@@ -796,107 +797,99 @@
 % Command to create title page.
 \newcommand{\AtlasTitlePage}{%
   % \typeout{In maketitle: line width1 is \the\linewidth, text width is \the\textwidth}
-  % \begin{titlepage}
-    \setlength{\parindent}{\z@}
-    \setlength{\parskip}{\z@}
-    % \setlength{\parfillskip}{\z@}
-    % \typeout{In maketitle: line width2 is \the\linewidth, text width is \the\textwidth}
-    % Cover pages
-    \ifthenelse{\boolean{ADOC@coverpage}}{%
-      % Make sure line numbers are off for cover pages
-      \nolinenumbers
-      \ACOV@PrintAtlasCover
-      \clearpage
-      \ACOV@PrintAtlasCoverPageTwo
-      \clearpage
-      % Turn line numbers on for a draft with a version number.
+  \setlength{\parindent}{\z@}
+  \setlength{\parskip}{\z@}
+  % \setlength{\parfillskip}{\z@}
+  % \typeout{In maketitle: line width2 is \the\linewidth, text width is \the\textwidth}
+  % Cover pages
+  \ifthenelse{\boolean{ADOC@coverpage}}{%
+    % Make sure line numbers are off for cover pages
+    \nolinenumbers
+    \ACOV@PrintAtlasCover
+    \clearpage
+    \ACOV@PrintAtlasCoverPageTwo
+    \clearpage
+    % Turn line numbers on for a draft with a version number.
+    \ifthenelse{\boolean{ADOC@atlasdraft}}{%
+      \ifthenelse{\equal{\ADOC@draftversion}{}}{\relax}{\linenumbers}
+    }{}
+  }{}
+  % Empty page and start numbering from here
+  \thispagestyle{empty}
+  \pagenumbering{arabic}
+  % Header
+  \parfillskip=0pt\emergencystretch=0.5\textwidth
+  \ifthenelse{\boolean{ADOC@cernpreprint}}{%
+    \typeout{atlasdoc: using CERN preprint title page}
+    \ATLAS@CERNPreprintTitleHeader\par
+  }{%
+    \ifthenelse{\boolean{ADOC@HEPDATA}}{%
+      \typeout{atlasdoc: using HepData Material title page}
+      \ATLAS@HepDataTitleHeader\par
+    }{%
+      \ifthenelse{\boolean{ADOC@BOOK}}{%
+        \typeout{atlasdoc: using ATLAS book title page}
+        \ATLAS@BookTitleHeader\par
+      }{%
+        \typeout{atlasdoc: using ATLAS document title page}
+        \ATLAS@TitleHeader\par
+      }
+    }
+  }
+  \vspace{4em plus2em minus2em}
+  \ifthenelse{\boolean{ADOC@BOOK}}{%
+    {\usekomafont{title}\ADOC@maintitlesize\flushleft\@title\par%
+      \rule{\linewidth}{1.5pt}\par}
+    % Extra information for TDR etc.
+    \ATLAS@BookInfo\par
+  }{%
+    {\usekomafont{title}\ADOC@maintitlesize\centering\@title\par}
+    \vspace{3em plus1em minus1em}
+    {\usekomafont{author}\centering\@author\par}
+  }
+  \vspace{2em}
+  % Abstract
+  \ifthenelse{\boolean{ADOC@abstract} \AND \NOT \boolean{ADOC@BOOK}}{%
+    \begin{quote}\ADOC@abstractsize
       \ifthenelse{\boolean{ADOC@atlasdraft}}{%
-        \ifthenelse{\equal{\ADOC@draftversion}{}}{\relax}{\linenumbers}
-      }{}
-    }{}
-    % Empty page and start numbering from here
-    \thispagestyle{empty}
-    \pagenumbering{arabic}
-    % Header
-    \ifthenelse{\boolean{ADOC@cernpreprint}}{%
-      \typeout{atlasdoc: using CERN preprint title page}
-      \ATLAS@CERNPreprintTitleHeader
-    }{%
-      \ifthenelse{\boolean{ADOC@HEPDATA}}{%
-        \typeout{atlasdoc: using HepData Material title page}
-        \ATLAS@HepDataTitleHeader
-      }{%
-        \ifthenelse{\boolean{ADOC@BOOK}}{%
-          \typeout{atlasdoc: using ATLAS book title page}
-          \ATLAS@BookTitleHeader
+        \ifthenelse{\equal{\ADOC@draftversion}{}}{%
+          \AtlasAbstractText\par
         }{%
-          \typeout{atlasdoc: using ATLAS document title page}
-          \ATLAS@TitleHeader
+          \begin{internallinenumbers}
+            \AtlasAbstractText
+          \end{internallinenumbers}\par
         }
-      }
-    }
-    {\parfillskip=0pt \emergencystretch=0.5\textwidth \par}
-    \vspace{4em plus2em minus2em}
-    \ifthenelse{\boolean{ADOC@BOOK}}{%
-      {\usekomafont{title}\ADOC@maintitlesize\flushleft \@title\par%
-        \rule{\linewidth}{1.5pt}\par}
-      % Extra information for TDR etc.
-      \ATLAS@BookInfo\par
-    }{%
-      {\usekomafont{title}\ADOC@maintitlesize\centering\@title\par}
-      \vspace{3em plus1em minus1em}
-      {\usekomafont{author}\centering\@author\par}
-    }
-    \vspace{2em}
-    % Abstract
-    \ifthenelse{\boolean{ADOC@BOOK}}{\relax}{%
-      \ifthenelse{\equal{\AtlasAbstractText}{}}{%
-        \mbox{}
       }{%
-        \begin{quote}\ADOC@abstractsize
-          \ifthenelse{\boolean{ADOC@atlasdraft}}{%
-            \ifthenelse{\equal{\ADOC@draftversion}{}}{%
-              \AtlasAbstractText\par
-            }{%
-              \begin{internallinenumbers}
-                \AtlasAbstractText
-              \end{internallinenumbers}\par
-            }
-          }{%
-            \AtlasAbstractText\par
-          }
-        \end{quote}
+        \AtlasAbstractText\par
       }
-    }
-    \par\vspace*{\stretch{1}}%
-    % Copyright
-    \ATLAS@CopyrightFooter
-    % Extra author information for special author lists.
-    \@thanks\let\@thanks\@empty
-    % Abstract for a book is on its own page
-    \ifthenelse{\boolean{ADOC@BOOK}}{%
-      \ifthenelse{\boolean{ADOC@abstract}}{%
-        \cleardoublepage
-        \vspace*{\fill}
-        \begin{quote}
-          \ADOC@abstractsize\flushleft\textbf{Abstract}\newline
-          \ifthenelse{\boolean{ADOC@atlasdraft}}{%
-            \ifthenelse{\equal{\ADOC@draftversion}{}}{%
-              \AtlasAbstractText\par
-            }{%
-              \begin{internallinenumbers}
-              \AtlasAbstractText
-              \end{internallinenumbers}\par
-            }
-          }{%
-            \AtlasAbstractText\par
-          }
-        \end{quote}
-        \vspace*{\fill}
-        \cleardoublepage
-      }{}
-    }{}
-  % \end{titlepage}
+    \end{quote}
+  }{}
+  \par\vspace*{\stretch{1}}%
+  % Copyright
+  \ATLAS@CopyrightFooter
+  % Extra author information for special author lists.
+  \@thanks\let\@thanks\@empty
+  % Abstract for a book is on its own page
+  \ifthenelse{\boolean{ADOC@abstract} \AND \boolean{ADOC@BOOK}}{%
+    \cleardoublepage
+    \vspace*{\fill}
+    \begin{quote}
+      \ADOC@abstractsize\flushleft\textbf{Abstract}\newline
+      \ifthenelse{\boolean{ADOC@atlasdraft}}{%
+        \ifthenelse{\equal{\ADOC@draftversion}{}}{%
+          \AtlasAbstractText\par
+        }{%
+          \begin{internallinenumbers}
+          \AtlasAbstractText
+          \end{internallinenumbers}\par
+        }
+      }{%
+        \AtlasAbstractText\par
+      }
+    \end{quote}
+    \vspace*{\fill}
+    \cleardoublepage
+  }{}
 }
 
 % Macro to replace \maketitle
