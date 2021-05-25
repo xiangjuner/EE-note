@@ -818,7 +818,7 @@
   \thispagestyle{empty}
   \pagenumbering{arabic}
   % Header
-  \parfillskip=0pt\emergencystretch=0.5\textwidth
+  {\parfillskip=0pt\emergencystretch=0.5\textwidth
   \ifthenelse{\boolean{ADOC@cernpreprint}}{%
     \typeout{atlasdoc: using CERN preprint title page}
     \ATLAS@CERNPreprintTitleHeader\par
@@ -835,6 +835,7 @@
         \ATLAS@TitleHeader\par
       }
     }
+  }
   }
   \vspace{4em plus2em minus2em}
   \ifthenelse{\boolean{ADOC@BOOK}}{%
