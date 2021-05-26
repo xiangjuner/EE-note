@@ -24,6 +24,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Changed
 
 - Switch almost everywhere to `\ifthenelse` instead of simple `\if`.
+- Remove most uses of `\def` and use `\newcommand` etc. instead.
+- Make sure `atlasdoc.cls`, `atlascover.sty` and `atlasmetadefs.sty` definitions match.
 - Simplify logic in `atlasunit.sty`.
 - Page size set, even if ATLAS style is not used in `atlasdoc.cls`.
 

@@ -9,7 +9,7 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{11.4.0-alpha}
+\newcommand*{\ATPackageVersion}{11.4.0-alpha}
 \ProvidesClass{latex/atlasdoc}[2021/05/19 v11.4.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
@@ -91,8 +91,11 @@
 
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
+% Add ability to change draft document heading
+\newcommand*{\ADOC@docheading}{}
+\newcommand*{\AtlasHeading}[1]{\renewcommand*{\ADOC@docheading}{#1}}
+
 % Turn off backref in atlasbiblatex for CERN preprint
-% \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
 \newcommand*{\ADOC@atlasbiblatex}{atlasbiblatex}
 \newcommand*{\ADOC@atlasphysics}{atlasphysics}
 % CERN preprint
@@ -213,12 +216,15 @@
 %-------------------------------------------------------------------------------
 % Defaults for title page
 
+% If statements for checking if things are defined.
+\newif\ifADOC@abstract
+\newif\ifACOV@support
+
 % Any additions here that affect the cover page should also be added to atlascover.sty
 % and to atlasmetadefs.sty.
-\def\@title{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
-\newcommand{\AtlasTitleText}{Dummy AtlasTitleText in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
+\renewcommand{\@title}{Dummy title in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
+\newcommand{\AtlasTitleText}{Dummy AtlasTitle in atlasdoc\\ Use \textbackslash AtlasTitle to set it}
 \newcommand{\AtlasTitle}[1]{%
-  % \def\@title{#1}%
   \title{#1}%
   \renewcommand{\AtlasTitleText}{#1}%
 }
@@ -254,53 +260,48 @@
 \newcommand*{\PreprintIdNumber}[1]{\renewcommand*{\ADOC@preprintnumber}{#1}}
 
 % Journal reference
-\def\ADOC@journalref{}
-\newcommand*{\AtlasJournalRef}[1]{\def\ADOC@journalref{#1}}
+\newcommand*{\ADOC@journalref}{}
+\newcommand*{\AtlasJournalRef}[1]{\renewcommand*{\ADOC@journalref}{#1}}
 
 % DOI
-\def\ADOC@doi{}
-\newcommand*{\AtlasDOI}[1]{\def\ADOC@doi{#1}}
-
-% ATLAS document heading
-\def\ADOC@docheading{}
-\newcommand*{\AtlasHeading}[1]{\def\ADOC@docheading{#1}}
+\newcommand*{\ADOC@doi}{}
+\newcommand*{\AtlasDOI}[1]{\renewcommand*{\ADOC@doi}{#1}}
 
 % arXiv
-\def\AtlasArXivId{}
-\def\AtlasArXivURL{}
-\newcommand*{\arXivId}[1]{\def\AtlasArXivId{#1}\def\AtlasArXivURL{http://arXiv.org/abs/#1}}
+\newcommand*{\AtlasArXivId}{}
+\newcommand*{\AtlasArXivURL}{}
+\newcommand*{\arXivId}[1]{\renewcommand*{\AtlasArXivId}{#1}\renewcommand*{\AtlasArXivURL}{http://arXiv.org/abs/#1}}
 \newcommand*{\AtlasArXivCat}{[hep-ex]}
 
 % HEP Data
-\def\AtlasHepDataRecord{}
-\newcommand*{\HepDataRecord}[1]{\def\AtlasHepDataRecord{http://hepdata.cedar.ac.uk/view/ins#1}}
+\newcommand*{\AtlasHepDataRecord}{}
+\newcommand*{\HepDataRecord}[1]{\renewcommand*{\AtlasHepDataRecord}{http://hepdata.cedar.ac.uk/view/ins#1}}
 
 % Submission details
-\def\ADOC@subprepend{Journal:}
-\newcommand*{\subprepend}[1]{\def\ADOC@subprepend{#1}}
+\newcommand*{\ADOC@subprepend}{Journal:}
+\newcommand*{\subprepend}[1]{\renewcommand*{\ADOC@subprepend}{#1}}
 
 % Abstract text
-\newif\ifADOC@abstract
 \newcommand{\AtlasAbstractText}{}
 \newcommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
 \newcommand{\abstracttext}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
 
 % Extra macros needs for the cover page - define them here to avoid need for atlasmetadefs.sty
 % This also avoids problems wth automatically generated metadata files
-\def\ACOV@CommentsDeadline{Comments deadline}
-\newcommand{\AtlasCoverCommentsDeadline}[1]{\def\ACOV@CommentsDeadline{#1}}
+\newcommand*{\ACOV@CommentsDeadline}{Comments deadline}
+\newcommand{\AtlasCoverCommentsDeadline}[1]{\renewcommand*{\ACOV@CommentsDeadline}{#1}}
 
-\def\ACOV@AnalysisTeam{Analysis team}
-\newcommand{\AtlasCoverAnalysisTeam}[1]{\def\ACOV@AnalysisTeam{#1}}
+\newcommand*{\ACOV@AnalysisTeam}{Analysis team}
+\newcommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
 
-\def\ACOV@EgroupEditors{Editor egroup}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\def\ACOV@EgroupEditors{#1}}
+\newcommand*{\ACOV@EgroupEditors}{Editor egroup}
+\newcommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
 
-\def\ACOV@EgroupEdBoard{EdBoard egroup}
-\newcommand{\AtlasCoverEgroupEdBoard}[1]{\def\ACOV@EgroupEdBoard{#1}}
+\newcommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
+\newcommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
 
 % Multiple corresponding editors
-\def\ACOV@Editors{} % Corresponding editor name & corresponding.editor@email \\ }
+\newcommand{\ACOV@Editors}{} % Corresponding editor name & corresponding.editor@email \\ }
 \newcommand{\AtlasCoverEditor}[2]{%
   \g@addto@macro\ACOV@Editors{%
     #1 & (\texttt{#2}) \\
@@ -308,7 +309,7 @@
 }
 
 % EdBoard members
-\def\ACOV@EdBoardMembers{}
+\newcommand{\ACOV@EdBoardMembers}{}
 \newcommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\ACOV@EdBoardMembers{%
     #1 \\
@@ -316,7 +317,7 @@
 }
 
 % Readers (for PUB notes)
-\def\ACOV@ReaderMembers{}
+\newcommand{\ACOV@ReaderMembers}{}
 \newcommand{\AtlasCoverReaderMember}[1]{%
   \g@addto@macro\ACOV@ReaderMembers{%
     #1 \\
@@ -324,17 +325,15 @@
 }
 
 % Language editor
-\def\ACOV@LangEditor{language editor contact}
-\newcommand{\LEcontact}[1]{\def\ACOV@LangEditor{#1}}
+\newcommand*{\ACOV@LangEditor}{language editor contact}
+\newcommand{\LEcontact}[1]{\renewcommand*{\ACOV@LangEditor}{#1}}
 
-\newif\ifACOV@support
 \ACOV@supportfalse
-\def\ACOV@TwikiURL{}
-%\newcommand{\AtlasCoverTwikiURL}[1]{\def\ACOV@TwikiURL{\url{#1}}}
-\newcommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\def\ACOV@TwikiURL{\url{#1}}}
+\newcommand*{\ACOV@TwikiURL}{}
+\newcommand{\AtlasCoverTwikiURL}[1]{\ACOV@supporttrue\renewcommand*{\ACOV@TwikiURL}{\url{#1}}}
 
 % Supporting note list
-\def\ACOV@Notes{}
+\newcommand{\ACOV@Notes}{}
 \newcommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
 %  \ifx\ACOV@Notes\@empty
 %    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
@@ -409,8 +408,7 @@
 }{}
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
-% \def\ADOC@atlascover{\ATLASLATEXPATH atlascover}
-\def\ADOC@atlascover{atlascover}
+\newcommand*{\ADOC@atlascover}{atlascover}
 \ifthenelse{\boolean{ADOC@coverpage}}{%
   \typeout{atlasdoc: load atlascover package}
   \ifthenelse{\boolean{ADOC@CONFnote}}{%
@@ -442,8 +440,7 @@
   \RequirePackage[varg]{txfonts}
   \RequirePackage[T1]{fontenc}
   % Pass eVkern option to atlaspackage for siunitx
-  % \def\ADOC@atlaspackage{\ATLASLATEXPATH atlaspackage}
-  \def\ADOC@atlaspackage{atlaspackage}
+  \newcommand*{\ADOC@atlaspackage}{atlaspackage}
   \PassOptionsToPackage{eVkern}{\ADOC@atlaspackage}
 }{%
   \ifthenelse{\boolean{ADOC@libertine}}{%
@@ -561,8 +558,7 @@
 
 % Pass comment option to atlascomment.sty
 \ifthenelse{\boolean{ADOC@LANGEDIT}}{%
-  % \def\ADOC@atlascomment{\ATLASLATEXPATH atlascomment}
-  \def\ADOC@atlascomment{atlascomment}
+  \newcommand*{\ADOC@atlascomment}{atlascomment}
   \ifthenelse{\boolean{ADOC@LANGSHOW}}{%
     \typeout{atlasdoc: turn on display of language editor comments}
     \PassOptionsToPackage{comment=true}{\ADOC@atlascomment}
