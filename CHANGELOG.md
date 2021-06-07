@@ -28,6 +28,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Make sure `atlasdoc.cls`, `atlascover.sty` and `atlasmetadefs.sty` definitions match.
 - Simplify logic in `atlasunit.sty`.
 - Page size set, even if ATLAS style is not used in `atlasdoc.cls`.
+- Switch back to revtex4-1 by default for APS journals (as 2016 is default year).
 
 ### Deprecated
 
