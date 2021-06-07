@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-05-XX
+## [11.4.0] - 2021-06-07
 
 ### Added
 
@@ -30,16 +30,10 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Page size set, even if ATLAS style is not used in `atlasdoc.cls`.
 - Switch back to revtex4-1 by default for APS journals (as 2016 is default year).
 
-### Deprecated
-
 ### Removed
 
 - Lots of commented out code for TeX Live versions older than 2013 removed.
 - Remove any use of directory names in `\usepackage` etc., e.g. `\ATLASLATEXPATH`.
-
-### Fixed
-
-### Security
 
 ---
 

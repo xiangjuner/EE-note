@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\providecommand*\ATPackageVersion{11.4.0-alpha}
-\ProvidesPackage{latex/atlascover}[2021/05/19 v11.4.0-alpha ATLAS cover pages]
+\providecommand*\ATPackageVersion{11.4.0}
+\ProvidesPackage{latex/atlascover}[2021/06/07 v11.4.0 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -96,7 +96,7 @@
 % They are needed here for a standalone cover that does not use atlasdoc.cls
 \@ifundefined{AtlasTitle}{%
   \typeout{atlascover: AtlasTitle etc. not yet defined}
-  
+
   % If statements for checking if things are defined.
   \newif\ifADOC@abstract
   \newif\ifACOV@support
@@ -112,13 +112,13 @@
   \providecommand*{\ADOC@draftversion}{}
   \providecommand*{\draftversion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
   \providecommand*{\AtlasVersion}[1]{\renewcommand*{\ADOC@draftversion}{#1}}
-  
+
   % ATLAS reference code - empty by default
   % Also create variable with web page
   \providecommand*{\ADOC@refcode}{}
   \providecommand*{\AtlasRefCode}[1]{\renewcommand*{\ADOC@refcode}{#1}}
   \providecommand*{\AtlasPaperWebpage}{https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/\ADOC@refcode}
-  
+
   % ATLAS note number
   \providecommand*{\ADOC@atlasnote}{}
   \providecommand*{\AtlasNote}[1]{\renewcommand*{\ADOC@atlasnote}{#1}}
@@ -153,12 +153,12 @@
   % HEP Data
   \providecommand*{\AtlasHepDataRecord}{}
   \providecommand*{\HepDataRecord}[1]{\renewcommand*{\AtlasHepDataRecord}{http://hepdata.cedar.ac.uk/view/ins#1}}
-  
+
   % Abstract text
   \providecommand{\AtlasAbstractText}{}
   \providecommand{\AtlasAbstract}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
   \providecommand{\abstracttext}[1]{\ADOC@abstracttrue\renewcommand{\AtlasAbstractText}{#1}}
-  
+
   \providecommand*{\ACOV@CommentsDeadline}{Comments deadline}
   \providecommand{\AtlasCoverCommentsDeadline}[1]{\renewcommand*{\ACOV@CommentsDeadline}{#1}}
 
@@ -170,7 +170,7 @@
 
   \providecommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
   \providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
-  
+
   % Multiple corresponding editors
   \providecommand{\ACOV@Editors}{} % Corresponding editor name & corresponding.editor@email \\ }
   \providecommand{\AtlasCoverEditor}[2]{%
