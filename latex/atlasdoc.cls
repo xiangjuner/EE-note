@@ -313,7 +313,7 @@
 \newcommand{\ACOV@EdBoardMembers}{}
 \newcommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\ACOV@EdBoardMembers{%
-    #1 \\
+    #1\newline
   }%
 }
 
@@ -321,7 +321,7 @@
 \newcommand{\ACOV@ReaderMembers}{}
 \newcommand{\AtlasCoverReaderMember}[1]{%
   \g@addto@macro\ACOV@ReaderMembers{%
-    #1 \\
+    #1\newline
   }%
 }
 
@@ -340,7 +340,7 @@
 %    \g@addto@macro\ACOV@Notes{\begin{tabular}{ll}}
 %  \fi
   \g@addto@macro\ACOV@Notes{%
-    #1: \url{#2} \\
+    #1: \url{#2}\newline
   }%
 }
 
