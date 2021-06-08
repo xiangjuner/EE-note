@@ -313,7 +313,7 @@
 \newcommand{\ACOV@EdBoardMembers}{}
 \newcommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\ACOV@EdBoardMembers{%
-    #1\newline
+    #1\par
   }%
 }
 
@@ -321,7 +321,7 @@
 \newcommand{\ACOV@ReaderMembers}{}
 \newcommand{\AtlasCoverReaderMember}[1]{%
   \g@addto@macro\ACOV@ReaderMembers{%
-    #1\newline
+    #1\par
   }%
 }
 
