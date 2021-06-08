@@ -14,11 +14,13 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.4.0] - 2021-06-07
+## [11.4.0] - 2021-06-08
 
 ### Added
 
 - Add software description and reference to template ATLAS detector text.
+- Add `captions=tableheading` as default option for better spacing of table captions above table.
+  Use `\centering` and not `\begin{center}...\end{center}` to centre tables.
 - Add a macro `\AtlasMaketitle` which can be used instead of `\maketitle`.
 
 ### Changed
@@ -26,6 +28,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Switch almost everywhere to `\ifthenelse` instead of simple `\if`.
 - Remove most uses of `\def` and use `\newcommand` etc. instead.
 - Make sure `atlasdoc.cls`, `atlascover.sty` and `atlasmetadefs.sty` definitions match.
+- Many minor updates to `MC_snippets.tex` to adjust to ATLAS style of tables and improve the LaTeX code.
 - Simplify logic in `atlasunit.sty`.
 - Page size set, even if ATLAS style is not used in `atlasdoc.cls`.
 - Switch back to revtex4-1 by default for APS journals (as 2016 is default year).
@@ -34,6 +37,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - Lots of commented out code for TeX Live versions older than 2013 removed.
 - Remove any use of directory names in `\usepackage` etc., e.g. `\ATLASLATEXPATH`.
+- `\AtlasCoverEditor` macro removed, as it is is not used any more.
 
 ---
 

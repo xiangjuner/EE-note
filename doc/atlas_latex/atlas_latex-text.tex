@@ -411,6 +411,7 @@ In the following the default option is in boldface.
 \item[\Option{titlesize=normal|{\normalfont small}}] use normal or reduced size fonts for the title page;
 \item[\Option{tocdepth=2}] depth of table of contents. The default is to include subsections (2);
 \item[\Option{floatopt=true|{\normalfont false}}] adjust the options (default) governing number and placement of floats on a page;
+\item[\Option{tableheading=true|{\normalfont false}}] adjust table caption spacing for captions above the table;
 \item[\Option{mathlines=true|{\normalfont false}}] put line numbers on equations;
 \item[\Option{linenofix=true|{\normalfont false}}] fix line numbers around AMS math environments with using the \Package{linenomath} environment;
 \item[\Option{texmf}] use the syntax \Macro{usepackage\{package\}}
@@ -440,6 +441,10 @@ In the following the default option is in boldface.
 \item[\Option{copyrightoffset=0em}] adjust the position of the copyright, if it is not completely correct.
   \emph{\ADOCold{07-00-00} This option has no effect};
 \end{description}
+
+\ADOCnew{11.4.0} The option \Option{tableheading} leads to better spacing of table captions above a table (the ATLAS default).
+With this option, and in general,you should use \Macro{centering}
+and not \Macro{begin\{center\}}\ldots\Macro{end\{center\}} to centre tables and figures.
 
 \ADOCnew{04-03-00} It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
