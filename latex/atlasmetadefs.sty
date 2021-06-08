@@ -83,18 +83,18 @@
 \providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
 
 % Multiple corresponding editors
-\providecommand{\ACOV@Editors}{} % Corresponding editor name & corresponding.editor@email \\ }
-\providecommand{\AtlasCoverEditor}[2]{%
-  \g@addto@macro\ACOV@Editors{%
-    #1 & (\texttt{#2}) \\
-  }%
-}
+% \providecommand{\ACOV@Editors}{}
+% \providecommand{\AtlasCoverEditor}[2]{%
+%   \g@addto@macro\ACOV@Editors{%
+%     #1 & (\texttt{#2}) \\
+%   }%
+% }
 
 % EdBoard members
 \providecommand{\ACOV@EdBoardMembers}{}
 \providecommand{\AtlasCoverEdBoardMember}[1]{%
   \g@addto@macro\ACOV@EdBoardMembers{%
-    #1 \\
+    #1\newline
   }%
 }
 
@@ -102,7 +102,7 @@
 \providecommand{\ACOV@ReaderMembers}{}
 \providecommand{\AtlasCoverReaderMember}[1]{%
   \g@addto@macro\ACOV@ReaderMembers{%
-    #1 \\
+    #1\newline
   }%
 }
 
@@ -117,7 +117,7 @@
 \providecommand\ACOV@Notes{}
 \providecommand{\AtlasCoverSupportingNote}[2]{\ACOV@supporttrue%
   \g@addto@macro\ACOV@Notes{%
-    #1: \url{#2} \\
+    #1: \url{#2}\newline
   }%
 }
 

@@ -301,12 +301,12 @@
 \newcommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
 
 % Multiple corresponding editors
-\newcommand{\ACOV@Editors}{} % Corresponding editor name & corresponding.editor@email \\ }
-\newcommand{\AtlasCoverEditor}[2]{%
-  \g@addto@macro\ACOV@Editors{%
-    #1 & (\texttt{#2}) \\
-  }%
-}
+% \newcommand{\ACOV@Editors}{}
+% \newcommand{\AtlasCoverEditor}[2]{%
+%   \g@addto@macro\ACOV@Editors{%
+%     #1 & (\texttt{#2}) \\
+%   }%
+% }
 
 % EdBoard members
 \newcommand{\ACOV@EdBoardMembers}{}
