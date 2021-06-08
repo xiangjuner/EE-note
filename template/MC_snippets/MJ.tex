@@ -13,17 +13,16 @@ and finally Section~\ref{subsec:jets-sherpa} describes the \SHERPA samples.
 The descriptions below correspond to the samples in Table~\ref{tab:mj_pythia}.
 
 \begin{table}[!htbp]
-\begin{center}
-\caption{Nominal multijet samples produced with \PYTHIA.}
-\label{tab:mj_pythia}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-364700--364712 & \PYTHIA with shower weights \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal multijet samples produced with \PYTHIA.}%
+  \label{tab:mj_pythia}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364700--364712 & \PYTHIA with shower weights \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -45,6 +44,7 @@ of the scales at which the strong coupling constant is evaluated in
 the initial- and final-state shower as well as the PDF uncertainty in
 the shower and the non-singular part of the splitting functions.
 
+
 \paragraph{Additional description:}
 
 The modelling of fragmentation and
@@ -56,24 +56,24 @@ weight for the event. Specifically, events at a scale
 \pTHatPythia scale were oversampled by a factor of
 $(\pTHatPythia/10 \,\GeV)^4$.
 
+
 \subsection[Herwig 7.1]{\HERWIG[7.1]}
 \label{subsec:jets-herwig}
 
 The descriptions below correspond to the samples in Table~\ref{tab:mj_herwig}.
 
 \begin{table}[!htbp]
-\begin{center}
-\caption{Multijet samples produced with \HERWIG[7].}
-\label{tab:mj_herwig}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-364922--364929 & Angular ordering in shower \HERWIG[7] \\
-364902--364909 & Dipole shower \HERWIG[7] \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Multijet samples produced with \HERWIG[7].}%
+  \label{tab:mj_herwig}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364922--364929 & angular ordering in shower \HERWIG[7] \\
+    364902--364909 & dipole shower \HERWIG[7] \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -87,23 +87,23 @@ hadronisation was based on the cluster model~\cite{Winter:2003tt} for both of th
 Two different samples with the same matrix elements and hadronisation allow the effects of using different 
 parton shower models to be investigated. These samples include variations from the hard scattering and shower. 
 
+
 \subsection[Powheg+Pythia8]{\POWPY[8]}
 \label{subsec:jets-powheg}
 
 The descriptions below correspond to the samples in Table~\ref{tab:mj_powheg}.
 
 \begin{table}[!htbp]
-\begin{center}
-\caption{Multijet samples produced with \POWHEGBOX[v2].}
-\label{tab:mj_powheg}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-361281--361289 & \POWPY[8] \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Multijet samples produced with \POWHEGBOX[v2].}%
+  \label{tab:mj_powheg}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361281--361289 & \POWPY[8] \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -117,24 +117,24 @@ These samples included per-event weight variations for different perturbative sc
 different parton distribution functions and their uncertainties, and the \PYTHIA perturbative
 shower uncertainties. 
 
+
 \subsection[Sherpa 2.2]{\SHERPA[2.2]}
 \label{subsec:jets-sherpa}
 
 The descriptions below correspond to the samples in Table~\ref{tab:mj_sherpa}.
 
 \begin{table}[!htbp]
-\begin{center}
-\caption{Multijet samples produced with \SHERPA.}
-\label{tab:mj_sherpa}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-364677--364685 & \SHERPA AHADIC \\
-364686--364694 & \SHERPA Lund \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Multijet samples produced with \SHERPA.}%
+  \label{tab:mj_sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364677--364685 & \SHERPA AHADIC \\
+    364686--364694 & \SHERPA Lund \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -149,5 +149,3 @@ the Lund string fragmentation model of \PYTHIA[6]~\cite{Sjostrand:2006za} and it
 These two sets of samples were used to evaluate uncertainties stemming from the hadronisation modelling. 
 
 % need to comment on the slicing of these samples. JZ1 to JZ4 are JZW filtered to improve statistics for and an equal number of simulated events, while slices JZ9-JZ12 have been combined into a single JZ9 plus slice.
-
-

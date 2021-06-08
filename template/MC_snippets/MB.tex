@@ -11,18 +11,17 @@ Details of the full process configuration are given in the PUB note~\cite{ATL-PH
 The descriptions below correspond to the samples in Table~\ref{tab:MB-powheg}.
 
 \begin{table}[htbp]
-\begin{center}
-\caption{Inclusive $VV$ samples with \POWHEG} 
-\label{tab:MB-powheg}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-361600--361605    & inclusive $WW(2\ell 2\nu), WZ(3\ell\nu), ZZ(4\ell), ZZ(4\nu), ZZ(2\ell 2\nu)$ (all lepton flavours)\\
-361606--361611    & inclusive $WW/WZ/ZZ$ semileptonic decays ($\ell\ell qq$, $\ell\nu qq$, $\nu\nu qq$, all lepton flavours)\\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Inclusive $VV$ samples with \POWHEG.}%
+  \label{tab:MB-powheg}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    361600--361605 & inclusive $WW(2\ell 2\nu), WZ(3\ell\nu), ZZ(4\ell), ZZ(4\nu), ZZ(2\ell 2\nu)$ (all lepton flavours)\\
+    361606--361611 & inclusive $WW/WZ/ZZ$ semileptonic decays ($\ell\ell qq$, $\ell\nu qq$, $\nu\nu qq$, all lepton flavours)\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -50,7 +49,6 @@ at matrix-element level for any pair of same-flavour charged leptons.
 \subsection[Sherpa]{\SHERPA}
 %\label{sec:MB-sherpa}
 
-
 \subsubsection{Fully leptonic, semileptonic and loop-induced \texorpdfstring{$VV$}{VV}}
 %\label{sec:MB-sherpa-fully}
 
@@ -64,26 +62,25 @@ exclude the Higgs component, the description should be modified appropriately.
 (Get in touch with the PMG Weak Boson Processes subgroup if you are unsure.)
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{$VV$ samples with \SHERPA: fully leptonic, semileptonic,
-      loop-induced fully leptonic, loop-induced semileptonic. SFOS stands for
-      `same flavour opposite-charge sign'.}
-      \label{tab:MB-sherpa}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      364250--364255, 363494   & $4\ell, 3\ell\nu, 2\ell 2\nu, 4\nu$ with $m_{\ell\ell}\mathrm{(SFOS)} > 4~\GeV$, $\pt^\ell(1,2)>5~\GeV$\\
-      364288--364290 & fully leptonic low $m_{\ell\ell}$ and $\pt^\ell$ complement\\
-      \hline
-      345705--345727   & loop-induced leptonic\\
-      \hline
-      363355-363360, 363489   & semileptonic, on-shell diboson production with factorised decays\\
-      \hline
-      364302-364305   & loop-induced semileptonic, using factorised on-shell decays)\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{$VV$ samples with \SHERPA: fully leptonic, semileptonic,
+    loop-induced fully leptonic, loop-induced semileptonic. SFOS stands for
+    \enquote{same flavour opposite-charge sign}.}%
+  \label{tab:MB-sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364250--364255, 363494   & $4\ell, 3\ell\nu, 2\ell 2\nu, 4\nu$ with $m_{\ell\ell}\mathrm{(SFOS)} > 4~\GeV$, $\pt^\ell(1,2)>5~\GeV$\\
+    364288--364290 & fully leptonic low $m_{\ell\ell}$ and $\pt^\ell$ complement\\
+    \midrule
+    345705--345727   & loop-induced leptonic\\
+    \midrule
+    363355-363360, 363489   & semileptonic, on-shell diboson production with factorised decays\\
+    \midrule
+    364302-364305   & loop-induced semileptonic, using factorised on-shell decays)\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -110,6 +107,7 @@ The virtual QCD corrections were provided by the
 dedicated set of tuned parton-shower parameters developed by the
 \SHERPA authors.
 
+
 \paragraph{Additional description:}
 
 The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
@@ -126,7 +124,6 @@ electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
 \subsubsection[Electroweak VVjj]{Electroweak $VVjj$}
 %\label{sec:MB-sherpa-vvjj}
 
@@ -134,20 +131,19 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vvjj}.
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{Electroweak $VVjj$ samples with \SHERPA} 
-    \label{tab:MB-sherpa-vvjj}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      364283--364284   & $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$\\
-      364285   &  $\ell\ell\nu\nu jj$ opposite-sign\\
-      364287   &  $\ell\ell\nu\nu jj$ same-sign\\
-      366086--366089   &  $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$, $\ell\ell\nu\nu jj$, with the triboson contributions removed\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{Electroweak $VVjj$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vvjj}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364283--364284   & $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$\\
+    364285   &  $\ell\ell\nu\nu jj$ opposite-sign\\
+    364287   &  $\ell\ell\nu\nu jj$ same-sign\\
+    366086--366089   &  $\ell\ell\ell\ell jj$, $\ell\ell\ell\nu jj$, $\ell\ell\nu\nu jj$, with the triboson contributions removed\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -168,7 +164,6 @@ electroweak interactions at the electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
 \subsubsection[Vgamma (NLO, biased)]{$V\gamma$ (NLO, biased)}
 %\label{sec:MB-sherpa-vgamma-nlo-biased}
 
@@ -176,17 +171,16 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vynlo-ew}.
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{NLO $V\gamma$ samples with \SHERPA}
-    \label{tab:MB-sherpa-vynlo-ew}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      700011--700017   & biased in $\log_{10}(\max[\pT(V), \pT(\gamma)])$\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{NLO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vynlo-ew}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    700011--700017 & biased in $\log_{10}(\max[\pT(V), \pT(\gamma)])$\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -221,9 +215,6 @@ description of pure electroweak interactions at the electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
-
-
 \subsubsection[Vgamma (NLO, sliced)]{$V\gamma$ (NLO, sliced)}
 %\label{sec:MB-sherpa-vgamma-nlo}
 
@@ -231,18 +222,17 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vynlo}.
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{NLO $V\gamma$ samples with \SHERPA}
-    \label{tab:MB-sherpa-vynlo}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      364500--364535   & sliced in $p_{\text{T}}^{\gamma}$\\ 
-      345887--345900   & sliced in $m_{\ell\ell}$\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{NLO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vynlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    364500--364535   & sliced in $p_{\text{T}}^{\gamma}$\\ 
+    345887--345900   & sliced in $m_{\ell\ell}$\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -277,8 +267,6 @@ description of pure electroweak interactions at the electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
-
 \subsubsection[Vgamma (LO)]{$V\gamma$ (LO)}
 %\label{sec:MB-sherpa-vgamma-lo}
 
@@ -286,17 +274,16 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vylo}. 
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{LO $V\gamma$ samples with \SHERPA}
-    \label{tab:MB-sherpa-vylo}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      366140--366154   & \SHERPA[2.2.4], $Z(\to ee/\mu\mu/\tau\tau)\gamma$, sliced in $p_{\mathrm{T}}^{\gamma}$\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{LO $V\gamma$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vylo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    366140--366154   & \SHERPA[2.2.4], $Z(\to ee/\mu\mu/\tau\tau)\gamma$, sliced in $p_{\mathrm{T}}^{\gamma}$\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -324,7 +311,6 @@ description of pure electroweak interactions at the electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
 \subsubsection{Tribosons (NLO)}
 %\label{sec:MB-sherpa-vvv-nlo}
 
@@ -332,19 +318,18 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vvvnlo}.
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{NLO $VVV$ samples (factorised decays) with \SHERPA }
-    \label{tab:MB-sherpa-vvvnlo}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      363507--363509   & $3\ell1\nu2j$, $4\ell2j$\\
-      364242--364249   & fully leptonic decays\\
-      364336--364339   & $WWW\to 2\ell2\nu jj$\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{NLO $VVV$ samples (factorised decays) with \SHERPA.}%
+  \label{tab:MB-sherpa-vvvnlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    363507--363509   & $3\ell1\nu2j$, $4\ell2j$\\
+    364242--364249   & fully leptonic decays\\
+    364336--364339   & $WWW\to 2\ell2\nu jj$\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -360,6 +345,7 @@ provided by the \OPENLOOPS library~\cite{Buccioni:2019sur,Cascioli:2011va,Denner
 Samples were generated using the \NNPDF[3.0nnlo] PEF set~\cite{Ball:2014uwa}, along with
 the dedicated set of tuned parton-shower parameters developed by the \SHERPA authors.
 
+
 \paragraph{Additional description:}
 
 The ME+PS matching~\cite{Hoeche:2011fd} was employed for different jet
@@ -372,8 +358,6 @@ electroweak scale.
 \input{sherpa_scale_pdf.tex}
 
 
-
-
 \subsubsection{Tribosons (LO)}
 %\label{sec:MB-sherpa-vvv-lo}
 
@@ -381,17 +365,16 @@ The descriptions below correspond to the samples in
 Table~\ref{tab:MB-sherpa-vvvlo}.
 
 \begin{table}[htbp]
-  \begin{center}
-    \caption{LO $VVV$ samples with \SHERPA }
-    \label{tab:MB-sherpa-vvvlo}
-    \begin{tabular}{ l | l }
-      \hline
-      DSID range & Description \\
-      \hline
-      407311--407315   & on- and off-shell contributions to 6-lepton production\\
-      \hline
-    \end{tabular}
-  \end{center}
+  \caption{LO $VVV$ samples with \SHERPA.}%
+  \label{tab:MB-sherpa-vvvlo}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    407311--407315   & on- and off-shell contributions to 6-lepton production\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}

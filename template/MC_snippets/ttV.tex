@@ -18,59 +18,56 @@ and Section~\ref{subsubsec:ttV_sherpa} describes the \SHERPA samples.
 The descriptions below correspond to the samples in Tables~\ref{tab:ttV_aMCP8} and \ref{tab:ttV_aMCP8_addRad}.
 
 \begin{table}[htbp]
-\begin{center}
-\caption{Nominal \ttV samples produced with \MGNLOPY[8].} 
-\label{tab:ttV_aMCP8}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410155 & \ttW \\
-410156 & \ttZnunu \\
-410157 & \ttZqq \\
-410218 & \ttee, $m_{\ell\ell} > 5$~\GeV \\
-410219 & \ttmumu, $m_{\ell\ell} > 5$~\GeV \\
-410220 & \tttautau, $m_{\ell\ell} > 5$~\GeV \\
-410276 & \ttee, $m_{\ell\ell} \in [1,5]$~\GeV\\
-410277 & \ttmumu, $m_{\ell\ell} \in [1,5]$~\GeV\\
-410278 & \tttautau, $m_{\ell\ell} \in [1,5]$~\GeV\\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal \ttV samples produced with \MGNLOPY[8].}%
+  \label{tab:ttV_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410155 & \ttW \\
+    410156 & \ttZnunu \\
+    410157 & \ttZqq \\
+    410218 & \ttee, $m_{\ell\ell} > 5$~\GeV \\
+    410219 & \ttmumu, $m_{\ell\ell} > 5$~\GeV \\
+    410220 & \tttautau, $m_{\ell\ell} > 5$~\GeV \\
+    410276 & \ttee, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    410277 & \ttmumu, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    410278 & \tttautau, $m_{\ell\ell} \in [1,5]$~\GeV\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \begin{table}[htbp]
-\begin{center}
-\caption{\ttV samples produced with \MGNLOPY[8] used to estimate initial-state radiation systematic uncertainties.}
-\label{tab:ttV_aMCP8_addRad}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410376 & \ttW\ A14Var3c up \\
-410377 & \ttW\ A14Var3c down \\
-410378 & \ttZnunu\ A14Var3c up \\
-410379 & \ttZnunu\ A14Var3c down \\
-410380 & \ttZqq\ A14Var3c up \\
-410381 & \ttZqq\ A14Var3c down \\
-410370 & \ttee\ A14Var3c up \\
-410371 & \ttee\ A14Var3c down \\
-410372 & \ttmumu\ A14Var3c up \\
-410373 & \ttmumu\ A14Var3c down \\
-410374 & \tttautau\ A14Var3c up \\
-410375 & \tttautau\ A14Var3c down \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttV samples produced with \MGNLOPY[8] used to estimate initial-state radiation systematic uncertainties.}%
+  \label{tab:ttV_aMCP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410376 & \ttW\ A14Var3c up \\
+    410377 & \ttW\ A14Var3c down \\
+    410378 & \ttZnunu\ A14Var3c up \\
+    410379 & \ttZnunu\ A14Var3c down \\
+    410380 & \ttZqq\ A14Var3c up \\
+    410381 & \ttZqq\ A14Var3c down \\
+    410370 & \ttee\ A14Var3c up \\
+    410371 & \ttee\ A14Var3c down \\
+    410372 & \ttmumu\ A14Var3c up \\
+    410373 & \ttmumu\ A14Var3c down \\
+    410374 & \tttautau\ A14Var3c up \\
+    410375 & \tttautau\ A14Var3c down \\
+    \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Short description:}
 
 The production of \ttV\ events was modelled using the
 \MGNLO[2.3.3]~\cite{Alwall:2014hca} generator at NLO with the
 \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF).
-The events were interfaced to \PYTHIA[8.210]~\cite{Sjostrand:2014zea}~
+The events were interfaced to \PYTHIA[8.210]~\cite{Sjostrand:2014zea}
 using the A14 tune~\cite{ATL-PHYS-PUB-2014-021} and the
 \NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set. The decays of bottom and charm
 hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}.
@@ -78,6 +75,7 @@ hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}.
 The uncertainty due to initial-state radiation (ISR) was estimated by
 comparing the nominal event sample with two samples where the Var3c
 up/down variations of the A14 tune were employed.
+
 
 \paragraph{Long description:}
 
@@ -120,6 +118,7 @@ by simultaneously varying the renormalisation and factorisation scales
 by factors of 2.0 and 0.5. Uncertainties in the PDFs
 were evaluated using the 100 replicas of the \NNPDF[3.0nlo] set.
 
+
 \subsubsection[Sherpa]{\SHERPA}
 \label{subsubsec:ttV_sherpa}
 
@@ -127,22 +126,21 @@ were evaluated using the 100 replicas of the \NNPDF[3.0nlo] set.
 %\label{par:ttV_sherpa_samples}
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttV_sherpa}.
-\begin{table}[htbp]
-\begin{center}
-\caption{\ttV samples produced with \SHERPA.}
-\label{tab:ttV_sherpa}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410142 & \ttll \\
-410143 & \ttZqq, \ttZnunu \\
-410144 & \ttW \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
+\begin{table}[htbp]
+  \caption{\ttV samples produced with \SHERPA.}%
+  \label{tab:ttV_sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410142 & \ttll \\
+    410143 & \ttZqq, \ttZnunu \\
+    410144 & \ttW \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \paragraph{Description:}
 

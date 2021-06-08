@@ -23,55 +23,53 @@ are collected in the PUB notes~\cite{ATL-PHYS-PUB-2018-009,ATL-PHYS-PUB-2017-007
 The descriptions below correspond to the samples in Tables~\ref{tab:ttbar_PP8}, \ref{tab:ttbar_PP8_addRad} and \ref{tab:ttbar_PP8_hdampvar}.
 
 \begin{table}[htbp]
-\begin{center}
-\caption{Nominal $t\bar{t}$ samples produced with \POWPY[8]. The \hdamp\ value is set to 1.5\,\mtop.} 
-\label{tab:ttbar_PP8}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410470 & $t\bar{t}$ non-all-hadronic \\
-410471 & $t\bar{t}$ dileptonic \\
-410472 & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal \ttbar samples produced with \POWPY[8].
+    The \hdamp\ value is set to 1.5\,\mtop.}%
+  \label{tab:ttbar_PP8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410470 & \ttbar non-all-hadronic \\
+    410471 & \ttbar dileptonic \\
+    410472 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \POWPY[8] used to estimate initial-state radiation systematic uncertainties. 
-The \hdamp value is set to 3.0\,\mtop.}
-\label{tab:ttbar_PP8_addRad}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410480 & $t\bar{t}$ single lepton \\
-410481 & $t\bar{t}$ all-hadronic \\
-410482 & $t\bar{t}$ dileptonic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttbar samples produced with \POWPY[8]
+    used to estimate initial-state radiation systematic uncertainties. 
+    The \hdamp value is set to 3.0\,\mtop.}%
+  \label{tab:ttbar_PP8_addRad}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410480 & \ttbar single lepton \\
+    410481 & \ttbar all-hadronic \\
+    410482 & \ttbar dileptonic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \POWPY[8] with alternative \hdamp values which can be used to estimate 
-the uncertainty due to the \POWPY[8] matching scheme.}
-\label{tab:ttbar_PP8_hdampvar}
-\begin{tabular}{ l | l | l | l}
-\hline
-DSID (1.3\,\mtop) & DSID (1.8\,\mtop) & DSID (2.0\,\mtop) & Description \\
-\hline
-411350 & 411353 & 411356 & $t\bar{t}$ single lepton \\
-411351 & 411354 & 411357 & $t\bar{t}$ all-hadronic \\
-411352 & 411355 & 411358 & $t\bar{t}$ dileptonic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttbar samples produced with \POWPY[8] with alternative \hdamp values
+    which can be used to estimate the uncertainty due to the \POWPY[8] matching scheme.}%
+  \label{tab:ttbar_PP8_hdampvar}
+  \centering
+  \begin{tabular}{l l l l}
+    \toprule
+    DSID (1.3\,\mtop) & DSID (1.8\,\mtop) & DSID (2.0\,\mtop) & Description \\
+    \midrule
+    411350 & 411353 & 411356 & \ttbar single lepton \\
+    411351 & 411354 & 411357 & \ttbar all-hadronic \\
+    411352 & 411355 & 411358 & \ttbar dileptonic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Short description:}
 
@@ -91,6 +89,7 @@ set of PDFs~\cite{Ball:2012cx}. The decays of bottom and charm hadrons
 were performed by \EVTGEN[1.6.0]~\cite{Lange:2001uf}.
 
 \input{top_isrfsr_powpy_short}
+
 
 \paragraph{Long description:}
 
@@ -127,6 +126,7 @@ The \NNPDF[3.0lo] replicas were used to evaluate the PDF uncertainties for the n
 In addition, the central value of this PDF was compared with the central values of the 
 \CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
 
+
 \subsubsection[Powheg+Herwig7.04]{\POWHER[7.04]}
 \label{subsubsec:ttbar_PH7}
 
@@ -134,22 +134,21 @@ In addition, the central value of this PDF was compared with the central values 
 %\label{par:ttbar_PH7_samples}
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH7}.
-\begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \POWHER[7]. }
-\label{tab:ttbar_PH7}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410557 & $t\bar{t}$ single lepton  \\
-410558 & $t\bar{t}$ dileptonic  \\
-410559 & $t\bar{t}$ all-hadronic  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWHER[7].}%
+  \label{tab:ttbar_PH7}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410557 & \ttbar single lepton  \\
+    410558 & \ttbar dileptonic  \\
+    410559 & \ttbar all-hadronic  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \paragraph{Short description:}
 
@@ -178,6 +177,7 @@ set to the default scale $\sqrt{m_\text{top}^2 + \pt^2}$.
 The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
 
+
 \subsubsection[Powheg+Herwig7.13]{\POWHER[7.13]}
 %\label{subsubsec:ttbar_PH713}
 
@@ -185,22 +185,21 @@ were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
 %\label{par:ttbar_PH713_samples}
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH713}.
-\begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \POWHER[7.13]. }
-\label{tab:ttbar_PH713}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-411233 & $t\bar{t}$ single lepton  \\
-411234 & $t\bar{t}$ dileptonic  \\
-411316 & $t\bar{t}$ all-hadronic  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
+\begin{table}[htbp]
+  \caption{\ttbar samples produced with \POWHER[7.13].}%
+  \label{tab:ttbar_PH713}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    411233 & \ttbar single lepton  \\
+    411234 & \ttbar dileptonic  \\
+    411316 & \ttbar all-hadronic  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \paragraph{Short description:}
 
@@ -213,6 +212,7 @@ using the \HERWIG[7.1] default set of tuned parameters~\cite{Bellm:2015jjp,Bellm
 and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
 The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
 
 \paragraph{Long description:}
 
@@ -240,21 +240,19 @@ were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCP8}.
 \begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \MGNLOPY[8].}
-\label{tab:ttbar_aMCP8}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410464 & $t\bar{t}$ single lepton \\
-410465 & $t\bar{t}$ dileptonic \\
-410466 & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttbar samples produced with \MGNLOPY[8].}%
+  \label{tab:ttbar_aMCP8}
+  \centering
+  \begin{tabular}{l l}
+  \toprule
+  DSID range & Description \\
+  \midrule
+  410464 & \ttbar single lepton \\
+  410465 & \ttbar dileptonic \\
+  410466 & \ttbar all-hadronic \\
+  \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Short description:}
 
@@ -294,21 +292,19 @@ The renormalisation and factorisation scale choice was the same as for the
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCH713}.
 \begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \MGNLOHER[7.13].}
-\label{tab:ttbar_aMCH713}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-412116 & $t\bar{t}$ single lepton \\
-412117 & $t\bar{t}$ dileptonic \\
-412175 & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttbar samples produced with \MGNLOHER[7.13].}%
+  \label{tab:ttbar_aMCH713}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    412116 & \ttbar single lepton \\
+    412117 & \ttbar dileptonic \\
+    412175 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Short description:}
 
@@ -321,6 +317,7 @@ generator was compared with a sample generated with \MGNLO[2.6.0], both using th
 tuned parameters~\cite{Bellm:2015jjp} and the \MMHT[lo] PDF set~\cite{Harland-Lang:2014zoa}.
 The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
+
 
 \paragraph{Long description:}
 
@@ -350,6 +347,7 @@ The renormalisation and factorisation scale choice in the \MGNLO set-up was the 
 \POWHEGBOX set-up. The decays of bottom and charm hadrons were simulated
 using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf} in both set-ups.
 
+
 \subsubsection[Sherpa 2.2.1]{\SHERPA[2.2.1]}
 \label{subsubsec:ttbar_sherpa}
 
@@ -358,22 +356,20 @@ using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf} in both set-ups.
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttbar_sherpa}.
 \begin{table}[htbp]
-\begin{center}
-\caption{$t\bar{t}$ samples produced with \SHERPA[2.2.1].}
-\label{tab:ttbar_sherpa}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410249 & $t\bar{t}$ all-hadronic  \\
-410250 & $t\bar{t}$ single lepton  \\
-410251 & $t\bar{t}$ single lepton  \\
-410252 & $t\bar{t}$ dileptonic  \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{\ttbar samples produced with \SHERPA[2.2.1].}%
+  \label{tab:ttbar_sherpa}
+  \centering
+  \begin{tabular}{l l}
+  \toprule
+  DSID range & Description \\
+  \midrule
+  410249 & \ttbar all-hadronic  \\
+  410250 & \ttbar single lepton  \\
+  410251 & \ttbar single lepton  \\
+  410252 & \ttbar dileptonic  \\
+  \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Short description:}
 

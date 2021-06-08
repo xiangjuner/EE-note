@@ -1,5 +1,6 @@
 \subsection[\ttHF]{\ttHF}
 \label{subsec:ttHF}
+
 In the following subsections, the set-ups of the current baseline samples for the production of \ttbar quark pairs in association with
 $b$-quarks (\ttHF) are described. NLO predictions with massive $b$-quarks in the matrix element and matched to parton shower
 programs are available within the \SHERPAOL, \MGNLO and, more recently, \POWHEGBOX frameworks.
@@ -15,21 +16,20 @@ Details of the set-up are given in Ref.~\cite{ATL-PHYS-PUB-2016-016} and reporte
 The descriptions below correspond to the samples in Table~\ref{tab:ttHF_Sh}.
 
 \begin{table}[htbp]
-\begin{center}
-\caption{Nominal $t\bar{t}$+HF samples produced with \SHERPA. Variation samples are not explicitly listed.}
-\label{tab:ttHF_Sh}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410323--4 & $t\bar{t}$ single lepton \\
-410325 & $t\bar{t}$ dilepton \\
-410369 & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal \ttbar+HF samples produced with \SHERPA.
+      Variation samples are not explicitly listed.}%
+  \label{tab:ttHF_Sh}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410323--4 & \ttbar single lepton \\
+    410325 & \ttbar dilepton \\
+    410369 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
-
 
 \paragraph{Description:}
 
@@ -43,6 +43,7 @@ factorisation scale \muF was set to $H_\text{T}/2$, where $H_\text{T}$ is the tr
 partons in the matrix element, and this value was also the resummation scale \muQ of the parton shower.
 The \CT[10nlo] PDF set was used in conjunction with a dedicated PS tune developed by the \SHERPA authors. 
 
+
 \subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
 %\label{subsubsec:ttHF_aMCP8}
 In the following, set-ups are described for \PYTHIA only. 
@@ -52,20 +53,20 @@ Details of the set-up are given in Ref.~\cite{ATL-PHYS-PUB-2016-016} and reporte
 %\label{par:ttHF_aMCP8_samples}
 
 The descriptions below correspond to the samples in Table~\ref{tab:ttHF_amc}.
+
 \begin{table}[htbp]
-\begin{center}
-\caption{Nominal $t\bar{t}$+HF samples produced with \MGNLOPY[8]. } 
-\label{tab:ttHF_amc}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-410265 & $t\bar{t}$ non-all-hadronic \\
-410266 & $t\bar{t}$ dileptonic \\
-410267 & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal \ttbar+HF samples produced with \MGNLOPY[8].}%
+  \label{tab:ttHF_amc}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    410265 & \ttbar non-all-hadronic \\
+    410266 & \ttbar dileptonic \\
+    410267 & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
@@ -82,6 +83,7 @@ The resummation scale \muQ has the form $\muQ = f_\text{Q} \sqrt{\hat{s}}$, wher
 the prefactor $f_\text{Q}$ is an external parameter randomly distributed in the 
 range $[f^\text{min}_\text{Q}$, $f^\text{max}_\text{Q}]=[0.1,0.25]$.    
 
+
 \subsubsection[PowhegBoxRes+Pythia8]{\POWHEGBOXRES+\PYTHIA[8]}
 %\label{subsubsec:ttHF_PP8}
 In the following, set-ups are described for \PYTHIA[8] only. 
@@ -89,20 +91,20 @@ In the following, set-ups are described for \PYTHIA[8] only.
 \paragraph{Samples}
 %\label{par:ttHF_PP8_samples}
 The descriptions below correspond to the samples in Table~\ref{tab:ttHF_pp8}.
+
 \begin{table}[htbp]
-\begin{center}
-\caption{Nominal $t\bar{t}$+HF samples produced with \POWHEGBOXRES+\PYTHIA[8]. } 
-\label{tab:ttHF_pp8}
-\begin{tabular}{ l | l }
-\hline
-DSID range & Description \\
-\hline
-411179--80 & $t\bar{t}$ non-all-hadronic \\
-411178    & $t\bar{t}$ dileptonic \\
-411275    & $t\bar{t}$ all-hadronic \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Nominal \ttbar+HF samples produced with \POWHEGBOXRES+\PYTHIA[8].}%
+  \label{tab:ttHF_pp8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    411179--80 & \ttbar non-all-hadronic \\
+    411178    & \ttbar dileptonic \\
+    411275    & \ttbar all-hadronic \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \paragraph{Description:}
