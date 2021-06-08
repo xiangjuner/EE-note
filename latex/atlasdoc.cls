@@ -10,7 +10,7 @@
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
 \newcommand*{\ATPackageVersion}{11.4.0}
-\ProvidesClass{latex/atlasdoc}[2021/06/07 v11.4.0 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2021/06/08 v11.4.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -44,6 +44,7 @@
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
 \DeclareBoolOption[true]{floatopt}
+\DeclareBoolOption[true]{tableheading}
 \DeclareBoolOption[true]{mathlines}
 \DeclareBoolOption[true]{linenofix}
 \DeclareBoolOption[true]{texmf}
@@ -402,6 +403,7 @@
     \setcounter{tocdepth}{\ADOC@tocdepth}
   }
   % Figure and table captions
+  \ifthenelse{\boolean{ADOC@tableheading}}{\KOMAoption{captions}{tableheading}}{}
   \setkomafont{caption}{\normalfont\small}
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
