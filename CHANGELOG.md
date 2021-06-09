@@ -14,11 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.4.0] - 2021-06-08
+## [11.4.0] - 2021-06-09
 
 ### Added
 
 - Add software description and reference to template ATLAS detector text.
+- Add description of tHW samples to MC snippets.
 - Add `captions=tableheading` as default option for better spacing of table captions above table.
   Use `\centering` and not `\begin{center}...\end{center}` to centre tables.
 - Add a macro `\AtlasMaketitle` which can be used instead of `\maketitle`.
