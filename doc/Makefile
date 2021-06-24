@@ -37,19 +37,13 @@ $(BASENAME).pdf: $(BASENAME).tex
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
-$(BASENAME).dvi: $(BASENAME).tex
-	$(LATEX)    $<
-	-$(BIBTEX)  $(basename $<)
-	$(LATEX)    $<
-	$(LATEX)    $<
-
 %.bbl: %.tex *.bib
 	$(PDFLATEX) $*
 	$(BIBTEX) $*
 
 clean:
 	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
-	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk .*.lb *~
+	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk *.listing .*.lb *~
 
 cleanpdf:
 	-rm $(BASENAME).pdf

@@ -175,8 +175,8 @@ rm -rf tmp-atlaslatex
 mfile=${DIR}.tex
 if [ $(grep -c ATLASLATEXPATH ${DIR}.tex) -gt 0 ]; then
     echo "*** IMPORTANT ***"
-    echo "*** If you have not already done so, please run scripts/atlaslatex_2020.sh"
-    echo "*** This adapts your main tex file to avoid problmes with TeX Live 2020"
-    echo "*** It replaces the use of \ATLASLATEXPATH with a style file latex/atlaslatexpath.sty"
+    echo "*** If you have not already done so, please run scripts/atlaslatex_2020.sh."
+    echo "*** This adapts your main tex file to avoid problems with TeX Live 2020."
+    echo "*** It replaces the use of \ATLASLATEXPATH with a style file latex/atlaslatexpath.sty."
     echo "*** IMPORTANT ***"
 fi
