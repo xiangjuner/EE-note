@@ -225,7 +225,7 @@ help:
 	@echo ""
 
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out \
+	-rm *.dvi *.toc *.aux *.lof *.lot *.log *.out \
 		*.bbl *.blg *.brf *.bcf *-blx.bib *.run.xml \
 		*.cb *.ind *.idx *.ilg *.inx *.tdo \
 		*.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp 

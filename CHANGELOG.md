@@ -18,7 +18,11 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Add `.lof` and `.lot` files to list of files to clean in `Makefile`.
+
 ### Changed
+
+- aMC@NLO Monte Carlo typeset using a small caps "a".
 
 ### Deprecated
 
