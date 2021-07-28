@@ -88,11 +88,13 @@
       \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
     }{%
       \DeclareFieldFormat[article]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[misc]{title}{\textit{#1}\isdot}
     }
   }{%
@@ -100,6 +102,7 @@
       \ifentrytype{article}{\clearfield{title}}{}
       \ifentrytype{booklet}{\clearfield{title}}{}
       \ifentrytype{report}{\clearfield{title}}{}
+      \ifentrytype{thesis}{\clearfield{title}}{}
       %\ifentrytype{misc}{\clearfield{title}}{}
     }
   }
