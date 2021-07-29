@@ -22,8 +22,8 @@
 %  PAPER                 The document is an ATLAS paper (draft).
 %  CONF                  The document is a CONF note (draft).
 %  PUB                   The document is a PUB note (draft).
-%  BOOK                  The document is of book form, like an LOI or TDR (draft)
-%  txfonts=true|false    Use txfonts rather than the default newtx
+%  BOOK                  The document is of book form, like an LOI or TDR (draft).
+%  txfonts=true|false    Use txfonts rather than the default newtx.
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 %-------------------------------------------------------------------------------
@@ -76,12 +76,12 @@
 \usepackage{atlas-document-defs}
 
 %-------------------------------------------------------------------------------
-% Generic document information
+% Generic document information.
 %-------------------------------------------------------------------------------
 
-% Title, abstract and document 
+% Title, abstract and document.
 \input{atlas-document-metadata}
-% Author and title for the PDF file
+% Author and title for the PDF file.
 \hypersetup{pdftitle={ATLAS document},pdfauthor={The ATLAS Collaboration}}
 
 %-------------------------------------------------------------------------------
@@ -94,10 +94,10 @@
 \tableofcontents
 
 % List of contributors - print here or after the Bibliography.
-%\PrintAtlasContribute{0.30}
-%\clearpage
+% \PrintAtlasContribute{0.30}
+% \clearpage
 
-% List of to-do notes
+% List of to-do notes.
 % \listoftodos
 
 %-------------------------------------------------------------------------------
@@ -107,7 +107,6 @@
 
 Place your introduction here.
 
-
 %-------------------------------------------------------------------------------
 \section{Analysis}
 \label{sec:analysis}
@@ -115,7 +114,6 @@ Place your introduction here.
 
 You can find some text snippets that can be used in papers in \texttt{latex/atlassnippets.sty}.
 To use them, provide the \texttt{snippets} option to \texttt{atlasphysics}.
-
 
 %-------------------------------------------------------------------------------
 \section{Results}
@@ -128,7 +126,6 @@ Place your results here.
 % The package placeins provides the macro \FloatBarrier to achieve this.
 % \FloatBarrier
 
-
 %-------------------------------------------------------------------------------
 \section{Conclusion}
 \label{sec:conclusion}
@@ -136,10 +133,9 @@ Place your results here.
 
 Place your conclusion here.
 
-
 %-------------------------------------------------------------------------------
 % If you use biblatex and either biber or bibtex to process the bibliography
-% just say \printbibliography here
+% just say \printbibliography here.
 \printbibliography
 % If you want to use the traditional BibTeX you need to use the syntax below.
 % \bibliographystyle{obsolete/bst/atlasBibStyleWithTitle}
@@ -147,15 +143,14 @@ Place your conclusion here.
 %-------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
-% Print the list of contributors to the analysis
-% The argument gives the fraction of the text width used for the names
+% Print the list of contributors to the analysis.
+% The argument gives the fraction of the text width used for the names.
 %-------------------------------------------------------------------------------
 \clearpage
 The supporting notes for the analysis should also contain a list of contributors.
 This information should usually be included in \texttt{mydocument-metadata.tex}.
 The list should be printed either here or before the Table of Contents.
 \PrintAtlasContribute{0.30}
-
 
 %-------------------------------------------------------------------------------
 \clearpage

@@ -18,11 +18,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Add `thesis` to list of entry types for adjusting title settings.
 - Add `.lof` and `.lot` files to list of files to clean in `Makefile`.
 
 ### Changed
 
+- Switch to latest computing acknowledgements.
 - aMC@NLO Monte Carlo typeset using a small caps "a".
+- Small fix to SUSY bibliography entry.
 
 ### Deprecated
 
