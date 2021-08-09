@@ -26,6 +26,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Switch to latest computing acknowledgements.
 - aMC@NLO Monte Carlo typeset using a small caps "a".
 - Small fix to SUSY bibliography entry.
+- Acknowledgements information for papers updated.
 
 ### Deprecated
 
