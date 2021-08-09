@@ -56,7 +56,7 @@ default: run_pdflatex
 # default: run_latexmk
 
 .PHONY: run_latexmk
-.PHONY: newdocument newnotemetadata newpapermetadata newfiles
+.PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
 .PHONY: draftcover preprintcover newdata
 .PHONY: version clean cleanpdf help
 
@@ -231,7 +231,7 @@ clean:
 		*.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp 
 
 cleanpdf:
-	-rm $(BASENAME).pdf 
+	-rm $(BASENAME).pdf
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
 	-rm $(BASENAME)-hepdata-main.pdf
 
