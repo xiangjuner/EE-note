@@ -38,6 +38,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [11.5.0] - 2021-08-13
+
+### Changed
+
+- Switch to one line per institute and standardised date for acknowledgements.
+- Switch to new reference for computing for acknowledgements.
+
+---
+
 ## [11.4.0] - 2021-06-09
 
 ### Added
