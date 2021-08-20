@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-07-XX
+## [11.6.0] - 2021-08-20
 
 ### Added
 
@@ -27,14 +27,6 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - aMC@NLO Monte Carlo typeset using a small caps "a".
 - Small fix to SUSY bibliography entry.
 - Acknowledgements information for papers updated.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ---
 
