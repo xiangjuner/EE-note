@@ -236,7 +236,7 @@ cleanpdf:
 	-rm $(BASENAME)-hepdata-main.pdf
 
 cleanps:
-	-rm $(BASENAME).ps 
+	-rm $(BASENAME).ps
 	-rm $(BASENAME)-draft-cover.ps $(BASENAME)-preprint-cover.ps
 	-rm $(BASENAME)-hepdata-main.ps
 
