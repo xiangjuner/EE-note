@@ -18,7 +18,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
-- August and September update of publications using new scripts.
+- August update of publications using new scripts.
 
 ---
 
