@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [11.7.0] - 2021-10-11
+
+### Added
+
+- August and September update of publications using new scripts.
+
+---
+
 ## [11.6.0] - 2021-08-20
 
 ### Added
