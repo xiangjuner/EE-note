@@ -20,6 +20,10 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - August update of publications using new scripts.
 
+### Changed
+
+- Small tweaks to `siunitx` definitions.
+
 ---
 
 ## [11.6.0] - 2021-08-20
