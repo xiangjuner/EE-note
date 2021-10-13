@@ -221,8 +221,11 @@
     }
     \ifthenelse{\boolean{APKG@eVkern}}{%
       \typeout{atlaspackage: Applying kern to eV}
-      % \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
-      \DeclareSIUnit\electronvolt{e\kern-0.1em V}
+      \@ifpackagelater{siunitx}{2021/04/09}{%
+        \DeclareSIUnit\electronvolt{e\kern-0.1em V}
+      }{%
+        \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
+      }
     }{}
     \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
     \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
