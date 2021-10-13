@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{11.7.0}
-\ProvidesClass{latex/atlasdoc}[2021/10/11 v11.7.0 ATLAS document class]
+\newcommand*{\ATPackageVersion}{11.7.1}
+\ProvidesClass{latex/atlasdoc}[2021/10/13 v11.7.1 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 

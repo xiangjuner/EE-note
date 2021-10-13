@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [11.7.1] - 2021-10-13
+
+### Fixed
+
+- Several references were missing a backslash at the beginning of the title.
+
+---
+
 ## [11.7.0] - 2021-10-11
 
 ### Added
