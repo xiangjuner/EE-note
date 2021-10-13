@@ -14,11 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.7.1] - 2021-10-13
+## [11.7.2] - 2021-10-13
 
 ### Fixed
 
 - Several references were missing a backslash at the beginning of the title.
+- Check `siunitx` version and set `\clight` and kerning option appropriately.
 
 ---
 
