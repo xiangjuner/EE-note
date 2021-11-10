@@ -551,7 +551,7 @@ The style file \texttt{atlaspackage.sty} includes further packages.
 You can steer how many by using the option \Option{minimal}, \Option{default} or \Option{full}.
 The minimal set is:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
-\item \texttt{amsmath}: extra useful maths environments;
+\item \texttt{mathtools}: extra useful maths environments -- this includes \Package{amsmath} and some bug fixes;
 \item \texttt{inputenc}: allow ä, ö, ø, ß, etc. to be input directly;
 \item \texttt{hyperref}: add hyperlinks and ability to click on cross-references;
 \item \texttt{placeins}: adds commands to force figure and table output before a certain position in the text.
@@ -612,7 +612,7 @@ The full list of options is:
   % A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
   % A value less than 2010 uses the old option names for \Package{csquotes}.
   Use \Option{texlive=2016} to test options for arXiv submissions;
-\item[\Option{txfonts={\normalfont true}|false}] load the \Package{txfonts} package and adjust loading of \Package{amsmath} for duplicate symbols;
+\item[\Option{txfonts={\normalfont true}|false}] load the \Package{txfonts} package and adjust loading of \Package{mathtools/amsmath} for duplicate symbols;
 \item[\Option{lineno=true|{\normalfont false}}] load the \Package{lineno} package.
 \end{description}
 
