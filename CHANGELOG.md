@@ -14,6 +14,25 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [Unreleased] - 2021-11-XX
+
+### Added
+
+### Changed
+
+- `\pdfinclusioncopyfonts=1` is no longer commented out by default.
+- Replace `amsmath` by `mathtools` package.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [11.7.2] - 2021-10-13
 
 ### Fixed
