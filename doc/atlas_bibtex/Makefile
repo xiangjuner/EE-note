@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 
 BASENAME = atlas_bibtex
-TEXLIVE = 2016
+TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 

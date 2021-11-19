@@ -4,7 +4,7 @@
 
 BASENAME1 = atlas_physics
 BASENAME2 = atlas_hepphysics
-TEXLIVE = 2016
+TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 

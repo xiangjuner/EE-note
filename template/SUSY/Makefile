@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 
 BASENAME = SUSY_template
-TEXLIVE = 2016
+TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 

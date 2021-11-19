@@ -1,6 +1,6 @@
 # Makefile for creating an ATLAS paper draft using journal classes
 
-TEXLIVE  = 2016
+TEXLIVE  = 2020
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = bibtex

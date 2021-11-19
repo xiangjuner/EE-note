@@ -74,7 +74,7 @@ Although it is not the default, I strongly recommend that you use `latexmk` to c
 It works out for itself what has to be run and generally works very well.
 In order to use `latexmk`, change the default target in the `Makefile` from `run_pdflatex` to `run_latexmk`.
 
-The TeX Live version is set to 2016 by default.
+The TeX Live version is set to 2020 by default.
 This version number should be fine for newer versions of TeX Live
 and also for an up-to-date MikTeX 2.9 installation.
 TeX Live versions older than 2013 are not supported.
@@ -93,9 +93,9 @@ For PO-GitLab documents, the Git repository is in a subdirectory of: https://git
 The most common FAQ I get is why `atlaslatex` does not just compile "out of the box"?
 If you are running on `lxplus` for it to work, you MUST set your PATH correctly as follows:
 
-    export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:$PATH
+    export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2020/bin/x86_64-linux:$PATH
 
-in order to use TeX Live 2016.
+in order to use TeX Live 2020.
 Physics Office Continuous Integration has images for TeX Live 2016, 2017 and 2020.
 
 You can produce the users guide to the templates (and thus test that your LaTeX setup is working)

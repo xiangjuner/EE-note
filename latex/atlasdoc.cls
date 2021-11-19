@@ -39,7 +39,7 @@
 \DeclareBoolOption[false]{HEPDATA}
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
-\DeclareStringOption[2016]{texlive}
+\DeclareStringOption[2020]{texlive}
 \DeclareStringOption[a4]{paper}
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}

@@ -20,6 +20,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Changed
 
+- `texlive` set to 2020.
 - `\pdfinclusioncopyfonts=1` is no longer commented out by default.
 - Replace `amsmath` by `mathtools` package.
 

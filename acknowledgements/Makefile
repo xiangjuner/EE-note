@@ -1,6 +1,6 @@
 # Makefile for creating ATLAS Acknowledegments
 
-TEXLIVE  = 2016
+TEXLIVE  = 2020
 PDFLATEX = pdflatex
 BIBTEX   = biber
 

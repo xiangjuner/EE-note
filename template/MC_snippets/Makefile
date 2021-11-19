@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 
 BASENAME = MC_snippets
-TEXLIVE = 2016
+TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 

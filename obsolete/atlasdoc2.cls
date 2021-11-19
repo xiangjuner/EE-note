@@ -8,9 +8,9 @@
 %
 % Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\def\ATPackageVersion{10.0.0}
+\def\ATPackageVersion{11.8.0-alpha}
 
-\ProvidesClass{atlasdoc2}[2020/11/23 v10.0.0 ATLAS deprecated document class]
+\ProvidesClass{atlasdoc2}[2020/11/23 v11.8.0-alpha ATLAS deprecated document class]
 % Needs 2009 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2009/01/01]
 
@@ -37,7 +37,7 @@
 \DeclareBoolOption[false]{HEPDATA}
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
-\DeclareStringOption[2016]{texlive}
+\DeclareStringOption[2020]{texlive}
 \DeclareStringOption{paper}
 \DeclareStringOption[normal]{titlesize}
 \DeclareBoolOption[true]{floatopt}

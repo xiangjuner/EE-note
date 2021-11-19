@@ -1,7 +1,7 @@
 # Makefile for creating documentation for ATLAS LaTeX
 # Usually called from a subdirectory
 
-TEXLIVE  = 2016
+TEXLIVE  = 2020
 LATEX    = latex
 PDFLATEX = pdflatex
 BIBTEX   = biber
