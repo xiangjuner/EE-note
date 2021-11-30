@@ -3,8 +3,7 @@ The October 2020 LaTeX update led to options being ignored when passed to a docu
 - The script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.
 
-- Updated publications and acknowledgements.
-- Add software description and reference to template ATLAS detector text.
-- Small updates to Higgs MC snippets.
+- `texlive` variable set to 2020 by default.
+- Updated publications.
 - Quite a few technical changes including:
 -   Add a macro `\AtlasMaketitle` which can be used instead of `\maketitle`.

@@ -14,9 +14,11 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2021-11-XX
+## [11.8.0] - 2021-11-30
 
 ### Added
+
+- Some CMS publications updated.
 
 ### Changed
 
@@ -24,13 +26,9 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - `\pdfinclusioncopyfonts=1` is no longer commented out by default.
 - Replace `amsmath` by `mathtools` package.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
-### Security
+- A few titles may have had `(` instead of `\(` at the beginning.
 
 ---
 
@@ -1273,7 +1271,6 @@ Hopefully this will be fixed in the next release.
 - Use `kvoptions` for setting options, as then offsets can be given.
 - Move logos from `figures` to `logos` directory.
 - Updates to documentation, especially BibTeX and LaTeX guide.
-
 
 ---
 
