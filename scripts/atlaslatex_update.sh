@@ -41,7 +41,7 @@ while getopts shkcd opt; do
 done
 
 # Check we are in the right directory
-DIR=$(basename ${PWD})
+DIR=$(basename "${PWD}")
 if [ -e ${DIR}.tex ]; then
     echo "We are in directory ${PWD}"
 else
@@ -53,7 +53,7 @@ fi
 # Remove temporary directory if it exists
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
-# Clone OR copythe ATLAS LaTeX Git repository.
+# Clone OR copy the ATLAS LaTeX Git repository.
 if [ ${CLONE} == 1 ]; then
     # Switch to devel branch for testing
     if [ -n "${BRANCH}" ]; then
@@ -67,6 +67,7 @@ if [ ${CLONE} == 1 ]; then
 else
     cp -r ${HOME}/atlas/LaTeX/atlaslatex tmp-atlaslatex
 fi
+
 function cf_files {
     # echo "Compare ${afile} with ${lfile}"
     cmp --silent "$1" "$2"

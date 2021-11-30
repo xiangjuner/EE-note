@@ -21,7 +21,7 @@ function cf_files {
     fi
 }
 
-DIR=`basename ${PWD}`
+DIR=`basename "${PWD}"`
 echo $DIR
 
 # Check we are in the right directory
