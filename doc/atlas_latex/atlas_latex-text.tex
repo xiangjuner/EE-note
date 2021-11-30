@@ -259,10 +259,10 @@ is circulated to the collaboration.\\
 See \texttt{template/atlas-document-metadata.tex} for more details.
 
 \begin{itemize}
-  \item {\verb|\AtlasTitle{<Title>}|} typesets the paper title. If not
+  \item \Macro{AtlasTitle\{<Title>\}} typesets the paper title. If not
     given, you get either an error or a dummy title will be produced.
 
-  \item {\verb|\author{<Author>}|} typesets the paper author. If not
+  \item \Macro{author\{<Author>\}} typesets the paper author. If not
     explicitly given, \enquote{The ATLAS Collaboration} will be used by
     default. Note that the \verb|\author{}| command is pretty limited
     in case you want to display multiple author names and multiple
@@ -290,13 +290,13 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     \end{verbatim}
 
 
-  \item {\verb|\AtlasAbstract{<The abstract text>}|} typesets the
+  \item \Macro{AtlasAbstract\{<The abstract text>\}} typesets the
     abstract on the front page and cover page.
 
-  \item {\verb|\date{<Date>}|} typesets the paper date. If not
+  \item \Macro{date\{<Date>\}} typesets the paper date. If not
     explicitly given, the current date (\verb|\today|) will be used.
 
-  \item {\verb|\AtlasVersion{<Draft Version>}|} displays the draft
+  \item \Macro{AtlasVersion\{<Draft Version>\}} displays the draft
     version on the front page, a DRAFT banner on all the other page
     headings, and adds line numbers to all text to easy commenting and
     reviewing.
@@ -307,34 +307,34 @@ See \texttt{template/atlas-document-metadata.tex} for more details.
     \ADOCnew{04-03-00} If \Option{atlasdraft=true} or \Macro{AtlasVersion} is not empty,
     the document is declared as a draft.
 
-  \item {\verb|\AtlasJournal{<Journal Name>}|} displays the phrase \emph{to
+  \item \Macro{AtlasJournal\{<Journal Name>\}} displays the phrase \emph{to
     be submitted to Journal Name} at the bottom of the front page and
     on the cover page.
     Should be included when a paper draft is circulated to ATLAS.
 
-  \item {\verb|\AtlasRefCode{<Reference code>}|} displays the ATLAS
+  \item \Macro{AtlasRefCode\{<Reference code>\}} displays the ATLAS
     standard reference code, e.g.\ \texttt{BPHY-2014-03}, on the front page and
     the cover page. Not shown on the front page if the note number is given.
 
-  \item {\verb|\AtlasNote{<Note number>}|} displays the note number
+  \item \Macro{AtlasNote\{<Note number>\}} displays the note number
     for a CONF, PUB, INT or COM note, e.g.\ \texttt{ATLAS-CONF-2014-23},
     on the front page and cover page.
     If the note number is given, the reference code is not shown.
 
-  \item {\verb|\PreprintIdNumber{<CERN preprint number>}|} displays the CERN
+  \item \Macro{PreprintIdNumber\{<CERN preprint number>\}} displays the CERN
     preprint number on the front page.
     
-  \item {\verb|\AtlasDate{<Date>}|} set by the Physics Office as the date of submission of a paper.
+  \item \Macro{AtlasDate\{<Date>\}} set by the Physics Office as the date of submission of a paper.
 
-  \item {\verb|\AtlasJournalRef{<Journal reference>}|} displays the journal reference
+  \item \Macro{AtlasJournalRef\{<Journal reference>\}} displays the journal reference
     on the preprint front page.
     This should be used for the arXiv update after the paper has been published.
 
-  \item {\verb|\AtlasDOI{<Journal reference>}|} displays the DOI
+  \item \Macro{AtlasDOI\{<Journal reference>\}} displays the DOI
     on the preprint front page.
     This should be used for the arXiv update after the paper has been published.
 
-  \item {\verb|\arXivId{<arXiv identifier>}|} displays the arXiv reference
+  \item \Macro{arXivId\{<arXiv identifier>\}} displays the arXiv reference
     on the front page.
 
 \end{itemize}
@@ -815,12 +815,12 @@ I recommend moving the relevant definitions into the main \TeX\ file so that the
 If you clean things up, the \Package{atlascover} package is no longer needed.
 The metadata commands that are needed in addition to the title, author and abstract are:
 \begin{itemize}
-  \item {\verb|\AtlasJournal{<Journal Name>}|}
-  \item {\verb|\PreprintIdNumber{<CERN preprint number>}|}
-  \item {\verb|\AtlasDate{<Date>}|} set by the Physics Office
-  \item {\verb|\AtlasJournalRef{<Journal reference>}|} once it exists
-  \item {\verb|\AtlasDOI{<Journal reference>}|} once it exists
-  \item {\verb|\arXivId{<arXiv identifier>}|} once it exists
+  \item \Macro{AtlasJournal\{<Journal Name>\}}
+  \item \Macro{PreprintIdNumber\{<CERN preprint number>\}}
+  \item \Macro{AtlasDate\{<Date>\}} set by the Physics Office
+  \item \Macro{AtlasJournalRef\{<Journal reference>\}} once it exists
+  \item \Macro{AtlasDOI\{<Journal reference>\}} once it exists
+  \item \Macro{arXivId\{<arXiv identifier>\}} once it exists
 \end{itemize}
 
 More details on arXiv recommendations can be found at
