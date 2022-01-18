@@ -2,7 +2,7 @@
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2021 CERN for the benefit of the ATLAS collaboration.
+Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 
 All notable changes to the ATLAS LaTeX package are documented in this file.
 
@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
+
+---
+
+## [11.9.0] - 2022-01-18
+
+### Added
+
+- December 2021 update of publications.
+
+### Changed
+
+- Copyright includes 2022.
 
 ---
 
@@ -1347,7 +1359,7 @@ Hopefully this will be fixed in the next release.
 
 ---
 
-## [Unreleased] - 2021-03-XX
+## [Unreleased] - 2022-01-XX
 
 ### Added
 
