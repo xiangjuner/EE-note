@@ -445,6 +445,8 @@ In the following the default option is in boldface.
 \ADOCnew{11.4.0} The option \Option{tableheading} leads to better spacing of table captions above a table (the ATLAS default).
 With this option, and in general,you should use \Macro{centering}
 and not \Macro{begin\{center\}}\ldots\Macro{end\{center\}} to centre tables and figures.
+If you want to place a caption explicitly you can use
+the macros \Macro{captionabove} and \Macro{captionbelow}.
 
 \ADOCnew{04-03-00} It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
@@ -571,7 +573,7 @@ The default set adds in addition:
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{mhchem}: chemical elements and molecules;
-\item \texttt{physics}: mathematics for physics;
+\item \texttt{diffcoeff}: mathematics for physics;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
 \item \texttt{longtable} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
@@ -595,6 +597,7 @@ The full list of options is:
 \item[\Option{capsref=true|{\normalfont false}}] capitalise Section, Figure etc.\ when using \Package{cleverref};
 \item[\Option{abbrevref=true|{\normalfont false}}] abbreviate Fig.\ etc.\ when using \Package{cleverref};
 \item[\Option{mhchem={\normalfont true}|false}] turn on/off use of the \Package{mhchem} package;
+\item[\Option{diffcoeff={\normalfont true}|false}] turn on/off use of the \Package{diffcoeff} package;
 \item[\Option{physics={\normalfont true}|false}] turn on/off use of the \Package{physics} package;
 \item[\Option{rotating={\normalfont true}|false}] turn on/off use of the \Package{rotating} package;
 \item[\Option{xfrac={\normalfont true}|false}] turn on/off use of the \Package{xfrac} package;
@@ -672,7 +675,7 @@ The style file can be found in \texttt{latex/atlascover.sty}.
 If you wish to use the \texttt{atlascover} package with the 
 \texttt{atlasdoc} class, you should usually use the \texttt{coverpage} option of the class:
 \begin{verbatim}
-  \documentclass[coverpage,UKenglish]{latex/atlasdoc}
+  \documentclass[coverpage,UKenglish]{atlasdoc}
 \end{verbatim}
 instead of the the usual \texttt{usepackage} command: this will ensure
 that the cover page is produced before the title page of the document.
@@ -1241,12 +1244,25 @@ In this section I collect a few useful packages that I recommend using.
   You can use the package \Package{hepnicenames} instead, which uses more intuitive names for the particles,
   but is not as systematic.
 
-  \item[physics] A useful package for differentials, matrices and more.
-  As the name suggests it is geared to physics usage.
-  The package is included if you pass the \Option{full} to \Package{atlaspackage}.
+  \item[diffcoeff] A useful package for differentials.
+  \ADOCnew{12.0.0} The package is included if you pass the option \Option{full} to \Package{atlaspackage}.
+  If the document language is set to \Option{USenglish},
+  a slanted \textit{d} is used in differentials,
+  while an upright \textrm{d} is used for other languages.
+  I recommend \Macro{dl2x} to get a nice spacing for the differential in an integral,\\
+  e.g.\ \verb|\int f(x) \dl2x| gives  \(\int f(x) \dl2x\), while\\
+  \verb|\int f(x) \dl0x| or \verb|\int f(x) \dl x| gives  \(\int f(x) \dl0x\).
   
-  The \Package{commath} package is an alternative,
-  but I find \Package{physics} to be more reliable when different fonts are used.
+  Alternatives are \Package{esdiff} and \Package{derivative},
+  but the \Package{derivative} is probably too new to be used in papers.
+  You can use a package such as \Package{braket} for Dirac notation etc.
+
+  The package \Package{physics} can also be used for differentials, matrices and more.
+  As the name suggests it is geared to physics usage.
+  However, the \LaTeX\ community is not very enthusiastic about the way the package is written.
+  
+  The \Package{commath} package is another alternative,
+  but I find the \Package{physics} package to be more reliable when different fonts are used.
 
   \item[todonotes] Very nice package for adding notes.
   It is used by the \File{atlastodo.sty} style file.
@@ -1610,8 +1626,8 @@ This replaces \Macro{AtlasCoverNumber} as it is used in several places.
 
 The class and style files have been cleaned up and things 
 that were thought to no longer be necessary have been removed.
-These pieces have been collected in \texttt{obsolete/atlasnote-obsolete.sty} in case they are needed.
-If something important has got lost, please let me know.
+% These pieces have been collected in \texttt{obsolete/atlasnote-obsolete.sty} in case they are needed.
+% If something important has got lost, please let me know.
 
 The \Package{subfigure} package has been replaced with \Package{subfig}, as \Package{subfigure} is now deprecated.
 If you use \Package{subfig}, then you have to use \Macro{subfloat} instead of \Macro{subfigure}.

@@ -12,9 +12,9 @@
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
-% More advanced if syntax
+% More advanced if syntax.
 \RequirePackage{ifthen}
-% Use kvoptions package to set options
+% Use kvoptions package to set options.
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
   family=APKG,
@@ -38,6 +38,7 @@
 \DeclareBoolOption[true]{abbrevref}
 % Packages included with full
 \DeclareBoolOption[false]{mhchem}
+\DeclareBoolOption[false]{diffcoeff}
 \DeclareBoolOption[false]{physics}
 \DeclareBoolOption[false]{rotating}
 \DeclareBoolOption[false]{xfrac}
@@ -78,40 +79,40 @@
   }
 }
 
-% Steer packages that are included with the full option
-% Turned on full option and off by default otherwise
+% Steer packages that are included with the full option.
+% Turned on full option and off by default otherwise.
 \ifthenelse{\boolean{APKG@more}}{%
   \APKG@mhchemtrue
-  \APKG@physicstrue
+  \APKG@diffcoefftrue
   \APKG@rotatingtrue
   \APKG@xfractrue
   \APKG@xtabtrue
 }{}
 
 %-------------------------------------------------------------------------------
-% Packages normally included by atlasdoc
+% Packages normally included by atlasdoc.
 % Graphics
 \RequirePackage{graphicx}
 % Colour
 \RequirePackage[svgnames]{xcolor}
-% Document language control
+% Document language control.
 \RequirePackage{babel}
-% Add line numbers
+% Add line numbers.
 \ifthenelse{\boolean{APKG@lineno}}{%
   \RequirePackage{lineno}
-  % If you have an old lineno or do not have it, you can get it from the latex/other directory
+  % If you have an old lineno or do not have it, you can get it from the latex/other directory.
   % \RequirePackage{obsolete/lineno}
 }{}
 
 %-------------------------------------------------------------------------------
-% Minimal set of packages
-% Input encoding - allows ä, ö, ß etc. to be input directly
+% Minimal set of packages.
+% Input encoding - allows ä, ö, ß etc. to be input directly.
 \RequirePackage[utf8]{inputenc}
 
 %\RequirePackage{newtxtext}
 %\RequirePackage{newtxmath}
 
-% Palatino for rm and math | Helvetica for ss | Courier for tt
+% Palatino for rm and math | Helvetica for ss | Courier for tt.
 %\usepackage{mathpazo} % math & rm
 %\linespread{1.05}        % Palatino needs more leading (space between lines)
 %\usepackage[scaled]{helvet} % ss
@@ -126,8 +127,8 @@
   % Encoding used for printout
   \RequirePackage[T1]{fontenc}
 
-  % amsmath and txfonts define the same symbols - use the txfont version
-  % Save txfont symbols to amsmath can be loaded
+  % amsmath and txfonts define the same symbols - use the txfont version.
+  % Save txfont symbols to amsmath can be loaded.
   \RequirePackage{savesym}
   \savesymbol{iint}
   \savesymbol{iiint}
@@ -135,9 +136,9 @@
   \savesymbol{idotsint}
 }{}
 
-% Extra and very useful maths macros from AMS
+% Extra and very useful maths macros from AMS.
 \RequirePackage{mathtools}
-% The AMS \iint etc. is now defined as \AMSiint
+% The AMS \iint etc. is now defined as \AMSiint.
 \ifthenelse{\boolean{APKG@txfonts}}{%
   \restoresymbol{AMS}{iint}
   \restoresymbol{AMS}{iiint}
@@ -145,22 +146,22 @@
   \restoresymbol{AMS}{idotsint}
 }{}
 
-% microtype to improve spacing
+% microtype to improve spacing.
 \RequirePackage[babel=true]{microtype}
 
-% Add command that can force all figures and tables (floats) to appear before a certain point
+% Add command that can force all figures and tables (floats) to appear before a certain point.
 \RequirePackage{placeins}
 
 \ifthenelse{\boolean{APKG@standard}}{%
   \ifthenelse{\boolean{APKG@csquotes}}{\RequirePackage[autostyle=true]{csquotes}}{}
-  % Extra options for footnotes
+  % Extra options for footnotes.
   % \RequirePackage[bottom]{footmisc}
-  % Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline
+  % Nicer tables - use \toprule, \midrule, \bottomrule instead of \hline.
   \RequirePackage{booktabs}
-  % Several plots in a single figure
+  % Several plots in a single figure.
   \ifthenelse{\boolean{APKG@subfigure}}{%
     \RequirePackage[TABBOTCAP]{subfigure}
-    % subfigure option needed if subfig(ure) is also used
+    % subfigure option needed if subfig(ure) is also used.
     % \RequirePackage[subfigure]{tocloft}
   }{%
     % Set options so that \ref{fig:sublabel} works like it does in subfigure and produces 1(a) etc.
@@ -175,21 +176,21 @@
         \RequirePackage[labelformat=simple,listofformat=subsimple,subrefformat=empty]{subfig}
         \renewcommand\thesubfigure{(\alph{subfigure})}
         \renewcommand\thesubtable{(\alph{subtable})}
-        % subfigure option needed if subfig(ure) is also used
+        % subfigure option needed if subfig(ure) is also used.
         % \RequirePackage[subfigure]{tocloft}
       }{}
     }
   }{}
 
   % Fixes appendices displaying in pdf viewer index/outline under first appendix
-  % instead of under Appendix heading
+  % instead of under Appendix heading.
   \ifthenelse{\boolean{APKG@bookmark}}{\RequirePackage{bookmark}}{}
 
-  % Remove dots in table of contents
+  % Remove dots in table of contents.
   % \renewcommand{\cftdot}{}
 
-  % Typset anything with units using this package - also has very useful table formatting
-  % Declare a few options and standard units for siunitx that are otherwise missing
+  % Typset anything with units using this package - also has very useful table formatting.
+  % Declare a few options and standard units for siunitx that are otherwise missing.
   \ifthenelse{\boolean{APKG@siunitx}}{%
     \typeout{atlaspackage: Loading siunitx definitions}
     \RequirePackage{siunitx}
@@ -243,7 +244,7 @@
   }{}
 }{}
 
-% Pass eVkern option to atlasphysics
+% Pass eVkern option to atlasphysics.
 \ifthenelse{\boolean{APKG@eVkern}}{%
   \typeout{atlaspackage: passing eVkern option to atlasphysics}
   \PassOptionsToPackage{eVkern}{\ADOC@atlasphysics}
@@ -251,29 +252,37 @@
 
 
 %------------------------------------------------------------------------------
-% Packages included with the full option (or explicitly)
+% Packages included with the full option (or explicitly).
 
-% Chemical elements and processes
+% Chemical elements and processes.
 \ifthenelse{\boolean{APKG@mhchem}}{%
   \RequirePackage[version=3]{mhchem}
 }{}
 
-% Macros for mathematics in physics
+% Macros for mathematics in physics.
+% Pass ISO option to diffcoeff, unless the language is USenglish.
+\ifthenelse{\boolean{APKG@diffcoeff}}{%
+  \iflanguage{USenglish}{%
+    \RequirePackage{diffcoeff}
+  }{
+    \RequirePackage[ISO]{diffcoeff}
+  }
+}{}
 \ifthenelse{\boolean{APKG@physics}}{%
   \RequirePackage{physics}
 }{}
 
-% Easy rotation of tables and figures
+% Easy rotation of tables and figures.
 \ifthenelse{\boolean{APKG@rotating}}{%
   \RequirePackage{rotating}
 }{}
 
-% Nicer fractions
+% Nicer fractions.
 \ifthenelse{\boolean{APKG@xfrac}}{%
   \RequirePackage{xfrac}
 }{}
 
-% Tables that go over more than one page
+% Tables that go over more than one page.
 \ifthenelse{\boolean{APKG@longtable}}{%
   \RequirePackage{longtable}
 }{%
@@ -313,11 +322,11 @@
   }{}
 }{}
 
-% Use biblatex and biber for the bibliography
-% backend=biber|bibtex to select backend to use (biber is default)
-% Style is numeric and comp option changes [1,2,3] into [1-3]
-% sorting=none    means the order is as they are cited
-% firstinits=true means initials are used for first names
+% Use biblatex and biber for the bibliography.
+% backend=biber|bibtex to select backend to use (biber is default).
+% Style is numeric and comp option changes [1,2,3] into [1-3].
+% sorting=none    means the order is as they are cited.
+% firstinits=true means initials are used for first names.
 %
 % The following options are passed to atlasbiblatex.
 % They are kept here only for backwards compatibility.
