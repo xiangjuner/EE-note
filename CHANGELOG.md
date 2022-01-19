@@ -14,6 +14,30 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [12.0.0-alpha] - 2022-02-XX
+
+### Added
+
+### Changed
+
+- Recommend (and use) `diffcoeff` package rather than `physics`.
+
+### Deprecated
+
+- Use of the `physics` package, even though `atlaspackage` still has the option.
+
+### Removed
+
+- Old ATLAS logos from `obsolete` directory.
+- `atlasdoc1.cls` and `atlascover1.sty` from `obsolete` directory.
+- `atlasnote-obsolete.sty` from `obsolete` directory.
+
+### Fixed
+
+### Security
+
+---
+
 ## [11.9.1] - 2022-01-19
 
 ### Added
