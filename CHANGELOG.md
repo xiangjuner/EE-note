@@ -41,7 +41,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.9.1] - 2022-01-19
+## [11.9.2] - 2022-01-21
 
 ### Added
 
@@ -50,6 +50,10 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Changed
 
 - Copyright includes 2022.
+
+### Fixed
+
+- Version number in class and style files.
 
 ---
 
