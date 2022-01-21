@@ -207,7 +207,7 @@ to be used for the name of the person.
 The list should either be printed before the table of contents or after the conclusions
 (i.e.\ where the Acknowledgements appear in a paper).
 
-Note that \Package{authblk} assumes that you will also have affiliations for each author.
+Note that the \Package{authblk} package assumes that you will also have affiliations for each author.
 You can avoid them by using the syntax \verb|\author{[ ]{Author Name}}|.
 Note that a space is needed in the optional argument.
 This means that a space appears between the author name and the comma after it, which is not so nice.
@@ -220,7 +220,7 @@ Note that the \Package{atlascontribute} package requires that the packages
 If the list of contributors is very long, it may spread over more than one page.
 The \Package{tabular} environment does not like this.
 Add the option \Option{longtable} to use \Package{longtable},
-the option \Option{xtab} to use \Package{xtab} instead.
+or the option \Option{xtab} to use \Package{xtab}.
 This option of course also requires that the \Package{xtab} or \Package{longtable} package is installed.
 
 
@@ -576,11 +576,13 @@ Finally the full set includes further packages that may be useful:
 \item \texttt{diffcoeff}: mathematics for physics;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
+\item \texttt{multirow} construction for table cells that span more than one row of the table.
 \item \texttt{longtable} newer version of \Package{supertabular}, which allows tabular environments to go over more than one page.
   As an alternative you can include the use the option \Option{xtab} to use the \Package{xtab} package instead.
 \end{itemize}
 The above packages are all included if you turn on the full set.
 You can turn them on individually if you use the minimal or standard set.
+If you pass the \Option{xtab} option, it will ne included instead of \Package{longtable}
 
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
@@ -601,6 +603,7 @@ The full list of options is:
 \item[\Option{physics={\normalfont true}|false}] turn on/off use of the \Package{physics} package;
 \item[\Option{rotating={\normalfont true}|false}] turn on/off use of the \Package{rotating} package;
 \item[\Option{xfrac={\normalfont true}|false}] turn on/off use of the \Package{xfrac} package;
+\item[\Option{multirow={\normalfont true}|false}] turn on/off use of the \Package{multirow} package;
 \item[\Option{longtable={\normalfont true}|false}] turn on/off use of the \Package{longtable} package;
 \item[\Option{xtab={\normalfont true}|false}] turn on/off use of the \Package{xtab} package;
 \item[\Option{subcaption={\normalfont true}|false}] use \Package{subcaption} instead of \Package{subfig};

@@ -36,15 +36,16 @@
 \DeclareBoolOption[true]{cleveref}
 \DeclareBoolOption[true]{capsref}
 \DeclareBoolOption[true]{abbrevref}
-% Packages included with full
+% Packages included with full.
 \DeclareBoolOption[false]{mhchem}
 \DeclareBoolOption[false]{diffcoeff}
 \DeclareBoolOption[false]{physics}
 \DeclareBoolOption[false]{rotating}
 \DeclareBoolOption[false]{xfrac}
+\DeclareBoolOption[false]{multirow}
 \DeclareBoolOption[false]{longtable}
 \DeclareBoolOption[false]{xtab}
-% Miscellaneous packages and options
+% Miscellaneous packages and options.
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[2020]{texlive}
@@ -61,18 +62,18 @@
 \newif\ifAPKG@standard
 \newif\ifAPKG@more
 \ifthenelse{\boolean{APKG@minimal}}{%
-  \typeout{atlaspackage: Using minimal settings}
+  \typeout{atlaspackage: using minimal settings}
   \APKG@lesstrue
   \APKG@standardfalse
   \APKG@morefalse
 }{%
   \ifthenelse{\boolean{APKG@full}}{%
-    \typeout{atlaspackage: Using full settings}
+    \typeout{atlaspackage: using full settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@moretrue
   }{%
-    \typeout{atlaspackage: Using default settings}
+    \typeout{atlaspackage: using default settings}
     \APKG@lesstrue
     \APKG@standardtrue
     \APKG@morefalse
@@ -86,14 +87,21 @@
   \APKG@diffcoefftrue
   \APKG@rotatingtrue
   \APKG@xfractrue
-  \APKG@xtabtrue
+  \APKG@multirowtrue
+  \ifthenelse{\boolean{APKG@xtab}}{%
+    % \typeout{atlaspackage: using xtab for long tables.}
+    \APKG@xtabtrue
+  }{%
+    % \typeout{atlaspackage: using longtable for long tables.}
+    \APKG@longtabletrue
+  }
 }{}
 
 %-------------------------------------------------------------------------------
 % Packages normally included by atlasdoc.
-% Graphics
+% Graphics.
 \RequirePackage{graphicx}
-% Colour
+% Colour.
 \RequirePackage[svgnames]{xcolor}
 % Document language control.
 \RequirePackage{babel}
@@ -122,7 +130,7 @@
 
 % Font
 \ifthenelse{\boolean{APKG@txfonts}}{%
-  \typeout{atlaspackage: Using txfonts and savesym}
+  \typeout{atlaspackage: using txfonts and savesym.}
   \RequirePackage[varg]{txfonts}
   % Encoding used for printout
   \RequirePackage[T1]{fontenc}
@@ -192,7 +200,7 @@
   % Typset anything with units using this package - also has very useful table formatting.
   % Declare a few options and standard units for siunitx that are otherwise missing.
   \ifthenelse{\boolean{APKG@siunitx}}{%
-    \typeout{atlaspackage: Loading siunitx definitions}
+    \typeout{atlaspackage: loading siunitx definitions.}
     \RequirePackage{siunitx}
     \sisetup{separate-uncertainty}
     \sisetup{range-units=single, list-units=single}
@@ -221,15 +229,22 @@
       \DeclareSIUnit\clight{\text{\ensuremath{c}}}
     }
     \ifthenelse{\boolean{APKG@eVkern}}{%
-      \typeout{atlaspackage: Applying kern to eV}
-      \@ifpackagelater{siunitx}{2021/04/09}{%
-        \typeout{*** atlaspackage: kern not applied to siunitx v3}
-        \DeclareSIUnit\electronvolt{eV}
-      }{%
-        \typeout{atlaspackage: Applying siunitx v2 kern to eV}
-        \DeclareSIUnit\electronvolt{\text{e\kern-0.1em V}}
-      }
+      \typeout{atlaspackage: applying kern to eV.}
+      \protected\def\electronvoltsymbol{e\kern-0.1em\relax V}
+      \DeclareSIUnit\electronvolt{\text{\electronvoltsymbol}}
     }{}
+    % \ifthenelse{\boolean{APKG@eVkern}}{%
+      % }{\@ifpackagelater{siunitx}{2021/04/09}{%
+      %   % \typeout{*** atlaspackage: kern not applied to siunitx v3.}
+      %   % \DeclareSIUnit\electronvolt{eV}
+      %   \typeout{*** atlaspackage: kern applied to siunitx v3.}
+      %   \protected\def\electronvoltsymbol{e\kern-0.1em\relax V}
+      %   \DeclareSIUnit\electronvolt{\text{\electronvoltsymbol}}
+      % }{%
+      %   \typeout{atlaspackage: Applying siunitx v2 kern to eV.}
+      %   \DeclareSIUnit\electronvolt{\text{e\kern-0.1em\relax V}}
+      % }
+    % }{}
     \DeclareSIUnit[per-mode=symbol]\eVperc{\electronvolt\per\clight}
     \DeclareSIUnit[per-mode=symbol]\TeVc{\tera\eVperc}
     \DeclareSIUnit[per-mode=symbol]\GeVc{\giga\eVperc}
@@ -246,7 +261,7 @@
 
 % Pass eVkern option to atlasphysics.
 \ifthenelse{\boolean{APKG@eVkern}}{%
-  \typeout{atlaspackage: passing eVkern option to atlasphysics}
+  \typeout{atlaspackage: passing eVkern option to atlasphysics.}
   \PassOptionsToPackage{eVkern}{\ADOC@atlasphysics}
 }{}
 
@@ -280,6 +295,22 @@
 % Nicer fractions.
 \ifthenelse{\boolean{APKG@xfrac}}{%
   \RequirePackage{xfrac}
+}{}
+
+% Multirow capabilities - need longtable or supertabular options.
+\ifthenelse{\boolean{APKG@multirow}}{%
+  \ifthenelse{\boolean{APKG@longtable}}{%
+    \typeout{atlaspackage: including multirow with the longtable option.}
+    \RequirePackage[longtable]{multirow}
+  }{%
+    \ifthenelse{\boolean{APKG@xtab}}{%
+    \typeout{atlaspackage: including multirow with the supertabular option.}
+      \RequirePackage[supertabular]{multirow}
+    }{%
+      \typeout{atlaspackage: including multirow.}
+      \RequirePackage{multirow}
+    }
+  }
 }{}
 
 % Tables that go over more than one page.
@@ -336,8 +367,8 @@
 % Some more tweaks should be made to the appearance,
 % see/include bibtex/bst/atlas-biblatex.sty
 \ifthenelse{\boolean{APKG@biblatex}}{%
-  % \typeout{atlaspackage: block set to \APKG@block}
-  % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames}
+  % \typeout{atlaspackage: block set to \APKG@block.}
+  % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames.}
   % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
   \def\ADOC@atlasbiblatex{atlasbiblatex}
   \ifthenelse{\equal{\APKG@block}{}}{}{%

@@ -18,9 +18,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Add `multirow` option to `atlaspackage` and include `multirow` package when using the `full` option.
+
 ### Changed
 
 - Recommend (and use) `diffcoeff` package rather than `physics`.
+- Switch from `xtab` to `longtable` as default long table package.
 
 ### Deprecated
 
