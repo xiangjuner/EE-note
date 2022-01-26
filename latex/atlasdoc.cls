@@ -88,7 +88,8 @@
 % \fi
 
 % Macros without @ for draft status and TeX Live version.
-\newcommand*{\AtlasDraft}{\ADOC@atlasdraft}
+\newif\ifAtlasDraft
+\ifthenelse{\boolean{ADOC@atlasdraft}}{\AtlasDrafttrue}{\AtlasDraftfalse}
 \newcommand*{\AtlasTeXLiveVersion}{\ADOC@texlive}
 
 % Type of document
