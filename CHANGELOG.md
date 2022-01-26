@@ -47,7 +47,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [11.9.2] - 2022-01-21
+## [11.9.3] - 2022-01-26
 
 ### Added
 
@@ -60,6 +60,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Fixed
 
 - Version number in class and style files.
+- Year fixed for MUON-2018-03.
+- Small fixes in `ATLAS-useful.bib`.
 
 ---
 
