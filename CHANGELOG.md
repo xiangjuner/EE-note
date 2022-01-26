@@ -18,12 +18,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Turn off `output` option for `atlastodo.sty` in `atlasdoc.cls` if this is final version of document.
 - Add `multirow` option to `atlaspackage` and include `multirow` package when using the `full` option.
+- Add macro `\AtlasDraft` with draft status. Used with `atlasnote` in main document.
 
 ### Changed
 
 - Recommend (and use) `diffcoeff` package rather than `physics`.
 - Switch from `xtab` to `longtable` as default long table package.
+- Rename `\ATTeXLive` macro to `\AtlasTeXLive`.
 
 ### Deprecated
 
