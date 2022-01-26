@@ -60,9 +60,13 @@
 % Macro to add to-do notes (for several authors). Uses the todonotes package.
 % \ATLnote{JS}{Jane}{green!20}{green!50!black!60}
 % add macros \JSnote and \JSinote for notes in the margin and inline.
+% The first colour is for the body and the second for the border of the note.
 % Set output=false in order not to print out the notes.
-% Comment this out for the final version of the book.
-\usepackage[output=true]{atlastodo}
+% Set shift=false to avoid adjustment of margins.
+% This package should not be used in the final version of the book.
+\ifthenelse{\boolean{AtlasDraft}}{%
+  \usepackage[output=true, shift=true]{atlastodo}
+}{}
 
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.
