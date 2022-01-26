@@ -63,9 +63,6 @@
 \DeclareStringOption[0pt]{copyrightoffset}
 \ProcessKeyvalOptions{ADOC}
 
-% Macro without @ for TeX Live version.
-\newcommand*{\ATTeXLiveVersion}{\ADOC@texlive}
-
 \newif\ifADOC@CONFnote
 \newif\ifADOC@PUBnote
 \newif\ifADOC@notenumber
@@ -90,6 +87,10 @@
 %   \providecommand*{\ATLASLATEXPATH}{latex/}
 % \fi
 
+% Macros without @ for draft status and TeX Live version.
+\newcommand*{\AtlasDraft}{\ADOC@atlasdraft}
+\newcommand*{\AtlasTeXLiveVersion}{\ADOC@texlive}
+
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
 % Add ability to change draft document heading
@@ -99,6 +100,7 @@
 % Turn off backref in atlasbiblatex for CERN preprint
 \newcommand*{\ADOC@atlasbiblatex}{atlasbiblatex}
 \newcommand*{\ADOC@atlasphysics}{atlasphysics}
+
 % CERN preprint
 \ifthenelse{\boolean{ADOC@cernpreprint}}{%
   \typeout{atlasdoc: ATLAS CERN preprint}
@@ -201,6 +203,16 @@
     \href{https://orcid.org/#1}{#2}%
   }%
 }
+
+% For final version turn off output of ToDo notes.
+% This does not work properly, as output=true|false is usually passed directly to atlastodo.
+% \ifthenelse{\boolean{ADOC@atlasdraft}}{%
+%   \typeout{atlasdoc: no change to atlastodo options.}
+% }{%
+%   \typeout{atlasdoc: turning off todo note output for final version of document.}
+%   \typeout{atlasdoc: pass option to \ADOC@atlastodo.}
+%   \PassOptionsToPackage{shift=false,output=false}{\ADOC@atlastodo}
+% }
 
 % For final version of PUB notes turn off the note number by default
 \ifthenelse{\boolean{ADOC@PUBnote}}{%
