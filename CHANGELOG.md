@@ -20,11 +20,13 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - Turn off `output` option for `atlastodo.sty` in `atlasdoc.cls` if this is final version of document.
 - Add `multirow` option to `atlaspackage` and include `multirow` package when using the `full` option.
-- Add if `AtlasDraft` with draft status. Used with `atlasnote` in main document.
+- Add a macro `\pTX` for `\pT` with an extra subscript (often needed in MC snippets) to `atlasmisc.sty`.
+- Add an `if` for `AtlasDraft` with draft status. Used with `atlastodo` in main document.
 
 ### Changed
 
 - Note, paper and book skeletons do not include `atlastodo` for final version.
+- Start adapting MC snippets to use `siunitx` package consistently.
 - Recommend (and use) `diffcoeff` package rather than `physics`.
 - Switch from `xtab` to `longtable` as default long table package.
 - Adjust way `eVkern` option is handles in `atlaspackage.sty` so it works with `siunitx` version 3.
