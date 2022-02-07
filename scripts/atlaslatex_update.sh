@@ -7,7 +7,7 @@
 # 2018-08-14 Ian Brock (ian.brock@cern.ch): BASENAME should be set correctly if Makefile is overwritten.
 # 2019-04-16 Ian Brock (ian.brock@cern.ch): Only overwrite "BASENAME = ..." and not occurences without a space (in help).
 # 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2020.sh should be run.
-# 2022-02-07 Ian Brock (ian.brock@cern.ch): Check that standard styler files are all there.
+# 2022-02-07 Ian Brock (ian.brock@cern.ch): Check that standard style files are all there.
 
 # Decide how to clone atlaslatex - ssh is default
 ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
