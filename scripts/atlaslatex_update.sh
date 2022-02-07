@@ -5,8 +5,9 @@
 
 # Changes:
 # 2018-08-14 Ian Brock (ian.brock@cern.ch): BASENAME should be set correctly if Makefile is overwritten.
-# 2019-04-16 Ian Brock (ian.brock@cern.ch): Only overwrite "BASENAME = ..." and not occurences without a space (in help)
-# 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2020.sh should be run
+# 2019-04-16 Ian Brock (ian.brock@cern.ch): Only overwrite "BASENAME = ..." and not occurences without a space (in help).
+# 2020-11-21 Ian Brock (ian.brock@cern.ch): Check for use of \ATLASLATEXPATH and say atlaslatex_2020.sh should be run.
+# 2022-02-07 Ian Brock (ian.brock@cern.ch): Check that standard styler files are all there.
 
 # Decide how to clone atlaslatex - ssh is default
 ATLASLATEXGIT=ssh://git@gitlab.cern.ch:7999/atlas-physics-office/atlaslatex.git
@@ -45,8 +46,8 @@ DIR=$(basename "${PWD}")
 if [ -e ${DIR}.tex ]; then
     echo "We are in directory ${PWD}"
 else
-    echo "We do not appear to be in the main directory: ${PWD}"
-    echo "There should be a tex file with the same name as the directory"
+    echo "We do not appear to be in the main directory: ${PWD}."
+    echo "There should be a tex file with the same name as the directory."
     exit 1
 fi
 
@@ -55,7 +56,7 @@ test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
 # Clone OR copy the ATLAS LaTeX Git repository.
 if [ ${CLONE} == 1 ]; then
-    # Switch to devel branch for testing
+    # Switch to devel branch for testing.
     if [ -n "${BRANCH}" ]; then
         git clone ${ATLASLATEXGIT} tmp-atlaslatex
         cd tmp-atlaslatex 
@@ -69,7 +70,7 @@ else
 fi
 
 function cf_files {
-    # echo "Compare ${afile} with ${lfile}"
+    # echo "Compare ${afile} with ${lfile}:"
     cmp --silent "$1" "$2"
     cmpStatus=$?
     # echo "cmp status is $cmpStatus" 
@@ -78,9 +79,9 @@ function cf_files {
     if [ $cmpStatus -eq 0 ]; then
         echo "No change to file $1"
     else
-        echo "Running diff on $1 vs $2"
+        echo "Running diff on $1 vs $2:"
         diff "$1" "$2"
-        echo "Will try to copy $2 to $1"
+        echo "Will try to copy $2 to $1:"
         cp -i "$2" "$1"
         # Make sure file is executable
         if [ ${extension} == "sh" ]; then
@@ -97,21 +98,21 @@ for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
     afile=tmp-atlaslatex/scripts/$(basename $lfile)
     if [ -e ${lfile} ]; then
         cmp --silent ${lfile} ${afile}; cmpStatus=$?
-        echo "Comparing ${lfile} with ${afile}"
+        echo "Comparing ${lfile} with ${afile}:"
         # echo "Status is ${cmpStatus}"
         if [ $cmpStatus -eq 0 ]; then
-            echo "No change to file ${lfile}"
+            echo "No change to file ${lfile}."
         else
             scriptupdate=1
             cf_files "${lfile}" "${afile}"
-            echo "+++ ${lfile} updated. You should now run ${lfile}"
+            echo "+++ ${lfile} updated. You should now run ${lfile}."
         fi
     else
         scriptupdate=1
         cp ${afile} ${lfile}
         # Make sure file is exectuable
         chmod u+x ${lfile}
-        echo "+++ ${lfile} updated. You should now run ${lfile}"
+        echo "+++ ${lfile} updated. You should now run ${lfile}."
     fi
 done
 if [ $scriptupdate -eq 1 ]; then
@@ -127,14 +128,17 @@ for lfile in latex/*.cls latex/*.sty; do
 done
 
 # atlaslatexpath.sty should be there
-if [ -e latex/atlaslatexpath.sty ]; then
-    lfile=latex/atlaslatexpath.sty
-    afile=tmp-atlaslatex/latex/atlaslatexpath.sty
-    cf_files "${lfile}" "${afile}"
-else
-    echo "Copying atlaslatexpath.sty to latex directory"
-    cp tmp-atlaslatex/latex/atlaslatexpath.sty latex/
-fi
+for file in atlasdoc.cls atlaslatexpath.sty atlascover.sty \
+    atlaspackage.sty atlasphysics.sty atlasbiblatex.sty \
+    atlascontribute.sty atlascomment.sty atlastodo.sty \
+    atlasmisc.sty; do
+    if [ -e latex/${file} ]; then
+        echo "{file} is already in latex directory."
+    else
+        echo "Copying ${file} to latex directory."
+        cp tmp-atlaslatex/latex/${file} latex/
+    fi
+done
 
 # Bibliography files
 for lfile in bib/*.bib; do
@@ -151,11 +155,11 @@ done
 # Makefile
 for lfile in Makefile; do
     BASENAME=$(grep '^BASENAME.*=' ${lfile})
-    echo "BASENAME definition is: <$BASENAME>"
+    echo "BASENAME definition is: <$BASENAME>."
     afile=tmp-atlaslatex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"
     # Assume definition of BASENAME is of the form BASENAME =
-    echo "Replacing BASENAME definition with <${BASENAME}> in ${lfile}"
+    echo "Replacing BASENAME definition with <${BASENAME}> in ${lfile}:"
     sed -i '.bak' -e "s/^BASENAME =.*/${BASENAME}/" ${lfile}
     # The folllowing should only change the first occurence of BASENAME =..., but has not been tested everywhere
     # sed -i '.bak' -e "0,/${BASENAME}/ s/BASENAME[ \t]+=.*/${BASENAME}/" ${lfile}
