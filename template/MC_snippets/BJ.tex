@@ -41,7 +41,7 @@ The descriptions below correspond to the samples in Table~\ref{tab:vjets-sherpa}
     364156--364169    & $W\to \mu\nu$   \\
     364170--364183    & $W\to e\nu$    \\
     364184--364197    & $W\to \tau\nu$  \\
-    364216--364229    & $Z\to\ell\ell,W\to\ell\nu$ (high \pt)\\
+    364216--364229    & $Z\to\ell\ell,W\to\ell\nu$ (high \pT)\\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -132,7 +132,7 @@ diboson topologies by requiring a $t$-channel colour-singlet exchange.
 
 The descriptions below correspond to the samples in
 Table~\ref{tab:vjets-mg5py8_ckkwl}. The set-ups of $N_\text{parton}$- and
-$H_\text{T}$-sliced samples differ slightly between the two slicing schemes 
+\HT-sliced samples differ slightly between the two slicing schemes 
 with regard to the matrix element PDF, the jet-clustering radius parameter 
 and the scale used in the evaluation of  \alphas to determine the weight of
 each splitting. The short description merges the two set-ups and requires 
@@ -147,23 +147,23 @@ both); the long description is left unmerged.
     \toprule
     DSID range & Description \\
     \midrule
-    363123--363146 & $H_\text{T}$-sliced $Z\to\mu\mu$   \\
-    363147--363170 & $H_\text{T}$-sliced $Z\to ee$     \\
+    363123--363146 & \HT-sliced $Z\to\mu\mu$   \\
+    363147--363170 & \HT-sliced $Z\to ee$     \\
     361510--361514 & $N_\text{parton}$-sliced $Z\to\tau\tau$ \\
     361515--361519 & $N_\text{parton}$-sliced $Z\to\nu\nu$   \\
-    363624--363647 & $H_\text{T}$-sliced $W\to \mu\nu$   \\
-    363600--363623 & $H_\text{T}$-sliced $W\to e\nu$    \\
-    363648--363671 & $H_\text{T}$-sliced $W\to\tau\nu$  \\
+    363624--363647 & \HT-sliced $W\to \mu\nu$   \\
+    363600--363623 & \HT-sliced $W\to e\nu$    \\
+    363648--363671 & \HT-sliced $W\to\tau\nu$  \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\paragraph{Short description for $H_\text{T}$-sliced and $N_\text{parton}$-sliced $V$+jets:}
+\paragraph{Short description for \HT-sliced and $N_\text{parton}$-sliced $V$+jets:}
 
 QCD $V$+jets production was simulated with \MGNLO[2.2.2]~\cite{Alwall:2014hca}, 
 using LO-accurate matrix elements (ME) with up to four final-state partons. 
 The ME calculation employed the \NNPDF[3.0nlo] set of PDFs~\cite{Ball:2014uwa} 
-($H_\text{T}$-sliced) / \NNPDF[2.3lo] set of PDFs~\cite{Ball:2012cx} ($N_\text{parton}$-sliced). 
+(\HT-sliced) / \NNPDF[2.3lo] set of PDFs~\cite{Ball:2012cx} ($N_\text{parton}$-sliced). 
 Events were interfaced to \PYTHIA[8.186]~\cite{Sjostrand:2007gs} for the modelling
 of the parton shower, hadronisation, and  underlying event. The overlap between
 matrix element and parton shower emissions was removed using the CKKW-L
@@ -176,7 +176,7 @@ The $V$+jets samples were normalised to a next-to-next-to-leading-order (NNLO)
 prediction~\cite{Anastasiou:2003ds}.
  
 
-\paragraph{$H_\text{T}$-sliced long description:}
+\paragraph{\HT-sliced long description:}
 
 QCD $V$+jets production was simulated with LO-accurate matrix elements (ME) 
 for up to four partons with \MGNLO[2.2.2]~\cite{Alwall:2014hca}. The ME calculation was interfaced with
@@ -185,7 +185,7 @@ shower, hadronisation, and underlying event. To remove overlap between the matri
 element and the parton shower the CKKW-L merging
 procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
 merging scale of \SI{30}{\GeV} and a jet-clustering radius parameter of
-$0.2$. In order to better model the region of large jet \pt, the
+$0.2$. In order to better model the region of large jet \pT, the
 strong coupling constant \alphas was evaluated at the scale of each splitting to
 determine the weight. The matrix element calculation was performed with
 the \NNPDF[3.0nlo] PDF set~\cite{Ball:2014uwa} with $\alphas= 0.118$. The calculation was done
@@ -207,7 +207,7 @@ shower and underlying event. To remove overlap between the matrix
 element and the parton shower the CKKW-L merging
 procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
 merging scale of \SI{30}{\GeV} and a jet-clustering radius parameter of
-$0.4$. In order to better model the region of large jet \pt, the
+$0.4$. In order to better model the region of large jet \pT, the
 strong coupling constant \alphas was evaluated at the scale of each splitting to
 determine the weight. The matrix element calculation was performed with
 the \NNPDF[2.3lo] PDF set~\cite{Ball:2012cx} with $\alphas= 0.13$. The calculation was done
@@ -315,8 +315,8 @@ The \EVTGEN[1.2.0] program~\cite{Lange:2001uf} was used to decay bottom and char
 
 %% \POWHEG \MINLO is an improvement of the CKKW matching procedure to reach NLO accuracy for 
 %% boson production in association one jet, and smoothly
-%% merges to NLO single boson production at low boson \pt, using no external merging scale.
+%% merges to NLO single boson production at low boson \pT, using no external merging scale.
 %% NLO contributions from the CKKW Sudakov form factors are subtracted to the virtual corrections provided by \POWHEGBOX.
 %% Thanks to the optimal scale and to the Sudakov form factors, the
-%% \POWHEG \MINLO samples do not need any Born suppression cut, and their cross-sections are well-behaved at small boson \pt,
+%% \POWHEG \MINLO samples do not need any Born suppression cut, and their cross-sections are well-behaved at small boson \pT,
 %% contrary to fixed order predictions that diverge in this kinematic phase space.
