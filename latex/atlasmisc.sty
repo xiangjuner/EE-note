@@ -12,7 +12,23 @@
 % +--------------------------------------------------------------------+
 \newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
 \newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
-\newcommand*{\pTX}[1]{\ensuremath{p_{\text{T},#1}}\xspace}
+% \newcommand*{\pTX}[1]{\ensuremath{p_{\text{T},#1}}\xspace}
+% \pT macro with optional superscript and extra subscript.
+\NewDocumentCommand {\pTX} { o o } {%
+  \IfNoValueTF {#1} {%
+    \IfNoValueTF {#2} {%
+      \ensuremath{p_{\text{T}}}\xspace%
+    }{%
+      \ensuremath{p_{\text{T},#2}}\xspace%
+    }%
+  }{%
+    \IfNoValueTF {#2} {%
+      \ensuremath{p_{\text{T}}^{#1}}\xspace%
+    }{%
+      \ensuremath{p_{\text{T},#2}^{#1}}\xspace%
+    }%
+  }%
+}
 \newcommand*{\ET}{\ensuremath{E_{\text{T}}}\xspace}
 \newcommand*{\eT}{\ensuremath{E_{\text{T}}}\xspace}
 \newcommand*{\et}{\ensuremath{E_{\text{T}}}\xspace}
