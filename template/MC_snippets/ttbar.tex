@@ -102,7 +102,7 @@ The \hdamp parameter, which controls the matching in \POWHEG and
 effectively regulates the high-\pt\ radiation against which the
 \ttbar system recoils, was set to 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
 The functional form of the renormalisation and factorisation scales was
-set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.
+set to the default scale $\sqrt{m_{\textrm{top}}^2 + \pTX[2]}$.
 The events were interfaced with
 \PYTHIA[8.230]~\cite{Sjostrand:2014zea} for the parton shower and
 hadronisation, using the A14 set of tuned
@@ -114,7 +114,7 @@ The decays of bottom and charm hadrons were simulated using the
 The \ttbar sample was normalised to the cross-section prediction at next-to-next-to-leading order (NNLO)
 in QCD including the resummation of next-to-next-to-leading logarithmic (NNLL) soft-gluon terms calculated using
 \TOPpp[2.0]~\cite{Beneke:2011mq,Cacciari:2011hy,Baernreuther:2012ws,Czakon:2012zr,Czakon:2012pz,Czakon:2013goa,Czakon:2011xx}.
-For proton--proton collisions at a centre-of-mass energy of \rts~=~\SI{13}{\TeV}, this cross-section corresponds to
+For proton--proton collisions at a centre-of-mass energy of $\rts = \SI{13}{\TeV}$, this cross-section corresponds to
 $\sigma(\ttbar)_{\textrm{NNLO+NNLL}} = \mathrm{832\pm51~fb}$ using a top-quark mass of $\mtop = \SI{172.5}{\GeV}$.
 The uncertainties in the cross-section due to the PDF and \alphas were calculated using the \PDFforLHC[15] prescription~\cite{Butterworth:2015oua}
 with the \MSTW[nnlo]~\cite{Martin:2009iq,Martin:2009bu}, \CT[10nnlo]~\cite{Lai:2010vv,Gao:2013xoa} 
@@ -227,7 +227,7 @@ order~(NLO) in the strong coupling constant \alphas, and used the
 \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) and
 an \hdamp parameter value of 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
 The functional form of the renormalisation and factorisation scales was
-set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.  
+set to the default scale $\sqrt{m_{\text{top}}^2 + \pTX[2]}$.  
 The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
 
@@ -330,7 +330,7 @@ order~(NLO) in the strong coupling constant \alphas, with the
 \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution function~(PDF) and
 the \hdamp parameter set to 1.5\,\mtop~\cite{ATL-PHYS-PUB-2016-020}.
 The functional form of the renormalisation and factorisation scales was
-set to the default scale $\sqrt{m_{\textrm{top}}^2 + p_{\textrm T}^2}$.  
+set to the default scale $\sqrt{m_{\text{top}}^2 + \pTX[2]}$.  
 The second sample used \MGNLO[2.6.0] with the 
 \NNPDF[3.0nlo]~\cite{Ball:2014uwa} PDF set for the calculation of the hard-scattering.
 Top quarks were decayed at LO using
@@ -386,6 +386,6 @@ and the set of tuned parameters developed by the \SHERPA authors
 to match the \NNPDF[3.0nnlo] set of PDFs~\cite{Ball:2014uwa}.
 
 \textbf{Additional information}: The central scale had the functional
-form $\mu^{2} = m_{\text{top}}^{2} + 0.5\times(p_{\mathrm{T},t}^{2} +
-p_{\mathrm{T},\bar{t}}^{2})$. The CKKW matching scale of the
+form $\mu^{2} = m_{\text{top}}^{2} + 0.5\times(\pTX[2][t]p + \pTX[2][\bar{t}])$.
+The CKKW matching scale of the
 additional emissions was set to \SI{30}{\GeV}.
