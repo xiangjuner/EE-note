@@ -133,7 +133,7 @@ for file in atlasdoc.cls atlaslatexpath.sty atlascover.sty \
     atlascontribute.sty atlascomment.sty atlastodo.sty \
     atlasmisc.sty; do
     if [ -e latex/${file} ]; then
-        echo "{file} is already in latex directory."
+        echo "${file} is already in latex directory."
     else
         echo "Copying ${file} to latex directory."
         cp tmp-atlaslatex/latex/${file} latex/
