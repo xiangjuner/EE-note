@@ -18,18 +18,21 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
-- Turn off `output` option for `atlastodo.sty` in `atlasdoc.cls` if this is final version of document.
+- January 2022 update of publications.
 - Add `multirow` option to `atlaspackage` and include `multirow` package when using the `full` option.
-- Add a macro `\pTX` for `\pT` with an extra subscript (often needed in MC snippets) to `atlasmisc.sty`.
+- Add a macro `\pTX` for `\pT` with an extra subscript or a superscript (often needed in MC snippets) to `atlasmisc.sty`.
 - Add an `if` for `AtlasDraft` with draft status. Used with `atlastodo` in main document.
 
 ### Changed
 
-- Note, paper and book skeletons do not include `atlastodo` for final version.
+- Paper and book skeletons do not include `atlastodo` for final version.
+  This can lead to an error if notes are still in the document.
+  This behaviour is wanted, as such notes should not be included in a public document.
 - Start adapting MC snippets to use `siunitx` package consistently.
+- Make more use of standard macros in MC snippets such as `\pT, \HT, \mtop`.
 - Recommend (and use) `diffcoeff` package rather than `physics`.
 - Switch from `xtab` to `longtable` as default long table package.
-- Adjust way `eVkern` option is handles in `atlaspackage.sty` so it works with `siunitx` version 3.
+- Adjust way `eVkern` option is handled in `atlaspackage.sty` so it works with `siunitx` version 3.
 - Rename `\ATTeXLive` macro to `\AtlasTeXLive`.
 - `atlastodo` package includes `xspace`.
 
