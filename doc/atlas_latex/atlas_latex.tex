@@ -9,7 +9,11 @@
 % \KOMAoptions{DIV=8}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[diffcoeff]{atlaspackage}
+\ifthenelse{\AtlasTeXLiveVersion < 2015}{%
+  \usepackage{atlaspackage}
+}{%
+  \usepackage[diffcoeff]{atlaspackage}
+}
 \usepackage{atlasbiblatex}
 \usepackage{authblk}
 \usepackage{atlasphysics}
