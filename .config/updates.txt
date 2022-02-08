@@ -4,6 +4,6 @@ The October 2020 LaTeX update led to options being ignored when passed to a docu
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.
 
 - `texlive` variable set to 2020 by default.
-- Updated publications up to end of 2020.
-- Quite a few technical changes including:
--   Add a macro `\AtlasMaketitle` which can be used instead of `\maketitle`.
+- Update publications up to end of 2021.
+- Add a script `atlas_selfupate.sh` to do the script updating.
+- Adjusted a few packages included by default.
