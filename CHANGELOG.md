@@ -49,6 +49,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - `atlasnote-obsolete.sty` from `obsolete` directory.
 
 ### Fixed
+
 - `atlas_update.sh` does not try to update itself any more.
 
 ### Security
