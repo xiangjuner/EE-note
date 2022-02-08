@@ -36,6 +36,7 @@ while getopts shkcd opt; do
             echo "  -k use krb5 GitLab link"
             echo "  -s use ssh GitLab link"
             echo "  -d use devel branch instead of master"
+            echo "  -c Copy scripts from local directory (mainly for testing)"
             exit 1
             ;;
     esac
@@ -54,7 +55,7 @@ fi
 # Remove temporary directory if it exists
 test -d tmp-atlaslatex && rm -r tmp-atlaslatex
 
-# Clone OR copy the ATLAS LaTeX Git repository.
+# Clone or copy the ATLAS LaTeX Git repository.
 if [ ${CLONE} == 1 ]; then
     # Switch to devel branch for testing.
     if [ -n "${BRANCH}" ]; then
@@ -91,11 +92,12 @@ function cf_files {
     fi
 }
 
-# Self-update scripts first
+# See if scripts have to be updated first.
 test -d scripts || mkdir scripts
 scriptupdate=0
-for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
-    afile=tmp-atlaslatex/scripts/$(basename $lfile)
+sfile="scripts/atlaslatex_selfupdate.sh"
+for lfile in "scripts/atlaslatex_update.sh" "scripts/atlaslatex_2020.sh"; do
+    afile="tmp-atlaslatex/scripts/$(basename $lfile)"
     if [ -e ${lfile} ]; then
         cmp --silent ${lfile} ${afile}; cmpStatus=$?
         echo "Comparing ${lfile} with ${afile}:"
@@ -104,21 +106,24 @@ for lfile in scripts/atlaslatex_update.sh scripts/atlaslatex_2020.sh; do
             echo "No change to file ${lfile}."
         else
             scriptupdate=1
-            cf_files "${lfile}" "${afile}"
-            echo "+++ ${lfile} updated. You should now run ${lfile}."
+            echo "+++ ${lfile} need to be updated."
         fi
     else
         scriptupdate=1
-        cp ${afile} ${lfile}
-        # Make sure file is exectuable
-        chmod u+x ${lfile}
-        echo "+++ ${lfile} updated. You should now run ${lfile}."
+        echo "+++ ${lfile} need to be updated."
     fi
 done
+
+# Update the scripts.
 if [ $scriptupdate -eq 1 ]; then
-    # Remove temporary directory
-    rm -rf tmp-atlaslatex
-    exit 1
+    afile="tmp-atlaslatex/scripts/atlaslatex_selfupdate.sh"
+    sfile="scripts/atlaslatex_selfupdate.sh"
+    cp ${afile} ${sfile}
+    # Do not remove emporary directory, as it can be used by atlas_selfupdate.sh.
+    # rm -rf tmp-atlaslatex
+    # Tell user what to do.
+    echo "+++ You should run ${sfile} to update scripts first."
+    exit
 fi
 
 # Class and style files
