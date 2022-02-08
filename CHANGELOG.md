@@ -22,6 +22,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Add `multirow` option to `atlaspackage` and include `multirow` package when using the `full` option.
 - Add a macro `\pTX` for `\pT` with an extra subscript or a superscript (often needed in MC snippets) to `atlasmisc.sty`.
 - Add an `if` for `AtlasDraft` with draft status. Used with `atlastodo` in main document.
+- Add a script `atlas_selfupate.sh` to do the script updating.
 
 ### Changed
 
@@ -35,6 +36,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Adjust way `eVkern` option is handled in `atlaspackage.sty` so it works with `siunitx` version 3.
 - Rename `\ATTeXLive` macro to `\AtlasTeXLive`.
 - `atlastodo` package includes `xspace`.
+- Updated documentation of scripts that are available.
 
 ### Deprecated
 
@@ -47,6 +49,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - `atlasnote-obsolete.sty` from `obsolete` directory.
 
 ### Fixed
+- `atlas_update.sh` does not try to update itself any more.
 
 ### Security
 
