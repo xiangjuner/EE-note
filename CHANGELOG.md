@@ -14,6 +14,28 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [12.1.0-alpha] - 2022-02-31
+
+### Added
+
+- Add possibility to use REPORT class for notes. This will probably become default at some point.
+- Dcoument failure of `full` option for TeX Live version earlier than 2016.
+
+### Changed
+
+- Changed possible syntax of note commands so text associated with note is now an optional rather than required parameter.
+  The old syntax is still default. Passing `version=2` allows the use of the new syntax.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [12.0.0] - 2022-02-08
 
 ### Added

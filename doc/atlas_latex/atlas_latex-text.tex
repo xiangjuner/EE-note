@@ -582,7 +582,12 @@ Finally the full set includes further packages that may be useful:
 \end{itemize}
 The above packages are all included if you turn on the full set.
 You can turn them on individually if you use the minimal or standard set.
-If you pass the \Option{xtab} option, it will ne included instead of \Package{longtable}
+If you pass the \Option{xtab} option, it will be included instead of \Package{longtable}.
+\ADOCold{12.0} If you are using an older \TeX\ Live version (earlier than 2016),
+you will probably get an error when using the \Option{full} option,
+as the \Package{diffcoeff} package was first released in 2016.
+If this is the case, include the packages you want by passing the appropriate options to \Package{atlaspackage}.
+\ADOCnew{12.1} \Package{diffcoeff} will not be included for \TeX\ Live versions older than 2016 (defined by the \Option{texlive} option).
 
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
