@@ -277,10 +277,14 @@
 % Macros for mathematics in physics.
 % Pass ISO option to diffcoeff, unless the language is USenglish.
 \ifthenelse{\boolean{APKG@diffcoeff}}{%
-  \iflanguage{USenglish}{%
-    \RequirePackage{diffcoeff}
-  }{
-    \RequirePackage[ISO]{diffcoeff}
+  \ifthenelse{\APKG@texlive < 2016}{%
+    \typeout{atlaspackage: diffcoeff not included, as TeX version is too old.}
+  }{%
+    \iflanguage{USenglish}{%
+        \RequirePackage{diffcoeff}
+    }{%
+        \RequirePackage[ISO]{diffcoeff}
+    }
   }
 }{}
 \ifthenelse{\boolean{APKG@physics}}{%
