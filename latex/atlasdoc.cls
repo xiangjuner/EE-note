@@ -36,6 +36,7 @@
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
+\DeclareBoolOption[false]{REPORT}
 \DeclareBoolOption[false]{HEPDATA}
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
@@ -166,8 +167,13 @@
   \typeout{atlasdoc: use KOMA-Script scrbook class}
   \newcommand*{\ADOC@mainclass}{scrbook}
 }{%
-  \typeout{atlasdoc: use KOMA-Script scrartcl class}
-  \newcommand*{\ADOC@mainclass}{scrartcl}
+  \ifthenelse{\boolean{ADOC@REPORT}}{%
+    \typeout{atlasdoc: use KOMA-Script scrreprt class}
+    \newcommand*{\ADOC@mainclass}{scrreprt}
+  }{%
+    \typeout{atlasdoc: use KOMA-Script scrartcl class}
+    \newcommand*{\ADOC@mainclass}{scrartcl}
+  }%
 }
 
 % Set paper size
@@ -364,7 +370,11 @@
 \ifthenelse{\boolean{ADOC@BOOK}}{%
   \LoadClass[titlepage,11pt]{scrbook}
 }{%
-  \LoadClass[titlepage,11pt]{scrartcl}
+  \ifthenelse{\boolean{ADOC@REPORT}}{%
+    \LoadClass[titlepage,11pt]{scrreprt}
+  }{%
+    \LoadClass[titlepage,11pt]{scrartcl}
+  }%
 }
 \typeout{atlasdoc: paper size is \ADOC@paper}
 \KOMAoptions{paper=\ADOC@paper}
