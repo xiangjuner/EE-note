@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{12.1.0-alpha}
-\ProvidesClass{latex/atlasdoc}[2022/02/31 v12.1.0-alpha ATLAS document class]
+\newcommand*{\ATPackageVersion}{13.0.0-alpha}
+\ProvidesClass{latex/atlasdoc}[2022/03/14 v13.0.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -36,7 +36,7 @@
 \DeclareBoolOption[false]{CONF}
 \DeclareBoolOption[false]{PUB}
 \DeclareBoolOption[false]{BOOK}
-\DeclareBoolOption[false]{REPORT}
+\DeclareBoolOption[true]{REPORT}
 \DeclareBoolOption[false]{HEPDATA}
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
@@ -162,18 +162,24 @@
   }
 }
 
-% Decide on the main class
+% Decide on the main class.
+% Default class for ATLAS notes is scrreprt.
 \ifthenelse{\boolean{ADOC@BOOK}}{%
   \typeout{atlasdoc: use KOMA-Script scrbook class}
   \newcommand*{\ADOC@mainclass}{scrbook}
 }{%
-  \ifthenelse{\boolean{ADOC@REPORT}}{%
-    \typeout{atlasdoc: use KOMA-Script scrreprt class}
-    \newcommand*{\ADOC@mainclass}{scrreprt}
+  \ifthenelse{\boolean{ADOC@NOTE}}{%
+    \ifthenelse{\boolean{ADOC@REPORT}}{%
+      \typeout{atlasdoc: use KOMA-Script scrreprt class}
+      \newcommand*{\ADOC@mainclass}{scrreprt}
+    }{%
+      \typeout{atlasdoc: use KOMA-Script scrartcl class}
+      \newcommand*{\ADOC@mainclass}{scrartcl}
+    }%
   }{%
     \typeout{atlasdoc: use KOMA-Script scrartcl class}
     \newcommand*{\ADOC@mainclass}{scrartcl}
-  }%
+  }
 }
 
 % Set paper size
@@ -367,15 +373,16 @@
 %-------------------------------------------------------------------------------
 % Invoke main class
 % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
-\ifthenelse{\boolean{ADOC@BOOK}}{%
-  \LoadClass[titlepage,11pt]{scrbook}
-}{%
-  \ifthenelse{\boolean{ADOC@REPORT}}{%
-    \LoadClass[titlepage,11pt]{scrreprt}
-  }{%
-    \LoadClass[titlepage,11pt]{scrartcl}
-  }%
-}
+\LoadClass[titlepage, 11pt]{\ADOC@mainclass}
+% \ifthenelse{\boolean{ADOC@BOOK}}{%
+%   \LoadClass[titlepage,11pt]{scrbook}
+% }{%
+%   \ifthenelse{\boolean{ADOC@REPORT}}{%
+%     \LoadClass[titlepage,11pt]{scrreprt}
+%   }{%
+%     \LoadClass[titlepage,11pt]{scrartcl}
+%   }%
+% }
 \typeout{atlasdoc: paper size is \ADOC@paper}
 \KOMAoptions{paper=\ADOC@paper}
 
@@ -486,6 +493,7 @@
       \RequirePackage[T1]{fontenc}
     }{%
       \typeout{atlasdoc: using newtx fonts package}
+      \RequirePackage[T1]{fontenc}
       \RequirePackage{newtxtext}
       \RequirePackage{newtxmath}
     }
