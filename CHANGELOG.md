@@ -14,17 +14,21 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [12.1.0-alpha] - 2022-02-31
+## [13.0.0-alpha] - 2022-03-32
 
 ### Added
 
-- Add possibility to use REPORT class for notes. This will probably become default at some point.
-- Dcoument failure of `full` option for TeX Live version earlier than 2016.
+- Use report (`scrreprt`) class for notes. Pass option `REPORT=false` to use old default of `scrartcl`.
+- Document failure of `full` option for TeX Live version earlier than 2016.
 
 ### Changed
 
-- Changed possible syntax of note commands so text associated with note is now an optional rather than required parameter.
-  The old syntax is still default. Passing `version=2` allows the use of the new syntax.
+- Use `latexmk` as default for compiling documents.
+- Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
+  Passing `version=1` allows the use of the old syntax with two required arguments.
+- Include font encoding for `newtx` fonts.
+  This seems to be necessary for updated versions of TeX Live 2021 and later.
+  so that `|`, `<`, `>` still work in text mode.
 
 ### Deprecated
 
