@@ -962,6 +962,13 @@ Note that you must use the inline variant for notes inside captions and other fl
 Turn off the output of any notes by passing the option \Option{output=false}
 to the \Package{atlastodo} package.
 
+The following options can be passed on to the \Package{atlastodo} package:
+\begin{description}
+\item[\Option{output}\OptionTFT] turn off the output of any notes;
+\item[\Option{shift}\OptionTFT] adjust the margin to allow more space for notes;
+\item[\Option{version=2\textbar\normalfont{1}}] version number.
+\end{description}
+
 If you want a list of all the notes,
 add \Macro{listoftodos} somewhere in your document.
 The \Package{todonotes} package also include a macro \Macro{missingfigure}
@@ -969,17 +976,37 @@ that is very useful if you want to include a figure, but do not yet have the plo
 
 The following code produces the paragraph below.
 \begin{tcblisting}{listing only}
-Here is an \JSnote{example paragraph}{Illustration of macro}
+Here is an \JSnote[example paragraph]{Illustration of macro}
 that shows how to use the macro. If you want a comment
-without it being associated with text the first argument should be left empty.
-\JSnote{}{This is a comment without associated text}.If you prefer your comments to be inline use the \Macro{JSinote} macro.
-\JSinote{}{Here is an inline comment.}
+without it being associated with text omit the optional argument.
+\JSnote{This is a comment without associated text.}
+This is some fill text between the comments.
+\JSnote[Text to be improved.]{This is a comment with assoicated text.}
+If you prefer your comments to be inline use the \Macro{JSinote} macro.
+\JSinote{Here is an inline comment.}
 \end{tcblisting}
-Here is an \JSnote{example paragraph}{Illustration of macro}
+Here is an \JSnote[example paragraph]{Illustration of macro}
 that shows how to use the macro. If you want a comment
-without it being associated with text the first argument should be left empty.
-\JSnote{}{This is a comment without associated text}.If you prefer your comments to be inline use the \Macro{JSinote} macro.
-\JSinote{}{Here is an inline comment.}
+without it being associated with text omit the optional argument.
+\JSnote{This is a comment without associated text.}
+This is some fill text between the comments.
+\JSnote[Text to be improved.]{This is a comment with assoicated text.}
+If you prefer your comments to be inline use the \Macro{JSinote} macro.
+\JSinote{Here is an inline comment.}
+
+\ADOCold{12.0} Version 1 of \Package{atlastodo} had two argument:
+the first for the text to be commented on and the second for the comment.
+\ADOCnew{13.0} Version 2 of \Package{atlastodo} has one option argument
+for the text to be commented on and a required one for the comment.
+
+As mentioned above, notes in captions and other floating objects must be inline.
+If you include a note in a caption,
+you should also provide a short caption that does not include the note.
+If you do not you will get errors in the list of figures and/or tables.
+Here is an example with a short caption:
+\begin{tcblisting}{listing only}
+\caption[A nice plot.]{A nice plot. \IBinote{This need to be improved.}}
+\end{tcblisting}
 
 %-------------------------------------------------------------------------------
 \section{Language editor commands}%
