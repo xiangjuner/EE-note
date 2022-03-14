@@ -5,7 +5,7 @@
 % Specify where ATLAS LaTeX style files can be found.
 \RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[UKenglish, texlive=2020]{atlasdoc}
+\documentclass[REPORT=false, UKenglish, texlive=2020]{atlasdoc}
 % \KOMAoptions{DIV=8}
 
 % Standard packages that can and should be used in ATLAS papers
@@ -19,7 +19,7 @@
 \usepackage{atlasphysics}
 
 % Macro to add to-do notes (for several authors). Uses the todonotes package.
-\usepackage{atlastodo}
+\usepackage[version=2]{atlastodo}
 \ATLnote{JS}{Jane}{magenta!20}{magenta}
 \ATLnote{IB}{Ian}{green!20}{green!50!black!60}
 
