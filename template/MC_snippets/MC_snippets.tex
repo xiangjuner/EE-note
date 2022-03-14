@@ -6,11 +6,18 @@
 % It should be included in the first 5 lines of the file.
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
+% As of TeX Live 2020 the slash is not needed after the directory name.
 \makeatletter
-\def\input@path{{../../latex/}}
+\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+\IfFormatAtLeastTF{2020/10/01}{%
+  \def\input@path{{../../latex}}
+}{
+  \def\input@path{{../../latex/}}
+}
 \makeatother
+
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, atlasdraft=false, UKenglish, texlive=2020]{atlasdoc}
+\documentclass[NOTE, REPORT=true, atlasdraft=false, UKenglish, texlive=2020]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
@@ -90,7 +97,7 @@
 
 %-------------------------------------------------------------------------------
 % Intro
-\section{Introduction}
+\chapter{Introduction}
 
 This document is a collection of short descriptions of the baseline Standard Model processes
 produced as part of the ATLAS MC16 production campaign. Often a short and a long description 

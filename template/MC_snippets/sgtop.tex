@@ -1,27 +1,29 @@
+% !TEX root = MC_snippets.tex
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%              tW                     %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Single-top \texorpdfstring{$tW$}{tW} associated production}
+\section{Single-top \texorpdfstring{$tW$}{tW} associated production}
 \label{subsec:tW}
 
 This section describes the MC samples used for the modelling of single-top $tW$ associated production.
-Section~\ref{subsubsec:tW_PP8} describes the \POWPY[8] samples -- both for the diagram removal (DR) set-ups,
+\Cref{subsubsec:tW_PP8} describes the \POWPY[8] samples -- both for the diagram removal (DR) set-ups,
 which are used for the nominal prediction as well as uncertainties due to additional radiation and PDFs,  
 and for the diagram subtraction (DS) set-ups, which are used for the uncertainty due to the treatment 
 of the overlap with \ttbar production. 
-Section~\ref{subsubsec:tW_PH7} describes the \POWHER[7] samples used for the uncertainty 
-due to parton showering and hadronisation modelling, and Section~\ref{subsubsec:tW_aMCP8} describes the 
+\Cref{subsubsec:tW_PH7} describes the \POWHER[7] samples used for the uncertainty 
+due to parton showering and hadronisation modelling, and \cref{subsubsec:tW_aMCP8} describes the 
 \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
 
 The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
 
-\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\subsection[Powheg+Pythia8]{\POWPY[8]}
 \label{subsubsec:tW_PP8}
 
 \paragraph{Samples}
 %\label{par:tW_PP8_samples}
 
-Table~\ref{tab:tW_PP8} gives the DSIDs of the $tW$ \POWPY[8] samples, for both the DR and DS schemes.
+\Cref{tab:tW_PP8} gives the DSIDs of the $tW$ \POWPY[8] samples, for both the DR and DS schemes.
 Single-top and single-anti-top ($tW^-$ and $\bar{t}W^+$) events were generated in different samples.
 The dileptonic samples overlap with the inclusive ones.
 
@@ -106,13 +108,13 @@ central values of the \CT[14nnlo]~\cite{Dulat:2015mca} and
 \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
 
 
-\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\subsection[Powheg+Herwig7]{\POWHER[7]}
 \label{subsubsec:tW_PH7}
 
 \paragraph{Samples}
 %\label{par:tW_PH7_samples}
 
-Table~\ref{tab:tW_PH7} gives the DSIDs of the $tW$ \POWHER[7] DR samples.
+\Cref{tab:tW_PH7} gives the DSIDs of the $tW$ \POWHER[7] DR samples.
 Single-top and single-anti-top ($tW^-$ and $\bar{t}W^+$) events were generated in different samples.
 The dileptonic samples overlap with the inclusive ones.
 
@@ -162,13 +164,13 @@ and charm hadrons are simulated using the \EVTGEN[1.6.0]
 program~\cite{Lange:2001uf}.
 
 
-\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\subsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
 \label{subsubsec:tW_aMCP8}
 
 \paragraph{Samples}
 %\label{par:tW_aMCP8_samples}
 
-Table~\ref{tab:tW_aMCP8} gives the DSIDs of the $tW$ \MGNLOPY[8] samples.
+\Cref{tab:tW_aMCP8} gives the DSIDs of the $tW$ \MGNLOPY[8] samples.
 The dileptonic sample overlaps with the inclusive one.
 
 \begin{table}[htbp]
@@ -213,25 +215,25 @@ The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%              t-channel              %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Single-top \texorpdfstring{$t$}{t}-channel production}
+\section{Single-top \texorpdfstring{$t$}{t}-channel production}
 \label{subsec:tchan}
 
 This section describes the MC samples used for the modelling of single-top $t$-channel production.
-Section~\ref{subsubsec:tchan_PP8} describes the \POWPY[8] samples used for the nominal prediction
+\Cref{subsubsec:tchan_PP8} describes the \POWPY[8] samples used for the nominal prediction
 and for the uncertainty from additional radiation and due to PDFs.
-Section~\ref{subsubsec:tchan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the choice of parton shower and hadronisation model,
-and Section~\ref{subsubsec:tchan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
+\Cref{subsubsec:tchan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the choice of parton shower and hadronisation model,
+and \cref{subsubsec:tchan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
 
 The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
 
 
-\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\subsection[Powheg+Pythia8]{\POWPY[8]}
 \label{subsubsec:tchan_PP8}
 
 \paragraph{Samples}
 %\label{par:tchan_PP8_samples}
 
-Table~\ref{tab:tchan_PP8} gives the DSIDs of the $t$-channel \POWPY[8] samples.
+\Cref{tab:tchan_PP8} gives the DSIDs of the $t$-channel \POWPY[8] samples.
 Single-top and single-anti-top events were generated in distinct samples.
 
 \begin{table}[!htbp]
@@ -296,13 +298,13 @@ In addition, the central value of this PDF was compared with the central values 
 and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
 
 
-\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\subsection[Powheg+Herwig7]{\POWHER[7]}
 \label{subsubsec:tchan_PH7}
 
 \paragraph{Samples}
 %\label{par:tchan_PH7_samples}
 
-Table~\ref{tab:tchan_PH7} gives the DSIDs of the $t$-channel \POWHER[7] samples.
+\Cref{tab:tchan_PH7} gives the DSIDs of the $t$-channel \POWHER[7] samples.
 Single-top and single-anti-top events were generated in distinct samples.
 
 \begin{table}[htbp]
@@ -345,13 +347,13 @@ Top quarks were decayed at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:20
 The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
 
 
-\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\subsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
 \label{subsubsec:tchan_aMCP8}
 
 \paragraph{Samples}
 %\label{par:tchan_aMCP8_samples}
 
-Table~\ref{tab:tchan_aMCP8} gives the DSIDs of the $t$-channel \MGNLOPY[8] samples.
+\Cref{tab:tchan_aMCP8} gives the DSIDs of the $t$-channel \MGNLOPY[8] samples.
 
 \begin{table}[htbp]
   \caption{Single-top $t$-channel event samples produced with \MGNLOPY[8].}%
@@ -394,24 +396,24 @@ The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%              s-channel              %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Single-top \texorpdfstring{$s$}{s}-channel production}
+\subsection{Single-top \texorpdfstring{$s$}{s}-channel production}
 \label{subsec:schan}
 
 This section describes the MC samples used for the modelling of single-top $s$-channel production.
-Section~\ref{subsubsec:schan_PP8} describes the \POWPY[8] samples used for the nominal prediction
+\Cref{subsubsec:schan_PP8} describes the \POWPY[8] samples used for the nominal prediction
 and for the uncertainty from additional radiation and due to PDFs.
-Section~\ref{subsubsec:schan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the parton shower and hadronisation model,
-and Section~\ref{subsubsec:schan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
+\Cref{subsubsec:schan_PH7} describes the \POWHER[7] samples used for the uncertainty due to the parton shower and hadronisation model,
+and \cref{subsubsec:schan_aMCP8} describes the \MGNLOPY[8] samples used for the uncertainty due to the choice of matching scheme.
 
 The reference cross-section values are extracted from Ref.~\cite{LHCTopWGsgtopXsec}.
 
-\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\subsection[Powheg+Pythia8]{\POWPY[8]}
 \label{subsubsec:schan_PP8}
 
 \paragraph{Samples}
 %\label{par:schan_PP8_samples}
 
-Table~\ref{tab:schan_PP8} gives the DSIDs of the $s$-channel \POWPY[8] samples.
+\Cref{tab:schan_PP8} gives the DSIDs of the $s$-channel \POWPY[8] samples.
 Single-top and single-anti-top events were generated in distinct samples.
 
 \begin{table}[htbp]
@@ -465,13 +467,13 @@ In addition, the central value of this PDF was compared with the central values 
 \CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
 
 
-\subsubsection[Powheg+Herwig7]{\POWHER[7]}
+\subsection[Powheg+Herwig7]{\POWHER[7]}
 \label{subsubsec:schan_PH7}
 
 \paragraph{Samples}
 %\label{par:schan_PH7_samples}
 
-Table~\ref{tab:schan_PH7} gives the DSIDs of the $s$-channel \POWHER[7] samples.
+\Cref{tab:schan_PH7} gives the DSIDs of the $s$-channel \POWHER[7] samples.
 Single-top and single-anti-top events were generated in distinct samples.
 
 \begin{table}[htbp]
@@ -510,13 +512,13 @@ The functional form of the renormalisation and factorisation scales was set to t
 The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}.
 
 
-\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\subsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
 \label{subsubsec:schan_aMCP8}
 
 \paragraph{Samples}
 %\label{par:schan_aMCP8_samples}
 
-Table~\ref{tab:schan_aMCP8} gives the DSIDs of the $s$-channel \MGNLOPY[8] samples.
+\Cref{tab:schan_aMCP8} gives the DSIDs of the $s$-channel \MGNLOPY[8] samples.
 
 \begin{table}[htbp]
   \caption{Single-top $s$-channel event samples produced with \MGNLOPY[8].}%

@@ -1,4 +1,6 @@
-\section{Single-boson processes}
+% !TEX root = MC_snippets.tex
+
+\chapter{Single-boson processes}
 %\label{sec:VJ}
 
 In the following paragraphs, the set-up of the current ATLAS single-boson baseline samples is described. 
@@ -9,16 +11,16 @@ a minimal description of built-in systematic uncertainties is also given.
 %Samples using this version have been generated with the \CT[10nlo] set of PDFs~\cite{Lai:2010vv}, in conjunction  
 %with the dedicated set of tuned parton-shower parameters developed by the \SHERPA authors for this generator version.
 
-\subsection[Sherpa MEPS@NLO]{\SHERPA (\MEPSatNLO)}
+\section[Sherpa MEPS@NLO]{\SHERPA (\MEPSatNLO)}
 %\label{sec:vjets-sherpa}
 
-\subsubsection{QCD $V+$jets}
+\subsection{QCD $V+$jets}
 %\label{sec:vjets-sherpa-vjets}
 
-\subsubsection*{Samples}
+\subsection*{Samples}
 %\label{sec:vjets-sherpa-samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:vjets-sherpa}.
+The descriptions below correspond to the samples in \cref{tab:vjets-sherpa}.
 
 \begin{table}[!htbp]
   \caption{$V$+jets samples with \SHERPA.}%
@@ -86,11 +88,11 @@ The $V$+jets samples were normalised to a next-to-next-to-leading-order (NNLO)
 prediction~\cite{Anastasiou:2003ds}.
 
 
-\subsubsection{Electroweak $Vjj$ (VBF)}
+\subsection{Electroweak $Vjj$ (VBF)}
 %\label{sec:vjets-sherpa-vjj}
 
 The descriptions below correspond to the samples in
-Table~\ref{tab:ewkvjets-sherpa}.  Samples include the VBF and $V$-strahlung diagrams, but 
+\cref{tab:ewkvjets-sherpa}.  Samples include the VBF and $V$-strahlung diagrams, but 
 they do not include semileptonic $VV$ diagrams and do not overlap with QCD $V+$jets samples.
 
 \begin{table}[!htbp]
@@ -124,14 +126,14 @@ diboson topologies by requiring a $t$-channel colour-singlet exchange.
 %electroweak scale.
 
 
-\subsection[MadGraph5 (CKKW-L)]{\MADGRAPH (CKKW-L)}
+\section[MadGraph5 (CKKW-L)]{\MADGRAPH (CKKW-L)}
 %\label{sec:vjets-mg5py8_ckkwl}
 
-\subsubsection*{Samples}
+\subsection*{Samples}
 %\label{sec:vjets-mg5py8_ckkwl-samples}
 
 The descriptions below correspond to the samples in
-Table~\ref{tab:vjets-mg5py8_ckkwl}. The set-ups of $N_\text{parton}$- and
+\cref{tab:vjets-mg5py8_ckkwl}. The set-ups of $N_\text{parton}$- and
 \HT-sliced samples differ slightly between the two slicing schemes 
 with regard to the matrix element PDF, the jet-clustering radius parameter 
 and the scale used in the evaluation of  \alphas to determine the weight of
@@ -221,7 +223,7 @@ The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{La
 % No usable aMC@NLO \FXFX samples exist in ATLAS central production, therefore
 % the description is commented out to avoid confusion
 
-%% \subsection{\MGNLO (\FXFX)}
+%% \section{\MGNLO (\FXFX)}
 %% \label{sec:vjets-mg5-fxfx}
 
 %% \begin{table}[!htbp]
@@ -261,10 +263,10 @@ The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{La
 %% The samples have been generated using LHAPDF-6.1.5~\cite{Butterworth:2014efa} and FastJet-3.1.0~\cite{Cacciari:2006sm}.
 
 
-\subsection[Inclusive Powheg $V$]{Inclusive \POWHEG $V$}
+\section[Inclusive Powheg $V$]{Inclusive \POWHEG $V$}
 %\label{sec:v-powheg}
 
-The descriptions below correspond to the samples in Table~\ref{tab:v-powheg}.
+The descriptions below correspond to the samples in \cref{tab:v-powheg}.
 
 \begin{table}[!htbp]
   \caption{Inclusive $V$ samples with \POWHEG.}%
@@ -299,7 +301,7 @@ The \EVTGEN[1.2.0] program~\cite{Lange:2001uf} was used to decay bottom and char
 % No usable \POWHEG \MINLO samples exist in ATLAS central production, therefore
 % the description is commented out to avoid confusion
 
-%% \subsection{\POWHEG \MINLO}
+%% \section{\POWHEG \MINLO}
 %% \label{sec:vjets-minlo}
 
 %% Predictions from \POWHEG \MINLO~\cite{Alioli:2010xd,Hamilton:2012np,Hamilton:2012rf} 

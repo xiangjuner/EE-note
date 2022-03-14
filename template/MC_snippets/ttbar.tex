@@ -1,26 +1,28 @@
+% !TEX root = MC_snippets.tex
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%              ttbar                  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[\ttbar production]{\ttbar production}
+\section[\ttbar production]{\ttbar production}
 \label{subsec:ttbar}
 
 This section describes the MC samples used for the modelling of \ttbar production.
-Section~\ref{subsubsec:ttbar_PP8} describes the \POWPY[8] samples,
-Section~\ref{subsubsec:ttbar_PH7} describes the \POWHER[7] samples,
-Section~\ref{subsubsec:ttbar_aMCP8} describes the \MGNLOPY[8] samples,
-and finally Section~\ref{subsubsec:ttbar_sherpa} describes the \SHERPA samples.
+\Cref{subsubsec:ttbar_PP8} describes the \POWPY[8] samples,
+\cref{subsubsec:ttbar_PH7} describes the \POWHER[7] samples,
+\cref{subsubsec:ttbar_aMCP8} describes the \MGNLOPY[8] samples,
+and finally \cref{subsubsec:ttbar_sherpa} describes the \SHERPA samples.
 
 The reference cross-section values are extracted from Ref.~\cite{LHCTopWGttbarXsec}.
 Studies of MC simulation performance including comparisons with unfolded data 
 are collected in the PUB notes~\cite{ATL-PHYS-PUB-2018-009,ATL-PHYS-PUB-2017-007,ATL-PHYS-PUB-2016-020}.
 
-\subsubsection[Powheg+Pythia8]{\POWPY[8]}
+\subsection[Powheg+Pythia8]{\POWPY[8]}
 \label{subsubsec:ttbar_PP8}
 
 \paragraph{Samples}
 %\label{par:ttbar_PP8_samples}
 
-The descriptions below correspond to the samples in Tables~\ref{tab:ttbar_PP8}, \ref{tab:ttbar_PP8_addRad} and \ref{tab:ttbar_PP8_hdampvar}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_PP8,tab:ttbar_PP8_addRad,tab:ttbar_PP8_hdampvar}.
 
 \begin{table}[htbp]
   \caption{Nominal \ttbar samples produced with \POWPY[8].
@@ -127,13 +129,13 @@ In addition, the central value of this PDF was compared with the central values 
 \CT[14nnlo]~\cite{Dulat:2015mca} and \MMHT[nnlo]~\cite{Harland-Lang:2014zoa} PDF sets.
 
 
-\subsubsection[Powheg+Herwig7.04]{\POWHER[7.04]}
+\subsection[Powheg+Herwig7.04]{\POWHER[7.04]}
 \label{subsubsec:ttbar_PH7}
 
 \paragraph{Samples}
 %\label{par:ttbar_PH7_samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH7}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_PH7}.
 
 \begin{table}[htbp]
   \caption{\ttbar samples produced with \POWHER[7].}%
@@ -178,13 +180,13 @@ The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
 
 
-\subsubsection[Powheg+Herwig7.13]{\POWHER[7.13]}
+\subsection[Powheg+Herwig7.13]{\POWHER[7.13]}
 %\label{subsubsec:ttbar_PH713}
 
 \paragraph{Samples}
 %\label{par:ttbar_PH713_samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:ttbar_PH713}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_PH713}.
 
 \begin{table}[htbp]
   \caption{\ttbar samples produced with \POWHER[7.13].}%
@@ -232,13 +234,13 @@ The decays of bottom and charm hadrons
 were simulated using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf}. 
 
 
-\subsubsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
+\subsection[MadGraph5\_aMC@NLO+Pythia8]{\MGNLOPY[8]}
 \label{subsubsec:ttbar_aMCP8}
 
 \paragraph{Samples}
 %\label{par:ttbar_aMCP8_samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCP8}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_aMCP8}.
 \begin{table}[htbp]
   \caption{\ttbar samples produced with \MGNLOPY[8].}%
   \label{tab:ttbar_aMCP8}
@@ -284,13 +286,13 @@ where \HT is defined as the scalar sum of the \pT of all outgoing partons.
 The renormalisation and factorisation scale choice was the same as for the
 \POWHEGBOX set-up.
 
-\subsubsection[MadGraph5\_aMC@NLO+Herwig7.13]{\MGNLOHER[7.13]}
+\subsection[MadGraph5\_aMC@NLO+Herwig7.13]{\MGNLOHER[7.13]}
 %\label{subsubsec:ttbar_aMCH713}
 
 \paragraph{Samples}
 %\label{par:ttbar_aMCH713_samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:ttbar_aMCH713}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_aMCH713}.
 \begin{table}[htbp]
   \caption{\ttbar samples produced with \MGNLOHER[7.13].}%
   \label{tab:ttbar_aMCH713}
@@ -348,13 +350,13 @@ The renormalisation and factorisation scale choice in the \MGNLO set-up was the 
 using the \EVTGEN[1.6.0] program~\cite{Lange:2001uf} in both set-ups.
 
 
-\subsubsection[Sherpa 2.2.1]{\SHERPA[2.2.1]}
+\subsection[Sherpa 2.2.1]{\SHERPA[2.2.1]}
 \label{subsubsec:ttbar_sherpa}
 
 \paragraph{Samples}
 %\label{par:ttbar_sherpa_samples}
 
-The descriptions below correspond to the samples in Table~\ref{tab:ttbar_sherpa}.
+The descriptions below correspond to the samples in \cref{tab:ttbar_sherpa}.
 \begin{table}[htbp]
   \caption{\ttbar samples produced with \SHERPA[2.2.1].}%
   \label{tab:ttbar_sherpa}
