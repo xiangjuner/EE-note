@@ -27,8 +27,9 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
   Passing `version=1` allows the use of the old syntax with two required arguments.
 - Include font encoding for `newtx` fonts.
-  This seems to be necessary for updated versions of TeX Live 2021 and later.
+  This seems to be necessary for updated versions of TeX Live 2021 and later,
   so that `|`, `<`, `>` still work in text mode.
+- MC snippets use `cleveref` macros.
 
 ### Deprecated
 
