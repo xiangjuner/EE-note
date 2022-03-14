@@ -14,14 +14,10 @@
 # Use "make cleanepstopdf" to remove PDF files created automatically from EPS files.
 #   Note that FIGSDIR has to be set properly for this to work.
 
-# Set the default target to run_latexmk instead of run_pdflatex to use latexmk to compile.
+# Set the default target to run_pdflatex instead of run_latexmk to use explicit
+# pdflatex/biber commands to compile.
 
 # You can use the target version to check your TeX Live version.
-
-# If you have to run latex rather than pdflatex adjust the dependencies of %.dvi target
-#   and use the command "make run_latex" to compile.
-# Specify dvipdf or dvips as the run_latex dependency,
-#   depending on which you want to use.
 
 #-------------------------------------------------------------------------------
 # Check which TeX Live installation you have with the command pdflatex --version
@@ -50,10 +46,10 @@ FIGSDIR  = figs
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
 EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
-# Default target - make mydocument.pdf with pdflatex
+# Default target - make mydocument.pdf with latexmk.
+default: run_latexmk
+# Use pdflatex/biber instead to compile
 default: run_pdflatex
-# Use latexmk instead to compile
-# default: run_latexmk
 
 .PHONY: run_latexmk
 .PHONY: newdocument newdocumenttexmf newnotemetadata newpapermetadata newfiles
