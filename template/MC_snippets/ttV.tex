@@ -4,7 +4,7 @@
 \section[\ttV production]{\ttV production}
 \label{subsec:ttV}
 
-This section describes the MC samples used for the modelling of \ttV ($V=W/Z$) production.
+This section describes the MC samples used for the modelling of \ttV (\(V=W/Z\)) production.
 \Cref{subsubsec:ttV_aMCP8} describes the \MGNLOPY[8] samples,
 and \cref{subsubsec:ttV_sherpa} describes the \SHERPA samples.
 (NOTE: this section is not frozen as the \SHERPA samples are likely to be updated and become the nominal samples in the near future.)
@@ -28,12 +28,12 @@ The descriptions below correspond to the samples in \cref{tab:ttV_aMCP8,tab:ttV_
     410155 & \ttW \\
     410156 & \ttZnunu \\
     410157 & \ttZqq \\
-    410218 & \ttee, $m_{\ell\ell} > \SI{5}{\GeV}$ \\
-    410219 & \ttmumu, $m_{\ell\ell} > \SI{5}{\GeV}$ \\
-    410220 & \tttautau, $m_{\ell\ell} > \SI{5}{\GeV}$ \\
-    410276 & \ttee, $m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}$\\
-    410277 & \ttmumu, $m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}$\\
-    410278 & \tttautau, $m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}$\\
+    410218 & \ttee, \(m_{\ell\ell} > \SI{5}{\GeV}\) \\
+    410219 & \ttmumu, \(m_{\ell\ell} > \SI{5}{\GeV}\) \\
+    410220 & \tttautau, \(m_{\ell\ell} > \SI{5}{\GeV}\) \\
+    410276 & \ttee, \(m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}\)\\
+    410277 & \ttmumu, \(m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}\)\\
+    410278 & \tttautau, \(m_{\ell\ell} \in \SI[parse-numbers=false]{[1,5]}{\GeV}\)\\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -84,25 +84,26 @@ The production of \ttV events was modelled using the \MGNLO[2.3.3]
 next-to-leading order~(NLO) in the strong coupling constant \alphas
 with the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution
 function~(PDF). The functional form of the renormalisation and
-factorisation scales was set to the default of $0.5 \times \sum_i
-\sqrt{m^2_i+p^2_{\text{T},i}}$, where the sum runs over all the particles
+factorisation scales was set to the default of
+\(0.5 \times \sum_i \sqrt{m^2_i+p^2_{\text{T},i}}\),
+where the sum runs over all the particles
 generated from the matrix element calculation. Top quarks were decayed
 at LO using \MADSPIN~\cite{Frixione:2007zp,Artoisenet:2012st} to
 preserve spin correlations. The events were interfaced with
 \PYTHIA[8.210]~\cite{Sjostrand:2014zea} for the parton shower and
 hadronisation, using the A14 set of tuned
 parameters~\cite{ATL-PHYS-PUB-2014-021} and the
-\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.  
-The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}. 
+\NNPDF[2.3lo]~\cite{Ball:2014uwa} PDF set.
+The decays of bottom and charm hadrons were simulated using the \EVTGEN[1.2.0] program~\cite{Lange:2001uf}.
 
-% Note : The cross-section is supplemented with an off-shell (down to \SI{5}{\GeV}) correction calculated in Ref.~\cite{ATLASPMGttVNLOXsec}. 
+% Note : The cross-section is supplemented with an off-shell (down to \SI{5}{\GeV}) correction calculated in Ref.~\cite{ATLASPMGttVNLOXsec}.
 The cross-sections were calculated at NLO QCD and NLO EW accuracy using
 \MGNLO as reported in Ref.~\cite{deFlorian:2016spz}.
-In the case of \ttll the cross-section was scaled by 
+In the case of \ttll the cross-section was scaled by
 an off-shell correction estimated at one-loop level in \alphas.
 (\emph{Optionally:})
-The predicted values at $\rts = \SI{13}{\TeV}$ are $0.88^{+0.09}_{-0.11}\,\si{\pb}$ and
-$0.60^{+0.08}_{-0.07}\,\si{\pb}$ for \ttZ and \ttW, respectively, where the
+The predicted values at \(\rts = \SI{13}{\TeV}\) are \(0.88^{+0.09}_{-0.11}\,\si{\pb}\) and
+\(0.60^{+0.08}_{-0.07}\,\si{\pb}\) for \ttZ and \ttW, respectively, where the
 uncertainties were estimated from variations of \alphas and the renormalisation and
 factorisation scales.
 

@@ -53,7 +53,7 @@
 \addbibresource{../../bib/CMS.bib}
 \addbibresource{../../bib/ConfNotes.bib}
 \addbibresource{../../bib/PubNotes.bib}
- 
+
 % Paths for figures - do not forget the / at the end of the directory name.
 \graphicspath{{../../logos/}{figures/}}
 
@@ -64,7 +64,7 @@
 % Generic document information
 %-------------------------------------------------------------------------------
 
-% Title, abstract and document 
+% Title, abstract and document
 % \input{MC_snippets-metadata}
 % Title
 \AtlasTitle{References and set-up descriptions for the MC16 campaign}
@@ -100,23 +100,23 @@
 \chapter{Introduction}
 
 This document is a collection of short descriptions of the baseline Standard Model processes
-produced as part of the ATLAS MC16 production campaign. Often a short and a long description 
+produced as part of the ATLAS MC16 production campaign. Often a short and a long description
 is provided, depending on whether a sample is used as a background or a signal sample in an
 analysis, respectively.
 
 It is assumed that paper editors will make a final pass through the wording, e.g.\ to avoid
 acronyms being introduced multiple times.
-The descriptions contain the appropriate citations which are included by default in 
+The descriptions contain the appropriate citations which are included by default in
 the \texttt{atlaslatex} package as well.
-These citations often reflect decades of theory work and would have typically been agreed upon 
+These citations often reflect decades of theory work and would have typically been agreed upon
 with the generator developers, who rely on them to secure funding for future generator development.
 PMG therefore strongly encourages \emph{keeping all recommended citations} for any given snippet.
 
-Please note that the generator versions can generally change from sample to sample. 
+Please note that the generator versions can generally change from sample to sample.
 A change in the third digit typically indicates some sort of technical bug fix that
-does not affect the physics modelling otherwise. 
-In order to save CPU time, samples are often regenerated only when they are affected 
-by a (sufficiently severe) bug and so even within a set of final states 
+does not affect the physics modelling otherwise.
+In order to save CPU time, samples are often regenerated only when they are affected
+by a (sufficiently severe) bug and so even within a set of final states
 of any given process, the generator version may differ.
 
 You may have to add the \texttt{process} or \texttt{hepprocess} option to the \texttt{atlasphysics} package for some generators.
@@ -135,7 +135,7 @@ In addition, some useful macros for processes are defined in the style file \tex
 % Multiboson
 \include{MB}
 %-------------------------------------------------------------------------------
-% Higgs processes                                                                                             
+% Higgs processes
 \include{Higgs}
 %-------------------------------------------------------------------------------
 % Top
@@ -143,11 +143,11 @@ In addition, some useful macros for processes are defined in the style file \tex
 %-------------------------------------------------------------------------------
 % RareTop
 \include{RT}
-%-------------------------------------------------------------------------------                         
+%-------------------------------------------------------------------------------
 % Jets
 \include{MJ}
 %-------------------------------------------------------------------------------
-% Photon processes                                                                                             
+% Photon processes
 \include{GJ}
 
 %-------------------------------------------------------------------------------
