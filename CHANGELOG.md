@@ -30,6 +30,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
   This seems to be necessary for updated versions of TeX Live 2021 and later,
   so that `|`, `<`, `>` still work in text mode.
 - MC snippets use `cleveref` macros.
+- MC snippets use `\(...\)` instead of `$...$` for math mode.
 
 ### Deprecated
 
