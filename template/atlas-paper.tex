@@ -59,9 +59,7 @@
 % Set output=false in order not to print out the notes.
 % Set shift=false to avoid adjustment of margins.
 % This package should not be used in the final version of the paper.
-\ifthenelse{\boolean{AtlasDraft}}{%
-  \usepackage[output=true, shift=true]{atlastodo}
-}{}
+\ifthenelse{\boolean{AtlasDraft}}{\usepackage[output=true, shift=true]{atlastodo}}{}
 
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.
