@@ -14,12 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.0.0-alpha] - 2022-03-32
+## [13.0.0] - 2022-03-16
 
 ### Added
 
 - Use report (`scrreprt`) class for notes. Pass option `REPORT=false` to use old default of `scrartcl`.
-- Document failure of `full` option for TeX Live version earlier than 2016.
+- Document failure of `full` option for TeX Live versions earlier than 2016.
 
 ### Changed
 
@@ -31,14 +31,6 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
   so that `|`, `<`, `>` still work in text mode.
 - MC snippets use `cleveref` macros.
 - MC snippets use `\(...\)` instead of `$...$` for math mode.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ---
 

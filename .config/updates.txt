@@ -1,9 +1,8 @@
 This new version contains a number of updates:
-The October 2020 LaTeX update led to options being ignored when passed to a document class or a style file if the filename contained a directory.
-- The script atlaslatex_2020.sh to make adjustments to main files for TeX Live 2020.
-- The macro \ATLASLATEXPATH should no longer be necessary or be used.
-
-- `texlive` variable set to 2020 by default.
+- texlive variable set to 2020 by default.
+- Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
+- Use latexmk as default for compiling documents.
+- Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
 - Update publications up to end of 2021.
-- Add a script `atlas_selfupate.sh` to do the script updating.
-- Adjusted a few packages included by default.
+- Add a script atlas_selfupdate.sh to do the script updating.
+- The macro \ATLASLATEXPATH should no longer be necessary or be used.
