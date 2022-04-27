@@ -112,6 +112,7 @@
   \ADOC@CONFnotefalse
   \ADOC@PUBnotefalse
   \ADOC@BOOKfalse
+  \ADOC@REPORTfalse
   \typeout{atlasdoc: turning off backref for a CERN preprint}
   \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
 }{%
@@ -124,6 +125,7 @@
     \ADOC@CONFnotefalse
     \ADOC@PUBnotefalse
     \ADOC@BOOKfalse
+    \ADOC@REPORTfalse
   }{%
     % ATLAS CONF note
     \ifthenelse{\boolean{ADOC@CONF}}{%
@@ -134,6 +136,7 @@
       \ADOC@CONFnotetrue
       \ADOC@PUBnotefalse
       \ADOC@BOOKfalse
+      \ADOC@REPORTfalse
     }{%
       % ATLAS PUB note
       \ifthenelse{\boolean{ADOC@PUB}}{%
@@ -144,6 +147,7 @@
         \ADOC@CONFnotefalse
         \ADOC@PUBnotetrue
         \ADOC@BOOKfalse
+        \ADOC@REPORTfalse
       }{%
         % ATLAS TDR etc.
         \ifthenelse{\boolean{ADOC@BOOK}}{%
@@ -153,6 +157,7 @@
           \ADOC@CONFnotefalse
           \ADOC@PUBnotefalse
           \ADOC@BOOKtrue
+          \ADOC@REPORTfalse
         }{%
           \typeout{atlasdoc: ATLAS Note}
           \renewcommand*{\ADOC@docheadingdefault}{ATLAS Note}
@@ -168,14 +173,9 @@
   \typeout{atlasdoc: use KOMA-Script scrbook class}
   \newcommand*{\ADOC@mainclass}{scrbook}
 }{%
-  \ifthenelse{\boolean{ADOC@NOTE}}{%
-    \ifthenelse{\boolean{ADOC@REPORT}}{%
-      \typeout{atlasdoc: use KOMA-Script scrreprt class}
-      \newcommand*{\ADOC@mainclass}{scrreprt}
-    }{%
-      \typeout{atlasdoc: use KOMA-Script scrartcl class}
-      \newcommand*{\ADOC@mainclass}{scrartcl}
-    }%
+  \ifthenelse{\boolean{ADOC@REPORT}}{%
+    \typeout{atlasdoc: use KOMA-Script scrreprt class}
+    \newcommand*{\ADOC@mainclass}{scrreprt}
   }{%
     \typeout{atlasdoc: use KOMA-Script scrartcl class}
     \newcommand*{\ADOC@mainclass}{scrartcl}
@@ -374,15 +374,6 @@
 % Invoke main class
 % Note that \KOMAoptions is not available in versions of KOMA-Script older than 3.0
 \LoadClass[titlepage, 11pt]{\ADOC@mainclass}
-% \ifthenelse{\boolean{ADOC@BOOK}}{%
-%   \LoadClass[titlepage,11pt]{scrbook}
-% }{%
-%   \ifthenelse{\boolean{ADOC@REPORT}}{%
-%     \LoadClass[titlepage,11pt]{scrreprt}
-%   }{%
-%     \LoadClass[titlepage,11pt]{scrartcl}
-%   }%
-% }
 \typeout{atlasdoc: paper size is \ADOC@paper}
 \KOMAoptions{paper=\ADOC@paper}
 
@@ -418,13 +409,19 @@
   %\setkomafont{pageheadfoot}{\normalsize\sffamily}
   \setkomafont{pagehead}{\normalsize\rmfamily}
   %\setkomafont{publishers}{\normalsize\rmfamily}
-  % Set table of contents style to have no dotted lines for subsections
-  \ifthenelse{\ADOC@texlive < 2016}{%
-    \RequirePackage{tocstyle}
-    \usetocstyle{noonewithdot}
+  % Keep default table of contents for BOOK and REPORT.
+  % Remove dotted lines for other documents.
+  \ifthenelse{\boolean{ADOC@REPORT} \OR \boolean{ADOC@BOOK}}{%
+    \typeout{atlasdoc: keep default table of contents style.}
   }{%
-    \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
-    \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
+    \typeout{atlasdoc: remove dots in table of contents style.}
+    \ifthenelse{\ADOC@texlive < 2016}{%
+      \RequirePackage{tocstyle}
+      \usetocstyle{noonewithdot}
+    }{%
+      \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
+      \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
+    }
   }
   % Table of contents down to \ADOC@tocdepth which is 1 by default
   \ifthenelse{\ADOC@texlive < 2014}{%

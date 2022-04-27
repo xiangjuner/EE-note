@@ -20,6 +20,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Changed
 
+- Table of contents keeps dotted lines for report and book styles.
+
 ### Deprecated
 
 ### Removed
