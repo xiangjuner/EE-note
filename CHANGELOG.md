@@ -14,7 +14,19 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.0.1] - 2022-03-16
+## [13.1.0] - 2022-05-09
+
+### Added
+
+- February to April 2022 update of publications.
+
+### Changed
+
+- Table of contents keeps dotted lines for report and book styles.
+
+---
+
+## [13.0.0] - 2022-03-16
 
 ### Added
 
