@@ -14,19 +14,11 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2022-05-XX
+## [13.2.0] - 2022-05-15
 
 ### Added
 
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- May 2022 update of publications.
 
 ---
 
