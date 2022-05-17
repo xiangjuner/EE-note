@@ -14,11 +14,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.2.0] - 2022-05-15
+## [13.2.1] - 2022-05-17
 
 ### Added
 
 - May 2022 update of publications.
+
+### Fixed
+
+- Author fixed for a 2011 PUB note.
 
 ---
 
