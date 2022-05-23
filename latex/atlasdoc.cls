@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{13.2.1}
-\ProvidesClass{latex/atlasdoc}[2022/05/17 v13.2.1 ATLAS document class]
+\newcommand*{\ATPackageVersion}{13.3.0}
+\ProvidesClass{latex/atlasdoc}[2022/05/23 v13.3.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -60,6 +60,8 @@
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareBoolOption[false]{shownote}
+\DeclareBoolOption[false]{cmslogo}
+\DeclareStringOption[]{extralogo}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
 \ProcessKeyvalOptions{ADOC}
@@ -700,7 +702,15 @@
     \vspace*{2mm}%
     \parbox[t]{0.45\linewidth}{%
       \ifthenelse{\boolean{ADOC@atlaslogo}}{%
-        \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+        \includegraphics[height=25mm]{AT_atlaslogo_2015}
+        \ifthenelse{\boolean{ADOC@cmslogo}}{%
+          \includegraphics[height=25mm]{AT_cmslogo_2014}
+        }{%
+          \ifthenelse{\equal{\ADOC@extralogo}{}}{}{%
+            \includegraphics[height=25mm]{\ADOC@extralogo}
+          }
+        }
+        \par
       }{%
         \rule{0pt}{25mm}\par
       }

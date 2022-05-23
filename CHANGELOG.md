@@ -14,6 +14,19 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [13.3.0] - 2022-05-23
+
+### Added
+
+- Option `CMSlogo` added for papers published together with CMS.
+- Option `extralogo` added for papers that need an extra logo next to the ATALS logo.
+
+### Deprecated
+
+- Add comment to documentation that option `texmf` has had no effect since version 10.0.0.
+
+---
+
 ## [13.2.1] - 2022-05-17
 
 ### Added

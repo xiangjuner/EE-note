@@ -1,5 +1,6 @@
 This new version contains a number of updates:
 - Update publications up to May 2022.
+- New options for papers published with other collaborations.
 - texlive variable set to 2020 by default.
 - Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
 - Use latexmk as default for compiling documents.
