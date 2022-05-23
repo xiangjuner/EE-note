@@ -416,8 +416,7 @@ In the following the default option is in boldface.
 \item[\Option{linenofix=true|{\normalfont false}}] fix line numbers around AMS math environments with using the \Package{linenomath} environment;
 \item[\Option{texmf}] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
-  This is needed if you install \Package{atlaslatex} centrally,
-  rather than in a \File{latex} subdirectory;
+  \emph{\ADOCold{10.0.0} With the move to the \Package{atlaslatexpath} style file, this option is obsolete}.
 \item[\Option{newtx}] use the \Package{newtxtext} and \Package{newtxmath} packages for fonts 
   (default for \TeX Live > 2012);
 \item[\Option{txfonts}] use the \Package{txfonts} package for fonts instead of the default
@@ -427,6 +426,8 @@ In the following the default option is in boldface.
   if the book does not have an abstract;
 \item[\Option{atlaslogo=true|{\normalfont false}}] show the ATLAS logo on the title page;
 \item[\Option{cernlogo=true|{\normalfont false}}] show the CERN logo on the title page;
+\item[\Option{cmslogo={\normalfont true}|false}] include the CMS logo on the title page;
+\item[\Option{extralogo=\normalfont{filename}}] include an extra logo on the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
 \item[\Option{shownote={\normalfont true}|false}] show the PUB note number.
   This is turned off by default for the final version of PUB notes.
@@ -452,6 +453,13 @@ the macros \Macro{captionabove} and \Macro{captionbelow}.
 In a later version the default value will be set to \Option{false},
 so that this option simply has to be removed when a document is final.
 
+\ADOCnew{13.3.0} The options \Option{cmslogo} and \Option{extralogo} have been added to allow
+the CMS Collaboration logo, or another logo, to be added to the CERN preprint page next to the ATLAS logo.
+The logos are included with the same height as the ATLAS logo.
+The extra logo should probably be added to the \File{logos} directory.
+Do not forget to adjust \Macro{author} accordingly,
+if the paper is published together with another collaboration.
+
 The \Option{atlaslogo} and \Option{cernlogo} options are for cases where a paper has a limited set of authors
 and so should not necessarily include these logos.
 In this case you may want to tweak the \Package{hyperref} document information,
@@ -465,7 +473,7 @@ the title page and also the draft label using the following commands:
 \end{verbatim}
 
 The following options were removed.
-They are mostly still available in \Package{atlasdoc1}.
+% They are mostly still available in \Package{atlasdoc1}.
 \begin{description}
 \item[maketitle={\normalfont true}|false] turn on or off the creation of a title page within \Macro{AtBeginDocument}.
   \ADOCold{02-00-00} If the option is false, but you still want a title, give the command \Macro{maketitle} after
@@ -801,6 +809,10 @@ The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced dir
 You should also turn off ATLAS draft cover page --- remove the option \Option{coverpage=true}.
 % If you move the class and style files to the same directory as the main file,
 % you need to add the option \Option{texmf} to the \Macro{documentclass}.
+
+If your paper should include the CMS logo, pass the option \Option{cmslogo} to \Package{atlasdoc}.
+If your paper should include another logo next to the ATLAS logo,
+pass the filename of the other logo to \Package{atlasdoc} using the \Option{extralogo} option.
 
 You can test whether your document compiles with \TeX\ Live 2020 by setting your \texttt{PATH} on \texttt{lxplus} to
 {\small
@@ -1776,11 +1788,11 @@ This is more suitable for long documents such as a TDR.
 Several options, which make maintenance more difficult have been removed:
 \Option{maketitle}, \Option{nomaketitle}, \Option{koma}.
 In addition, support for \TeX\ Live versions older than 2009 has been removed.
-A version of the class with these options, which should still work with \TeX\ Live 2007,
-but without the \Option{BOOK} option is available as \File{atlasdoc1.cls}.
-However, the class (\Package{atlasdoc1}) will not be actively maintained or developed any more.
-If you want to explicitly load the \Package{atlascover} package,
-you should load \Package{atlascover1} when using \Package{atlasdoc1}.
+% A version of the class with these options, which should still work with \TeX\ Live 2007,
+% but without the \Option{BOOK} option is available as \File{atlasdoc1.cls}.
+% However, the class (\Package{atlasdoc1}) will not be actively maintained or developed any more.
+% If you want to explicitly load the \Package{atlascover} package,
+% you should load \Package{atlascover1} when using \Package{atlasdoc1}.
 
 The options \Option{cernpreprint}, \Option{preprint} and \Option{auxmat} are no longer available
 in \Package{atlascover}.

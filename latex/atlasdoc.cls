@@ -60,6 +60,8 @@
 \DeclareBoolOption[true]{datetop}
 \DeclareBoolOption[false]{showframe}
 \DeclareBoolOption[false]{shownote}
+\DeclareBoolOption[false]{cmslogo}
+\DeclareStringOption[]{extralogo}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
 \ProcessKeyvalOptions{ADOC}
@@ -700,7 +702,15 @@
     \vspace*{2mm}%
     \parbox[t]{0.45\linewidth}{%
       \ifthenelse{\boolean{ADOC@atlaslogo}}{%
-        \includegraphics[height=25mm]{AT_atlaslogo_2015}\par
+        \includegraphics[height=25mm]{AT_atlaslogo_2015}
+        \ifthenelse{\boolean{ADOC@cmslogo}}{%
+          \includegraphics[height=25mm]{AT_cmslogo_2014}
+        }{%
+          \ifthenelse{\equal{\ADOC@extralogo}{}}{}{%
+            \includegraphics[height=25mm]{\ADOC@extralogo}
+          }
+        }
+        \par
       }{%
         \rule{0pt}{25mm}\par
       }
