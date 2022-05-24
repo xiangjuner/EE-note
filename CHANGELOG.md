@@ -14,11 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.3.0] - 2022-05-23
+## [13.3.1] - 2022-05-24
 
 ### Added
 
 - Option `CMSlogo` added for papers published together with CMS.
+  This option also changes the author and copyright.
 - Option `extralogo` added for papers that need an extra logo next to the ATALS logo.
 
 ### Deprecated
@@ -1464,7 +1465,7 @@ Hopefully this will be fixed in the next release.
 
 ---
 
-## [Unreleased] - 2022-01-XX
+## [Unreleased] - 2022-06-XX
 
 ### Added
 
