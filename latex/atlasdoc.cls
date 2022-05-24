@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{13.3.0}
-\ProvidesClass{latex/atlasdoc}[2022/05/23 v13.3.0 ATLAS document class]
+\newcommand*{\ATPackageVersion}{13.3.1}
+\ProvidesClass{latex/atlasdoc}[2022/05/24 v13.3.1 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -256,7 +256,11 @@
   \title{#1}%
   \renewcommand{\AtlasTitleText}{#1}%
 }
-\author{The ATLAS Collaboration}
+\ifthenelse{\boolean{ADOC@cmslogo}}{%
+  \author{The ATLAS and CMS Collaborations}
+}{%
+  \author{The ATLAS Collaboration}
+}
 \date{\today}
 
 % Draft version
@@ -791,12 +795,17 @@
   % \parbox[b]{\titlepageparbox}{%
   {%
     \rmfamily\mdseries\fontsize{10}{12}\selectfont
-    \ifthenelse{\boolean{ADOC@atlaslogo}}{%
-      \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+    \ifthenelse{\boolean{ADOC@cmslogo}}{%
+      \copyright\ \the\year \ CERN for the benefit of the ATLAS and CMS Collaborations.\newline
       Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
-    }{
-      \copyright\ \the\year \ CERN\newline
-      Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+    }{%
+      \ifthenelse{\boolean{ADOC@atlaslogo}}{%
+        \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+      }{
+        \copyright\ \the\year \ CERN\newline
+        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+      }
     }
   }
 }
