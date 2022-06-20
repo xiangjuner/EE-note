@@ -18,6 +18,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- `CHANGELOG.md` updated when `atlaslatex_update.sh` is run.
+
 ### Changed
 
 ### Deprecated

@@ -119,7 +119,7 @@ if [ $scriptupdate -eq 1 ]; then
     afile="tmp-atlaslatex/scripts/atlaslatex_selfupdate.sh"
     sfile="scripts/atlaslatex_selfupdate.sh"
     cp ${afile} ${sfile}
-    # Do not remove emporary directory, as it can be used by atlas_selfupdate.sh.
+    # Do not remove temporary directory, as it can be used by atlas_selfupdate.sh.
     # rm -rf tmp-atlaslatex
     # Tell user what to do.
     echo "+++ You should run ${sfile} to update scripts first."
@@ -154,6 +154,12 @@ done
 # Logos
 for lfile in logos/*; do
     afile=tmp-atlaslatex/logos/$(basename $lfile)
+    cf_files "${lfile}" "${afile}"
+done
+
+# ChangeLog
+for lfile in CHANGELOG.md; do
+    afile=tmp-atlaslatex/$(basename $lfile)
     cf_files "${lfile}" "${afile}"
 done
 
