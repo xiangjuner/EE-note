@@ -14,21 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2022-06-XX
+## [13.4.0] - 2022-06-23
 
 ### Added
 
 - `CHANGELOG.md` updated when `atlaslatex_update.sh` is run.
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- A couple of useful references added.
 
 ---
 
