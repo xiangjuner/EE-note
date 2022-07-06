@@ -67,12 +67,12 @@ To make a new ATLAS note give the command:
 Subsequently, you will have to specify which note to build like
 
     make [BASENAME=mydocument] [TEXLIVE=YYYY]
-    
+
 using the same name you generated previously.
 
-Although it is not the default, I strongly recommend that you use `latexmk` to compile your document.
+I strongly recommend that you use `latexmk` to compile your document (this is also the default).
 It works out for itself what has to be run and generally works very well.
-In order to use `latexmk`, change the default target in the `Makefile` from `run_pdflatex` to `run_latexmk`.
+In order to use `pdflatex` directly, change the default target in the `Makefile` from `run_latexmk` to `run_pdflatex`.
 
 The TeX Live version is set to 2020 by default.
 This version number should be fine for newer versions of TeX Live
@@ -109,4 +109,4 @@ Four other make targets are:
 - `make clean`: cleans up intermediate files
 - `make cleanpdf`: remove output pdf file
 - `make cleanall`: also cleans up output pdf file
-= `make verson`: check your TeX Live version
+- `make version`: check your TeX Live version
