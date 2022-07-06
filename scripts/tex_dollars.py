@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # Script to replace $...$ and $$...$$ with \(...\) and \[...\]
 # Note that this only works if $...$ is on one line.
 
