@@ -103,12 +103,34 @@ they do not include semileptonic \(VV\) diagrams and do not overlap with QCD \(V
     \toprule
     DSID range & Description \\
     \midrule
-    308092--308096 & EWK \(Vjj\) \\
+    700358--700364 & EWK \(Vjj\) (baseline) \\
+    308092--308096 & EWK \(Vjj\) (legacy) \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\paragraph{Description:}
+\paragraph{Description (baseline setups):}
+
+Electroweak production of \(\ell\ell jj\), \(\ell\nu jj\) and \(\nu\nu jj\) final states
+was simulated with \SHERPA[2.2.11]~\cite{Bothmann:2019yzt} using
+leading-order (LO) matrix elements with up to one additional parton emission.
+The matrix elements were merged with the \SHERPA parton
+shower~\cite{Schumann:2007mg} following the \MEPSatLO
+prescription~\cite{Catani:2001cc} and using the set of tuned
+parameters developed by the \SHERPA authors.
+The \NNPDF[3.0nnlo] set of
+PDFs~\cite{Ball:2014uwa} was employed. The samples were produced
+using the VBF approximation, which avoids overlap  with semileptonic
+diboson topologies by requiring a \(t\)-channel colour-singlet exchange.
+The starting conditions of the CS shower are set according to the 
+large-\(N_c\) amplitudes supplied by Comix~\cite{Buckley:2021gfw} to achieve 
+the correct VBF-appropriate radiation pattern.
+
+%These samples are generated in the \(G_\mu\) scheme using, ensuring an
+%optimal description of pure electroweak interactions at the
+%electroweak scale.
+
+\paragraph{Description (legacy setups):}
 
 Electroweak production of \(\ell\ell jj\), \(\ell\nu jj\) and \(\nu\nu jj\) final states
 was simulated with \SHERPA[2.2.1]~\cite{Bothmann:2019yzt} using
@@ -266,6 +288,9 @@ The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{La
 \section[Inclusive Powheg \(V\)]{Inclusive \POWHEG \(V\)}
 %\label{sec:v-powheg}
 
+\subsection{QCD \(V+\)jets}
+%\label{sec:v-powheg-vjets}
+
 The descriptions below correspond to the samples in \cref{tab:v-powheg}.
 
 \begin{table}[!htbp]
@@ -322,3 +347,42 @@ The \EVTGEN[1.2.0] program~\cite{Lange:2001uf} was used to decay bottom and char
 %% Thanks to the optimal scale and to the Sudakov form factors, the
 %% \POWHEG \MINLO samples do not need any Born suppression cut, and their cross-sections are well-behaved at small boson \pT,
 %% contrary to fixed order predictions that diverge in this kinematic phase space.
+
+\subsection{Electroweak \(Vjj\) (VBF)}
+%\label{sec:v-powheg-vjj}
+
+The descriptions below correspond to the samples in
+\cref{tab:ewkvjets-pp8}.  Samples include the VBF and \(V\)-strahlung diagrams, but
+they do not include semileptonic \(VV\) diagrams and do not overlap with the QCD \(V+\)jets samples.
+
+\begin{table}[!htbp]
+  \caption{Electroweak \(Vjj\) samples with \POWHEG.}%
+  \label{tab:ewkvjets-pp8}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    600931--600939 & EWK \(Vjj\) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Electroweak production of \(\ell\ell jj\) and \(\ell\nu jj\) final states
+was simulated with 
+\POWHEGBOX[v2]~\cite{Frixione:2007nw,Nason:2004rx,Frixione:2007vw,Alioli:2010xd}
+using the \NNPDF[3.0nlo]~\cite{Ball:2014uwa} parton distribution functions (PDF)
+and is accurate to next-to-leading order (NLO) in perturbative QCD. The sample was produced with
+the VBF approximation, which requires a $t$-channel colour-singlet exchange to remove overlap with
+diboson topologies~\cite{Jager:2012xk,Schissler:2013nga}. The parton-level events were passed to \PYTHIA[8.245] 
+to add parton-showering hadronisation and underlying-event activity, using the A14~\cite{ATL-PHYS-PUB-2014-021} 
+set of tuned parameters. 
+The correct VBF-appropriate radiation pattern was achieved by using the dipole-recoil option.
+The \EVTGEN[1.7.0] program~\cite{Lange:2001uf} was used for the properties of the bottom and charm hadron decays.
+
+%These samples are generated in the \(G_\mu\) scheme using, ensuring an
+%optimal description of pure electroweak interactions at the
+%electroweak scale.
+
