@@ -1,8 +1,5 @@
 This new version contains a number of updates:
-- Update publications up to May 2022.
-- New options for papers published with other collaborations.
-- texlive variable set to 2020 by default.
+- Update publications up to June 2022.
 - Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
-- Use latexmk as default for compiling documents.
 - Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.

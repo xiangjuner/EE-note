@@ -14,6 +14,18 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [13.5.0] - 2022-07-20
+
+### Added
+
+- June 2022 update of publications.
+
+### Fixed
+
+- Title fixed for an ATLAS publication.
+
+---
+
 ## [13.4.0] - 2022-06-23
 
 ### Added

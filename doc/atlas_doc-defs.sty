@@ -1,3 +1,5 @@
+\ProvidesPackage{atlas_doc-defs}[2022/07/20 v1.0.0 ATLAS LaTeX documentation definitions]
+
 % Useful extra commands
 \newcommand*{\pho}{\phantom{0}}
 \newcommand*{\phoo}{\phantom{00}}
@@ -31,14 +33,20 @@
 
 % Boxes to indicate changes
 % \RequirePackage{marginnote}
-\newtcbox{ADOC@new}{on line, size=minimal, sharp corners,
+\newtcbox{\ADOC@new}{on line, size=minimal, sharp corners,
   colback=LightPink, colframe=DarkOliveGreen,
   boxrule=0pt, toprule=1pt, bottomrule=1pt}
-\newtcbox{ADOC@old}{on line, size=minimal, sharp corners,
+\newtcbox{\ADOC@old}{on line, size=minimal, sharp corners,
   colback=Gainsboro, colframe=DarkSlateGrey,
   boxrule=0pt, toprule=1pt, bottomrule=1pt}
-\newcommand{\ADOCnew}[1]{\par\noindent\hspace*{-2em}\ADOC@new{\normalsize N: #1}}
-\newcommand{\ADOCold}[1]{\par\noindent\hspace*{-2em}\ADOC@old{\normalsize O: #1}}
+\newcommand{\ADOCnew}[1]{%
+  \par\noindent\hspace*{-2em}%
+  \ADOC@new{\normalsize N: #1}%
+}
+\newcommand{\ADOCold}[1]{%
+  \par\noindent\hspace*{-2em}%
+  \ADOC@old{\normalsize O: Old help}%
+}
 % \newcommand{\ADOCnew}[1]{\marginnote[\flushright\begin{ADOC@new}\scriptsize N: #1\end{ADOC@new}]{RIGHT}}
 % \newcommand{\ADOCnew}[1]{\reversemarginpar\marginpar{\flushright\scriptsize N: #1}\normalmarginpar}
 
