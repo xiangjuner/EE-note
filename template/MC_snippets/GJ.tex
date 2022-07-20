@@ -151,7 +151,7 @@ PDF sets.
 %\textcolor{red}{ Several Monte Carlo slices were generated to ensure good statistics over the whole phase space. In each of them, the photon pair was required to fall within a \(m_{\gamma\gamma}\) range that depends on the slice avoiding any double-counting when the different slices are combined.}
 
 
-\section[Sherpa (MEPS@NLO)]{\SHERPA (\MEPSatNLO)}
+\section[Sherpa (MEPS@LO)]{\SHERPA (\MEPSatLO)}
 %\label{sec:gammajets-sherpa-lo}
 
 \subsection*{Samples}
@@ -169,6 +169,7 @@ The descriptions below correspond to the samples in \cref{tab:gammajets-sherpa-l
     \midrule
     361039--361062 & single photon \\
     303727--303742 & diphoton \\
+    700442         & EWK \(\gamma jj\) \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -207,6 +208,46 @@ for the description of the fragmentation into hadrons. Photons from the matrix e
 required to be isolated according to a smooth-cone hadronic isolation criterion~\cite{Frixione:1998jh}
 with \(\delta_0=0.3\), \(\epsilon_{\gamma}=0.025\) and \(n=2\). Additionally, the photons were
 required to be separated by \(\Delta R(\gamma_1,\gamma_2) > 0.2\).
+
+
+\subsection[yjj]{ \(\gamma jj\)}
+
+The descriptions below correspond to the samples in
+\cref{tab:ewkyjets-sherpa}. The samples do not overlap with the QCD \(\gamma+\)jets samples.
+
+\begin{table}[!htbp]
+  \caption{Electroweak \(\gamma jj\) samples with \SHERPA.}%
+  \label{tab:ewkyjets-sherpa}
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+    DSID range & Description \\
+    \midrule
+    700442 & EWK \(\gamma jj\) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Description:}
+
+Electroweak production of the \(\gamma jj\) final state
+was simulated with \SHERPA[2.2.11]~\cite{Bothmann:2019yzt} using
+leading-order (LO) matrix elements with up to one additional parton emission.
+The matrix elements were merged with the \SHERPA parton
+shower~\cite{Schumann:2007mg} following the \MEPSatLO
+prescription~\cite{Catani:2001cc} and using the set of tuned
+parameters developed by the \SHERPA authors.
+The \NNPDF[3.0nnlo] set of
+PDFs~\cite{Ball:2014uwa} was employed. The samples were produced
+using the VBF approximation, which avoids overlap with semileptonic
+diboson topologies by requiring a \(t\)-channel colour-singlet exchange.
+The starting conditions of the CS shower are set according to the
+large-\(N_c\) amplitudes supplied by Comix~\cite{Buckley:2021gfw} to achieve
+the correct VBF-appropriate radiation pattern.
+Photons from the matrix elements were required to be isolated according to a smooth-cone 
+hadronic isolation criterion~\cite{Frixione:1998jh} with 
+\(\delta_0=0.1\), \(\epsilon_{\gamma}=0.1\) and \(n=2\).
+
 
 
 \section[Pythia (LO)]{\PYTHIA (LO)}
