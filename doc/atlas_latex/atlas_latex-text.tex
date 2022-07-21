@@ -606,7 +606,7 @@ The full list of options is:
 \item[\Option{hyperref=true|{\normalfont false}}] turn on/off use of the \Package{hyperref} package;
 \item[\Option{bookmark=true|{\normalfont false}}] turn on/off use of the \Package{bookmark} package;
 \item[\Option{siunitx=true|{\normalfont false}}] turn on/off use of the \Package{siunitx} package;
-\item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \si{\eV} in order to move \enquote{e} and \enquote{V} closer together.
+\item[\Option{eVkern={\normalfont true}|false}] apply a kern of -0.1em to \unit{\eV} in order to move \enquote{e} and \enquote{V} closer together.
   This option is set by default if you use the \Option{txfonts} fonts;
 \item[\Option{percentspace={\normalfont true}|false}] include or not the default space between a number and the \% sign;
 \item[\Option{cleveref=true|{\normalfont false}}] turn on/off use of the \Package{cleverref} package;
@@ -640,7 +640,7 @@ The full list of options is:
 just in case they are not in your standard \LaTeX\ installation
 and for some reason you cannot download them from CTAN (\url{https://ctan.org}).
 
-Depending on the font you use, you may find that the \enquote{e} and \enquote{V} in \si{\eV}, \si{\MeV} etc.\
+Depending on the font you use, you may find that the \enquote{e} and \enquote{V} in \unit{\eV}, \unit{\MeV} etc.\
 are too far apart.
 You can pass the option \Option{eVkern} to \Package{atlaspackage} in order to move them 0.1em closer together.\footnote{%
 This option has no effect for \TeX\ Live 2011 and older, as \Package{siunitx}
@@ -755,7 +755,7 @@ The use of this style can be turned off by using the option
 This style uses \KOMAScript\ as the base class.
 Further settings include:
 \begin{description}
-\item[Layout:] \Option{DIV=14} and an extra \SI{5}{\mm} for the binding;
+\item[Layout:] \Option{DIV=14} and an extra \qty{5}{\mm} for the binding;
 \item[Paragraph:] the paragraph indentation is set to zero and 
   there is a half-line separation between paragraphs;
 \item[Figures and tables:] a small font size is used for the captions.
@@ -1362,8 +1362,8 @@ The package \Package{siunitx} works very well and is the package of choice.
 Alternatives include \Package{units} and \Package{hepunits},
 which is based on \Package{SIunits}.
 
-The basic command to use in \Package{siunitx} is \verb|\SI{20}{\GeV}| to get
-\SI{20}{\GeV}. 
+The basic command to use in \Package{siunitx} is \verb|\qty{20}{\GeV}| to get
+\qty{20}{\GeV}. 
 There are also several other useful commands for specifying ranges:
 \verb|\numrange| for a range of numbers and \verb|SIrange| for a range of numbers with a unit. 
 Options exist for specifying how they are formatted.
@@ -1375,19 +1375,19 @@ and\\
 
 In addition several extra units are defined:
 \begin{itemize}
-\item \verb|\micron| for \si{\micron};
-\item \verb|\mrad| for \si{\mrad};
-\item \verb|\nb| for \si{\nb};
-\item \verb|\pb| for \si{\pb};
-\item \verb|\fb| for \si{\fb}.
+\item \verb|\micron| for \unit{\micron};
+\item \verb|\mrad| for \unit{\mrad};
+\item \verb|\nb| for \unit{\nb};
+\item \verb|\pb| for \unit{\pb};
+\item \verb|\fb| for \unit{\fb}.
 \end{itemize}
-Use the syntax \verb|\SI{20.3}{\per\fb}| to get \SI{20.3}{\per\fb}.
+Use the syntax \verb|\qty{20.3}{\per\fb}| to get \qty{20.3}{\per\fb}.
 
 Some things to note about using \Package{siunitx}:
 \begin{itemize}
 \item It tries to isolate itself from other packages.
-  If you just want to write \si{\GeV} in your text,
-  then you must write \verb|\si{\GeV}|.
+  If you just want to write \unit{\GeV} in your text,
+  then you must write \verb|\unit{\GeV}|.
 \item It also contains two new column specifiers for tables ``S'' and ``s'',
   which are extremely useful for formatting tables properly.
 \end{itemize}

@@ -223,9 +223,17 @@
     \DeclareSIUnit\ipb{\per\pico\barn}
     \DeclareSIUnit\ifb{\per\femto\barn}
     % Version 3 of siunitx changes.
+    % Define \qty etc. for older siunitx version than version 3 released in 2021.
     \@ifpackagelater{siunitx}{2021/04/09}{%
+      \typeout{atlaspackage: using siunitx version 3}
       \DeclareSIUnit\clight{\ensuremath{\mathit{c}}}
     }{
+      \typeout{atlasdpackage: defining siunitx version 3 macros}
+      \let\qty\SI
+      \let\unit\si
+      \let\complexnum\num
+      \let\numproduct\num
+      \let\qtyproduct\SI
       \DeclareSIUnit\clight{\text{\ensuremath{c}}}
     }
     \ifthenelse{\boolean{APKG@eVkern}}{%

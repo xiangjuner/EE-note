@@ -20,6 +20,9 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Changed
 
+- Use `siunitx` version 3 macros `\qty` and `\unit` instead of `\SI` and `\si`.
+  The old macros still work.
+
 ### Deprecated
 
 ### Removed

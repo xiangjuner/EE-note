@@ -11,15 +11,15 @@
     \midrule
     Pseudorapidity range & \(|\eta| <\) X\\
     Energy calibration & \texttt{es2017\_R21\_PRE} (ESModel)\\
-    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
-    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
-    Transverse momentum & \(\pT > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Energy & \(E > \qty[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse energy & \(\ET > \qty[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse momentum & \(\pT > \qty[parse-numbers=false]{XX}{\GeV}\) \\
     \midrule
     \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON})\\ %\cline{2-2}
       & Remove clusters from regions with EMEC bad HV (2016 data only) \\
     \midrule
     \multirow{2}{*}{Track to vertex association} & \(|d_{0}^{\text{BL}}(\sigma)| < X\) \\ %\cline{2-2}
-    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \SI[parse-numbers=false]{X}{\mm}\) \\
+    & \(|\Delta z_{0}^{\text{BL}} \sin{\theta}| < \qty[parse-numbers=false]{X}{\mm}\) \\
     \midrule
     Identification & (\texttt{Loose/Medium/Tight}) \\
     Isolation & \texttt{LooseTrackOnly / Loose / Tight / Gradient / \ldots} \\
@@ -31,7 +31,7 @@
 Notes:
 \begin{itemize}
 \item Pseudorapidity: when the calorimeter crack is not excluded, the range can be indicated simply as \enquote{\(|\eta| < 2.47\)}, when the crack is excluded: \enquote{\((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.47)\)}.
-\item Usually only one among \enquote{Energy}, \enquote{Transverse energy} and \enquote{Transverse momentum} criteria is applied --- the \SI{30}{\GeV} value is just an example.
+\item Usually only one among \enquote{Energy}, \enquote{Transverse energy} and \enquote{Transverse momentum} criteria is applied --- the \qty{30}{\GeV} value is just an example.
   In special cases energy (i.e.\ calorimeter-based measurement) and momentum (i.e.\ tracking-based measurement) criteria can be required in order to constraint different aspects of the reconstruction.
 \item Electron ID\@: 3 working points (Loose/Medium/Tight) are evaluated using the Likelihood-based (LH) method, by the
   \href{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/EGammaIdentificationRun2}{ElectronPhotonSelectorTools}.
@@ -57,8 +57,8 @@ Notes:
     \midrule
     Pseudorapidity range & \(|\eta| <\) X\\
     Energy calibration & \texttt{es2017\_R21\_PRE} (ESModel)\\
-    Energy & \(E > \SI[parse-numbers=false]{XX}{\GeV}\) \\
-    Transverse energy & \(\ET > \SI[parse-numbers=false]{XX}{\GeV}\) \\
+    Energy & \(E > \qty[parse-numbers=false]{XX}{\GeV}\) \\
+    Transverse energy & \(\ET > \qty[parse-numbers=false]{XX}{\GeV}\) \\
     \midrule
     \multirow{2}{*}{Object quality} & Not from a bad calorimeter cluster (\texttt{BADCLUSELECTRON})\\ %\cline{2-2}
       & Remove clusters from regions with EMEC bad HV (2016 data only) \\
@@ -77,7 +77,7 @@ Notes:
 \begin{itemize}
 \item Pseudorapidity: please note that the maximum value for \(|\eta|\) for photon candidates (2.37) is smaller than for electron candidates (2.47). 
   If crack excluded: \enquote{\((|\eta| < 1.37) \quad || \quad (1.52 < |\eta| < 2.37)\)}.
-\item Usually only one between \enquote{Energy} and \enquote{Transverse energy} criteria is applied --- the \SI{30}{\GeV} value is just an example.
+\item Usually only one between \enquote{Energy} and \enquote{Transverse energy} criteria is applied --- the \qty{30}{\GeV} value is just an example.
 \item Photon cleaning: a new Photon helper is available to apply the photon cleaning cut 
   (from the \texttt{ElectronPhotonSelectorTools}, tag \(\ge\) 00-02-92-21, release \(\ge\) 2.4.30).
 \item Photon ID\@: 2 working points (Loose/Tight) are evaluated using a cut-based method, by the

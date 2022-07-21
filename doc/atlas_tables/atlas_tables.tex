@@ -97,7 +97,7 @@ An example of a wider and somewhat more complicated table is shown in \cref{tab:
 
 \begin{table}[htbp]
 \begin{tcblisting}{}
-  \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \SI{95}{\%} confidence level
+  \caption[Present FCNC top quark decays experimental limits]{Present experimental limits at \qty{95}{\%} confidence level
   on the branching fractions of the FCNC top quark decay channels established by experiments of the LEP, HERA, Tevatron and LHC accelerators.}%
   \label{tab:intro:presentlimits}
   \centering
@@ -133,7 +133,7 @@ A typical table containing Monte Carlo samples is given in \cref{tab:mcsamples}.
   \scriptsize
   \begin{tabular}{lSlS[table-format=9.0]SS[table-format=6.0]}
     \toprule
-      & {\(\sigma\) [\si{\pb}]} & Generator
+      & {\(\sigma\) [\unit{\pb}]} & Generator
       & \multicolumn{1}{c}{\(N_{MC}\)} & \multicolumn{1}{c}{\(k\)-factor} & \multicolumn{1}{c}{Dataset ID}\\
     \midrule
     \(Wt\) all decays                   &  22  & \POWHEG + \PYTHIA &   1000000  & 1.09 & 110140\\
@@ -376,9 +376,9 @@ is non-trivial.
 correctly, as the bin boundaries also vary by several orders of magnitude.
 \Cref{tab:xsect-x1} gives the numbers with the option
 \Option{scientific-notation=fixed} to illustrate the problem of what
-the table would look like if the cross-sections are output in \si{\pb}.
+the table would look like if the cross-sections are output in \unit{\pb}.
 In \cref{tab:xsect-x2} the exponential format of
-numbers is used to rescale the cross-section from \si{\pb} to \si{\nb}. 
+numbers is used to rescale the cross-section from \unit{\pb} to \unit{\nb}. 
 \Macro{phantom} had to be used in more places than we
 really like in order to get the final alignment correct.
 It may be possible to use the \Macro{tablenum} instead,

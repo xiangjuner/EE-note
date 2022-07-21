@@ -137,8 +137,8 @@
 
 % Use siunitx definitions if available. Otherwise assume \GeV is defined.
 \@ifpackageloaded{siunitx}{%
-  \newcommand*{\pTRange}[2]{\ensuremath{{#1} \leq \pTjet < \SI{#2}{\GeV}}\xspace}
-  \newcommand*{\ptRange}[2]{\ensuremath{{#1} \leq \ptjet < \SI{#2}{\GeV}}\xspace}
+  \newcommand*{\pTRange}[2]{\ensuremath{{#1} \leq \pTjet < \qty{#2}{\GeV}}\xspace}
+  \newcommand*{\ptRange}[2]{\ensuremath{{#1} \leq \ptjet < \qty{#2}{\GeV}}\xspace}
 }{%
   \newcommand*{\pTRange}[2]{\ensuremath{{#1} \leq \pTjet < {#2} \GeV}\xspace}
   \newcommand*{\ptRange}[2]{\ensuremath{{#1} \leq \ptjet < {#2} \GeV}\xspace}
@@ -343,14 +343,14 @@
 
 
 %%% Energy
-%\newcommand*{\fourfgev}{\ensuremath{\SI{450}{\GeV}}\xspace}
-%\newcommand*{\ninehgev}{\ensuremath{\SI{900}{\GeV}}\xspace}
-%\newcommand*{\seventev}{\ensuremath{\SI{7}{\TeV}}\xspace}
-%\newcommand*{\eighttev}{\ensuremath{\SI{8}{\TeV}}\xspace}
-%\newcommand*{\sqsthirt}{\ensuremath{\sqrt{s} = \SI{13}{\TeV}}\xspace}
-%\newcommand*{\sqsfourt}{\ensuremath{\sqrt{s} = \SI{14}{\TeV}}\xspace}
-%\newcommand*{\sqsTev}{\ensuremath{\SI{1.96}{\TeV}}\xspace}
-%\newcommand*{\threehtev}{\ensuremath{\SI{3.5}{\TeV}}\xspace}
+%\newcommand*{\fourfgev}{\ensuremath{\qty{450}{\GeV}}\xspace}
+%\newcommand*{\ninehgev}{\ensuremath{\qty{900}{\GeV}}\xspace}
+%\newcommand*{\seventev}{\ensuremath{\qty{7}{\TeV}}\xspace}
+%\newcommand*{\eighttev}{\ensuremath{\qty{8}{\TeV}}\xspace}
+%\newcommand*{\sqsthirt}{\ensuremath{\sqrt{s} = \qty{13}{\TeV}}\xspace}
+%\newcommand*{\sqsfourt}{\ensuremath{\sqrt{s} = \qty{14}{\TeV}}\xspace}
+%\newcommand*{\sqsTev}{\ensuremath{\qty{1.96}{\TeV}}\xspace}
+%\newcommand*{\threehtev}{\ensuremath{\qty{3.5}{\TeV}}\xspace}
 %\newcommand*{\sqsnineh}{\ensuremath{\sqrt{s} = \ninehgev}\xspace}
 %\newcommand*{\sqsseven}{\ensuremath{\sqrt{s} = \seventev}\xspace}
 %\newcommand*{\sqseight}{\ensuremath{\sqrt{s} = \eighttev}\xspace}

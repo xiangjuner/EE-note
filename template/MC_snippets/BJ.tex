@@ -31,13 +31,13 @@ The descriptions below correspond to the samples in \cref{tab:vjets-sherpa}.
     DSID range & Description \\
     \midrule
     364100--364113    & \(Z\to\mu\mu\)   \\
-    364198--364203    & \(Z\to \mu\mu\) (\(\SI{10}{\GeV} < m_{\ell\ell} < \SI{40}{\GeV}\)) \\
+    364198--364203    & \(Z\to \mu\mu\) (\(\qty{10}{\GeV} < m_{\ell\ell} < \qty{40}{\GeV}\)) \\
     364359, 364362, 364281  &  \(Z\to\mu\mu\) (very low mass)   \\
     364114--364127    & \(Z\to ee\)    \\
-    364204--364209    & \(Z\to ee\) (\(\SI{10}{\GeV} < m_{\ell\ell} < \SI{40}{\GeV}\)) \\
+    364204--364209    & \(Z\to ee\) (\(\qty{10}{\GeV} < m_{\ell\ell} < \qty{40}{\GeV}\)) \\
     364358, 364361, 364282 & \(Z\to ee\) (very low mass) \\
     364128--364141    & \(Z\to \tau\tau\)    \\
-    364210--364215    & \(Z\to \tau\tau\) (\(\SI{10}{\GeV} < m_{\ell\ell} < \SI{40}{\GeV}\)) \\
+    364210--364215    & \(Z\to \tau\tau\) (\(\qty{10}{\GeV} < m_{\ell\ell} < \qty{40}{\GeV}\)) \\
     364282, 364360, 364363 &  \(Z\to \tau\tau\) \\
     364142--364155    & \(Z\to \nu\nu\)   \\
     364156--364169    & \(W\to \mu\nu\)   \\
@@ -80,7 +80,7 @@ algorithm~\cite{Hoeche:2011fd}. Different jet multiplicities were then merged
 into an inclusive sample using an improved CKKW matching
 procedure~\cite{Catani:2001cc,Hoeche:2009rj} which was extended to NLO
 accuracy using the \MEPSatNLO prescription~\cite{Hoeche:2012yf}. The merging threshold
-was set to \SI{20}{\GeV}.
+was set to \qty{20}{\GeV}.
 
 \input{sherpa_scale_pdf.tex}
 
@@ -208,7 +208,7 @@ for up to four partons with \MGNLO[2.2.2]~\cite{Alwall:2014hca}. The ME calculat
 shower, hadronisation, and underlying event. To remove overlap between the matrix
 element and the parton shower the CKKW-L merging
 procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
-merging scale of \SI{30}{\GeV} and a jet-clustering radius parameter of
+merging scale of \qty{30}{\GeV} and a jet-clustering radius parameter of
 \(0.2\). In order to better model the region of large jet \pT, the
 strong coupling constant \alphas was evaluated at the scale of each splitting to
 determine the weight. The matrix element calculation was performed with
@@ -230,7 +230,7 @@ with \PYTHIA[8.186]~\cite{Sjostrand:2007gs} for the modelling of the parton
 shower and underlying event. To remove overlap between the matrix
 element and the parton shower the CKKW-L merging
 procedure~\cite{Lonnblad:2001iq,Lonnblad:2011xx} was applied with a
-merging scale of \SI{30}{\GeV} and a jet-clustering radius parameter of
+merging scale of \qty{30}{\GeV} and a jet-clustering radius parameter of
 \(0.4\). In order to better model the region of large jet \pT, the
 strong coupling constant \alphas was evaluated at the scale of each splitting to
 determine the weight. The matrix element calculation was performed with
@@ -277,9 +277,9 @@ The decays of bottom and charm hadrons were performed by \EVTGEN[1.2.0]~\cite{La
 %% the renormalisation and the factorisation scales~\cite{Frederix:2011ss}.
 
 %% The impact of various merging scales (\muQ) has been studied,
-%% analysing three different values: \SI{20}{\GeV} (down variation), \SI{25}{\GeV} (nominal value) and \SI{50}{\GeV} (up variation).
+%% analysing three different values: \qty{20}{\GeV} (down variation), \qty{25}{\GeV} (nominal value) and \qty{50}{\GeV} (up variation).
 %% At the event-generation level, the minimum jet transverse momentum, \(\pT^j\) is required to be at least
-%% \SI{8}{\GeV} with no restriction on the absolute value of the jet pseudorapidity (jet \(|\eta|\)).
+%% \qty{8}{\GeV} with no restriction on the absolute value of the jet pseudorapidity (jet \(|\eta|\)).
 %% %The cut on the \(\pT^j\) should be at least half the value used for the merging scale,
 %% %in order to not introduce any bias in the MC generation.
 %% The samples have been generated using LHAPDF-6.1.5~\cite{Butterworth:2014efa} and FastJet-3.1.0~\cite{Cacciari:2006sm}.
@@ -303,8 +303,8 @@ The descriptions below correspond to the samples in \cref{tab:v-powheg}.
     \midrule
     361100--361108    & \(W^+,W^-,Z/\gamma^\ast\) with \(e,\mu,\tau\) decays\\
     301000--301178, 344722    & high-mass slices: \(W^+,W^-,Z\) with \(e,\mu,\tau\) decays \\
-    361664--361669 & \(Z/\gamma^\ast\) low-mass slices (\(m=6\)--10--60\,\si{\GeV})\\
-    426335--426336 & \(Z/\gamma^\ast\) high-\(\pTX[][\ell\ell] > \SI{150}{\GeV}\) slices \\
+    361664--361669 & \(Z/\gamma^\ast\) low-mass slices (\(m=6\)--10--60\,\unit{\GeV})\\
+    426335--426336 & \(Z/\gamma^\ast\) high-\(\pTX[][\ell\ell] > \qty{150}{\GeV}\) slices \\
     \bottomrule
   \end{tabular}
 \end{table}
