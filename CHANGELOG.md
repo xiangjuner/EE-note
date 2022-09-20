@@ -14,22 +14,20 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.6.0-alpha] - 2022-08-XX
+## [13.6.0-alpha] - 2022-09-20
 
 ### Added
+
+- July and August 2022 update of publications.
 
 ### Changed
 
 - Use `siunitx` version 3 macros `\qty` and `\unit` instead of `\SI` and `\si`.
   The old macros still work.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
-### Security
+- Wrong argument used in `atlastodo.sty` when output turned off.
 
 ---
 
