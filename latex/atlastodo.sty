@@ -65,11 +65,22 @@
   \typeout{ATLAS document: not showing notes}
   \RequirePackage[disable]{todonotes}
   % \typeout{ATLnote: 1:#1; 2:#2; 3:#3; 4=#4; 5=#5.}
-  \newcommand{\ATL@inote}[5]{%
-    #2\xspace%
-  }
-  \newcommand{\ATL@note}[5]{%
-    #2\xspace%
+  \ifthenelse{\ANOTE@version = 1}{%
+    \newcommand{\ATL@inote}[5]{%
+      #1%
+    }
+    \newcommand{\ATL@note}[5]{%
+      #1\xspace%
+    }
+  }{
+    \newcommand{\ATL@inote}[5][]{%
+      \ifthenelse{\equal{#1}{}}{\relax}{#1}%
+      % #1%
+    }
+    \newcommand{\ATL@note}[5][]{%
+      \ifthenelse{\equal{#1}{}}{\relax}{#1\xspace}%
+      % #1\xspace%
+    }
   }
 }
 
