@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.6.0-alpha] - 2022-09-20
+## [13.6.0] - 2022-09-20
 
 ### Added
 
