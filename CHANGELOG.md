@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
+---
+
+## [13.7.0-alpha] - 2022-10-XX
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
 
 ---
 
