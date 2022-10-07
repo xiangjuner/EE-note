@@ -32,6 +32,18 @@ e.g.\\
 \noindent A generic macro \verb|\twomass| is defined, so that for example
 \verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.
 
+\noindent Several macros that help format numbers with rounding are provided:
+e.g.\\
+\verb|\numR{3.145159}{2}| \(\rightarrow\) \(\numR{3.14159}{2}\)\\
+\verb|\numRF{3.145159}{3}| \(\rightarrow\) \(\numRF{3.14159}{3}\)\\
+\verb|\numRP{3.145159}{3}| \(\rightarrow\) \(\numRP{3.14159}{3}\)\\
+\verb|\numpmerr{+1.234}{-3.456}{2}| \(\rightarrow\) \(\numpmerr{+1.234}{-0.3456}{2}\)\\[0.5ex]
+\verb|\numpmRF{+1.234}{-3.456}{2}|  \(\rightarrow\) \(\numpmRF{+1.234}{-0.3456}{2}\)\\[0.5ex]
+\verb|\numpmRP{-1.234}{+3.456}{2}|  \(\rightarrow\) \(\numpmRP{-1.234}{+0.3456}{2}\)\\
+Note that \Macro{numR} only works if \Option{round-mode} is set to something
+(which is not the case here).
+See the \Package{siunitx} package for more details.
+
 A macro \verb|\dk| is also defined which makes it easier to write down decay chains.
 For example
 \begin{verbatim}

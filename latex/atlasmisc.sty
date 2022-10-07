@@ -225,6 +225,22 @@
   \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
 }
 
+% Useful macros for rounding
+% Keeping plus sign option depends on siunitx version.
+\newcommand*{\numR}[2]{\num[round-precision=#2]{#1}}
+\newcommand*{\numRF}[2]{\num[round-mode=figures,round-precision=#2]{#1}}
+\newcommand*{\numRP}[2]{\num[round-mode=places, round-precision=#2]{#1}}
+\@ifpackagelater{siunitx}{2021/04/09}{%
+  \typeout{atlasmisc: using siunitx version 3 options}
+  \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, print-implicit-plus]{#1}}_{\num[round-precision=#3, print-implicit-plus]{#2}}}}
+  \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures,round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#2}}}}
+  \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#2}}}}
+}{
+  \typeout{atlasmisc: using siunitx version 2 options}
+  \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, retain-implicit-plus]{#1}}_{\num[round-precision=#3, retain-implicit-plus]{#2}}}}
+  \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures, round-precision=#3, retain-implicit-plus]{#1}}_{\num[round-mode=figures,round-precision=#3, retain-implicit-plus]{#2}}}}
+  \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, retain-implicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, retain-implicit-plus]{#2}}}}
+}
 
 % +--------------------------------------------------------------------+
 % |  QCD                                                               |

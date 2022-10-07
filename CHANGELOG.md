@@ -19,6 +19,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Changed
 
+- Move `\numR` etc. macros from documentation to `atlasmisc.sty`. Adapt them for use with both versions 2 and 3 of `siunitx`.
+
 ### Deprecated
 
 ### Removed
