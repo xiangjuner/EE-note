@@ -1,5 +1,5 @@
 This new version contains a number of updates:
-- Update publications up to August 2022.
+- Update publications up to September 2022.
 - Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
 - Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
 - The macro \ATLASLATEXPATH should no longer be necessary or be used.

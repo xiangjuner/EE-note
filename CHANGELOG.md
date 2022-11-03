@@ -13,21 +13,15 @@ Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 ---
 
-## [13.7.0-alpha] - 2022-10-XX
+## [13.7.0] - 2022-11-03
 
 ### Added
+
+- September 2022 update of publications.
 
 ### Changed
 
 - Move `\numR` etc. macros from documentation to `atlasmisc.sty`. Adapt them for use with both versions 2 and 3 of `siunitx`.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ---
 
