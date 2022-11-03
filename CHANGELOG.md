@@ -13,6 +13,24 @@ Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
 ---
 
+---
+
+## [13.8.0-alpha] - 2022-11-XX
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [13.7.0] - 2022-11-03
 
 ### Added
@@ -1514,7 +1532,7 @@ Hopefully this will be fixed in the next release.
 
 ---
 
-## [Unreleased] - 2022-06-XX
+## [Unreleased] - 2023-01-XX
 
 ### Added
 
