@@ -60,7 +60,7 @@ default: run_latexmk
 version:
 	@echo "Checking version"
 	@echo "TLVERS $(TLVERS), TEXLIVE $(TEXLIVE)"
-	if [ $(TLVERS) -lt $(TEXLIVE) ]; then \
+	@if [ $(TLVERS) -lt $(TEXLIVE) ]; then \
 		echo "Your TeX Live version ($(TLVERS)) is older than $(TEXLIVE). Please consult $(TWIKI)"; \
 	fi
 
