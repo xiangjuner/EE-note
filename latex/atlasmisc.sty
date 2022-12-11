@@ -225,6 +225,26 @@
   \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
 }
 
+% Macro to make superscript and subscript the same width.
+% This is needed as + and - can have different widths.
+% Code is adapted from:
+% https://tex.stackexchange.com/questions/291291/control-horizontal-alignment-of-sub-superscripts
+\DeclareRobustCommand{\supsub}[2]{{%
+  \mathpalette\makesupsub{{#1}{#2}}%
+}}
+
+\providecommand{\@firstoftwo}[3]{#1}
+\providecommand{\@secondoftwo}[3]{#2}
+\newcommand{\makesupsub}[2]{%
+  \sbox\z@{$^{\@firstoftwo#2}$}%
+  \sbox\tw@{$_{\@secondoftwo#2}$}%
+  \dimen@=\wd\z@
+  \ifdim\wd\tw@>\wd\z@ \dimen@=\wd\tw@\fi
+  {\mkern0mu}%
+    ^{\mathmakebox[\dimen@][r]{\@firstoftwo#2}}%
+    _{\mathmakebox[\dimen@][r]{\@secondoftwo#2}}%
+}
+
 % Useful macros for rounding
 % Keeping plus sign option depends on siunitx version.
 \newcommand*{\numR}[2]{\num[round-precision=#2]{#1}}
@@ -235,6 +255,9 @@
   \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, print-implicit-plus]{#1}}_{\num[round-precision=#3, print-implicit-plus]{#2}}}}
   \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures,round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#2}}}}
   \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#2}}}}
+  \newcommand{\nnumpmerr}[3]{\ensuremath{\supsub{\num[round-precision=#3, print-implicit-plus]{#1}}{\num[round-precision=#3, print-implicit-plus]{#2}}}}
+  \newcommand{\nnumpmRF}[3]{\ensuremath{\supsub{\num[round-mode=figures,round-precision=#3, print-implicit-plus]{#1}}{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#2}}}}
+  \newcommand{\nnumpmRP}[3]{\ensuremath{\supsub{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#1}}{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#2}}}}
 }{
   \typeout{atlasmisc: using siunitx version 2 options}
   \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-precision=#3, retain-explicit-plus]{#2}}}}
