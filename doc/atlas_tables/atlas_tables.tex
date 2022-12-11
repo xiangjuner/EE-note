@@ -93,6 +93,64 @@ from \enquote{Rounding --- ATLAS Recommendations}~\cite{atlas-rounding}.
 \end{tcblisting}
 \end{table}
 
+The \Package{booktabs} package provides the macros
+\Macro{toprule}, \Macro{midrule}, \Macro{bottomrule} which are to be preferred over \Macro{hline},
+as, among other things, they introduce some extra spacing around the lines, which is useful.
+
+The \Package{siunitx} package contains powerful macros for formatting tables
+and is highly recommended.
+\Cref{tab:example0a,tab:example0b} show simple examples that make use of the
+\Option{table-format} and \Option{table-number-alignment} options.
+\Option{table-number-alignment} is particulalrly useful if the column header is wider then the conent.
+it is better to include space for the sign, if the numbers in the table are signed.
+Have a close look at \enquote{Tabular material} section
+(Section 4.12 in the 2022 version of the \Package{siunitx} manual)
+for more details on exactly what can be steered and how.
+
+\begin{table}[htbp]
+\begin{tcblisting}{}
+  \caption{Simple table using \Option{S} column.}
+  \label{tab:example0a}
+  \centering
+  \begin{tabular}{
+    S[table-format=2.2, table-number-alignment=center]
+    S[table-format=2.2, table-number-alignment=right]
+  }
+    \toprule
+    {Align Centre} & {Align Right} \\
+    \midrule
+    0.76 & 0.76 \\
+    83.1 & 83.1 \\
+    \bottomrule
+  \end{tabular}
+\end{tcblisting}
+\end{table}
+
+\begin{table}[htbp]
+\begin{tcblisting}{}
+  \caption{Simple table for numbers with signs using \Option{S} column.
+    Vertical lines are included to show alignment (problems) --
+    see the first column.}
+  \label{tab:example0b}
+  \centering
+  \begin{tabular}{
+    |S[table-format=2.2]
+    |S[table-format=-2.2]
+    |S[table-format=-2.2, table-number-alignment=center]
+    |S[table-format=+2.2, table-number-alignment=left]|
+  }
+    \toprule
+    {W/o} & {With} & {Align centre} & {Align left} \\
+    \midrule
+    0.76  & 0.76  & -0.76 & +0.76 \\
+    82.0  & 82.0  &  82.0 &  82.0 \\
+    +83.1 & +83.1 & -83.1 & +83.1 \\
+    -84.2 & -84.2 & +84.2 & +84.2 \\
+    \bottomrule
+  \end{tabular}
+\end{tcblisting}
+\end{table}
+
 An example of a wider and somewhat more complicated table is shown in \cref{tab:intro:presentlimits}.
 
 \begin{table}[htbp]
@@ -105,18 +163,18 @@ An example of a wider and somewhat more complicated table is shown in \cref{tab:
     \toprule
     Coupling & \multicolumn{2}{c}{LEP} & \multicolumn{2}{c}{HERA} \\
     \midrule
-    \(\BR(t\to q\gamma)\) & \num{2.4E-2} &                       & \num{6.4E-3} & (\(tu\gamma\))\\
-    \(\BR(t\to qZ)\)      & \num{7.8E-2} &                       & \num{49E-2} & (\(tuZ\))\\
-    \(\BR(t\to qg)\)      & \num{17E-2}  &                       & \num{13E-2} & \\
+    \(\BR(t\to q\gamma)\) & \num{2.4E-2} &                          & \num{6.4E-3} & (\(tu\gamma\))\\
+    \(\BR(t\to qZ)\)      & \num{7.8E-2} &                          & \num{49E-2} & (\(tuZ\))\\
+    \(\BR(t\to qg)\)      & \num{17E-2}  &                          & \num{13E-2} & \\
     \bottomrule
-    Coupling & \multicolumn{2}{c}{Tevatron}                    & \multicolumn{2}{c}{LHC} \\
+    Coupling & \multicolumn{2}{c}{Tevatron}                         & \multicolumn{2}{c}{LHC} \\
     \midrule
-    \(\BR(t\to q\gamma)\) & \num{3.2E-2} &                       & \multicolumn{1}{c}{---} \\
-    \(\BR(t\to qZ)\)      & \num{3.2E-2} &                       & \num{7.0E-4}\\
-    \(\BR(t\to qg)\)      & \num{2.0E-4} & (\(tug\)), \((2 \to 2)\)  & \multicolumn{1}{c}{---} \\
-                        & \num{3.9E-3} & (\(tcg\)), \((2 \to 2)\)  & \multicolumn{1}{c}{---} \\
-                        & \num{3.9E-4} & (\(tug\)), \((2 \to 1)\)  & \num{5.7E-5} & (\(tug\)), \((2 \to 1)\)\\
-                        & \num{5.7E-3} & (\(tcg\)), \((2 \to 1)\)  & \num{2.7E-4} & (\(tcg\)), \((2 \to 1)\)\\
+    \(\BR(t\to q\gamma)\) & \num{3.2E-2} &                          & \multicolumn{1}{c}{---} \\
+    \(\BR(t\to qZ)\)      & \num{3.2E-2} &                          & \num{7.0E-4}\\
+    \(\BR(t\to qg)\)      & \num{2.0E-4} & (\(tug\)), \((2 \to 2)\) & \multicolumn{1}{c}{---} \\
+                          & \num{3.9E-3} & (\(tcg\)), \((2 \to 2)\) & \multicolumn{1}{c}{---} \\
+                          & \num{3.9E-4} & (\(tug\)), \((2 \to 1)\) & \num{5.7E-5} & (\(tug\)), \((2 \to 1)\)\\
+                          & \num{5.7E-3} & (\(tcg\)), \((2 \to 1)\) & \num{2.7E-4} & (\(tcg\)), \((2 \to 1)\)\\
     \bottomrule
   \end{tabular}
 \end{tcblisting}
@@ -151,12 +209,6 @@ character for alignment. An alternative, as shown in
 space equal to the width of a number if you have different numbers of
 decimal places in the table.
 
-The \Package{booktabs} package provides the macros
-\Macro{toprule}, \Macro{midrule}, \Macro{bottomrule} which are to be preferred over \Macro{hline},
-as, among other things, they introduce some extra spacing around the lines, which is useful.
-
-The \Package{siunitx} package contains powerful macros for formatting tables
-and is highly recommended.
 
 \begin{table}[htbp]
 \begin{tcblisting}{}
@@ -305,7 +357,7 @@ See the \Package{siunitx}~\cite{siunitx} manual for more details.
     for numbers with asymmetric errors, the option
     \Option{\Macro{sisetup}\{retain-explicit-plus\}} is used to stop
     \Package{siunitx} from dropping the plus signs on the positive
-    errors. (although these tables look almost identical, the syntax used to
+    errors. (Although these tables look almost identical, the syntax used to
     create them is different --- see \cref{sec:raw-data}).}
   \label{tab:rounding:xsect}
 
@@ -385,6 +437,38 @@ It may be possible to use the \Macro{tablenum} instead,
 but this has not been tested.
 
 %-------------------------------------------------------------------------------
+\section{Asymmetric uncertainties}
+%-------------------------------------------------------------------------------
+
+Some tables include asymmetric uncertainites.
+Those of you with sharp eyes may spot that the width of \enquote{\(+\)} and \enquote{\(-\)}
+are different in the defaut font used by ATLAS (\Package{newtx}).
+This leads to the numbers in the subscripts and superscripts not being aligned.
+For some examples see \cref{tab:asym}.
+A macro \Macro{supsub} has been defined that ensures that the width
+of the boxes for subscripts and superscripts is the same.
+
+\(\supsub{1}{101}\)
+
+% \begin{table}[htbp]
+\begin{tcblisting}{}
+  % \caption{Numbers with asymmetric uncertainties.}%
+  \label{tab:asym}
+  \centering
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{cccc}
+    \toprule
+    No macro & \Macro{numpmerr} & \Macro{supsub} & \Macro{nnumpmerr} \\
+    \midrule
+    \(^{\num{+0.223}}_{\num{-0.123}}\) & \numpmerr{+0.223}{-0.123}{3} &
+    \(\supsub{\num{+0.223}}{\num{-0.123}}\) & \nnumpmerr{+0.223}{-0.123}{3} \\
+    \(^{\num{+0.284}}_{\num{-0.214}}\) \numpmerr{+0.284}{-0.214}{3} &
+    \(\supsub{\num{+0.284}}{\num{-0.214}}\) & \nnumpmerr{+0.284}{-0.214}{3}
+  \end{tabular}
+\end{tcblisting}
+% \end{table}
+
+%-------------------------------------------------------------------------------
 \clearpage
 \section*{History}
 %-------------------------------------------------------------------------------
@@ -395,6 +479,7 @@ but this has not been tested.
 \item[2020-08-03: Ian Brock] Removed code for \TeX\ Live version older than 2013.
   More use of listings with \Package{tcolorbox}.
   Added a bit of information on the use of \Macro{tablenum} macro.
+\item[202-12-09: Ian Brock] Added some examples of the usage of \Option{table-number-alignment}.
 \end{description}
 
 
@@ -420,8 +505,8 @@ of the \texttt{atlaslatex} package.
 %------------------------------------------------------------------------------
 \subsection{Table~\protect\ref{tab:rounding:xsect}}
 
-The files are: \texttt{cross-sections\_charm-eta.tex} and
-\texttt{cross-sections\_charm-eta.tex}:
+The files are: \texttt{cross-sections\_charm-eta1.tex} and
+\texttt{cross-sections\_charm-eta2.tex}:
 
 \tcbinputlisting{listing file=cross-sections_charm-eta1, listing only,
   listing options={basicstyle=\ttfamily\scriptsize}}
