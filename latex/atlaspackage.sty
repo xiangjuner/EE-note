@@ -8,7 +8,7 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2022/11/04 v13.7.1 ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2022/12/19 v13.8.0 ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -105,6 +105,34 @@
 \RequirePackage[svgnames]{xcolor}
 % Document language control.
 \RequirePackage{babel}
+
+% Math macros need special handlong for txfonts.
+\ifthenelse{\boolean{APKG@txfonts}}{%
+  \typeout{atlaspackage: using txfonts and savesym.}
+  \RequirePackage[varg]{txfonts}
+  % Encoding used for printout
+  \RequirePackage[T1]{fontenc}
+
+  % amsmath and txfonts define the same symbols - use the txfonts version.
+  % Save txfont symbols to amsmath can be loaded.
+  \RequirePackage{savesym}
+  \savesymbol{iint}
+  \savesymbol{iiint}
+  \savesymbol{iiiint}
+  \savesymbol{idotsint}
+}{}
+
+% Extra and very useful maths macros from AMS.
+\RequirePackage{mathtools}
+
+% The AMS \iint etc. is now defined as \AMSiint.
+\ifthenelse{\boolean{APKG@txfonts}}{%
+  \restoresymbol{AMS}{iint}
+  \restoresymbol{AMS}{iiint}
+  \restoresymbol{AMS}{iiiint}
+  \restoresymbol{AMS}{idotsint}
+}{}
+
 % Add line numbers.
 \ifthenelse{\boolean{APKG@lineno}}{%
   \RequirePackage{lineno}
@@ -127,32 +155,6 @@
 %\usepackage{courier} % tt
 %\normalfont
 %\usepackage[T1]{fontenc}
-
-% Font
-\ifthenelse{\boolean{APKG@txfonts}}{%
-  \typeout{atlaspackage: using txfonts and savesym.}
-  \RequirePackage[varg]{txfonts}
-  % Encoding used for printout
-  \RequirePackage[T1]{fontenc}
-
-  % amsmath and txfonts define the same symbols - use the txfont version.
-  % Save txfont symbols to amsmath can be loaded.
-  \RequirePackage{savesym}
-  \savesymbol{iint}
-  \savesymbol{iiint}
-  \savesymbol{iiiint}
-  \savesymbol{idotsint}
-}{}
-
-% Extra and very useful maths macros from AMS.
-\RequirePackage{mathtools}
-% The AMS \iint etc. is now defined as \AMSiint.
-\ifthenelse{\boolean{APKG@txfonts}}{%
-  \restoresymbol{AMS}{iint}
-  \restoresymbol{AMS}{iiint}
-  \restoresymbol{AMS}{iiiint}
-  \restoresymbol{AMS}{idotsint}
-}{}
 
 % microtype to improve spacing.
 \RequirePackage[babel=true]{microtype}
