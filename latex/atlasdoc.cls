@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{13.7.1}
-\ProvidesClass{latex/atlasdoc}[2022/11/04 v13.7.1 ATLAS document class]
+\newcommand*{\ATPackageVersion}{13.8.0}
+\ProvidesClass{latex/atlasdoc}[2022/12/19 v13.8.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -387,6 +387,9 @@
 \RequirePackage{graphicx}
 \RequirePackage[svgnames]{xcolor}
 \RequirePackage{babel}
+
+% Extra and very useful maths macros from AMS are always needed
+\RequirePackage{mathtools}
 
 % Turn on bold math when using \bfseries
 \def\bfseries{\fontseries\bfdefault\selectfont\boldmath}
