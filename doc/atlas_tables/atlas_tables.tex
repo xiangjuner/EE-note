@@ -440,33 +440,38 @@ but this has not been tested.
 \section{Asymmetric uncertainties}
 %-------------------------------------------------------------------------------
 
-Some tables include asymmetric uncertainites.
+Some tables include asymmetric uncertainties.
 Those of you with sharp eyes may spot that the width of \enquote{\(+\)} and \enquote{\(-\)}
-are different in the defaut font used by ATLAS (\Package{newtx}).
+are different in the default font used by ATLAS (\Package{newtx}).
 This leads to the numbers in the subscripts and superscripts not being aligned.
 For some examples see \cref{tab:asym}.
 A macro \Macro{supsub} has been defined that ensures that the width
 of the boxes for subscripts and superscripts is the same.
+The macro \Macro{numpmerrx} uses \Macro{supsub} and has two optional arguments:
+the first one specifies the rounding precision, while the second the rounding mode
+(\Option{places} or \Option{figures}.
 
-\(\supsub{1}{101}\)
-
-% \begin{table}[htbp]
+\begin{table}[htbp]
 \begin{tcblisting}{}
-  % \caption{Numbers with asymmetric uncertainties.}%
+  \caption{Numbers with asymmetric uncertainties.
+    The last two rows in the \Macro{numpmerr} column
+    use the \Macro{numpmRP} and \Macro{numpmRF} macros, respectively.}%
   \label{tab:asym}
   \centering
   \renewcommand{\arraystretch}{1.4}
   \begin{tabular}{cccc}
     \toprule
-    No macro & \Macro{numpmerr} & \Macro{supsub} & \Macro{nnumpmerr} \\
+    No macro & \Macro{numpmerr} & \Macro{supsub} & \Macro{numpmerrx} \\
     \midrule
     \(^{\num{+0.223}}_{\num{-0.123}}\) & \numpmerr{+0.223}{-0.123}{3} &
-    \(\supsub{\num{+0.223}}{\num{-0.123}}\) & \nnumpmerr{+0.223}{-0.123}{3} \\
-    \(^{\num{+0.284}}_{\num{-0.214}}\) \numpmerr{+0.284}{-0.214}{3} &
-    \(\supsub{\num{+0.284}}{\num{-0.214}}\) & \nnumpmerr{+0.284}{-0.214}{3}
+    \(\supsub{\num{+0.223}}{\num{-0.123}}\) & \numpmerrx{+0.223}{-0.123} \\
+    \(^{\num{+0.281}}_{\num{-0.215}}\) & \numpmerr{+0.282}{-0.216}{3} &
+    \(\supsub{\num{+0.283}}{\num{-0.217}}\) & \numpmerrx{+0.284}{-0.218} \\
+    & \numpmRP{+1.284}{-2.214}{2} & & \numpmerrx[2][places]{+1.284}{-2.214} \\
+    & \numpmRF{+1.284}{-2.214}{2} & & \numpmerrx[2][figures]{+1.284}{-2.214}
   \end{tabular}
 \end{tcblisting}
-% \end{table}
+\end{table}
 
 %-------------------------------------------------------------------------------
 \clearpage
@@ -480,6 +485,7 @@ of the boxes for subscripts and superscripts is the same.
   More use of listings with \Package{tcolorbox}.
   Added a bit of information on the use of \Macro{tablenum} macro.
 \item[202-12-09: Ian Brock] Added some examples of the usage of \Option{table-number-alignment}.
+  Add macros for equal width subscripts and superscripts. 
 \end{description}
 
 

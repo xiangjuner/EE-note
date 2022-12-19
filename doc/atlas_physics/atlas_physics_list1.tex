@@ -39,12 +39,18 @@ e.g.\\
 \verb|\numRP{3.145159}{3}| \(\rightarrow\) \(\numRP{3.14159}{3}\)\\
 \verb|\numpmerr{+1.234}{-3.456}{2}| \(\rightarrow\) \(\numpmerr{+1.234}{-0.3456}{2}\)\\[0.5ex]
 \verb|\numpmRF{+1.234}{-3.456}{2}|  \(\rightarrow\) \(\numpmRF{+1.234}{-0.3456}{2}\)\\[0.5ex]
-\verb|\numpmRP{-1.234}{+3.456}{2}|  \(\rightarrow\) \(\numpmRP{-1.234}{+0.3456}{2}\)\\
-Note that \Macro{numR} only works if \Option{round-mode} is set to something
-(which is not the case here).
+\verb|\numpmRP{-1.234}{+3.456}{2}|  \(\rightarrow\) \(\numpmRP{-1.234}{+3.456}{2}\)\\[0.5ex]
+\verb|\numpmerrx[2][figures]{+1.234}{-3.456}| \(\rightarrow\) \(\numpmerrx[2][figures]{+1.234}{-3.456}\)\\[0.5ex]
+Note that \Macro{numR} and \Macro{numpmerr} only perform rounding if \Option{round-mode} is set to something
+via \Macro{sisetup} (which is not the case here).
+The same applies if the second argument of \Macro{numpmerrx} is omitted.
 See the \Package{siunitx} package for more details.
 
-A macro \verb|\dk| is also defined which makes it easier to write down decay chains.
+The macro \Macro{supsub} ensures that superscripts and subscripts have the same width.
+This is useful for asymmetric errors if the widths of \enquote{\(+\)} and \enquote{\(-\)}
+are not the same.
+
+A macro \verb|\dk| is defined which makes it easier to write down decay chains.
 For example
 \begin{verbatim}
 \[\eqalign{a \to & b+c\\
