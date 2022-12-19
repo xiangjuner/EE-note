@@ -11,6 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
+
+---
+
+## [13.8.0] - 2022-12-19
+
+### Added
+
+- October and November 2022 update of publications.
+- Small improvement to Makefile `make version`.
+- Add a macro `\supsub` for equal width subscripts and superscripts.
+- Add new a macro `\numpmerrx` with equal width asymmetric errors and optional rounding.
+- Add some more examples to tables document using `table-format` and `table-number-alignment`.
+
+### Changed
+
+- `mathtools` included in `atlasdoc` to avoid some problems.
+- `mathtools` loaded before `lineno` in `atlaspackage` to avoid some problems.
+
 ---
 
 ## [13.7.1] - 2022-11-04
