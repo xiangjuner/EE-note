@@ -1302,12 +1302,12 @@ In this section I collect a few useful packages that I recommend using.
   while an upright \textrm{d} is used for other languages.
   I recommend \Macro{dl2x} to get a nice spacing for the differential in an integral,\\
   % diffcoeff tweaks for older TeX Live versions.
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{%
+  \ifthenelse{\AtlasTeXLiveVersion < 2016}{%
     \emph{Examples are not complete as \Package{diffcoeff} package not available for older versions of TeX Live.\\}}{}
   e.g.\ \verb|\int f(x) \dl2x| gives 
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{XXX, while}{\(\int f(x) \dl2x\), while}\\
+  \ifthenelse{\AtlasTeXLiveVersion < 2016}{XXX, while}{\(\int f(x) \dl2x\), while}\\
   \verb|\int f(x) \dl0x| or \verb|\int f(x) \dl x| gives  
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{XXX.}{\(\int f(x) \dl0x\).}
+  \ifthenelse{\AtlasTeXLiveVersion < 2016}{XXX.}{\(\int f(x) \dl0x\).}
     
   Alternatives are \Package{esdiff} and \Package{derivative},
   but the \Package{derivative} is probably too new to be used in papers.
