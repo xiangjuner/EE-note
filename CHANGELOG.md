@@ -29,6 +29,10 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - `mathtools` included in `atlasdoc` to avoid some problems.
 - `mathtools` loaded before `lineno` in `atlaspackage` to avoid some problems.
 
+### Fixed
+
+- Fix how to set upright differential in `diffcoeff` for 2017 and earlier TeX Live versions.
+
 ---
 
 ## [13.7.1] - 2022-11-04

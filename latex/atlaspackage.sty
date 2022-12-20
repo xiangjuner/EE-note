@@ -230,7 +230,7 @@
       \typeout{atlaspackage: using siunitx version 3}
       \DeclareSIUnit\clight{\ensuremath{\mathit{c}}}
     }{
-      \typeout{atlasdpackage: defining siunitx version 3 macros}
+      \typeout{atlaspackage: defining siunitx version 2 macros}
       \let\qty\SI
       \let\unit\si
       \let\complexnum\num
@@ -293,7 +293,12 @@
     \iflanguage{USenglish}{%
         \RequirePackage{diffcoeff}
     }{%
+      \ifthenelse{\APKG@texlive < 2018}{%
+        \RequirePackage{diffcoeff}
+        \diffset{roman=true}
+      }{%
         \RequirePackage[ISO]{diffcoeff}
+      }
     }
   }
 }{}
