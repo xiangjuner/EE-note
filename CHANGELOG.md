@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [13.8.0] - 2022-12-19
+## [13.8.0] - 2022-12-21
 
 ### Added
 
