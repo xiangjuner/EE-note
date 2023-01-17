@@ -5,15 +5,11 @@
 % Specify where ATLAS LaTeX style files can be found.
 \RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[REPORT=false, UKenglish, texlive=2020]{atlasdoc}
+\documentclass[REPORT=false, UKenglish]{atlasdoc}
 % \KOMAoptions{DIV=8}
 
 % Standard packages that can and should be used in ATLAS papers
-\ifthenelse{\AtlasTeXLiveVersion < 2016}{%
-  \usepackage{atlaspackage}
-}{%
-  \usepackage[diffcoeff]{atlaspackage}
-}
+\usepackage[diffcoeff, diffcoeffISO=true]{atlaspackage}
 \usepackage{atlasbiblatex}
 \usepackage{authblk}
 \usepackage{atlasphysics}
@@ -56,7 +52,8 @@
   is included.
 
   This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
-  The \TeX\ Live version is set to \AtlasTeXLiveVersion.
+  % The \TeX\ Live version is set to \AtlasTeXLiveVersion.
+  The main class is \KOMAScriptVersion.
   It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
 }
 
