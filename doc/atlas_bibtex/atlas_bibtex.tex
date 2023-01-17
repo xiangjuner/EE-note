@@ -5,7 +5,7 @@
 % Specify where ATLAS LaTeX style files can be found.
 \RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[REPORT=false, UKenglish, texlive=2020]{atlasdoc}
+\documentclass[REPORT=false, UKenglish]{atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
 \usepackage[minimal]{atlaspackage}
@@ -65,7 +65,8 @@
   depending on whether they require the title of the references to be included or not.
 
   This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
-  The \TeX\ Live version is set to \AtlasTeXLiveVersion.
+  % The \TeX\ Live version is set to \AtlasTeXLiveVersion.
+  The main class is \KOMAScriptVersion.
   It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
 }
 
@@ -500,6 +501,7 @@ A summary of the options is:
 \item[\Option{location={\normalfont true}|false}] turn on or off the printing of the location field.
 \item[\Option{texlive=YYYY}] set if you use an older version of \TeX\ Live like 2013.
   This option is usually set in the document class.
+  \emph{\ADOCold{14.0.0} This option is obsolete and ignored.}
 \end{description}
 
 With \Package{biblatex}, notes are printed after the journal reference and before the arXiv or URL.
