@@ -104,7 +104,7 @@ newbooktexmf: TEMPLATE=atlas-book
 newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
-	cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex
+	cp  template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
 	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
 	#     >$(BASENAME)-draft-cover.tex; \
