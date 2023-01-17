@@ -59,8 +59,8 @@ Each document can then be independent of the \Package{atlaslatex} release.
 To create a new document you can issue one of the commands:
 %
 \begin{bashlisting}
-make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
-make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpaper [BASENAME=mydocument]
+make newnote [BASENAME=mydocument]
 \end{bashlisting}
 depending on whether you want to write a paper/CONF Note/Pub Note draft or
 an ATLAS not draft.
@@ -70,12 +70,14 @@ The command copies \File{atlas-document.tex} and
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
 \footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
 For Windows, you probably have to execute the tasks in the \File{Makefile} by hand.}
-The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2020.
 The \texttt{make newpaper|newnote} command also creates empty files \File{mydocument-defs.sty} and \File{mydocument.bib}.
 By default the document will be an ATLAS note draft.
 Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB notes).
 % If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 Replace the option \Option{PAPER} with \Option{CONF} or \Option{PUB} as appropriate.
+
+\emph{\ADOCold{14.0.0} This \Option{TEXLIVE} option is obsolete and ignored.}
+The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2020.
 
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
@@ -87,9 +89,9 @@ Have a look at \File{Makefile} for other things you can adjust.
 If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOME\}/texmf} the basic command is one of:
 %
 \begin{bashlisting}
-make newpapertexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
-make newnotetexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
-make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newpapertexmf [BASENAME=mydocument]
+make newnotetexmf [BASENAME=mydocument]
+make newbooktexmf [BASENAME=mydocument]
 \end{bashlisting}
 %
 See \cref{sec:texmf} for more details.
@@ -97,8 +99,8 @@ See \cref{sec:texmf} for more details.
 In order to make a new document of book form like a TDR, use one of the commands:
 %
 \begin{bashlisting}
-make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]
-make newbooktexmf [BASENAME=mydocument] [TEXLIVE=YYYY]
+make newbook [BASENAME=mydocument]
+make newbooktexmf [BASENAME=mydocument]
 \end{bashlisting}
 %
 By default, this will pass the option \Option{BOOK} to \Package{atlasdoc}.
@@ -404,9 +406,8 @@ In the following the default option is in boldface.
 \item[\Option{PUB}] the document is an PUB note;
 \item[\Option{BOOK}] the document is book form like an LOI or TDR;
 \item[\Option{HEPDATA}] a separate document with detailed tables etc.\ for HEPData;
-\item[\Option{texlive=2020}] adjust if you use an older version of \TeX\ Live like 2013.
-  A value less than 2013 adjusts a few \Package{biblatex} options.
-  A value less than 2012 uses \Package{txfonts}.
+\item[\Option{texlive=0}] adjust if you use an older version of \TeX\ Live like 2013.
+  \emph{\ADOCold{14.0.0} This option is obsolete and ignored.}
 \item[\Option{paper=a4|{\normalfont letter}}] set the paper size;
 \item[\Option{titlesize=normal|{\normalfont small}}] use normal or reduced size fonts for the title page;
 \item[\Option{tocdepth=2}] depth of table of contents. The default is to include subsections (2);
@@ -582,7 +583,6 @@ The default set adds in addition:
 Finally the full set includes further packages that may be useful:
 \begin{itemize}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
 \item \texttt{mhchem}: chemical elements and molecules;
-\item \texttt{diffcoeff}: mathematics for physics;
 \item \texttt{rotating} rotate figures, tables, etc.;
 \item \texttt{xfrac} nicer fractions;
 \item \texttt{multirow} construction for table cells that span more than one row of the table.
@@ -596,7 +596,9 @@ If you pass the \Option{xtab} option, it will be included instead of \Package{lo
 you will probably get an error when using the \Option{full} option,
 as the \Package{diffcoeff} package was first released in 2016.
 If this is the case, include the packages you want by passing the appropriate options to \Package{atlaspackage}.
-\ADOCnew{12.1} \Package{diffcoeff} will not be included for \TeX\ Live versions older than 2016 (defined by the \Option{texlive} option).
+\ADOCnew{14.0} \Package{diffcoeff} will only be included if specifically requested.
+  It used to be part of the \Option{full} option
+  for \TeX\ Live versions newer than 2015 (defined by the \Option{texlive} option).
 
 The full list of options is:
 \begin{description}\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}
@@ -627,11 +629,12 @@ The full list of options is:
 \item[\Option{subfigure={\normalfont true}|false}] use the deprecated package \Package{subfigure} 
   instead of \Package{subfig};
 \item[\Option{subfig=true|{\normalfont false}}] use the somewhat deprecated package \Package{subfig};
-\item[\Option{texlive=2020}] set if you use an older version of \TeX\ Live like 2013.
+\item[\Option{texlive=0}] set if you use an older version of \TeX\ Live like 2013.
   % A value less than 2013 adjusts a few \Package{biblatex} options.
   % A value less than 2012 uses \Package{txfonts} and the old (Version 1) option names for \Package{siunitx}.
   % A value less than 2010 uses the old option names for \Package{csquotes}.
-  Use \Option{texlive=2020} to test options for arXiv submissions;
+  % Use \Option{texlive=2020} to test options for arXiv submissions;
+  \emph{\ADOCold{14.0.0} This option is obsolete and ignored.}
 \item[\Option{txfonts={\normalfont true}|false}] load the \Package{txfonts} package and adjust loading of \Package{mathtools/amsmath} for duplicate symbols;
 \item[\Option{lineno=true|{\normalfont false}}] load the \Package{lineno} package.
 \end{description}
@@ -797,14 +800,13 @@ you should check that your paper draft follows the ATLAS conventions.
 In order to turn the paper into a CERN preprint,
 you should replace the option \Option{PAPER} by \Option{cernpreprint} in \Package{atlasdoc}.
 The CERN preprint number is given via the macro \Macro{PreprintIdNumber}.
-At the same time you should pass the option \Option{texlive=2020} to
-\Package{atlasdoc}.
-This is because arXiv contains a 2020 \TeX\ Live installation.
+% At the same time you should pass the option \Option{texlive=2020} to \Package{atlasdoc}.
+% This is because arXiv contains a 2020 \TeX\ Live installation.
 Summarising, a typical \Macro{documentclass} command would be:
 \begin{tcblisting}{listing only}
 \pdfoutput=1
 \RequirePackage{latex/atlaslatexpath}
-\documentclass[cernpreprint, atlasdraft=false, texlive=2020, UKenglish]{atlasdoc}
+\documentclass[cernpreprint, atlasdraft=false, UKenglish]{atlasdoc}
 \end{tcblisting}
 The \Macro{pdfoutput} command tells arXiv that a PDF file should be produced directly.
 You should also turn off ATLAS draft cover page --- remove the option \Option{coverpage=true}.
@@ -920,8 +922,8 @@ This information is then included on the cover page in the form of clickable lin
 Use of this option also adds the arXiv preprint identifier to the top
 of every page of the document.
 
-If you want to create an HEPData document with an older \TeX\ Live version such as 2013, 
-use the command \texttt{make newdata TEXLIVE=2013}.
+% If you want to create an HEPData document with an older \TeX\ Live version such as 2013, 
+% use the command \texttt{make newdata TEXLIVE=2013}.
 
 
 %-------------------------------------------------------------------------------
@@ -1296,18 +1298,29 @@ In this section I collect a few useful packages that I recommend using.
   but is not as systematic.
 
   \item[diffcoeff] A useful package for differentials.
-  \ADOCnew{12.0.0} The package is included if you pass the option \Option{full} to \Package{atlaspackage}.
-  If the document language is set to \Option{USenglish},
+  \ADOCnew{14.0.0} The package is included if you pass the option \Option{full} to \Package{atlaspackage}.
+  If you pass the option \Option{diffcoeffISO=false}
   a slanted \textit{d} is used in differentials,
   while an upright \textrm{d} is used for other languages.
-  I recommend \Macro{dl2x} to get a nice spacing for the differential in an integral,\\
-  % diffcoeff tweaks for older TeX Live versions.
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{%
-    \emph{Examples are not complete as some \Package{diffcoeff} package options are not available for older versions of TeX Live.\\}}{}
-  e.g.\ \verb|\int f(x) \dl2x| gives 
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{XXX, while}{\(\int f(x) \dl2x\), while}\\
-  \verb|\int f(x) \dl0x| or \verb|\int f(x) \dl x| gives  
-  \ifthenelse{\AtlasTeXLiveVersion < 2018}{XXX.}{\(\int f(x) \dl0x\).}
+  % diffcoeff tweaks for other TeX Live versions.
+  % Have to change things for 2023 (version 5) version of diffcoeff.
+  % \ifthenelse{\AtlasTeXLiveVersion < 2018}{%
+  \makeatletter
+  \@ifpackagelater{diffcoeff}{2023/01/01}{%
+    In version 5 (released in 2023), the \Macro{dl} command includes a small space before the differential,
+    e.g.\ \(\int f(x) \dl{x}\).
+    In older versions one has to use a syntax like \Macro{dl2\{x\}}.
+  }{%
+    I reccommend \Macro{dl2\{x\}} to get a nice spacing for the differential in an integral,\\
+    e.g.\ \verb|\int f(x) \dl2{x}| gives
+    \@ifpackagelater{diffcoeff}{2018/04/01}{\(\int f(x) \dl2{x}\)}{XXX},
+    while
+    \verb|\int f(x) \dl0{x}| or \verb|\int f(x) \dl x| gives  
+    \@ifpackagelater{diffcoeff}{2018/04/01}{\(\int f(x) \dl0{x}\).}{XXX.\\
+      \emph{Examples are not complete as some \Package{diffcoeff} package options are not available for older versions of TeX Live.}
+    }
+  }
+  \makeatother
 
   Alternatives are \Package{esdiff} and \Package{derivative},
   but the \Package{derivative} is probably too new to be used in papers.
@@ -1446,8 +1459,8 @@ However, the collection is no longer tested with \LaTeX,
 so I strongly recommend to use pdf\LaTeX, which is the default.
 
 I would expect everything to work with \TeX\ Live 2013 or later.
-You should just set the option \Option{texlive} appropriately.
-This is best done in the document class, as the option is then passed to all other packages.
+% You should just set the option \Option{texlive} appropriately.
+% This is best done in the document class, as the option is then passed to all other packages.
 Examples of changes include some option names for \Package{siunitx}.
 
 % If for example you have \TeX\ Live 2013, add the option \Option{texlive=2013} to the document class.
