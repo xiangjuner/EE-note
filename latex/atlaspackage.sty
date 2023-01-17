@@ -8,7 +8,7 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlaspackage}[2023/01/31 v13.9.0-alpha ATLAS LaTeX packages]
+\ProvidesPackage{latex/atlaspackage}[2023/01/31 v14.0.0-alpha ATLAS LaTeX packages]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -39,6 +39,7 @@
 % Packages included with full.
 \DeclareBoolOption[false]{mhchem}
 \DeclareBoolOption[false]{diffcoeff}
+\DeclareBoolOption[true]{diffcoeffISO}
 \DeclareBoolOption[false]{physics}
 \DeclareBoolOption[false]{rotating}
 \DeclareBoolOption[false]{xfrac}
@@ -84,7 +85,6 @@
 % Turned on full option and off by default otherwise.
 \ifthenelse{\boolean{APKG@more}}{%
   \APKG@mhchemtrue
-  \APKG@diffcoefftrue
   \APKG@rotatingtrue
   \APKG@xfractrue
   \APKG@multirowtrue
@@ -285,23 +285,24 @@
 }{}
 
 % Macros for mathematics in physics.
-% Pass ISO option to diffcoeff, unless the language is USenglish.
+% Pass ISO option to diffcoeff, if option is set (default).
 \ifthenelse{\boolean{APKG@diffcoeff}}{%
-  \ifthenelse{\APKG@texlive < 2016}{%
-    \typeout{atlaspackage: diffcoeff not included, as TeX version is too old.}
-  }{%
-    \iflanguage{USenglish}{%
-        \RequirePackage{diffcoeff}
+  \IfFileExists{diffcoeff.sty}{%
+    \ifthenelse{\boolean{APKG@diffcoeffISO}}{%
+      \typeout{atlaspackage: diffcoeff package included with ISO option.}
+      \RequirePackage[ISO]{diffcoeff}
     }{%
-      \ifthenelse{\APKG@texlive < 2018}{%
-        \RequirePackage{diffcoeff}
-        \diffset[roman=true]
-      }{%
-        \RequirePackage[ISO]{diffcoeff}
-      }
+      \typeout{atlaspackage: diffcoeff package included without ISO option.}
+      \RequirePackage{diffcoeff}
     }
+  }{%
+    \typeout{atlaspackage: diffcoeff not included, as package not available.}
   }
 }{}
+% diffcoeff version 1 option - ignore it.
+% \ifthenelse{\APKG@texlive < 2018}{%
+%  \diffset[roman=true]
+
 \ifthenelse{\boolean{APKG@physics}}{%
   \RequirePackage{physics}
 }{}
@@ -398,12 +399,13 @@
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
   }
-  \ifthenelse{\APKG@texlive < 2016}{%
-    \RequirePackage[backend=\APKG@backend,
-      style=numeric-comp, sorting=none, firstinits=true]{biblatex}
-  }{%
+  % \ifthenelse{\APKG@texlive < 2016}{%
+  \@ifpackagelater{biblatex}{2017/04/01}{%
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, giveninits=true]{biblatex}
+  }{%
+    \RequirePackage[backend=\APKG@backend,
+      style=numeric-comp, sorting=none, firstinits=true]{biblatex}
   }
 }{}
 
