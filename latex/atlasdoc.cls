@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{13.9.0-alpha}
-\ProvidesClass{latex/atlasdoc}[2023/01/31 v13.9.0-alpha ATLAS document class]
+\newcommand*{\ATPackageVersion}{14.0.0-alpha}
+\ProvidesClass{latex/atlasdoc}[2023/01/31 v14.0.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -40,7 +40,7 @@
 \DeclareBoolOption[false]{HEPDATA}
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
-\DeclareStringOption[2020]{texlive}
+\DeclareStringOption[0]{texlive}
 \DeclareStringOption[a4]{paper}
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
@@ -93,7 +93,15 @@
 % Macros without @ for draft status and TeX Live version.
 \newif\ifAtlasDraft
 \ifthenelse{\boolean{ADOC@atlasdraft}}{\AtlasDrafttrue}{\AtlasDraftfalse}
-\newcommand*{\AtlasTeXLiveVersion}{\ADOC@texlive}
+% \newcommand*{\AtlasTeXLiveVersion}{\ADOC@texlive}
+\ifthenelse{\equal{ADOC@texlive}{0}}{%
+  \ClassInfo{atlasdoc}{No texlive option given - good!}
+}{
+  \ClassWarningNoLine{atlasdoc}{%
+    You have passed the option texlive to atlasdoc\MessageBreak
+    This option is no longer used and will be ignored%
+  }%
+}
 
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
@@ -424,19 +432,21 @@
     \typeout{atlasdoc: keep default table of contents style.}
   }{%
     \typeout{atlasdoc: remove dots in table of contents style.}
-    \ifthenelse{\ADOC@texlive < 2016}{%
-      \RequirePackage{tocstyle}
-      \usetocstyle{noonewithdot}
-    }{%
+    % \ifthenelse{\ADOC@texlive < 2016}{%
+    \@ifclasslater{\KOMAClassName}{2016/04/01}{%
       \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
       \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
+    }{%
+      \RequirePackage{tocstyle}
+      \usetocstyle{noonewithdot}
     }
   }
   % Table of contents down to \ADOC@tocdepth which is 1 by default
-  \ifthenelse{\ADOC@texlive < 2014}{%
-    \setcounter{tocdepth}{2}
-  }{%
+  % \ifthenelse{\ADOC@texlive < 2014}{%
+  \@ifclasslater{\KOMAClassName}{2014/04/01}{%
     \setcounter{tocdepth}{\ADOC@tocdepth}
+  }{%
+    \setcounter{tocdepth}{2}
   }
   % Figure and table captions
   \ifthenelse{\boolean{ADOC@tableheading}}{\KOMAoption{captions}{tableheading}}{}
@@ -570,10 +580,11 @@
 
 % Draft heading/footer code
 \newcommand{\ADOC@DraftHeading}{%
-  \ifthenelse{\ADOC@texlive < 2015}{%
-    \RequirePackage[headsepline]{scrpage2}
-  }{%
+  % \ifthenelse{\ADOC@texlive < 2015}{%
+  \@ifclasslater{\KOMAClassName}{2015/04/01}{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
+  }{%
+    \RequirePackage[headsepline]{scrpage2}
   }
   \ihead{}
   \chead[]{\fbox{\normalfont\ADOC@draftheading}}
@@ -586,10 +597,11 @@
 
 % Include fancier header and footer for HepData material document
 \ifthenelse{\boolean{ADOC@HEPDATA}}{%
-  \ifthenelse{\ADOC@texlive < 2015}{%
-    \RequirePackage[headsepline]{scrpage2}
-  }{%
+  % \ifthenelse{\ADOC@texlive < 2015}{%
+  \@ifclasslater{\KOMAClassName}{2015/04/01}{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
+  }{%
+    \RequirePackage[headsepline]{scrpage2}
   }
   \chead{ATLAS Collaboration --- arXiv:\AtlasArXivId\ \AtlasArXivCat}
   \pagestyle{scrheadings}
