@@ -1298,30 +1298,29 @@ In this section I collect a few useful packages that I recommend using.
   but is not as systematic.
 
   \item[diffcoeff] A useful package for differentials.
-  \ADOCnew{14.0.0} The package is included if you pass the option \Option{full} to \Package{atlaspackage}.
+  \ADOCnew{14.0.0} The package is no longer included if you pass the option \Option{full} to \Package{atlaspackage},
+  as its syntax has changed too often in the past years.
   If you pass the option \Option{diffcoeffISO=false}
   a slanted \textit{d} is used in differentials,
   while an upright \textrm{d} is used for other languages.
   % diffcoeff tweaks for other TeX Live versions.
   % Have to change things for 2023 (version 5) version of diffcoeff.
   % \ifthenelse{\AtlasTeXLiveVersion < 2018}{%
-  \makeatletter
-  \@ifpackagelater{diffcoeff}{2023/01/01}{%
-    In version 5 (released in 2023), the \Macro{dl} command includes a small space before the differential,
-    e.g.\ \(\int f(x) \dl{x}\).
-    In older versions one has to use a syntax like \Macro{dl2\{x\}}.
-  }{%
-    I reccommend \Macro{dl2\{x\}} to get a nice spacing for the differential in an integral,\\
-    e.g.\ \verb|\int f(x) \dl2{x}| gives
-    \@ifpackagelater{diffcoeff}{2018/04/01}{\(\int f(x) \dl2{x}\)}{XXX},
-    while
-    \verb|\int f(x) \dl0{x}| or \verb|\int f(x) \dl x| gives  
-    \@ifpackagelater{diffcoeff}{2018/04/01}{\(\int f(x) \dl0{x}\).}{XXX.\\
-      \emph{Examples are not complete as some \Package{diffcoeff} package options are not available for older versions of TeX Live.}
-    }
+  In version 5 (released in 2023), the \Macro{dl} command includes a small space before the differential,
+  while there is no space on older versions
+  e.g.\ \(\int f(x) \dl{x}\).
+  In older versions one has to use a syntax like \Macro{dl2\{x\}}.
+  e.g.\ \verb|\int f(x) \dl2{x}| gives
+  \ifthenelse{\AtlasTeXLiveVersion > 2018}{\(\int f(x) \dl2{x}\)}{XXX},
+  while \verb|\int f(x) \dl0{x}| or \verb|\int f(x) \dl x| gives  
+  \ifthenelse{\AtlasTeXLiveVersion > 2018}{\(\int f(x) \dl0{x}\).}{XXX.\\
+    \emph{Examples are not complete as some \Package{diffcoeff} package options are not available for older versions of TeX Live.}
   }
-  \makeatother
-
+  For ATLAS papers you should use the older version syntax, as arXiv uses an older version of diffcoeff.
+  In this case it is probably easiest to not pass the option 
+  \Option{diffcoeff} to \Package{atlaspackage} and include the package yourself using
+  with the command \Macro{usepackage\{diffcoeff\}[=v4]}.
+  
   Alternatives are \Package{esdiff} and \Package{derivative},
   but the \Package{derivative} is probably too new to be used in papers.
   You can use a package such as \Package{braket} for Dirac notation etc.
