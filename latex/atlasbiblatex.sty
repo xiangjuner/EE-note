@@ -9,7 +9,7 @@
 %
 % Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2023/01/31 v13.9.0-alpha ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2023/01/31 v14.0.0-alpha ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -72,8 +72,12 @@
   }
 
   % date=year option works for TeX Live 2014 or so onwards
-  \ifthenelse{\ABIB@texlive < 2014}{}{%
+  % \ifthenelse{\ABIB@texlive < 2014}{}{%
+  \@ifpackagelater{biblatex}{2015/04/01}{%
+    \typeout{atlasbiblatex: setting option date=year.}
     \ExecuteBibliographyOptions{date=year}
+  }{%
+    \typeout{atlasbiblatex: option date=year not yet available.}
   }
 
   % Don't want months
