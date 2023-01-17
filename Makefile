@@ -4,7 +4,6 @@
 #------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex.
 # Replace mydocument with your main filename or add another target set.
-# Adjust TEXLIVE if it is not correct, or pass it to "make new".
 # Replace BIBTEX = biber with BIBTEX = bibtex if you use bibtex instead of biber.
 # Adjust FIGSDIR for your figures directory tree.
 # Adjust the %.pdf dependencies according to your directory structure.
@@ -105,43 +104,49 @@ newbooktexmf: TEMPLATE=atlas-book
 newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
-	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
-	    >$(BASENAME)-draft-cover.tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex; \
-	fi
+	cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex
+	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
+	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
+	#     >$(BASENAME)-draft-cover.tex; \
+	# else \
+	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	#   cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex; \
+	# fi
 
 preprintcover:
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex \
-	  >$(BASENAME)-preprint-cover.tex
-	#cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
+	cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
+	# sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex \
+	#   >$(BASENAME)-preprint-cover.tex
 
 newdata:
-	sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex | \
-	sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-hepdata-main.tex
+	sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex >$(BASENAME)-hepdata-main.tex
+	# sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex | \
+	# sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-hepdata-main.tex
 	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
 
 newdocument:
-	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	    sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	fi
+	sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
+	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
+	# else \
+	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+	# fi
 
 newdocumenttexmf:
-	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	  sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
 	  sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
 	  >$(BASENAME).tex; \
-	else \
-	  echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	fi
+	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
+	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
+	#   sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
+	#   >$(BASENAME).tex; \
+	# else \
+	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
+	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
+	# fi
 
 newpapermetadata:
 	cp template/atlas-paper-metadata.tex $(BASENAME)-metadata.tex
@@ -183,11 +188,11 @@ dvips:	$(BASENAME).dvi
 
 help:
 	@echo "To create a new paper/CONF Note/PUB Note draft give the command:"
-	@echo "make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newpaper [BASENAME=mydocument]"
 	@echo "To create a new ATLAS note draft give the command:"
-	@echo "make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newnote [BASENAME=mydocument]"
 	@echo "To create a long document (book) like a TDR:"
-	@echo "make newbook [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newbook [BASENAME=mydocument]"
 	@echo ""
 	@echo "To compile the paper give the command"
 	@echo "make"
@@ -198,18 +203,18 @@ help:
 	@echo "You can also adjust the 'default' target."
 	@echo ""
 	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
-	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument]"
 	@echo ""
 	@echo "If you need a standalone draft cover give the commands:"
-	@echo "make draftcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make draftcover [BASENAME=mydocument]"
 	@echo "pdflatex mydocument-draft-cover"
 	@echo ""
 	@echo "If you need a standalone preprint cover give the commands:"
-	@echo "make preprintcover [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make preprintcover [BASENAME=mydocument]"
 	@echo "pdflatex mydocument-preprint-cover"
 	@echo ""
 	@echo "If you need a document for HepData material give the commands:"
-	@echo "make newdata [BASENAME=mydocument] [TEXLIVE=YYYY]"
+	@echo "make newdata [BASENAME=mydocument]"
 	@echo "pdflatex mydocument-hepdata-main"
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
