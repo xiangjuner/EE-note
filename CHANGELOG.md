@@ -14,6 +14,30 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.0.0-alpha] - 2023-01-XX
+
+### Added
+
+- December 2022 update of publications.
+
+### Changed
+
+- The `diffcoeff` package is no longer included by default when passing the `full` option to `atlaspackage`.
+  This is mainly done, as the syntax of the commands has changed several times.
+
+### Deprecated
+
+- `texlive` option is no longer needed or used.
+  Replaced with `\@ifpackagelater` and `\@ifclasslater`.
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [13.8.0] - 2022-12-21
 
 ### Added
