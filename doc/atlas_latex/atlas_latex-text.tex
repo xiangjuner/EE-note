@@ -63,9 +63,9 @@ make newpaper [BASENAME=mydocument]
 make newnote [BASENAME=mydocument]
 \end{bashlisting}
 depending on whether you want to write a paper/CONF Note/Pub Note draft or
-an ATLAS not draft.
+an ATLAS note draft.
 %
-The command copies \File{atlas-document.tex} and
+The command copies \File{atlas-paper.tex} or \File{atlas-note.tex} and
 \File{atlas-paper-metadata.tex} or \File{atlas-note-metadata.tex}
 to \File{mydocument.tex} and \File{mydocument-metadata.tex}.%
 \footnote{The \File{Makefile} should work for regular Linux and MacOSX distributions.
@@ -76,13 +76,17 @@ Use \texttt{make newpaper} for an ATLAS paper draft (including CONF and PUB note
 % If you want it to be a paper draft, add the option \Option{PAPER} to the document class.
 Replace the option \Option{PAPER} with \Option{CONF} or \Option{PUB} as appropriate.
 
-\emph{\ADOCold{14.0.0} This \Option{TEXLIVE} option is obsolete and ignored.}
-The selected \TeX\ Live version is set with the \Option{TEXLIVE} option. The default is 2020.
+\emph{\ADOCold{14.0.0} Setting the \texttt{TEXLIVE} variable in the \texttt{make} command
+is obsolete and ignored.}
+In the past, the selected \TeX\ Live version was set by passing the
+\Option{texlive} option to the document class.
+This is no longer necessary.
 
 In the \File{Makefile} you should change the \texttt{BASENAME} to the name of your document.
 You can then compile your document with the command: \texttt{make}.
-You can try the command \texttt{make run\_latexmk} instead,
-which invokes \texttt{latexmk}, a Perl script that is cleverer than the \texttt{Makefile}.
+You can try the command \texttt{make run\_pdflatex} instead,
+which runs \texttt{pdflatex} etc. \ directly
+instead of invokes \texttt{latexmk}, a Perl script that is cleverer than the \texttt{Makefile}.
 You can also make this command the default.
 Have a look at \File{Makefile} for other things you can adjust.
 
@@ -91,7 +95,6 @@ If you install \Package{atlaslatex} in a central directory such as \File{\$\{HOM
 \begin{bashlisting}
 make newpapertexmf [BASENAME=mydocument]
 make newnotetexmf [BASENAME=mydocument]
-make newbooktexmf [BASENAME=mydocument]
 \end{bashlisting}
 %
 See \cref{sec:texmf} for more details.
@@ -113,17 +116,21 @@ Note that you have to specify the language of your document as an option in the
 \item USenglish (or american).
 \end{itemize}
 
-As mentioned above the default \TeX\ Live version is currently set to 2020.
-This should be the only option you have to adjust if you use different versions of \LaTeX.
-You should be able to always set a version lower than the one you have installed to maintain compatibility with older versions.
-To test compatibility with arXiv, try a setting of 2020.
+\ADOCold{14.0.0} The default \TeX\ Live version used to be set to 2020.
+This was the only option you had to adjust if you use different versions of \LaTeX.
+A different method is now used to find out which version is being run,
+% You should be able to always set a version lower than the one you have installed to maintain compatibility with older versions.
+To test compatibility with arXiv, you should compile your document using
+\TeX\ Live 2020 on \File{lxplus} or another machine that has this version.
 %This will, among other things, automatically switch from the \Package{newtx} fonts to \Package{txfonts} if you
 %are using the ATLAS preprint style.
 
 \ADOCnew{01-07-00} You should include the command \Macro{maketitle} after your\\
 \verb|\begin{document}| if you want the document title to be printed.
 
-Add the option \Option{atlasstyle=false} to the \Macro{documentclass} if you do not want to typeset your document in the ATLAS preprint style.
+Add the option \Option{atlasstyle=false} to the \Macro{documentclass}
+if you do not want to typeset your document in the ATLAS preprint style.
+
 
 %------------------------------------------------------------------------------
 \section{ATLAS \LaTeX\ and the Physics Office GitLab project}
@@ -140,15 +147,17 @@ The conventions are documented on
 \url{https://gitlab.cern.ch/atlas-physics-office/gitlab-integration/wikis/newproject}.
 For paper drafts, in short:
 \begin{itemize}
-  \item the main file should have the name GROUP-YEAR-NUM-PAPER.tex;
-  \item the metadata file should have the name GROUP-YEAR-NUM-PAPER-metadata.tex
-  \item the auxiliary material should be included in a file with the name GROUP-YEAR-NUM-PAPER-auxmat.tex
+  \item the main file should have the name \File{GROUP-YEAR-NUM-PAPER.tex};
+  \item the metadata file should have the name \File{GROUP-YEAR-NUM-PAPER-metadata.tex};
+  \item the auxiliary material should be included in a file with the name \File{GROUP-YEAR-NUM-PAPER-auxmat.tex}
 \end{itemize}
 
 In addition:
 \begin{itemize}
   \item figures must be included using the \Macro{includegraphics} command;
+  \item new commands should be defined in the \File{GROUP-YEAR-NUM-PAPER-defs.sty} file.
 \end{itemize}
+
 
 %-------------------------------------------------------------------------------
 \section{Title, author and document numbers}
@@ -1307,19 +1316,17 @@ In this section I collect a few useful packages that I recommend using.
   % Have to change things for 2023 (version 5) version of diffcoeff.
   % \ifthenelse{\AtlasTeXLiveVersion < 2018}{%
   In version 5 (released in 2023), the \Macro{dl} command includes a small space before the differential,
-  while there is no space on older versions
-  e.g.\ \(\int f(x) \dl{x}\).
-  In older versions one has to use a syntax like \Macro{dl2\{x\}}.
+  while there is no space on older versions.
+  For ATLAS papers you should use the older version syntax, as arXiv uses an older version of \Package{diffcoeff}.
+  For this reason, the package is included in \Package{atlaspackage} using the command
+  \Macro{RequirePackage\{diffcoeff\}[=v4]}.
+  Hence, one should use a syntax like \Macro{dl2\{x\}},
   e.g.\ \verb|\int f(x) \dl2{x}| gives
-  \ifthenelse{\AtlasTeXLiveVersion > 2018}{\(\int f(x) \dl2{x}\)}{XXX},
-  while \verb|\int f(x) \dl0{x}| or \verb|\int f(x) \dl x| gives  
-  \ifthenelse{\AtlasTeXLiveVersion > 2018}{\(\int f(x) \dl0{x}\).}{XXX.\\
+  \ifthenelse{\AtlasTweakYear > 2017}{\(\int f(x) \dl2{x}\)}{XXX},
+  while \verb|\int f(x) \dl0{x}| or \verb|\int f(x) \dl{x}| gives  
+  \ifthenelse{\AtlasTweakYear > 2017}{\(\int f(x) \dl0{x}\).}{XXX.\\
     \emph{Examples are not complete as some \Package{diffcoeff} package options are not available for older versions of TeX Live.}
   }
-  For ATLAS papers you should use the older version syntax, as arXiv uses an older version of diffcoeff.
-  In this case it is probably easiest to not pass the option 
-  \Option{diffcoeff} to \Package{atlaspackage} and include the package yourself using
-  with the command \Macro{usepackage\{diffcoeff\}[=v4]}.
   
   Alternatives are \Package{esdiff} and \Package{derivative},
   but the \Package{derivative} is probably too new to be used in papers.
@@ -1734,6 +1741,22 @@ This resulted in a much smoother submission process for papers and
 an improved handling of auxiliary material.
 
 Knut Zoch provided the code that fixed the line numbering problems with AMS Math \LaTeX\ environments.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Changes in \texttt{atlaslatex-14.0.0}}
+\label{sec:atlaslatex14}
+%-------------------------------------------------------------------------------
+
+\ADOCnew{14.0.0} no longer needs or uses the \Option{texlive} option,
+which used to be passed to the document class.
+
+Internally \Macro{@ifpackaglater} and \Macro{@ifclasslater} are now used instead.
+Some of the documentation and test files do need such a variable,
+but this is now set only in those documents where it is needed.
+
+Th package \Package{diffcoeff} is no longer included when the \Option{full}
+is passed to \Package{atlaspackage}, as its syntax and options have changed too often.
 
 
 %-------------------------------------------------------------------------------
