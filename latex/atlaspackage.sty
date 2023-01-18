@@ -289,10 +289,10 @@
 \ifthenelse{\boolean{APKG@diffcoeff}}{%
   \IfFileExists{diffcoeff.sty}{%
     \ifthenelse{\boolean{APKG@diffcoeffISO}}{%
-      \typeout{atlaspackage: diffcoeff package included with ISO option.}
+      \PackageInfo{atlaspackage}{diffcoeff package included with ISO option.}
       \RequirePackage[ISO]{diffcoeff}[=v4]
     }{%
-      \typeout{atlaspackage: diffcoeff package included without ISO option.}
+      \PackageInfo{atlaspackage}{diffcoeff package included without ISO option.}
       \RequirePackage{diffcoeff}[=v4]
     }
   }{%
