@@ -1,6 +1,6 @@
 # Makefile for creating an ATLAS LaTeX document
 
-# Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration
 #------------------------------------------------------------------------------
 # By default makes mydocument.pdf using target run_pdflatex.
 # Replace mydocument with your main filename or add another target set.

@@ -1,7 +1,7 @@
 #! /bin/bash
 # Script to adjust atlaslatex documents to use atlaslatexpath style file.
 
-# Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
+# Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 
 # Changes:
 # 2020-11-23 Ian Brock (ian.brock@cern.ch): First version to get round TeX Live 2020 problem with directories in \usepackage etc.

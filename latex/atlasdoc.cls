@@ -7,7 +7,7 @@
 % Note that this file can be overwritten when atlaslatex is updated.
 % If TeX Live 2014 is used and xpatch is needed, have to load mhchem first.
 %
-% Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration.
+% Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
 \newcommand*{\ATPackageVersion}{14.0.0-alpha}
 \ProvidesClass{latex/atlasdoc}[2023/01/31 v14.0.0-alpha ATLAS document class]

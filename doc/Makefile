@@ -4,7 +4,7 @@
 TWEAKYEAR = 2020
 PDFLATEX  = pdflatex
 BIBTEX    = biber
-BASENAME = dummy
+BASENAME  = dummy
 
 .PHONY: clean cleanpdf
 

@@ -2,7 +2,7 @@
 # Script to replace $...$ and $$...$$ with \(...\) and \[...\]
 # Note that this only works if $...$ is on one line.
 
-# Copyright (C) 2002-2022 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration
 
 # Changes:
 # 2018-10-30 Ian Brock (ian.brock@cern.ch): First version of script.
