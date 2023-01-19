@@ -19,8 +19,8 @@ run_pdflatex: $(BASENAME).pdf
 tweakyear: $(BASENAME).tex
 	if [ $(TWEAKYEAR) -ge 2013 -a $(TWEAKYEAR) -lt 2100 ]; then \
 	  echo "Changing tweak year in $<"; \
-	  sed -i'.bak' 's/AtlasTweakYear\{20[0-9][0-9]/AtlasTweakYear\{$(TEXLIVE)/' $<; \
-	else echo "Invalid value for TWEAKYEAR: $(TWEAKYEAR)"; fi; \
+	  sed -i'.bak' 's/AtlasTweakYear}{20[0-9][0-9]/AtlasTweakYear}{$(TWEAKYEAR)/' $<; \
+	else echo "Invalid value for TWEAKYEAR: $(TWEAKYEAR)"; fi;
 
 # Standard LaTeX targets.
 $(BASENAME).pdf: $(BASENAME).tex
@@ -29,12 +29,8 @@ $(BASENAME).pdf: $(BASENAME).tex
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
-%.bbl: %.tex *.bib
-	$(PDFLATEX) $*
-	$(BIBTEX) $*
-
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
+	-rm *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
 	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk *.listing .*.lb *~
 
 cleanpdf:

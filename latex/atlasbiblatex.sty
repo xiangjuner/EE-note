@@ -30,10 +30,18 @@
 \DeclareBoolOption[false]{address}
 \DeclareBoolOption[false]{location}
 \DeclareBoolOption[true]{backref}
-\DeclareStringOption[2020]{texlive}
+\DeclareStringOption[0]{texlive}
 \ProcessKeyvalOptions*
 
-\typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
+% \typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
+\ifthenelse{\equal{ABIB@texlive}{0}}{%
+  \PackageInfo{atlasbiblatex}{No texlive option given - good!}
+}{
+  \PackageWarningNoLine{atlasbiblatex}{%
+    You have passed the option texlive to atlasbiblatex\MessageBreak
+    This option is no longer used and will be ignored%
+  }%
+}
 
 %-------------------------------------------------------------------------------
 % Only set things if biblatex is actually loaded

@@ -4,7 +4,6 @@
 
 BASENAME1 = atlas_physics
 BASENAME2 = atlas_hepphysics
-TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 
@@ -12,13 +11,7 @@ atlas_physics:
 	make -f ../Makefile run_latexmk BASENAME=$(BASENAME1)
 
 atlas_hepphysics:
-	if [ $(TEXLIVE) -ge 2013 ]; then \
-		make -f ../Makefile BASENAME=$(BASENAME2); \
-	fi
-
-texlive:
-	make -f ../Makefile texlive BASENAME=$(BASENAME1) TEXLIVE=$(TEXLIVE)
-	make -f ../Makefile texlive BASENAME=$(BASENAME2) TEXLIVE=$(TEXLIVE)
+	make -f ../Makefile run_latexmk BASENAME=$(BASENAME2)
 
 clean:
 	make -f ../Makefile clean

@@ -1,6 +1,5 @@
 # Makefile for creating ATLAS Acknowledegments
 
-TEXLIVE  = 2020
 PDFLATEX = pdflatex
 BIBTEX   = biber
 
@@ -10,13 +9,6 @@ BASENAME = Acknowledgements-main
 
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
-
-# Change TeX Live version
-texlive: $(BASENAME).tex
-	if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	  echo "Changing texlive value in $<"; \
-	  sed -i'.bak' 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' $<; \
-	else echo "Invalid value for TEXLIVE: $(TEXLIVE)"; fi; \
 
 # Change biblatex backend
 bibtex: $(BASENAME).tex
@@ -37,7 +29,7 @@ $(BASENAME).pdf: $(BASENAME).tex
 	$(BIBTEX) $*
 
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
+	-rm *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
 	 *.run.xml *.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp 
 
 cleanpdf:

@@ -3,15 +3,11 @@
 #------------------------------------------------------------------------------
 
 BASENAME = MC_snippets
-TEXLIVE = 2020
 
 .PHONY: clean cleanpdf
 
 MC_snippets:
 	make -f ../../doc/Makefile run_latexmk BASENAME=$(BASENAME)
-
-texlive:
-	make -f ../../doc/Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
 
 clean:
 	make -f ../../doc/Makefile clean

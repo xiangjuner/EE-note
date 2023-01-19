@@ -20,16 +20,11 @@
 
 #-------------------------------------------------------------------------------
 # Check which TeX Live installation you have with the command pdflatex --version
-TEXLIVE  = 2020
-LATEX    = latex
 PDFLATEX = pdflatex
 # BIBTEX   = bibtex
 BIBTEX   = biber
-DVIPS    = dvips
-DVIPDF   = dvipdf
-TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9].*')
-# TLOKAY   = $(shell test $(TLVERS) -ge $(TEXLIVE) && echo true)
-TWIKI    = https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeXFAQ
+# TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9].*')
+# TWIKI    = https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeXFAQ
 
 #-------------------------------------------------------------------------------
 # The main document filename
@@ -56,12 +51,12 @@ default: run_latexmk
 .PHONY: version clean cleanpdf help
 
 # Check TeX Live version
-version:
-	@echo "Checking version"
-	@echo "TLVERS $(TLVERS), TEXLIVE $(TEXLIVE)"
-	@if [ $(TLVERS) -lt $(TEXLIVE) ]; then \
-		echo "Your TeX Live version ($(TLVERS)) is older than $(TEXLIVE). Please consult $(TWIKI)"; \
-	fi
+# version:
+# 	@echo "Checking version"
+# 	@echo "TLVERS $(TLVERS), TEXLIVE $(TEXLIVE)"
+# 	@if [ $(TLVERS) -lt $(TEXLIVE) ]; then \
+# 		echo "Your TeX Live version ($(TLVERS)) is older than $(TEXLIVE). Please consult $(TWIKI)"; \
+# 	fi
 
 # Standard pdflatex target
 run_pdflatex: $(BASENAME).pdf
@@ -165,27 +160,6 @@ newauxmat:
 
 run_latex: dvipdf
 
-# Targets if you run latex instead of pdflatex
-dvipdf:	$(BASENAME).dvi
-	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress $<
-	@echo "Made $(basename $<).pdf"
-
-dvips:	$(BASENAME).dvi
-	$(DVIPS) $<
-	@echo "Made $(basename $<).ps"
-
-# Specify dependencies for running latex
-#%.dvi:	%.tex tex/*.tex bibtex/bib/*.bib
-%.dvi:	%.tex *.tex *.bib
-	$(LATEX)    $<
-	-$(BIBTEX)  $(basename $<)
-	$(LATEX)    $<
-	$(LATEX)    $<
-
-%.bbl:	%.tex *.bib
-	$(LATEX) $<
-	$(BIBTEX) $<
-
 help:
 	@echo "To create a new paper/CONF Note/PUB Note draft give the command:"
 	@echo "make newpaper [BASENAME=mydocument]"
@@ -219,14 +193,12 @@ help:
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
 	@echo "make cleanpdf to clean output PDF files"
-	@echo "make cleanps  to clean output PS files"
 	@echo "make cleanall to clean all files"
 	@echo "make cleanepstopdf to clean PDF files automatically made from EPS"
-	@echo "make version to check your TeX Live version"
 	@echo ""
 
 clean:
-	-rm *.dvi *.toc *.aux *.lof *.lot *.log *.out \
+	-rm *.toc *.aux *.lof *.lot *.log *.out \
 		*.bbl *.blg *.brf *.bcf *-blx.bib *.run.xml \
 		*.cb *.ind *.idx *.ilg *.inx *.tdo \
 		*.synctex.gz *~ *.fls *.fdb_latexmk .*.lb spellTmp
@@ -236,12 +208,7 @@ cleanpdf:
 	-rm $(BASENAME)-draft-cover.pdf $(BASENAME)-preprint-cover.pdf
 	-rm $(BASENAME)-hepdata-main.pdf
 
-cleanps:
-	-rm $(BASENAME).ps
-	-rm $(BASENAME)-draft-cover.ps $(BASENAME)-preprint-cover.ps
-	-rm $(BASENAME)-hepdata-main.ps
-
-cleanall: clean cleanpdf cleanps
+cleanall: clean cleanpdf
 
 # Clean the PDF files created automatically from EPS files
 cleanepstopdf: $(EPSTOPDFFILES)
