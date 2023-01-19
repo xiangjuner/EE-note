@@ -49,7 +49,7 @@
 % Miscellaneous packages and options.
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
-\DeclareStringOption[2020]{texlive}
+\DeclareStringOption[0]{texlive}
 \DeclareStringOption[biber]{backend}
 % \DeclareStringOption[ragged]{block}
 % \DeclareStringOption[3]{maxbibnames}
@@ -57,7 +57,15 @@
 \DeclareStringOption[]{maxbibnames}
 \ProcessKeyvalOptions*
 
-\typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
+% \typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
+\ifthenelse{\equal{APKG@texlive}{0}}{%
+  \PackageInfo{atlaspackage}{No texlive option given - good!}
+}{
+  \PackageWarningNoLine{atlaspackage}{%
+    You have passed the option texlive to atlaspackage\MessageBreak
+    This option is no longer used and will be ignored%
+  }%
+}
 
 \newif\ifAPKG@less
 \newif\ifAPKG@standard
