@@ -56,17 +56,17 @@ This replaced the use of `\ATLASSLATEXPATH` in Version 10.0.
 
 To make a new paper/CONF note/PUB note draft give the command:
 
-    make newpaper [BASENAME=mydocument] [TEXLIVE=YYYY]
+    make newpaper [BASENAME=mydocument]
 
 To make a new ATLAS note give the command:
 
-    make newnote [BASENAME=mydocument] [TEXLIVE=YYYY]
+    make newnote [BASENAME=mydocument]
 
 `make new` is an alias for `make newpaper`.
 
 Subsequently, you will have to specify which note to build like
 
-    make [BASENAME=mydocument] [TEXLIVE=YYYY]
+    make [BASENAME=mydocument]
 
 using the same name you generated previously.
 
@@ -74,9 +74,8 @@ I strongly recommend that you use `latexmk` to compile your document (this is al
 It works out for itself what has to be run and generally works very well.
 In order to use `pdflatex` directly, change the default target in the `Makefile` from `run_latexmk` to `run_pdflatex`.
 
-The TeX Live version is set to 2020 by default.
-This version number should be fine for newer versions of TeX Live
-and also for an up-to-date MikTeX 2.9 installation.
+The class and style files should find out for themselves which version of TeX Live you are running
+and adjust things as necessary.
 TeX Live versions older than 2013 are not supported.
 The command `make help` gives you a bit more assistance on which make targets exist.
 

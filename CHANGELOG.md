@@ -33,6 +33,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Removed
 
 - `TEXLIVE` removed as variable in `Makefiles`. Replaced with `TWEAKYEAR` in a few places where it is needed.
+- Drop support for running plain `latex` in `Makefiles`.
+- `make version` removed as this check is done by `atlasdoc.cls`.
 
 ### Fixed
 
