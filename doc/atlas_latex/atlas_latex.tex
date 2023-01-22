@@ -7,20 +7,10 @@
 %-------------------------------------------------------------------------------
 \documentclass[REPORT=false, UKenglish]{atlasdoc}
 
-\newcommand*{\AtlasTweakYear}{2022}
+\newcommand*{\AtlasTweakYear}{2020}
 
 % Standard packages that can and should be used in ATLAS papers
-% ATLAS packages
-\ifthenelse{\AtlasTweakYear > 2017}{%
-  \usepackage[diffcoeff]{atlaspackage}
-}{%
-  \usepackage[diffcoeff, diffcoeffISO=false]{atlaspackage}
-  % \ifthenelse{\AtlasTweakYear > 2015}{%
-  %   \usepackage[diffcoeff, diffcoeffISO=false]{atlaspackage}
-  % }{%
-  %   \usepackage{atlaspackage}
-  % }
-}
+\usepackage[diffcoeff]{atlaspackage}
 \usepackage{atlasbiblatex}
 \usepackage{authblk}
 \usepackage{atlasphysics}

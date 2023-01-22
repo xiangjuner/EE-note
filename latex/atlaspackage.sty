@@ -38,8 +38,6 @@
 \DeclareBoolOption[true]{abbrevref}
 % Packages included with full.
 \DeclareBoolOption[false]{mhchem}
-\DeclareBoolOption[false]{diffcoeff}
-\DeclareBoolOption[true]{diffcoeffISO}
 \DeclareBoolOption[false]{physics}
 \DeclareBoolOption[false]{rotating}
 \DeclareBoolOption[false]{xfrac}
@@ -47,9 +45,12 @@
 \DeclareBoolOption[false]{longtable}
 \DeclareBoolOption[false]{xtab}
 % Miscellaneous packages and options.
+\DeclareBoolOption[false]{diffcoeff}
+\DeclareBoolOption[true]{diffcoeffISO}
 \DeclareBoolOption[true]{lineno}
 \DeclareBoolOption[false]{txfonts}
 \DeclareStringOption[0]{texlive}
+\DeclareBoolOption[false]{firstinits}
 \DeclareStringOption[biber]{backend}
 % \DeclareStringOption[ragged]{block}
 % \DeclareStringOption[3]{maxbibnames}
@@ -280,7 +281,7 @@
 % Pass eVkern option to atlasphysics.
 \ifthenelse{\boolean{APKG@eVkern}}{%
   \typeout{atlaspackage: passing eVkern option to atlasphysics.}
-  \PassOptionsToPackage{eVkern}{\ADOC@atlasphysics}
+  \PassOptionsToPackage{eVkern}{atlasphysics}
 }{}
 
 
@@ -398,7 +399,7 @@
   % \typeout{atlaspackage: block set to \APKG@block.}
   % \typeout{atlaspackage: maxbibnames set to \APKG@maxbibnames.}
   % \def\ADOC@atlasbiblatex{\ATLASLATEXPATH atlasbiblatex}
-  \def\ADOC@atlasbiblatex{atlasbiblatex}
+  \providecommand*\ADOC@atlasbiblatex{atlasbiblatex}
   \ifthenelse{\equal{\APKG@block}{}}{}{%
     \typeout{atlaspackage: passing block option to biblatex}
     \PassOptionsToPackage{block=\APKG@block}{\ADOC@atlasbiblatex}
@@ -408,12 +409,12 @@
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
   }
   % \ifthenelse{\APKG@texlive < 2016}{%
-  \@ifpackagelater{biblatex}{2017/04/01}{%
-    \RequirePackage[backend=\APKG@backend,
-      style=numeric-comp, sorting=none, giveninits=true]{biblatex}
-  }{%
+  \ifthenelse{\boolean{APKG@firstinits}}{%
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, firstinits=true]{biblatex}
+  }{%
+    \RequirePackage[backend=\APKG@backend,
+    style=numeric-comp, sorting=none, giveninits=true]{biblatex}
   }
 }{}
 

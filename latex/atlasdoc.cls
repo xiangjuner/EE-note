@@ -94,7 +94,7 @@
 \newif\ifAtlasDraft
 \ifthenelse{\boolean{ADOC@atlasdraft}}{\AtlasDrafttrue}{\AtlasDraftfalse}
 % \newcommand*{\AtlasTeXLiveVersion}{\ADOC@texlive}
-\ifthenelse{\equal{ADOC@texlive}{0}}{%
+\ifthenelse{\equal{\ADOC@texlive}{0}}{%
   \ClassInfo{atlasdoc}{No texlive option given - good!}
 }{
   \ClassWarningNoLine{atlasdoc}{%
@@ -110,8 +110,8 @@
 \newcommand*{\AtlasHeading}[1]{\renewcommand*{\ADOC@docheading}{#1}}
 
 % Turn off backref in atlasbiblatex for CERN preprint
-\newcommand*{\ADOC@atlasbiblatex}{atlasbiblatex}
-\newcommand*{\ADOC@atlasphysics}{atlasphysics}
+% \newcommand*{\ADOC@atlasbiblatex}{atlasbiblatex}
+% \newcommand*{\ADOC@atlasphysics}{atlasphysics}
 
 % CERN preprint
 \ifthenelse{\boolean{ADOC@cernpreprint}}{%
@@ -124,7 +124,7 @@
   \ADOC@BOOKfalse
   \ADOC@REPORTfalse
   \typeout{atlasdoc: turning off backref for a CERN preprint}
-  \PassOptionsToPackage{backref=false}{\ADOC@atlasbiblatex}
+  \PassOptionsToPackage{backref=false}{atlasbiblatex}
 }{%
   % ATLAS paper
   \ifthenelse{\boolean{ADOC@PAPER}}{%
@@ -411,6 +411,18 @@
   \KOMAoptions{DIV=14, BCOR=5mm}
 }
 \KOMAoptions{pagesize}
+
+% Check KOMA-Script version and issue a warning if it is too old
+\@ifclasslater{\KOMAClassName}{2017/01/01}{%
+  \ClassInfo{atlasdoc}{%
+    Using \KOMAScriptVersion, which is fine%
+  }
+}{%
+  \ClassWarningNoLine{atlasdoc}{%
+    Using \KOMAScriptVersion, which is quite old.\MessageBreak
+    You should switch to a 2020 version or later%
+  }
+}
 
 % Set KOMA-Script options for ATLAS style
 \ifthenelse{\boolean{ADOC@atlasstyle}}{%
