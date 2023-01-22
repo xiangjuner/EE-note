@@ -59,7 +59,7 @@
 \ProcessKeyvalOptions*
 
 % \typeout{atlaspackage: APKG@texlive is [\APKG@texlive]}
-\ifthenelse{\equal{APKG@texlive}{0}}{%
+\ifthenelse{\equal{\APKG@texlive}{0}}{%
   \PackageInfo{atlaspackage}{No texlive option given - good!}
 }{
   \PackageWarningNoLine{atlaspackage}{%
