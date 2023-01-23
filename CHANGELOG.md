@@ -16,6 +16,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ## [14.0.0-alpha] - 2023-01-XX
 
+Skeleton documents work without change for TeX Live 2017 and later.
+
 ### Added
 
 - December 2022 update of publications.
@@ -24,6 +26,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - The `diffcoeff` package is no longer included by default when passing the `full` option to `atlaspackage`.
   This is mainly done, as the syntax of the commands has changed several times.
+- Document error when passing `full` option to `atlaspackage` and using TeX Live earlier than 2016.
 
 ### Deprecated
 
