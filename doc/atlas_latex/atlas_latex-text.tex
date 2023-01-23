@@ -601,6 +601,11 @@ Finally the full set includes further packages that may be useful:
 The above packages are all included if you turn on the full set.
 You can turn them on individually if you use the minimal or standard set.
 If you pass the \Option{xtab} option, it will be included instead of \Package{longtable}.
+The \Option{full} option
+includes both the \Package{longtable} and \Package{multirow} packages.
+For \TeX\ Live versions earlier than 2016 this will lead to an error,
+as the \Option{longtable} option was only added to \Package{multirow} after that.
+
 \ADOCnew{14.0} \Package{diffcoeff} will only be included if specifically requested.
   It used to be part of the \Option{full} option
   for \TeX\ Live versions newer than 2015 (defined by the \Option{texlive} option).
