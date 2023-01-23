@@ -109,3 +109,13 @@ Four other make targets are:
 - `make cleanpdf`: remove output pdf file
 - `make cleanall`: also cleans up output pdf file
 - `make version`: check your TeX Live version
+
+### Running with different `TeX Live` versions
+
+* Skeleton documents work without change for TeX Live 2015 and later.
+  You have to pass the `firstinits` option to `atlaspackage` for older versions.
+* The documentation needs small tweaks to compile with versions older than 2018.
+* The journal skeleton `atlass-revtex.tex` needs to use `revtex4-1`.
+  instead of `revtex4-2` for versions older than 2018.
+* Do not try to use `diffcoeff` for TeX Live 2016.
+
