@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.0.0-alpha] - 2023-01-27
+## [14.0.0] - 2023-01-27
 
 Summary of what may have to changed with different version of TeX Live
 can be found in `README.md`.

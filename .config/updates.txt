@@ -1,5 +1,7 @@
 This new version contains a number of updates:
-- Update publications up to November 2022.
+- Use of the texlive option is deprecated and it is not used any more.
+- TEXLIVE also removed as a variale n the Makefile.
+- Update publications up to December 2022.
 - Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
 - Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
 - The macro \ATLASLATEXPATH is no longer be necessary and should not be used.
