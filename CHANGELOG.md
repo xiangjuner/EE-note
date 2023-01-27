@@ -16,8 +16,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ## [14.0.0] - 2023-01-27
 
-Summary of what may have to changed with different version of TeX Live
-can be found in `README.md`.
+With the removal of the `texlive` option, a summary of what may have to changed
+with different versions of TeX Live can be found in `README.md`.
 
 ### Added
 
