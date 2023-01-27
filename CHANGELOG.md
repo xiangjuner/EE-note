@@ -14,24 +14,25 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.0.0-alpha] - 2023-01-XX
+## [14.0.0-alpha] - 2023-01-27
 
-Skeleton documents work without change for TeX Live 2015 and later.
-You have to pass the `firstinits` option to `atlaspackage` for older versions.
-The documentation needs small tweaks to compile with versions older than 2018.
-The journal skeleton `atlass-revtex.tex` needs to use `revtex4-1`.
-instead of `revtex4-2` for versions older than 2018.
-Do not try to use `diffcoeff` for TeX Live 2016.
+Summary of what may have to changed with different version of TeX Live
+can be found in `README.md`.
 
 ### Added
 
 - December 2022 update of publications.
+- `firstinits` option added to `atlaspackage` to replace `texlive` steering.
 
 ### Changed
 
 - The `diffcoeff` package is no longer included by default when passing the `full` option to `atlaspackage`.
   This is mainly done, as the syntax of the commands has changed several times.
+  Version to include set to 4.
+  Documentation of `diffcoeff` updated accordingly.
+- Copyright updated to 2023.
 - Document error when passing `full` option to `atlaspackage` and using TeX Live older than 2016.
+- `texlive` default year set to 0, so using option can be spotted.
 
 ### Deprecated
 

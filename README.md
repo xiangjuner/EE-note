@@ -9,41 +9,6 @@ Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration
 
 ------
 
-## Included files
-
-The following template main files exist:
-
-- `atlas-paper.tex`:    ATLAS paper draft (including CONF and PUB notes)
-- `atlas-note.tex`:     ATLAS note
-- `atlas-book.tex`:     Long ATLAS document,  such as a TDR
-- `atlas-draft-cover.tex`:  Make a standalone cover for an ATLAS draft
-- `atlas-preprint-cover.tex`: Make a standalone cover for an ATLAS CERN preprint
-- `atlas-auxmat-main.tex`:  A front page for auxiliary material
-- `atlas-hepdata-main.tex`: A front page for material destined for HEPData
-  
-The ATLAS document class (`atlasdoc.cls`) and style files can be found in 
-the latex directory. The following main style files exist:
-
-- `atlasbiblatex.sty`:  Reference style adjustments for `biblatex`
-- `atlascover.sty`:     Make a cover (CONF note, CERN preprint, ATLAS draft)
-- `atlascontribute.sty`: List of contributors (and authors) for a document
-- `atlaspackage.sty`:   Standard packages used in ATLAS documents
-- `atlasphysics.sty`:   Useful definitions. This file simply inputs others.
-
-Options can be used to specify which should be included.
-
-Documentation can be found via the ATLAS TWiki page:
-<https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeX>
-
-The following documents are available in subdirectories of the `doc` and `template` directories or as artifacts in the GitLab repository:
-* [Users guide to the ATLAS LaTeX package](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex/atlas_latex.pdf?job=build_user) - also in `doc/atlas_latex`
-* [Guide to references and BibTeX in ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex/atlas_bibtex.pdf?job=build_bibtex) - also in `doc/atlas_bibtex`
-* [ATLAS physics symbols](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_physics.pdf?job=build_physics) - also in `doc/atlas_physics`
-* [ATLAS physics symbols with hepparticle](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_hepphysics.pdf?job=build_physics) - also in `doc/atlas_physics`
-* [Guide to formatting tables for ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables/atlas_tables.pdf?job=build_tables) - also in `doc/atlas_tables`
-
-
-
 ## How to use
 
 The general idea is that, for each document, this package should be cloned into a new directory.
@@ -95,7 +60,9 @@ If you are running on `lxplus` for it to work, you MUST set your PATH correctly 
     export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2020/bin/x86_64-linux:$PATH
 
 in order to use TeX Live 2020.
-Physics Office Continuous Integration has images for TeX Live 2016, 2017 and 2020.
+Physics Office Continuous Integration has images for TeX Live 2017 and 2020.
+
+### Makefile and documentation
 
 You can produce the users guide to the templates (and thus test that your LaTeX setup is working)
 by giving the commands:
@@ -103,19 +70,51 @@ by giving the commands:
     cd doc/atlas_latex
     make
 
-Four other make targets are:
+Three other make targets are:
 
 - `make clean`: cleans up intermediate files
 - `make cleanpdf`: remove output pdf file
 - `make cleanall`: also cleans up output pdf file
-- `make version`: check your TeX Live version
 
-### Running with different `TeX Live` versions
+## Running with different `TeX Live` versions
 
-* Skeleton documents work without change for TeX Live 2015 and later.
+- Skeleton documents work without change for TeX Live 2015 and later.
   You have to pass the `firstinits` option to `atlaspackage` for older versions.
-* The documentation needs small tweaks to compile with versions older than 2018.
-* The journal skeleton `atlass-revtex.tex` needs to use `revtex4-1`.
+- The documentation needs small tweaks to compile with versions older than 2018.
+- The journal skeleton `atlass-revtex.tex` needs to use `revtex4-1`
   instead of `revtex4-2` for versions older than 2018.
-* Do not try to use `diffcoeff` for TeX Live 2016.
+- Do not try to use `diffcoeff` for TeX Live 2016.
+
+## Included files
+
+The following template main files exist:
+
+- `atlas-paper.tex`:    ATLAS paper draft (including CONF and PUB notes)
+- `atlas-note.tex`:     ATLAS note
+- `atlas-book.tex`:     Long ATLAS document,  such as a TDR
+- `atlas-draft-cover.tex`:  Make a standalone cover for an ATLAS draft
+- `atlas-preprint-cover.tex`: Make a standalone cover for an ATLAS CERN preprint
+- `atlas-auxmat-main.tex`:  A front page for auxiliary material
+- `atlas-hepdata-main.tex`: A front page for material destined for HEPData
+  
+The ATLAS document class (`atlasdoc.cls`) and style files can be found in 
+the latex directory. The following main style files exist:
+
+- `atlasbiblatex.sty`:  Reference style adjustments for `biblatex`
+- `atlascover.sty`:     Make a cover (CONF note, CERN preprint, ATLAS draft)
+- `atlascontribute.sty`: List of contributors (and authors) for a document
+- `atlaspackage.sty`:   Standard packages used in ATLAS documents
+- `atlasphysics.sty`:   Useful definitions. This file simply inputs others.
+
+Options can be used to specify which should be included.
+
+Documentation can be found via the ATLAS TWiki page:
+<https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeX>
+
+The following documents are available in subdirectories of the `doc` and `template` directories or as artifacts in the GitLab repository:
+* [Users guide to the ATLAS LaTeX package](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_latex/atlas_latex.pdf?job=build_user) - also in `doc/atlas_latex`
+* [Guide to references and BibTeX in ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_bibtex/atlas_bibtex.pdf?job=build_bibtex) - also in `doc/atlas_bibtex`
+* [ATLAS physics symbols](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_physics.pdf?job=build_physics) - also in `doc/atlas_physics`
+* [ATLAS physics symbols with hepparticle](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_physics/atlas_hepphysics.pdf?job=build_physics) - also in `doc/atlas_physics`
+* [Guide to formatting tables for ATLAS documents](https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/doc/atlas_tables/atlas_tables.pdf?job=build_tables) - also in `doc/atlas_tables`
 
