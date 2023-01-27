@@ -100,48 +100,21 @@ newbooktexmf: newdocumenttexmf newfiles newpapermetadata
 
 draftcover:
 	cp  template/atlas-draft-cover.tex $(BASENAME)-draft-cover.tex
-	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-draft-cover.tex \
-	#     >$(BASENAME)-draft-cover.tex; \
-	# else \
-	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	#   cp  template/$(BASENAME)-draft-cover.tex $(BASENAME)-draft-cover.tex; \
-	# fi
 
 preprintcover:
 	cp template/atlas-preprint-cover.tex $(BASENAME)-preprint-cover.tex
-	# sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' template/atlas-preprint-cover.tex \
-	#   >$(BASENAME)-preprint-cover.tex
 
 newdata:
 	sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex >$(BASENAME)-hepdata-main.tex
-	# sed s/atlas-document/$(BASENAME)/ template/atlas-hepdata-main.tex | \
-	# sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME)-hepdata-main.tex
 	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
 
 newdocument:
-	sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' >$(BASENAME).tex; \
-	# else \
-	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	# fi
+	sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex
 
 newdocumenttexmf:
 	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
 	  sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
-	  >$(BASENAME).tex; \
-	# if [ $(TEXLIVE) -ge 2013 -a $(TEXLIVE) -lt 2100 ]; then \
-	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	#   sed 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' | \
-	#   sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
-	#   >$(BASENAME).tex; \
-	# else \
-	#   echo "Invalid value for TEXLIVE: $(TEXLIVE)"; \
-	#   sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex; \
-	# fi
+	  >$(BASENAME).tex
 
 newpapermetadata:
 	cp template/atlas-paper-metadata.tex $(BASENAME)-metadata.tex
@@ -151,14 +124,11 @@ newnotemetadata:
 
 newfiles:
 	echo "% Put you own bibliography entries in this file" > $(BASENAME).bib
-	# touch $(BASENAME).bib
 	touch $(BASENAME)-defs.sty
 
 newauxmat:
 	cp template/atlas-auxmat.tex $(BASENAME)-auxmat.tex
 	cp template/atlas-hepdata.tex $(BASENAME)-hepdata.tex
-
-run_latex: dvipdf
 
 help:
 	@echo "To create a new paper/CONF Note/PUB Note draft give the command:"
