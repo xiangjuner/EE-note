@@ -14,6 +14,31 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.1.0-alpha] - 2023-02-XX
+
+### Added
+
+### Changed
+
+### Deprecated
+
+- The options `math` and `other` are ignored when passed to `atlasphysics`.
+- The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
+  have been moved into the `obsolete` folder (see below).
+
+### Removed
+
+- The packages `atlasmath.sty` and `atlasother.sty` have been moved into the `obsolete` folder.
+  Move them back to the `latex` folder if you want to use them.
+- The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
+  have been removed and integrated into `atlasparticle.sty`.
+
+### Fixed
+
+### Security
+
+---
+
 ## [14.0.0] - 2023-01-27
 
 With the removal of the `texlive` option, a summary of what may have to changed

@@ -426,6 +426,7 @@ In the following the default option is in boldface.
 \item[\Option{linenofix=true|{\normalfont false}}] fix line numbers around AMS math environments with using the \Package{linenomath} environment;
 \item[\Option{texmf}] use the syntax \Macro{usepackage\{package\}}
   instead of \Macro{usepackage\{latex/package\}} to include packages.
+  \emph{\ADOCold{14.1.0} This option has been removed}.
   \emph{\ADOCold{10.0.0} With the move to the \Package{atlaslatexpath} style file, this option is obsolete}.
 \item[\Option{newtx}] use the \Package{newtxtext} and \Package{newtxmath} packages for fonts 
   (default for \TeX Live > 2012);
@@ -1551,8 +1552,8 @@ If you are using traditional \BibTeX\ you also have to change\\
 \verb|\bibliographystyle{bib/bst/atlasBibStyleWoTitle}| to\\
 \verb|\bibliographystyle{atlasBibStyleWoTitle}|
 
-The \Option{texmf} option in \Package{atlasphysics} is not strictly necessary if you use the class \Package{atlasdoc},
-but it does not do any harm.
+\ADOCold{14.1.0} The \Option{texmf} option in \Package{atlasphysics} was not strictly necessary if you use the class \Package{atlasdoc}.
+It has now been removed.
 
 
 \appendix

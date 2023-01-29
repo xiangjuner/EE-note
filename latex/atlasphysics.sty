@@ -8,7 +8,7 @@
 %
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasphysics}[2023/01/27 v14.0.0 ATLAS physics macros]
+\ProvidesPackage{latex/atlasphysics}[2023/02/31 v14.1.0-alpha ATLAS physics macros]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -52,6 +52,23 @@
     This option is no longer used and will be ignored%
   }%
 }
+% \typeout{atlasphysics: APHY@texlive is [\APHY@texlive]}
+
+% math and other options no longer used.
+\ifthenelse{\boolean{APHY@math}}{%
+  \PackageWarningNoLine{atlasphysics}{%
+    You have passed the option math to atlasphysics\MessageBreak
+    This option is no longer used and will be ignored%
+  }
+}{}
+\ifthenelse{\boolean{APHY@other}}{%
+  \PackageWarningNoLine{atlasphysics}{%
+    You have passed the option other to atlasphysics\MessageBreak
+    This option is no longer used and will be ignored%
+  }
+}{}
+
+
 \ifthenelse{\boolean{APHY@eVkern}}{%
   \PackageInfo{atlasphysics}{APHY@eVkern is true}
 }{%
@@ -72,33 +89,32 @@
 \ifthenelse{\boolean{APHY@journal}}{\RequirePackage{atlasjournal}}{}
 
 % Useful math related definitions
-\ifthenelse{\boolean{APHY@math}}{\RequirePackage{atlasmath}}{}
+% \ifthenelse{\boolean{APHY@math}}{\RequirePackage{atlasmath}}{}
 
 % Miscellaneous useful definitions
 \ifthenelse{\boolean{APHY@misc}}{\RequirePackage{atlasmisc}}{}
 
 % Other maybe useful definitions
-\ifthenelse{\boolean{APHY@other}}{\RequirePackage{atlasother}}{}
+% \ifthenelse{\boolean{APHY@other}}{\RequirePackage{atlasother}}{}
 
 % Text snippets
 \ifthenelse{\boolean{APHY@snippets}}{\RequirePackage{atlassnippets}}{}
 
-% Particles
+% Particles and processes.
 % Load either atlasparticle or atlashepparticle, but not both.
-% Priority given to atlashepparticle.
-\ifthenelse{\boolean{APHY@hepparticle}}{%
-  \RequirePackage{atlashepparticle}
-}{%
-  \ifthenelse{\boolean{APHY@particle}}{\RequirePackage{atlasparticle}}{}
-}
-
-% Processes
-% Load either atlasprocess or atlashepprocess, but not both.
-% Priority given to atlashepprocess.
+% Priority given to atlashepprocess and atlashepparticle
 \ifthenelse{\boolean{APHY@hepprocess}}{%
-  \RequirePackage{atlashepprocess}
+  \RequirePackage[hepparticle, hepprocess]{atlasparticle}
 }{%
-  \ifthenelse{\boolean{APHY@process}}{\RequirePackage{atlasprocess}}{}
+  \ifthenelse{\boolean{APHY@hepparticle}}{%
+    \RequirePackage[hepparticle]{atlasparticle}
+  }{%
+    \ifthenelse{\boolean{APHY@process}}{%
+      \RequirePackage[process]{atlasparticle}
+    }{
+      \RequirePackage{atlasparticle}
+    }
+  }
 }
 
 % Units
