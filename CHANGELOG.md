@@ -18,6 +18,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
+- Add option `orcidlogo` to use `orcidlink` package with Orcid logo.
+
 ### Changed
 
 ### Deprecated
@@ -31,7 +33,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - The packages `atlasmath.sty` and `atlasother.sty` have been moved into the `obsolete` folder.
   Move them back to the `latex` folder if you want to use them.
 - The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
-  have been removed and integrated into `atlasparticle.sty`.
+  have been moved to the obsolete folder and integrated into `atlasparticle.sty`.
 
 ### Fixed
 

@@ -220,10 +220,18 @@
 
 % Set up command for authors and ORCID
 \NewDocumentCommand \AtlasOrcid { o m } {%
-  \IfNoValueTF {#1} {%
-    #2%
+  \ifthenelse{\boolean{ADOC@orcidlogo}}{%
+    \IfNoValueTF {#1} {%
+      #2%
+    }{%
+      #2\,\orcidlink{#1}%
+    }%
   }{%
-    \href{https://orcid.org/#1}{#2}%
+    \IfNoValueTF {#1} {%
+      #2%
+    }{%
+      \href{https://orcid.org/#1}{#2}%
+    }%
   }%
 }
 
