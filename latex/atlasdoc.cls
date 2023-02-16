@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{14.1.0-alpha}
-\ProvidesClass{latex/atlasdoc}[2023/02/31 v14.1.0-alpha ATLAS document class]
+\newcommand*{\ATPackageVersion}{14.1.0}
+\ProvidesClass{latex/atlasdoc}[2023/02/16 v14.1.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -459,7 +459,7 @@
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
 }{}
 
-% Set up command for authors and ORCID
+% Set up command for authors and ORCID.
 % Need to include graphics at beginning of document so path is defined.
 \ifthenelse{\boolean{ADOC@orcidlogo}}{%
   % \RequirePackage{orcidlink}
