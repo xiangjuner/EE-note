@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{14.0.0}
-\ProvidesClass{latex/atlasdoc}[2023/01/27 v14.0.0 ATLAS document class]
+\newcommand*{\ATPackageVersion}{14.1.0-alpha}
+\ProvidesClass{latex/atlasdoc}[2023/02/31 v14.1.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -61,6 +61,7 @@
 \DeclareBoolOption[false]{showframe}
 \DeclareBoolOption[false]{shownote}
 \DeclareBoolOption[false]{cmslogo}
+\DeclareBoolOption[false]{orcidlogo}
 \DeclareStringOption[]{extralogo}
 \DeclareStringOption[0pt]{titleextraheight}
 \DeclareStringOption[0pt]{copyrightoffset}
@@ -217,15 +218,6 @@
 % ATLAS draft heading text
 \newcommand*{\ADOC@draftheading}{ATLAS DRAFT}
 \newcommand*{\AtlasDraftHeading}[1]{\renewcommand*{\ADOC@draftheading}{#1}}
-
-% Set up command for authors and ORCID
-\NewDocumentCommand \AtlasOrcid { o m } {%
-  \IfNoValueTF {#1} {%
-    #2%
-  }{%
-    \href{https://orcid.org/#1}{#2}%
-  }%
-}
 
 % For final version turn off output of ToDo notes.
 % This does not work properly, as output=true|false is usually passed directly to atlastodo.
@@ -466,6 +458,33 @@
   \setcapindent{0pt}
   \deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}\ }
 }{}
+
+% Set up command for authors and ORCID
+% Need to include graphics at beginning of document so path is defined.
+\ifthenelse{\boolean{ADOC@orcidlogo}}{%
+  % \RequirePackage{orcidlink}
+  % \RequirePackage{atlasorcid}
+  \newbox{\myorcidaffilbox}
+  \newcommand{\orcidlink}[1]{\href{https://orcid.org/#1}{\usebox{\myorcidaffilbox}}}
+  \AtBeginDocument{%
+    \sbox{\myorcidaffilbox}{\large\includegraphics[height=1.7ex]{ORCID-iD_icon-128x128}}%
+  }
+}{}
+\NewDocumentCommand \AtlasOrcid { o m } {%
+  \ifthenelse{\boolean{ADOC@orcidlogo}}{%
+    \IfNoValueTF {#1} {%
+      #2%
+    }{%
+      #2\,\orcidlink{#1}%
+    }%
+  }{%
+    \IfNoValueTF {#1} {%
+      #2%
+    }{%
+      \href{https://orcid.org/#1}{#2}%
+    }%
+  }%
+}
 
 % ATLAS draft cover pages for papers, PUB and CONF notes
 \newcommand*{\ADOC@atlascover}{atlascover}

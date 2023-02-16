@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.1.0] - 2023-02-16
+
+### Added
+
+- Add option `orcidlogo` to include a visible ORCiD link in the author list.
+
+---
+
 ## [14.0.0] - 2023-01-27
 
 With the removal of the `texlive` option, a summary of what may have to changed
