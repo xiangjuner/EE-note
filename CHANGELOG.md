@@ -18,7 +18,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
-- Add option `orcidlogo` to use `orcidlink` package with Orcid logo.
+- Add option `orcidlogo` to include a visible ORCiD link in the author list.
 
 ### Changed
 
