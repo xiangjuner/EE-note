@@ -14,11 +14,12 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.1.0] - 2023-02-16
+## [14.1.0] - 2023-03-07
 
 ### Added
 
 - Add option `orcidlogo` to include a visible ORCiD link in the author list.
+- January update of CMS publications.
 
 ---
 
