@@ -405,7 +405,7 @@ Several more options can be set.
 In the following the default option is in boldface.
 \begin{description}
 \item[\Option{atlasstyle=true|{\normalfont false}}] turn on (default) or off the use of the ATLAS style for the document;
-\item[\Option{atlasdraft={\normalfont true}|false}] this is a draft version of the document;
+\item[\Option{atlasdraft=true|{\normalfont false}}] this is a draft version of the document;
 \item[\Option{coverpage}] include an ATLAS draft cover page;
 \item[\Option{cernpreprint}] make the front page for a CERN preprint.
   The option \Option{preprint} works as well, but is deprecated;
@@ -437,6 +437,7 @@ In the following the default option is in boldface.
   if the book does not have an abstract;
 \item[\Option{atlaslogo=true|{\normalfont false}}] show the ATLAS logo on the title page;
 \item[\Option{cernlogo=true|{\normalfont false}}] show the CERN logo on the title page;
+\item[\Option{orcidlogo={\normalfont true}|false}] include a visible ORCiD link in the author list;
 \item[\Option{cmslogo={\normalfont true}|false}] include the CMS logo on the title page;
 \item[\Option{extralogo=\normalfont{filename}}] include an extra logo on the title page;
 \item[\Option{showframe={\normalfont true}|false}] load the \Package{showframe} package, to display frames showing the boxes for text body, header, footer and margin;
@@ -463,6 +464,9 @@ the macros \Macro{captionabove} and \Macro{captionbelow}.
 \ADOCnew{04-03-00} It is intended to replace using the definition of \Macro{AtlasVersion} to decide if this a final version of a document.
 In a later version the default value will be set to \Option{false},
 so that this option simply has to be removed when a document is final.
+
+\ADOCnew{14.1.0} The option \Option{orcidlogo} has been added to allow
+a visible ORCiD link to be shown in the author list.
 
 \ADOCnew{13.3.0} The options \Option{cmslogo} and \Option{extralogo} have been added to allow
 the CMS Collaboration logo, or another logo, to be added to the CERN preprint page next to the ATLAS logo.
@@ -830,6 +834,8 @@ You should also turn off ATLAS draft cover page --- remove the option \Option{co
 % If you move the class and style files to the same directory as the main file,
 % you need to add the option \Option{texmf} to the \Macro{documentclass}.
 
+If you paper should include an ORCiD logo for each author in the author list
+pass the option \Option{orcidlogo} to \Package{atlasdoc}.
 If your paper should include the CMS logo, pass the option \Option{cmslogo} to \Package{atlasdoc}.
 If your paper should include another logo next to the ATLAS logo,
 pass the filename of the other logo to \Package{atlasdoc} using the \Option{extralogo} option.
