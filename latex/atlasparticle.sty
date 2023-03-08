@@ -251,11 +251,12 @@
 \ifthenelse{\boolean{APTCL@hepparticle}}{%
   \newcommand*{\UoneS}{\PgUi}
   \newcommand*{\Ups}[1]{\ensuremath{\PgU(\text{#1S})}\xspace}
-  \DeclareRobustCommand{\Pbgc}{\APTCL@hepparticle{\chi}{b}{}\xspace}
+  \DeclareRobustCommand{\Pbgc}{\HepParticle{\chi}{b}{}\xspace}
   \newcommand*{\chib}{\Pbgc}
 }{%
   \newcommand*{\UoneS}{\ensuremath{\mit\Upsilon(\text{1S})}\xspace}
   \newcommand*{\Ups}[1]{\ensuremath{\mit{\Upsilon}(\text{#1S})}\xspace}
+  \newcommand*{\Pbgc}{\ensuremath{\raise.4ex\hbox{\(\chi\)}_{{b}}}\xspace}
   \newcommand*{\chib}{\ensuremath{\raise.4ex\hbox{\(\chi\)}_{{b}}}\xspace}
 }
 
