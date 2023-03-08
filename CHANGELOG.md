@@ -14,13 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.1.0] - 2023-03-07
+## [14.1.0] - 2023-03-08
 
 ### Added
 
 - Add option `orcidlogo` to include a visible ORCiD link in the author list.
-
-### Changed
+- January update of CMS publications.
+- A few small fixes to publications.
+- Add `\xspace` to units in `atlasunit.sty`.
 
 ### Deprecated
 
