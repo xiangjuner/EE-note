@@ -152,6 +152,16 @@ for lfile in bib/*.bib; do
 done
 
 # Logos
+# ORCID-iD_icon-128.128.png should be there
+for file in ORCID-iD_icon-128x128.png; do
+    if [ -e logos/${file} ]; then
+        echo "${file} is already in logos directory."
+    else
+        echo "Copying ${file} to logos directory."
+        cp tmp-atlaslatex/logos/${file} logos/
+    fi
+done
+
 for lfile in logos/*; do
     afile=tmp-atlaslatex/logos/$(basename $lfile)
     cf_files "${lfile}" "${afile}"

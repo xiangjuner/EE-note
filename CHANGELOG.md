@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.2.0] - 2023-03-16
+
+### Changed
+
+- Update `atlaslatex_update.sh` to make sure ORCiD logo is included.
+
+---
+
 ## [14.1.0] - 2023-03-08
 
 ### Added
