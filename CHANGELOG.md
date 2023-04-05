@@ -14,11 +14,15 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.2.0] - 2023-03-16
+## [14.2.1] - 2023-04-05
 
 ### Changed
 
 - Update `atlaslatex_update.sh` to make sure ORCiD logo is included.
+
+### Fixed
+
+- Small fix to detector template.
 
 ---
 
@@ -43,10 +47,6 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
   Move them back to the `latex` folder if you want to use them.
 - The packages `atlashepprocess.sty`, `atlasprocess.sty` and `atlashepparticle.sty`
   have been moved to the obsolete folder and integrated into `atlasparticle.sty`.
-
-### Fixed
-
-### Security
 
 ---
 
