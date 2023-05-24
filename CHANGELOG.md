@@ -14,6 +14,24 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.3.0-alpha] - 2023-06-01
+
+### Added
+
+### Changed
+
+- Add `/` back into PATH in `atlaslatexpath.sty` as things otherwise break in LaTeX 2023-05-15.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [14.2.1] - 2023-04-05
 
 ### Changed
