@@ -8,16 +8,18 @@
 %
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration
 %-------------------------------------------------------------------------------
-\ProvidesPackage{../atlasdocpath}[2022/03/14 v13.0.0 ATLAS LaTeX path]
+\ProvidesPackage{../atlasdocpath}[2023/06/10 v14.3.0 ATLAS LaTeX path]
 \NeedsTeXFormat{LaTeX2e}
 
+% As of TeX Live 2020 the slash is not needed after the directory name.
+% Directory without / breaks again in LaTeX 2023-05-15, so this is not needed.
 % TeX Live 2020 also provides the command \IfFormatAtLeastTF
-\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+% \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
 
 %-------------------------------------------------------------------------------
-% As of TeX Live 2020 the slash is not needed after the directory name.
-\IfFormatAtLeastTF{2020/10/01}{%
-  \def\input@path{{..}{../../latex}}
-}{
-  \def\input@path{{../}{../../latex/}}
-}
+\def\input@path{{../}{../../latex/}}
+% \IfFormatAtLeastTF{2020/10/01}{%
+%   \def\input@path{{latex/}}
+% }{
+%   \def\input@path{{latex/}}
+% }

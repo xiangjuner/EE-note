@@ -5,14 +5,8 @@
 % https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-% As of TeX Live 2020 the slash is not needed after the directory name.
 \makeatletter
-\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
-\IfFormatAtLeastTF{2020/10/01}{%
-  \def\input@path{{..}{../../latex}}
-}{
-  \def\input@path{{../}{../../latex/}}
-}
+\def\input@path{{../../latex/}}
 \makeatother
 
 %-------------------------------------------------------------------------------
