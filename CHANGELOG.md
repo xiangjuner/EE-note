@@ -14,21 +14,19 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.3.0-alpha] - 2023-06-01
+## [14.3.0] - 2023-06-10
 
 ### Added
 
+- Add detector description for Run 3.
+
 ### Changed
 
-- Add `/` back into PATH in `atlaslatexpath.sty` as things otherwise break in LaTeX 2023-05-15.
-
-### Deprecated
-
-### Removed
+- A few fixes to `atlas-useful.bib`.
 
 ### Fixed
 
-### Security
+- Add `/` back into PATH in `atlaslatexpath.sty` as things otherwise break in LaTeX 2023-05-15.
 
 ---
 
