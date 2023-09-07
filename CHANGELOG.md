@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.5.1] - 2023-09-07
+
+### Added
+
+- Add 2023 computing acknowledgements.
+
+---
+
 ## [14.5.0] - 2023-07-18
 
 ### Added
