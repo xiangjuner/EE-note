@@ -14,9 +14,11 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.6.0-alpha] - 2023-08-XX
+## [14.6.0] - 2023-09-13
 
 ### Added
+
+- July-August update of publications.
 
 ### Changed
 
@@ -27,6 +29,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Fixed
 
 ### Security
+
+---
 
 ## [14.5.1] - 2023-09-07
 
