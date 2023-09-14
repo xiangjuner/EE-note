@@ -18,7 +18,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Added
 
-- July-August update of publications.
+- July-August 2023 update of publications.
 
 ### Changed
 
