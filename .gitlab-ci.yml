@@ -19,15 +19,17 @@ trigger-pogitlab:
 # This happens automatically for the master branch and manual for the rest
 build_image:
   stage: Docker
-  variables:
-    TO: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    DOCKER_FILE: .config/Dockerfile
-  tags:
-    - docker-image-build
   only: 
     - master@atlas-physics-office/atlaslatex
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
   script:
     - echo building image
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/.config/Dockerfile
+      --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
 # This automatically builds the INT note template and sends it to a publicly accessible space
 # https://gitlab.cern.ch/atlas-physics-office/atlaslatex/-/jobs/artifacts/master/file/mydocument.pdf?job=build_NOTE
