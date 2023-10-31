@@ -14,21 +14,19 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.7.0] - 2023-10-31
+
+### Added
+
+- September-October 2023 update of publications.
+
+---
+
 ## [14.6.0] - 2023-09-13
 
 ### Added
 
 - July-August 2023 update of publications.
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ---
 

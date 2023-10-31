@@ -1,7 +1,6 @@
 This new version contains a number of updates:
-- Update publications up to August 2023.
+- Update publications up to October 2023.
 - Add Run 3 detector description.
-- Add option orcidlogo to include a visible ORCiD link in the author list.
 - Use of the texlive option is deprecated and it is not used any more.
 - TEXLIVE also removed as a variable in the Makefile.
 - Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
