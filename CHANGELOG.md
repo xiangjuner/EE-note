@@ -14,11 +14,35 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [Unreleased] - 2023-11-XX
+
+### Added
+
+### Changed
+
+- Updated text about authors in metadata files.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Text about `atlascontribute`` in notes metadata file was a bit confusing.
+
+### Security
+
+---
+
 ## [14.7.0] - 2023-10-31
 
 ### Added
 
 - September-October 2023 update of publications.
+
+### Fixed
+
+- Fixed the arXiv category for a couple of references.
 
 ---
 
@@ -28,7 +52,11 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - July-August 2023 update of publications.
 
----
+### Changed
+
+- Added `\xspace` to units in `atlasunit.sty`.
+
+ ---
 
 ## [14.5.1] - 2023-09-07
 
@@ -1665,7 +1693,7 @@ Hopefully this will be fixed in the next release.
 
 ---
 
-## [Unreleased] - 2023-01-XX
+## [Unreleased] - 2024-01-XX
 
 ### Added
 

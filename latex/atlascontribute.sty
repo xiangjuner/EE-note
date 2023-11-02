@@ -56,10 +56,12 @@
 \ifthenelse{\boolean{ACTR@xtab}}{\RequirePackage{xtab}}{}
 
 % If multiple authors/affiliations are needed, use the authblk package
+% Put comma between insititues instead of new line.
 \ifthenelse{\boolean{ACTR@authblk}}{%
   \RequirePackage{authblk}
   \renewcommand\Authands{, } % avoid ``. and'' for last author
   \renewcommand\Affilfont{\itshape\small} % affiliation formatting
+  \renewcommand\AB@affilsepx{, \protect\Affilfont}
 }{}
 
 % Analysis contributors: Name, Contributions

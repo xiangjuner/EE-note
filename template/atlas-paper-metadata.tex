@@ -21,14 +21,14 @@
 % Author - this does not work with revtex (add it after \begin{document})
 % This has to be commented out for TDR etc.
 % For PUB notes, add package authblk and use \thanks if an ACE/STA should be added.
-% See Section 4.2 of ATLAS LaTeX guide for more details.
+% See Section 4.2 of ATLAS LaTeX guide and latex/atlascontribute.sty for more details.
 % \author{The ATLAS Collaboration}
 
 % ATLAS reference code, to help ATLAS members to locate the paper
-\AtlasRefCode{GROUP-2021-XX}
+\AtlasRefCode{GROUP-2023-XX}
 
 % CERN preprint number
-% \PreprintIdNumber{CERN-EP-2021-XX}
+% \PreprintIdNumber{CERN-EP-2023-XX}
 
 % ATLAS date - arXiv submission; usually filled in by the Physics Office
 % \AtlasDate{\today}
@@ -44,12 +44,25 @@
 
 % Submission journal and final reference
 % \AtlasJournal{Phys.\ Lett.\ B.}
-% \AtlasJournalRef{\PLB 789 (2021) 123}
+% \AtlasJournalRef{\PLB 789 (2023) 123}
 % \AtlasDOI{}
 
+% Some papers/public notes have a special author list.
+% If a special author list should be indicated via a link use the following code:
+% Include the two lines below if you do not use atlasstyle:
+% \usepackage[marginal,hang]{footmisc}
+% \setlength{\footnotemargin}{0.5em}
+% Use the following lines in all cases:
+% \usepackage{authblk}
+% \author{The ATLAS Collaboration%
+% \thanks{The full author list can be found at:\newline
+%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2023-XXX/authorlist.pdf}}
+% }
+
 %-------------------------------------------------------------------------------
-% The following information is needed for the cover page. The commands are only defined
-% if you use the coverpage option in atlasdoc or use the atlascover package
+% The following information is needed for the cover page. The commands are defined
+% if you use the coverpage option in atlasdoc or use the atlascover package.
+% They are also defined if you include the atlasmetadefs package.
 %-------------------------------------------------------------------------------
 
 % List of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
@@ -62,7 +75,7 @@
 % \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 
 % Comment deadline
-% \AtlasCoverCommentsDeadline{DD Month 2021}
+% \AtlasCoverCommentsDeadline{DD Month 2023}
 
 % Analysis team members - contact editors should no longer be specified
 % as there is a generic email list name for the editors
@@ -82,7 +95,7 @@
 % \AtlasCoverReaderMember{Reader~2}
 
 % Editors egroup
-% \AtlasCoverEgroupEditors{atlas-GROUP-2021-XX-editors@cern.ch}
+% \AtlasCoverEgroupEditors{atlas-GROUP-2023-XX-editors@cern.ch}
 
 % EdBoard egroup
-% \AtlasCoverEgroupEdBoard{atlas-GROUP-2021-XX-editorial-board@cern.ch}
+% \AtlasCoverEgroupEdBoard{atlas-GROUP-2023-XX-editorial-board@cern.ch}
