@@ -14,23 +14,20 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2023-11-XX
+## [14.8.0] - 2023-12-14
 
 ### Added
 
+- November 2023 update of publications.
+
 ### Changed
 
+- Year of journal entries fixed for almost 300 ATLAS and CMS publications.
 - Updated text about authors in metadata files.
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
-- Text about `atlascontribute`` in notes metadata file was a bit confusing.
-
-### Security
+- Text about `atlascontribute` in notes metadata file was a bit confusing.
 
 ---
 
