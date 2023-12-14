@@ -28,6 +28,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 ### Fixed
 
 - Text about `atlascontribute` in notes metadata file was a bit confusing.
+- Affiliation was sometimes not superscripted using authblk for multiple authors.
 
 ---
 
