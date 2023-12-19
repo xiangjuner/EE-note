@@ -14,6 +14,33 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [Unreleased] - 2024-01-XX
+
+### Added
+
+- Add option `version` to `atlasdoc` to allow specification of older version.
+- Add extra macro for asymmetric errors: `numpmerrt`.
+- Add extra macros for quantities with asymmetric errors `qtyerrt`, `qtypmerr`, `qtypmerrt` etc.
+
+### Changed
+
+- Some backwards incompatible changes to `\numR`, `\numRF`, `\numRP` and `numpmerr` macros.
+- The meaning of the optional arguments for `\numpmerrx` is changed.
+
+### Deprecated
+
+### Removed
+
+- Nominal acknowledgements files removed from ATLAS LaTeX.
+  They will be added to papers, together with the author list, by the Physics Office.
+- Macros `\numpmRF` and `\numpmRP` removed. Use `\numpmerr` instead.
+
+### Fixed
+
+### Security
+
+---
+
 ## [14.8.0] - 2023-12-14
 
 ### Added
