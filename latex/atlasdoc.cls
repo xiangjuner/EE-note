@@ -10,6 +10,7 @@
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
 \newcommand*{\ATPackageVersion}{14.9.0-alpha}
+\newcommand*{\ATPackageUseVersion}{15}
 \ProvidesClass{latex/atlasdoc}[2024/01/01 v14.9.0-alpha ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
@@ -41,6 +42,7 @@
 \DeclareBoolOption[false]{LANGEDIT}
 \DeclareBoolOption[true]{LANGSHOW}
 \DeclareStringOption[0]{texlive}
+\DeclareStringOption[15]{version}
 \DeclareStringOption[a4]{paper}
 \DeclareStringOption[normal]{titlesize}
 \DeclareStringOption[\subsectiontocdepth]{tocdepth}
@@ -102,6 +104,15 @@
     You have passed the option texlive to atlasdoc\MessageBreak
     This option is no longer used and will be ignored%
   }%
+}
+\ifthenelse{\equal{\ADOC@version}{\ATPackageUseVersion}}{%
+  \ClassInfo{atlasdoc}{ATLAS LaTeX main version is default.}
+}{
+  \ClassWarningNoLine{atlasdoc}{%
+    ATLAS LaTeX main version changed from \ATPackageUseVersion to \ADOC@version\MessageBreak
+    You should do this only if absolutely necessary.}
+  }%
+  \renewcommand*{\ATPackageUseVersion}{\ADOC@version}
 }
 
 % Type of document
