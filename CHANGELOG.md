@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [14.9.0] - 2023-12-19
+
+### Changed
+
+- Update acknowledgements.
+
+---
+
 ## [14.8.0] - 2023-12-14
 
 ### Added
