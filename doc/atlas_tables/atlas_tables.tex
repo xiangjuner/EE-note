@@ -79,17 +79,17 @@ from \enquote{Rounding --- ATLAS Recommendations}~\cite{atlas-rounding}.
     \toprule
     {Channel} & \multicolumn{2}{c}{Selected events} \\
     \midrule
-    \(WW, WZ, ZZ\)               & \numRF{943.045}{3}  & \numRF{94.3045}{2} \\
-    QCD multijets                & \numRF{2838.39}{2}  & \numRF{1419.19}{2} \\
-    \(Wc\bar{c}, Wb\bar{b}, Wc\) & \numRF{31178  }{2}  & \numRF{13094.8}{2} \\
-    \(W\) + jets                 & \numRF{10584.5}{3}  & \numRF{4445.49}{2} \\
-    Single top \(Wt\)            & \numRF{1699.75}{3}  & \numRF{152.977}{2} \\
-    \(Z\) + jets                 & \numRF{2378.42}{2}  & \numRF{998.934}{2} \\
-    Single top \(s\)             & \numRF{297.591}{3}  & \numRF{12.4988}{2} \\
-    Single top \(t\)             & \numRF{3936.98}{3}  & \numRF{165.353}{2} \\
-    \(t\bar{t}\)                 & \numRF{9386.28}{3}  & \numRF{901.083}{2} \\
+    \(WW, WZ, ZZ\)               & \numRF[3]{943.045}  & \numRF[2]{94.3045} \\
+    QCD multijets                & \numRF[2]{2838.39}  & \numRF[2]{1419.19} \\
+    \(Wc\bar{c}, Wb\bar{b}, Wc\) & \numRF[2]{31178  }  & \numRF[2]{13094.8} \\
+    \(W\) + jets                 & \numRF[3]{10584.5}  & \numRF[2]{4445.49} \\
+    Single top \(Wt\)            & \numRF[3]{1699.75}  & \numRF[2]{152.977} \\
+    \(Z\) + jets                 & \numRF[2]{2378.42}  & \numRF[2]{998.934} \\
+    Single top \(s\)             & \numRF[3]{297.591}  & \numRF[2]{12.4988} \\
+    Single top \(t\)             & \numRF[3]{3936.98}  & \numRF[2]{165.353} \\
+    \(t\bar{t}\)                 & \numRF[3]{9386.28}  & \numRF[2]{901.083} \\
     \midrule
-    Expected                     & \numRF{63243}{2}    & \numRF{13968.5}{2} \\
+    Expected                     & \numRF[2]{63243}    & \numRF[2]{13968.5} \\
     Data                         & \multicolumn{2}{l}{\num{73062}} \\
     \bottomrule
   \end{tabular}
@@ -104,7 +104,7 @@ The \Package{siunitx} package contains powerful macros for formatting tables
 and is highly recommended.
 \Cref{tab:example0a,tab:example0b} show simple examples that make use of the
 \Option{table-format} and \Option{table-number-alignment} options.
-\Option{table-number-alignment} is particulalrly useful if the column header is wider then the conent.
+\Option{table-number-alignment} is particularly useful if the column header is wider then the content.
 it is better to include space for the sign, if the numbers in the table are signed.
 Have a close look at \enquote{Tabular material} section
 (Section 4.12 in the 2022 version of the \Package{siunitx} manual)
@@ -319,12 +319,199 @@ see \crefrange{tab:minimum-digits1}{tab:minimum-digits2}.
 \end{tcblisting}
 \end{table}
 
+\clearpage
+
+%------------------------------------------------------------------------------
+\section{Rounding and numbers with asymmetric errors}%
+\label{sec:tips:pmerr}\index{asymmetric errors}\index{errors!asymmetric}
+%------------------------------------------------------------------------------
+
+Two things that are currently not built into the \Package{siunitx} package
+are separate statistical and  systematic errors and asymmetric errors.
+In addition it may be desirable to round the numbers.
+From the author I got some suggestions on how to define such things.
+Such macros are included in the \Package{atlasmisc} package.
+Several new macros are defined there:
+\begin{itemize}
+  \item \Macro{numR}, \Macro{numRF} and  \Macro{numRP}
+    for rounding numbers.
+    \Macro{numRF} uses a fixed number of digits,
+    whose value can be  given as an optional argument.
+    \Macro{numRP} does the same, but with a fixed number of decimal places.
+    For \Macro{numR} you specify the rounding mode (and any other options)
+    using \Macro{sisetup} before calling it.
+  \item \Macro{numpmerr} can be used to pass the rounding precision
+    as the first optional argument and the mode as the second optional argument.
+  \item \Macro{numerrt}, \Macro{numpmerrx} and \Macro{numpmerrt}
+    can be used to write errors with a description,
+    which are asymmetric and both, respectively.
+    Any \Package{sisetup} options can be passed as the first (optional) argument.
+  \item The corresponding macros for values and errors are
+    \Macro{qtypmerr}, \Macro{qtyerrt}, \Macro{qtypmerrx} and \Macro{qtypmerrt}. For the macros
+    whose names end with \enquote{\texttt{t}}, you also have to provide
+    the descriptive text.
+  \item If you have two errors then use \Macro{qtyerrtt}
+    or \Macro{qtypmerrtt}, which have one or two more arguments, respectively.
+  \item For the standard case of statistical and systematic
+    errors, you can use the macros \Macro{qtyerrs} and
+    \Macro{qtypmerrs}.
+\end{itemize}
+For all the macros except \Macro{numRF}, \Macro{numRP}
+\Macro{numpmerr} and \Macro{qtypmerr}
+the first (optional) argument can be used to pass any options you like to
+the \Macro{num} command.
+
+\ADOCnew{15.0.0} Backwards incompatible changes were made to the
+\Macro{numR}, \Macro{numRF}, \Macro{numRP} and \Macro{numpmerr} macros.
+The precision is now an optional argument for \Macro{numR}, \Macro{numRF} and \Macro{numRP}.
+The precision and rounding mode are optional arguments for \Macro{numpmerr}.
+The macros \Macro{numpmRF} and \Macro{numpmRP} have been removed,
+as \Macro{numpmerr} can easily be used instead.
+For most flexibility, the \Macro{numpmerrx} can be used to set the precision and rounding options and more.
+
+\clearpage
+
+Examples of the rounding macros' usage are:
+\begin{tcblisting}{}
+\sisetup{round-precision=3}
+\begin{tabular}{ll}
+  \numR{1234.5678}\\
+  \numRF{1234.5678} & \numRF[2]{1234.5678}\\
+  \numRP{1234.5678} & \numRP[2]{1234.5678}\\
+\end{tabular}
+\end{tcblisting}
+
+Examples of the asymmetric error macros are:
+\begin{tcblisting}{}
+\renewcommand{\arraystretch}{1.4}
+\begin{equation*}
+\begin{array}{lll}
+  \numpmerr{+0.1234}{-0.4567} & \numpmerr[2][places]{+0.1234}{-0.4567} &
+  \numpmerrx[round-mode=places, round-precision=2]{+0.1235}{-0.4568}\\
+  \numpmerrt{+0.1234}{-0.4567}{stat.} & \numpmerr[2]{+0.1236}{-0.4569}\,\text{(stat.)} &
+  \numpmerrt[round-mode=places, round-precision=2]{+0.1237}{-0.4560}{sys.}\\
+\end{array}
+\end{equation*}
+\end{tcblisting}
+
+Examples of the quantities macros are:
+\begin{tcblisting}{}
+\begin{align*}
+  \sigma & = \qtyerrs{3.42}{0.46}{0.32}{\pico\barn} & \Macro{qtyerrs}\\
+  \sigma & = \qtyerrs[round-mode=places, round-precision=1]{3.43}{0.46}{0.32}{\pico\barn} & \Macro{qtyerrs}\\
+  \sigma & = \qtyerrt[round-mode=places, round-precision=2]{3.43}{0.46}{stat.}{\pico\barn} & \Macro{qtyerrt}\\
+  \sigma & = \qtyerrtt{3.43}{0.46}{stat.}{0.32}{sys.}{\pico\barn} & \Macro{qtyerrtt}\\
+  \sigma & = \qtypmerr{3.44}{+0.46}{-0.32}{\pico\barn} & \Macro{qtypmerr}\\
+  \sigma & = \qtypmerr[2][figures]{3.45}{+0.46}{-0.32}{\pico\barn} & \Macro{qtypmerr}\\
+  \sigma & = \qtypmerrx[round-mode=figures, round-precision=2]{3.46}{+0.46}{-0.32}{\pico\barn} & \Macro{qtypmerrs}\\
+  \sigma & = \qtypmerrt{3.47}{+0.46}{-0.32}{stat.}{\pico\barn} & \Macro{qtypmerrt}\\
+  \sigma & = \qtypmerrs{3.48}{+0.46}{-0.32}{+0.06}{-0.04}{\pico\barn} & \Macro{qtypmerrs}\\
+  \sigma & = \qtypmerrtt{3.49}{+0.46}{-0.32}{stat.}{+0.06}{-0.04}{sys.}{\pico\barn} & \Macro{qtypmerrtt}
+\end{align*}
+\end{tcblisting}
+The last two examples use \Macro{qtypmerrs} and \Macro{qtypmerrtt} just
+to show that they can both give the same output. If you need even more
+complicated combinations of errors, or more errors, have a look at the
+definitions, e.g.
+\begin{tcblisting}{}
+\begin{equation*}
+  \sigma_{t\bar{t}} = (\num{164.6}%
+  \valuesep\numerrt{8.7}{stat.}%
+  \valuesep\numpmerrt{+6.4}{-5.3}{sys.}%
+  \valuesep\numerrt{8.2}{lumi.})%
+  \valuesep\unit{\pico\barn}
+\end{equation*}    
+\end{tcblisting}
+
+Rounding is very nice and works well, but can slow down compilation considerably,
+especially in big INT notes.
+
+Details of the arguments for all the macros can be found in \cref{tab:numerr,tab:qtyerr}.
+
+\begin{table}[htbp]
+  \caption{Arguments of error macros.
+  \enquote{prec} is short for the \Option{rounding-precision},
+  \enquote{mode} for the \Option{rounding-mode}.
+  Columns that start with \enquote{m} mean mandatory arguments.}
+  \label{tab:numerr}
+  \begin{tabular}{lllll}
+    Macro & Options & m1 & m2 & m3 \\
+    \Macro{numR}      & [sisetup]   & value & error \\
+    \Macro{numRF}     & [prec] & value & error \\
+    \Macro{numRP}     & [prec] & value & error \\
+    \Macro{numpmerr}  & [prec] [mode] & value & err+ & err-\\
+    \Macro{numpmerrx} & [siunitx] & value & err+ & err-\\
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \caption{Arguments of quantity macros.
+  \enquote{prec} is short for the \Option{rounding-precision},
+  \enquote{mode} for the \Option{rounding-mode},
+  \enquote{desc} is short for the description of what the error is,
+  \enquote{stat.} is short for statistical error,
+  \enquote{sys.} is short for systematic error/
+  Columns that start with \enquote{m} mean mandatory arguments.}
+  \label{tab:qtyerr}
+  \begin{tabular}{ll lllllll l}
+    Macro & Options & m1 & m2 & m3 & m4 & m5 & m6 & m7 & m8\\
+    \Macro{qtypmerr} & [prec] [mode] & value & err+ & err- & unit\\
+    \Macro{qtypmerrx} & [sisetup] & value & +err & err- & unit\\
+    \Macro{qtyerrt} & [sisetup] & value & error & desc & unit\\
+    \Macro{qtyerrtt} & [sisetup] & value & error & desc
+      & error & desc & unit\\
+    \Macro{qtypmerrt} & [sisetup] & value & err+ & err- & desc & unit\\
+    \Macro{qtypmerrtt} & [sisetup] & value & err+ & err- & desc
+      & err+ & err- & desc & unit\\
+      \Macro{qtyerrs} & [sisetup] & value & stat. & sys. & unit\\
+      \Macro{qtypmerrs} & [sisetup] & value & stat.+ & stat.- & sys.+ & sys- & unit\\
+    \end{tabular}
+\end{table}
+
+%-------------------------------------------------------------------------------
+\subsection{Asymmetric uncertainties}
+%-------------------------------------------------------------------------------
+
+Those of you with sharp eyes may spot that the width of \enquote{\(+\)} and \enquote{\(-\)}
+are different in the default font used by ATLAS (\Package{newtx}).
+This leads to the numbers in the subscripts and superscripts not being aligned.
+For some examples see \cref{tab:asym}.
+
+The option \Option{numpmcorr} in the \Package{atlasphysics} package
+can be used to make the superscript and the subscript
+have the same width.
+% This is needed as in some fonts \enquote{\(+\)} and \enquote{\(-\)} have a different width.
+This option is enabled by default as pdf\LaTeX\ has this problem
+with the default ATLAS font, \Package{newtx}.
+It is not needed (and slows things down) for Lua\LaTeX\ and Xe\LaTeX.
+A macro \Macro{supsub} has been defined that ensures that the width
+of the boxes for subscripts and superscripts is the same.
+For example, if the \Option{numpmcorr} option is set,
+the macro \Macro{numpmerr} uses \Macro{supsub} with two optional arguments:
+the first one specifies the rounding precision, while the second the rounding mode
+(\Option{places} or \Option{figures}).
+
+\begin{table}[htbp]
+\begin{tcblisting}{}
+  \caption{Numbers with asymmetric uncertainties.}%
+  \label{tab:asym}
+  \centering
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{cc}
+    \toprule
+    No macro & \Macro{numpmerr} \\
+    \midrule
+    \(^{\num{+0.223}}_{\num{-0.123}}\) & \numpmerr{+0.223}{-0.123} \\
+    \(^{\num{+0.281}}_{\num{-0.215}}\) & \numpmerrx[round-precision=2]{+0.281}{-0.215}
+  \end{tabular}
+\end{tcblisting}
+\end{table}
 
 %-------------------------------------------------------------------------------
 \section{Tables and rounding}
 %-------------------------------------------------------------------------------
 
-Further examples of tables can be found in the note discussing the ATLAS recommendation on rounding~\cite{atlas-rounding}.
+Further examples of tables can be found in the note discussing the ATLAS recommendations on rounding~\cite{atlas-rounding}.
 A selection of those tables are also reproduced here.
 The \LaTeX\ code for the examples given below can be found in \cref{sec:raw-data}.
 
@@ -438,43 +625,6 @@ numbers is used to rescale the cross-section from \unit{\pb} to \unit{\nb}.
 really like in order to get the final alignment correct.
 It may be possible to use the \Macro{tablenum} instead,
 but this has not been tested.
-
-%-------------------------------------------------------------------------------
-\section{Asymmetric uncertainties}
-%-------------------------------------------------------------------------------
-
-Some tables include asymmetric uncertainties.
-Those of you with sharp eyes may spot that the width of \enquote{\(+\)} and \enquote{\(-\)}
-are different in the default font used by ATLAS (\Package{newtx}).
-This leads to the numbers in the subscripts and superscripts not being aligned.
-For some examples see \cref{tab:asym}.
-A macro \Macro{supsub} has been defined that ensures that the width
-of the boxes for subscripts and superscripts is the same.
-The macro \Macro{numpmerrx} uses \Macro{supsub} and has two optional arguments:
-the first one specifies the rounding precision, while the second the rounding mode
-(\Option{places} or \Option{figures}.
-
-\begin{table}[htbp]
-\begin{tcblisting}{}
-  \caption{Numbers with asymmetric uncertainties.
-    The last two rows in the \Macro{numpmerr} column
-    use the \Macro{numpmRP} and \Macro{numpmRF} macros, respectively.}%
-  \label{tab:asym}
-  \centering
-  \renewcommand{\arraystretch}{1.4}
-  \begin{tabular}{cccc}
-    \toprule
-    No macro & \Macro{numpmerr} & \Macro{supsub} & \Macro{numpmerrx} \\
-    \midrule
-    \(^{\num{+0.223}}_{\num{-0.123}}\) & \numpmerr{+0.223}{-0.123}{3} &
-    \(\supsub{\num{+0.223}}{\num{-0.123}}\) & \numpmerrx{+0.223}{-0.123} \\
-    \(^{\num{+0.281}}_{\num{-0.215}}\) & \numpmerr{+0.282}{-0.216}{3} &
-    \(\supsub{\num{+0.283}}{\num{-0.217}}\) & \numpmerrx{+0.284}{-0.218} \\
-    & \numpmRP{+1.284}{-2.214}{2} & & \numpmerrx[2][places]{+1.284}{-2.214} \\
-    & \numpmRF{+1.284}{-2.214}{2} & & \numpmerrx[2][figures]{+1.284}{-2.214}
-  \end{tabular}
-\end{tcblisting}
-\end{table}
 
 %-------------------------------------------------------------------------------
 \clearpage
