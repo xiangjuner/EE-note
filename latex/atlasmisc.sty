@@ -1,15 +1,16 @@
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 % Miscellaneous useful definitions for ATLAS documents.
 % Include with misc option in atlasphysics.sty.
 %
 % Note that this file can be overwritten when atlaslatex is updated.
 %
 % Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
-%-------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 
-% +--------------------------------------------------------------------+
-% |  Useful things for proton-proton physics                           |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Useful things for proton-proton physics
+%------------------------------------------------------------------------------
+
 \newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
 \newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
 % \newcommand*{\pTX}[1]{\ensuremath{p_{\text{T},#1}}\xspace}
@@ -80,9 +81,9 @@
 \newcommand*{\bjets}{\ensuremath{b\text{-jets}}\xspace}
 
 
-% +--------------------------------------------------------------------+
-% | Masses                                                             |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Masses
+%------------------------------------------------------------------------------
 \newcommand*{\mh}{\ensuremath{m_{h}}\xspace}
 \newcommand*{\mW}{\ensuremath{m_{W}}\xspace}
 \newcommand*{\mZ}{\ensuremath{m_{Z}}\xspace}
@@ -92,9 +93,9 @@
 %\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
 \newcommand{\twomass}[2]{\ensuremath{m_{#1#2}}\xspace}
 
-% +--------------------------------------------------------------------+
-% |  Monte Carlo generators                                            |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Monte Carlo generators
+%------------------------------------------------------------------------------
 % Set up generic command for MC with optional version number
 %%% e.g. \PYTHIA[8] -> Pythia 8
 \NewDocumentCommand {\AtlasMC} { o m } {%
@@ -202,9 +203,9 @@
 \newcommand*{\hdamp}{\ensuremath{h_\mathrm{damp}}\xspace}
 \newcommand*{\NLOEWvirt}{NLO~\ensuremath{\text{EW}_\text{virt}}\xspace}
 
-% +--------------------------------------------------------------------+
-% |  Useful symbols for use in or out of math mode                     |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Useful symbols for use in or out of math mode
+%------------------------------------------------------------------------------
 \newcommand*{\ra}{\ensuremath{\rightarrow}\xspace}
 \newcommand*{\la}{\ensuremath{\leftarrow}\xspace}
 \newcommand*{\rarrow}{\ensuremath{\rightarrow}\xspace}
@@ -226,74 +227,275 @@
   \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
 }
 
-% Macro to make superscript and subscript the same width.
-% This is needed as + and - can have different widths.
-% Code is adapted from:
+%------------------------------------------------------------------------------
+% Commands for separate statistical and systematic errors and asymmetric errors.
+%------------------------------------------------------------------------------
+% Include options to steer rounding.
+% Backward incompatible changes were made in version 15 of ATLAS LaTeX.
+% Need a macro to make superscript and subscript the same width.
+% This is needed as + and - can have different widths (pdflatex problem).
+% The idea for the way to do this came from:
 % https://tex.stackexchange.com/questions/291291/control-horizontal-alignment-of-sub-superscripts
-\DeclareRobustCommand{\supsub}[2]{{%
-  \mathpalette\makesupsub{{#1}{#2}}%
-}}
+\ExplSyntaxOn
+\ifthenelse{\ATPackageUseVersion > 14}{%
+  \cs_new_protected:Npn \supsub:nn #1#2
+  {
+    \hbox_set:Nn \l_tmpa_box { \ensuremath { \c_math_superscript_token { #1 } } }
+    \hbox_set:Nn \l_tmpb_box { \ensuremath { \c_math_subscript_token { #2 } } }
+    % \box_show:N \l_tmpa_box
+    % \box_show:N \l_tmpb_box
+    \dim_compare:nNnTF { \box_wd:N \l_tmpa_box } > { \box_wd:N \l_tmpb_box }
+      { \dim_set:Nn \l_tmpa_dim { \box_wd:N \l_tmpa_box } }
+      { \dim_set:Nn \l_tmpa_dim { \box_wd:N \l_tmpb_box } }
+    \ensuremath {
+      \c_math_superscript_token { \mathmakebox[\l_tmpa_dim][r]{ #1 } }
+      \c_math_subscript_token   { \mathmakebox[\l_tmpa_dim][r]{ #2 } }
+    }
+    %\c_math_subscript_token { #1 } \c_math_superscript_token { #2 }
+  }
+  \cs_generate_variant:Nn \supsub:nn { xx }
 
-\providecommand{\@firstoftwo}[3]{#1}
-\providecommand{\@secondoftwo}[3]{#2}
-\newcommand{\makesupsub}[2]{%
-  \sbox\z@{$^{\@firstoftwo#2}$}%
-  \sbox\tw@{$_{\@secondoftwo#2}$}%
-  \dimen@=\wd\z@
-  \ifdim\wd\tw@>\wd\z@ \dimen@=\wd\tw@\fi
-  {\mkern0mu}%
-    ^{\mathmakebox[\dimen@][r]{\@firstoftwo#2}}%
-    _{\mathmakebox[\dimen@][r]{\@secondoftwo#2}}%
-}
+  \@ifpackageloaded{siunitx}{%
+    \PackageInfo{atlasmisc}{Using~version~15~error~macros.}
 
-% Useful macros for rounding
-% Keeping plus sign option depends on siunitx version.
-\newcommand*{\numR}[2]{\num[round-precision=#2]{#1}}
-\newcommand*{\numRF}[2]{\num[round-mode=figures,round-precision=#2]{#1}}
-\newcommand*{\numRP}[2]{\num[round-mode=places, round-precision=#2]{#1}}
-\@ifpackageloaded{siunitx}{%
-  \@ifpackagelater{siunitx}{2021/04/09}{%
-    \typeout{atlasmisc: using siunitx version 3 options}
-    \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, print-implicit-plus]{#1}}_{\num[round-precision=#3, print-implicit-plus]{#2}}}}
-    \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#2}}}}
-    \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#2}}}}
+    % Keeping plus sign option depends on siunitx version.
     % Arguments are rounding digits, rounding type, superscript, subscript.
-    \NewDocumentCommand {\numpmerrx} { o o m m } {%
+    \tl_new:N \atl_si_options_tl
+    \@ifpackagelater{siunitx}{2021/04/09}{%
+      \PackageInfo{atlasmisc}{Using~siunitx~version~3~options}
+    }{%
+      \PackageInfo{atlasmisc}{Using~siunitx~version~2~options}
+    }
+    \NewDocumentCommand {\numpmerr} { o o m m } {
+      \@ifpackagelater{siunitx}{2021/04/09}{%
+        \IfNoValueTF {#1} {
+          \tl_set:Nn \atl_si_options_tl { print-implicit-plus }
+        }{
+          \IfNoValueTF {#2} {
+            \tl_set:Nn \atl_si_options_tl { round-precision=#1, print-implicit-plus }
+          }{
+            \tl_set:Nn \atl_si_options_tl { round-mode=#2, round-precision=#1, print-implicit-plus }
+          }
+        }
+      }{
+        \IfNoValueTF {#1} {
+          \tl_set:Nn \atl_si_options_tl { retain-explicit-plus }
+        }{
+          \IfNoValueTF {#2} {
+            \tl_set:Nn \atl_si_options_tl { round-precision=#1, retain-explicit-plus }
+          }{
+            \tl_set:Nn \atl_si_options_tl { round-mode=#2, round-precision=#1, retain-explicit-plus }
+          }
+        }
+      }
+      \ifthenelse{\boolean{APHY@numpmcorr}}{
+        % \tl_show:N \atl_si_options_tl
+        \supsub:xx
+          { \exp_not:N \num [ \tl_use:N \atl_si_options_tl ] {#3} }
+          { \exp_not:N \num [ \tl_use:N \atl_si_options_tl ] {#4} }
+      }{
+        \tl_set:Nx \l_tmpa_tl { \exp_not:N \num [ \tl_use:N \atl_si_options_tl ] {#3} }
+        \tl_set:Nx \l_tmpb_tl { \exp_not:N \num [ \tl_use:N \atl_si_options_tl ] {#4} }
+        \ensuremath{
+          \c_math_superscript_token { \tl_use:N \l_tmpa_tl } 
+          \c_math_subscript_token   { \tl_use:N \l_tmpb_tl }
+        }
+      }
+    }
+  }{}
+}{}
+\ExplSyntaxOff
+
+% Version 15 onwards commmands.
+\ifthenelse{\ATPackageUseVersion > 14}{%
+  \@ifpackageloaded{siunitx}{%
+    \PackageInfo{atlasmisc}{Using version 15 error macros.}
+    \newcommand*\valuesep{\,}
+    \sisetup{number-unit-product=\valuesep}
+    % Basic error plus text.
+    \NewDocumentCommand {\numerrt} { o m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\pm \num{#2}\valuesep\text{(#3)}}%
+      \endgroup
+    }
+    % Numbers with rounding.
+    \NewDocumentCommand {\numR} { o m } {%
       \IfNoValueTF {#1} {%
-        \ensuremath{\supsub{\num[print-implicit-plus]{#3}}{\num[print-implicit-plus]{#4}}}
+        \num{#2}
       }{%
-        \IfNoValueTF {#2} {%
-          \ensuremath{\supsub{\num[round-precision=#1, print-implicit-plus]{#3}}{\num[round-precision=#1, print-implicit-plus]{#4}}}
+        \num[round-precision=#1]{#2}
+      }
+    }
+    \NewDocumentCommand {\numRF} { o m } {%
+      \IfNoValueTF {#1} {%
+        \num[round-mode=figures]{#2}
+      }{%
+        \num[round-mode=figures, round-precision=#1]{#2}
+      }
+    }
+    \NewDocumentCommand {\numRP} { o m } {%
+      \IfNoValueTF {#1} {%
+        \num[round-mode=places]{#2}
+      }{%
+        \num[round-mode=places, round-precision=#1]{#2}
+      }
+    }
+
+    % Asymmetric errors.
+    \NewDocumentCommand {\numpmerrx} { o m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \numpmerr{#2}{#3}%
+      \endgroup
+    }
+    \NewDocumentCommand {\numpmerrt} { o m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \numpmerr{#2}{#3}\valuesep\text{(#4)}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtypmerr} { o o m m m m } {%
+      \begingroup
+        \IfNoValueTF {#1} {%
+          \ensuremath{\num{#3}\valuesep\numpmerr{#4}{#5}\valuesep\unit{#6}}%
+        }{
+          \IfNoValueTF {#2} {%
+            \ensuremath{\num[round-precision=#1]{#3}\valuesep\numpmerr[#1]{#4}{#5}\valuesep\unit{#6}}%
+          }{%
+            \ensuremath{\num[round-precision=#1, round-mode=#2]{#3}\valuesep\numpmerr[#1][#2]{#4}{#5}\valuesep\unit{#6}}%
+          }
+        }
+      \endgroup
+    }
+    \NewDocumentCommand {\qtypmerrx} { o m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}\valuesep\numpmerr{#3}{#4}\valuesep\unit{#5}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtyerrt} { o m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}%
+        \valuesep\numerrt{#3}{#4}%
+        \valuesep\unit{#5}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtyerrtt} { o m m m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}%
+        \valuesep\numerrt{#3}{#4}%
+        \valuesep\numerrt{#5}{#6}%
+        \valuesep\unit{#7}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtypmerrt} { o m m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}%
+        \valuesep\numpmerrt{#3}{#4}{#5}%
+        \valuesep\unit{#6}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtypmerrtt} { o m m m m m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}%
+        \valuesep\numpmerrt{#3}{#4}{#5}%
+        \valuesep\numpmerrt{#6}{#7}{#8}%
+        \valuesep\unit{#9}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtyerrs} { o m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}%
+        \valuesep\numerrt{#3}{stat.}%
+        \valuesep\numerrt{#4}{sys.}%
+        \valuesep\unit{#5}}%
+      \endgroup
+    }
+    \NewDocumentCommand {\qtypmerrs} { o m m m m m m } {%
+      \begingroup
+        \IfValueT {#1} {\sisetup{#1}}%
+        \ensuremath{\num{#2}
+        \valuesep\numpmerrt{#3}{#4}{stat.}
+        \valuesep\numpmerrt{#5}{#6}{sys.}%
+        \valuesep\unit{#7}}%
+      \endgroup
+    }
+  }{
+    \PackageInfo{atlasmisc}{numpmerr macros not defined, as siunitx has not been loaded.}
+  }
+}{%
+  % Version 14 and earlier commmands.
+  \PackageInfo{atlasmisc}{Using version 14 error macros.}
+  % Macro to make superscript and subscript the same width.
+  \providecommand{\@firstoftwo}[3]{#1}
+  \providecommand{\@secondoftwo}[3]{#2}
+  \newcommand{\makesupsub}[2]{%
+    \sbox\z@{$^{\@firstoftwo#2}$}%
+    \sbox\tw@{$_{\@secondoftwo#2}$}%
+    \dimen@=\wd\z@
+    \ifdim\wd\tw@>\wd\z@ \dimen@=\wd\tw@\fi
+    {\mkern0mu}%
+      ^{\mathmakebox[\dimen@][r]{\@firstoftwo#2}}%
+      _{\mathmakebox[\dimen@][r]{\@secondoftwo#2}}%
+  }
+  \DeclareRobustCommand{\supsub}[2]{{%
+    \mathpalette\makesupsub{{#1}{#2}}%
+  }}
+  % Useful macros for rounding.
+  % Keeping plus sign option depends on siunitx version.
+  \newcommand*{\numR}[2]{\num[round-precision=#2]{#1}}
+  \newcommand*{\numRF}[2]{\num[round-mode=figures,round-precision=#2]{#1}}
+  \newcommand*{\numRP}[2]{\num[round-mode=places, round-precision=#2]{#1}}
+  \@ifpackageloaded{siunitx}{%
+    \@ifpackagelater{siunitx}{2021/04/09}{%
+      \PackageInfo{atlasmisc}{Using siunitx version 3 options}
+      \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, print-implicit-plus]{#1}}_{\num[round-precision=#3, print-implicit-plus]{#2}}}}
+      \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=figures, round-precision=#3, print-implicit-plus]{#2}}}}
+      \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, print-implicit-plus]{#2}}}}
+      % Arguments are rounding digits, rounding type, superscript, subscript.
+      \NewDocumentCommand {\numpmerrx} { o o m m } {%
+        \IfNoValueTF {#1} {%
+          \ensuremath{\supsub{\num[print-implicit-plus]{#3}}{\num[print-implicit-plus]{#4}}}
         }{%
-          \ensuremath{\supsub{\num[round-mode=#2, round-precision=#1, print-implicit-plus]{#3}}{\num[round-mode=#2, round-precision=#1, print-implicit-plus]{#4}}}
+          \IfNoValueTF {#2} {%
+            \ensuremath{\supsub{\num[round-precision=#1, print-implicit-plus]{#3}}{\num[round-precision=#1, print-implicit-plus]{#4}}}
+          }{%
+            \ensuremath{\supsub{\num[round-mode=#2, round-precision=#1, print-implicit-plus]{#3}}{\num[round-mode=#2, round-precision=#1, print-implicit-plus]{#4}}}
+          }
+        }
+      }
+    }{
+      \PackageInfo{atlasmisc}{Using siunitx version 2 options}
+      \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-precision=#3, retain-explicit-plus]{#2}}}}
+      \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures, round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-mode=figures,round-precision=#3, retain-explicit-plus]{#2}}}}
+      \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, retain-explicit-plus]{#2}}}}
+      % Arguments are rounding digits, rounding type, superscript, subscript.
+      \NewDocumentCommand {\numpmerrx} { o o m m } {%
+        \IfNoValueTF {#1} {%
+          \ensuremath{\supsub{\num[retain-explicit-plus]{#3}}{\num[retain-explicit-plus]{#4}}}
+        }{%
+          \IfNoValueTF {#2} {%
+            \ensuremath{\supsub{\num[round-precision=#1, retain-explicit-plus]{#3}}{\num[round-precision=#1, retain-explicit-plus]{#4}}}
+          }{%
+            \ensuremath{\supsub{\num[round-mode=#2, round-precision=#1, retain-explicit-plus]{#3}}{\num[round-mode=#2, round-precision=#1, retain-explicit-plus]{#4}}}
+          }
         }
       }
     }
   }{
-    \typeout{atlasmisc: using siunitx version 2 options}
-    \newcommand{\numpmerr}[3]{\ensuremath{^{\num[round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-precision=#3, retain-explicit-plus]{#2}}}}
-    \newcommand{\numpmRF}[3]{\ensuremath{^{\num[round-mode=figures, round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-mode=figures,round-precision=#3, retain-explicit-plus]{#2}}}}
-    \newcommand{\numpmRP}[3]{\ensuremath{^{\num[round-mode=places, round-precision=#3, retain-explicit-plus]{#1}}_{\num[round-mode=places, round-precision=#3, retain-explicit-plus]{#2}}}}
-    % Arguments are rounding digits, rounding type, superscript, subscript.
-    \NewDocumentCommand {\numpmerrx} { o o m m } {%
-      \IfNoValueTF {#1} {%
-        \ensuremath{\supsub{\num[retain-explicit-plus]{#3}}{\num[retain-explicit-plus]{#4}}}
-      }{%
-        \IfNoValueTF {#2} {%
-          \ensuremath{\supsub{\num[round-precision=#1, retain-explicit-plus]{#3}}{\num[round-precision=#1, retain-explicit-plus]{#4}}}
-        }{%
-          \ensuremath{\supsub{\num[round-mode=#2, round-precision=#1, retain-explicit-plus]{#3}}{\num[round-mode=#2, round-precision=#1, retain-explicit-plus]{#4}}}
-        }
-      }
-    }
+    \PackageInfo{atlasmisc}{numpmerr macros not defined, as siunitx has not been loaded.}
   }
-}{
-  \typeout{atlasmisc: numpmerr macros not defined, as siunitx has not been loaded.}
 }
 
-% +--------------------------------------------------------------------+
-% |  QCD                                                               |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% QCD
+%------------------------------------------------------------------------------
 \newcommand*{\alphas}{\ensuremath{\alpha_{\text{s}}}\xspace}
 \newcommand*{\NF}{\ensuremath{N_{\text{F}}}\xspace}
 \newcommand*{\NC}{\ensuremath{N_{\text{C}}}\xspace}
@@ -304,9 +506,9 @@
 \newcommand*{\Lmsfive}{\ensuremath{\Lambda^{(5)}_{\overline{\text{MS}}}}\xspace}
 \newcommand*{\kperp}{\ensuremath{k_{\perp}}\xspace}
 
-% +--------------------------------------------------------------------+
-% |  CKM matrix                                                        |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% CKM matrix
+%------------------------------------------------------------------------------
 \newcommand*{\Vcb}{\ensuremath{\vert V_{cb} \vert}\xspace}
 \newcommand*{\Vub}{\ensuremath{\vert V_{ub} \vert}\xspace}
 \newcommand*{\Vtd}{\ensuremath{\vert V_{td} \vert}\xspace}
@@ -317,25 +519,25 @@
 \newcommand*{\Vus}{\ensuremath{\vert V_{us} \vert}\xspace}
 \newcommand*{\Vcd}{\ensuremath{\vert V_{cd} \vert}\xspace}
 
-% +--------------------------------------------------------------------+
-% |  Figure width                                                      |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Figure width
+%------------------------------------------------------------------------------
 \newlength{\figwidth}
 \setlength{\figwidth}{\textwidth}
 \addtolength{\figwidth}{-2.0cm}
 
-% +--------------------------------------------------------------------+
-% |  The decay symbol, to be used in \eqalign.                         |
-% |  It works like: \[\eqalign{a\ra &b+c\cr &\dk &e+f\cr &&\dk g+h}\]  |
-% |                                                                    |
-% |                  a  -->  b + c                                     |
-% |                          |                                         |
-% |                          |                                         |
-% |                          +----> e + f                              |
-% |                                 |                                  |
-% |                                 |                                  |
-% |                                 +----> g + h                       |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% The decay symbol, to be used in \eqalign.                       
+% It works like: \[\eqalign{a\ra &b+c\cr &\dk &e+f\cr &&\dk g+h}\]
+%                                                                 
+%                 a  -->  b + c                                   
+%                         |                                       
+%                         |                                       
+%                         +----> e + f                            
+%                                |                                
+%                                |                                
+%                                +----> g + h                     
+%------------------------------------------------------------------------------
 \newdimen\dkwidth
 \def\dk{%
    \dkwidth=\baselineskip
@@ -354,10 +556,10 @@
    }}
 }
 
-% +--------------------------------------------------------------------+
-% |  Redefine \eqalign to allow more than one column; very             |
-% |  useful for multiple decays as defined above.                      |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Redefine \eqalign to allow more than one column;
+% very useful for multiple decays as defined above.
+%------------------------------------------------------------------------------
 %\unlock
 \def\eqalign#1{%
    \,
@@ -371,9 +573,9 @@
    \,
 }
 
-% +--------------------------------------------------------------------+
-% |  Hours:minutes macro                                               |
-% +--------------------------------------------------------------------+
+%------------------------------------------------------------------------------
+% Hours:minutes macro
+%------------------------------------------------------------------------------
 %\newcount\hrs\newcount\minu\newcount\temptime
 %\def\hm{\hrs=\time \divide\hrs by 60 \minu=\time\temptime=\hrs
 %\multiply\temptime by 60%
