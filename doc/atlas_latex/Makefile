@@ -3,15 +3,15 @@
 #------------------------------------------------------------------------------
 
 BASENAME = atlas_latex
-TEXLIVE = 2016
+TWEAKYEAR = 2020
 
 .PHONY: clean cleanpdf
 
 atlas_latex:
 	make -f ../Makefile run_latexmk BASENAME=$(BASENAME)
 
-texlive:
-	make -f ../Makefile texlive BASENAME=$(BASENAME) TEXLIVE=$(TEXLIVE)
+tweakyear:
+	make -f ../Makefile tweakyear BASENAME=$(BASENAME) TWEAKYEAR=$(TWEAKYEAR)
 
 clean:
 	make -f ../Makefile clean

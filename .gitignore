@@ -1,4 +1,4 @@
-# Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration
 
 # Private excludes can be found or put in .git/info/exclude
 # PDF files in top-level directory
@@ -8,6 +8,7 @@
 
 # Generic files to ignore
 *.aux
+*.bak
 *.bcf
 *.bbl
 *-blx.bib
@@ -22,4 +23,5 @@
 *.run.xml
 *.spl
 *.synctex.gz
+*.tdo
 *.toc

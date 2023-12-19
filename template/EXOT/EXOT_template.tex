@@ -1,33 +1,34 @@
 %-------------------------------------------------------------------------------
 % This file provides template EXOT group object descriptions and cuts.
-% \pdfinclusioncopyfonts=1
+\pdfinclusioncopyfonts=1
 % This command may be needed in order to get \ell in PDF plots to appear. Found in
 % https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
+
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, atlasdraft=true, texlive=2016, USenglish]{\ATLASLATEXPATH atlasdoc}
+\documentclass[NOTE, REPORT=false, atlasdraft=false, USenglish]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
 %  atlasdraft=true|false This document is an ATLAS draft.
-%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  texlive=YYYY          Specify TeX Live version (2020 is default).
 %  txfonts=true|false    Use txfonts rather than the default newtx
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{\ATLASLATEXPATH atlaspackage}
+\usepackage[biblatex=false]{atlaspackage}
 % Commonly used options:
 %  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
 %-------------------------------------------------------------------------------
 \usepackage{multirow}
 
 % Useful macros
-\usepackage[jetetmiss]{\ATLASLATEXPATH atlasphysics}
+\usepackage[jetetmiss]{atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -35,20 +36,22 @@
 %          other, snippets, texmf
 % See the package for details on the options.
 
-% Add you own definitions here (file atlas-document-defs.sty).
+% Add your own definitions here (file atlas-document-defs.sty).
 % \usepackage{atlas-document-defs}
 
 % Paths for figures - do not forget the / at the end of the directory name.
-\graphicspath{{\ATLASLATEXPATH ../logos/}{figures/}}
+\graphicspath{{../../logos/}{figures/}}
 
 %-------------------------------------------------------------------------------
 % Generic document information
 %-------------------------------------------------------------------------------
 
 \AtlasTitle{EXOT group text snippets for INT notes}
-\AtlasVersion{0.1}
+
 \author{ATLAS EXOT Group}
-\AtlasRefCode{EXOT-2018-XX}
+
+\AtlasRefCode{Version \ATPackageVersion}
+
 \AtlasAbstract{%
   This note contains text snippets and tables that should be included in supporting notes
   from the EXOT group.
@@ -56,10 +59,8 @@
   The templates are in American English.
   If wanted, some adaption to British English could be made. 
 
-  This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
-
-  \emph{2018-10-23: This file is a work in progress (WIP) and will probably be updated.
-  Backwards incompatible changes may be made as the examples develop.}
+  % \emph{2018-10-23: This file is a work in progress (WIP) and will probably be updated.
+  % Backwards incompatible changes may be made as the examples develop.}
 }
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS EXOT supporting note},pdfauthor={ATLAS EXOT group}}

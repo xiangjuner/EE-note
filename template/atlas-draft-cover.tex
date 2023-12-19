@@ -1,9 +1,7 @@
-\documentclass[a4paper]{article}
-%-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
+\RequirePackage{latex/atlaslatexpath}
+%-------------------------------------------------------------------------------
+\documentclass[a4paper]{article}
 %-----------------------------------------------------------------------
 % Creates a standard ATLAS cover page for use during ATLAS circulation.
 % During the ATLAS editorial process you usually add the atlascover package
@@ -15,13 +13,13 @@
 
 \usepackage[centering,scale=0.75]{geometry}
 % Either use atlaspackage or specify packages explicitly.
-% \usepackage[minimal, biblatex=false]{\ATLASLATEXPATH atlaspackage}
+% \usepackage[minimal, biblatex=false]{atlaspackage}
 \usepackage{graphicx}
 
 % Need option coverpage to produce a cover.
 % Add option [CONF] if this is a CONF note draft, [PUB] if it is a PUB note draft.
-\usepackage[coverpage]{\ATLASLATEXPATH atlascover}
-% \usepackage[CONF,coverpage]{\ATLASLATEXPATH atlascover}
+\usepackage[coverpage]{atlascover}
+% \usepackage[CONF,coverpage]{atlascover}
 
 % hyperref is included in atlascover. Set options here if atlaspackage is not included.
 \hypersetup{colorlinks,breaklinks}
@@ -30,7 +28,7 @@
 
 % Package for creating list of authors and contributors to the analysis.
 % The file atlas-document-metadata.tex includes atlascontribute also.
-\usepackage{\ATLASLATEXPATH atlascontribute}
+\usepackage{atlascontribute}
 
 % Paths for figures.
 \graphicspath{{logos/}}
@@ -39,7 +37,7 @@
 % Generic document information
 %-------------------------------------------------------------------------------
 
-% Take information form the metadata file you have for your document,
+% Take information from the metadata file you have for your document,
 % \input{mydocument-metadata}
 
 % or specify all information in this document.
@@ -47,7 +45,7 @@
 \AtlasTitle{Sample ATLAS Draft Cover Page}
 
 % Internal ATLAS number, to help ATLAS members to locate the paper.
-\AtlasRefCode{GROUP-2017-YY}
+\AtlasRefCode{GROUP-2021-YY}
 
 % Paper draft version
 % Should be 1.0 for the first circulation, and 2.0 for the second circulation.
@@ -74,7 +72,7 @@
 % \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 
 % Comment deadline
-\AtlasCoverCommentsDeadline{1 April 2017}
+\AtlasCoverCommentsDeadline{1 April 2021}
 
 % Analysis team members - contact editors should no longer be specified,
 % as there is a generic email list name for the editors.

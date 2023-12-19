@@ -1,30 +1,29 @@
 % ----------------------------------------------------------- 
-% Standalone title page for CERN preprints 
+% Standalone title page for CERN preprints.
 % atlaspackage and/or atlasphysics are only needed if symbols
 % defined in them are used in the abstract
 % ----------------------------------------------------------- 
-% Specify where ATLAS LaTeX style files can be found
-\newcommand*{\ATLASLATEXPATH}{latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf
-% \newcommand*{\ATLASLATEXPATH}{}
+% Specify where ATLAS LaTeX style files can be found.
+\RequirePackage{latex/atlaslatexpath}
+% Comment out the above line if the files are in a central location, e.g. $HOME/texmf.
 %-------------------------------------------------------------------------------
-\documentclass[cernpreprint, atlasdraft=true, texlive=2016, UKenglish]{\ATLASLATEXPATH atlasdoc}
-% The language of the document must be set: usually UKenglish or USenglish
+\documentclass[cernpreprint, UKenglish]{atlasdoc}
+% The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Relevant options:
-%  atlasdraft=true|false This document is an ATLAS draft.
-%  texlive=YYYY          Specify TeX Live version (2016 is default)
-%  txfonts=true|false    Use txfonts rather than the default newtx
-%  paper=a4|letter       Set paper size to A4 (default) or letter
+%  texlive=YYYY          Specify TeX Live version (2020 is default).
+%  txfonts=true|false    Use txfonts rather than the default newtx.
+%  paper=a4|letter       Set paper size to A4 (default) or letter.
 
-% Use minimal version of atlaspackage without bibliography - probably not needed
-% \usepackage[minimal, biblatex=false]{\ATLASLATEXPATH atlaspackage}
+% Use minimal version of atlaspackage without bibliography - probably not needed.
+% \usepackage[minimal, biblatex=false]{atlaspackage}
 
-% CERN preprint frontpage
-% \usepackage[cernpreprint]{\ATLASLATEXPATH atlascover}
+% CERN preprint frontpage.
+% \usepackage[cernpreprint]{atlascover}
 
-% Useful macros - probably not needed
-% \usepackage{\ATLASLATEXPATH atlasphysics}
+% Useful macros - probably not needed. Include journals though.
+% \usepackage{atlasphysics}
+\usepackage{atlasjournal}
 
 % Paths for figures - ATLAS and CERN logos
 \graphicspath{{logos/}}
@@ -40,11 +39,11 @@
 % The paper title:
 \AtlasTitle{A standalone title page for CERN preprints}
 
-% CERN preprint number ---> can be found in CDS entry for Draft 2!
-\PreprintIdNumber{CERN-EP-2017-XX}
+% CERN preprint number -> can be found in CDS entry for Draft 2!
+\PreprintIdNumber{CERN-EP-2021-XX}
 
 % Submission journal
-\AtlasJournal{Physical Review Letters}
+\AtlasJournal{\PRL}
 
 % Abstract
 \AtlasAbstract{%

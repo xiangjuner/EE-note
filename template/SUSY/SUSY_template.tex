@@ -1,33 +1,35 @@
 %-------------------------------------------------------------------------------
 % This file provides template SUSY group object descriptions and cuts.
-% \pdfinclusioncopyfonts=1
+\pdfinclusioncopyfonts=1
 % This command may be needed in order to get \ell in PDF plots to appear. Found in
 % https://tex.stackexchange.com/questions/322010/pdflatex-glyph-undefined-symbols-disappear-from-included-pdf
 %-------------------------------------------------------------------------------
-% Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
-% Use this variant if the files are in a central location, e.g. $HOME/texmf.
-% \newcommand*{\ATLASLATEXPATH}{}
 %-------------------------------------------------------------------------------
-\documentclass[NOTE, atlasdraft=true, texlive=2016, USenglish]{\ATLASLATEXPATH atlasdoc}
+% Specify where ATLAS LaTeX style files can be found.
+\makeatletter
+\def\input@path{{../../latex/}}
+\makeatother
+
+%-------------------------------------------------------------------------------
+\documentclass[NOTE, REPORT=false, atlasdraft=false, USenglish]{atlasdoc}
 % The language of the document must be set: usually UKenglish or USenglish.
 % british and american also work!
 % Commonly used options:
 %  atlasdraft=true|false This document is an ATLAS draft.
-%  texlive=YYYY          Specify TeX Live version (2016 is default).
+%  texlive=YYYY          Specify TeX Live version (2020 is default).
 %  txfonts=true|false    Use txfonts rather than the default newtx
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 %-------------------------------------------------------------------------------
 % Extra packages:
-\usepackage{\ATLASLATEXPATH atlaspackage}
+\usepackage[biblatex=false]{atlaspackage}
 % Commonly used options:
 %  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
 %-------------------------------------------------------------------------------
 \usepackage{multirow}
 
 % Useful macros
-\usepackage[jetetmiss]{\ATLASLATEXPATH atlasphysics}
+\usepackage[jetetmiss]{atlasphysics}
 % See doc/atlas_physics.pdf for a list of the defined symbols.
 % Default options are:
 %   true:  journal, misc, particle, unit, xref
@@ -36,22 +38,24 @@
 % See the package for details on the options.
 
 % Package for creating list of authors and contributors to the analysis.
-\usepackage{\ATLASLATEXPATH atlascontribute}
+\usepackage{atlascontribute}
 
 % Add you own definitions here (file atlas-document-defs.sty).
 % \usepackage{atlas-document-defs}
 
 % Paths for figures - do not forget the / at the end of the directory name.
-\graphicspath{{\ATLASLATEXPATH ../logos/}{figures/}}
+\graphicspath{{../../logos/}{figures/}}
 
 %-------------------------------------------------------------------------------
 % Generic document information
 %-------------------------------------------------------------------------------
 
 \AtlasTitle{SUSY group text snippets for INT notes}
-\AtlasVersion{0.1}
+
 \author{ATLAS SUSY Group}
-\AtlasRefCode{SUSY-2018-XX}
+
+\AtlasRefCode{Version \ATPackageVersion}
+
 \AtlasAbstract{%
   This note contains text snippets and tables that should be included in supporting notes
   from the SUSY group.
@@ -59,10 +63,8 @@
   The templates are in American English.
   If wanted, some adaption to British English could be made. 
 
-  This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
-
-  \emph{2019-02-04: This file is a work in progress (WIP) and will probably be updated.
-  Backwards incompatible changes may be made as the examples develop.}
+  % \emph{2019-02-04: This file is a work in progress (WIP) and will probably be updated.
+  % Backwards incompatible changes may be made as the examples develop.}
 }
 % Author and title for the PDF file
 \hypersetup{pdftitle={ATLAS SUSY supporting note},pdfauthor={ATLAS SUSY group}}
@@ -165,7 +167,7 @@ Place your conclusion here.
 %-------------------------------------------------------------------------------
 % If you use biblatex and either biber or bibtex to process the bibliography
 % just say \printbibliography here
-\printbibliography
+% \printbibliography
 % If you want to use the traditional BibTeX you need to use the syntax below.
 % \bibliographystyle{obsolete/bst/atlasBibStyleWithTitle}
 % \bibliography{atlas-document,bib/ATLAS,bib/CMS,bib/ConfNotes,bib/PubNotes}

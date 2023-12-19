@@ -1,16 +1,30 @@
+2023-09-04 Zach Marshall <ZLMarshall@lbl.gov>
+	* Updating computing acknowledgements to new PUB note
+	* Tidying spacing of ChangeLog for nice auto-formatting
+
+2021-08-13 Ian Brock <Ian.Brock@cern.ch>
+	* Switch to one line per institute and standardised date.
+	* Switch to new reference for computing.
+
 2018-10-08 Ian Brock <Ian.Brock@cern.ch>
 	* Added I-CORE to Israel.
+
 2018-02-15 Ian Brock <Ian.Brock@cern.ch>
 	* Updated computing acknowledgement.
 	* 29 Jan 2018 update: SRNSFG, Georgia instead of SRNSF, Georgia
+
 2015-08-02 Ian Brock <Ian.Brock@cern.ch>
 	* Add Tier-2 computing reference to acknowledgements. New file Acknowledgements.bib, but entry also included in ATLAS.bib.
+
 2015-02-19 Ian Brock <Ian.Brock@cern.ch>
 	* Add support from China.
+
 2014-12-08 Ian Brock <Ian.Brock@cern.ch>
 	* Imported into atlaslatex.
+
 2014-10-14 Alessandra Ciocio for Pub. Com. 
 	* Replace BMWF and FWF, Austria with BMWFW and FWF, Austria) (14-Oct-2014) (DOC, TEX).
+
 2014-02-19 Alessandra Ciocio for Pub. Com. 
 	* Replace ISF, MINERVA, GIF, DIP and Benoziyo Center, Israel with ISF, MINERVA, GIF, I-CORE and Benoziyo Center, Israel (19-Feb-2014) (DOC, TEX).
 	

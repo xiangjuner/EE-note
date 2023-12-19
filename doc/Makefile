@@ -1,55 +1,37 @@
-# Makefile for creating documentation for ATLAS LaTeX
-# Usually called from a subdirectory
+# Makefile for creating documentation for ATLAS LaTeX.
+# Usually called from a subdirectory.
 
-TEXLIVE  = 2016
-LATEX    = latex
-PDFLATEX = pdflatex
-BIBTEX   = biber
-DVIPS    = dvips
-DVIPDF   = dvipdf
-
-BASENAME = dummy
+TWEAKYEAR = 2020
+PDFLATEX  = pdflatex
+BIBTEX    = biber
+BASENAME  = dummy
 
 .PHONY: clean cleanpdf
+
+# Remove -pdf option to run latex instead of pdflatex.
+run_latexmk:
+	latexmk -pdf $(BASENAME)
 
 run_pdflatex: $(BASENAME).pdf
 	@echo "Made $<"
 
-# Remove -pdf option to run latex instead of pdflatex
-run_latexmk:
-	latexmk -pdf $(BASENAME)
+# Change year for tweaks.
+tweakyear: $(BASENAME).tex
+	if [ $(TWEAKYEAR) -ge 2013 -a $(TWEAKYEAR) -lt 2100 ]; then \
+	  echo "Changing tweak year in $<"; \
+	  sed -i'.bak' 's/AtlasTweakYear}{20[0-9][0-9]/AtlasTweakYear}{$(TWEAKYEAR)/' $<; \
+	else echo "Invalid value for TWEAKYEAR: $(TWEAKYEAR)"; fi;
 
-run_latex: $(BASENAME).dvi
-	$(DVIPDF) -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress $<
-	@echo "Made $< and $(basename $<).pdf"
-
-# Change TeX Live version
-texlive: $(BASENAME).tex
-	if [ $(TEXLIVE) -ge 2007 -a $(TEXLIVE) -lt 2100 ]; then \
-	  echo "Changing texlive value in $<"; \
-	  sed -i'.bak' 's/texlive=20[0-9][0-9]/texlive=$(TEXLIVE)/' $<; \
-	else echo "Invalid value for TEXLIVE: $(TEXLIVE)"; fi; \
-
-# Standard LaTeX targets
+# Standard LaTeX targets.
 $(BASENAME).pdf: $(BASENAME).tex
 	$(PDFLATEX) $<
 	-$(BIBTEX)  $(basename $<)
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
-$(BASENAME).dvi: $(BASENAME).tex
-	$(LATEX)    $<
-	-$(BIBTEX)  $(basename $<)
-	$(LATEX)    $<
-	$(LATEX)    $<
-
-%.bbl: %.tex *.bib
-	$(PDFLATEX) $*
-	$(BIBTEX) $*
-
 clean:
-	-rm *.dvi *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
-	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk .*.lb *~
+	-rm *.toc *.aux *.log *.out *.blg *.bbl *.bcf *-blx.bib \
+	 *.run.xml *.synctex.gz *.fls *.fdb_latexmk *.listing .*.lb *~
 
 cleanpdf:
 	-rm $(BASENAME).pdf

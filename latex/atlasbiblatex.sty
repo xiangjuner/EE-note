@@ -1,15 +1,15 @@
 %-------------------------------------------------------------------------------
 % This file contains adjustments to the numeric-comp (and numeric)
-% biblatex styles that are suggested for ATLAS documents
+% biblatex styles that are suggested for ATLAS documents.
 %
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %
 % Note that this file can be overwritten when atlaslatex is updated.
 %
-% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+% Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlasbiblatex}[2019/11/26 v.08-01-00 ATLAS biblatex style]
+\ProvidesPackage{latex/atlasbiblatex}[2023/12/14 v14.8.0 ATLAS biblatex style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -30,52 +30,62 @@
 \DeclareBoolOption[false]{address}
 \DeclareBoolOption[false]{location}
 \DeclareBoolOption[true]{backref}
-\DeclareStringOption[2016]{texlive}
+\DeclareStringOption[0]{texlive}
 \ProcessKeyvalOptions*
 
-\typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
+% \typeout{atlasbiblatex: ABIB@texlive is [\ABIB@texlive]}
+\ifthenelse{\equal{\ABIB@texlive}{0}}{%
+  \PackageInfo{atlasbiblatex}{No texlive option given - good!}
+}{
+  \PackageWarningNoLine{atlasbiblatex}{%
+    You have passed the option texlive to atlasbiblatex\MessageBreak
+    This option is no longer used and will be ignored%
+  }%
+}
 
 %-------------------------------------------------------------------------------
 % Only set things if biblatex is actually loaded
 \@ifpackageloaded{biblatex}{%
   % Set block mode
   \typeout{atlasbiblatex: block set to \ABIB@block}
-  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
+  \ExecuteBibliographyOptions{block=\ABIB@block}
+
   % Set maxbibnames
+  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
   \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
+
   % backref=true adds page numbers of citations to bibliography
-  \ifABIB@backref
+  \ifthenelse{\boolean{ABIB@backref}}{%
     \typeout{atlasbiblatex: turning backref on}
     \ExecuteBibliographyOptions{backref=true}
-  \else
+  }{%
     \typeout{atlasbiblatex: backref is off}
     \ExecuteBibliographyOptions{backref=false}
-  \fi
+  }
+
   % Include the DOI as a hyperlink with the journal.
-  \ifABIB@showdoi
-    \relax
-  \else
+  \ifthenelse{\boolean{ABIB@showdoi}}{}{%
     \ExecuteBibliographyOptions{doi=false}
     % Fix from Knut Zoch - field is better than macro to avoid comma becoming part of link
     \DeclareFieldFormat{string+doi}{%
-      \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+      \iffieldundef{doi}{#1}{\href{https://doi.org/\thefield{doi}}{#1}}}
     %\newbibmacro{string+doi}[1]{%
     %  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
     %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibtextit{#1}}}
-  \fi
+  }
 
   % Turn off printing of arXiv
-  \ifABIB@eprint
-    \relax
-  \else
+  \ifthenelse{\boolean{ABIB@eprint}}{}{%
     \ExecuteBibliographyOptions{eprint=false}
-  \fi
+  }
 
   % date=year option works for TeX Live 2014 or so onwards
-  \ifthenelse{\ABIB@texlive < 2014}{%
-    \relax
-  }{%
+  % \ifthenelse{\ABIB@texlive < 2014}{}{%
+  \@ifpackagelater{biblatex}{2015/04/01}{%
+    \typeout{atlasbiblatex: setting option date=year.}
     \ExecuteBibliographyOptions{date=year}
+  }{%
+    \typeout{atlasbiblatex: option date=year not yet available.}
   }
 
   % Don't want months
@@ -84,27 +94,30 @@
   }
 
   % Use consistent format for title for articles and booklets/reports (CONF/PUB notes)
-  \ifABIB@articletitle
+  \ifthenelse{\boolean{ABIB@articletitle}}{%
     % Titles all in italics or in quotes
-    \ifABIB@titlequote
+    \ifthenelse{\boolean{ABIB@titlequote}}{%
       \DeclareFieldFormat[article]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\mkbibquote{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\mkbibquote{#1}\isdot}
       \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}\isdot}
-    \else
+    }{%
       \DeclareFieldFormat[article]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[booklet]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[report]{title}{\textit{#1}\isdot}
+      \DeclareFieldFormat[thesis]{title}{\textit{#1}\isdot}
       \DeclareFieldFormat[misc]{title}{\textit{#1}\isdot}
-    \fi
-  \else
+    }
+  }{%
     \AtEveryBibitem{
       \ifentrytype{article}{\clearfield{title}}{}
       \ifentrytype{booklet}{\clearfield{title}}{}
       \ifentrytype{report}{\clearfield{title}}{}
+      \ifentrytype{thesis}{\clearfield{title}}{}
       %\ifentrytype{misc}{\clearfield{title}}{}
     }
-  \fi
+  }
 
   % Journal in upright font
   \DeclareFieldFormat[article]{journaltitle}{#1\isdot}
@@ -118,23 +131,20 @@
     \ifentrytype{article}{\clearfield{number}}{}
   }
 
-  % Do not print out the address
-  \ifABIB@address
-    \relax
-  \else
-    \ifABIB@location
-      \relax
-    \else
+  % Do not print out the address, except for proceedings
+  \ifthenelse{\boolean{ABIB@address}}{}{%
+    \ifthenelse{\boolean{ABIB@location}}{}{%
       \AtEveryBibitem{%
-        \clearlist{location}
+        \ifentrytype{article}{\clearlist{location}}{}
+        \ifentrytype{booklet}{\clearlist{location}}{}
+        \ifentrytype{report}{\clearlist{location}}{}
+        % \clearlist{location}
       }
-    \fi
-  \fi
+    }
+  }
 
   % DOI as link with journal reference
-  \ifABIB@showdoi
-    \relax
-  \else
+  \ifthenelse{\boolean{ABIB@showdoi}}{}{%
     %\DeclareFieldFormat[article]{journaltitle}{\usebibmacro{string+doi}{#1\isdot}}
     %\DeclareFieldFormat[article]{journal+issuetitle}{\usebibmacro{string+doi}{#1}}
     % Adapted from /usr/local/texlive/2014/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
@@ -165,14 +175,10 @@
       %\setunit{\bibpagespunct}%
       %\printfield{pages}%
       \newunit}
-  \fi
-
-  % Print only first page - only works for TeX Live 2012 onwards I think
-  \ifthenelse{\ABIB@texlive < 2012}{%
-    \relax
-  }{%
-    \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
   }
+
+  % Print only first page
+  \DeclareFieldFormat{pages}{\mkfirstpage[{\mkpageprefix[bookpagination]}]{#1}}
 
   % Change punctuation to comma
   \renewcommand*{\newunitpunct}{\addcomma\space}
@@ -230,3 +236,5 @@
     \newunit}
 }{\typeout{*** atlasbiblatex: biblatex is not loaded}
 }
+
+\endinput

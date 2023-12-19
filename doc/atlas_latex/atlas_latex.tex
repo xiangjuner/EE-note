@@ -1,17 +1,27 @@
+% \RequirePackage{snapshot}
 %-------------------------------------------------------------------------------
 % Guide to the use of the ATLAS LaTeX package
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[datetop=true,UKenglish,texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[REPORT=false, UKenglish]{atlasdoc}
 
-% Use biblatex and biber for the bibliography
-\usepackage[backend=biber]{\ATLASLATEXPATH atlaspackage}
-\usepackage{\ATLASLATEXPATH atlasbiblatex}
+\newcommand*{\AtlasTweakYear}{2020}
 
+% Standard packages that can and should be used in ATLAS papers
+\usepackage[diffcoeff]{atlaspackage}
+\usepackage{atlasbiblatex}
 \usepackage{authblk}
-\usepackage{\ATLASLATEXPATH atlasphysics}
+\usepackage{atlasphysics}
+
+% Macro to add to-do notes (for several authors). Uses the todonotes package.
+\usepackage[version=2]{atlastodo}
+\ATLnote{JS}{Jane}{magenta!20}{magenta}
+\ATLnote{IB}{Ian}{green!20}{green!50!black!60}
+
+% Macros for documentation
+\usepackage{atlas_doc-defs}
 
 % Files with references in BibTeX format
 \addbibresource{../atlas_latex.bib}
@@ -20,12 +30,6 @@
 \graphicspath{{../../logos/}{figures/}}
 
 % Shorthand for \phantom to use in tables
-\newcommand{\pho}{\phantom{0}}
-\newcommand{\BibTeX}{\textsc{Bib\TeX}}
-\newcommand{\File}[1]{\texttt{#1}\xspace}
-\newcommand{\Macro}[1]{\texttt{\textbackslash #1}\xspace}
-\newcommand{\Option}[1]{\textsf{#1}\xspace}
-\newcommand{\Package}[1]{\texttt{#1}\xspace}
 \newcommand{\mcc}[1]{\multicolumn{1}{c}{#1}}
 
 %-------------------------------------------------------------------------------
@@ -40,8 +44,6 @@
 \author{Ian C. Brock}
 \affil{University of Bonn}
 
-% \AtlasVersion{\ATPackageVersion}
-
 \AtlasAbstract{%
   The usage of the ATLAS \LaTeX\ templates and style files is documented here.
   The options that are available are given, as well as the packages that can be loaded
@@ -51,7 +53,7 @@
   is included.
 
   This document was generated using version \ATPackageVersion\ of the ATLAS \LaTeX\ package.
-  The \TeX\ Live version is set to \ATTeXLiveVersion.
+  The main class is \KOMAScriptVersion.
   It uses the option \Option{atlasstyle}, which implies that the standard ATLAS preprint style is used.
 }
 

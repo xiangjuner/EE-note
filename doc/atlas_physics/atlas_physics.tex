@@ -3,22 +3,21 @@
 % This variant uses the particle and process options.
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[mhchem, UKenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[REPORT=false, mhchem, UKenglish]{atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[default, backend=biber]{\ATLASLATEXPATH atlaspackage}
-\usepackage[backref=false]{\ATLASLATEXPATH atlasbiblatex}
-\usepackage{xtab}
+\usepackage[default, xtab]{atlaspackage}
+\usepackage[backref=false]{atlasbiblatex}
 \usepackage{authblk}
 
 % Include all style files
 \usepackage[BSM, hion, jetetmiss,
   journal, math, misc, other, hepparticle=false, particle,
-  hepprocess=false, process, snippets, unit, xref]{\ATLASLATEXPATH atlasphysics}
-%\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
+  hepprocess=false, process, snippets, unit, xref]{atlasphysics}
 
+\usepackage{atlas_doc-defs}
 \input{atlas_physics_defs}
 
 %-------------------------------------------------------------------------------
@@ -32,9 +31,8 @@
 
 \input{atlas_physics_body}
 
-
-\twocolumn
 %-------------------------------------------------------------------------------
+\twocolumn
 \section{\File{atlasparticle.sty}}
 
 Turn on including these definitions with the option \Option{particle=true} and off with the option \Option{particle=false}.
@@ -54,7 +52,7 @@ They are defined such that
 
 \newpage
 %-------------------------------------------------------------------------------
-\section{\File{atlashepparticle.sty}}
+\section{\File{atlasparticle.sty} with the \Option{hepparticle} option}
 
 Turn on including these definitions with the option \Option{hepparticle=true} and off with the option \Option{hepparticle=false}.
 
@@ -80,7 +78,7 @@ They are defined such that
 
 \newpage
 %-------------------------------------------------------------------------------
-\section{\File{atlasprocess.sty}}
+\section{\File{atlasparticle.sty} with the \Option{process} option}
 
 Turn on including these definitions with the option \Option{process} and off with the option \Option{process=false}.
 
@@ -93,7 +91,7 @@ Use the \Option{hepprocess=true} instead of \Option{process=true} to use the \Pa
 
 \newpage
 %-------------------------------------------------------------------------------
-\section{\File{atlashepprocess.sty}}
+\section{\File{atlasparticle.sty} with the \Option{hepprocess} option}
 
 Turn on including these definitions with the option \Option{hepprocess} and off with the option \Option{hepprocess=false}.
 

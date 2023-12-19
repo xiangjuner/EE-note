@@ -1,14 +1,14 @@
 %-------------------------------------------------------------------------------
-% Style file with useful commands for language editors
+% Style file with useful commands for language editors.
 %
 % See ChangeLog or Git log for history of changes.
 % Responsible: Ian Brock (ian.brock@cern.ch)
 %
 % Note that this file can be overwritten when atlaslatex is updated.
 %
-% Copyright (C) 2002-2018 CERN for the benefit of the ATLAS collaboration
+% Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlascomment}[2019/11/26 v.08-01-00 ATLAS language editing style]
+\ProvidesPackage{latex/atlascomment}[2023/12/14 v14.8.0 ATLAS language editing style]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 
 \RequirePackage{xspace}
 
-\ifACOMM@comment
+\ifthenelse{\boolean{ACOMM@comment}}{%
   \typeout{atlascomment: showing comments}
   \typeout{Sizes before changing settings:}
   \typeout{text height and width \the\textheight, \the\textwidth}
@@ -46,11 +46,11 @@
       {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta]{#3}\xspace}
       {\textcolor{magenta}{#2}\todo[color=pink, linecolor=magenta, #1]{#3}\xspace}
   }
-\else
+}{%
   \typeout{atlascomment: not showing comments}
   \RequirePackage[disable]{todonotes}
   \newcommand{\LEcomment}[3][]{\todo[#1]{#2}\xspace}
-\fi
+}
 
 % \presetkeys{todonotes}{fancyline, color=blue!30}{}
 \presetkeys{todonotes}{color=cyan!20, linecolor=cyan}{}

@@ -15,17 +15,42 @@ Turn on including these definitions with the option \Option{misc=true} and off w
 
 \input{atlasmisc}
 
-\noindent A length \Macro{figwidth} is defined that is \SI{2}{\cm} smaller than \Macro{textwidth}.
+\noindent A length \Macro{figwidth} is defined that is \qty{2}{\cm} smaller than \Macro{textwidth}.
 
-\noindent Most Monte Carlo generators also have a form with a suffix \enquote{V}
-that allows you to include the version, e.g.
-\verb|\PYTHIAV{8}| to produce \PYTHIAV{8} or
-\verb|\PYTHIAV{8 (v8.160)}| to produce \PYTHIAV{8 (v8.160)}.
+\noindent Monte Carlo generators and PDFs have an optional argument
+that allows you to include the version, e.g.\
+\verb|\PYTHIA[8]| to produce \PYTHIA[8] or\\
+\verb|\PYTHIA[(v8.160)]| to produce \PYTHIA[(v8.160)].
+
+\noindent A macro \Macro{pTX} is included that allows you to add an extra subscript and/or a superscript to \pT.
+e.g.\\
+\verb|\pTX| to produce \pTX;\\
+\verb|\pTX[2]| to produce \pTX[2];\\
+\verb|\pTX[][\text{had}]| to produce \pTX[][\text{had}];\\
+\verb|\pTX[3][\text{had}]| to produce \pTX[3][\text{had}].
 
 \noindent A generic macro \verb|\twomass| is defined, so that for example
 \verb|\twomass{\mu}{\mu}| produces \twomass{\mu}{\mu} and \verb|\twomass{\mu}{e}| produces \twomass{\mu}{e}.
 
-A macro \verb|\dk| is also defined which makes it easier to write down decay chains.
+\noindent Several macros that help format numbers with rounding are provided:
+e.g.\\
+\verb|\numR{3.145159}{2}| \(\rightarrow\) \(\numR{3.14159}{2}\)\\
+\verb|\numRF{3.145159}{3}| \(\rightarrow\) \(\numRF{3.14159}{3}\)\\
+\verb|\numRP{3.145159}{3}| \(\rightarrow\) \(\numRP{3.14159}{3}\)\\
+\verb|\numpmerr{+1.234}{-3.456}{2}| \(\rightarrow\) \(\numpmerr{+1.234}{-0.3456}{2}\)\\[0.5ex]
+\verb|\numpmRF{+1.234}{-3.456}{2}|  \(\rightarrow\) \(\numpmRF{+1.234}{-0.3456}{2}\)\\[0.5ex]
+\verb|\numpmRP{-1.234}{+3.456}{2}|  \(\rightarrow\) \(\numpmRP{-1.234}{+3.456}{2}\)\\[0.5ex]
+\verb|\numpmerrx[2][figures]{+1.234}{-3.456}| \(\rightarrow\) \(\numpmerrx[2][figures]{+1.234}{-3.456}\)\\[0.5ex]
+Note that \Macro{numR} and \Macro{numpmerr} only perform rounding if \Option{round-mode} is set to something
+via \Macro{sisetup} (which is not the case here).
+The same applies if the second argument of \Macro{numpmerrx} is omitted.
+See the \Package{siunitx} package for more details.
+
+The macro \Macro{supsub} ensures that superscripts and subscripts have the same width.
+This is useful for asymmetric errors if the widths of \enquote{\(+\)} and \enquote{\(-\)}
+are not the same.
+
+A macro \verb|\dk| is defined which makes it easier to write down decay chains.
 For example
 \begin{verbatim}
 \[\eqalign{a \to & b+c\\
@@ -128,22 +153,22 @@ The macro \Macro{avg} can be used for average values:
 \verb|\avg{\mu}| produces \avg{\mu}.
 
 
-\newpage
+% \newpage
 %-------------------------------------------------------------------------------
-\section{\File{atlasmath.sty}}
+% \section{\File{atlasmath.sty}}
 
-Turn on including these definitions with the option \Option{math=true} and off with the option \Option{math=false}.
+% Turn on including these definitions with the option \Option{math=true} and off with the option \Option{math=false}.
 
-\input{atlasmath}
+% \input{atlasmath}
 
-\noindent The macro \Macro{spinor} is also defined.
-\verb|\spinor{u}| produces \spinor{u}.
+% \noindent The macro \Macro{spinor} is also defined.
+% \verb|\spinor{u}| produces \spinor{u}.
 
 
-\newpage
+% \newpage
 %-------------------------------------------------------------------------------
-\section{\File{atlasother.sty}}
+% \section{\File{atlasother.sty}}
 
-Turn on including these definitions with the option \Option{other} and off with the option \Option{other=false}.
+% Turn on including these definitions with the option \Option{other} and off with the option \Option{other=false}.
 
-\input{atlasother}
+% \input{atlasother}

@@ -1,5 +1,8 @@
-This new version contains a few updates:
-- August and September updates of publications + a few fixes.
-- Rename macro \Ref to \Refn and \Refs to \Refns, as hyperref defines \Ref in TeX Live 2019.
-- Default percentspace option now set to false for siunitx package.
-- Updated acknowledgements.
+This new version contains a number of updates:
+- Update publications up to November 2023. Publication year for many references corrected.
+- Add Run 3 detector description.
+- Use of the texlive option is deprecated and it is not used any more.
+- TEXLIVE also removed as a variable in the Makefile.
+- Use report (scrreprt) class for notes. Pass option REPORT=false to use old default of scrartcl.
+- Change syntax of ToDo note commands so text associated with note is now an optional rather than required parameter.
+- The macro \ATLASLATEXPATH is no longer be necessary and should not be used.

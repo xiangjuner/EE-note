@@ -3,22 +3,21 @@
 % This variant uses the hepparticle and hepprocess options.
 %-------------------------------------------------------------------------------
 % Specify where ATLAS LaTeX style files can be found.
-\newcommand*{\ATLASLATEXPATH}{../../latex/}
+\RequirePackage{../atlasdocpath}
 %-------------------------------------------------------------------------------
-\documentclass[mhchem, USenglish, texlive=2016]{\ATLASLATEXPATH atlasdoc}
+\documentclass[REPORT=false, mhchem, USenglish]{atlasdoc}
 
 % Standard packages that can and should be used in ATLAS papers
-\usepackage[default, backend=biber]{\ATLASLATEXPATH atlaspackage}
-\usepackage[backref=false]{\ATLASLATEXPATH atlasbiblatex}
-\usepackage{xtab}
+\usepackage[default, xtab]{atlaspackage}
+\usepackage[backref=false]{atlasbiblatex}
 \usepackage{authblk}
 
 % Include all style files
 \usepackage[BSM, hion, jetetmiss,
   journal, math, misc, other, hepparticle=true, hepitalic=true, particle,
-  hepprocess=true, process, snippets, unit, xref]{\ATLASLATEXPATH atlasphysics}
-%\usepackage{\ATLASLATEXPATH atlasheavyion-mod}
+  hepprocess=true, process, snippets, unit, xref]{atlasphysics}
 
+\usepackage{atlas_doc-defs}
 \input{atlas_physics_defs}
 
 %-------------------------------------------------------------------------------
@@ -31,7 +30,6 @@
 \tableofcontents
 
 \input{atlas_physics_body}
-
 
 %-------------------------------------------------------------------------------
 \twocolumn
@@ -66,7 +64,7 @@ The names used are those in \Package{heppennames}.
 The package loads \Package{hepparticles}, which can then be used to define more particles if you need them.
 One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
 
-\input{atlashepparticle}
+\input{atlasparticle}
 
 Generic macros \verb|\taup[1]| and \verb|\Ups[1]| are available.
 They are defined such that
@@ -104,7 +102,7 @@ so you do not need to define them yourself.
 These packages load \Package{hepparticles}, which can then be used to define more particles if you need them.
 One very nice feature of these packages is that you can switch between italic and upright symbols via an option.
 
-\input{atlashepprocess}
+\input{atlasprocess}
 
 
 %-------------------------------------------------------------------------------
