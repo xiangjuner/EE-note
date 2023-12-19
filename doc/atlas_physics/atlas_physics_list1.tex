@@ -34,21 +34,20 @@ e.g.\\
 
 \noindent Several macros that help format numbers with rounding are provided:
 e.g.\\
-\verb|\numR{3.145159}{2}| \(\rightarrow\) \(\numR{3.14159}{2}\)\\
-\verb|\numRF{3.145159}{3}| \(\rightarrow\) \(\numRF{3.14159}{3}\)\\
-\verb|\numRP{3.145159}{3}| \(\rightarrow\) \(\numRP{3.14159}{3}\)\\
-\verb|\numpmerr{+1.234}{-3.456}{2}| \(\rightarrow\) \(\numpmerr{+1.234}{-0.3456}{2}\)\\[0.5ex]
-\verb|\numpmRF{+1.234}{-3.456}{2}|  \(\rightarrow\) \(\numpmRF{+1.234}{-0.3456}{2}\)\\[0.5ex]
-\verb|\numpmRP{-1.234}{+3.456}{2}|  \(\rightarrow\) \(\numpmRP{-1.234}{+3.456}{2}\)\\[0.5ex]
-\verb|\numpmerrx[2][figures]{+1.234}{-3.456}| \(\rightarrow\) \(\numpmerrx[2][figures]{+1.234}{-3.456}\)\\[0.5ex]
+\verb|\numR[2]{3.145159}|  \(\rightarrow\) \(\numR[2]{3.14159}\)\\
+\verb|\numRF[3]{3.145159}| \(\rightarrow\) \(\numRF[3]{3.14159}\)\\
+\verb|\numRP[3]{3.145159}| \(\rightarrow\) \(\numRP[3]{3.14159}\)\\
+\verb|\numpmerr[2]{+1.234}{-3.456}|          \(\rightarrow\) \(\numpmerr[2]{+1.234}{-0.3456}\)\\[0.5ex]
+\verb|\numpmerr[2][figures]{+1.234}{-3.456}| \(\rightarrow\) \(\numpmerr[2][figures]{+1.234}{-3.456}\)\\[0.5ex]
+\verb|\numpmerr[2][places]{-1.234}{+3.456}|  \(\rightarrow\) \(\numpmerr[2][places]{-1.234}{+3.456}\)\\[0.5ex]
+\verb|\numpmerr[2][figures]{+1.234}{-3.456}| \(\rightarrow\) \(\numpmerr[2][figures]{+1.234}{-3.456}\)\\[0.5ex]
 Note that \Macro{numR} and \Macro{numpmerr} only perform rounding if \Option{round-mode} is set to something
 via \Macro{sisetup} (which is not the case here).
-The same applies if the second argument of \Macro{numpmerrx} is omitted.
 See the \Package{siunitx} package for more details.
 
-The macro \Macro{supsub} ensures that superscripts and subscripts have the same width.
-This is useful for asymmetric errors if the widths of \enquote{\(+\)} and \enquote{\(-\)}
-are not the same.
+% The macro \Macro{supsub} ensures that superscripts and subscripts have the same width.
+% This is useful for asymmetric errors if the widths of \enquote{\(+\)} and \enquote{\(-\)}
+% are not the same.
 
 A macro \verb|\dk| is defined which makes it easier to write down decay chains.
 For example
