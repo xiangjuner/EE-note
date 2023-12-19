@@ -109,9 +109,8 @@
   \ClassInfo{atlasdoc}{ATLAS LaTeX main version is default.}
 }{
   \ClassWarningNoLine{atlasdoc}{%
-    ATLAS LaTeX main version changed from \ATPackageUseVersion to \ADOC@version\MessageBreak
+    ATLAS LaTeX main version changed from \ATPackageUseVersion\ to \ADOC@version\MessageBreak
     You should do this only if absolutely necessary.}
-  }%
   \renewcommand*{\ATPackageUseVersion}{\ADOC@version}
 }
 
