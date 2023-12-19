@@ -40,6 +40,7 @@
 \DeclareBoolOption[true]{xref}
 \DeclareStringOption[0]{texlive}
 \DeclareBoolOption[false]{eVkern}
+\DeclareBoolOption[true]{numpmcorr}
 \DeclareBoolOption[true]{texmf}
 \ProcessKeyvalOptions*
 
@@ -73,6 +74,12 @@
   \PackageInfo{atlasphysics}{APHY@eVkern is true}
 }{%
   \PackageInfo{atlasphysics}{APHY@eVkern is false}
+}
+
+\ifthenelse{\boolean{APHY@numpmcorr}}{%
+  \PackageInfo{atlasphysics}{APHY@numpmcorr is true}
+}{%
+  \PackageInfo{atlasphysics}{APHY@numpmcorr is false}
 }
 
 % BSM particles including SUSY - also allow option bsm!
