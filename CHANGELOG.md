@@ -39,6 +39,16 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Security
 
+## [14.10.1] - 2024-01-24
+
+### Added
+
+- December 2023 update of publications.
+
+### Fixed
+
+- Some years in publications needed to be corrected again.
+
 ---
 
 ## [14.9.0] - 2023-12-19
