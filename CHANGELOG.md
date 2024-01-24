@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [14.10.0] - 2024-01-24
+## [14.10.1] - 2024-01-24
 
 ### Added
 
@@ -22,7 +22,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Fixed
 
-- Some years in publications still need to be corrected again. Will happen with version 14.10.1
+- Some years in publications needed to be corrected again.
 
 ---
 
