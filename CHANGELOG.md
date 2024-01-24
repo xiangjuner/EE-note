@@ -39,15 +39,23 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Security
 
-## [14.10.1] - 2024-01-24
+## [14.10.2] - 2024-01-24
 
 ### Added
 
 - December 2023 update of publications.
 
+### Changed
+
+- Update ATLAS detector description in `template`.
+
 ### Fixed
 
 - Some years in publications needed to be corrected again.
+
+### Removed
+
+- Run 1 detector description removed.
 
 ---
 
