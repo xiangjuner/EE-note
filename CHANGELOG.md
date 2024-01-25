@@ -2,7 +2,7 @@
 
 *Responsible:* Ian Brock (Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
+Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
 
 All notable changes to the ATLAS LaTeX package are documented in this file.
 
@@ -26,6 +26,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - Some backwards incompatible changes to `\numR`, `\numRF`, `\numRP` and `numpmerr` macros.
 - The meaning of the optional arguments for `\numpmerrx` is changed.
+- Update pT for tracks for primary vertex to 0.5 GeV.
 
 ### Deprecated
 

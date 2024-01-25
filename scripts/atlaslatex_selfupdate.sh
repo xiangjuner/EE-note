@@ -1,7 +1,7 @@
 #! /bin/bash
 # Script to update atlaslatex scripts from the Git master.
 
-# Copyright (C) 2002-2023 CERN for the benefit of the ATLAS collaboration.
+# Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
 
 # Changes:
 # 2022-02-08 Ian Brock (ian.brock@cern.ch): First version of scropt.
