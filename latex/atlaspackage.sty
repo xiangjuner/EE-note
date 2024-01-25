@@ -408,7 +408,6 @@
     \typeout{atlaspackage: passing maxbibnames option to biblatex}
     \PassOptionsToPackage{maxbibnames=\APKG@maxbibnames}{\ADOC@atlasbiblatex}
   }
-  % \ifthenelse{\APKG@texlive < 2016}{%
   \ifthenelse{\boolean{APKG@firstinits}}{%
     \RequirePackage[backend=\APKG@backend,
       style=numeric-comp, sorting=none, firstinits=true]{biblatex}

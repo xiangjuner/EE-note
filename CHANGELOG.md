@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2024-01-XX
+## [Unreleased] - 2024-02-XX
 
 ### Added
 
@@ -29,6 +29,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 - Update pT for tracks for primary vertex to 0.5 GeV.
 
 ### Deprecated
+
+- Only TeX Live 2017 and later are now tested, although things may still work for earlier version.
 
 ### Removed
 

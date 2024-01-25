@@ -446,7 +446,6 @@
     \typeout{atlasdoc: keep default table of contents style.}
   }{%
     \typeout{atlasdoc: remove dots in table of contents style.}
-    % \ifthenelse{\ADOC@texlive < 2016}{%
     \@ifclasslater{\KOMAClassName}{2016/04/01}{%
       \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsection}
       \DeclareTOCStyleEntry[beforeskip=0pt plus .2pt,linefill=\hfill]{tocline}{subsubsection}
@@ -456,7 +455,6 @@
     }
   }
   % Table of contents down to \ADOC@tocdepth which is 1 by default
-  % \ifthenelse{\ADOC@texlive < 2014}{%
   \@ifclasslater{\KOMAClassName}{2014/04/01}{%
     \setcounter{tocdepth}{\ADOC@tocdepth}
   }{%
@@ -621,7 +619,6 @@
 
 % Draft heading/footer code
 \newcommand{\ADOC@DraftHeading}{%
-  % \ifthenelse{\ADOC@texlive < 2015}{%
   \@ifclasslater{\KOMAClassName}{2015/04/01}{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
   }{%
@@ -638,7 +635,6 @@
 
 % Include fancier header and footer for HepData material document
 \ifthenelse{\boolean{ADOC@HEPDATA}}{%
-  % \ifthenelse{\ADOC@texlive < 2015}{%
   \@ifclasslater{\KOMAClassName}{2015/04/01}{%
     \RequirePackage[headsepline]{scrlayer-scrpage}
   }{%
