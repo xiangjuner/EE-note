@@ -14,13 +14,18 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2024-02-XX
+## [15.0.0-alpha] - 2024-02-20
 
 ### Added
 
 - Add option `version` to `atlasdoc` to allow specification of older version.
-- Add extra macro for asymmetric errors: `numpmerrt`.
-- Add extra macros for quantities with asymmetric errors `qtyerrt`, `qtypmerr`, `qtypmerrt` etc.
+- Add option `keywords` to `atlasdoc` to allow keywords on the title page.
+- Add option `copyright` to `atlasdoc` to change the default copyright on the title page.
+- Add commands `\AtlasKeywords` and `\AtlasCopyright` to set them.
+- Add extra macro for asymmetric errors: `\numpmerrt`.
+- Add extra macros for quantities with asymmetric errors `\qtyerrt`, `\qtypmerr`, `\qtypmerrt` etc.
+- Add option `minbibnames` to `atlasbiblatex` to specify the minimum number of
+  author names in the bibliography.
 
 ### Changed
 
@@ -30,7 +35,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ### Deprecated
 
-- Only TeX Live 2017 and later are now tested, although things may still work for earlier version.
+- Only TeX Live 2017 and later are now tested, although things may still work for earlier versions.
 
 ### Removed
 
@@ -38,9 +43,6 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
   They will be added to papers, together with the author list, by the Physics Office.
 - Macros `\numpmRF` and `\numpmRP` removed. Use `\numpmerr` instead.
 
-### Fixed
-
-### Security
 
 ## [14.10.2] - 2024-01-24
 
