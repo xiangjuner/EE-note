@@ -60,6 +60,8 @@
 \DeclareBoolOption[true]{atlaslogo}
 \DeclareBoolOption[true]{cernlogo}
 \DeclareBoolOption[true]{datetop}
+\DeclareBoolOption[false]{keywords}
+\DeclareBoolOption[false]{copyright}
 \DeclareBoolOption[false]{showframe}
 \DeclareBoolOption[false]{shownote}
 \DeclareBoolOption[false]{cmslogo}
@@ -116,9 +118,16 @@
 
 % Type of document
 \newcommand*{\ADOC@docheadingdefault}{}
-% Add ability to change draft document heading
+\newcommand{\ADOC@copyrightdefault}{}
+% Add ability to change draft document heading.
 \newcommand*{\ADOC@docheading}{}
 \newcommand*{\AtlasHeading}[1]{\renewcommand*{\ADOC@docheading}{#1}}
+% Add ability to include keywords.
+\newcommand*{\ADOC@keywordstext}{}
+\newcommand*{\AtlasKeywords}[1]{\renewcommand*{\ADOC@keywordstext}{#1}}
+% Add ability to change the copyright.
+\newcommand{\ADOC@copyrighttext}{}
+\newcommand{\AtlasCopyright}[1]{\renewcommand{\ADOC@copyrighttext}{#1}}
 
 % Turn off backref in atlasbiblatex for CERN preprint
 % \newcommand*{\ADOC@atlasbiblatex}{atlasbiblatex}
@@ -847,17 +856,29 @@
   % \parbox[b]{\titlepageparbox}{%
   {%
     \rmfamily\mdseries\fontsize{10}{12}\selectfont
+    \ifthenelse{\boolean{ADOC@keywords}}{%
+      Keywords: \ADOC@keywordstext\newline
+    }{%
+      \relax
+    }
     \ifthenelse{\boolean{ADOC@cmslogo}}{%
-      \copyright\ \the\year \ CERN for the benefit of the ATLAS and CMS Collaborations.\newline
-      Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+      \renewcommand{\ADOC@copyrightdefault}{\copyright\ \the\year \ CERN for the benefit of the ATLAS and CMS Collaborations.\newline
+        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.}
     }{%
       \ifthenelse{\boolean{ADOC@atlaslogo}}{%
-        \copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
-        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+        \renewcommand{\ADOC@copyrightdefault}{\copyright\ \the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+          Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.}
       }{
-        \copyright\ \the\year \ CERN\newline
-        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.
+        \renewcommand{\ADOC@copyrightdefault}{\copyright\ \the\year \ CERN\newline
+        Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.}
       }
+    }
+    \ifthenelse{\boolean{ADOC@copyright}}{%
+      \typeout{atlasdoc: using special copyright: \ADOC@copyrighttext}
+      \copyright\ \ADOC@copyrighttext
+    }{%
+      \typeout{atlasdoc: using default copyright}
+      \ADOC@copyrightdefault
     }
   }
 }

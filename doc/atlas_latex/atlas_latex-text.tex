@@ -437,6 +437,10 @@ In the following the default option is in boldface.
   if the book does not have an abstract;
 \item[\Option{atlaslogo=true|{\normalfont false}}] show the ATLAS logo on the title page;
 \item[\Option{cernlogo=true|{\normalfont false}}] show the CERN logo on the title page;
+\item[\Option{keywords={\normalfont true}|false}] add keywords to the title page.
+  Use the command \Macro{AtlasKeywords} to specify them;
+\item[\Option{copyright={\normalfont true}|false}] replace the default copyright text.
+  Use the command \Macro{AtlasCopyright} to specify them;
 \item[\Option{orcidlogo={\normalfont true}|false}] include a visible ORCiD link in the author list;
 \item[\Option{cmslogo={\normalfont true}|false}] include the CMS logo on the title page;
 \item[\Option{extralogo=\normalfont{filename}}] include an extra logo on the title page;
@@ -444,15 +448,8 @@ In the following the default option is in boldface.
 \item[\Option{shownote={\normalfont true}|false}] show the PUB note number.
   This is turned off by default for the final version of PUB notes.
   It does not affect other document types.
-\item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
-  an error with \TeX\ Live 2014.
-  \emph{\ADOCold{07-00-00} This option has no effect};
 \item[\Option{datetop=true|{\normalfont false}}] put the date at the top of the title page;
   \emph{\ADOCnew{07-00-00} No date is printed if this option is set to false};
-\item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long.
-  \emph{\ADOCold{07-00-00} This option has no effect};
-\item[\Option{copyrightoffset=0em}] adjust the position of the copyright, if it is not completely correct.
-  \emph{\ADOCold{07-00-00} This option has no effect};
 \end{description}
 
 \ADOCnew{11.4.0} The option \Option{tableheading} leads to better spacing of table captions above a table (the ATLAS default).
@@ -488,9 +485,43 @@ the title page and also the draft label using the following commands:
 \AtlasDraftHeading{DRAFT}
 \end{verbatim}
 
-The following options were removed.
+\ADOCnew{15.0.0} The option \Option{keywords} has been added to allow keywords to be added to the title page.
+You define the keywords using the \Macro{AtlasKeywords} command.
+To be effective, you have to pass the \Option{keywords=true} option to \Package{atlasdoc}.
+It is possible to change the default copyright by passing the \Option{copyright=true} option to \Package{atlasdoc}.
+Use the \Macro{AtlasCopyright} command to define the copyright text.
+To be effective, you have to pass the \Option{copyright=true} option to \Package{atlasdoc}:
+\begin{verbatim}
+\documentclass[PAPER, UKenglish, keywords=true, copyright=true]{atlasdoc}
+...
+\AtlasKeywords{high-energy physics, proton--proton, beyond Standard Model.}
+\AtlasCopyright{\the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+  Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.}
+\end{verbatim}
+
+Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
+as they only influence the cover pages.
+%The option \Option{BOOK} uses book instead of article as the base class.
+
+The
+\href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}
+recommends changing several default \LaTeX\ options so that there are fewer problems
+with figure and table placement.
+It is certainly worth reading that page for further advice.
+As it is very hard to really test how well these options work
+they can be turned on or off in \Package{atlasdoc} via the option \Option{floatopt=true|false}.
+The default value is set to \Option{true}.
+
+The following options either have no effect or were removed.
 % They are mostly still available in \Package{atlasdoc1}.
 \begin{description}
+\item[\Option{mhchem={\normalfont true}|false}] include \Package{mhchem} before \Package{xpatch} to avoid
+  an error with \TeX\ Live 2014.
+  \emph{\ADOCold{07-00-00} This option has no effect};
+\item[\Option{titleextraheight=0em}] extra height that could be needed for the title, if it is very long.
+  \emph{\ADOCold{07-00-00} This option has no effect};
+\item[\Option{copyrightoffset=0em}] adjust the position of the copyright, if it is not completely correct.
+  \emph{\ADOCold{07-00-00} This option has no effect};
 \item[maketitle={\normalfont true}|false] turn on or off the creation of a title page within \Macro{AtBeginDocument}.
   \ADOCold{02-00-00} If the option is false, but you still want a title, give the command \Macro{maketitle} after
   \verb|\begin{document}|.
@@ -509,20 +540,8 @@ The following options were removed.
   \ADOCold{02-00-00} This option does not work anymore
   --- use \Option{paper=letter} instead;
 \end{description}
-Note that the options \Option{CONF} and \Option{PUB} get passed to \Package{atlascover.sty}
-as they only influence the cover pages.
-%The option \Option{BOOK} uses book instead of article as the base class.
 
-The
-\href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats}{UK List of FAQ}
-recommends changing several default \LaTeX\ options so that there are fewer problems
-with figure and table placement.
-It is certainly worth reading that page for further advice.
-As it is very hard to really test how well these options work
-they can be turned on or off in \Package{atlasdoc} via the option \Option{floatopt=true|false}.
-The default value is set to \Option{true}.
-
-\ADOCnew{02-00-00} \KOMAScript\ elements are used to create the title pages.
+\ADOCold{07-00-00} \KOMAScript\ elements are used to create the title pages.
 In particular, \Macro{publishers} is used for the abstract and copyright.
 The space and position for this may need to be adjusted,
 if you have a very long title. 
@@ -615,7 +634,7 @@ as the \Option{longtable} option was only added to \Package{multirow} after that
   It used to be part of the \Option{full} option
   for \TeX\ Live versions newer than 2015 (defined by the \Option{texlive} option).
   If you want to use it with a \TeX\ Live version before 2018,
-  you need to pass the option \Option{diffcoeffISO=false} to \Package{atkaspackage}.
+  you need to pass the option \Option{diffcoeffISO=false} to \Package{atlaspackage}.
 \ADOCold{12.0} If you are using an older \TeX\ Live version (earlier than 2016),
   you will probably get an error when using the \Option{full} option,
   as the \Package{diffcoeff} package was first released in 2016.
@@ -1764,11 +1783,11 @@ Knut Zoch provided the code that fixed the line numbering problems with AMS Math
 \ADOCnew{14.0.0} no longer needs or uses the \Option{texlive} option,
 which used to be passed to the document class.
 
-Internally \Macro{@ifpackaglater} and \Macro{@ifclasslater} are now used instead.
+Internally \Macro{@ifpackagelater} and \Macro{@ifclasslater} are now used instead.
 Some of the documentation and test files do need such a variable,
 but this is now set only in those documents where it is needed.
 
-Th package \Package{diffcoeff} is no longer included when the \Option{full}
+The package \Package{diffcoeff} is no longer included when the \Option{full}
 is passed to \Package{atlaspackage}, as its syntax and options have changed too often.
 
 
