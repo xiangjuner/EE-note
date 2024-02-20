@@ -490,6 +490,7 @@ A summary of the options is:
   \Option{none} and \Option{space} print the references in block mode, while \Option{space} includes an extra space between the author and title;
   The default option (\Option{ragged}) tries to fit the title into a single line
   and so sometimes leads to a new line starting immediately after the author;
+\item[\Option{minbibnames=1}] specify the minimum number of author names before \enquote{et al.} is used, where the value is an integer;
 \item[\Option{maxbibnames=5}] specify the maximum number of author names before \enquote{et al.} is used, where the value is an integer;
 \item[\Option{articletitle=true|{\normalfont false}}] turn on or off including the article title in the bibliography;
 \item[\Option{titlequote={\normalfont true}|false}] enclose the title in quotes instead of emphasise;
@@ -528,6 +529,8 @@ To print the bibliography include the command:
 %
 where it should get printed.
 
+\ADOCnew{15.0.0} The \Option{minbibnames} option was added as the Science Bulletin
+journal wants three author names.
 
 %-------------------------------------------------------------------------------
 \section{Journal names}
@@ -697,6 +700,7 @@ Journals:
   Moved almost everything on use of traditional \BibTeX to an appendix.
 \item[2020-08-03: Ian Brock] Use \Package{tcolorbox} package for listings.
   Add use of \Macro{ADOCnew} macro to indicate when changes have been made.
+\item[2024-02-19: Ian Brock] Add the \Option{minbibnames} option.
 \end{description}
 
 \end{document}

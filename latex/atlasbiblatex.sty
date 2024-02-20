@@ -13,7 +13,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
-% More advanced if syntax
+% More advanced if syntax.
 \RequirePackage{ifthen}
 % Process option. Use kvoptions package.
 \RequirePackage{kvoptions}
@@ -23,6 +23,7 @@
 }
 \DeclareStringOption[ragged]{block}
 \DeclareStringOption[5]{maxbibnames}
+\DeclareStringOption[1]{minbibnames}
 \DeclareBoolOption[true]{articletitle}
 \DeclareBoolOption[false]{titlequote}
 \DeclareBoolOption[false]{showdoi}
@@ -44,14 +45,15 @@
 }
 
 %-------------------------------------------------------------------------------
-% Only set things if biblatex is actually loaded
+% Only set things if biblatex is actually loaded.
 \@ifpackageloaded{biblatex}{%
   % Set block mode
   \typeout{atlasbiblatex: block set to \ABIB@block}
   \ExecuteBibliographyOptions{block=\ABIB@block}
 
-  % Set maxbibnames
-  \typeout{atlasbiblatex: maxbibnames set to \ABIB@maxbibnames}
+  % Set minbibnames and maxbibnames.
+  \typeout{atlasbiblatex: minbibnames set to \ABIB@minbibnames and maxbibnames set to \ABIB@maxbibnames}
+  \ExecuteBibliographyOptions{minbibnames=\ABIB@minbibnames}
   \ExecuteBibliographyOptions{maxbibnames=\ABIB@maxbibnames}
 
   % backref=true adds page numbers of citations to bibliography
