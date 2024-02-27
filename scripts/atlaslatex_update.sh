@@ -187,12 +187,12 @@ for lfile in Makefile; do
 done
 
 # Acknowledgements - if the directory exists
-if [ -d acknowledgements ]; then
-    for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
-        afile=tmp-atlaslatex/acknowledgements/$(basename $lfile)
-        cf_files "${lfile}" "${afile}"
-    done
-fi
+# if [ -d acknowledgements ]; then
+#     for lfile in acknowledgements/*.tex acknowledgements/*.bib; do
+#         afile=tmp-atlaslatex/acknowledgements/$(basename $lfile)
+#         cf_files "${lfile}" "${afile}"
+#     done
+# fi
 
 # Remove temporary directory
 rm -rf tmp-atlaslatex

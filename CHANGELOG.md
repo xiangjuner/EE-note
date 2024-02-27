@@ -14,7 +14,10 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [15.0.0-alpha] - 2024-02-20
+## [15.0.0] - 2024-02-27
+
+Acknowledgements will be handled in the same way as the author list,
+so the `tex` file is no longer included in the template.
 
 ### Added
 
@@ -41,8 +44,8 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 - Nominal acknowledgements files removed from ATLAS LaTeX.
   They will be added to papers, together with the author list, by the Physics Office.
+- No check is made on the acknowledgements file when updating the template.
 - Macros `\numpmRF` and `\numpmRP` removed. Use `\numpmerr` instead.
-
 
 ## [14.10.2] - 2024-01-24
 
