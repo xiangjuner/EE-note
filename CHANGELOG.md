@@ -14,7 +14,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [15.0.0] - 2024-02-27
+## [15.0.0] - 2024-02-29
 
 Acknowledgements will be handled in the same way as the author list,
 so the `tex` file is no longer included in the template.
