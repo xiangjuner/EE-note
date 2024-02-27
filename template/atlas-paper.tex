@@ -17,7 +17,6 @@
 % british and american also work!
 % Commonly used options:
 %  atlasdraft=true|false This document is an ATLAS draft.
-%  texlive=YYYY          Specify TeX Live version (2020 is default).
 %  coverpage             Create ATLAS draft cover page for collaboration circulation.
 %                        See atlas-draft-cover.tex for a list of variables that should be defined.
 %  cernpreprint          Create front page for a CERN preprint.
@@ -27,19 +26,18 @@
 %  CONF                  The document is a CONF note (draft).
 %  PUB                   The document is a PUB note (draft).
 %  BOOK                  The document is of book form, like an LOI or TDR (draft).
-%  txfonts=true|false    Use txfonts rather than the default newtx.
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 %-------------------------------------------------------------------------------
 % Extra packages:
 \usepackage{atlaspackage}
 % Commonly used options:
-%  backend=bibtex        Use the bibtex backend rather than biber.
 %  subfigure|subfig|subcaption  to use one of these packages for figures in figures.
 %  minimal               Minimal set of packages.
 %  default               Standard set of packages.
 %  full                  Full set of packages.
 %-------------------------------------------------------------------------------
+
 % Style file with biblatex options for ATLAS documents.
 \usepackage{atlasbiblatex}
 
@@ -138,18 +136,15 @@ Place your results here.
 Place your conclusion here.
 
 %-------------------------------------------------------------------------------
+% When your ATLAS paper or PUB/CONF note is ready to be published,
+% the acknowledgements should be automatically included/updated by PO-GitLab.
+% The acknowledgements can be inspected on the web page:
+% \url{https://atlas-glance.cern.ch/atlas/membership/funding_agencies/history}.
 \section*{Acknowledgements}
 %-------------------------------------------------------------------------------
 
+% Acknowledgements - comment in this line when you are ready to include them.
 % \input{acknowledgements/Acknowledgements}
-
-The \texttt{atlaslatex} package contains the acknowledgements that were valid
-at the time of the release you are using.
-These can be found in the \texttt{acknowledgements} subdirectory.
-When your ATLAS paper or PUB/CONF note is ready to be published,
-the acknowledgements should be automatically updated by PO-GitLab.
-The acknowledgements can be inspected on the web page:
-\url{https://atlas-glance.cern.ch/atlas/membership/funding_agencies/history}.
 
 %-------------------------------------------------------------------------------
 \clearpage
