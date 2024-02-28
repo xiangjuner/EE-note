@@ -313,7 +313,7 @@
 \ifthenelse{\ATPackageUseVersion > 14}{%
   \@ifpackageloaded{siunitx}{%
     \PackageInfo{atlasmisc}{Using version 15 error macros.}
-    \newcommand*\valuesep{\,}
+    \newcommand*{\valuesep}{\,}
     \sisetup{number-unit-product=\valuesep}
     % Basic error plus text.
     \NewDocumentCommand {\numerrt} { o m m } {%
