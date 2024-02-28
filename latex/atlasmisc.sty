@@ -260,17 +260,19 @@
 
   \@ifpackageloaded{siunitx}{%
     \PackageInfo{atlasmisc}{Using~version~15~error~macros.}
+    \@ifpackagelater{siunitx}{2021/04/09}{%
+      \PackageInfo{atlasmisc}{Using~siunitx~version~3~options}
+      \newcommand*{\AT@siunitx_version}{3}
+    }{%
+      \PackageInfo{atlasmisc}{Using~siunitx~version~2~options}
+      \newcommand*{\AT@siunitx_version}{2}
+    }
 
     % Keeping plus sign option depends on siunitx version.
     % Arguments are rounding digits, rounding type, superscript, subscript.
     \tl_new:N \atl_si_options_tl
-    \@ifpackagelater{siunitx}{2021/04/09}{%
-      \PackageInfo{atlasmisc}{Using~siunitx~version~3~options}
-    }{%
-      \PackageInfo{atlasmisc}{Using~siunitx~version~2~options}
-    }
     \NewDocumentCommand {\numpmerr} { o o m m } {
-      \@ifpackagelater{siunitx}{2021/04/09}{%
+      \ifthenelse{\AT@siunitx_version > 2}{%
         \IfNoValueTF {#1} {
           \tl_set:Nn \atl_si_options_tl { print-implicit-plus }
         }{
