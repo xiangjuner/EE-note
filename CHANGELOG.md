@@ -14,6 +14,14 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [15.1.0] - 2024-03-05
+
+### Changed
+
+- Capitalisation of quite a few ATLAS and CMS publications corrected.
+
+---
+
 ## [15.0.0] - 2024-02-29
 
 Acknowledgements will be handled in the same way as the author list,
