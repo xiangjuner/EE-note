@@ -14,6 +14,24 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
+## [Unreleased] - 2024-01-XX
+
+### Added
+
+- Add a few more pointers and information on the numbers with errors macros.
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+---
+
 ## [15.1.0] - 2024-03-05
 
 ### Changed
