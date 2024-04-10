@@ -9,9 +9,9 @@
 %
 % Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\newcommand*{\ATPackageVersion}{15.1.0}
+\newcommand*{\ATPackageVersion}{15.2.0}
 \newcommand*{\ATPackageUseVersion}{15}
-\ProvidesClass{latex/atlasdoc}[2024/03/05 v15.1.0 ATLAS document class]
+\ProvidesClass{latex/atlasdoc}[2024/04/11 v15.2.0 ATLAS document class]
 % Needs 2013 TeX Live or later
 \NeedsTeXFormat{LaTeX2e}[2013/01/01]
 
@@ -345,10 +345,13 @@
 \newcommand*{\ACOV@AnalysisTeam}{Analysis team}
 \newcommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
 
-\newcommand*{\ACOV@EgroupEditors}{Editor egroup}
-\newcommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
+\newcommand*{\ACOV@EgroupAnalysisTeam}{Analysis team egroup}
+\newcommand{\AtlasCoverEgroupAnalysisTeam}[1]{\renewcommand*{\ACOV@EgroupAnalysisTeam}{#1}}
 
-\newcommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
+% Analysis team used as of 2024-04-11. Keep old macro for backwards compatibility.
+\newcommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupAnalysisTeam}{#1}}
+
+\newcommand*{\ACOV@EgroupEdBoard}{EdBoard and conveners egroup}
 \newcommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
 
 % Multiple corresponding editors

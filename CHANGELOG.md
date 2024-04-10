@@ -14,21 +14,18 @@ Added, Changed, Deprecated, Removed, Fixed, Security.
 
 ---
 
-## [Unreleased] - 2024-01-XX
+## [15.2.0] - 2024-04-11
 
 ### Added
 
+- March update of publications.
 - Add a few more pointers and information on the numbers with errors macros.
 
 ### Changed
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- New egroups. Change from editors to analysis team for cover. Change to EdBoard + conveners.
+- Replace `\AtlasCoverEgroupEditors` with `AtlasCoverEgroupAnalysisTeam`.
+- Reference checker ran over `ATLAS-useful.bib`.
 
 ---
 

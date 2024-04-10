@@ -1,5 +1,5 @@
 This new version contains a number of updates:
-- Update publications up to December 2023. Publication year for many references corrected.
+- Update publications up to March 2024. Publication year for many references corrected.
 - Acknowledgements handled by Physics Office.
 - Add Run 3 detector description.
 - Use of the texlive option is deprecated and it is not used any more.

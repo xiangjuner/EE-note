@@ -76,8 +76,11 @@
 \providecommand*{\ACOV@AnalysisTeam}{Analysis team}
 \providecommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
 
-\providecommand*{\ACOV@EgroupEditors}{Editor egroup}
-\providecommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
+\providecommand*{\ACOV@EgroupAnalysisTeam}{Analysis team egroup}
+\providecommand{\AtlasCoverEgroupAnalysisTeam}[1]{\renewcommand*{\ACOV@EgroupAnalysisTeam}{#1}}
+
+% Analysis team used as of 2024-04-11. Keep old macro for backwards compatibility.
+\providecommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupAnalysisTeam}{#1}}
 
 \providecommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
 \providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}

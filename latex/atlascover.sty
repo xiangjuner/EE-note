@@ -9,8 +9,8 @@
 %
 % Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\providecommand*\ATPackageVersion{15.1.0}
-\ProvidesPackage{latex/atlascover}[2024/03/05 v15.1.0 ATLAS cover pages]
+\providecommand*\ATPackageVersion{15.2.0}
+\ProvidesPackage{latex/atlascover}[2024/04/11 v15.2.0 ATLAS cover pages]
 \NeedsTeXFormat{LaTeX2e}
 
 %\def\@getcl@ss#1.cls#2\relax{\def\@currentclass{#1}}
@@ -165,10 +165,10 @@
   \providecommand*{\ACOV@AnalysisTeam}{Analysis team}
   \providecommand{\AtlasCoverAnalysisTeam}[1]{\renewcommand*{\ACOV@AnalysisTeam}{#1}}
 
-  \providecommand*{\ACOV@EgroupEditors}{Editor egroup}
-  \providecommand{\AtlasCoverEgroupEditors}[1]{\renewcommand*{\ACOV@EgroupEditors}{#1}}
+  \providecommand*{\ACOV@EgroupAnalysisTeam}{Analysis team egroup}
+  \providecommand{\AtlasCoverEgroupAnalysisTeam}[1]{\renewcommand*{\ACOV@EgroupAnalysisTeam}{#1}}
 
-  \providecommand*{\ACOV@EgroupEdBoard}{EdBoard egroup}
+  \providecommand*{\ACOV@EgroupEdBoard}{EdBoard and conveners egroup}
   \providecommand{\AtlasCoverEgroupEdBoard}[1]{\renewcommand*{\ACOV@EgroupEdBoard}{#1}}
 
   % Multiple corresponding editors
@@ -375,7 +375,7 @@
       [{\sffamily\mdseries\fontshape{it}\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
       email:}
       \sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
-      \ACOV@EgroupEditors]\par
+      \ACOV@EgroupAnalysisTeam]\par
     }
     \vspace*{1ex}
     {\sffamily\mdseries\fontsize{\ACOV@sizel}{\ACOV@spacel}\selectfont
